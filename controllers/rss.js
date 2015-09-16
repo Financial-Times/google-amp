@@ -38,7 +38,7 @@ var generateFeed = data => {
 		description: 'A feed of news older than 30 days for the Google AMP initiative',
 		custom_namespaces: {
 			'content':'http://purl.org/rss/1.0/modules/content/',
-			'media': 'http://search.yahoo.com/mrss'
+			'media': 'http://search.yahoo.com/mrss/'
 		}
 	});
 	
