@@ -61,7 +61,7 @@ var generateFeed = data => {
 				'media:content': [
 					{_attr: {
 						url: img.url,
-						type: img.mediaType,
+						type: 'image/jpeg',
 						width: img.width,
 						height: img.height
 					}},
