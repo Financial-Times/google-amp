@@ -3,6 +3,7 @@ const request = require('request');
 const RSS = require('rss');
 const esQuery = require('../queries/latestContent.js');
 const elasticSearchUrl = process.env.ELASTIC_SEARCH_URL;
+const aws4 = require('aws4');
 
 var cacheData = '';
 
@@ -12,15 +13,25 @@ module.exports = (req, res) => {
 };
 
 var getElasticSearchResults = () => {
-	var searchRequest = {
+	var requestOpts = {
 				method: 'POST',
-				json: true,
-				body: esQuery,
+				body: JSON.stringify(esQuery),
 				url:  'https://' + elasticSearchUrl + '/v1_api_v2/item/_search'
 			};
-
+	
+	let opts = {
+		host: elasticSearchUrl,
+		path: '/v1_api_v2/item/_search',
+		method: 'POST',
+		body: JSON.stringify(esQuery)	
+	};
+			
+	aws4.sign(opts);
+	
+	requestOpts.headers = opts.headers;
+	
 	return new Promise ((resolve, reject) => {
-		request(searchRequest, (error, response, body) => {
+		request(requestOpts, (error, response, body) => {
 			if (error || response.statusCode !== 200) {
 				reject(error);
 			} else {
@@ -33,7 +44,13 @@ var getElasticSearchResults = () => {
 var fetchContent = () => {
 	getElasticSearchResults()
 		.then(body => {
-			cacheData = generateRssFeed(body);
+			let results;
+			try {
+				results = JSON.parse(body);
+			} catch (e) {
+				console.log('Couldn\'t parse the JSON');	
+			}
+			cacheData = generateRssFeed(results);
 			console.log('Content updated');
 		})
 		.catch((error) => {console.log('Failed to fetch the data', error);});
