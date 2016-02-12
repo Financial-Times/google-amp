@@ -1,7 +1,7 @@
-const articleXsltTransform = require('../../transforms/article-xslt');
-const bodyTransform = require('../../transforms/body');
-const dateTransform = require('../../transforms/date');
-const summaryTransform = require('../../transforms/summary');
+const articleXsltTransform = require('../../next-article/server/transforms/article-xslt');
+const bodyTransform = require('../../next-article/server/transforms/body');
+const dateTransform = require('./article-date');
+const summaryTransform = require('./article-summary');
 
 function transformArticleBody (article) {
 	let xsltParams = {
