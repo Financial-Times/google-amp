@@ -5,7 +5,7 @@
   "description": "An RSS feed for AMP",
   "main": "app.js",
   "scripts": {
-    "postinstall": "git submodule foreach 'npm install'",
+    "postinstall": "git submodule foreach 'npm install --production'",
     "start": ". env.sh && nodemon --use-strict app.js"
   },
   "keywords": [
