@@ -1,7 +1,4 @@
-'use strict';
-
 module.exports = function() {
-
   const thisYear = new Date().getFullYear();
   const copyrightNotice = [
     '<p class="article__copyright-notice"><a href="http://www.ft.com/servicestools/help/copyright" data-trackable="link-copyright">Copyright</a>',

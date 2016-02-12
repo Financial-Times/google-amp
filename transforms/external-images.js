@@ -1,5 +1,3 @@
-'use strict';
-
 var cheerio = require('cheerio');
 var Entities = require('html-entities').XmlEntities;
 

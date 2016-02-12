@@ -1,10 +1,9 @@
-'use strict';
 module.exports =  {
 	"fields": ["item.title.title", "item.body.body", "item.lifecycle.initialPublishDateTime", 'item.location.uri'],
 	"partial_fields": {
-	    "partial1": {
-	        "include": "item.images.*"
-	    }
+		"partial1": {
+			"include": "item.images.*"
+		}
 	},
 	"from":0,
 	"size":50,
@@ -20,12 +19,12 @@ module.exports =  {
 		}
 	},
 	"sort": [ // Sorted by date 
-        {
-            "item.lifecycle.initialPublishDateTime": {
-                "order": "desc"
-            }
-        }
-    ]
+		{
+			"item.lifecycle.initialPublishDateTime": {
+				"order": "desc"
+			}
+		}
+	]
 };
 
 var searchDate = () => {

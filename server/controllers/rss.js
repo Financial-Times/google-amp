@@ -1,4 +1,3 @@
-'use strict';
 const request = require('request');
 const RSS = require('rss');
 const esQuery = require('../queries/latestContent.js');
@@ -14,10 +13,10 @@ module.exports = (req, res) => {
 
 var getElasticSearchResults = () => {
 	var requestOpts = {
-				method: 'POST',
-				body: JSON.stringify(esQuery),
-				url:  'https://' + elasticSearchUrl + '/v1_api_v2/item/_search'
-			};
+		method: 'POST',
+		body: JSON.stringify(esQuery),
+		url:  'https://' + elasticSearchUrl + '/v1_api_v2/item/_search'
+	};
 	
 	let opts = {
 		host: elasticSearchUrl,
@@ -113,7 +112,7 @@ var generateRssFeed = data => {
 var selectAppropriateImages = imageList => {
 	let suitableImages = imageList.filter(image => {
 		if (image.width > 500) {
-			return image;	
+			return image;
 		}
 	});
 	suitableImages.sort(sortImages);

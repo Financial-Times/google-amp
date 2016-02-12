@@ -1,4 +1,3 @@
-'use strict';
 const articleXsltTransform = require('../../transforms/article-xslt');
 const bodyTransform = require('../../transforms/body');
 const dateTransform = require('../../transforms/date');
@@ -14,24 +13,15 @@ function transformArticleBody (article) {
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams)
-        .then(articleBody => {
-            return bodyTransform(articleBody, {});
-        });
+		.then(articleBody => bodyTransform(articleBody, {}));
 }
 
-module.exports = contentItem => {
-    return new Promise ((resolve, reject) => {
-        return transformArticleBody(contentItem)
-            .then(transformedContent => {
-                contentItem.htmlBody = transformedContent.bodyHtml;
-                contentItem.mainImageHtml = transformedContent.mainImageHtml;
-                contentItem.displayDate = dateTransform(contentItem);
-                contentItem.displaySummary = summaryTransform(contentItem);
-                console.log(contentItem);
-                resolve(contentItem);
-            })
-            .catch(err => {
-                reject(console.log(err));
-            });    
-    });
-}
+module.exports = contentItem => transformArticleBody(contentItem)
+	.then(transformedContent => {
+		contentItem.htmlBody = transformedContent.bodyHtml;
+		contentItem.mainImageHtml = transformedContent.mainImageHtml;
+		contentItem.displayDate = dateTransform(contentItem);
+		contentItem.displaySummary = summaryTransform(contentItem);
+		console.log(contentItem);
+		return contentItem;
+	});

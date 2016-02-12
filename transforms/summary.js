@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = contentItem => {
     let summaryMarkup = '';
     if (contentItem.summaries) {

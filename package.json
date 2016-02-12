@@ -1,10 +1,11 @@
 {
   "name": "amp-feed",
+  "private": true,
   "version": "1.0.0",
   "description": "An RSS feed for AMP",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app"
+    "start": "nodemon --use-strict app.js"
   },
   "keywords": [
     "AMP",
@@ -12,7 +13,6 @@
     "AMP-HTML"
   ],
   "author": "richard.still@ft.com",
-  "license": "ISC",
   "dependencies": {
     "aws4": "^1.1.0",
     "cheerio": "^0.19.0",
