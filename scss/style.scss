@@ -1,0 +1,5 @@
+@import 'o-colors/main';
+
+body, html {
+		@include oColorsFor(page, background text);
+}

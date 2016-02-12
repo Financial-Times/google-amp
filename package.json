@@ -1,11 +1,11 @@
 {
-  "name": "amp-feed",
-  "private": true,
+  "name": "google-amp",
   "version": "1.0.0",
   "description": "An RSS feed for AMP",
+  "private": true,
   "main": "app.js",
   "scripts": {
-    "postinstall": "git submodule foreach 'npm install --production'",
+    "postinstall": "git submodule foreach 'npm install --production' && bower install",
     "start": ". env.sh && nodemon --use-strict app.js"
   },
   "keywords": [
@@ -15,21 +15,25 @@
   ],
   "author": "richard.still@ft.com",
   "dependencies": {
+    "@quarterto/promisify": "^1.0.0",
     "aws4": "^1.1.0",
+    "bower": "^1.7.7",
     "cheerio": "^0.19.0",
     "express": "^4.13.3",
+    "fs-promise": "^0.4.1",
     "handlebars": "^4.0.5",
     "html-entities": "^1.2.0",
     "morgan": "^1.6.1",
+    "node-sass": "^3.4.2",
     "request": "^2.61.0",
-    "rss": "^1.1.1"
+    "rss": "^1.1.1",
+    "signed-aws-es-fetch": "^1.1.0"
   },
   "engines": {
     "node": "4.*.*"
   },
   "devDependencies": {
     "errorhandler": "^1.4.3",
-    "nodemon": "^1.8.1",
-    "signed-aws-es-fetch": "^1.1.0"
+    "nodemon": "^1.8.1"
   }
 }

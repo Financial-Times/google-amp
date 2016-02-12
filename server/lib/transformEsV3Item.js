@@ -22,6 +22,5 @@ module.exports = contentItem => transformArticleBody(contentItem)
 		contentItem.mainImageHtml = transformedContent.mainImageHtml;
 		contentItem.displayDate = dateTransform(contentItem);
 		contentItem.displaySummary = summaryTransform(contentItem);
-		console.log(contentItem);
 		return contentItem;
 	});
