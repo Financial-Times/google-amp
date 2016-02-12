@@ -4,7 +4,7 @@
   "description": "An RSS feed for AMP",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app"
   },
   "keywords": [
     "AMP",
@@ -26,6 +26,7 @@
     "node": "4.*.*"
   },
   "devDependencies": {
+    "nodemon": "^1.8.1",
     "signed-aws-es-fetch": "^1.1.0"
   }
 }
