@@ -11,6 +11,8 @@ app.get('/', require('./server/controllers/rss.js'));
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/jsonItem.js'));
 
+app.use('/fonts', express.static('bower_components/o-fonts-assets'));
+
 if(app.get('env') === 'development') {
 	app.use(require('errorhandler')());
 }

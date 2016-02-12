@@ -1,11 +1,17 @@
+$o-fonts-path: '/fonts/';
+
 @import 'o-colors/main';
+@import 'o-fonts/main';
+@import 'o-typography/main';
+
+@include oFontsInclude(MetricWeb);
 
 body, html {
-	@include oColorsFor(page, background text);
+	@include oColorsFor(page, background);
 }
 
 main {
+	@include oTypographyBody;
 	max-width: 60em;
 	margin: 0 auto;
-	padding: 1em;
 }
