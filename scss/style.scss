@@ -1,5 +1,11 @@
 @import 'o-colors/main';
 
 body, html {
-		@include oColorsFor(page, background text);
+	@include oColorsFor(page, background text);
+}
+
+main {
+	max-width: 60em;
+	margin: 0 auto;
+	padding: 1em;
 }
