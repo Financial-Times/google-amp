@@ -1,13 +1,10 @@
 const getItem = require('../lib/getItem');
 
-module.exports = (req, res) => {
+module.exports = (req, res, next) => {
 	getItem(req.params.uuid)
 		.then(data => {
 			res.json(data);
 		})
-		.catch(err => {
-			console.log(err);
-			res.status(503).send('Noooooooo!');
-		});
+				.catch(next)
 };
 

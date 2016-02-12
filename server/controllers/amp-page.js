@@ -4,7 +4,7 @@ const articleTemplateSource= require('fs').readFileSync('./views/article.html', 
 const renderArticleTemplate = Handlebars.compile(articleTemplateSource);
 const transformArticle = require('../lib/transformEsV3Item.js');
 
-module.exports = (req, res) => {
+module.exports = (req, res, next) => {
 	getItem(req.params.uuid)
 		.then(apiResponse => {
 			return transformArticle(apiResponse._source);
@@ -12,9 +12,6 @@ module.exports = (req, res) => {
 		.then(contentItem => {
 			res.send(renderArticleTemplate(contentItem));
 		})
-		.catch(err => {
-			console.error(err.stack);
-			res.status(503).send('Noooooooo!');
-		});
+		.catch(next);
 };
 
