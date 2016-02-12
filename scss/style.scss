@@ -6,12 +6,14 @@ $o-fonts-path: '/fonts/';
 
 @include oFontsInclude(MetricWeb);
 
-body, html {
+body,
+html {
 	@include oColorsFor(page, background);
 }
 
 main {
 	@include oTypographyBody;
-	max-width: 60em;
 	margin: 0 auto;
+	max-width: 60em;
 }
+
