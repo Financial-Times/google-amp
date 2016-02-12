@@ -55,11 +55,11 @@ var fetchContent = () => {
 		})
 		.catch((error) => {console.log('Failed to fetch the data', error);});
 };
-fetchContent();
+//fetchContent();
 
-setInterval(function() {
-	fetchContent();
-}, 60000);
+// setInterval(function() {
+// 	fetchContent();
+// }, 60000);
 
 
 var generateRssFeed = data => {

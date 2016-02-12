@@ -1,0 +1,50 @@
+<!doctype html>
+<html ⚡>
+<head>
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+  <link rel="canonical" href="amps.html" >
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Georgia|Open+Sans|Roboto' rel='stylesheet' type='text/css'>
+  <style amp-custom>
+
+  </style>
+  <script async custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script>
+  <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand-logo">
+      PublisherLogo
+    </div>
+  </header>
+  <main role="main">
+    <article>
+      <div class="content-container">
+        <header>
+          <h1 itemprop="headline">{{title}}</h1>
+          {{{displaySummary}}}
+          {{{displayDate}}}
+        </header>
+
+        <div class="author">
+          <div class="byline">
+              by 
+              <span itemscope itemtype="http://schema.org/Person" itemprop="author">
+                {{byline}}
+              </span>
+          </div>
+        </div>
+        <div class="article-body" itemprop="articleBody">
+            {{{htmlBody}}}
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="brand-logo">PublisherLogo</div>
+  </footer>
+</body>
+</html>

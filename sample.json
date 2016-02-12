@@ -1,0 +1,215 @@
+{
+   "took":81,
+   "timed_out":false,
+   "_shards":{
+      "total":1,
+      "successful":1,
+      "failed":0
+   },
+   "hits":{
+      "total":584298,
+      "max_score":null,
+      "hits":[
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"a22e817c-4082-11e5-9abe-5b335da3a90e",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:45:53Z"
+               ],
+               "item.title.title":[
+                  "Correction: Norway’s paternity leave"
+               ],
+               "item.body.body":[
+                  "<p>• Norway’s “father’s quota” of paternity leave is currently 10 weeks, not six as stated in an article published on August 11.</p>"
+               ]
+            },
+            "sort":[
+               1439336753000
+            ]
+         },
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"1232a01e-3c1b-11e5-8613-07d16aad2152",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:41:11Z"
+               ],
+               "item.title.title":[
+                  "We liberals have justifiable concerns"
+               ],
+               "item.body.body":[
+                  "<p>Sir, Janan Ganesh makes some very interesting points in “<a title=\"How the left tired of liberal London life - FT.com\" href=\"http://www.ft.com/cms/s/0/454cb11a-3f45-11e5-b98b-87c7270955cf.html#axzz3iPwk4r3u\">How the left tired of liberal London life</a>” (August 11). But he gets into a muddle with his mixing of political philosophies: through use of the sweeping term “liberal left”, which has no real meaning as liberals and lefties are not the same; and through confusing real liberalism with both anarchism and “neoliberalism”.</p>\n<p>He’s right that cities are liberal in theory and practice, with their glorious intermingling of people, goods, services, capital and ideas in which hierarchies, sectarianism, segregation, restrictions and convention are all challenged, if not eliminated. But his remark that “London is liberalism . . . in excelsis” because it has taken free movement “to anarchic extremes” betrays the confusion.</p>\n<p>It is not illiberal to be concerned at the effects of extreme inequality in London (or elsewhere), at the lack of will of some of the footloose global elite to contribute, financially or otherwise, to the fabric of their host community which they find so congenial, or at “buy-to-leave” property investment which depopulates neighbourhoods and crowds out actual places to live. </p>\n<p>Liberals are not frightened of globalisation, but we are justifiably concerned about how to create conditions in which a healthy society co-exists with concentrations of enormous wealth and power.</p>\n<p>Liberalism insists on democracy, accountability and transparency so the presence in our midst of “foreign billionaires of negotiable virtue” is of justifiable concern. Liberals treasure the environment and culture, so it is perfectly reasonable to dislike the “despoliation of the skyline” as London becomes Dubai-on-Thames (who asked us, by the way?).</p>\n<p>I’m sure it was fun to write such a broad-brush article. But Mr Ganesh needs to be more discerning in his analysis of the criticism as well as appreciation of what London is becoming.</p>\n<p><span class=\"ft-bold\">Baroness Ludford</span>\n</p>\n<p><span class=\"ft-italic\">House of Lords, UK</span>\n</p>"
+               ]
+            },
+            "sort":[
+               1439336471000
+            ]
+         },
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"035dd7ec-403b-11e5-9abe-5b335da3a90e",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:38:48Z"
+               ],
+               "item.title.title":[
+                  "Democracy would require a euro exit mechanism"
+               ],
+               "item.body.body":[
+                  "<p>Sir, Martin Sandbu acutely observes, in “<a title=\"Democracy at the heart of fight for Greece - FT.com\" href=\"http://www.ft.com/cms/s/0/d64ba252-3d2e-11e5-bbd1-b37bc06f590c.html#axzz3iPwk4r3u\">Democracy at the heart of fight for Greece</a>” (August 10), that central to the Greek difficulty is the tension between democracy and the eurozone rules, as currently interpreted.</p>\n<p>But, because Greece wants to stay in the euro, Mr Sandbu leaves out discussion of the one supremely undemocratic rule: the deliberate omission of an exit mechanism. Doubtless experts in the field know why. But it’s undemocratic: a country may never change its mind. For those who aren’t experts in the field the absence of an exit mechanism is astonishing: what human construct has ever been irrevocable? Only dictatorships, not democracies, thought their arrangements would last for ever. Or, to take a more homely example, many in the UK thought that the 1707 Act created a union that to all intents and purposes was irrevocable. We now know it may not be. In short, nothing is irrevocable.</p>\n<p>The Financial Times reported on July 28 that the German Council of Economic Experts recommended <a title=\"Let debtor nations leave euro, say German experts - FT.com\" href=\"http://www.ft.com/cms/s/0/e8e9a244-3534-11e5-b05b-b01debd57852.html#axzz3iPwk4r3u\">introducing an exit mechanism</a> as a last resort. Perhaps necessary on the grounds of economics, but certainly necessary on the grounds of democracy.</p>\n<p><span class=\"ft-bold\">John Alexander</span>\n</p>\n<p><span class=\"ft-italic\">Amsterdam, The Netherlands</span>\n</p>"
+               ]
+            },
+            "sort":[
+               1439336328000
+            ]
+         },
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"1c695c42-4023-11e5-9abe-5b335da3a90e",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:38:28Z"
+               ],
+               "item.title.title":[
+                  "Greece’s financial position is widely misreported"
+               ],
+               "item.body.body":[
+                  "<p>Sir, As Greece and its lenders reach a <a title=\"Greece strikes outline of debt deal with creditors - FT.com\" href=\"http://www.ft.com/cms/s/0/b252a0a8-3ff9-11e5-b98b-87c7270955cf.html#axzz3iPwk4r3u\">new bailout deal</a>, it is of vital importance that Greece’s real debt position is accurately reported.</p>\n<p>There has been a widespread misunderstanding of Greek finances which has resulted in policies and agreements that may only exacerbate the fiscal and economic problems Greece faces. While the debt burden is commonly cited as being between 175 and 180 per cent of gross domestic product, this number is incorrect and indefensible because it is based on the face value of Greece’s debt that doesn’t take into account long maturities and concessional interest rates, as well as grace periods.</p>\n<p>Greek debt, calculated on an International Public Sector Accounting Standards (IPSAS) basis, is significantly lower, and at the end of 2013 was 68 per cent of GDP. If this is not an appropriate method for measuring debt, then every company on major stock exchanges around the world has got its debt measurement wrong. In neither accounting standards nor economic principle is debt measured at face value. This pervasive misunderstanding of Greece’s real fiscal position has seen agreements reached between Greece and its creditors that do not address the real problem and instead may actually intensify it.</p>\n<p>Confronting the actual position faced by Greece, and the losses already incurred by the creditors, would give both Greece and its creditors a fresh start in addressing the very real issues facing the Greek economy and would help prevent the situation from worsening.</p>\n<p><span class=\"ft-bold\">Ian Ball</span>\n</p>\n<p><span class=\"ft-italic\">Chair,</span>\n</p>\n<p><span class=\"ft-italic\">CIPFA International,</span>\n</p>\n<p><span class=\"ft-italic\">London E1, UK</span>\n</p>\n<h3 class=\"ft-subhead\">Letter in response to this letter:</h3>\n<p><a title=\"Apply formula to debt of all eurozone countries - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/7b70beda-41de-11e5-b98b-87c7270955cf.html#axzz3j1BdZLPq\"><span class=\"ft-italic\">Apply formula to debt of all eurozone countries / From James Hanshaw</span>\n</a>\n</p>"
+               ]
+            },
+            "sort":[
+               1439336308000
+            ]
+         },
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"1cadb090-4023-11e5-9abe-5b335da3a90e",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:38:17Z"
+               ],
+               "item.title.title":[
+                  "Dramatic truth about Venezuela’s inflation"
+               ],
+               "item.body.body":[
+                  "<p>Sir, Andres Schipani, in “ <a title=\"Venezuela: ‘Terrorised by oil price drop’ - FT.com\" href=\"http://www.ft.com/cms/s/0/c9c4b05c-0b81-11e5-994d-00144feabdc0.html#axzz3iPwk4r3u\">‘We are terrorised by the drop in oil prices’</a> ” (The Big Read, August 10), provides an edifying survey of Venezuela’s massive economic tumult. Mr Schipani notes that “the government provides no data [on current inflation]”. But he goes on to say that “private forecasts suggest inflation is already running at more than 100 per cent . . .”</p>\n<p>When it comes to estimates of Venezuela’s inflation, many numbers are thrown around. However, coherent methods of estimation and verification are nowhere to be found. The actual annual inflation in Venezuela is much more dramatic: 763 per cent. It is updated regularly by the Johns Hopkins-Cato Institute<a title=\"Cato Institute\" href=\"http://www.cato.org/research/troubled-currencies-project\"> Troubled Currencies Project</a>. The methods used are known, and the estimates are verifiable.</p>\n<p><span class=\"ft-bold\">Steve H Hanke</span>\n</p>\n<p><span class=\"ft-italic\">The Johns Hopkins University,</span>\n</p>\n<p><span class=\"ft-italic\">Baltimore, MD, US</span>\n</p>"
+               ]
+            },
+            "sort":[
+               1439336297000
+            ]
+         },
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"6acb56e4-3c57-11e5-8613-07d16aad2152",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:38:05Z"
+               ],
+               "item.title.title":[
+                  "Left-handers in sport: it’s a simple explanation"
+               ],
+               "item.body.body":[
+                  "<p>Sir, Gordon Bonnyman asks (<a title=\"So many left-handed players in cricket - FT.com\" href=\"http://www.ft.com/cms/s/0/794b2bf6-39fd-11e5-8613-07d16aad2152.html#axzz3iPwk4r3u\">Letters</a>, August 5) why there are so many successful left-handed cricketers and comparatively few left-handed golfers. The explanation is simple.</p>\n<p>Cricket is a team sport and competitors play one another. Golfers play the course. Since there are far more right handers than left handers in the world, bowlers at school and club level are more accustomed to bowling to right-handed batsmen and they find left-handed batsmen difficult to bowl to. So left-handed batsmen have an advantage and are more likely to succeed. Similarly, batsmen are accustomed to dealing with right-handed bowlers and so left-handers have an advantage and are more likely to succeed at Test level. Much the same is true in tennis. But golfers play the course and have no such advantage.</p>\n<p><span class=\"ft-bold\">Vernon Coleman</span>\n</p>\n<p><span class=\"ft-italic\">London WC1, UK</span>\n</p>\n<h3 class=\"ft-subhead\">Letters in response to this letter:</h3>\n<p><a title=\"Batting and golf are a two-handed process - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/f358992e-410a-11e5-9abe-5b335da3a90e.html#axzz3ik1mw5OQ\"><span class=\"ft-italic\">Batting and golf are a two-handed process / From David Clarke</span>\n</a>\n</p>\n<p><a title=\"Easy for young cricketer to choose favourite method - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/7be8972a-41de-11e5-b98b-87c7270955cf.html#axzz3j1BdZLPq\"><span class=\"ft-italic\">Easy for young cricketer to choose favourite method / From Andrew Fraser</span>\n</a>\n</p>"
+               ]
+            },
+            "sort":[
+               1439336285000
+            ]
+         },
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"1c801162-4023-11e5-9abe-5b335da3a90e",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:37:55Z"
+               ],
+               "item.title.title":[
+                  "Training gave us runners an unfair advantage"
+               ],
+               "item.body.body":[
+                  "<p>Sir, A new focus on doping in sport is welcome (“<a title=\"Moral outrage over doping in sport is misplaced - FT.com\" href=\"http://www.ft.com/cms/s/0/912799e0-3d17-11e5-bbd1-b37bc06f590c.html?siteedition=uk#axzz3iPwk4r3u\">Moral outrage over doping in sport is misplaced</a>”, August 10) and reminds me of my own athletic career some 50 years ago. As devoted amateur club runners (do they exist any more? All athletes seem to be stars these days), one of the criticisms we suffered was that we should not train because it gave us an unfair advantage over those who didn’t. I agree with Clive Cookson — that we have lost perspective — but not for the same reasons.</p>\n<p><span class=\"ft-bold\">John E Kiddell</span>\n</p>\n<p><span class=\"ft-italic\">Madrid, Spain</span>\n</p>\n\n\n<h3 class=\"ft-subhead\">Letter in response to this letter:</h3>\n<p><a title=\"Most sportsmen know what is and isn’t moral - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/1f302078-41a4-11e5-9abe-5b335da3a90e.html#axzz3ik1mw5OQ\"><span class=\"ft-italic\">Most sportsmen know what is and isn’t moral / From John M Barber</span>\n</a>\n</p>\n"
+               ]
+            },
+            "sort":[
+               1439336275000
+            ]
+         },
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"19cf53c2-3cfb-11e5-8613-07d16aad2152",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:37:48Z"
+               ],
+               "item.title.title":[
+                  "I missed that memo . . . "
+               ],
+               "item.body.body":[
+                  "<p>Sir, I was disappointed to learn that “the legal community has weaned itself off booze” (“<a title=\"End of an era as Fleet St haunt El Vino is sold to Davy’s - FT.com\" href=\"http://www.ft.com/cms/s/0/05ce0588-3b90-11e5-bbd1-b37bc06f590c.html#axzz3iPs9xu25\">End of an era as Fleet St haunt El Vino is sold to Davy’s</a>”, ft.com August 5). Despite being a practising solicitor, I for one am oblivious to such a development.</p>\n<p><span class=\"ft-bold\">Jonathan Lafferty</span>\n</p>\n<p><span class=\"ft-italic\">London EC4, UK</span>\n</p>"
+               ]
+            },
+            "sort":[
+               1439336268000
+            ]
+         },
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"1c9861d6-4023-11e5-9abe-5b335da3a90e",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:37:38Z"
+               ],
+               "item.title.title":[
+                  "An alternative to credit ratings is already available"
+               ],
+               "item.body.body":[
+                  "<p>Sir, A major alternative to credit ratings is already available to investors, creditors and regulators alike: a bank’s financial statements (“<a title=\"Rating agencies still matter — and that is inexcusable - FT.com\" href=\"http://www.ft.com/cms/s/0/750fc7b0-3f41-11e5-b98b-87c7270955cf.html#axzz3iPwk4r3u\">Rating agencies still matter — and that is inexcusable</a>”, Nouriel Roubini, August 11). Indeed, these statements are expressly designed for those who have invested or lent money to a bank in order to assure them that their money is not being invested in a dud company.</p>\n<p>European accounting law requires that financial statements give a true and fair view, which means that both creditors and investors can be assured that the company in question is solvent and legally able to make distributions.</p>\n<p>In particular, the law requires that all potential losses are recognised and provisioned for, regardless of whether they have happened or are likely to happen. This could well have given investors a much better indication of the health of those banks which went bust shortly after their accounts were signed off by their auditors. Not only would recognition of all known losses alert market participants to the health of loan books, but it would also result in a greater amount of provisioning, which could minimise some of the fallout from a financial crisis.</p>\n<p>Unfortunately banks’ financial statements have become so impenetrable and confusing that they are under-used by those for whom they are prepared. The investor voice is surprisingly absent in the global standard-setting process, which has resulted in accounting requirements which suit the preparers, but not necessarily the investors, which seems to be a perverse state of affairs. </p>\n<p>Even worse, certain standards, such as the existing IAS39, mirror the backward-looking approach of the credit rating agencies, so that only incurred losses can be recognised and provisioned for in the financial statements. And although IFRS9, its replacement, does introduce a forward-looking approach, there is still the risk of losses being disguised or their recognition delayed.</p>\n<p>If the financial statements are not there for investors and creditors to identify potential sources of risk and instability in a bank’s balance sheet, what exactly are they for?</p>\n<p><span class=\"ft-bold\">Harry Cooper</span>\n</p>\n<p><span class=\"ft-italic\">Brussels, Belgium</span>\n</p>\n<h3 class=\"ft-subhead\">Letter in response to this letter:</h3>\n<p><span class=\"ft-italic\"><a title=\"Changes to disclosures are a key part of IFRS9 - FT.com\" href=\"http://www.ft.com/intl/cms/s/0/7ac78cf2-41de-11e5-b98b-87c7270955cf.html#axzz3j1BdZLPq\">Changes to disclosures are a key part of IFRS9 / From Damien Burke</a>\n</span>\n</p>"
+               ]
+            },
+            "sort":[
+               1439336258000
+            ]
+         },
+         {
+            "_index":"v1_api_v2",
+            "_type":"item",
+            "_id":"18a3ce80-3f7e-11e5-b98b-87c7270955cf",
+            "_score":null,
+            "fields":{
+               "item.lifecycle.lastPublishDateTime":[
+                  "2015-08-11T23:37:22Z"
+               ],
+               "item.title.title":[
+                  "I met my husband at the Reform Club"
+               ],
+               "item.body.body":[
+                  "<p>Sir, My experience of Pall Mall clubs is very different from the picture Sarah Gordon describes in “<a title=\"Club rules keep women out of the network - FT.com\" href=\"http://www.ft.com/cms/s/0/ec925f94-3ab6-11e5-bbd1-b37bc06f590c.html#axzz3i2z88P3n\">Club rules keep women out of the network</a>” (August 6). I joined the emancipated Reform Club thanks to a former FT journalist, the late Roy Hodson, more than 20 years ago. It was there that I met my husband and occasional FT contributor, Mihir Bose. We were the first (but not the only) members of the club’s general committee to marry.</p>\n<p><span class=\"ft-bold\">Caroline Cecil</span>\n</p>\n<p><span class=\"ft-italic\">London W6, UK</span>\n</p>\n<p><span class=\"ft-italic\">Vice-chairman, Media Group, and former chairman, Social Committee, Reform Club</span>\n</p>"
+               ]
+            },
+            "sort":[
+               1439336242000
+            ]
+         }
+      ]
+   }
+}

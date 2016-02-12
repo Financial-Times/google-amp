@@ -1,0 +1,210 @@
+// Get a bit of a document: _source=title,text
+
+// A basic text search
+{
+	"query": {
+		"match": {
+			"item.title.title": "David Cameron"
+		}
+	}
+}
+
+
+"filter" : {
+    "and" : {
+        "filters": [
+            {
+				"term": {
+					"item.metadata.primaryTheme.term.name": "Euro in crisis" // Filter the result by things with the gengre "comment"
+				}
+            },
+            {
+                "term": {
+					"item.metadata.authors.term.name": "Ralph Atkins" // Filter the result by things with the gengre "comment"
+				}
+            }
+        ]
+    }
+}
+
+// A more complex example
+{
+	"fields" : ["item.title.title", "item.aspectSet"], // The fields to return
+	"from" : 10, // How far into the result set to start
+	"size" : 10, // The number of results
+	"query": { // The search query
+		"filtered": {
+		    "query": {
+				"multi_match": { // Search multiple fields
+				    "query": "Indian", // For the word "Indian"
+					"fields": ["item.body.body", "item.title.title"] // Across these fields
+				}
+			},
+			"filter": {
+				"term": {
+					"item.metadata.genre.term.name": "Comment" // Filter the result by things with the gengre "comment"
+				}
+			}
+		}
+	},
+	"highlight" : { // Highlight the title field
+        "fields" : {
+            "item.title.title" : {}
+        }
+    },
+	"aggs": { // Aggregate (facet) on the following
+	    "primary-sections": {
+	        "terms": {
+	            "field": "item.metadata.primarySection.term.name"
+	        }
+	    },
+	    "primary-theme": {
+	        "terms": {
+	            "field": "item.metadata.primaryTheme.term.name"
+	        }
+	    }
+	}
+}
+
+// A browse example
+{
+	"fields" : ["item.title.title", "item.lifecycle.lastPublishDateTime"],
+	"from" : 10,
+	"size" : 10,
+	"query": { // Filtered to Comment
+		"filtered": {
+			"filter": {
+				"term": {
+					"item.metadata.genre.term.name": "Comment"
+				}
+			}
+		}
+	},
+	"highlight" : {
+        "fields" : {
+            "item.title.title" : {}
+        }
+    },
+    "sort": [ // Sorted by date 
+        {
+            "item.lifecycle.lastPublishDateTime": {
+                "order": "desc"
+            }
+        }
+    ],
+	"aggs": {
+	    "primary-sections": {
+	        "terms": {
+	            "field": "item.metadata.primarySection.term.name"
+	        }
+	    },
+	    "primary-theme": {
+	        "terms": {
+	            "field": "item.metadata.primaryTheme.term.name"
+	        }
+	    }
+	}
+}
+
+
+
+// A multi-field filtered phrase search with field boosting
+{
+	"query": {
+		"filtered": {
+		    "query": {
+				"multi_match": {
+				    "query": "several years",
+				    "type": "phrase",
+					"fields": ["item.body.body", "item.title.title^5"]
+				}
+			},
+			"filter": {
+				"term": {
+					"item.metadata.primarySection.term.id": "MTM=-U2VjdGlvbnM="
+				}
+			}
+		}
+	}
+}
+
+// Filter search
+{
+	"query": {
+		"filtered": {
+		    "query": {
+				"match": {
+					"item.title.title": "Sweeping"
+				}
+			},
+			"filter": {
+				"term": {
+					"item.metadata.primarySection.term.id": "MTM=-U2VjdGlvbnM="
+				}
+			}
+		}
+	}
+}
+
+// Filtered search across multiple fields (with field boosting)
+{
+	"query": {
+		"filtered": {
+		    "query": {
+				"multi_match": {
+				    "query": "Indian",
+					"fields": ["item.body.body", "item.title.title^5"]
+				}
+			},
+			"filter": {
+				"term": {
+					"item.metadata.primarySection.term.id": "MTM=-U2VjdGlvbnM="
+				}
+			}
+		}
+	}
+}
+
+// Aggregations
+{
+	"query": {
+		"filtered": {
+		    "query": {
+				"multi_match": {
+				    "query": "several years",
+				    "type": "phrase",
+					"fields": ["item.body.body", "item.title.title^5"]
+				}
+			},
+			"filter": {
+				"term": {
+					"item.metadata.primarySection.term.id": "MTM=-U2VjdGlvbnM="
+				}
+			}
+		}
+	},
+	"aggs": {
+	    "meta-count": {
+	        "value_count": {
+	            "field": "item.metadata.primarySection.term.name"
+	        }
+	    }
+	}
+}
+
+// Everything in the last day
+{
+	"from":0,
+	"size":1000,
+	"query" : {
+		"constant_score": {
+			"filter": {        
+				"range" : {
+					"item.lifecycle.lastPublishDateTime" : {
+						"gte": "2015-02-08" // replace with new Date() for 24 hrs ago
+					}
+				}
+			}
+		}
+	}
+}
