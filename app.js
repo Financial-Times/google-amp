@@ -1,6 +1,9 @@
 const express = require('express');
+const logger = require('morgan');
 const port = process.env.PORT || 5000;
 const app = express();
+
+app.use(logger(app.get('env') === 'development' ? 'dev' : 'combined'));
 
 // The search interface route
 app.get('/', require('./server/controllers/rss.js'));

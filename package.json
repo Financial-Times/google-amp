@@ -20,6 +20,7 @@
     "express": "^4.13.3",
     "handlebars": "^4.0.5",
     "html-entities": "^1.2.0",
+    "morgan": "^1.6.1",
     "request": "^2.61.0",
     "rss": "^1.1.1"
   },
