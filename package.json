@@ -16,6 +16,7 @@
   "author": "richard.still@ft.com",
   "dependencies": {
     "@quarterto/cache-if": "^1.1.0",
+    "@quarterto/promise-all-object": "^1.1.0",
     "@quarterto/promisify": "^1.0.0",
     "aws4": "^1.1.0",
     "bower": "^1.7.7",
