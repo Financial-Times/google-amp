@@ -2,6 +2,7 @@ const scss = require('node-sass');
 const path = require('path');
 const renderScss = require('@quarterto/promisify')(scss.render);
 const fs = require('fs-promise');
+const mkdirp = require('mkdirp-promise');
 
 const scssPath = path.resolve('scss');
 const cssPath = path.resolve('css');
@@ -13,7 +14,9 @@ module.exports = () => renderScss({
 }).then(result => result.css);
 
 if(module === require.main) {
-	module.exports()
+	console.log('precompiling scss...');
+	mkdirp(cssPath)
+		.then(module.exports)
 		.then(css => fs.writeFile(`${cssPath}/style.css`, css, 'utf8'))
 		.then(
 			() => console.log(`written ${cssPath}/style.css`),
