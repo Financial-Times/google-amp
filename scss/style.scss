@@ -5,6 +5,7 @@ $o-fonts-path: '/fonts/';
 @import 'o-typography/main';
 
 @include oFontsInclude(MetricWeb);
+@include oFontsInclude(FinancierDisplayWeb);
 
 body,
 html {
@@ -13,7 +14,8 @@ html {
 
 main {
 	@include oTypographyBody;
+	@include oTypographyBodyWrapper;
 	margin: 0 auto;
-	max-width: 60em;
+	max-width: 30em;
 }
 
