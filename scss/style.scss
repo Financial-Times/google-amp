@@ -4,8 +4,9 @@ $o-fonts-path: '/fonts/';
 @import 'o-fonts/main';
 @import 'o-typography/main';
 
-@include oFontsInclude(MetricWeb);
-@include oFontsInclude(FinancierDisplayWeb);
+@include oFontsInclude(MetricWeb, light); // body
+@include oFontsInclude(FinancierDisplayWeb); // headings
+@include oFontsInclude(FinancierDisplayWeb, $weight: light, $style: italic); // standfirst
 
 body,
 html {
@@ -19,3 +20,6 @@ main {
 	max-width: 30em;
 }
 
+.standfirst {
+	@include oTypographyLead;
+}
