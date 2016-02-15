@@ -5,7 +5,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "postinstall": "cd next-article && npm install --production && cd .. && bower install",
+    "postinstall": "cd next-article && npm install --production && cd .. && bower install && node ./server/lib/compile-scss",
     "start": ". env.sh && nodemon --use-strict app.js"
   },
   "keywords": [
