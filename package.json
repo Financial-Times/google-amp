@@ -5,7 +5,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "postinstall": "git submodule foreach 'npm install --production' && bower install",
+    "postinstall": "pushd next-article && npm install --production && popd && bower install",
     "start": ". env.sh && nodemon --use-strict app.js"
   },
   "keywords": [
