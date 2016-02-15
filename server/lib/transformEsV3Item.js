@@ -2,8 +2,25 @@ const articleXsltTransform = require('../../next-article/server/transforms/artic
 const bodyTransform = require('../../next-article/server/transforms/body');
 const dateTransform = require('./article-date');
 const summaryTransform = require('./article-summary');
+const cheerio = require('cheerio');
 
-function transformArticleBody (article) {
+function cheerioTransforms(transforms) {
+	return function(article) {
+		article.bodyHtml = transforms.reduce(
+			($, transform) => (transform($) || $),
+			cheerio.load(article.bodyHtml)
+		).html();
+		return article;
+	};
+}
+
+function removeStyleAttributes($) {
+	$('[style]').each(function() {
+		$(this).removeAttr('style');
+	});
+}
+
+function transformArticleBody(article) {
 	let xsltParams = {
 		id: article.id,
 		webUrl: article.webUrl,
@@ -13,7 +30,8 @@ function transformArticleBody (article) {
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams)
-		.then(articleBody => bodyTransform(articleBody, {}));
+		.then(articleBody => bodyTransform(articleBody, {}))
+		.then(cheerioTransforms([removeStyleAttributes]));
 }
 
 module.exports = contentItem => transformArticleBody(contentItem)
