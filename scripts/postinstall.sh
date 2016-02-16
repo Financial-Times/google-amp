@@ -4,8 +4,8 @@ set -x -e
 
 bower install
 
-pushd bower_components/next-article
+cd bower_components/next-article
 npm install --production
-popd
+cd ../..
 
 node server/lib/compile-scss
