@@ -11,7 +11,7 @@
 
     <xsl:include href="next/big-number.xsl" />
     <xsl:include href="next/blockquotes.xsl" />
-    <xsl:include href="next/external-image.xsl" />
+    <xsl:include href="external-image.xsl" />
     <xsl:include href="next/interactive-graphics.xsl" />
     <xsl:include href="next/links.xsl" />
     <xsl:include href="next/pull-quotes.xsl" />
