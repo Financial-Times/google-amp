@@ -20,19 +20,6 @@ function removeStyleAttributes($) {
 	});
 }
 
-function convertImgToAmp($) {
-	$('img').each(function() {
-		var img = $(this);
-		var amp = $('<amp-img>');
-		amp.attr({
-			src: img.attr('src'),
-			alt: img.attr('alt'),
-		});
-		//TODO: correct AMP layout
-		img.replaceWith(amp);
-	});
-}
-
 function transformArticleBody(article) {
 	let xsltParams = {
 		id: article.id,
@@ -45,7 +32,7 @@ function transformArticleBody(article) {
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams)
 		.then(articleBody => bodyTransform(articleBody, {}))
-		.then(cheerioTransforms([convertImgToAmp, removeStyleAttributes]));
+		.then(cheerioTransforms([removeStyleAttributes]));
 }
 
 module.exports = contentItem => transformArticleBody(contentItem)

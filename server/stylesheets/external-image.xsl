@@ -79,7 +79,7 @@
         <xsl:param name="maxWidth" />
 
         <xsl:variable name="ratio">
-          <xsl:value-of select="(100 div @width) * @height "/>
+          <xsl:value-of select="@height div @width"/>
         </xsl:variable>
 
         <xsl:variable name="imageWidth">
@@ -93,19 +93,12 @@
           </xsl:choose>
         </xsl:variable>
 
-        <xsl:variable name="paddingTop">
-          <xsl:choose>
-            <xsl:when test="@width &lt; $maxWidth">
-              <xsl:value-of select="concat(@height, 'px')" />
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="concat($ratio, '%')" />
-            </xsl:otherwise>
-          </xsl:choose>
+        <xsl:variable name="imageHeight">
+          <xsl:value-of select="$ratio * $imageWidth" />
         </xsl:variable>
 
-        <div class="article-image__placeholder" style="padding-top:{$paddingTop};">
-            <img alt="{@alt}" src="https://h2.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$imageWidth}" />
+        <div class="article-image__placeholder" >
+            <amp-img alt="{@alt}" src="https://h2.ft.com/image/v1/images/raw/{@src}?source=amp&amp;fit=scale-down&amp;width={$imageWidth}" width="{$imageWidth}" height="{$imageHeight}" layout="responsive" />
         </div>
     </xsl:template>
 
@@ -113,7 +106,7 @@
     <xsl:template match="img" mode="dont-placehold-image">
         <xsl:param name="maxWidth" />
 
-        <img alt="{@alt}" src="https://h2.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$maxWidth}" />
+        <amp-img alt="{@alt}" src="https://h2.ft.com/image/v1/images/raw/{@src}?source=amp&amp;fit=scale-down&amp;width={$maxWidth}" width="{@width}" height="{@height}" layout="responsive" />
     </xsl:template>
 
 </xsl:stylesheet>
