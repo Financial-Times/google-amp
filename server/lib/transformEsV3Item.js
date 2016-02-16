@@ -8,7 +8,7 @@ function cheerioTransforms(transforms) {
 	return function(article) {
 		article.bodyHtml = transforms.reduce(
 			($, transform) => (transform($) || $),
-			cheerio.load(article.bodyHtml)
+			cheerio.load(article.bodyHtml, {decodeEntities: false})
 		).html();
 		return article;
 	};
