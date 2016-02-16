@@ -105,7 +105,7 @@
         </xsl:variable>
 
         <div class="article-image__placeholder" style="padding-top:{$paddingTop};">
-            <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$imageWidth}" />
+            <img alt="{@alt}" src="https://h2.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$imageWidth}" />
         </div>
     </xsl:template>
 
@@ -113,7 +113,7 @@
     <xsl:template match="img" mode="dont-placehold-image">
         <xsl:param name="maxWidth" />
 
-        <img alt="{@alt}" src="https://next-geebee.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$maxWidth}" />
+        <img alt="{@alt}" src="https://h2.ft.com/image/v1/images/raw/{@src}?source=next&amp;fit=scale-down&amp;width={$maxWidth}" />
     </xsl:template>
 
 </xsl:stylesheet>
