@@ -10,8 +10,33 @@
   </style>
   <style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
   <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 </head>
 <body>
+  <amp-analytics>
+  <script type="application/json">
+  {
+    "requests": {
+      "pageview": "//localhost:5000/analytics?uuid=${uuid}&title=${title}&canonicalUrl=${canonicalUrl}&ampdocUrl=${ampdocUrl}&documentReferrer=${documentReferrer}&clientId=${clientId(foo)}&timestamp=${timestamp}"
+    },
+    "vars": {
+      "uuid": "{{{id}}}"
+    },
+    "triggers": {
+      "trackPageview": {
+        "on": "visible",
+        "request": "pageview"
+      }
+    },
+    "transport": {
+      "beacon": false,
+      "xhrpost": false,
+      "image": true
+    }
+  }
+  </script>
+  </amp-analytics>
+
   <header class="main-header">
     <div class="brand-logo">
         {{{logoSvg}}}
@@ -28,7 +53,7 @@
 
         <div class="author">
           <div class="byline">
-              by 
+              by
               <span itemscope itemtype="http://schema.org/Person" itemprop="author">
                 {{byline}}
               </span>
