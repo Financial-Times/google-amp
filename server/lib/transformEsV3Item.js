@@ -42,6 +42,7 @@ function transformArticleBody(article) {
 		useBrightcovePlayer: 0
 	};
 
+
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams)
 		.then(articleBody => bodyTransform(articleBody, {}))
 		.then(cheerioTransforms([convertImgToAmp, removeStyleAttributes]));
