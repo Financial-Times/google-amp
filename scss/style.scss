@@ -36,4 +36,8 @@ main {
 	.brand-logo {
 		@include responsiveWidth(16em);
 	}
+
+	svg {
+		display: block;
+	}
 }
