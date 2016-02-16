@@ -5,9 +5,6 @@ const app = express();
 
 app.use(logger(app.get('env') === 'development' ? 'dev' : 'combined'));
 
-// The search interface route
-app.get('/', require('./server/controllers/rss.js'));
-
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/jsonItem.js'));
 
