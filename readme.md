@@ -13,7 +13,7 @@ Prerequisites
 
  - node 4.x and npm
  - `brew install libxslt`
- - `env.sh` that exports `AWS_ACCESS_KEY`, `AWS_SECRET_ACCESS_KEY` and `ELASTIC_SEARCH_URL`, see `env-example.sh`
+ - `scripts/env.sh` that exports `AWS_ACCESS_KEY`, `AWS_SECRET_ACCESS_KEY` and `ELASTIC_SEARCH_URL`, see `scripts/env-example.sh`
  
 Running
 ---
