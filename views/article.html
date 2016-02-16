@@ -14,23 +14,31 @@
 </head>
 <body>
   <amp-analytics>
+  <!-- NB: https://github.com/ampproject/amphtml/issues/2046 -->
   <script type="application/json">
   {
     "requests": {
-      "pageview": "//localhost:5000/analytics?uuid=${uuid}&title=${title}&canonicalUrl=${canonicalUrl}&ampdocUrl=${ampdocUrl}&documentReferrer=${documentReferrer}&clientId=${clientId(foo)}&timestamp=${timestamp}"
+      "base": "//localhost:5000/analytics?uuid=${uuid}&title=${title}&canonicalUrl=${canonicalUrl}&ampdocUrl=${ampdocUrl}&documentReferrer=${documentReferrer}&clientId=${clientId(foo)}&timestamp=${timestamp}",
+      "pageview": "${base}&category=page&action=view",
+      "anchorclick": "${base}&category=link&action=click"
     },
     "vars": {
       "uuid": "{{{id}}}"
     },
     "triggers": {
-      "trackPageview": {
+      "pageview": {
         "on": "visible",
         "request": "pageview"
+      },
+      "anchorclick": {
+        "on": "click",
+        "selector": "a",
+        "request": "anchorclick"
       }
     },
     "transport": {
-      "beacon": false,
-      "xhrpost": false,
+      "beacon": true,
+      "xhrpost": true,
       "image": true
     }
   }
