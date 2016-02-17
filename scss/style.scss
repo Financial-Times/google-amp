@@ -20,12 +20,12 @@ body {
 	@include oTypographyBody;
 }
 
-main {
+.article {
 	@include oTypographyBodyWrapper;
 	@include responsiveWidth;
 }
 
-.standfirst {
+.article-standfirst {
 	@include oTypographyLead;
 }
 
@@ -33,10 +33,10 @@ main {
 	margin-bottom: 1em;
 	background: oColorsGetPaletteColor('grey-tint5');
 	padding: .5em;
+}
 
-	.brand-logo {
-		@include responsiveWidth(16em);
-	}
+.main-header-logo {
+	@include responsiveWidth(16em);
 
 	svg {
 		display: block;

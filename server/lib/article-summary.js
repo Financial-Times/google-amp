@@ -1,5 +1,5 @@
 module.exports = contentItem => {
 	if (contentItem.summaries && contentItem.summaries.length) {
-		return `<p class="standfirst">${contentItem.summaries[0]}</p>`;
+		return `<h2 class="article-standfirst">${contentItem.summaries[0]}</h2>`;
 	}
 };
