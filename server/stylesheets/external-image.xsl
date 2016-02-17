@@ -42,8 +42,7 @@
             </xsl:choose>
         </xsl:variable>
 
-        <!-- You cannot shrink-wrap text so inline styles FTW -->
-        <figure class="article-image article-image--{$variation}" style="width:{$maxWidth}px;">
+        <figure class="article-image article-image--{$variation}">
 
             <xsl:choose>
                 <xsl:when test="@width != '' and @height != ''">
