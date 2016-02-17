@@ -2,15 +2,10 @@ const DEBUG = false;
 
 module.exports = (req, res, next) => {
 
-	// TODO: cache this?
-	res.setHeader('Cache-Control', 'no-cache, max-age=0');
+	res.setHeader('Cache-Control', `public, max-age=${60 * 60 * 24}`);
 
 	// CORS
-	const origin = req.headers.origin;
-	if (origin) {
-		res.setHeader('Access-Control-Allow-Origin', origin);
-	}
-
+	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD');
 	res.setHeader('Access-Control-Allow-Credentials', 'true');
 
