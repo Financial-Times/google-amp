@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
 		return res.status(400).end('Failed to parse JSON from "data" query param.');
 	}
 
-	fs.writeFile(`${path.resolve('analytics.log')}`, `${new Date().toJSON()} ${req.method}: ${JSON.stringify(data)}\n`);
+	fs.writeFile(`${path.resolve('analytics.log')}`, `${new Date().toJSON()} ${req.method}: ${JSON.stringify(data)}\n`, {flag: 'a'});
 
 	// Switch between JSON and image/gif depending on what the client sent
 	//
