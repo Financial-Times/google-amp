@@ -10,6 +10,7 @@ app.get('/api/:uuid', require('./server/controllers/jsonItem.js'));
 
 if(app.get('env') === 'development') {
 	app.all('/analytics', require('./server/controllers/analytics-proxy.js'));
+	app.all('/analytics/config.json', require('./server/controllers/analytics-config.js'));
 	app.use(require('errorhandler')());
 }
 

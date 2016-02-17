@@ -13,32 +13,11 @@
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 	</head>
 	<body>
-<amp-analytics>
+  <amp-analytics config="//localhost:5000/analytics/config.json">
   <script type="application/json">
   {
-    "requests": {
-      "base": "//localhost:5000/analytics?uuid=${uuid}&title=${title}&canonicalUrl=${canonicalUrl}&ampdocUrl=${ampdocUrl}&documentReferrer=${documentReferrer}&clientId=${clientId(spoor-id)}&readerId=ACCESS_READER_ID&timestamp=${timestamp}",
-      "pageview": "${base}&category=page&action=view",
-      "anchorclick": "${base}&category=link&action=click"
-    },
     "vars": {
       "uuid": "{{{id}}}"
-    },
-    "triggers": {
-      "pageview": {
-        "on": "visible",
-        "request": "pageview"
-      },
-      "anchorclick": {
-        "on": "click",
-        "selector": "a",
-        "request": "anchorclick"
-      }
-    },
-    "transport": {
-      "beacon": true,
-      "xhrpost": true,
-      "image": true
     }
   }
   </script>

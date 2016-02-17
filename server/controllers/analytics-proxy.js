@@ -4,7 +4,15 @@ const fs = require('fs-promise');
 
 module.exports = (req, res, next) => {
 
-	fs.writeFile(`${path.resolve('analytics.log')}`, `${new Date().toJSON()} ${req.method}: ${JSON.stringify(req.query || {})}\n`);
+	let data;
+
+	try {
+		data = JSON.parse(req.query.data || {});
+	} catch (e) {
+		return res.status(400).end('Failed to parse JSON from "data" query param.');
+	}
+
+	fs.writeFile(`${path.resolve('analytics.log')}`, `${new Date().toJSON()} ${req.method}: ${JSON.stringify(data)}\n`);
 
 	// Switch between JSON and image/gif depending on what the client sent
 	//
