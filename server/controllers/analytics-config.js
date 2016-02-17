@@ -8,15 +8,15 @@ module.exports = (req, res, next) => {
 	// CORS
 	const origin = req.headers.origin;
 	if (origin) {
-		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD');
-		res.setHeader('Access-Control-Allow-Headers', 'accept, content-type, spoor-ticket');
 		res.setHeader('Access-Control-Allow-Origin', origin);
-		res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-		// AMP-specific
-		res.setHeader('AMP-Access-Control-Allow-Source-Origin', req.query.__amp_source_origin);
-		res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
 	}
+
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD');
+	res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+	// AMP-specific
+	res.setHeader('AMP-Access-Control-Allow-Source-Origin', req.query.__amp_source_origin);
+	res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
 
 	const spoor = {
 		category: "${category}",
