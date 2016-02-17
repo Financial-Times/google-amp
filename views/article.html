@@ -17,7 +17,7 @@
   <script type="application/json">
   {
     "requests": {
-      "base": "//localhost:5000/analytics?uuid=${uuid}&title=${title}&canonicalUrl=${canonicalUrl}&ampdocUrl=${ampdocUrl}&documentReferrer=${documentReferrer}&clientId=${clientId(foo)}&timestamp=${timestamp}",
+      "base": "//localhost:5000/analytics?uuid=${uuid}&title=${title}&canonicalUrl=${canonicalUrl}&ampdocUrl=${ampdocUrl}&documentReferrer=${documentReferrer}&clientId=${clientId(spoor-id)}&readerId=ACCESS_READER_ID&timestamp=${timestamp}",
       "pageview": "${base}&category=page&action=view",
       "anchorclick": "${base}&category=link&action=click"
     },
