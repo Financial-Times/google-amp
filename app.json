@@ -1,0 +1,24 @@
+{
+  "name": "google-amp",
+  "scripts": {
+  },
+  "env": {
+    "AWS_ACCESS_KEY": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "ELASTIC_SEARCH_URL": {
+      "required": true
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "urn:buildpack:heroku/nodejs"
+    }
+  ]
+}
