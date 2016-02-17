@@ -31,6 +31,7 @@ module.exports = (req, res, next) => {
 			amp_url: "${ampdocUrl}",
 			amp_canonical_url: "${canonicalUrl}",
 			referrer: "${documentReferrer}",
+			scroll_depth: "${percentageViewed}",
 		},
 		device: {
 			spoor_id: "${clientId(spoor-id)}"
@@ -78,6 +79,44 @@ module.exports = (req, res, next) => {
 				vars: {
 					category: "link",
 					action: "click"
+				}
+			},
+
+			// Something like https://github.com/Financial-Times/n-instrumentation/blob/920a8ad7cfaeccc02720dd386a2149674719bd0b/src/analytics/scroll-depth.js#L20-L30
+			scroll25: {
+				on: "scroll",
+				request: "standard",
+				vars: {
+					category: "page",
+					action: "scrolldepth",
+					percentageViewed: 25
+				},
+				"scrollSpec": {
+					"verticalBoundaries": [25]
+				}
+			},
+			scroll50: {
+				on: "scroll",
+				request: "standard",
+				vars: {
+					category: "page",
+					action: "scrolldepth",
+					percentageViewed: 50
+				},
+				"scrollSpec": {
+					"verticalBoundaries": [50]
+				}
+			},
+			scroll90: {
+				on: "scroll",
+				request: "standard",
+				vars: {
+					category: "page",
+					action: "scrolldepth",
+					percentageViewed: 90
+				},
+				"scrollSpec": {
+					"verticalBoundaries": [90]
 				}
 			}
 		},
