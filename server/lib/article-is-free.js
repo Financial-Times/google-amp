@@ -8,7 +8,7 @@ module.exports = (article, options) => {
 	if(/^http:\/\/www.ft.com\/cms\/s\/2/.test(article.webUrl)) {
 		return true;
 	}
-	console.log(new Date(), new Date(article.publishedDate), new Date() - new Date(article.publishedDate), THIRTY_DAYS);
+
 	if(new Date() - new Date(article.publishedDate) > THIRTY_DAYS) {
 		return true;
 	}
