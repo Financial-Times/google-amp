@@ -37,7 +37,7 @@ module.exports = (req, res, next) => {
 			spoor_id: "${clientId(spoor-id)}"
 		},
 		system: {
-			api_key: "7107dae3-7c77-4312-92c6-93a4ba7b79ae",
+			api_key: process.env.SPOOR_API_KEY,
 			source: "amp-analytics",
 
 			// TODO: check these
