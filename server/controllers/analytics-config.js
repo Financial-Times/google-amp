@@ -1,6 +1,11 @@
+const errors = require('http-errors');
+
 const DEBUG = false;
 
 module.exports = (req, res, next) => {
+	if(!req.query.__amp_source_origin) {
+		next(new errors.BadRequest('__amp_source_origin is required'));
+	}
 
 	res.setHeader('Cache-Control', `public, max-age=${60 * 60 * 24}`);
 
