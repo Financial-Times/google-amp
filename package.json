@@ -5,8 +5,8 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "postinstall": "cd next-article && npm install --production && cd .. && bower install && node ./server/lib/compile-scss",
-    "start": ". env.sh && nodemon --use-strict app.js"
+    "postinstall": "scripts/postinstall.sh",
+    "start": ". scripts/env.sh && nodemon --use-strict app.js"
   },
   "keywords": [
     "AMP",
@@ -28,6 +28,7 @@
     "mkdirp-promise": "^1.0.3",
     "morgan": "^1.6.1",
     "node-sass": "^3.4.2",
+    "o-date": "github:financial-times/o-date",
     "request": "^2.61.0",
     "rss": "^1.1.1",
     "signed-aws-es-fetch": "^1.1.0"

@@ -1,9 +1,10 @@
+$o-fonts-path: '//h2.ft.com/build/files/o-fonts-assets@1.3.0/';
+
 @import 'o-colors/main';
 @import 'o-fonts/main';
 @import 'o-typography/main';
 
 @include oFontsInclude(MetricWeb, light); // body
-@include oFontsInclude(MetricWeb, $weight: light, $style: italic); // body
 @include oFontsInclude(FinancierDisplayWeb); // headings
 @include oFontsInclude(FinancierDisplayWeb, $weight: light, $style: italic); // standfirst
 
@@ -40,4 +41,8 @@ main {
 	svg {
 		display: block;
 	}
+}
+
+.article-image {
+	margin: 1em 0;
 }
