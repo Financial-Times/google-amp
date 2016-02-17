@@ -25,6 +25,7 @@
     "fs-promise": "^0.4.1",
     "handlebars": "^4.0.5",
     "html-entities": "^1.2.0",
+    "http-errors": "^1.4.0",
     "mkdirp-promise": "^1.0.3",
     "morgan": "^1.6.1",
     "node-sass": "^3.4.2",
