@@ -33,18 +33,20 @@
 					<h1 itemprop="headline">{{title}}</h1>
 					{{{displaySummary}}}
 					{{{mainImageHtml}}}
-					{{{displayDate}}}
-				</header>
 
-
-				<div class="article-author">
-					<div class="article-author-byline">
-						by 
-						<span itemscope itemtype="http://schema.org/Person" itemprop="author">
-							{{byline}}
+					<div class="article-dateline">
+						{{{displayDate}}}
+						<span class="article-author">
+							<span class="article-author-byline">
+								by 
+								<span itemscope itemtype="http://schema.org/Person" itemprop="author">
+									{{byline}}
+								</span>
+							</span>
 						</span>
 					</div>
-				</div>
+				</header>
+				
 				<div class="article-body" itemprop="articleBody">
 					{{{htmlBody}}}
 				</div>
