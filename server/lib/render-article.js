@@ -21,5 +21,6 @@ const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
 module.exports = (data, options) => promiseAllObj({
 	template: getTemplate(options.precompiled),
 	css: getCss(options.precompiled),
-	logoSvg: fs.readFile(`${staticPath}/logo.svg`, 'utf8'),
+	ftSvg: fs.readFile(`${staticPath}/ft-logo.svg`, 'utf8'),
+	nikkeiSvg: fs.readFile(`${staticPath}/nikkei-logo.svg`, 'utf8'),
 }).then(t => t.template(Object.assign(t, data)));
