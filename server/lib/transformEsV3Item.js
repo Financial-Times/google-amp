@@ -43,7 +43,7 @@ module.exports = contentItem => transformArticleBody(contentItem)
 	.then(transformedContent => {
 		contentItem.htmlBody = transformedContent.bodyHtml;
 		contentItem.mainImageHtml = transformedContent.mainImageHtml;
-		contentItem.displayDate = dateTransform(contentItem);
+		contentItem.displayDate = dateTransform(contentItem.publishedDate, 'article-date');
 		contentItem.displaySummary = summaryTransform(contentItem);
 		return contentItem;
 	});

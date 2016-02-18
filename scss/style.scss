@@ -177,3 +177,37 @@ body {
 	margin: 10px 0;
 	padding-left: 20px;
 }
+
+.related-content {
+	@include responsiveWidth;
+}
+
+.related-content__items {
+
+	// Should we use a CSS reset?
+	padding: 0;
+	@include oGridRow();
+}
+
+.related-content__item {
+	@include oGridColspan((default: 12, M: 6));
+	margin-bottom: oGridGutter(L);
+}
+
+.related-content__container {
+	background-color: oColorsGetColorFor(box, background);
+	border: 1px solid oColorsGetPaletteColor("warm-3");
+	padding: oGridGutter(S);
+}
+
+.related-content__link {
+	@include oTypographyLink;
+	@include oTypographySans(m);
+	margin-top: 0;
+	display: block;
+}
+
+.related-content__date {
+	@include oTypographySans(xs);
+}
+

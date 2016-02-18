@@ -1,7 +1,7 @@
-const getItem = require('../lib/getItem');
+const getArticle = require('../lib/getArticle');
 
 module.exports = (req, res, next) => {
-	getItem(req.params.uuid)
+	getArticle(req.params.uuid)
 		.then(data => {
 			res.json(data);
 		})

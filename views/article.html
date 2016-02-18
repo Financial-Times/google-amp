@@ -89,7 +89,24 @@
 					{{{htmlBody}}}
 				</div>
 			</article>
-		</main>
+
+			{{#if relatedContent}}
+			<aside class="related-content">
+				<h2 class="related-content__header">Related articles</h2>
+				<ul class="related-content__items">
+					{{#each relatedContent}}
+ 					<li class="related-content__item">
+ 						<div class="related-content__container">
+							{{{date}}}
+							<a class="related-content__link" href="/content/{{{id}}}">{{{title}}}</a>
+ 						</div>
+					</li>
+					{{/each}}
+ 				</ul>
+			</aside>
+			{{/if}}
+
+ 		</main>
 		<footer class="main-footer">
 			<div class="main-footer__container">
 				<ul class="main-footer__links">
