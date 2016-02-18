@@ -3,10 +3,9 @@
 const cheerio = require('cheerio');
 
 const replaceEllipses = require('../../bower_components/next-article/server/transforms/replace-ellipses');
-const relativeLinks = require('../../bower_components/next-article/server/transforms/relative-links');
 const trimmedLinks = require('../../bower_components/next-article/server/transforms/trimmed-links');
 const externalImages = require('../../bower_components/next-article/server/transforms/external-images');
-const copyrightNotice = require('../../bower_components/next-article/server/transforms/copyright-notice');
+const copyrightNotice = require('./transforms/copyright-notice');
 const extractMainImageAndToc = require('../../bower_components/next-article/server/transforms/extract-main-image-and-toc');
 
 let transform = function ($, flags) {
