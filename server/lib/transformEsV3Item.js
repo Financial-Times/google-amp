@@ -1,5 +1,5 @@
 const articleXsltTransform = require('../../bower_components/next-article/server/transforms/article-xslt');
-const bodyTransform = require('../../bower_components/next-article/server/transforms/body');
+const bodyTransform = require('./body-transform');
 const dateTransform = require('./article-date');
 const summaryTransform = require('./article-summary');
 const cheerio = require('cheerio');
