@@ -13,6 +13,7 @@ module.exports = (req, res, next) => {
 			precompiled: req.app.get('env') === 'production'
 		}))
 		.then(content => {
+			res.setHeader('cache-control', 'public, max-age=30');
 			res.send(content);
 		})
 		.catch(next);
