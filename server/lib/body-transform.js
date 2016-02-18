@@ -34,7 +34,6 @@ module.exports = function (body, flags) {
 	let $ = transform(cheerio.load(body, { decodeEntities: false }), flags)
 		// other transforms
 		.with(externalImages)
-		.with(relativeLinks)
 		.with(trimmedLinks)
 		.get();
 
