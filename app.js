@@ -1,9 +1,11 @@
 const express = require('express');
 const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 const port = process.env.PORT || 5000;
 const app = express();
 
 app.use(logger(app.get('env') === 'development' ? 'dev' : 'combined'));
+app.use(cookieParser());
 
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/jsonItem.js'));

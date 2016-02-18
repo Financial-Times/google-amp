@@ -21,6 +21,7 @@
     "aws4": "^1.1.0",
     "bower": "^1.7.7",
     "cheerio": "^0.19.0",
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.3",
     "fs-promise": "^0.4.1",
     "handlebars": "^4.0.5",
