@@ -25,7 +25,11 @@ body {
 
 .article {
 	@include oTypographyBodyWrapper;
+
 	@include responsiveWidth;
+	.article__copyright-notice {
+		@include oTypographySans(s);
+	}
 }
 
 .article-standfirst {
@@ -37,7 +41,7 @@ body {
 	background: oColorsGetPaletteColor('grey-tint5');
 	padding: .5em;
 }
-
+getColoroColorsGetPaletteColoroColorsGetPaletteColor
 .main-header-logo {
 	@include responsiveWidth(16em);
 
@@ -133,4 +137,3 @@ body {
 	margin: 10px 0;
 	padding-left: 20px;
 }
-
