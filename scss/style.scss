@@ -41,7 +41,7 @@ body {
 	background: oColorsGetPaletteColor('grey-tint5');
 	padding: .5em;
 }
-getColoroColorsGetPaletteColoroColorsGetPaletteColor
+
 .main-header-logo {
 	@include responsiveWidth(16em);
 
@@ -60,6 +60,45 @@ getColoroColorsGetPaletteColoroColorsGetPaletteColor
 
 .article-dateline {
 	@include oTypographySans(s);
+}
+
+.main-footer {
+	border-top: 5px solid oColorsGetPaletteColor('grey-tint3');
+	background: oColorsGetPaletteColor('grey-tint5');
+	padding: .5em;
+}
+
+.main-footer__container {
+	@include responsiveWidth;
+	text-align: center;
+}
+
+.main-footer__links {
+	margin: 0;
+	padding: 0 0 1em;
+	list-style: none;
+}
+
+.main-footer__link {
+	@include oTypographySans(s);
+
+	color: oColorsGetPaletteColor('pink');
+
+	@include oGridRespondTo(S) {
+		display: inline;
+
+		&::after {
+			content: ' | ';
+		}
+
+		&:last-child::after {
+			content: '';
+		}
+	}
+
+	a {
+		color: inherit;
+	}
 }
 
 // next-article component styles
