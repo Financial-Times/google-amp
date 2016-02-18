@@ -3,6 +3,7 @@ $o-fonts-path: '//h2.ft.com/build/files/o-fonts-assets@1.3.0/';
 @import 'o-colors/main';
 @import 'o-fonts/main';
 @import 'o-typography/main';
+@import 'o-grid/main';
 
 @include oFontsInclude(MetricWeb, light); // body
 @include oFontsInclude(FinancierDisplayWeb); // headings
@@ -56,3 +57,80 @@ body {
 .article-dateline {
 	@include oTypographySans(s);
 }
+
+// next-article component styles
+.c-box {
+	position: relative;
+	clear: left;
+	margin: 24px 0 16px;
+	padding: 16px 0;
+	width: 100%;
+
+	box-sizing: border-box;
+}
+
+.c-box--inline {
+	float: left;
+
+	@include oGridRespondTo(S) {
+		margin-right: 24px;
+		max-width: 300px;
+	}
+}
+
+.c-box__title {
+	margin: -40px 0 8px 10px;
+}
+
+.c-box__title-text {
+	@include oColorsFor(page, background);
+	@include oTypographySerifDisplay(m);
+	display: inline-block;
+	margin: 0;
+	padding: 10px;
+	padding-bottom: 0;
+	font-weight: 900;
+
+	a {
+		border-bottom: 0;
+		text-decoration: none;
+		color: oColorsGetPaletteColor('cold-1');
+	}
+}
+
+.u-border--all {
+	border: 1px solid oColorsGetPaletteColor('warm-3');
+}
+
+.u-margin--left-right {
+	margin-right: 16px;
+	margin-left: 16px;
+}
+
+.aside--headline {
+	@include oTypographySansDataBold(xl);
+	margin-top: 8px;
+	margin-bottom: 8px;
+	color: oColorsGetPaletteColor('cold-3');
+
+	p {
+		margin: 0;
+	}
+}
+
+.aside--content p {
+	margin: 5px 0 0;
+}
+
+.aside--image img {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 100%;
+}
+
+.aside--list {
+	margin: 10px 0;
+	padding-left: 20px;
+}
+
