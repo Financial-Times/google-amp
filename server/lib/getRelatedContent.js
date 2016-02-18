@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 const dateTransform = require('./article-date');
 
 // const env = process.env.NODE_ENV;
@@ -22,4 +23,4 @@ module.exports = uuid => fetch(`${apiUrl}/recommended-reads-api/recommend/contex
 	}))
 
 	// Return empty array on failure
-	.catch(e => [])
+	.catch(e => []);
