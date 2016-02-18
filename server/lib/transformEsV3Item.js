@@ -26,7 +26,6 @@ function transformArticleBody(article) {
 		webUrl: article.webUrl,
 		renderTOC: 0,
 		suggestedRead: 0,
-		useBrightcovePlayer: 0,
 		brightcoveAccountId: process.env.BRIGHTCOVE_ACCOUNT_ID,
 
 		// See: https://github.com/ampproject/amphtml/blob/master/extensions/amp-brightcove/amp-brightcove.md#player-configuration
