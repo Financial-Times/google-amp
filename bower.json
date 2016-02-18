@@ -3,7 +3,7 @@
   "dependencies": {
     "o-colors": "^3.3.1",
     "o-typography": "^3.1.0",
-    "next-article": "Financial-Times/next-article",
+    "next-article": "Financial-Times/next-article#5ef48c94f314da881f2a7b26fe97b9e6374b90ac",
     "o-grid": "^4.0.7"
   },
   "resolutions": {
