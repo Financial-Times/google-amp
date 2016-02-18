@@ -1,8 +1,14 @@
 const express = require('express');
 const logger = require('morgan');
+const raven = require('raven');
 const cookieParser = require('cookie-parser');
+
 const port = process.env.PORT || 5000;
 const app = express();
+
+if(app.get('env') === 'production') {
+	app.use(raven.middleware.express.requestHandler(process.env.SENTRY_DSN));
+}
 
 app.use(logger(app.get('env') === 'development' ? 'dev' : 'combined'));
 app.use(cookieParser());
@@ -22,6 +28,8 @@ app.get('/_article_test/clear', (req, res) => {
 if(app.get('env') === 'development') {
 	app.all('/analytics', require('./server/controllers/analytics-proxy.js'));
 	app.use(require('errorhandler')());
+} else if(app.get('env') === 'production') {
+	app.use(raven.middleware.express.errorHandler(process.env.SENTRY_DSN));
 }
 
 app.all('/analytics/config.json', require('./server/controllers/analytics-config.js'));
