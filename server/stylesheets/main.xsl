@@ -20,6 +20,6 @@
     <xsl:include href="next/subheaders.xsl" />
     <xsl:include href="next/tables.xsl" />
     <xsl:include href="next/toc.xsl" />
-    <xsl:include href="next/video.xsl" />
+    <xsl:include href="video.xsl" />
 
 </xsl:stylesheet>

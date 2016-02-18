@@ -11,6 +11,8 @@
 		<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 		<script async src="https://cdn.ampproject.org/v0.js"></script>
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+		<script async custom-element="amp-brightcove" src="https://cdn.ampproject.org/v0/amp-brightcove-0.1.js"></script>
+		<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 	</head>
 	<body>
 		<amp-analytics config="/analytics/config.json">
@@ -38,7 +40,7 @@
 						{{{displayDate}}}
 						<span class="article-author">
 							<span class="article-author-byline">
-								by 
+								by
 								<span itemscope itemtype="http://schema.org/Person" itemprop="author">
 									{{byline}}
 								</span>
@@ -46,7 +48,7 @@
 						</span>
 					</div>
 				</header>
-				
+
 				<div class="article-body" itemprop="articleBody">
 					{{{htmlBody}}}
 				</div>
