@@ -1,7 +1,7 @@
 module.exports = (req, res, next) => {
 
 	// CORS
-	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD');
 	res.setHeader('Access-Control-Allow-Credentials', 'true');
 
