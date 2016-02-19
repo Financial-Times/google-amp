@@ -67,7 +67,7 @@ module.exports = (req, res, next) => {
 
 	const json = {
 		requests: {
-			standard: url + "?data=" + JSON.stringify(spoor)
+			standard: url + "?spoor-id=ACCESS_READER_ID&data=" + JSON.stringify(spoor)
 		},
 		triggers: {
 			pageview: {
