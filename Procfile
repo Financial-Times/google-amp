@@ -1,1 +1,1 @@
-web: node --use-strict app.js
+web: forever start -c 'node --use-strict' app.js

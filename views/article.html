@@ -23,6 +23,41 @@
 			"authorizationFallbackResponse": {"error": true}
 		}
 		</script>
+
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "NewsArticle",
+                "mainEntityofPage": "{{webUrl}}",
+                "headline": "{{title}}",
+                "datePublished": "{{publishedDate}}",
+                "dateModified": "{{publishedDate}}",
+                "description": "{{description}}",
+
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "{{mainImage.url}}",
+                    "width": {{mainImage.width}},
+                    "height": {{mainImage.height}}
+                },
+
+                "author": {
+                    "@type": "Person",
+                    "name": "{{authorList}}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "The Financial Times",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "http://im.ft-static.com/m/img/masthead_main.jpg",
+                        "width": 435,
+                        "height": 36
+                    }
+                }
+            }
+        </script>
+
 	</head>
 	<body>
 		<amp-analytics config="/analytics/config.json">
@@ -34,6 +69,7 @@
 			}
 			</script>
 		</amp-analytics>
+
 		<header class="main-header">
 			<div class="main-header-logo">
 				<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
