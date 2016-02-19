@@ -19,6 +19,7 @@ module.exports = uuid => fetch(`${apiUrl}/recommended-reads-api/recommend/contex
 	.then(json => json.articles)
 	.then(articles => articles.map(article => {
 		article.date = dateTransform(article.published, 'related-content__date');
+		console.log(`${apiUrl}/recommended-reads-api/recommend/contextual?apiKey=${apiKey}&count=${count}&sort=${sort}&recency=${recency}&contentid=${uuid}`);
 		return article;
 	}))
 
