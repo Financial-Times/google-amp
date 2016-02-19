@@ -192,12 +192,20 @@ body {
 .related-content__item {
 	@include oGridColspan((default: 12, M: 6));
 	margin-bottom: oGridGutter(L);
+
+	@include oGridRespondTo(M) {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+	}
 }
 
 .related-content__container {
 	background-color: oColorsGetColorFor(box, background);
 	border: 1px solid oColorsGetPaletteColor("warm-3");
 	padding: oGridGutter(S);
+	width: 100%;
+	padding: 0 10px 10px;
 }
 
 .related-content__link {
