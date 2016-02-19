@@ -36,6 +36,10 @@ if (app.get('env') === 'production') {
 	ravenClient = new raven.Client(process.env.SENTRY_DSN);
 
 	app.use(raven.middleware.express.requestHandler(ravenClient));
+	app.use((req, res, next) => {
+		req.raven = ravenClient;
+		next();
+	});
 	ravenClient.patchGlobal(() => process.exit(1));
 }
 
