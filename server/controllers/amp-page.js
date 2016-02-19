@@ -23,6 +23,10 @@ module.exports = (req, res, next) => {
 			article.relatedContent = relatedContent;
 			return article;
 		})
+		.then(data => {
+			data.SOURCE_PORT = (req.app.get('env') === 'production') ? '' : ':5000';
+			return data;
+		})
 		.then(data => renderArticle(data, {
 			precompiled: req.app.get('env') === 'production'
 		}))
