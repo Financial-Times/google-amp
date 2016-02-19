@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
 		.then(response => response._source ? transformArticle(response._source) : Promise.reject(new errors.NotFound()))
 		.then(article => isFree(article, req) ? article : Promise.reject(new errors.NotFound()));
 
-	const relatedPromise = getRelatedContent(req.params.uuid);
+	const relatedPromise = getRelatedContent(req.params.uuid, req.raven);
 
 	Promise.all([articlePromise, relatedPromise])
 		.then((responses) => {

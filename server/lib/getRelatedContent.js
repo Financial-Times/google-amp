@@ -14,14 +14,31 @@ const sort = 'rel';
 // supported values for recency are integers representing the maximum number of days to go back and ISO-formatted date-time representing the point after which the events are processed
 const recency = 7;
 
-module.exports = uuid => fetch(`${apiUrl}/recommended-reads-api/recommend/contextual?apiKey=${apiKey}&count=${count}&sort=${sort}&recency=${recency}&contentid=${uuid}`)
+module.exports = (uuid, raven)=> fetch(`${apiUrl}/recommended-reads-api/recommend/contextual?apiKey=${apiKey}&count=${count}&sort=${sort}&recency=${recency}&contentid=${uuid}`)
+	.then(response => {
+		if (response.status < 200 || response.status >= 300) {
+			if (raven) {
+				raven.captureMessage('Recommended Reads API call failed', {
+					level: 'error',
+					extra: {
+						response
+					}
+				});
+			}
+			const e = Error('Recommended Reads API call failed');
+			e.extra = {response};
+			throw e;
+		}
+		return response;
+	})
 	.then(response => response.json())
 	.then(json => json.articles)
 	.then(articles => articles.map(article => {
 		article.date = dateTransform(article.published, 'related-content__date');
-		console.log(`${apiUrl}/recommended-reads-api/recommend/contextual?apiKey=${apiKey}&count=${count}&sort=${sort}&recency=${recency}&contentid=${uuid}`);
 		return article;
 	}))
 
 	// Return empty array on failure
-	.catch(e => []);
+	.catch(e => {
+		return []
+	});
