@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
 	res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
 
 	switch (req.query.type) {
-		case 'authorization':
+		case 'access':
 			res.setHeader('Content-Type', 'application/json');
 			res.status(202).json({
 				"maxViews": 10,
@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
 				"test": "this string was generated in access-mock.js"
 			});
 			break;
-		case 'ping':
+		case 'pingback':
 			res.setHeader('Content-Type', 'application/json');
 			res.status(202).json({status: 'ok'});
 			break;

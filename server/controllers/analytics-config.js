@@ -55,14 +55,15 @@ module.exports = (req, res, next) => {
 		},
 		user: {
 			amp_reader_id: "ACCESS_READER_ID",
-			amp_auth_data: "AUTHDATA(test)",
+			amp_auth_access: "AUTHDATA(access)",
+			amp_auth_debug: "AUTHDATA(debug)",
 		},
 		time: {
 			amp_timestamp: "${timestamp}"
 		}
 	};
 
-	const url = DEBUG ? "//localhost:5000/analytics" : "https://spoor-api.ft.com/ingest";
+	const url = DEBUG ? `//${req.get('host')}/analytics` : "https://spoor-api.ft.com/ingest";
 
 	const json = {
 		requests: {
@@ -98,8 +99,8 @@ module.exports = (req, res, next) => {
 					action: "scrolldepth",
 					percentageViewed: 25
 				},
-				"scrollSpec": {
-					"verticalBoundaries": [25]
+				scrollSpec: {
+					verticalBoundaries: [25]
 				}
 			},
 			scroll50: {
@@ -110,8 +111,8 @@ module.exports = (req, res, next) => {
 					action: "scrolldepth",
 					percentageViewed: 50
 				},
-				"scrollSpec": {
-					"verticalBoundaries": [50]
+				scrollSpec: {
+					verticalBoundaries: [50]
 				}
 			},
 			scroll90: {
@@ -122,8 +123,81 @@ module.exports = (req, res, next) => {
 					action: "scrolldepth",
 					percentageViewed: 90
 				},
-				"scrollSpec": {
-					"verticalBoundaries": [90]
+				scrollSpec: {
+					verticalBoundaries: [90]
+				}
+			},
+
+			accessAuthorizationReceived: {
+				on: "access-authorization-received",
+				request: "standard",
+				vars: {
+					category: "amp-access",
+					action: "access-authorization-received"
+				}
+			},
+			accessAuthorizationFailed: {
+				on: "access-authorization-failed",
+				request: "standard",
+				vars: {
+					category: "amp-access",
+					action: "access-authorization-failed"
+				}
+			},
+			accessViewed: {
+				on: "access-viewed",
+				request: "standard",
+				vars: {
+					category: "amp-access",
+					action: "access-viewed"
+				}
+			},
+			accessPingbackSent: {
+				on: "access-pingback-sent",
+				request: "standard",
+				vars: {
+					category: "amp-access",
+					action: "access-pingback-sent"
+				}
+			},
+			accessPingbackFailed: {
+				on: "access-pingback-failed",
+				request: "standard",
+				vars: {
+					category: "amp-access",
+					action: "access-pingback-failed"
+				}
+			},
+			accessLoginStarted: {
+				on: "access-login-started",
+				request: "standard",
+				vars: {
+					category: "amp-access",
+					action: "access-login-started"
+				}
+			},
+			accessLoginSuccess: {
+				on: "access-login-success",
+				request: "standard",
+				vars: {
+					category: "amp-access",
+					action: "access-login-success"
+				}
+			},
+			accessLoginRejected: {
+				on: "access-login-rejected",
+				request: "standard",
+				vars: {
+					category: "amp-access",
+					action: "access-login-rejected"
+				}
+			},
+			accessLoginFailed: {
+				on: "access-login-failed",
+				request: "standard",
+				vars: {
+					category: "amp-access",
+					action: "access-login-failed"
 				}
 			}
 		},
