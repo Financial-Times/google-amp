@@ -13,7 +13,7 @@
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<script async custom-element="amp-brightcove" src="https://cdn.ampproject.org/v0/amp-brightcove-0.1.js"></script>
 		<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
-        
+
         <script type="application/ld+json">
             {
                 "@context": "http://schema.org",
@@ -47,10 +47,10 @@
                 }
             }
         </script>
-        
+
 	</head>
 	<body>
-		<amp-analytics config="/analytics/config.json">
+		<amp-analytics config="//SOURCE_HOST{{SOURCE_PORT}}/analytics/config.json">
 			<script type="application/json">
 			{
 				"vars": {
@@ -59,7 +59,7 @@
 			}
 			</script>
 		</amp-analytics>
-        
+
 		<header class="main-header">
 			<div class="main-header-logo">
 				<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
