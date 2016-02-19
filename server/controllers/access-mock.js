@@ -13,19 +13,17 @@ module.exports = (req, res, next) => {
 		case 'access':
 			res.setHeader('Content-Type', 'application/json');
 			res.status(202).json({
-				"maxViews": 10,
-				"currentViews": 6,
-				"subscriber": false,
-				"test": "this string was generated in access-mock.js"
+				"access": true,
+				"debug": "access-mock granted access"
 			});
 			break;
 		case 'pingback':
 			res.setHeader('Content-Type', 'application/json');
-			res.status(202).json({status: 'ok'});
+			res.status(202).json({});
 			break;
 		case 'login':
 			res.setHeader('Content-Type', 'application/json');
-			res.status(202).json({status: 'ok'});
+			res.status(202).json({});
 			break;
 	}
 };
