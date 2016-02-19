@@ -13,13 +13,13 @@ assertEnv([
 	'BRIGHTCOVE_ACCOUNT_ID',
 	'BRIGHTCOVE_PLAYER_ID',
 	'ELASTIC_SEARCH_URL',
-	'SENTRY_DSN',
 	'SPOOR_API_KEY'
 ]);
 
 const ravenClient = new raven.Client(process.env.SENTRY_DSN);
 
 if(app.get('env') === 'production') {
+	assertEnv(['SENTRY_DSN']);
 	app.use(raven.middleware.express.requestHandler(ravenClient));
 	ravenClient.patchGlobal(() => process.exit(1));
 }
