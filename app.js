@@ -43,6 +43,7 @@ app.get('/_article_test/clear', (req, res) => {
 
 if(app.get('env') === 'development') {
 	app.all('/analytics', require('./server/controllers/analytics-proxy.js'));
+	app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
 	app.use(require('errorhandler')());
 } else if(app.get('env') === 'production') {
 	app.use(raven.middleware.express.errorHandler(ravenClient));
