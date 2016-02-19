@@ -54,7 +54,10 @@ module.exports = (req, res, next) => {
 			version: "1.0.0"
 		},
 		user: {
-			amp_reader_id: "ACCESS_READER_ID"
+			amp_reader_id: "ACCESS_READER_ID",
+			amp_ft_session: "${clientId(FTSession)}",
+			amp_spoor_id: "${clientId(spoor-id)}",
+			amp_auth_data: "AUTHDATA(test)",
 		},
 		time: {
 			amp_timestamp: "${timestamp}"
