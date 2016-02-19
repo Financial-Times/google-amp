@@ -35,7 +35,7 @@ module.exports = (req, res, next) => {
 			scroll_depth: "${percentageViewed}",
 		},
 		device: {
-			spoor_id: "${clientId(spoor-id)}",
+			spoor_id: "ACCESS_READER_ID",
 			dimensions: {
 				width: "AVAILABLE_SCREEN_WIDTH",
 				height: "AVAILABLE_SCREEN_HEIGHT"
@@ -55,7 +55,6 @@ module.exports = (req, res, next) => {
 		},
 		user: {
 			amp_reader_id: "ACCESS_READER_ID",
-			amp_spoor_id: "${clientId(spoor-id)}",
 			amp_auth_data: "AUTHDATA(test)",
 		},
 		time: {
