@@ -7,6 +7,8 @@ const assertEnv = require('@quarterto/assert-env');
 const port = process.env.PORT || 5000;
 const app = express();
 
+let ravenClient;
+
 assertEnv([
 	'AWS_ACCESS_KEY',
 	'AWS_SECRET_ACCESS_KEY',
@@ -16,10 +18,11 @@ assertEnv([
 	'SPOOR_API_KEY'
 ]);
 
-const ravenClient = new raven.Client(process.env.SENTRY_DSN);
 
 if(app.get('env') === 'production') {
 	assertEnv(['SENTRY_DSN']);
+	ravenClient = new raven.Client(process.env.SENTRY_DSN);
+
 	app.use(raven.middleware.express.requestHandler(ravenClient));
 	ravenClient.patchGlobal(() => process.exit(1));
 }
