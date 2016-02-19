@@ -17,9 +17,9 @@
 
 		<script id="amp-access" type="application/json">
 		{
-			"authorization": "//SOURCE_HOST{{SOURCE_PORT}}/amp-access-mock?type=authorization&rid=READER_ID&url=SOURCE_URL",
-			"pingback": "//SOURCE_HOST{{SOURCE_PORT}}/amp-access-mock?type=ping&rid=READER_ID&url=SOURCE_URL",
-			"login": "//SOURCE_HOST{{SOURCE_PORT}}/amp-access-mock?type=login&rid=READER_ID&url=SOURCE_URL",
+			"authorization": "//SOURCE_HOST{{SOURCE_PORT}}/amp-access-mock?type=authorization&readerId=READER_ID&sourceUrl=SOURCE_URL&ftWebUrl={{{webUrl}}}",
+			"pingback": "//SOURCE_HOST{{SOURCE_PORT}}/amp-access-mock?type=ping&readerId=READER_ID&sourceUrl=SOURCE_URL&ftWebUrl={{{webUrl}}}",
+			"login": "//SOURCE_HOST{{SOURCE_PORT}}/amp-access-mock?type=login&readerId=READER_ID&sourceUrl=SOURCE_URL&ftWebUrl={{{webUrl}}}",
 			"authorizationFallbackResponse": {"error": true}
 		}
 		</script>
