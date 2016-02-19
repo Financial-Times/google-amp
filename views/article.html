@@ -10,9 +10,19 @@
 		</style>
 		<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 		<script async src="https://cdn.ampproject.org/v0.js"></script>
+		<script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<script async custom-element="amp-brightcove" src="https://cdn.ampproject.org/v0/amp-brightcove-0.1.js"></script>
 		<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+
+		<script id="amp-access" type="application/json">
+		{
+			"authorization": "//localhost.ft.com:5000/amp-access-mock?type=authorization&rid={READER_ID}&url={SOURCE_URL}",
+			"pingback": "//localhost.ft.com:5000/amp-access-mock?type=ping&rid={READER_ID}&url={SOURCE_URL}",
+			"login": "//localhost.ft.com:5000/amp-access-mock?type=login&rid={READER_ID}&url={SOURCE_URL}",
+			"authorizationFallbackResponse": {"error": true}
+		}
+		</script>
 	</head>
 	<body>
 		<amp-analytics config="/analytics/config.json">
