@@ -13,14 +13,8 @@ Prerequisites
 
  - node 4.x and npm
  - `brew install libxslt`
- - `scripts/env.sh` that exports (see `scripts/env-example.sh`):
-   - `AWS_ACCESS_KEY`
-   - `AWS_SECRET_ACCESS_KEY`
-   - `BRIGHTCOVE_ACCOUNT_ID`
-   - `BRIGHTCOVE_PLAYER_ID`
-   - `ELASTIC_SEARCH_URL`
-   - `SENTRY_DSN`
-   - `SPOOR_API_KEY`
+ - `scripts/env.sh` that exports the required environment variables from `app.json` (see `scripts/env-example.sh`)
+   - If you add another environment variable, make sure to add it to `app.json`, `scripts/env-example.sh`, and `assertEnv` in `app.js`
  
 Running
 ---

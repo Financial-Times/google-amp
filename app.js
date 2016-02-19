@@ -18,7 +18,6 @@ assertEnv([
 	'SPOOR_API_KEY'
 ]);
 
-
 if(app.get('env') === 'production') {
 	assertEnv(['SENTRY_DSN']);
 	ravenClient = new raven.Client(process.env.SENTRY_DSN);
