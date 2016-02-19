@@ -205,8 +205,11 @@ body {
 	background-color: oColorsGetColorFor(box, background);
 	border: 1px solid oColorsGetPaletteColor("warm-3");
 	padding: oGridGutter(S);
-	width: 100%;
 	padding: 0 10px 10px;
+
+	@include oGridRespondTo(M) {
+		width: 100%;
+	}
 }
 
 .related-content__link {
