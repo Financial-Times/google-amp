@@ -2,9 +2,20 @@ const express = require('express');
 const logger = require('morgan');
 const raven = require('raven');
 const cookieParser = require('cookie-parser');
+const assertEnv = require('@quarterto/assert-env');
 
 const port = process.env.PORT || 5000;
 const app = express();
+
+assertEnv([
+	'AWS_ACCESS_KEY',
+	'AWS_SECRET_ACCESS_KEY',
+	'BRIGHTCOVE_ACCOUNT_ID',
+	'BRIGHTCOVE_PLAYER_ID',
+	'ELASTIC_SEARCH_URL',
+	'SENTRY_DSN',
+	'SPOOR_API_KEY'
+]);
 
 const ravenClient = new raven.Client(process.env.SENTRY_DSN);
 

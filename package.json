@@ -15,6 +15,7 @@
   ],
   "author": "richard.still@ft.com",
   "dependencies": {
+    "@quarterto/assert-env": "^1.1.0",
     "@quarterto/cache-if": "^1.1.0",
     "@quarterto/promise-all-object": "^1.1.0",
     "@quarterto/promisify": "^1.0.0",
