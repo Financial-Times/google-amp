@@ -3,11 +3,6 @@ google-amp
 
 AMP HTML rendering for FT articles
 
-Cloning
----
-
-`git clone --recursive` is required
-
 Prerequisites
 ---
 
@@ -18,5 +13,8 @@ Prerequisites
  
 Running
 ---
-`npm install ; npm start ; open http://localhost:5000/content/<FT article uuid>`
-
+```
+npm install
+npm start
+open http://localhost:5000/content/<FT article uuid>
+```
