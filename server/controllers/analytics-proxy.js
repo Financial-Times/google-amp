@@ -25,7 +25,7 @@ module.exports = (req, res, next) => {
 	//			Image tag. This will send a GET request.
 	if (req.method === 'POST') {
 		res.setHeader('Content-Type', 'application/json');
-		res.status(202).json({'status': 'ok'});
+		res.status(202).json(data);
 	} else {
 		res.setHeader('Content-Type', 'image/gif');
 		res.status(202).send(gif);

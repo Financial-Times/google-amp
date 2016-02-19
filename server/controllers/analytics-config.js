@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
 		return next(new errors.BadRequest('__amp_source_origin is required'));
 	}
 
-	res.setHeader('Cache-Control', `public, max-age=${60 * 60 * 24}`);
+	if (!DEBUG) res.setHeader('Cache-Control', `public, max-age=${60 * 60 * 24}`);
 
 	// CORS
 	res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,11 +30,17 @@ module.exports = (req, res, next) => {
 			url: "${canonicalUrl}",
 			amp_url: "${ampdocUrl}",
 			amp_canonical_url: "${canonicalUrl}",
+			amp_source_url: "SOURCE_URL",
 			referrer: "${documentReferrer}",
 			scroll_depth: "${percentageViewed}",
 		},
 		device: {
-			spoor_id: "${clientId(spoor-id)}"
+			spoor_id: "${clientId(spoor-id)}",
+			dimensions: {
+				width: "AVAILABLE_SCREEN_WIDTH",
+				height: "AVAILABLE_SCREEN_HEIGHT"
+			},
+			amp_viewer: "VIEWER"
 		},
 		system: {
 			api_key: process.env.SPOOR_API_KEY,
