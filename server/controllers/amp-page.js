@@ -7,7 +7,7 @@ const errors = require('http-errors');
 
 module.exports = (req, res, next) => {
 	getItem(req.params.uuid)
-		.then(apiResponse => apiResponse._source ? transformArticle(apiResponse._source) : Promise.reject(new errors.InternalServerError(apiResponse.message)))
+		.then(apiResponse => apiResponse._source ? transformArticle(apiResponse._source) : Promise.reject(new errors.NotFound()))
 		.then(article => isFree(article, req) ? article : Promise.reject(new errors.NotFound()))
 		.then(data => renderArticle(data, {
 			precompiled: req.app.get('env') === 'production'
