@@ -16,6 +16,8 @@ Prerequisites
  - `scripts/env.sh` that exports (see `scripts/env-example.sh`):
    - `AWS_ACCESS_KEY`
    - `AWS_SECRET_ACCESS_KEY`
+   - `BRIGHTCOVE_ACCOUNT_ID`
+   - `BRIGHTCOVE_PLAYER_ID`
    - `ELASTIC_SEARCH_URL`
    - `SENTRY_DSN`
    - `SPOOR_API_KEY`
