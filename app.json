@@ -12,7 +12,7 @@
     "SPOOR_API_KEY": {"required": true}
   },
   "addons": [
-
+    "papertrail"
   ],
   "buildpacks": [
     {
