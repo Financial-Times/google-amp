@@ -148,6 +148,10 @@ body {
 	border: 1px solid oColorsGetPaletteColor('warm-3');
 }
 
+.u-border--left {
+	border-left: 1px solid oColorsGetPaletteColor('warm-3');
+}
+
 .u-margin--left-right {
 	margin-right: 16px;
 	margin-left: 16px;
@@ -185,8 +189,17 @@ body {
 	padding-left: 20px;
 }
 
-.pull-quote__quote-marks {
+%article-quote::before {
 	@include oTypographySerifDisplay(s);
+	display: inline-block;
+	vertical-align: -.5em; // sit around the baseline
+	line-height: inherit;
+	font-size: 80px; // enormous quote
+	content: '“';
+}
+
+.pull-quote__quote-marks {
+	@extend %article-quote;
 
 	position: absolute;
 	top: -1px; // place just on top of border
@@ -194,13 +207,11 @@ body {
 	background-color: oColorsGetPaletteColor('pink');
 	padding: 0 10px;
 	line-height: 0; // take up as little space as possible
+}
 
-	&::before {
-		display: inline-block;
-		vertical-align: -.5em; // sit around the border
-		font-size: 80px; // enormous quote
-		content: '“';
-	}
+.article__quote--full-quote {
+	@extend %article-quote;
+	line-height: 0; // take up as little space as possible
 }
 .related-content {
 	@include responsiveWidth;
