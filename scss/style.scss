@@ -183,14 +183,14 @@ body {
 	@include responsiveWidth;
 }
 
-.related-content__items {
+.related-content__stories {
 
 	// Should we use a CSS reset?
 	padding: 0;
 	@include oGridRow();
 }
 
-.related-content__item {
+.related-content__story {
 	@include oGridColspan((default: 12, M: 6));
 	margin-bottom: oGridGutter(L);
 
@@ -232,3 +232,56 @@ body {
 	margin: 0;
 }
 
+.more-ons {
+	@include responsiveWidth;
+}
+
+.more-ons__items {
+	@include oGridRow();
+
+	// Should we use a CSS reset?
+	padding: 0;
+}
+
+.more-ons__item {
+	@include oGridColspan((default: 12, M: 6));
+}
+
+.more-ons__item-wrapper {
+	border: 1px solid oColorsGetPaletteColor('warm-3');
+	padding: oGridGutter(L);
+	margin-bottom: oGridGutter(L);
+}
+
+.more-ons__type {
+	margin: -40px 0 8px 10px;
+}
+
+.more-ons__header {
+	@include oTypographySans(l);
+	color: oColorsGetPaletteColor(claret);
+	margin-top: 0;
+}
+
+.more-ons__header,
+.more-ons__stories {
+	padding: 0 oGridGutter(L) 0 0;
+}
+
+.more-ons__stories {
+	list-style: none;
+}
+
+.more-ons__story {
+	margin-bottom: oGridGutter(L);
+}
+
+.more-ons__link {
+	@include oTypographyLink;
+	@include oTypographySans(m);
+	display: block;
+}
+
+.more-ons__date {
+	@include oTypographySans(xs);
+}

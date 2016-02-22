@@ -1,15 +1,20 @@
 const getArticle = require('../getArticle');
 const dateTransform = require('../article-date');
 
-module.exports = article => {
+module.exports = (article, raven) => {
 	const getRelated = (article.storyPackage || []).map(related => getArticle(related.id));
 
 	return Promise.all(getRelated)
 		.catch(e => {
-
-			// TODO: Sentry
-			console.log(e.message)// @nocommit
-			return [];
+			if (raven) {
+				raven.captureMessage('Story Package API call failed', {
+					level: 'error',
+					extra: {
+						e
+					}
+				});
+			}
+			throw e;
 		})
 		.then(related => related.map(response => response._source ? response._source : Promise.reject()))
 		.then(related => {
@@ -25,5 +30,6 @@ module.exports = article => {
 				};
 			});
 			return article;
-		});
+		})
+		.catch(e => {});
 };
