@@ -213,6 +213,11 @@ body {
 	@extend %article-quote;
 	line-height: 0; // take up as little space as possible
 }
+
+.article__quote-footer {
+	@include oTypographySansBold(s);
+}
+
 .related-content {
 	@include responsiveWidth;
 	margin-top: 40px;
