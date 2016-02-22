@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const dateTransform = require('./article-date');
+const dateTransform = require('../article-date');
 
 // const env = process.env.NODE_ENV;
 const env = 'production';
@@ -40,5 +40,5 @@ module.exports = (uuid, raven)=> fetch(`${apiUrl}/recommended-reads-api/recommen
 
 	// Return empty array on failure
 	.catch(e => {
-		return []
+		return [];
 	});
