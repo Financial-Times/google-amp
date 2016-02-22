@@ -1,4 +1,5 @@
 $o-fonts-path: '//h2.ft.com/build/files/o-fonts-assets@1.3.0/';
+$o-grid-ie8-rules: 'none';
 
 @import 'o-colors/main';
 @import 'o-fonts/main';
@@ -177,4 +178,117 @@ body {
 .aside--list {
 	margin: 10px 0;
 	padding-left: 20px;
+}
+
+.related-content {
+	@include responsiveWidth;
+	margin-top: 40px;
+}
+
+.related-content__header {
+	@include oTypographySerifDisplay(m);
+}
+
+.related-content__stories {
+
+	// Should we use a CSS reset?
+	padding: 0;
+	@include oGridRow();
+}
+
+.related-content__story {
+	@include oGridColspan((default: 12, M: 6));
+	margin-bottom: oGridGutter(L);
+
+	@include oGridRespondTo(M) {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+	}
+}
+
+.related-content__container {
+	background-color: oColorsGetColorFor(box, background);
+	border: 1px solid oColorsGetPaletteColor("warm-3");
+	padding: oGridGutter(S);
+
+	@include oGridRespondTo(M) {
+		width: 100%;
+	}
+}
+
+.related-content__link {
+	@include oTypographyLink;
+	@include oTypographySans(m);
+	display: block;
+}
+
+.related-content__date {
+	@include oTypographySans(xs);
+}
+
+.related-content__summary {
+	@include oTypographySans(s);
+	margin: 0;
+}
+
+.related-content__theme {
+	@include oTypographySansBold(s);
+	color: oColorsGetPaletteColor(claret);
+	margin: 0;
+}
+
+.more-ons {
+	@include responsiveWidth;
+	margin-top: 40px;
+}
+
+.more-ons__items {
+	@include oGridRow();
+
+	// Should we use a CSS reset?
+	padding: 0;
+}
+
+.more-ons__item {
+	@include oGridColspan((default: 12, M: 6));
+}
+
+.more-ons__item-wrapper {
+	border: 1px solid oColorsGetPaletteColor('warm-3');
+	padding: oGridGutter(L) oGridGutter(L) 0;
+	margin-bottom: oGridGutter(L);
+}
+
+.more-ons__type {
+	margin: -40px 0 8px 10px;
+}
+
+.more-ons__header {
+	@include oTypographySansBold(l);
+	color: oColorsGetPaletteColor(claret);
+	margin-top: 0;
+}
+
+.more-ons__header,
+.more-ons__stories {
+	padding: 0 oGridGutter(L) 0 0;
+}
+
+.more-ons__stories {
+	list-style: none;
+}
+
+.more-ons__story {
+	margin-bottom: oGridGutter(L);
+}
+
+.more-ons__link {
+	@include oTypographyLink;
+	@include oTypographySans(m);
+	display: block;
+}
+
+.more-ons__date {
+	@include oTypographySans(xs);
 }

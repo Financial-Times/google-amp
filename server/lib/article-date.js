@@ -1,8 +1,8 @@
 var oDate = require('o-date');
 
-module.exports = contentItem => {
-	if (contentItem.publishedDate) {
-		let date = new Date(contentItem.publishedDate);
-		return `<time class="article-date" itemprop="datePublished" datetime="${date.toISOString()}">${oDate.format(date)}</time>`;
+module.exports = (timestamp, classname) => {
+	if (timestamp) {
+		let date = new Date(timestamp);
+		return `<time class="${classname}" itemprop="datePublished" datetime="${date.toISOString()}">${oDate.format(date)}</time>`;
 	}
 };

@@ -9,20 +9,37 @@ const app = express();
 
 let ravenClient;
 
-assertEnv([
-	'AWS_ACCESS_KEY',
-	'AWS_SECRET_ACCESS_KEY',
-	'BRIGHTCOVE_ACCOUNT_ID',
-	'BRIGHTCOVE_PLAYER_ID',
-	'ELASTIC_SEARCH_URL',
-	'SPOOR_API_KEY'
-]);
-
 if(app.get('env') === 'production') {
-	assertEnv(['SENTRY_DSN']);
+	assertEnv([
+		'AWS_ACCESS_KEY',
+		'AWS_SECRET_ACCESS_KEY',
+		'BRIGHTCOVE_ACCOUNT_ID',
+		'BRIGHTCOVE_PLAYER_ID',
+		'ELASTIC_SEARCH_URL',
+		'SPOOR_API_KEY',
+		'SENTRY_DSN',
+		'RECOMMENDED_READS_API_KEY'
+	]);
+} else {
+	assertEnv([
+		'AWS_ACCESS_KEY',
+		'AWS_SECRET_ACCESS_KEY',
+		'BRIGHTCOVE_ACCOUNT_ID',
+		'BRIGHTCOVE_PLAYER_ID',
+		'ELASTIC_SEARCH_URL',
+		'SPOOR_API_KEY',
+		'RECOMMENDED_READS_TEST_API_KEY'
+	]);
+}
+
+if (app.get('env') === 'production') {
 	ravenClient = new raven.Client(process.env.SENTRY_DSN);
 
 	app.use(raven.middleware.express.requestHandler(ravenClient));
+	app.use((req, res, next) => {
+		req.raven = ravenClient;
+		next();
+	});
 	ravenClient.patchGlobal(() => process.exit(1));
 }
 

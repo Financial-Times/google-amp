@@ -9,7 +9,8 @@
     "SENTRY_DSN": {"required": true},
     "BRIGHTCOVE_ACCOUNT_ID": {"required": true},
     "BRIGHTCOVE_PLAYER_ID": {"required": true},
-    "SPOOR_API_KEY": {"required": true}
+    "SPOOR_API_KEY": {"required": true},
+    "RECOMMENDED_READS_API_KEY": {"required": true}
   },
   "addons": [
     "papertrail"
