@@ -181,6 +181,11 @@ body {
 
 .related-content {
 	@include responsiveWidth;
+	margin-top: 40px;
+}
+
+.related-content__header {
+	@include oTypographySerifDisplay(m);
 }
 
 .related-content__stories {
@@ -234,6 +239,7 @@ body {
 
 .more-ons {
 	@include responsiveWidth;
+	margin-top: 40px;
 }
 
 .more-ons__items {
@@ -258,7 +264,7 @@ body {
 }
 
 .more-ons__header {
-	@include oTypographySans(l);
+	@include oTypographySansBold(l);
 	color: oColorsGetPaletteColor(claret);
 	margin-top: 0;
 }
