@@ -18,8 +18,10 @@ module.exports = function($) {
             // TODO: Properly set image dimensions.
             // We *have* to specify a height and width for AMP to validate but we dont know
             // what the height value will be. Width is set in the request to the image proxy 
-            $el.attr('width', '700px');
-            $el.attr('height', '400px');
+            if (!$el.attr('height')) {
+                $el.attr('width', '700px');
+                $el.attr('height', '400px');    
+            }
 		}
 		return $el;
 	});
