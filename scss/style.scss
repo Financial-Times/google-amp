@@ -48,6 +48,7 @@ body {
 
 	svg {
 		display: block;
+		max-height: 100%; // work around Webkit ridiculous height bug https://bugs.webkit.org/show_bug.cgi?id=82489
 	}
 }
 
