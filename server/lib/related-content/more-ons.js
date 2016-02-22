@@ -62,7 +62,6 @@ const addTitle = metadatum => {
 	}
 
 	metadatum.type = `Latest ${type}`;
-	console.log(metadatum)
 	return metadatum;
 };
 
