@@ -48,7 +48,8 @@ module.exports = (req, res, next) => {
 			version: "1.0.0"
 		},
 		user: {
-			amp_reader_id: "ACCESS_READER_ID"
+			// TODO: only valid when amp-access is active
+			// amp_reader_id: "ACCESS_READER_ID"
 		},
 		time: {
 			amp_timestamp: "${timestamp}"
