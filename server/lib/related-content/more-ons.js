@@ -32,6 +32,7 @@ const getArticles = metadatum => {
 		return {
 			key: metadatum.idV1,
 			type: metadatum.type,
+			taxonomy: metadatum.taxonomy,
 			title: metadatum.prefLabel,
 			articles: res
 		};
