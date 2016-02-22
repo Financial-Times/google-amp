@@ -97,8 +97,10 @@
 					{{#each relatedContent}}
  					<li class="related-content__item">
  						<div class="related-content__container">
-							{{{date}}}
+							{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
 							<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+							<p class="related-content__summary">{{{summary}}}</p>
+							{{{date}}}
  						</div>
 					</li>
 					{{/each}}

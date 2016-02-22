@@ -17,7 +17,11 @@ module.exports = article => {
 				return {
 					date: dateTransform(item.publishedDate, 'related-content__date'),
 					id: item.id,
-					title: item.title
+					title: item.title,
+					summary: Array.isArray(item.summaries) ? item.summaries[0] : null,
+					theme: item.metadata.reduce((previous, current) => {
+						return previous || (current.primary && current.prefLabel);
+					}, null)
 				};
 			});
 			return article;

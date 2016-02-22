@@ -205,7 +205,6 @@ body {
 	background-color: oColorsGetColorFor(box, background);
 	border: 1px solid oColorsGetPaletteColor("warm-3");
 	padding: oGridGutter(S);
-	padding: 0 10px 10px;
 
 	@include oGridRespondTo(M) {
 		width: 100%;
@@ -215,11 +214,21 @@ body {
 .related-content__link {
 	@include oTypographyLink;
 	@include oTypographySans(m);
-	margin-top: 0;
 	display: block;
 }
 
 .related-content__date {
 	@include oTypographySans(xs);
+}
+
+.related-content__summary {
+	@include oTypographySans(s);
+	margin: 0;
+}
+
+.related-content__theme {
+	@include oTypographySansBold(s);
+	color: oColorsGetPaletteColor(claret);
+	margin: 0;
 }
 
