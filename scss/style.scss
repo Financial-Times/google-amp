@@ -154,8 +154,8 @@ body {
 }
 
 .u-padding--left-right {
-	padding-left: 16px;
 	padding-right: 16px;
+	padding-left: 16px;
 }
 
 .aside--headline {
@@ -185,6 +185,23 @@ body {
 	padding-left: 20px;
 }
 
+.pull-quote__quote-marks {
+	@include oTypographySerifDisplay(s);
+
+	position: absolute;
+	top: -1px; // place just on top of border
+	left: 10px;
+	background-color: oColorsGetPaletteColor('pink');
+	padding: 0 10px;
+	line-height: 0; // take up as little space as possible
+
+	&::before {
+		display: inline-block;
+		vertical-align: -.5em; // sit around the border
+		font-size: 80px; // enormous quote
+		content: '“';
+	}
+}
 .related-content {
 	@include responsiveWidth;
 	margin-top: 40px;
