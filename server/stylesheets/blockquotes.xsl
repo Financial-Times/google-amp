@@ -15,7 +15,7 @@
                 <xsl:with-param name="separator" select="'/'" />
             </xsl:call-template>
         </xsl:variable>
-        <amp-twitter width="600" height="250" layout="responsive" data-tweetid="{$tweetId}" data-cards="hidden"></amp-twitter>
+        <amp-twitter width="600" height="250" layout="responsive" data-tweetid="{$tweetId}"></amp-twitter>
     </xsl:template>
 
     <xsl:template name="substring-after-last">
