@@ -136,6 +136,11 @@
 							<ul class="more-ons__stories">
 								{{#each articles}}
 			 					<li class="more-ons__story">
+									{{#if @first}}
+		 							<div class="more-ons__image">
+		 								{{> image}}
+		 							</div>
+									{{/if}}
 									{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
 									<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
 									{{{date}}}

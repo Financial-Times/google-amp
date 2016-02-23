@@ -1,5 +1,6 @@
 const api = require('next-ft-api-client');
 const dateTransform = require('../article-date');
+const sanitizeImage = require('../sanitize-image');
 const moreOnCount = 5;
 
 const getArticles = metadatum => {
@@ -24,7 +25,8 @@ const getArticles = metadatum => {
 					date: dateTransform(article.publishedDate, 'more-ons__date'),
 					id: article.id,
 					title: article.title,
-					summary: Array.isArray(article.summaries) ? article.summaries[0] : null
+					summary: Array.isArray(article.summaries) ? article.summaries[0] : null,
+					image: sanitizeImage(article.mainImage),
 				};
 			});
 	})

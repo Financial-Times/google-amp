@@ -218,6 +218,9 @@ body {
 
 	.related-content__container {
 		@include oGridRow();
+		@include oGridRespondTo(M) {
+			margin-left: oGridGutter(L) * -1;
+		}
 	}
 
 	.related-content__content,
@@ -234,7 +237,10 @@ body {
 
 	.related-content__image {
 		@include oGridRespondTo(M) {
-			padding-left: oGridGutter(L) / 2;
+			padding: 0;
+			margin: oGridGutter(L) / 2 * -1 0;
+			position: relative;
+			right: oGridGutter(L) / 2 * -1;
 		}
 	}
 }
@@ -314,7 +320,7 @@ body {
 
 .more-ons__header,
 .more-ons__stories {
-	padding: 0 oGridGutter(L) 0 0;
+	padding: 0;
 }
 
 .more-ons__stories {
@@ -333,4 +339,8 @@ body {
 
 .more-ons__date {
 	@include oTypographySans(xs);
+}
+
+.more-ons__image {
+	margin: 0 oGridGutter(L) * -1 oGridGutter(L);
 }
