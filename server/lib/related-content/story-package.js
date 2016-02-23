@@ -1,5 +1,6 @@
 const getArticle = require('../getArticle');
 const dateTransform = require('../article-date');
+const sanitizeImage = require('../sanitize-image');
 
 module.exports = (article, raven) => {
 	const getRelated = (article.storyPackage || []).map(related => getArticle(related.id));
@@ -23,6 +24,7 @@ module.exports = (article, raven) => {
 					date: dateTransform(item.publishedDate, 'related-content__date'),
 					id: item.id,
 					title: item.title,
+					image: sanitizeImage(item.mainImage),
 					summary: Array.isArray(item.summaries) ? item.summaries[0] : null,
 					theme: item.metadata.reduce((previous, current) => {
 						return previous || (current.primary && current.prefLabel);
