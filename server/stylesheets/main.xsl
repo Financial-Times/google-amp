@@ -10,7 +10,7 @@
 	</xsl:template>
 
 	<xsl:include href="next/big-number.xsl" />
-	<xsl:include href="next/blockquotes.xsl" />
+	<xsl:include href="./blockquotes.xsl" />
 	<xsl:include href="external-image.xsl" />
 	<xsl:include href="next/interactive-graphics.xsl" />
 	<xsl:include href="./amp-links.xsl" />
