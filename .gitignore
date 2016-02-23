@@ -2,4 +2,6 @@ node_modules
 env.sh
 bower_components
 css
-analytics.lognpm-debug.log
+analytics.log
+npm-debug.log
+
