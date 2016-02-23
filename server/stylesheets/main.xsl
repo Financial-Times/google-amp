@@ -21,5 +21,6 @@
 	<xsl:include href="next/tables.xsl" />
 	<xsl:include href="next/toc.xsl" />
 	<xsl:include href="video.xsl" />
+	<xsl:include href="ft-content.xsl" />
 
 </xsl:stylesheet>
