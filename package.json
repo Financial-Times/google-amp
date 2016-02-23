@@ -5,7 +5,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "test": "scripts/test.sh",
+    "test": "npm run lint && scripts/test.sh",
     "postinstall": "scripts/postinstall.sh",
     "lint": "scripts/lint.sh",
     "start": ". scripts/env.sh && nodemon --use-strict app.js"
