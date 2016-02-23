@@ -21,7 +21,6 @@ const getArticles = metadatum => {
 	.then(res => {
 		return res.filter(article => article.title)
 			.map(article => {
-				console.log(article.title, article.mainImage, sanitizeImage(article.mainImage))
 				return {
 					date: dateTransform(article.publishedDate, 'more-ons__date'),
 					id: article.id,

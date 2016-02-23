@@ -95,7 +95,7 @@
 				<h2 class="related-content__header">Related stories</h2>
 				<ul class="related-content__stories">
 					{{#each relatedContent}}
-					{{#if @first}}
+					{{#if @first}}{{#if image}}
  					<li class="related-content__story related-content__lead-story">
  						<div class="related-content__container">
  							<div class="related-content__content">
@@ -109,7 +109,7 @@
  							</div>
  						</div>
 					</li>
-					{{/if}}
+					{{/if}}{{/if}}
  					<li class="related-content__story{{#if @first}} related-content__lead-story-alternate{{/if}}">
  						<div class="related-content__container">
 							{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
@@ -136,11 +136,11 @@
 							<ul class="more-ons__stories">
 								{{#each articles}}
 			 					<li class="more-ons__story">
-									{{#if @first}}
+									{{#if @first}}{{#if image}}
 		 							<div class="more-ons__image">
 		 								{{> image}}
 		 							</div>
-									{{/if}}
+									{{/if}}{{/if}}
 									{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
 									<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
 									{{{date}}}
