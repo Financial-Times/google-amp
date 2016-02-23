@@ -13,9 +13,9 @@ module.exports = (req, res, next) => {
 		.then(data => {
 			const useMock = (req.app.get('env') === 'production') || mockAccessAuthentication;
 
-			data.AUTH_AUTHORIZATION_URL = useMock ? `//${req.get('host')}/amp-access-mock?type=access&` : 'https://amp-access-svc-euwest1.memb.ft.com/amp-access/v1?';
-			data.AUTH_PINGBACK_URL      = useMock ? `//${req.get('host')}/amp-access-mock?type=pingback&` : 'https://amp-access-svc-euwest1.memb.ft.com/amp-pingback/v1?';
-			data.AUTH_LOGIN_URL         = useMock ? `//${req.get('host')}/amp-access-mock?type=login&` : 'https://amp-access-svc-euwest1.memb.ft.com/amp-login/v1?';
+			data.AUTH_AUTHORIZATION_URL = useMock ? `//${req.get('host')}/amp-access-mock?type=access&` : 'https://amp-access-svc.memb.ft.com/amp-access?';
+			data.AUTH_PINGBACK_URL      = useMock ? `//${req.get('host')}/amp-access-mock?type=pingback&` : 'https://amp-access-svc.memb.ft.com/amp-pingback?';
+			data.AUTH_LOGIN_URL         = useMock ? `//${req.get('host')}/amp-access-mock?type=login&` : 'https://accounts.ft.com/login?';
 			data.SOURCE_PORT            = (req.app.get('env') === 'production') ? '' : ':5000';
 
 			return data;
@@ -29,4 +29,3 @@ module.exports = (req, res, next) => {
 		})
 		.catch(next);
 };
-
