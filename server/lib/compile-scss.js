@@ -10,7 +10,7 @@ const bowerPath = path.resolve('bower_components');
 
 module.exports = () => renderScss({
 	file: `${scssPath}/style.scss`,
-	includePaths: [scssPath, bowerPath]
+	includePaths: [scssPath, bowerPath],
 }).then(result => result.css);
 
 if(module === require.main) {

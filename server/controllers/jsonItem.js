@@ -5,6 +5,5 @@ module.exports = (req, res, next) => {
 		.then(data => {
 			res.json(data);
 		})
-				.catch(next)
+		.catch(next);
 };
-

@@ -1,50 +1,54 @@
 {
-  "name": "google-amp",
-  "version": "1.0.0",
-  "description": "An RSS feed for AMP",
-  "private": true,
-  "main": "app.js",
-  "scripts": {
-    "postinstall": "scripts/postinstall.sh",
-    "start": ". scripts/env.sh && nodemon --use-strict app.js"
-  },
-  "keywords": [
-    "AMP",
-    "Google",
-    "AMP-HTML"
-  ],
-  "author": "richard.still@ft.com",
-  "dependencies": {
-    "@quarterto/assert-env": "^1.1.0",
-    "@quarterto/cache-if": "^1.1.0",
-    "@quarterto/promise-all-object": "^1.1.0",
-    "@quarterto/promisify": "^1.0.0",
-    "aws4": "^1.1.0",
-    "bower": "^1.7.7",
-    "cheerio": "^0.19.0",
-    "cookie-parser": "^1.4.1",
-    "express": "^4.13.3",
-    "forever": "^0.15.1",
-    "fs-promise": "^0.4.1",
-    "handlebars": "^4.0.5",
-    "html-entities": "^1.2.0",
-    "http-errors": "^1.4.0",
-    "mkdirp-promise": "^1.0.3",
-    "morgan": "^1.6.1",
-    "next-ft-api-client": "^3.22.0",
-    "node-fetch": "^1.3.3",
-    "node-sass": "^3.4.2",
-    "o-date": "github:financial-times/o-date",
-    "raven": "^0.10.0",
-    "request": "^2.61.0",
-    "rss": "^1.1.1",
-    "signed-aws-es-fetch": "^1.1.0"
-  },
-  "engines": {
-    "node": "4.*.*"
-  },
-  "devDependencies": {
-    "errorhandler": "^1.4.3",
-    "nodemon": "^1.8.1"
-  }
+	"name": "google-amp",
+	"version": "1.0.0",
+	"description": "An RSS feed for AMP",
+	"private": true,
+	"main": "app.js",
+	"scripts": {
+		"postinstall": "scripts/postinstall.sh",
+		"lint": "scripts/lint.sh",
+		"start": ". scripts/env.sh && nodemon --use-strict app.js"
+	},
+	"keywords": [
+		"AMP",
+		"Google",
+		"AMP-HTML"
+	],
+	"author": "richard.still@ft.com",
+	"dependencies": {
+		"@quarterto/assert-env": "^1.1.0",
+		"@quarterto/cache-if": "^1.1.0",
+		"@quarterto/promise-all-object": "^1.1.0",
+		"@quarterto/promisify": "^1.0.0",
+		"aws4": "^1.1.0",
+		"bower": "^1.7.7",
+		"cheerio": "^0.19.0",
+		"cookie-parser": "^1.4.1",
+		"express": "^4.13.3",
+		"forever": "^0.15.1",
+		"fs-promise": "^0.4.1",
+		"handlebars": "^4.0.5",
+		"html-entities": "^1.2.0",
+		"http-errors": "^1.4.0",
+		"mkdirp-promise": "^1.0.3",
+		"morgan": "^1.6.1",
+		"next-ft-api-client": "^3.22.0",
+		"node-fetch": "^1.3.3",
+		"node-sass": "^3.4.2",
+		"o-date": "github:financial-times/o-date",
+		"raven": "^0.10.0",
+		"request": "^2.61.0",
+		"rss": "^1.1.1",
+		"signed-aws-es-fetch": "^1.1.0"
+	},
+	"engines": {
+		"node": "4.*.*"
+	},
+	"devDependencies": {
+		"errorhandler": "^1.4.3",
+		"eslint": "^2.2.0",
+		"eslint-config-airbnb": "^6.0.2",
+		"lintspaces-cli": "^0.1.1",
+		"nodemon": "^1.8.1"
+	}
 }

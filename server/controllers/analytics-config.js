@@ -19,116 +19,115 @@ module.exports = (req, res, next) => {
 	res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
 
 	const spoor = {
-		category: "${category}",
-		action: "${action}",
+		category: '${category}',
+		action: '${action}',
 		context: {
 			content: {
-				uuid: "${uuid}",
-				title: "${title}",
+				uuid: '${uuid}',
+				title: '${title}',
 			},
-			product: "AMP",
-			url: "${canonicalUrl}",
-			amp_url: "${ampdocUrl}",
-			amp_canonical_url: "${canonicalUrl}",
-			referrer: "${documentReferrer}",
-			scroll_depth: "${percentageViewed}",
+			product: 'AMP',
+			url: '${canonicalUrl}',
+			amp_url: '${ampdocUrl}',
+			amp_canonical_url: '${canonicalUrl}',
+			referrer: '${documentReferrer}',
+			scroll_depth: '${percentageViewed}',
 		},
 		device: {
-			spoor_id: "${clientId(spoor-id)}"
+			spoor_id: '${clientId(spoor-id)}',
 		},
 		system: {
 			api_key: process.env.SPOOR_API_KEY,
-			source: "amp-analytics",
+			source: 'amp-analytics',
 
 			// TODO: check these
-			environment: (req.app.get('env') === "production" ? "p" : "d"),
-			is_live: (req.app.get('env') === "production"),
+			environment: (req.app.get('env') === 'production' ? 'p' : 'd'),
+			is_live: (req.app.get('env') === 'production'),
 
 			// TODO: versioning
-			version: "1.0.0"
+			version: '1.0.0',
 		},
 		user: {
 			// TODO: only valid when amp-access is active
 			// amp_reader_id: "ACCESS_READER_ID"
 		},
 		time: {
-			amp_timestamp: "${timestamp}"
-		}
+			amp_timestamp: '${timestamp}',
+		},
 	};
 
-	const url = DEBUG ? "//localhost:5000/analytics" : "https://spoor-api.ft.com/ingest";
+	const url = DEBUG ? '//localhost:5000/analytics' : 'https://spoor-api.ft.com/ingest';
 
 	const json = {
 		requests: {
-			standard: url + "?data=" + JSON.stringify(spoor)
+			standard: `${url}?data=${JSON.stringify(spoor)}`,
 		},
 		triggers: {
 			pageview: {
-				on: "visible",
-				request: "standard",
+				on: 'visible',
+				request: 'standard',
 				vars: {
-					category: "page",
-					action: "view"
-				}
+					category: 'page',
+					action: 'view',
+				},
 			},
 
 			// NB: https://github.com/ampproject/amphtml/issues/2046
 			anchorclick: {
-				on: "click",
-				selector: "a",
-				request: "standard",
+				on: 'click',
+				selector: 'a',
+				request: 'standard',
 				vars: {
-					category: "link",
-					action: "click"
-				}
+					category: 'link',
+					action: 'click',
+				},
 			},
 
 			// Something like https://github.com/Financial-Times/n-instrumentation/blob/920a8ad7cfaeccc02720dd386a2149674719bd0b/src/analytics/scroll-depth.js#L20-L30
 			scroll25: {
-				on: "scroll",
-				request: "standard",
+				on: 'scroll',
+				request: 'standard',
 				vars: {
-					category: "page",
-					action: "scrolldepth",
-					percentageViewed: 25
+					category: 'page',
+					action: 'scrolldepth',
+					percentageViewed: 25,
 				},
-				"scrollSpec": {
-					"verticalBoundaries": [25]
-				}
+				scrollSpec: {
+					verticalBoundaries: [25],
+				},
 			},
 			scroll50: {
-				on: "scroll",
-				request: "standard",
+				on: 'scroll',
+				request: 'standard',
 				vars: {
-					category: "page",
-					action: "scrolldepth",
-					percentageViewed: 50
+					category: 'page',
+					action: 'scrolldepth',
+					percentageViewed: 50,
 				},
-				"scrollSpec": {
-					"verticalBoundaries": [50]
-				}
+				scrollSpec: {
+					verticalBoundaries: [50],
+				},
 			},
 			scroll90: {
-				on: "scroll",
-				request: "standard",
+				on: 'scroll',
+				request: 'standard',
 				vars: {
-					category: "page",
-					action: "scrolldepth",
-					percentageViewed: 90
+					category: 'page',
+					action: 'scrolldepth',
+					percentageViewed: 90,
 				},
-				"scrollSpec": {
-					"verticalBoundaries": [90]
-				}
-			}
+				scrollSpec: {
+					verticalBoundaries: [90],
+				},
+			},
 		},
 		transport: {
 			beacon: true,
 			xhrpost: true,
-			image: true
-		}
+			image: true,
+		},
 	};
 
 	res.setHeader('Content-Type', 'application/json');
 	res.status(202).send(JSON.stringify(json));
 };
-

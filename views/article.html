@@ -6,7 +6,7 @@
 		<link rel="canonical" href="{{webUrl}}" >
 		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 		<style amp-custom>
-		 {{{css}}}
+		{{{css}}}
 		</style>
 		<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 		<script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -14,39 +14,37 @@
 		<script async custom-element="amp-brightcove" src="https://cdn.ampproject.org/v0/amp-brightcove-0.1.js"></script>
 		<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org",
-                "@type": "NewsArticle",
-                "mainEntityofPage": "{{webUrl}}",
-                "headline": "{{title}}",
-                "datePublished": "{{publishedDate}}",
-                "dateModified": "{{publishedDate}}",
-                "description": "{{description}}",
-
-                "image": {
-                    "@type": "ImageObject",
-                    "url": "{{mainImage.url}}",
-                    "width": {{mainImage.width}},
-                    "height": {{mainImage.height}}
-                },
-
-                "author": {
-                    "@type": "Person",
-                    "name": "{{authorList}}"
-                },
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "The Financial Times",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": "http://im.ft-static.com/m/img/masthead_main.jpg",
-                        "width": 435,
-                        "height": 36
-                    }
-                }
-            }
-        </script>
+		<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "NewsArticle",
+			"mainEntityofPage": "{{webUrl}}",
+			"headline": "{{title}}",
+			"datePublished": "{{publishedDate}}",
+			"dateModified": "{{publishedDate}}",
+			"description": "{{description}}",
+			"image": {
+				"@type": "ImageObject",
+				"url": "{{mainImage.url}}",
+				"width": {{mainImage.width}},
+				"height": {{mainImage.height}}
+			},
+			"author": {
+				"@type": "Person",
+				"name": "{{authorList}}"
+			},
+			"publisher": {
+				"@type": "Organization",
+				"name": "The Financial Times",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "http://im.ft-static.com/m/img/masthead_main.jpg",
+					"width": 435,
+					"height": 36
+				}
+			}
+		}
+		</script>
 
 	</head>
 	<body>
@@ -95,16 +93,16 @@
 				<h2 class="related-content__header">Related stories</h2>
 				<ul class="related-content__stories">
 					{{#each relatedContent}}
- 					<li class="related-content__story">
- 						<div class="related-content__container">
-							{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
-							<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
-							<p class="related-content__summary">{{{summary}}}</p>
-							{{{date}}}
- 						</div>
-					</li>
-					{{/each}}
- 				</ul>
+					<li class="related-content__story">
+					<div class="related-content__container">
+					{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
+					<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+					<p class="related-content__summary">{{{summary}}}</p>
+					{{{date}}}
+				</div>
+				</li>
+				{{/each}}
+				</ul>
 			</aside>
 			{{/if}}
 
@@ -120,12 +118,12 @@
 							<h2 class="more-ons__header">{{{title}}}</h2>
 							<ul class="more-ons__stories">
 								{{#each articles}}
-			 					<li class="more-ons__story">
-									{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
-									<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
-									{{{date}}}
-								</li>
-								{{/each}}
+								<li class="more-ons__story">
+								{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
+								<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+								{{{date}}}
+							</li>
+							{{/each}}
 							</ul>
 						</div>
 					</li>
@@ -135,19 +133,19 @@
 			</aside>
 			{{/if}}
 
- 		</main>
-		<footer class="main-footer">
-			<div class="main-footer__container">
-				<ul class="main-footer__links">
-					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/ft-com-terms-and-conditions/">Terms &amp; conditions</a></li>
-					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/financial-times-privacy-policy/">Privacy policy</a></li>
-					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/copyright-policy/?ft_site=falcon#axzz3goHcFH3m">Copyright</a></li>
-					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/how-the-ft-manages-cookies-on-its-websites/">Cookie policy</a></li>
-				</ul>
-				<div class="main-footer__brand">
-					{{{nikkeiSvg}}}
-				</div>
+		</main>
+	<footer class="main-footer">
+		<div class="main-footer__container">
+			<ul class="main-footer__links">
+				<li class="main-footer__link"><a href="http://help.ft.com/tools-services/ft-com-terms-and-conditions/">Terms &amp; conditions</a></li>
+				<li class="main-footer__link"><a href="http://help.ft.com/tools-services/financial-times-privacy-policy/">Privacy policy</a></li>
+				<li class="main-footer__link"><a href="http://help.ft.com/tools-services/copyright-policy/?ft_site=falcon#axzz3goHcFH3m">Copyright</a></li>
+				<li class="main-footer__link"><a href="http://help.ft.com/tools-services/how-the-ft-manages-cookies-on-its-websites/">Cookie policy</a></li>
+			</ul>
+			<div class="main-footer__brand">
+				{{{nikkeiSvg}}}
 			</div>
-		</footer>
+		</div>
+	</footer>
 	</body>
 </html>
