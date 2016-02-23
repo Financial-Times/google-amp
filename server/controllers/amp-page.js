@@ -38,7 +38,7 @@ if(module === require.main) {
 	}).then(
 		rendered => process.stdout.write(rendered),
 		err => {
-			console.error(err.stack);
+			console.error(err.stack || err.toString());
 			process.exit(1);
 		}
 	);
