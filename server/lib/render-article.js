@@ -2,8 +2,8 @@ const handlebars = require('handlebars');
 const compileScss = require('./compile-scss');
 const fs = require('fs-promise');
 const path = require('path');
-const denodeify = require('denodeify');
-const glob = denodeify(require('glob'));
+const promisify = require('@quarterto/promisify');
+const glob = promisify(require('glob'));
 const cacheIf = require('@quarterto/cache-if');
 const promiseAllObj = require('@quarterto/promise-all-object');
 
