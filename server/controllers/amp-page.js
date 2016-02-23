@@ -34,7 +34,7 @@ module.exports = (req, res, next) => {
 if(module === require.main) {
 	getAndRender(process.argv[2], {
 		production: false,
-		alwaysFree: false,
+		alwaysFree: true,
 	}).then(
 		rendered => process.stdout.write(rendered),
 		err => {
