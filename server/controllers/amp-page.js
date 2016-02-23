@@ -4,7 +4,7 @@ const transformArticle = require('../lib/transformEsV3Item.js');
 const isFree = require('../lib/article-is-free');
 const errors = require('http-errors');
 
-const mockAccessAuthentication = false;
+const mockAccessAuthentication = true;
 
 module.exports = (req, res, next) => {
 	getItem(req.params.uuid)
