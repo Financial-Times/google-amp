@@ -5,23 +5,24 @@ const summaryTransform = require('./article-summary');
 const cheerio = require('cheerio');
 
 function cheerioTransforms(transforms) {
-	return function(article) {
+	return (article) => {
 		article.bodyHtml = transforms.reduce(
 			($, transform) => (transform($) || $),
 			cheerio.load(article.bodyHtml, {decodeEntities: false})
 		).html();
+
 		return article;
 	};
 }
 
 function removeStyleAttributes($) {
-	$('[style]').each(function() {
+	$('[style]').each(() => {
 		$(this).removeAttr('style');
 	});
 }
 
 function transformArticleBody(article) {
-	let xsltParams = {
+	const xsltParams = {
 		id: article.id,
 		webUrl: article.webUrl,
 		renderTOC: 0,
@@ -31,7 +32,7 @@ function transformArticleBody(article) {
 		// See: https://github.com/ampproject/amphtml/blob/master/extensions/amp-brightcove/amp-brightcove.md#player-configuration
 		// NB: Next don't use the native Brightcove player, so don't use this param. Default seems fine.
 		// brightcovePlayerId: process.env.BRIGHTCOVE_PLAYER_ID
-		brightcovePlayerId: 'default'
+		brightcovePlayerId: 'default',
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams)

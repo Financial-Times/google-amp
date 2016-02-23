@@ -11,17 +11,12 @@ module.exports = (req, res, next) => {
 	getArticle(req.params.uuid)
 		.then(response => response._source ? transformArticle(response._source) : Promise.reject(new errors.NotFound()))
 		.then(article => isFree(article, req) ? article : Promise.reject(new errors.NotFound()))
-		.then(article => {
-			return Promise.all([addStoryPackage(article, req.raven), addMoreOns(article, req.raven)])
-			.then(() => article);
-		})
+		.then(article => Promise.all([addStoryPackage(article, req.raven), addMoreOns(article, req.raven)]).then(() => article))
 		.then(data => {
 			data.SOURCE_PORT = (req.app.get('env') === 'production') ? '' : ':5000';
 			return data;
 		})
-		.then(data => renderArticle(data, {
-			precompiled: req.app.get('env') === 'production'
-		}))
+		.then(data => renderArticle(data, {precompiled: req.app.get('env') === 'production'}))
 		.then(content => {
 			res.setHeader('cache-control', 'public, max-age=30');
 			res.send(content);

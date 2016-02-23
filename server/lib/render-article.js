@@ -19,29 +19,29 @@ const readTemplate = () => fs.readFile(`${viewsPath}/article.html`, 'utf8').then
 const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
 
 const getAuthors = data => {
-	let authors =  data.metadata
-				.filter(item => {return (item.taxonomy && item.taxonomy === 'authors') ? true : false})
-				.map(item => {return item.prefLabel})
+	const authors = data.metadata
+				.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
+				.map(item => item.prefLabel)
 				.join(', ');
 
 	// Somtimes there are no authors in the taxonomy. It's very sad but it's true.
 	return authors === '' ? data.byline : authors;
-}
+};
 
 const getMainImage = data => {
-	if (data.mainImage) {
+	if(data.mainImage) {
 		return {
 			url: data.mainImage.url,
 			width: data.mainImage.width,
-			height: data.mainImage.height
+			height: data.mainImage.height,
 		};
 	} else {
 		// Return a default logo image if an actual image is not available
 		// TODO pull out the lead image from the body XML if possible
 		return {
-			"url": "http://im.ft-static.com/m/img/masthead_main.jpg",
-			"width": 435,
-			"height": 36
+			url: 'http://im.ft-static.com/m/img/masthead_main.jpg',
+			width: 435,
+			height: 36,
 		};
 	}
 };
@@ -53,5 +53,5 @@ module.exports = (data, options) => promiseAllObj({
 	nikkeiSvg: fs.readFile(`${staticPath}/nikkei-logo.svg`, 'utf8'),
 	description: data.summaries ? data.summaries[0] : '',
 	authorList: getAuthors(data),
-	mainImage: getMainImage(data)
+	mainImage: getMainImage(data),
 }).then(t => t.template(Object.assign(t, data)));
