@@ -28,4 +28,3 @@ module.exports = (req, res, next) => {
 		})
 		.catch(next);
 };
-

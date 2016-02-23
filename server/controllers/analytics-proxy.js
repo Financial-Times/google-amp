@@ -31,4 +31,3 @@ module.exports = (req, res, next) => {
 		res.status(202).send(gif);
 	}
 };
-

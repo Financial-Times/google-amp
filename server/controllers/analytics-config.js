@@ -131,4 +131,3 @@ module.exports = (req, res, next) => {
 	res.setHeader('Content-Type', 'application/json');
 	res.status(202).send(JSON.stringify(json));
 };
-
