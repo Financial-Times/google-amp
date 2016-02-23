@@ -95,7 +95,22 @@
 				<h2 class="related-content__header">Related stories</h2>
 				<ul class="related-content__stories">
 					{{#each relatedContent}}
- 					<li class="related-content__story">
+					{{#if @first}}
+ 					<li class="related-content__story related-content__lead-story">
+ 						<div class="related-content__container">
+ 							<div class="related-content__content">
+								{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
+								<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+								<p class="related-content__summary">{{{summary}}}</p>
+								{{{date}}}
+ 							</div>
+ 							<div class="related-content__image">
+ 								{{> image}}
+ 							</div>
+ 						</div>
+					</li>
+					{{/if}}
+ 					<li class="related-content__story{{#if @first}} related-content__lead-story-alternate{{/if}}">
  						<div class="related-content__container">
 							{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
 							<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>

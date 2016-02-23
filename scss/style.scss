@@ -207,6 +207,44 @@ body {
 	}
 }
 
+.related-content__lead-story {
+	display: none;
+	@include oGridRespondTo(M) {
+		@include oGridColspan((default: 12));
+		@include oGridRespondTo(M) {
+			padding-left: oGridGutter(L) * 2;
+		}
+	}
+
+	.related-content__container {
+		@include oGridRow();
+	}
+
+	.related-content__content,
+	.related-content__image {
+		@include oGridColspan((default: 6));
+	}
+
+	.related-content__content {
+		@include oGridRespondTo(M) {
+			padding-left: 0;
+			padding-right: oGridGutter(L) / 2;
+		}
+	}
+
+	.related-content__image {
+		@include oGridRespondTo(M) {
+			padding-left: oGridGutter(L) / 2;
+		}
+	}
+}
+
+.related-content__lead-story-alternate {
+	@include oGridRespondTo(M) {
+		display: none;
+	}
+}
+
 .related-content__container {
 	background-color: oColorsGetColorFor(box, background);
 	border: 1px solid oColorsGetPaletteColor("warm-3");
@@ -215,6 +253,10 @@ body {
 	@include oGridRespondTo(M) {
 		width: 100%;
 	}
+}
+
+.related-content__image {
+
 }
 
 .related-content__link {
