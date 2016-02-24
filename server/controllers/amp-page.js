@@ -6,7 +6,7 @@ const transformArticle = require('../lib/transformEsV3Item.js');
 const isFree = require('../lib/article-is-free');
 const errors = require('http-errors');
 
-const mockAccessAuthentication = true;
+const mockAccessAuthentication = false;
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)

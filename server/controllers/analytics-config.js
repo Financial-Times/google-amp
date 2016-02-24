@@ -54,6 +54,7 @@ module.exports = (req, res, next) => {
 			version: '1.0.0',
 		},
 		user: {
+			ft_session: 'AUTHDATA(session)',
 			amp_reader_id: 'ACCESS_READER_ID',
 			amp_auth_access: 'AUTHDATA(access)',
 			amp_auth_debug: 'AUTHDATA(debug)',
