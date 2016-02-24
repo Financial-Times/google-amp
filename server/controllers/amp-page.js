@@ -39,6 +39,7 @@ if(module === require.main) {
 	getAndRender(process.argv[2], {
 		production: false,
 		alwaysFree: true,
+		relatedArticleDeduper: [process.argv[2]],
 	}).then(
 		rendered => process.stdout.write(rendered),
 		err => {
