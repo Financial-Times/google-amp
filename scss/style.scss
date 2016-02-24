@@ -245,6 +245,50 @@ body {
 	}
 }
 
+.related-content__lead-story {
+	display: none;
+	@include oGridRespondTo(M) {
+		@include oGridColspan((default: 12));
+		@include oGridRespondTo(M) {
+			padding-left: oGridGutter(L) * 2;
+		}
+	}
+
+	.related-content__container {
+		@include oGridRow();
+		@include oGridRespondTo(M) {
+			margin-left: oGridGutter(L) * -1;
+		}
+	}
+
+	.related-content__content,
+	.related-content__image {
+		@include oGridColspan((default: 6));
+	}
+
+	.related-content__content {
+		@include oGridRespondTo(M) {
+			padding-left: 0;
+			padding-right: oGridGutter(L) / 2;
+		}
+	}
+
+	.related-content__image {
+		@include oGridRespondTo(M) {
+			padding: 0;
+			margin: oGridGutter(L) / 2 * -1 0;
+			position: relative;
+			right: oGridGutter(L) / 2 * -1;
+		}
+	}
+}
+
+.related-content__lead-story-alternate {
+	@include oGridRespondTo(M) {
+		display: none;
+	}
+}
+
 .related-content__container {
 	background-color: oColorsGetColorFor(box, background);
 	border: 1px solid oColorsGetPaletteColor("warm-3");
@@ -310,7 +354,7 @@ body {
 
 .more-ons__header,
 .more-ons__stories {
-	padding: 0 oGridGutter(L) 0 0;
+	padding: 0;
 }
 
 .more-ons__stories {
@@ -329,4 +373,8 @@ body {
 
 .more-ons__date {
 	@include oTypographySans(xs);
+}
+
+.more-ons__image {
+	margin: 0 oGridGutter(L) * -1 oGridGutter(L);
 }

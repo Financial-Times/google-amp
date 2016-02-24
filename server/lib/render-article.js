@@ -2,11 +2,14 @@ const handlebars = require('handlebars');
 const compileScss = require('./compile-scss');
 const fs = require('fs-promise');
 const path = require('path');
+const promisify = require('@quarterto/promisify');
+const glob = promisify(require('glob'));
 const cacheIf = require('@quarterto/cache-if');
 const promiseAllObj = require('@quarterto/promise-all-object');
 
 const cssPath = path.resolve('css');
 const viewsPath = path.resolve('views');
+const partialsPath = path.resolve('views/partials');
 const staticPath = path.resolve('static');
 
 const readCompiledCss = () => fs.readFile(`${cssPath}/style.css`, 'utf8');
@@ -17,6 +20,18 @@ const getCss = precompiled => precompiled ?
 
 const readTemplate = () => fs.readFile(`${viewsPath}/article.html`, 'utf8').then(handlebars.compile);
 const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
+
+// TODO: use n-handlebars and get this for free?
+const applyPartials = () => glob(`${partialsPath}/**/*.html`)
+	.then(files => {
+		const promises = files.map(file => {
+			const name = file.replace(/^.*\/(.*)\.html$/, '$1');
+			return fs.readFile(file, 'utf8')
+				.then(html => handlebars.registerPartial(name, html));
+		});
+		return Promise.all(promises);
+	});
+const getPartials = precompiled => cacheIf(() => precompiled, applyPartials);
 
 const getAuthors = data => {
 	const authors = data.metadata
@@ -48,6 +63,7 @@ const getMainImage = data => {
 
 module.exports = (data, options) => promiseAllObj({
 	template: getTemplate(options.precompiled),
+	partials: getPartials(options.precompiled),
 	css: getCss(options.precompiled),
 	ftSvg: fs.readFile(`${staticPath}/ft-logo.svg`, 'utf8'),
 	nikkeiSvg: fs.readFile(`${staticPath}/nikkei-logo.svg`, 'utf8'),

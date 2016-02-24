@@ -83,7 +83,6 @@ module.exports = (req, res, next) => {
 				},
 			},
 
-			// Something like https://github.com/Financial-Times/n-instrumentation/blob/920a8ad7cfaeccc02720dd386a2149674719bd0b/src/analytics/scroll-depth.js#L20-L30
 			scroll25: {
 				on: 'scroll',
 				request: 'standard',

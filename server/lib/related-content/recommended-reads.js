@@ -5,16 +5,25 @@ const dateTransform = require('../article-date');
 const env = 'production';
 
 const apiUrl = (env === 'production') ? 'http://api.ft.com' : 'http://test.api.ft.com';
-const apiKey = (env === 'production') ? process.env.RECOMMENDED_READS_API_KEY : process.env.RECOMMENDED_READS_TEST_API_KEY;
+const apiKey = (env === 'production') ?
+	process.env.RECOMMENDED_READS_API_KEY :
+	process.env.RECOMMENDED_READS_TEST_API_KEY;
 const count = 10;
 
 // Valid arguments are "pop"(popularity), "rel"(relevancy) and "date"
 const sort = 'rel';
 
-// supported values for recency are integers representing the maximum number of days to go back and ISO-formatted date-time representing the point after which the events are processed
+// supported values for recency are integers representing
+// the maximum number of days to go back and ISO-formatted
+// date-time representing the point after which the events
+// are processed
 const recency = 7;
 
-module.exports = (uuid, raven) => fetch(`${apiUrl}/recommended-reads-api/recommend/contextual?apiKey=${apiKey}&count=${count}&sort=${sort}&recency=${recency}&contentid=${uuid}`)
+module.exports = (uuid, raven) => {
+	const url = `${apiUrl}/recommended-reads-api/recommend/contextual` +
+		`?apiKey=${apiKey}&count=${count}&sort=${sort}&recency=${recency}&contentid=${uuid}`;
+
+	return fetch(url)
 	.then(response => {
 		if(response.status < 200 || response.status >= 300) {
 			if(raven) {
@@ -36,3 +45,4 @@ module.exports = (uuid, raven) => fetch(`${apiUrl}/recommended-reads-api/recomme
 		return article;
 	}))
 	.catch(() => []); // Return empty array on failure
+};
