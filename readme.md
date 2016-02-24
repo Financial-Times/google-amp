@@ -1,6 +1,8 @@
 google-amp
 ===
 
+[![Circle CI](https://circleci.com/gh/Financial-Times/google-amp/tree/master.svg?style=svg)](https://circleci.com/gh/Financial-Times/google-amp/tree/master)
+
 AMP HTML rendering for FT articles
 
 Prerequisites
