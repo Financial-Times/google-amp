@@ -18,31 +18,25 @@ const getArticles = metadatum => api.search({
 	],
 })
 	.then(res => res.filter(article => article.title)
-			.map(article => {
-				return {
-					date: dateTransform(article.publishedDate, 'more-ons__date'),
-					id: article.id,
-					title: article.title,
-					summary: Array.isArray(article.summaries) ? article.summaries[0] : null,
-					image: sanitizeImage(article.mainImage),
-				};
-			})
+			.map(article => ({
+				date: dateTransform(article.publishedDate, 'more-ons__date'),
+				id: article.id,
+				title: article.title,
+				summary: Array.isArray(article.summaries) ? article.summaries[0] : null,
+				image: sanitizeImage(article.mainImage),
+			}))
 	)
-	.then(res => {
-		return {
-			key: metadatum.idV1,
-			type: metadatum.type,
-			taxonomy: metadatum.taxonomy,
-			title: metadatum.prefLabel,
-			articles: res,
-		};
-	})
-	.catch(e => {
-		return {
-			articles: [],
-			error: e,
-		};
-	});
+	.then(res => ({
+		key: metadatum.idV1,
+		type: metadatum.type,
+		taxonomy: metadatum.taxonomy,
+		title: metadatum.prefLabel,
+		articles: res,
+	}))
+	.catch(e => ({
+		articles: [],
+		error: e,
+	}));
 
 const addTitle = metadatum => {
 	let type;
