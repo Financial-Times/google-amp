@@ -7,18 +7,17 @@ const getArticles = metadatum => api.search({
 	filter: ['metadata.idV1', metadatum.idV1],
 
 		// Fetch twice as many as we need, to allow for deduping
-		count: moreOnCount * 2,
-		fields: [
-			'id',
-			'title',
-			'metadata',
-			'summaries',
-			'mainImage',
-			'publishedDate'
-		]
-	})
-	.then(res => {
-		return res.filter(article => article.title)
+	count: moreOnCount * 2,
+	fields: [
+		'id',
+		'title',
+		'metadata',
+		'summaries',
+		'mainImage',
+		'publishedDate',
+	],
+})
+	.then(res => res.filter(article => article.title)
 			.map(article => {
 				return {
 					date: dateTransform(article.publishedDate, 'more-ons__date'),
@@ -27,21 +26,21 @@ const getArticles = metadatum => api.search({
 					summary: Array.isArray(article.summaries) ? article.summaries[0] : null,
 					image: sanitizeImage(article.mainImage),
 				};
-			});
-	})
+			})
+	)
 	.then(res => {
 		return {
 			key: metadatum.idV1,
 			type: metadatum.type,
 			taxonomy: metadatum.taxonomy,
 			title: metadatum.prefLabel,
-			articles: res
+			articles: res,
 		};
 	})
 	.catch(e => {
 		return {
 			articles: [],
-			error: e
+			error: e,
 		};
 	});
 

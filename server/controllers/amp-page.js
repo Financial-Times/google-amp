@@ -10,7 +10,10 @@ function getAndRender(uuid, options) {
 	return getArticle(uuid)
 		.then(response => response._source ? transformArticle(response._source) : Promise.reject(new errors.NotFound()))
 		.then(article => (options.alwaysFree || isFree(article)) ? article : Promise.reject(new errors.NotFound()))
-		.then(article => Promise.all([addStoryPackage(article, options.raven), addMoreOns(article, options.raven)]).then(() => article))
+		.then(article => Promise.all([
+			addStoryPackage(article, options.raven),
+			addMoreOns(article, options.raven),
+		]).then(() => article))
 		.then(data => {
 			data.SOURCE_PORT = options.production ? '' : ':5000';
 			return data;

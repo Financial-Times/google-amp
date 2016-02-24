@@ -23,14 +23,14 @@ const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
 
 // TODO: use n-handlebars and get this for free?
 const applyPartials = () => glob(`${partialsPath}/**/*.html`)
-    .then(files => {
-        const promises = files.map(file => {
-            const name = file.replace(/^.*\/(.*)\.html$/, '$1');
-            return fs.readFile(file, 'utf8')
-                .then(html => handlebars.registerPartial(name, html));
-        });
-        return Promise.all(promises);
-    });
+	.then(files => {
+		const promises = files.map(file => {
+			const name = file.replace(/^.*\/(.*)\.html$/, '$1');
+			return fs.readFile(file, 'utf8')
+				.then(html => handlebars.registerPartial(name, html));
+		});
+		return Promise.all(promises);
+	});
 const getPartials = precompiled => cacheIf(() => precompiled, applyPartials);
 
 const getAuthors = data => {
@@ -62,7 +62,7 @@ const getMainImage = data => {
 };
 
 module.exports = (data, options) => promiseAllObj({
-    template: getTemplate(options.precompiled),
+	template: getTemplate(options.precompiled),
 	partials: getPartials(options.precompiled),
 	css: getCss(options.precompiled),
 	ftSvg: fs.readFile(`${staticPath}/ft-logo.svg`, 'utf8'),
