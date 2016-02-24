@@ -20,3 +20,8 @@ npm install
 npm start
 open http://localhost:5000/content/<FT article uuid>
 ```
+
+Tests
+---
+
+To run the tests and linter locally, run `npm test`.
