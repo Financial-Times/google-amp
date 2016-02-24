@@ -1,4 +1,5 @@
 $o-fonts-path: '//h2.ft.com/build/files/o-fonts-assets@1.3.0/';
+$o-grid-ie8-rules: 'none';
 
 @import 'o-colors/main';
 @import 'o-fonts/main';
@@ -15,7 +16,7 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 
 @mixin responsiveWidth($width: $page-width) {
 	margin: 0 auto;
-    padding: 0 10px;
+	padding: 0 10px;
 	max-width: $width;
 }
 
@@ -48,6 +49,7 @@ body {
 
 	svg {
 		display: block;
+		max-height: 100%; // work around Webkit ridiculous height bug https://bugs.webkit.org/show_bug.cgi?id=82489
 	}
 }
 
@@ -146,9 +148,18 @@ body {
 	border: 1px solid oColorsGetPaletteColor('warm-3');
 }
 
+.u-border--left {
+	border-left: 1px solid oColorsGetPaletteColor('warm-3');
+}
+
 .u-margin--left-right {
 	margin-right: 16px;
 	margin-left: 16px;
+}
+
+.u-padding--left-right {
+	padding-right: 16px;
+	padding-left: 16px;
 }
 
 .aside--headline {
@@ -176,4 +187,146 @@ body {
 .aside--list {
 	margin: 10px 0;
 	padding-left: 20px;
+}
+
+%article-quote::before {
+	@include oTypographySerifDisplay(s);
+	display: inline-block;
+	vertical-align: -.5em; // sit around the baseline
+	line-height: inherit;
+	font-size: 80px; // enormous quote
+	content: '\201C';
+}
+
+.pull-quote__quote-marks {
+	@extend %article-quote;
+
+	position: absolute;
+	top: -1px; // place just on top of border
+	left: 10px;
+	background-color: oColorsGetPaletteColor('pink');
+	padding: 0 10px;
+	line-height: 0; // take up as little space as possible
+}
+
+.article__quote--full-quote {
+	@extend %article-quote;
+	line-height: 0; // take up as little space as possible
+}
+
+.article__quote-footer {
+	@include oTypographySansBold(s);
+}
+
+.related-content {
+	@include responsiveWidth;
+	margin-top: 40px;
+}
+
+.related-content__header {
+	@include oTypographySerifDisplay(m);
+}
+
+.related-content__stories {
+
+	// Should we use a CSS reset?
+	padding: 0;
+	@include oGridRow();
+}
+
+.related-content__story {
+	@include oGridColspan((default: 12, M: 6));
+	margin-bottom: oGridGutter(L);
+
+	@include oGridRespondTo(M) {
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+	}
+}
+
+.related-content__container {
+	background-color: oColorsGetColorFor(box, background);
+	border: 1px solid oColorsGetPaletteColor("warm-3");
+	padding: oGridGutter(S);
+
+	@include oGridRespondTo(M) {
+		width: 100%;
+	}
+}
+
+.related-content__link {
+	@include oTypographyLink;
+	@include oTypographySans(m);
+	display: block;
+}
+
+.related-content__date {
+	@include oTypographySans(xs);
+}
+
+.related-content__summary {
+	@include oTypographySans(s);
+	margin: 0;
+}
+
+.related-content__theme {
+	@include oTypographySansBold(s);
+	color: oColorsGetPaletteColor(claret);
+	margin: 0;
+}
+
+.more-ons {
+	@include responsiveWidth;
+	margin-top: 40px;
+}
+
+.more-ons__items {
+	@include oGridRow();
+
+	// Should we use a CSS reset?
+	padding: 0;
+}
+
+.more-ons__item {
+	@include oGridColspan((default: 12, M: 6));
+}
+
+.more-ons__item-wrapper {
+	border: 1px solid oColorsGetPaletteColor('warm-3');
+	padding: oGridGutter(L) oGridGutter(L) 0;
+	margin-bottom: oGridGutter(L);
+}
+
+.more-ons__type {
+	margin: -40px 0 8px 10px;
+}
+
+.more-ons__header {
+	@include oTypographySansBold(l);
+	color: oColorsGetPaletteColor(claret);
+	margin-top: 0;
+}
+
+.more-ons__header,
+.more-ons__stories {
+	padding: 0 oGridGutter(L) 0 0;
+}
+
+.more-ons__stories {
+	list-style: none;
+}
+
+.more-ons__story {
+	margin-bottom: oGridGutter(L);
+}
+
+.more-ons__link {
+	@include oTypographyLink;
+	@include oTypographySans(m);
+	display: block;
+}
+
+.more-ons__date {
+	@include oTypographySans(xs);
 }

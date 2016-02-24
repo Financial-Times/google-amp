@@ -5,7 +5,9 @@
   "private": true,
   "main": "app.js",
   "scripts": {
+    "test": "npm run lint && scripts/test.sh",
     "postinstall": "scripts/postinstall.sh",
+    "lint": "scripts/lint.sh",
     "start": ". scripts/env.sh && nodemon --use-strict app.js"
   },
   "keywords": [
@@ -31,6 +33,8 @@
     "http-errors": "^1.4.0",
     "mkdirp-promise": "^1.0.3",
     "morgan": "^1.6.1",
+    "next-ft-api-client": "^3.22.0",
+    "node-fetch": "^1.3.3",
     "node-sass": "^3.4.2",
     "o-date": "github:financial-times/o-date",
     "raven": "^0.10.0",
@@ -42,7 +46,11 @@
     "node": "4.*.*"
   },
   "devDependencies": {
+    "amp-validator-prebuilt": "^0.1.1",
     "errorhandler": "^1.4.3",
+    "eslint": "^2.2.0",
+    "eslint-config-airbnb": "^6.0.2",
+    "lintspaces-cli": "^0.1.1",
     "nodemon": "^1.8.1"
   }
 }
