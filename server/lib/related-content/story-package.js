@@ -2,12 +2,12 @@ const getArticle = require('../getArticle');
 const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');
 
-module.exports = (article, raven) => {
+module.exports = (article, options) => {
 	const getRelated = (article.storyPackage || []).map(related => getArticle(related.id));
 	return Promise.all(getRelated)
 		.catch(e => {
-			if(raven) {
-				raven.captureMessage('Story Package API call failed', {
+			if(options.raven) {
+				options.raven.captureMessage('Story Package API call failed', {
 					level: 'error',
 					extra: {e},
 				});
@@ -17,6 +17,11 @@ module.exports = (article, raven) => {
 		})
 		.then(related => related.map(response => response._source ? response._source : Promise.reject()))
 		.then(related => {
+
+			related.forEach(item => {
+				options.relatedArticleDeduper.push(item.id);
+			})
+
 			article.relatedContent = related.map(item => ({
 				date: dateTransform(item.publishedDate, 'related-content__date'),
 				id: item.id,
