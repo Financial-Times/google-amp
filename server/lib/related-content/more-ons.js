@@ -1,11 +1,12 @@
 const api = require('next-ft-api-client');
 const dateTransform = require('../article-date');
+const sanitizeImage = require('../sanitize-image');
 const moreOnCount = 5;
 
 const getArticles = metadatum => api.search({
 	filter: ['metadata.idV1', metadatum.idV1],
 
-	// Fetch twice as many as we need, to allow for deduping
+		// Fetch twice as many as we need, to allow for deduping
 	count: moreOnCount * 2,
 	fields: [
 		'id',
@@ -16,25 +17,26 @@ const getArticles = metadatum => api.search({
 		'publishedDate',
 	],
 })
-.then(res => res.filter(article => article.title)
-	.map(article => ({
-		date: dateTransform(article.publishedDate, 'more-ons__date'),
-		id: article.id,
-		title: article.title,
-		summary: Array.isArray(article.summaries) ? article.summaries[0] : null,
+	.then(res => res.filter(article => article.title)
+			.map(article => ({
+				date: dateTransform(article.publishedDate, 'more-ons__date'),
+				id: article.id,
+				title: article.title,
+				summary: Array.isArray(article.summaries) ? article.summaries[0] : null,
+				image: sanitizeImage(article.mainImage),
+			}))
+	)
+	.then(res => ({
+		key: metadatum.idV1,
+		type: metadatum.type,
+		taxonomy: metadatum.taxonomy,
+		title: metadatum.prefLabel,
+		articles: res,
 	}))
-)
-.then(res => ({
-	key: metadatum.idV1,
-	type: metadatum.type,
-	taxonomy: metadatum.taxonomy,
-	title: metadatum.prefLabel,
-	articles: res,
-}))
-.catch(e => ({
-	articles: [],
-	error: e,
-}));
+	.catch(e => ({
+		articles: [],
+		error: e,
+	}));
 
 const addTitle = metadatum => {
 	let type;

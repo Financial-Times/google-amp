@@ -4,7 +4,8 @@ const replaceEllipses = require('./transforms/replace-ellipses');
 const trimmedLinks = require('../../bower_components/next-article/server/transforms/trimmed-links');
 const externalImages = require('./external-images');
 const copyrightNotice = require('./transforms/copyright-notice');
-const extractMainImageAndToc = require('../../bower_components/next-article/server/transforms/extract-main-image-and-toc');
+const extractMainImageAndToc =
+	require('../../bower_components/next-article/server/transforms/extract-main-image-and-toc');
 
 function transform(init$, flags) {
 	function withFn($, transformFn) {
@@ -20,7 +21,7 @@ function transform(init$, flags) {
 	};
 }
 
-module.exports = function(body, flags) {
+module.exports = function run(body, flags) {
 	body = replaceEllipses(body);
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 	body = body.replace(/http:\/\/www\.ft\.com\/ig\//g, '/ig/');

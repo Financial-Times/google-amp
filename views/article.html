@@ -104,15 +104,30 @@
 				<h2 class="related-content__header">Related stories</h2>
 				<ul class="related-content__stories">
 					{{#each relatedContent}}
-					<li class="related-content__story">
-					<div class="related-content__container">
-					{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
-					<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
-					<p class="related-content__summary">{{{summary}}}</p>
-					{{{date}}}
-				</div>
-				</li>
-				{{/each}}
+					{{#if @first}}{{#if image}}
+					<li class="related-content__story related-content__lead-story">
+						<div class="related-content__container">
+							<div class="related-content__content">
+								{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
+								<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+								<p class="related-content__summary">{{{summary}}}</p>
+								{{{date}}}
+							</div>
+							<div class="related-content__image">
+								{{> image}}
+							</div>
+						</div>
+					</li>
+					{{/if}}{{/if}}
+					<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
+						<div class="related-content__container">
+							{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
+							<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+							<p class="related-content__summary">{{{summary}}}</p>
+							{{{date}}}
+						</div>
+					</li>
+					{{/each}}
 				</ul>
 			</aside>
 			{{/if}}
@@ -130,11 +145,16 @@
 							<ul class="more-ons__stories">
 								{{#each articles}}
 								<li class="more-ons__story">
-								{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
-								<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
-								{{{date}}}
-							</li>
-							{{/each}}
+									{{#if @first}}{{#if image}}
+									<div class="more-ons__image">
+										{{> image}}
+									</div>
+									{{/if}}{{/if}}
+									{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
+									<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+									{{{date}}}
+								</li>
+								{{/each}}
 							</ul>
 						</div>
 					</li>
