@@ -16,7 +16,7 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 
 @mixin responsiveWidth($width: $page-width) {
 	margin: 0 auto;
-    padding: 0 10px;
+	padding: 0 10px;
 	max-width: $width;
 }
 
@@ -148,9 +148,18 @@ body {
 	border: 1px solid oColorsGetPaletteColor('warm-3');
 }
 
+.u-border--left {
+	border-left: 1px solid oColorsGetPaletteColor('warm-3');
+}
+
 .u-margin--left-right {
 	margin-right: 16px;
 	margin-left: 16px;
+}
+
+.u-padding--left-right {
+	padding-right: 16px;
+	padding-left: 16px;
 }
 
 .aside--headline {
@@ -178,6 +187,35 @@ body {
 .aside--list {
 	margin: 10px 0;
 	padding-left: 20px;
+}
+
+%article-quote::before {
+	@include oTypographySerifDisplay(s);
+	display: inline-block;
+	vertical-align: -.5em; // sit around the baseline
+	line-height: inherit;
+	font-size: 80px; // enormous quote
+	content: '\201C';
+}
+
+.pull-quote__quote-marks {
+	@extend %article-quote;
+
+	position: absolute;
+	top: -1px; // place just on top of border
+	left: 10px;
+	background-color: oColorsGetPaletteColor('pink');
+	padding: 0 10px;
+	line-height: 0; // take up as little space as possible
+}
+
+.article__quote--full-quote {
+	@extend %article-quote;
+	line-height: 0; // take up as little space as possible
+}
+
+.article__quote-footer {
+	@include oTypographySansBold(s);
 }
 
 .related-content {

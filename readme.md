@@ -1,6 +1,8 @@
 google-amp
 ===
 
+[![Circle CI](https://circleci.com/gh/Financial-Times/google-amp/tree/master.svg?style=svg)](https://circleci.com/gh/Financial-Times/google-amp/tree/master)
+
 AMP HTML rendering for FT articles
 
 Prerequisites
@@ -18,3 +20,8 @@ npm install
 npm start
 open http://localhost:5000/content/<FT article uuid>
 ```
+
+Tests
+---
+
+To run the tests and linter locally, run `npm test`.

@@ -18,7 +18,7 @@ if(app.get('env') === 'production') {
 		'ELASTIC_SEARCH_URL',
 		'SPOOR_API_KEY',
 		'SENTRY_DSN',
-		'RECOMMENDED_READS_API_KEY'
+		'RECOMMENDED_READS_API_KEY',
 	]);
 } else {
 	assertEnv([
@@ -28,11 +28,11 @@ if(app.get('env') === 'production') {
 		'BRIGHTCOVE_PLAYER_ID',
 		'ELASTIC_SEARCH_URL',
 		'SPOOR_API_KEY',
-		'RECOMMENDED_READS_TEST_API_KEY'
+		'RECOMMENDED_READS_TEST_API_KEY',
 	]);
 }
 
-if (app.get('env') === 'production') {
+if(app.get('env') === 'production') {
 	ravenClient = new raven.Client(process.env.SENTRY_DSN);
 
 	app.use(raven.middleware.express.requestHandler(ravenClient));

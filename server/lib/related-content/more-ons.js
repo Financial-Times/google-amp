@@ -3,9 +3,8 @@ const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');
 const moreOnCount = 5;
 
-const getArticles = metadatum => {
-	return api.search({
-		filter: [ 'metadata.idV1', metadatum.idV1 ],
+const getArticles = metadatum => api.search({
+	filter: ['metadata.idV1', metadatum.idV1],
 
 		// Fetch twice as many as we need, to allow for deduping
 		count: moreOnCount * 2,
@@ -45,23 +44,22 @@ const getArticles = metadatum => {
 			error: e
 		};
 	});
-};
 
 const addTitle = metadatum => {
 	let type;
 
 	switch(metadatum.taxonomy) {
-		case 'authors':
-			type = 'from';
-			break;
-		case 'sections':
-			type = 'in';
-			break;
-		case 'genre':
-			type = '';
-			break;
-		default:
-			type = 'on';
+	case 'authors':
+		type = 'from';
+		break;
+	case 'sections':
+		type = 'in';
+		break;
+	case 'genre':
+		type = '';
+		break;
+	default:
+		type = 'on';
 	}
 
 	metadatum.type = `Latest ${type}`;
@@ -70,7 +68,6 @@ const addTitle = metadatum => {
 
 
 module.exports = (article, raven) => {
-
 	const promises = article.metadata.filter(metadatum => metadatum.primary)
 		.map(addTitle)
 		.map(getArticles);
@@ -80,20 +77,18 @@ module.exports = (article, raven) => {
 			const deduped = [article.id];
 
 			moreOns.forEach(moreOn => {
-				if (moreOn.error) {
-					if (raven) {
+				if(moreOn.error) {
+					if(raven) {
 						raven.captureMessage('More-Ons API call failed', {
 							level: 'error',
-							extra: {
-								moreOn
-							}
+							extra: {moreOn},
 						});
 					}
 					return;
 				}
 
 				moreOn.articles = moreOn.articles.filter(item => {
-					if (deduped.indexOf(item.id) >= 0) return false;
+					if(deduped.indexOf(item.id) >= 0) return false;
 
 					deduped.push(item.id);
 					return true;

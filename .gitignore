@@ -3,3 +3,5 @@ env.sh
 bower_components
 css
 analytics.log
+npm-debug.log
+temp

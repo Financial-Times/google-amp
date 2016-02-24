@@ -2,13 +2,12 @@ const gif = new Buffer('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
 const path = require('path');
 const fs = require('fs-promise');
 
-module.exports = (req, res, next) => {
-
+module.exports = (req, res) => {
 	let data;
 
-	try {
+	try{
 		data = JSON.parse(req.query.data || {});
-	} catch (e) {
+	} catch(e) {
 		return res.status(400).end('Failed to parse JSON from "data" query param.');
 	}
 
@@ -23,12 +22,11 @@ module.exports = (req, res, next) => {
 	// 			This will send a POST request, with credentials, and an empty body.
 	//		- image Indicates the request can be sent by generating an
 	//			Image tag. This will send a GET request.
-	if (req.method === 'POST') {
+	if(req.method === 'POST') {
 		res.setHeader('Content-Type', 'application/json');
-		res.status(202).json({'status': 'ok'});
+		res.status(202).json({status: 'ok'});
 	} else {
 		res.setHeader('Content-Type', 'image/gif');
 		res.status(202).send(gif);
 	}
 };
-

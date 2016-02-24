@@ -6,22 +6,24 @@ const transformArticle = require('../lib/transformEsV3Item.js');
 const isFree = require('../lib/article-is-free');
 const errors = require('http-errors');
 
-
-module.exports = (req, res, next) => {
-	getArticle(req.params.uuid)
+function getAndRender(uuid, options) {
+	return getArticle(uuid)
 		.then(response => response._source ? transformArticle(response._source) : Promise.reject(new errors.NotFound()))
-		.then(article => isFree(article, req) ? article : Promise.reject(new errors.NotFound()))
-		.then(article => {
-			return Promise.all([addStoryPackage(article, req.raven), addMoreOns(article, req.raven)])
-			.then(() => article);
-		})
+		.then(article => (options.alwaysFree || isFree(article)) ? article : Promise.reject(new errors.NotFound()))
+		.then(article => Promise.all([addStoryPackage(article, options.raven), addMoreOns(article, options.raven)]).then(() => article))
 		.then(data => {
-			data.SOURCE_PORT = (req.app.get('env') === 'production') ? '' : ':5000';
+			data.SOURCE_PORT = options.production ? '' : ':5000';
 			return data;
 		})
-		.then(data => renderArticle(data, {
-			precompiled: req.app.get('env') === 'production'
-		}))
+		.then(data => renderArticle(data, {precompiled: options.production}));
+}
+
+module.exports = (req, res, next) => {
+	getAndRender(req.params.uuid, {
+		production: req.app.get('env') === 'production',
+		alwaysFree: req.app.get('env') === 'development' || req.cookies.amp_article_test,
+		raven: req.raven,
+	})
 		.then(content => {
 			res.setHeader('cache-control', 'public, max-age=30');
 			res.send(content);
@@ -29,3 +31,15 @@ module.exports = (req, res, next) => {
 		.catch(next);
 };
 
+if(module === require.main) {
+	getAndRender(process.argv[2], {
+		production: false,
+		alwaysFree: true,
+	}).then(
+		rendered => process.stdout.write(rendered),
+		err => {
+			console.error(err.stack || err.toString());
+			process.exit(1);
+		}
+	);
+}
