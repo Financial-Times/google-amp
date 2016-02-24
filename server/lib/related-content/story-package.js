@@ -17,10 +17,9 @@ module.exports = (article, options) => {
 		})
 		.then(related => related.map(response => response._source ? response._source : Promise.reject()))
 		.then(related => {
-
 			related.forEach(item => {
 				options.relatedArticleDeduper.push(item.id);
-			})
+			});
 
 			article.relatedContent = related.map(item => ({
 				date: dateTransform(item.publishedDate, 'related-content__date'),
