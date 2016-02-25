@@ -228,10 +228,10 @@ body {
 }
 
 .related-content__stories {
+	@include oGridRow();
 
 	// Should we use a CSS reset?
 	padding: 0;
-	@include oGridRow();
 }
 
 .related-content__story {
@@ -239,8 +239,6 @@ body {
 	margin-bottom: oGridGutter(L);
 
 	@include oGridRespondTo(M) {
-		display: -webkit-flex;
-		display: -ms-flexbox;
 		display: flex;
 	}
 }
