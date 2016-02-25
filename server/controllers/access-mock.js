@@ -10,19 +10,14 @@ module.exports = (req, res) => {
 
 	switch(req.query.type) {
 	case 'access':
+	case 'pingback':
+	case 'login':
 		res.setHeader('Content-Type', 'application/json');
 		res.status(202).json({
 			access: true,
-			debug: 'access-mock granted access',
+			debug: 'access-mock dummy debug',
+			session: 'access-mock dummy session',
 		});
-		break;
-	case 'pingback':
-		res.setHeader('Content-Type', 'application/json');
-		res.status(202).json({});
-		break;
-	case 'login':
-		res.setHeader('Content-Type', 'application/json');
-		res.status(202).json({});
 		break;
 	default:
 		res.status(404).json({

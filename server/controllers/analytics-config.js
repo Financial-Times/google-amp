@@ -35,7 +35,6 @@ module.exports = (req, res, next) => {
 			scroll_depth: '${percentageViewed}',
 		},
 		device: {
-			spoor_id: 'ACCESS_READER_ID',
 			dimensions: {
 				width: 'AVAILABLE_SCREEN_WIDTH',
 				height: 'AVAILABLE_SCREEN_HEIGHT',
@@ -55,20 +54,36 @@ module.exports = (req, res, next) => {
 		},
 		user: {
 			ft_session: 'AUTHDATA(session)',
-			amp_reader_id: 'ACCESS_READER_ID',
 			amp_auth_access: 'AUTHDATA(access)',
 			amp_auth_debug: 'AUTHDATA(debug)',
+			amp_reader_id: 'ACCESS_READER_ID',
+
+			// When this key becomes populated in analytics, it signals that amp-access-analytics
+			// has been enabled.
+			amp_auth_ft_session: 'AUTHDATA(session)',
 		},
 		time: {
 			amp_timestamp: '${timestamp}',
 		},
 	};
 
+	if(process.env.HEROKU_RELEASE_CREATED_AT) {
+		spoor.context.heroku = {
+			release_created_at: new Date(process.env.HEROKU_RELEASE_CREATED_AT).getTime(),
+			release_version: process.env.HEROKU_RELEASE_VERSION,
+			slug_commit: process.env.HEROKU_SLUG_COMMIT,
+		};
+	}
+
 	const url = DEBUG ? `//${req.get('host')}/analytics` : 'https://spoor-api.ft.com/ingest';
+
+	// Try to read the spoor-id cookie if set, and create one if not. Ensure only to do
+	// this once per request, otherwise multiple different cookies are created and overwritten.
+	const visitorIdentifier = '${clientId(spoor-id)}';
 
 	const json = {
 		requests: {
-			standard: `${url}?spoor-id=ACCESS_READER_ID&data=${JSON.stringify(spoor)}`,
+			standard: `${url}?spoor-id=${visitorIdentifier}&data=${JSON.stringify(spoor)}`,
 		},
 		triggers: {
 			pageview: {
