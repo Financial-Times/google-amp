@@ -11,8 +11,8 @@ function getAndRender(uuid, options) {
 		.then(response => response._source ? transformArticle(response._source) : Promise.reject(new errors.NotFound()))
 		.then(article => (options.alwaysFree || isFree(article)) ? article : Promise.reject(new errors.NotFound()))
 		.then(article => Promise.all([
-			addStoryPackage(article, options.raven),
-			addMoreOns(article, options.raven),
+			addStoryPackage(article, options),
+			addMoreOns(article, options),
 		]).then(() => article))
 		.then(data => {
 			data.SOURCE_PORT = options.production ? '' : ':5000';
@@ -26,6 +26,7 @@ module.exports = (req, res, next) => {
 		production: req.app.get('env') === 'production',
 		alwaysFree: req.app.get('env') === 'development' || req.cookies.amp_article_test,
 		raven: req.raven,
+		relatedArticleDeduper: [req.params.uuid],
 	})
 		.then(content => {
 			res.setHeader('cache-control', 'public, max-age=30');
@@ -38,6 +39,7 @@ if(module === require.main) {
 	getAndRender(process.argv[2], {
 		production: false,
 		alwaysFree: true,
+		relatedArticleDeduper: [process.argv[2]],
 	}).then(
 		rendered => process.stdout.write(rendered),
 		err => {

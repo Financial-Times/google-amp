@@ -56,6 +56,14 @@ module.exports = (req, res, next) => {
 		},
 	};
 
+	if(process.env.HEROKU_RELEASE_CREATED_AT) {
+		spoor.context.heroku = {
+			release_created_at: new Date(process.env.HEROKU_RELEASE_CREATED_AT).getTime(),
+			release_version: process.env.HEROKU_RELEASE_VERSION,
+			slug_commit: process.env.HEROKU_SLUG_COMMIT,
+		};
+	}
+
 	const url = DEBUG ? '//localhost:5000/analytics' : 'https://spoor-api.ft.com/ingest';
 
 	const json = {

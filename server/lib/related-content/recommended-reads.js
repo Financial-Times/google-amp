@@ -19,15 +19,15 @@ const sort = 'rel';
 // are processed
 const recency = 7;
 
-module.exports = (uuid, raven) => {
+module.exports = (uuid, options) => {
 	const url = `${apiUrl}/recommended-reads-api/recommend/contextual` +
 		`?apiKey=${apiKey}&count=${count}&sort=${sort}&recency=${recency}&contentid=${uuid}`;
 
 	return fetch(url)
 	.then(response => {
 		if(response.status < 200 || response.status >= 300) {
-			if(raven) {
-				raven.captureMessage('Recommended Reads API call failed', {
+			if(options.raven) {
+				options.raven.captureMessage('Recommended Reads API call failed', {
 					level: 'error',
 					extra: {response},
 				});
