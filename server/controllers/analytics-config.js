@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
 		return next(new errors.BadRequest('__amp_source_origin is required'));
 	}
 
-	res.setHeader('Cache-Control', `public, max-age=${60 * 60 * 24}`);
+	if(!DEBUG) res.setHeader('Cache-Control', `public, max-age=${60 * 60 * 24}`);
 
 	// CORS
 	res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,11 +30,16 @@ module.exports = (req, res, next) => {
 			url: '${canonicalUrl}',
 			amp_url: '${ampdocUrl}',
 			amp_canonical_url: '${canonicalUrl}',
+			amp_source_url: 'SOURCE_URL',
 			referrer: '${documentReferrer}',
 			scroll_depth: '${percentageViewed}',
 		},
 		device: {
-			spoor_id: '${clientId(spoor-id)}',
+			dimensions: {
+				width: 'AVAILABLE_SCREEN_WIDTH',
+				height: 'AVAILABLE_SCREEN_HEIGHT',
+			},
+			amp_viewer: 'VIEWER',
 		},
 		system: {
 			api_key: process.env.SPOOR_API_KEY,
@@ -48,8 +53,14 @@ module.exports = (req, res, next) => {
 			version: '1.0.0',
 		},
 		user: {
-			// TODO: only valid when amp-access is active
-			// amp_reader_id: "ACCESS_READER_ID"
+			ft_session: 'AUTHDATA(session)',
+			amp_auth_access: 'AUTHDATA(access)',
+			amp_auth_debug: 'AUTHDATA(debug)',
+			amp_reader_id: 'ACCESS_READER_ID',
+
+			// When this key becomes populated in analytics, it signals that amp-access-analytics
+			// has been enabled.
+			amp_auth_ft_session: 'AUTHDATA(session)',
 		},
 		time: {
 			amp_timestamp: '${timestamp}',
@@ -64,11 +75,15 @@ module.exports = (req, res, next) => {
 		};
 	}
 
-	const url = DEBUG ? '//localhost:5000/analytics' : 'https://spoor-api.ft.com/ingest';
+	const url = DEBUG ? `//${req.get('host')}/analytics` : 'https://spoor-api.ft.com/ingest';
+
+	// Try to read the spoor-id cookie if set, and create one if not. Ensure only to do
+	// this once per request, otherwise multiple different cookies are created and overwritten.
+	const visitorIdentifier = '${clientId(spoor-id)}';
 
 	const json = {
 		requests: {
-			standard: `${url}?data=${JSON.stringify(spoor)}`,
+			standard: `${url}?spoor-id=${visitorIdentifier}&data=${JSON.stringify(spoor)}`,
 		},
 		triggers: {
 			pageview: {
@@ -91,6 +106,9 @@ module.exports = (req, res, next) => {
 				},
 			},
 
+			// Something like https://github.com/Financial-Times/n-instrumentation
+			// /blob/920a8ad7cfaeccc02720dd386a2149674719bd0b/src/analytics
+			// /scroll-depth.js#L20-L30
 			scroll25: {
 				on: 'scroll',
 				request: 'standard',
@@ -125,6 +143,79 @@ module.exports = (req, res, next) => {
 				},
 				scrollSpec: {
 					verticalBoundaries: [90],
+				},
+			},
+
+			accessAuthorizationReceived: {
+				on: 'access-authorization-received',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-authorization-received',
+				},
+			},
+			accessAuthorizationFailed: {
+				on: 'access-authorization-failed',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-authorization-failed',
+				},
+			},
+			accessViewed: {
+				on: 'access-viewed',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-viewed',
+				},
+			},
+			accessPingbackSent: {
+				on: 'access-pingback-sent',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-pingback-sent',
+				},
+			},
+			accessPingbackFailed: {
+				on: 'access-pingback-failed',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-pingback-failed',
+				},
+			},
+			accessLoginStarted: {
+				on: 'access-login-started',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-login-started',
+				},
+			},
+			accessLoginSuccess: {
+				on: 'access-login-success',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-login-success',
+				},
+			},
+			accessLoginRejected: {
+				on: 'access-login-rejected',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-login-rejected',
+				},
+			},
+			accessLoginFailed: {
+				on: 'access-login-failed',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-login-failed',
 				},
 			},
 		},

@@ -58,6 +58,8 @@ app.get('/_article_test/clear', (req, res) => {
 	res.sendStatus(204);
 });
 
+app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
+
 if(app.get('env') === 'development') {
 	app.all('/analytics', require('./server/controllers/analytics-proxy.js'));
 	app.use(require('errorhandler')());
