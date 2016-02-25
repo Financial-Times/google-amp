@@ -7,6 +7,7 @@ $o-grid-ie8-rules: 'none';
 @import 'o-grid/main';
 
 @include oFontsInclude(MetricWeb, light); // body
+@include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
 @include oFontsInclude(FinancierDisplayWeb, $weight: light, $style: italic); // standfirst
 
@@ -375,4 +376,41 @@ body {
 
 .more-ons__image {
 	margin: 0 oGridGutter(L) * -1 oGridGutter(L);
+}
+
+
+/**
+ * Barriers, access
+ */
+
+.amp-access-login {
+	@include responsiveWidth;
+	margin-top: 40px;
+	margin-bottom: 60px;
+	color: oColorsGetPaletteColor(grey-tint5);
+}
+
+.amp-access-login__header {
+	background-color: oColorsGetPaletteColor(warm-5);
+	padding: 20px;
+}
+
+.amp-access-login__header-instruction {
+	font-weight: bold;
+}
+
+.amp-access-login__body {
+	background-color: oColorsGetPaletteColor(pink-tint1);
+	padding: 30px;
+	text-align: center;
+}
+
+.amp-access-login__button {
+	background-color: oColorsGetPaletteColor(teal-1);
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	color: white;
+	border-radius: 5px;
+	margin: 0 auto;
 }
