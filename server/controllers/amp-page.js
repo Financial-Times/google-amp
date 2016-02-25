@@ -7,6 +7,7 @@ const isFree = require('../lib/article-is-free');
 const errors = require('http-errors');
 
 const mockAccessAuthentication = false;
+const liveAccessHost = 'amp-access-svc.memb.ft.com';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
@@ -20,11 +21,11 @@ function getAndRender(uuid, options) {
 			const useMock = options.production || mockAccessAuthentication;
 			data.AUTH_AUTHORIZATION_URL = useMock ?
 				`//${options.host}/amp-access-mock?type=access&` :
-				'https://amp-access-svc.memb.ft.com/amp-access?';
+				`https://${liveAccessHost}/amp-access?`;
 
 			data.AUTH_PINGBACK_URL = useMock ?
 				`//${options.host}/amp-access-mock?type=pingback&` :
-				'https://amp-access-svc.memb.ft.com/amp-pingback?';
+				`https://${liveAccessHost}/amp-pingback?`;
 
 			data.AUTH_LOGIN_URL = useMock ?
 				`//${options.host}/amp-access-mock?type=login&` :
