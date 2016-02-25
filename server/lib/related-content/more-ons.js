@@ -60,19 +60,17 @@ const addTitle = metadatum => {
 };
 
 
-module.exports = (article, raven) => {
+module.exports = (article, options) => {
 	const promises = article.metadata.filter(metadatum => metadatum.primary)
 		.map(addTitle)
 		.map(getArticles);
 
 	return Promise.all(promises)
 		.then(moreOns => {
-			const deduped = [article.id];
-
 			moreOns.forEach(moreOn => {
 				if(moreOn.error) {
-					if(raven) {
-						raven.captureMessage('More-Ons API call failed', {
+					if(options.raven) {
+						options.raven.captureMessage('More-Ons API call failed', {
 							level: 'error',
 							extra: {moreOn},
 						});
@@ -81,9 +79,9 @@ module.exports = (article, raven) => {
 				}
 
 				moreOn.articles = moreOn.articles.filter(item => {
-					if(deduped.indexOf(item.id) >= 0) return false;
+					if(options.relatedArticleDeduper.indexOf(item.id) >= 0) return false;
 
-					deduped.push(item.id);
+					options.relatedArticleDeduper.push(item.id);
 					return true;
 				})
 				.slice(0, moreOnCount);
