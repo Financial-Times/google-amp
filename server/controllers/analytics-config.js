@@ -18,12 +18,6 @@ module.exports = (req, res, next) => {
 	res.setHeader('AMP-Access-Control-Allow-Source-Origin', req.query.__amp_source_origin);
 	res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
 
-	// Until amp-access analytics is supported, reading an existing (or creating a new) 'spoor-id'
-	// cookie value is a better way to track a user than the null value given by ACCESS_READER_ID.
-	// When it becomes supported, use ACCESS_READER_ID instead.
-	// const visitorIdentifier = 'ACCESS_READER_ID';
-	const visitorIdentifier = '${clientId(spoor-id)}';
-
 	const spoor = {
 		category: '${category}',
 		action: '${action}',
@@ -41,7 +35,6 @@ module.exports = (req, res, next) => {
 			scroll_depth: '${percentageViewed}',
 		},
 		device: {
-			spoor_id: visitorIdentifier,
 			dimensions: {
 				width: 'AVAILABLE_SCREEN_WIDTH',
 				height: 'AVAILABLE_SCREEN_HEIGHT',
@@ -78,6 +71,10 @@ module.exports = (req, res, next) => {
 	}
 
 	const url = DEBUG ? `//${req.get('host')}/analytics` : 'https://spoor-api.ft.com/ingest';
+
+	// Try to read the spoor-id cookie if set, and create one if not. Ensure only to do
+	// this once per request, otherwise multiple different cookies are created and overwritten.
+	const visitorIdentifier = '${clientId(spoor-id)}';
 
 	const json = {
 		requests: {
