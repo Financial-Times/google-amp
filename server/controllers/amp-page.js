@@ -7,7 +7,7 @@ const isFree = require('../lib/article-is-free');
 const errors = require('http-errors');
 
 const mockAccessAuthentication = true;
-const liveAccessHost = 'amp-access-svc-lb-eu-west-1-prod.memb.ft.com';
+const liveAccessHost = 'amp-access-svc.memb.ft.com';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
