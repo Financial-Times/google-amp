@@ -57,6 +57,10 @@ module.exports = (req, res, next) => {
 			amp_auth_access: 'AUTHDATA(access)',
 			amp_auth_debug: 'AUTHDATA(debug)',
 			amp_reader_id: 'ACCESS_READER_ID',
+
+			// When this key becomes populated in analytics, it signals that amp-access-analytics
+			// has been enabled.
+			amp_auth_ft_session: 'AUTHDATA(session)',
 		},
 		time: {
 			amp_timestamp: '${timestamp}',
