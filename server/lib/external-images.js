@@ -1,7 +1,7 @@
 const Entities = require('html-entities').XmlEntities;
 const fetch = require('node-fetch');
 
-module.exports = function externalImages($) {
+module.exports = function externalImages($, options) {
 	const entities = new Entities();
 
 	return Promise.all($('amp-img[src]').map((index, el) => {
@@ -21,7 +21,10 @@ module.exports = function externalImages($) {
 				.then(response => response.json())
 				.then(
 					meta => Object.assign(meta, {ratio: meta.height / meta.width}),
-					(e) => (console.error(e), {width: 600, ratio: 4 / 7}) // discard error and use fallback dimensions
+					(e) => (
+						options.raven && options.raven.captureException(e),
+						{width: 600, ratio: 4 / 7} // discard error and use fallback dimensions
+					)
 				).then(meta => {
 					const width = Math.min(600, meta.width);
 					const height = width * meta.ratio;
