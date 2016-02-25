@@ -3,6 +3,9 @@ const path = require('path');
 const renderScss = require('@quarterto/promisify')(scss.render);
 const fs = require('fs-promise');
 const mkdirp = require('mkdirp-promise');
+const postcss = require('postcss');
+const cssnano = require('cssnano');
+const autoprefixer = require('autoprefixer');
 
 const scssPath = path.resolve('scss');
 const cssPath = path.resolve('css');
@@ -11,7 +14,7 @@ const bowerPath = path.resolve('bower_components');
 module.exports = () => renderScss({
 	file: `${scssPath}/style.scss`,
 	includePaths: [scssPath, bowerPath],
-}).then(result => result.css);
+}).then(result => postcss([autoprefixer, cssnano]).process(result.css));
 
 if(module === require.main) {
 	console.log('precompiling scss...');
