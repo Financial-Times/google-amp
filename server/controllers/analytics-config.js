@@ -21,8 +21,8 @@ module.exports = (req, res, next) => {
 	// Until amp-access analytics is supported, reading an existing (or creating a new) 'spoor-id'
 	// cookie value is a better way to track a user than the null value given by ACCESS_READER_ID.
 	// When it becomes supported, use ACCESS_READER_ID instead.
-	// const visitorIdentifier = '${clientId(spoor-id)}';
-	const visitorIdentifier = 'ACCESS_READER_ID';
+	// const visitorIdentifier = 'ACCESS_READER_ID';
+	const visitorIdentifier = '${clientId(spoor-id)}';
 
 	const spoor = {
 		category: '${category}',
