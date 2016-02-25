@@ -7,20 +7,6 @@ const copyrightNotice = require('./transforms/copyright-notice');
 const extractMainImageAndToc =
 	require('../../bower_components/next-article/server/transforms/extract-main-image-and-toc');
 
-function transform(init$, flags) {
-	function withFn($, transformFn) {
-		const transformed$ = transformFn($, flags);
-		return {
-			with: withFn.bind(withFn, transformed$),
-			get: () => transformed$,
-		};
-	}
-
-	return {
-		with: withFn.bind(withFn, init$),
-	};
-}
-
 module.exports = function run(body, flags) {
 	body = replaceEllipses(body);
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
@@ -28,11 +14,13 @@ module.exports = function run(body, flags) {
 	body = body.replace(/http:\/\/ig\.ft\.com\//g, '/ig/');
 	body = body.concat(copyrightNotice());
 
-	const $ = transform(cheerio.load(body, {decodeEntities: false}), flags)
-		// other transforms
-		.with(externalImages)
-		.with(trimmedLinks)
-		.get();
+	const transformed$ = [
+		externalImages,
+		trimmedLinks,
+	].reduce(
+		(promise$, transform) => promise$.then($ => transform($, flags)),
+		Promise.resolve(cheerio.load(body, {decodeEntities: false}))
+	);
 
-	return extractMainImageAndToc($);
+	return transformed$.then(extractMainImageAndToc);
 };
