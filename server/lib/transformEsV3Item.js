@@ -21,7 +21,7 @@ function removeStyleAttributes($) {
 	});
 }
 
-function transformArticleBody(article) {
+function transformArticleBody(article, options) {
 	const xsltParams = {
 		id: article.id,
 		webUrl: article.webUrl,
@@ -38,11 +38,11 @@ function transformArticleBody(article) {
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams)
-		.then(articleBody => bodyTransform(articleBody, {}))
+		.then(articleBody => bodyTransform(articleBody, options))
 		.then(cheerioTransforms([removeStyleAttributes]));
 }
 
-module.exports = contentItem => transformArticleBody(contentItem)
+module.exports = (contentItem, options) => transformArticleBody(contentItem, options)
 	.then(transformedContent => {
 		contentItem.htmlBody = transformedContent.bodyHtml;
 		contentItem.mainImageHtml = transformedContent.mainImageHtml;
