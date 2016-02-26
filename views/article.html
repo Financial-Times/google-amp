@@ -21,7 +21,10 @@
 		{
 			"authorization": "{{{AUTH_AUTHORIZATION_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{webUrl}}}",
 			"pingback": "{{{AUTH_PINGBACK_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{webUrl}}}",
-			"login": "{{{AUTH_LOGIN_URL}}}readerId=READER_ID&location=RETURN_URL#success=true",
+			"login": {
+				"login": "{{{AUTH_LOGIN_URL}}}readerId=READER_ID&location=RETURN_URL#success=true",
+				"logout": "{{{AUTH_LOGOUT_URL}}}readerId=READER_ID&location=RETURN_URL#success=true"
+			},
 			"authorizationFallbackResponse": {"access": true, "error": true}
 		}
 		</script>
@@ -74,6 +77,16 @@
 			<div class="main-header-logo">
 				<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
 			</div>
+			<div class="amp-access-nav" amp-access="access">
+				<ul class="amp-access-nav__links">
+					<li class="amp-access-nav__link-item">
+						<a class="amp-access-nav__link" on="tap:amp-access.login-logout">Sign out</a>
+					</li>
+					<li class="amp-access-nav__link-item">
+						<a class="amp-access-nav__link" href="http://registration.ft.com/registration/selfcare/">My Account</a>
+					</li>
+				</ul>
+			</div>
 		</header>
 
 		<main role="main">
@@ -119,7 +132,7 @@
 					<div class="amp-access-login__header-title">{{title}}</div>
 				</div>
 				<div class="amp-access-login__body">
-					<a class="amp-access-login__button" on="tap:amp-access.login">Log in to FT.com</a>
+					<a class="amp-access-login__button" on="tap:amp-access.login-login">Sign in to FT.com</a>
 				</div>
 			</div>
 

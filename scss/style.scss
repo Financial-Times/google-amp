@@ -440,3 +440,40 @@ body {
 	border-radius: 5px;
 	margin: 0 auto;
 }
+
+.amp-access-nav {
+	text-align: right;
+	margin: 1em 0 0;
+}
+
+.amp-access-nav__links {
+	margin: 0;
+}
+
+.amp-access-nav__link-item {
+	display: inline-block;
+	position: relative;
+
+	&:not(:first-child):before {
+		content: ' ';
+		position: absolute;
+		width: 2px;
+		height: 14px;
+		top: 50%;
+		left: -3px;
+		margin-top: -4px;
+		background-color: oColorsGetPaletteColor('warm-5');
+
+		&:first-of-type {
+			display: none;
+		}
+	}
+}
+
+.amp-access-nav__link {
+	color: white;
+	@include oTypographySans(s);
+	text-decoration: none;
+	padding: 0 0.5em;
+	cursor: pointer;
+}

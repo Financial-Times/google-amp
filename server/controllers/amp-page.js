@@ -31,6 +31,10 @@ function getAndRender(uuid, options) {
 				`//${options.host}/amp-access-mock?type=login&` :
 				'https://accounts.ft.com/login?';
 
+			data.AUTH_LOGOUT_URL = mockAccessAuthentication ?
+				`//${options.host}/amp-access-mock?type=logout&` :
+				'https://accounts.ft.com/logout?';
+
 			data.SOURCE_PORT = options.production ? '' : ':5000';
 
 			data.freeArticle = !!options.alwaysFree;
