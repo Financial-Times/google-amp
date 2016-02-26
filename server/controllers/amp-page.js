@@ -3,7 +3,6 @@ const addStoryPackage = require('../lib/related-content/story-package');
 const addMoreOns = require('../lib/related-content/more-ons');
 const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transformEsV3Item.js');
-const isFree = require('../lib/article-is-free');
 const errors = require('http-errors');
 
 const mockAccessAuthentication = false;
