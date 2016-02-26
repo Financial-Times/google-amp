@@ -31,6 +31,7 @@ module.exports = (req, res, next) => {
 			amp_url: '${ampdocUrl}',
 			amp_canonical_url: '${canonicalUrl}',
 			amp_source_url: 'SOURCE_URL',
+			amp_viewer: 'VIEWER',
 			referrer: '${documentReferrer}',
 			scroll_depth: '${percentageViewed}',
 		},
@@ -39,7 +40,6 @@ module.exports = (req, res, next) => {
 				width: 'AVAILABLE_SCREEN_WIDTH',
 				height: 'AVAILABLE_SCREEN_HEIGHT',
 			},
-			amp_viewer: 'VIEWER',
 		},
 		system: {
 			api_key: process.env.SPOOR_API_KEY,

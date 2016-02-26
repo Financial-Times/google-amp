@@ -7,6 +7,7 @@ $o-grid-ie8-rules: 'none';
 @import 'o-grid/main';
 
 @include oFontsInclude(MetricWeb, light); // body
+@include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
 @include oFontsInclude(FinancierDisplayWeb, $weight: light, $style: italic); // standfirst
 
@@ -34,14 +35,14 @@ body {
 	}
 }
 
-.article-standfirst {
-	@include oTypographyLead;
-}
-
 .main-header {
 	margin-bottom: 1em;
 	background: oColorsGetPaletteColor('grey-tint5');
 	padding: .5em;
+}
+
+.main-header__container {
+	position: relative;
 }
 
 .main-header-logo {
@@ -59,6 +60,25 @@ body {
 
 .article-header .article-image {
 	border-bottom: $border-divider;
+}
+
+// HACK: override default styling of oTypographyBodyWrapper
+// (rendered as '.article h1') using double classname specificity
+.headline.headline {
+	height: 200px;
+	max-height: 20vh;
+	position: relative;
+	margin: 8px 0;
+}
+
+// HACK: override default styling of oTypographyBodyWrapper
+// (rendered as '.article h1') using double classname specificity
+.article-standfirst.article-standfirst {
+	height: 100px;
+	max-height: 15vh;
+	position: relative;
+	margin: 6px 0;
+	@include oTypographyLead;
 }
 
 .article-dateline {
@@ -375,4 +395,96 @@ body {
 
 .more-ons__image {
 	margin: 0 oGridGutter(L) * -1 oGridGutter(L);
+}
+
+
+// Barriers, access
+
+.amp-access-login {
+	@include responsiveWidth;
+	color: oColorsGetPaletteColor(grey-tint5);
+	margin-top: 30px;
+	margin-bottom: 30px;
+
+	@include oGridRespondTo(M) {
+		margin-top: 60px;
+		margin-bottom: 80px;
+	}
+}
+
+.amp-access-login__header,
+.amp-access-login__body {
+
+	@include oGridRespondTo(M) {
+		margin: 0 40px;
+	}
+}
+
+.amp-access-login__header {
+	background-color: oColorsGetPaletteColor(warm-5);
+	padding: 20px;
+}
+
+.amp-access-login__header-instruction {
+	font-weight: bold;
+}
+
+.amp-access-login__body {
+	background-color: oColorsGetPaletteColor(pink-tint1);
+	padding: 30px;
+	text-align: center;
+}
+
+.amp-access-login__button {
+	background-color: oColorsGetPaletteColor(teal-1);
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	color: white;
+	border-radius: 5px;
+	margin: 0 auto;
+}
+
+.amp-access-nav {
+	text-align: right;
+	margin: 0.5em 0 0;
+
+	@include oGridRespondTo(M) {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		margin: 0;
+	}
+}
+
+.amp-access-nav__links {
+	margin: 0;
+}
+
+.amp-access-nav__link-item {
+	display: inline-block;
+	position: relative;
+
+	&:not(:first-child):before {
+		content: ' ';
+		position: absolute;
+		width: 2px;
+		height: 14px;
+		top: 50%;
+		left: -3px;
+		margin-top: -4px;
+		background-color: oColorsGetPaletteColor('warm-5');
+
+		&:first-of-type {
+			display: none;
+		}
+	}
+}
+
+.amp-access-nav__link {
+	color: white;
+	@include oTypographySans(s);
+	text-decoration: none;
+	padding: 0 0.5em;
+	cursor: pointer;
 }
