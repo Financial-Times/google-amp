@@ -18,16 +18,15 @@ function getAndRender(uuid, options) {
 			addMoreOns(article, options),
 		]).then(() => article))
 		.then(data => {
-			const useMock = options.production || mockAccessAuthentication;
-			data.AUTH_AUTHORIZATION_URL = useMock ?
+			data.AUTH_AUTHORIZATION_URL = mockAccessAuthentication ?
 				`//${options.host}/amp-access-mock?type=access&` :
 				`https://${liveAccessHost}/amp-access?`;
 
-			data.AUTH_PINGBACK_URL = useMock ?
+			data.AUTH_PINGBACK_URL = mockAccessAuthentication ?
 				`//${options.host}/amp-access-mock?type=pingback&` :
 				`https://${liveAccessHost}/amp-pingback?`;
 
-			data.AUTH_LOGIN_URL = useMock ?
+			data.AUTH_LOGIN_URL = mockAccessAuthentication ?
 				`//${options.host}/amp-access-mock?type=login&` :
 				'https://accounts.ft.com/login?';
 
