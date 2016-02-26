@@ -33,7 +33,7 @@ function getAndRender(uuid, options) {
 
 			data.AUTH_LOGOUT_URL = mockAccessAuthentication ?
 				`//${options.host}/amp-access-mock?type=logout&` :
-				'https://accounts.ft.com/logout?';
+				`https://${liveAccessHost}/amp-logout?`;
 
 			data.SOURCE_PORT = options.production ? '' : ':5000';
 
