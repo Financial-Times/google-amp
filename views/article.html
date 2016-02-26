@@ -89,7 +89,7 @@
 					</h2>
 					{{/if}}
 
-					<div amp-access="access">
+					<div amp-access="access OR {{freeArticle}}">
 						{{{mainImageHtml}}}
 					</div>
 
@@ -106,7 +106,7 @@
 					</div>
 				</header>
 
-				<div amp-access="access">
+				<div amp-access="access OR {{freeArticle}}">
 					<div class="article-body" itemprop="articleBody">
 						{{{htmlBody}}}
 					</div>

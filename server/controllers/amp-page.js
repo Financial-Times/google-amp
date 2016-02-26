@@ -11,8 +11,10 @@ const liveAccessHost = 'amp-access-svc.memb.ft.com';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
-		.then(response => response._source ? transformArticle(response._source, options) : Promise.reject(new errors.NotFound()))
-		.then(article => (options.alwaysFree || isFree(article)) ? article : Promise.reject(new errors.NotFound()))
+		.then(response => response._source ?
+			transformArticle(response._source, options) :
+			Promise.reject(new errors.NotFound())
+		)
 		.then(article => Promise.all([
 			addStoryPackage(article, options),
 			addMoreOns(article, options),
@@ -32,6 +34,7 @@ function getAndRender(uuid, options) {
 
 			data.SOURCE_PORT = options.production ? '' : ':5000';
 
+			data.freeArticle = !!options.alwaysFree;
 			return data;
 		})
 		.then(data => renderArticle(data, {precompiled: options.production}));
@@ -40,7 +43,6 @@ function getAndRender(uuid, options) {
 module.exports = (req, res, next) => {
 	getAndRender(req.params.uuid, {
 		production: req.app.get('env') === 'production',
-		alwaysFree: req.app.get('env') === 'development' || req.cookies.amp_article_test,
 		raven: req.raven,
 		host: req.get('host'),
 		relatedArticleDeduper: [req.params.uuid],
