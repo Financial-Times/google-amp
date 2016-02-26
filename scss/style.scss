@@ -41,6 +41,10 @@ body {
 	padding: .5em;
 }
 
+.main-header__container {
+	position: relative;
+}
+
 .main-header-logo {
 	@include responsiveWidth(16em);
 
@@ -443,7 +447,14 @@ body {
 
 .amp-access-nav {
 	text-align: right;
-	margin: 1em 0 0;
+	margin: 0.5em 0 0;
+
+	@include oGridRespondTo(M) {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		margin: 0;
+	}
 }
 
 .amp-access-nav__links {
