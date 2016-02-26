@@ -5,4 +5,5 @@ css
 analytics.log
 npm-debug.log
 temp
+urls-*
 .DS_Store
