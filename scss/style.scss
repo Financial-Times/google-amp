@@ -35,10 +35,6 @@ body {
 	}
 }
 
-.article-standfirst {
-	@include oTypographyLead;
-}
-
 .main-header {
 	margin-bottom: 1em;
 	background: oColorsGetPaletteColor('grey-tint5');
@@ -62,6 +58,8 @@ body {
 	border-bottom: $border-divider;
 }
 
+// HACK: override default styling of oTypographyBodyWrapper
+// (rendered as '.article h1') using double classname specificity
 .headline.headline {
 	height: 200px;
 	max-height: 20vh;
@@ -69,11 +67,14 @@ body {
 	margin: 8px 0;
 }
 
+// HACK: override default styling of oTypographyBodyWrapper
+// (rendered as '.article h1') using double classname specificity
 .article-standfirst.article-standfirst {
 	height: 100px;
 	max-height: 15vh;
 	position: relative;
 	margin: 6px 0;
+	@include oTypographyLead;
 }
 
 .article-dateline {
