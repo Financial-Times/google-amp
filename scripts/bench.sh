@@ -15,7 +15,7 @@ for UUID in "${TEST_UUIDS[@]}"; do
 	echo "http://localhost:5001/content/$UUID"
 done > $TMP
 
-siege -f $TMP
+siege -f $TMP -r 100 -c 10
 
 rm -f $TMP
 kill $PID
