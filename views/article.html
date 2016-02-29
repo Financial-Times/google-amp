@@ -78,6 +78,9 @@
 				<div class="main-header-logo">
 					<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
 				</div>
+				{{#if accessMocked}}
+				<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
+				{{/if}}
 				<div class="amp-access-nav" amp-access="session">
 					<ul class="amp-access-nav__links">
 						<li class="amp-access-nav__link-item">

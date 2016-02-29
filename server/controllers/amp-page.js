@@ -37,6 +37,7 @@ function getAndRender(uuid, options) {
 			data.SOURCE_PORT = options.production ? '' : ':5000';
 
 			data.freeArticle = !!options.alwaysFree;
+			data.accessMocked = !!options.accessMock;
 			return data;
 		})
 		.then(data => renderArticle(data, {precompiled: options.production}));

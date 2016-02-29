@@ -393,6 +393,16 @@ body {
 
 
 // Barriers, access
+.access-mocked {
+	position: absolute;
+	background: pink;
+	font-size: 10px;
+	top: 0;
+	width: 30%;
+	line-height: 1em;
+	padding: 2px;
+	min-width: 90px;
+}
 
 .amp-access-login {
 	@include responsiveWidth;

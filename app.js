@@ -52,11 +52,13 @@ app.get('/api/:uuid', require('./server/controllers/jsonItem.js'));
 app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
 app.get('/_access_mock', (req, res) => {
 	res.cookie('amp_access_mock', '1');
-	res.sendStatus(204);
+	res.status(200).send('Your amp_access_mock cookie was set. Please revisit the ' +
+		'<a href="javascript:history.back()">previous page</a>.');
 });
 app.get('/_access_mock/clear', (req, res) => {
 	res.clearCookie('amp_access_mock');
-	res.sendStatus(204);
+	res.status(200).send('Your amp_access_mock cookie was cleared. Please revisit the ' +
+		'<a href="javascript:history.back()">previous page</a>.');
 });
 
 if(app.get('env') === 'development') {
