@@ -5,7 +5,6 @@ const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transformEsV3Item.js');
 const errors = require('http-errors');
 
-const mockAccessAuthentication = false;
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
 
 function getAndRender(uuid, options) {
@@ -19,19 +18,19 @@ function getAndRender(uuid, options) {
 			addMoreOns(article, options),
 		]).then(() => article))
 		.then(data => {
-			data.AUTH_AUTHORIZATION_URL = mockAccessAuthentication ?
+			data.AUTH_AUTHORIZATION_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=access&` :
 				`https://${liveAccessHost}/amp-access?`;
 
-			data.AUTH_PINGBACK_URL = mockAccessAuthentication ?
+			data.AUTH_PINGBACK_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=pingback&` :
 				`https://${liveAccessHost}/amp-pingback?`;
 
-			data.AUTH_LOGIN_URL = mockAccessAuthentication ?
+			data.AUTH_LOGIN_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=login&` :
 				'https://accounts.ft.com/login?';
 
-			data.AUTH_LOGOUT_URL = mockAccessAuthentication ?
+			data.AUTH_LOGOUT_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=logout&` :
 				`https://${liveAccessHost}/amp-logout?`;
 
@@ -49,6 +48,7 @@ module.exports = (req, res, next) => {
 		raven: req.raven,
 		host: req.get('host'),
 		relatedArticleDeduper: [req.params.uuid],
+		accessMock: req.cookies.amp_access_mock,
 	})
 		.then(content => {
 			res.setHeader('cache-control', 'public, max-age=30');

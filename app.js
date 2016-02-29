@@ -50,6 +50,14 @@ app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/jsonItem.js'));
 
 app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
+app.get('/_access_mock', (req, res) => {
+	res.cookie('amp_access_mock', '1');
+	res.sendStatus(204);
+});
+app.get('/_access_mock/clear', (req, res) => {
+	res.clearCookie('amp_access_mock');
+	res.sendStatus(204);
+});
 
 if(app.get('env') === 'development') {
 	app.all('/analytics', require('./server/controllers/analytics-proxy.js'));

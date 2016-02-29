@@ -10,14 +10,16 @@ module.exports = (req, res) => {
 		res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
 	}
 
+	const signedIn = !!req.cookies['amp-access-mock-logged-in'];
+
 	switch(req.query.type) {
 	case 'access':
 	case 'pingback':
 		res.setHeader('Content-Type', 'application/json');
 		res.status(202).json({
-			access: !!req.cookies['amp-access-mock-logged-in'],
+			access: signedIn,
 			debug: 'access-mock dummy debug',
-			session: 'access-mock dummy session',
+			session: signedIn ? 'access-mock dummy session' : null,
 		});
 		break;
 	case 'login':
