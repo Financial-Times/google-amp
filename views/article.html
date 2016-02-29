@@ -137,7 +137,7 @@
 			</div>
 
 			{{#if relatedContent}}
-			<aside class="related-content">
+			<aside class="related-content" amp-access="access OR NOT access" amp-access-hide>
 				<h2 class="related-content__header">Related stories</h2>
 				<ul class="related-content__stories">
 					{{#each relatedContent}}
@@ -170,7 +170,7 @@
 			{{/if}}
 
 			{{#if moreOns}}
-			<aside class="more-ons">
+			<aside class="more-ons" amp-access="access OR NOT access" amp-access-hide>
 				<ul class="more-ons__items">
 					{{#each moreOns}}
 					<li class="more-ons__item">
