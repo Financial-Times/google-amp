@@ -81,7 +81,7 @@
 				{{#if accessMocked}}
 				<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
 				{{/if}}
-				<div class="amp-access-nav" amp-access="session">
+				<div class="amp-access-nav" amp-access="session" amp-access-hide>
 					<ul class="amp-access-nav__links">
 						<li class="amp-access-nav__link-item">
 							<a class="amp-access-nav__link" on="tap:amp-access.login-logout">Sign out</a>
@@ -107,7 +107,7 @@
 					</h2>
 					{{/if}}
 
-					<div amp-access="access OR {{freeArticle}}">
+					<div amp-access="access OR {{freeArticle}}" amp-access-hide>
 						{{{mainImageHtml}}}
 					</div>
 
@@ -124,7 +124,7 @@
 					</div>
 				</header>
 
-				<div amp-access="access OR {{freeArticle}}">
+				<div amp-access="access OR {{freeArticle}}" amp-access-hide>
 					<div class="article-body" itemprop="articleBody">
 						{{{htmlBody}}}
 					</div>
