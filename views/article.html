@@ -15,7 +15,6 @@
 		<script async custom-element="amp-brightcove" src="https://cdn.ampproject.org/v0/amp-brightcove-0.1.js"></script>
 		<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 		<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
-		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
 
 		<script id="amp-access" type="application/json">
 		{
@@ -97,14 +96,10 @@
 		<main role="main">
 			<article class="article">
 				<header class="article-header">
-					<h1 class="headline" itemprop="headline">
-						<amp-fit-text layout="responsive" width="100" height="18" min-font-size="15" max-font-size="50">{{title}}</amp-fit-text>
-					</h1>
+					<h1 class="headline" itemprop="headline">{{title}}</h1>
 
 					{{#if displaySummary}}
-					<h2 class="article-standfirst">
-						<amp-fit-text layout="responsive" width="100" height="14" min-font-size="10" max-font-size="40">{{displaySummary}}</amp-fit-text>
-					</h2>
+					<h2 class="article-standfirst">{{displaySummary}}</h2>
 					{{/if}}
 
 					<div amp-access="access OR {{freeArticle}}" amp-access-hide>

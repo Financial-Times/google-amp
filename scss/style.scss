@@ -66,6 +66,15 @@ body {
 // (rendered as '.article h1') using double classname specificity
 .headline.headline {
 	margin: 8px 0;
+
+	@include oGridRespondTo(S, M) {
+		font-size: 8vh;
+		line-height: 8vh;
+		@media (orientation: portrait) {
+			font-size: 4vh;
+			line-height: 4vh;
+		}
+	}
 }
 
 // HACK: override default styling of oTypographyBodyWrapper
@@ -73,6 +82,15 @@ body {
 .article-standfirst.article-standfirst {
 	margin: 6px 0;
 	@include oTypographyLead;
+
+	@include oGridRespondTo(S, M) {
+		font-size: 6vh;
+		line-height: 6vh;
+		@media (orientation: portrait) {
+			font-size: 3vh;
+			line-height: 3vh;
+		}
+	}
 }
 
 .article-dateline {
