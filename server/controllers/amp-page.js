@@ -8,7 +8,10 @@ const errors = require('http-errors');
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
-		.then(response => response._source ? transformArticle(response._source, options) : Promise.reject(new errors.NotFound()))
+		.then(response => response._source ?
+			transformArticle(response._source, options) :
+			Promise.reject(new errors.NotFound())
+		)
 		.then(article => (options.alwaysFree || isFree(article)) ? article : Promise.reject(new errors.NotFound()))
 		.then(article => Promise.all([
 			addStoryPackage(article, options),

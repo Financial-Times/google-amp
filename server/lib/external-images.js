@@ -30,8 +30,8 @@ module.exports = function externalImages($, options) {
 					const height = width * meta.ratio;
 
 					$el.attr({
-						width: width,
-						height: height,
+						width,
+						height,
 					});
 
 					if(width < 600) {
