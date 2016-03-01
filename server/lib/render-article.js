@@ -40,7 +40,7 @@ const getAuthors = data => {
 		.map(item => item.prefLabel);
 
 	// Somtimes there are no authors in the taxonomy. It's very sad but it's true.
-	return authors.length ? authors.join(', ') : data.byline.replace(/^by\s+/i, '');
+	return authors.length ? authors.join(', ') : (data.byline || '').replace(/^by\s+/i, '');
 };
 
 const getByline = data => {
@@ -57,7 +57,7 @@ const getByline = data => {
 
 	return Promise.all(promises)
 		.then(authors => {
-			let byline = data.byline.replace(/^by\s+/i, '');
+			let byline = (data.byline || '').replace(/^by\s+/i, '');
 
 			authors.filter(author => !!author.streamUrl)
 				.forEach(author => {
