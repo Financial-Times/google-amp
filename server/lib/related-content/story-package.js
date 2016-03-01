@@ -7,6 +7,7 @@ const formatRelatedContent = (item) => {
 	const primaryTheme = (item.metadata || []).filter(metadatum => !!metadatum.primary)[0];
 
 	return getStreamUrl(primaryTheme)
+		// Ignore errors
 		.catch(() => {})
 		.then(streamUrl => ({
 			date: dateTransform(item.publishedDate, 'related-content__date'),
