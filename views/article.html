@@ -67,6 +67,9 @@
 		<main role="main">
 			<article class="article">
 				<header class="article-header">
+					{{#if primaryTheme}}
+						<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link">{{{primaryTheme.name}}}</a></h2>
+					{{/if}}
 					<h1 itemprop="headline">{{title}}</h1>
 					{{{displaySummary}}}
 					{{{mainImageHtml}}}

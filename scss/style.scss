@@ -7,6 +7,7 @@ $o-grid-ie8-rules: 'none';
 @import 'o-grid/main';
 
 @include oFontsInclude(MetricWeb, light); // body
+@include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
 @include oFontsInclude(FinancierDisplayWeb, $weight: light, $style: italic); // standfirst
 
@@ -63,6 +64,11 @@ body {
 
 .article-dateline {
 	@include oTypographySans(s);
+}
+
+.primary-theme__link.primary-theme__link {
+	color: oColorsGetPaletteColor(claret);
+	@include oTypographySansBold(l);
 }
 
 .main-footer {
