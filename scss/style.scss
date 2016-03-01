@@ -31,7 +31,7 @@ body {
 	@include responsiveWidth;
 }
 
-.article__copyright-notice {
+.article__copyright-notice.article__copyright-notice {
 	@include oTypographySans(s);
 }
 
