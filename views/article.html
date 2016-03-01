@@ -59,19 +59,18 @@
 			}
 		}
 		</script>
-
-			<amp-analytics config="//SOURCE_HOST{{SOURCE_PORT}}/analytics/config.json">
-				<script type="application/json">
-				{
-					"vars": {
-						"uuid": "{{{id}}}"
-					}
-				}
-				</script>
-			</amp-analytics>
-
 	</head>
 	<body>
+		<amp-analytics config="//SOURCE_HOST{{SOURCE_PORT}}/analytics/config.json">
+			<script type="application/json">
+			{
+				"vars": {
+					"uuid": "{{{id}}}"
+				}
+			}
+			</script>
+		</amp-analytics>
+
 		<header class="main-header">
 			<div class="main-header__container">
 				<div class="main-header-logo">
