@@ -218,6 +218,34 @@ body {
 	@include oTypographySansBold(s);
 }
 
+.article-big-number {
+	color: oColorsGetPaletteColor('grey-tint4');
+
+	// Reset oTypographyBodyWrapper
+	p {
+		font-size: inherit;
+		font-family: inherit;
+		font-weight: inherit;
+		color: inherit;
+		line-height: inherit;
+	}
+}
+
+.article-big-number__title {
+	@include oTypographySerifDisplayBold(xl);
+	font-size: 3em;
+	line-height: 1em;
+}
+
+.article-big-number__content {
+	font-size: 0.8em;
+	line-height: 0.8em;
+}
+
+
+
+// Related Content
+
 .related-content {
 	@include responsiveWidth;
 	margin-top: 40px;
