@@ -70,4 +70,4 @@ module.exports = (data, options) => promiseAllObj({
 	description: data.summaries ? data.summaries[0] : '',
 	authorList: getAuthors(data),
 	mainImage: getMainImage(data),
-}).then(t => t.template(Object.assign(t, data)));
+}).then(t => t.template(Object.assign(data, t)));
