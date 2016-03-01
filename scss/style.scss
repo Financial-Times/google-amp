@@ -69,6 +69,12 @@ a:hover {
 
 .article-dateline {
 	@include oTypographySans(s);
+	margin-bottom: 1em;
+}
+
+.article-author-byline__author.article-author-byline__author {
+	color: oColorsGetPaletteColor(claret);
+	font-weight: bold;
 }
 
 .primary-theme__link.primary-theme__link {
