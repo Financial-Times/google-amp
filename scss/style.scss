@@ -455,7 +455,7 @@ body {
 .amp-access-login__body {
 	background-color: oColorsGetPaletteColor(pink-tint1);
 	padding: 30px;
-	text-align: center;
+	display: flex;
 }
 
 .amp-access-login__button {
@@ -466,6 +466,7 @@ body {
 	color: white;
 	border-radius: 5px;
 	margin: 0 auto;
+	text-decoration: none;
 }
 
 .amp-access-nav {
