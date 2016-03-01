@@ -26,6 +26,11 @@ body {
 	@include oTypographyBody;
 }
 
+a:hover {
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+
 .article {
 	@include oTypographyBodyWrapper;
 	@include responsiveWidth;
@@ -306,16 +311,18 @@ body {
 .related-content__link {
 	@include oTypographyLink;
 	@include oTypographySans(m);
-	display: block;
 }
 
 .related-content__date {
 	@include oTypographySans(xs);
+	display: block;
+	margin-top: 1em;
 }
 
 .related-content__summary {
 	@include oTypographySans(s);
 	margin: 0;
+	display: block;
 }
 
 .related-content__theme {
@@ -372,11 +379,12 @@ body {
 .more-ons__link {
 	@include oTypographyLink;
 	@include oTypographySans(m);
-	display: block;
 }
 
 .more-ons__date {
 	@include oTypographySans(xs);
+	display: block;
+	margin-top: 0.5em;
 }
 
 .more-ons__image {
