@@ -101,7 +101,7 @@
 					<li class="related-content__story related-content__lead-story">
 						<div class="related-content__container">
 							<div class="related-content__content">
-								{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
+								{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
 								<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
 								<p class="related-content__summary">{{{summary}}}</p>
 								{{{date}}}
@@ -114,7 +114,7 @@
 					{{/if}}{{/if}}
 					<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
 						<div class="related-content__container">
-							{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
+							{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
 							<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
 							<p class="related-content__summary">{{{summary}}}</p>
 							{{{date}}}

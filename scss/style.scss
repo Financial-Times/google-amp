@@ -331,6 +331,11 @@ a:hover {
 	margin: 0;
 }
 
+.related-content__theme-link {
+	text-decoration: none;
+	color: inherit;
+}
+
 .more-ons {
 	@include responsiveWidth;
 	margin-top: 40px;
