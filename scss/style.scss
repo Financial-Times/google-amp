@@ -513,6 +513,11 @@ a:hover {
 	padding: 3vh;
 }
 
+.amp-access-login__header-instruction,
+.amp-access-login__header-title {
+	display: inline;
+}
+
 .amp-access-login__header-instruction {
 	font-weight: bold;
 }
