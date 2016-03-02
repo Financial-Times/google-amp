@@ -1,3 +1,4 @@
+'use strict';
 const getArticle = require('../getArticle');
 const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');

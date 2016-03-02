@@ -8,7 +8,7 @@
     "test": "npm run lint && scripts/test.sh",
     "postinstall": "scripts/postinstall.sh",
     "lint": "scripts/lint.sh",
-    "start": ". scripts/env.sh && nodemon --use-strict app.js",
+    "start": ". scripts/env.sh && nodemon app.js",
     "bench": "scripts/bench.sh"
   },
   "keywords": [

@@ -1,3 +1,4 @@
+'use strict';
 module.exports = (image) => {
 	if(!image) return null;
 

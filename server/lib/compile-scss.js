@@ -1,3 +1,4 @@
+'use strict';
 const scss = require('node-sass');
 const path = require('path');
 const renderScss = require('@quarterto/promisify')(scss.render);
