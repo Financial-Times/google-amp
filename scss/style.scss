@@ -515,7 +515,9 @@ a:hover {
 
 .amp-access-login__header-instruction,
 .amp-access-login__header-title {
-	display: inline;
+	@include oGridRespondTo(M) {
+		display: inline;
+	}
 }
 
 .amp-access-login__header-instruction {
