@@ -28,7 +28,7 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 	@return $px * 100vh / $vh;
 }
 
-@mixin responsiveType($size, $min: 0, $max: 0) {
+@mixin responsiveType($size, $min: 18px, $max: 0) {
 	font-size: $size;
 
 	@if $min != 0 {
@@ -107,7 +107,7 @@ a:hover {
 		line-height: 1;
 
 		@media (orientation: portrait) {
-			@include responsiveType(8vh);
+			@include responsiveType(4vh);
 		}
 	}
 }
@@ -517,7 +517,7 @@ a:hover {
 	color: oColorsGetPaletteColor(grey-tint5);
 	margin-top: 6vh;
 	margin-bottom: 8vh;
-	@include responsiveType(3vh, $min: 12px, $max: 30px);
+	@include responsiveType(3vh, $max: 30px);
 	line-height: 1.3;
 }
 
@@ -560,6 +560,8 @@ a:hover {
 	padding: 10px;
 	margin: 1vh auto;
 	text-transform: inherit;
+	font-size: inherit;
+	line-height: inherit;
 }
 
 .amp-access-nav {
