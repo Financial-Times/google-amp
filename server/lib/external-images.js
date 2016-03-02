@@ -8,6 +8,7 @@ module.exports = function externalImages($, options) {
 		const $el = $(el);
 		const matcher = /^https:\/\/h2.ft.com\/image\/v1\/images\/raw\/(.+)\?/;
 		const externalURI = $el.attr('src').match(matcher);
+		const isAside = !!$el.parents('.c-box').length;
 
 		if(externalURI) {
 			const imageSrc = externalURI[1];
@@ -30,12 +31,12 @@ module.exports = function externalImages($, options) {
 					const height = width * meta.ratio;
 
 					$el.attr({
-						width: width,
-						height: height,
+						width,
+						height,
 					});
 
-					if(width < 600) {
-						// don't stretch narrow images to page width
+					if(!isAside && width < 600) {
+						// don't stretch narrow inline images to page width
 						$el.attr('layout', 'fixed');
 					}
 				});
