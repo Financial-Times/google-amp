@@ -7,6 +7,7 @@ $o-grid-ie8-rules: 'none';
 @import 'o-grid/main';
 
 @include oFontsInclude(MetricWeb, light); // body
+@include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
 @include oFontsInclude(FinancierDisplayWeb, $weight: light, $style: italic); // standfirst
 
@@ -25,13 +26,18 @@ body {
 	@include oTypographyBody;
 }
 
+a:hover {
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+
 .article {
 	@include oTypographyBodyWrapper;
-
 	@include responsiveWidth;
-	.article__copyright-notice {
-		@include oTypographySans(s);
-	}
+}
+
+.article__copyright-notice.article__copyright-notice {
+	@include oTypographySans(s);
 }
 
 .article-standfirst {
@@ -64,6 +70,17 @@ body {
 .article-dateline {
 	@include oTypographySans(s);
 	margin-top: 2em;
+	margin-bottom: 1em;
+}
+
+.article-author-byline__author.article-author-byline__author {
+	color: oColorsGetPaletteColor(claret);
+	font-weight: bold;
+}
+
+.primary-theme__link.primary-theme__link {
+	color: oColorsGetPaletteColor(claret);
+	@include oTypographySansBold(l);
 }
 
 .main-footer {
@@ -219,6 +236,33 @@ body {
 	@include oTypographySansBold(s);
 }
 
+.article-big-number {
+	color: oColorsGetPaletteColor('grey-tint4');
+
+	// Reset oTypographyBodyWrapper
+	p {
+		font-size: inherit;
+		font-family: inherit;
+		font-weight: inherit;
+		color: inherit;
+		line-height: inherit;
+	}
+}
+
+.article-big-number__title {
+	@include oTypographySerifDisplayBold(xl);
+	font-size: 3em;
+	line-height: 1em;
+}
+
+.article-big-number__content {
+	font-size: 0.8em;
+	line-height: 0.8em;
+}
+
+
+// Related Content
+
 .related-content {
 	@include responsiveWidth;
 	margin-top: 40px;
@@ -301,22 +345,29 @@ body {
 .related-content__link {
 	@include oTypographyLink;
 	@include oTypographySans(m);
-	display: block;
 }
 
 .related-content__date {
 	@include oTypographySans(xs);
+	display: block;
+	margin-top: 1em;
 }
 
 .related-content__summary {
 	@include oTypographySans(s);
 	margin: 0;
+	display: block;
 }
 
 .related-content__theme {
 	@include oTypographySansBold(s);
 	color: oColorsGetPaletteColor(claret);
 	margin: 0;
+}
+
+.related-content__theme-link {
+	text-decoration: none;
+	color: inherit;
 }
 
 .more-ons {
@@ -367,11 +418,12 @@ body {
 .more-ons__link {
 	@include oTypographyLink;
 	@include oTypographySans(m);
-	display: block;
 }
 
 .more-ons__date {
 	@include oTypographySans(xs);
+	display: block;
+	margin-top: 0.5em;
 }
 
 .more-ons__image {

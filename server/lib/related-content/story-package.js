@@ -1,6 +1,26 @@
 const getArticle = require('../getArticle');
 const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');
+const getStreamUrl = require('../get-stream-url');
+
+const formatRelatedContent = (item) => {
+	const primaryTheme = (item.metadata || []).filter(metadatum => !!metadatum.primary)[0];
+
+	return getStreamUrl(primaryTheme)
+		// Ignore errors
+		.catch(() => {})
+		.then(streamUrl => ({
+			date: dateTransform(item.publishedDate, 'related-content__date'),
+			id: item.id,
+			title: item.title,
+			image: sanitizeImage(item.mainImage),
+			summary: Array.isArray(item.summaries) ? item.summaries[0] : null,
+			theme: {
+				url: streamUrl,
+				name: primaryTheme.prefLabel,
+			},
+		}));
+};
 
 module.exports = (article, options) => {
 	const getRelated = (article.storyPackage || []).map(related => getArticle(related.id));
@@ -21,18 +41,10 @@ module.exports = (article, options) => {
 				options.relatedArticleDeduper.push(item.id);
 			});
 
-			article.relatedContent = related.map(item => ({
-				date: dateTransform(item.publishedDate, 'related-content__date'),
-				id: item.id,
-				title: item.title,
-				image: sanitizeImage(item.mainImage),
-				summary: Array.isArray(item.summaries) ? item.summaries[0] : null,
-				theme: item.metadata.reduce(
-					(previous, current) => previous || (current.primary && current.prefLabel),
-					null
-				),
-			}));
-
+			return Promise.all(related.map(formatRelatedContent));
+		})
+		.then(related => {
+			article.relatedContent = related;
 			return article;
 		})
 		.catch(() => {});
