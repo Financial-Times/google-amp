@@ -30,6 +30,7 @@ body {
 }
 
 .main {
+	@include responsiveWidth;
 	flex-grow: 1;
 }
 
@@ -40,7 +41,6 @@ a:hover {
 
 .article {
 	@include oTypographyBodyWrapper;
-	@include responsiveWidth;
 }
 
 .article__copyright-notice.article__copyright-notice {
@@ -142,7 +142,6 @@ a:hover {
 }
 
 .main-footer__container {
-	@include responsiveWidth;
 	text-align: center;
 }
 
@@ -316,7 +315,6 @@ a:hover {
 // Related Content
 
 .related-content {
-	@include responsiveWidth;
 	margin-top: 40px;
 }
 
@@ -423,7 +421,6 @@ a:hover {
 }
 
 .more-ons {
-	@include responsiveWidth;
 	margin-top: 40px;
 }
 
@@ -496,7 +493,6 @@ a:hover {
 }
 
 .amp-access-login {
-	@include responsiveWidth;
 	color: oColorsGetPaletteColor(grey-tint5);
 	margin-top: 6vh;
 	margin-bottom: 8vh;
