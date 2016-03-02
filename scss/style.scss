@@ -72,7 +72,7 @@ a:hover {
 .headline.headline {
 	margin: 8px 0;
 
-	@include oGridRespondTo(S, M) {
+	@include oGridRespondTo($until: M) {
 		font-size: 8vh;
 		line-height: 8vh;
 		@media (orientation: portrait) {
@@ -88,7 +88,7 @@ a:hover {
 	margin: 6px 0;
 	@include oTypographyLead;
 
-	@include oGridRespondTo(S, M) {
+	@include oGridRespondTo($until: M) {
 		font-size: 6vh;
 		line-height: 6vh;
 		@media (orientation: portrait) {
@@ -100,7 +100,7 @@ a:hover {
 
 .article-dateline {
 	@include oTypographySans(s);
-	margin-top: 2em;
+	margin-top: 1em;
 	margin-bottom: 1em;
 }
 
@@ -109,9 +109,22 @@ a:hover {
 	font-weight: bold;
 }
 
-.primary-theme__link.primary-theme__link {
+.primary-theme.primary-theme {
 	color: oColorsGetPaletteColor(claret);
 	@include oTypographySansBold(l);
+
+	@include oGridRespondTo($until: M) {
+		font-size: 6vh;
+		line-height: 6vh;
+		@media (orientation: portrait) {
+			font-size: 3vh;
+			line-height: 3vh;
+		}
+	}
+
+	a {
+		color: inherit;
+	}
 }
 
 .main-footer {
@@ -478,26 +491,21 @@ a:hover {
 .amp-access-login {
 	@include responsiveWidth;
 	color: oColorsGetPaletteColor(grey-tint5);
-	margin-top: 30px;
-	margin-bottom: 30px;
-
-	@include oGridRespondTo(M) {
-		margin-top: 60px;
-		margin-bottom: 80px;
-	}
+	margin-top: 6vh;
+	margin-bottom: 8vh;
 }
 
 .amp-access-login__header,
 .amp-access-login__body {
 
 	@include oGridRespondTo(M) {
-		margin: 0 40px;
+		margin: 0 3vh;
 	}
 }
 
 .amp-access-login__header {
 	background-color: oColorsGetPaletteColor(warm-5);
-	padding: 20px;
+	padding: 3vh;
 }
 
 .amp-access-login__header-instruction {
@@ -506,8 +514,12 @@ a:hover {
 
 .amp-access-login__body {
 	background-color: oColorsGetPaletteColor(pink-tint1);
-	padding: 30px;
+	padding: 3vh;
 	display: flex;
+
+	@include oGridRespondTo($until: S) {
+		flex-direction: column;
+	}
 }
 
 .amp-access-login__button {
@@ -517,8 +529,9 @@ a:hover {
 	cursor: pointer;
 	color: white;
 	border-radius: 5px;
-	margin: 0 auto;
+	margin: 1vh auto;
 	text-decoration: none;
+	text-align: center;
 }
 
 .amp-access-nav {
