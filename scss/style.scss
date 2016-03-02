@@ -6,6 +6,9 @@ $o-grid-ie8-rules: 'none';
 @import 'o-typography/main';
 @import 'o-grid/main';
 
+@import 'o-buttons/main';
+@import 'hacks';
+
 @include oFontsInclude(MetricWeb, light); // body
 @include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
@@ -535,15 +538,10 @@ a:hover {
 }
 
 .amp-access-login__button {
-	background-color: oColorsGetPaletteColor(teal-1);
-	display: inline-block;
+	@include oButtons(big, standout);
 	padding: 10px;
-	cursor: pointer;
-	color: white;
-	border-radius: 5px;
 	margin: 1vh auto;
-	text-decoration: none;
-	text-align: center;
+	text-transform: inherit;
 }
 
 .amp-access-nav {

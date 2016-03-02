@@ -14,7 +14,7 @@ const bowerPath = path.resolve('bower_components');
 module.exports = () => renderScss({
 	file: `${scssPath}/style.scss`,
 	includePaths: [scssPath, bowerPath],
-}).then(result => postcss([autoprefixer, cssnano]).process(result.css));
+}).then(result => postcss([autoprefixer]).process(result.css));
 
 if(module === require.main) {
 	console.log('precompiling scss...');
