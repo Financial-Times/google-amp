@@ -24,6 +24,13 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 body {
 	@include oColorsFor(page, background);
 	@include oTypographyBody;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.main {
+	flex-grow: 1;
 }
 
 a:hover {
