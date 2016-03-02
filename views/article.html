@@ -67,20 +67,25 @@
 		<main role="main">
 			<article class="article">
 				<header class="article-header">
+					{{#if primaryTheme}}
+						<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link">{{{primaryTheme.name}}}</a></h2>
+					{{/if}}
 					<h1 itemprop="headline">{{title}}</h1>
 					{{{displaySummary}}}
 					{{{mainImageHtml}}}
 
 					<div class="article-dateline">
 						{{{displayDate}}}
+						{{#if byline}}
 						<span class="article-author">
 							<span class="article-author-byline">
 								by
 								<span itemscope itemtype="http://schema.org/Person" itemprop="author">
-									{{byline}}
+									{{{byline}}}
 								</span>
 							</span>
 						</span>
+						{{/if}}
 					</div>
 				</header>
 
@@ -98,7 +103,7 @@
 					<li class="related-content__story related-content__lead-story">
 						<div class="related-content__container">
 							<div class="related-content__content">
-								{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
+								{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
 								<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
 								<p class="related-content__summary">{{{summary}}}</p>
 								{{{date}}}
@@ -111,7 +116,7 @@
 					{{/if}}{{/if}}
 					<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
 						<div class="related-content__container">
-							{{#if theme}}<h3 class="related-content__theme">{{{theme}}}</h3>{{/if}}
+							{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
 							<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
 							<p class="related-content__summary">{{{summary}}}</p>
 							{{{date}}}
@@ -129,9 +134,9 @@
 					<li class="more-ons__item">
 						<div class="more-ons__item-wrapper">
 							<div class="more-ons__type">
-								<h2 class="more-ons__type-text c-box__title-text">{{{type}}}</h2>
+								<h2 class="more-ons__type-text c-box__title-text">{{theme.type}}</h2>
 							</div>
-							<h2 class="more-ons__header">{{{title}}}</h2>
+							<h2 class="more-ons__header">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h2>
 							<ul class="more-ons__stories">
 								{{#each articles}}
 								<li class="more-ons__story">
