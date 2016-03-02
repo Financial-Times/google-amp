@@ -24,6 +24,26 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 	max-width: $width;
 }
 
+@function pxAndVhToViewport($vh, $px) {
+	@return $px * 100vh / $vh;
+}
+
+@mixin responsiveType($size, $min: 0, $max: 0) {
+	font-size: $size;
+
+	@if $min != 0 {
+		@media (max-height: pxAndVhToViewport($size, $min)) {
+			font-size: $min;
+		}
+	}
+
+	@if $max != 0 {
+		@media (min-height: pxAndVhToViewport($size, $max)) {
+			font-size: $max;
+		}
+	}
+}
+
 body {
 	@include oColorsFor(page, background);
 	@include oTypographyBody;
@@ -83,11 +103,11 @@ a:hover {
 	margin: 8px 0;
 
 	@include oGridRespondTo($until: M) {
-		font-size: 8vh;
-		line-height: 8vh;
+		@include responsiveType(8vh);
+		line-height: 1;
+
 		@media (orientation: portrait) {
-			font-size: 4vh;
-			line-height: 4vh;
+			@include responsiveType(8vh);
 		}
 	}
 }
@@ -99,11 +119,10 @@ a:hover {
 	@include oTypographyLead;
 
 	@include oGridRespondTo($until: M) {
-		font-size: 6vh;
-		line-height: 6vh;
+		@include responsiveType(6vh);
+		line-height: 1;
 		@media (orientation: portrait) {
-			font-size: 3vh;
-			line-height: 3vh;
+			@include responsiveType(3vh);
 		}
 	}
 }
@@ -124,11 +143,10 @@ a:hover {
 	@include oTypographySansBold(l);
 
 	@include oGridRespondTo($until: M) {
-		font-size: 6vh;
-		line-height: 6vh;
+		@include responsiveType(6vh);
+		line-height: 1;
 		@media (orientation: portrait) {
-			font-size: 3vh;
-			line-height: 3vh;
+			@include responsiveType(3vh);
 		}
 	}
 
@@ -499,8 +517,8 @@ a:hover {
 	color: oColorsGetPaletteColor(grey-tint5);
 	margin-top: 6vh;
 	margin-bottom: 8vh;
-	font-size: 3vh;
-	line-height: 4vh;
+	@include responsiveType(3vh, $min: 12px, $max: 30px);
+	line-height: 1.3;
 }
 
 .amp-access-login__header,
