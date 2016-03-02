@@ -6,6 +6,7 @@ const promisify = require('@quarterto/promisify');
 const glob = promisify(require('glob'));
 const cacheIf = require('@quarterto/cache-if');
 const promiseAllObj = require('@quarterto/promise-all-object');
+const getStreamUrl = require('./get-stream-url');
 
 const cssPath = path.resolve('css');
 const viewsPath = path.resolve('views');
@@ -35,12 +36,38 @@ const getPartials = precompiled => cacheIf(() => precompiled, applyPartials);
 
 const getAuthors = data => {
 	const authors = data.metadata
-				.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
-				.map(item => item.prefLabel)
-				.join(', ');
+		.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
+		.map(item => item.prefLabel);
 
 	// Somtimes there are no authors in the taxonomy. It's very sad but it's true.
-	return authors === '' ? data.byline : authors;
+	return authors.length ? authors.join(', ') : (data.byline || '').replace(/^by\s+/i, '');
+};
+
+const getByline = data => {
+	const promises = data.metadata
+		.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
+		.map(author => getStreamUrl(author)
+			// Ignore errors
+			.catch(() => {})
+			.then(streamUrl => {
+				author.streamUrl = streamUrl;
+				return author;
+			})
+		);
+
+	return Promise.all(promises)
+		.then(authors => {
+			let byline = (data.byline || '').replace(/^by\s+/i, '');
+
+			authors.filter(author => !!author.streamUrl)
+				.forEach(author => {
+					byline = byline.replace(author.prefLabel,
+						'<a class="article-author-byline__author"' +
+						` href="${author.streamUrl}">${author.prefLabel}</a>`
+					);
+				});
+			return byline;
+		});
 };
 
 const getMainImage = data => {
@@ -69,5 +96,6 @@ module.exports = (data, options) => promiseAllObj({
 	nikkeiSvg: fs.readFile(`${staticPath}/nikkei-logo.svg`, 'utf8'),
 	description: data.summaries ? data.summaries[0] : '',
 	authorList: getAuthors(data),
+	byline: getByline(data),
 	mainImage: getMainImage(data),
-}).then(t => t.template(Object.assign(t, data)));
+}).then(t => t.template(Object.assign(data, t)));
