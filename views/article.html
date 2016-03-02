@@ -109,7 +109,7 @@
 								{{{date}}}
 							</div>
 							<div class="related-content__image">
-								{{> image}}
+								<a href="http://www.ft.com/content/{{{id}}}">{{> image}}</a>
 							</div>
 						</div>
 					</li>
@@ -142,7 +142,7 @@
 								<li class="more-ons__story">
 									{{#if @first}}{{#if image}}
 									<div class="more-ons__image">
-										{{> image}}
+										<a href="http://www.ft.com/content/{{{id}}}">{{> image}}</a>
 									</div>
 									{{/if}}{{/if}}
 									{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
