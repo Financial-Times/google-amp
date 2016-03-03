@@ -12,11 +12,12 @@ module.exports = function externalImages($, options) {
 
 		if(externalURI) {
 			const imageSrc = externalURI[1];
-			// Unescape any html entites 
-            const imageSrcEntitiesDecoded = entities.decode(imageSrc);
+			// Unescape any html entites
+
+			const imageSrcEntitiesDecoded = entities.decode(imageSrc);
 			const imageSrcEncoded = encodeURIComponent(imageSrcEntitiesDecoded);
 			const fullSrcEncoded = $el.attr('src').replace(imageSrc, imageSrcEncoded);
-            
+
 			$el.attr('src', fullSrcEncoded);
 
 			const metaUrl = fullSrcEncoded.replace('raw', 'metadata');
