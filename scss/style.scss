@@ -47,6 +47,10 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 body {
 	@include oColorsFor(page, background);
 	@include oTypographyBody;
+	min-height: 100vh;
+}
+
+.main-wrapper {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
