@@ -10,10 +10,23 @@
 		</style>
 		<style>body {opacity: 0}</style><noscript><style>body {opacity: 1}</style></noscript>
 		<script async src="https://cdn.ampproject.org/v0.js"></script>
+		<script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<script async custom-element="amp-brightcove" src="https://cdn.ampproject.org/v0/amp-brightcove-0.1.js"></script>
 		<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 		<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+
+		<script id="amp-access" type="application/json">
+		{
+			"authorization": "{{{AUTH_AUTHORIZATION_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{webUrl}}}",
+			"pingback": "{{{AUTH_PINGBACK_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{webUrl}}}",
+			"login": {
+				"login": "{{{AUTH_LOGIN_URL}}}readerId=READER_ID&location=RETURN_URL#success=true",
+				"logout": "{{{AUTH_LOGOUT_URL}}}rid=READER_ID&location=RETURN_URL#success=true"
+			},
+			"authorizationFallbackResponse": {"access": true, "error": true}
+		}
+		</script>
 
 		<script type="application/ld+json">
 		{
@@ -46,7 +59,6 @@
 			}
 		}
 		</script>
-
 	</head>
 	<body>
 		<amp-analytics config="//SOURCE_HOST{{SOURCE_PORT}}/analytics/config.json">
@@ -60,19 +72,41 @@
 		</amp-analytics>
 
 		<header class="main-header">
-			<div class="main-header-logo">
-				<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
+			<div class="main-header__container">
+				<div class="main-header-logo">
+					<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
+				</div>
+				{{#if accessMocked}}
+				<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
+				{{/if}}
+				<div class="amp-access-nav" amp-access="session" amp-access-hide>
+					<ul class="amp-access-nav__links">
+						<li class="amp-access-nav__link-item">
+							<a class="amp-access-nav__link" on="tap:amp-access.login-logout">Sign out</a>
+						</li>
+						<li class="amp-access-nav__link-item">
+							<a class="amp-access-nav__link" href="http://registration.ft.com/registration/selfcare/">My Account</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</header>
-		<main role="main">
+
+		<main class="main" role="main">
 			<article class="article">
 				<header class="article-header">
 					{{#if primaryTheme}}
 						<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link">{{{primaryTheme.name}}}</a></h2>
 					{{/if}}
-					<h1 itemprop="headline">{{title}}</h1>
-					{{{displaySummary}}}
-					{{{mainImageHtml}}}
+					<h1 class="headline" itemprop="headline">{{title}}</h1>
+
+					{{#if displaySummary}}
+					<h2 class="article-standfirst">{{displaySummary}}</h2>
+					{{/if}}
+
+					<div amp-access="access OR {{freeArticle}}" amp-access-hide>
+						{{{mainImageHtml}}}
+					</div>
 
 					<div class="article-dateline">
 						{{{displayDate}}}
@@ -89,13 +123,26 @@
 					</div>
 				</header>
 
-				<div class="article-body" itemprop="articleBody">
-					{{{htmlBody}}}
+				<div amp-access="access OR {{freeArticle}}" amp-access-hide>
+					<div class="article-body" itemprop="articleBody">
+						{{{htmlBody}}}
+					</div>
 				</div>
 			</article>
 
+			<div class="amp-access-login" amp-access="NOT access" amp-access-hide>
+				<div class="amp-access-login__header">
+					<div class="amp-access-login__header-instruction">Sign in or subscribe to FT.com to read:</div>
+					<div class="amp-access-login__header-title">{{title}}</div>
+				</div>
+				<div class="amp-access-login__body">
+					<a class="amp-access-login__button" on="tap:amp-access.login-login">Sign in to FT.com</a>
+					<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">View subscription packages</a>
+				</div>
+			</div>
+
 			{{#if relatedContent}}
-			<aside class="related-content">
+			<aside class="related-content" amp-access="access OR NOT access" amp-access-hide>
 				<h2 class="related-content__header">Related stories</h2>
 				<ul class="related-content__stories">
 					{{#each relatedContent}}
@@ -128,7 +175,7 @@
 			{{/if}}
 
 			{{#if moreOns}}
-			<aside class="more-ons">
+			<aside class="more-ons" amp-access="access OR NOT access" amp-access-hide>
 				<ul class="more-ons__items">
 					{{#each moreOns}}
 					<li class="more-ons__item">
@@ -158,20 +205,20 @@
 				</ul>
 			</aside>
 			{{/if}}
-
 		</main>
-	<footer class="main-footer">
-		<div class="main-footer__container">
-			<ul class="main-footer__links">
-				<li class="main-footer__link"><a href="http://help.ft.com/tools-services/ft-com-terms-and-conditions/">Terms &amp; conditions</a></li>
-				<li class="main-footer__link"><a href="http://help.ft.com/tools-services/financial-times-privacy-policy/">Privacy policy</a></li>
-				<li class="main-footer__link"><a href="http://help.ft.com/tools-services/copyright-policy/?ft_site=falcon#axzz3goHcFH3m">Copyright</a></li>
-				<li class="main-footer__link"><a href="http://help.ft.com/tools-services/how-the-ft-manages-cookies-on-its-websites/">Cookie policy</a></li>
-			</ul>
-			<div class="main-footer__brand">
-				{{{nikkeiSvg}}}
+
+		<footer class="main-footer">
+			<div class="main-footer__container">
+				<ul class="main-footer__links">
+					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/ft-com-terms-and-conditions/">Terms &amp; conditions</a></li>
+					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/financial-times-privacy-policy/">Privacy policy</a></li>
+					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/copyright-policy/?ft_site=falcon#axzz3goHcFH3m">Copyright</a></li>
+					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/how-the-ft-manages-cookies-on-its-websites/">Cookie policy</a></li>
+				</ul>
+				<div class="main-footer__brand">
+					{{{nikkeiSvg}}}
+				</div>
 			</div>
-		</div>
-	</footer>
+		</footer>
 	</body>
 </html>

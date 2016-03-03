@@ -4,8 +4,9 @@ const addMoreOns = require('../lib/related-content/more-ons');
 const addPrimaryTheme = require('../lib/primary-theme');
 const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transformEsV3Item.js');
-const isFree = require('../lib/article-is-free');
 const errors = require('http-errors');
+
+const liveAccessHost = 'amp-access-svc.memb.ft.com';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
@@ -13,14 +14,32 @@ function getAndRender(uuid, options) {
 			transformArticle(response._source, options) :
 			Promise.reject(new errors.NotFound())
 		)
-		.then(article => (options.alwaysFree || isFree(article)) ? article : Promise.reject(new errors.NotFound()))
 		.then(article => Promise.all([
 			addStoryPackage(article, options),
 			addMoreOns(article, options),
 			addPrimaryTheme(article, options),
 		]).then(() => article))
 		.then(data => {
+			data.AUTH_AUTHORIZATION_URL = options.accessMock ?
+				`//${options.host}/amp-access-mock?type=access&` :
+				`https://${liveAccessHost}/amp-access?`;
+
+			data.AUTH_PINGBACK_URL = options.accessMock ?
+				`//${options.host}/amp-access-mock?type=pingback&` :
+				`https://${liveAccessHost}/amp-pingback?`;
+
+			data.AUTH_LOGIN_URL = options.accessMock ?
+				`//${options.host}/amp-access-mock?type=login&` :
+				'https://accounts.ft.com/login?';
+
+			data.AUTH_LOGOUT_URL = options.accessMock ?
+				`//${options.host}/amp-access-mock?type=logout&` :
+				`https://${liveAccessHost}/amp-logout?`;
+
 			data.SOURCE_PORT = options.production ? '' : ':5000';
+
+			data.freeArticle = !!options.alwaysFree;
+			data.accessMocked = !!options.accessMock;
 			return data;
 		})
 		.then(data => renderArticle(data, {precompiled: options.production}));
@@ -29,9 +48,10 @@ function getAndRender(uuid, options) {
 module.exports = (req, res, next) => {
 	getAndRender(req.params.uuid, {
 		production: req.app.get('env') === 'production',
-		alwaysFree: req.app.get('env') === 'development' || req.cookies.amp_article_test,
 		raven: req.raven,
+		host: req.get('host'),
 		relatedArticleDeduper: [req.params.uuid],
+		accessMock: req.cookies.amp_access_mock,
 	})
 		.then(content => {
 			res.setHeader('cache-control', 'public, max-age=30');
