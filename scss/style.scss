@@ -523,6 +523,7 @@ a:hover {
 
 .amp-access-login__header,
 .amp-access-login__body {
+	padding: 2vh;
 
 	@include oGridRespondTo(M) {
 		margin: 0 3vh;
@@ -531,7 +532,6 @@ a:hover {
 
 .amp-access-login__header {
 	background-color: oColorsGetPaletteColor(warm-5);
-	padding: 3vh;
 }
 
 .amp-access-login__header-instruction,
@@ -547,8 +547,8 @@ a:hover {
 
 .amp-access-login__body {
 	background-color: oColorsGetPaletteColor(pink-tint1);
-	padding: 3vh;
 	display: flex;
+	justify-content: center;
 
 	@include oGridRespondTo($until: S) {
 		flex-direction: column;
@@ -558,10 +558,9 @@ a:hover {
 .amp-access-login__button {
 	@include oButtons(big, standout);
 	padding: 10px;
-	margin: 1vh auto;
+	margin: 1vh 10px;
 	text-transform: inherit;
-	font-size: inherit;
-	line-height: inherit;
+	line-height: 1.1;
 }
 
 .amp-access-nav {
