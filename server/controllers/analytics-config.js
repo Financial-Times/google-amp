@@ -35,6 +35,7 @@ module.exports = (req, res, next) => {
 			referrer: '${documentReferrer}',
 			scroll_depth: '${percentageViewed}',
 			engaged_time: 'TOTAL_ENGAGED_TIME',
+			ampRequestCount: '${requestCount}',
 		},
 		device: {
 			dimensions: {
