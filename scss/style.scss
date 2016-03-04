@@ -28,18 +28,20 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 	@return $px * 100vh / $vh;
 }
 
-@mixin responsiveType($size, $min: 18px, $max: 0) {
+@mixin responsiveType($size, $min: 14px, $max: 0) {
 	font-size: $size;
+	$min-size: $min + ($size / 1vh);
+	$max-size: $max + ($size / 1vh);
 
 	@if $min != 0 {
-		@media (max-height: pxAndVhToViewport($size, $min)) {
-			font-size: $min;
+		@media (max-height: pxAndVhToViewport($size, $min-size)) {
+			font-size: $min-size;
 		}
 	}
 
 	@if $max != 0 {
-		@media (min-height: pxAndVhToViewport($size, $max)) {
-			font-size: $max;
+		@media (min-height: pxAndVhToViewport($size, $max-size)) {
+			font-size: $max-size;
 		}
 	}
 }
