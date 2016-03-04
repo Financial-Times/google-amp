@@ -6,4 +6,5 @@ analytics.log
 npm-debug.log
 temp
 urls-*
+log-*
 .DS_Store

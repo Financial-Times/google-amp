@@ -3,19 +3,28 @@
 . ./scripts/test-uuids.sh
 . ./scripts/env.sh
 
-set -x -e
+set -e
 
-PORT=5001 node --use-strict app.js & > /dev/null
+URLS=$(mktemp urls-XXXX)
+LOG=$(mktemp log-XXXX)
+PORT=5001 LOG_FORMAT=":response-time[6] ms :url" node --use-strict app.js | tee $LOG | prog-rock 1001 &
 PID=$!
+
+cleanup() {
+	./scripts/analyse-log.js $LOG
+	rm -f $LOG $URLS
+	kill $PID
+}
+
+trap cleanup EXIT
 
 sleep 5
 
-TMP=$(mktemp urls-XXXX)
 for UUID in "${TEST_UUIDS[@]}"; do
 	echo "http://localhost:5001/content/$UUID"
-done > $TMP
+done > $URLS
 
-siege -f $TMP -r 100 -c 10
+siege -f $URLS -r 100 -c 10 > /dev/null 2>&1
 
-rm -f $TMP
-kill $PID
+
+
