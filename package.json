@@ -58,6 +58,8 @@
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.2",
     "lintspaces-cli": "^0.1.1",
+    "lodash.padend": "^4.2.0",
+    "lodash.padstart": "^4.2.0",
     "nodemon": "^1.8.1",
     "prog-rock": "^1.2.1"
   }

@@ -25,6 +25,3 @@ for UUID in "${TEST_UUIDS[@]}"; do
 done > $URLS
 
 siege -f $URLS -r 100 -c 10 > /dev/null 2>&1
-
-
-
