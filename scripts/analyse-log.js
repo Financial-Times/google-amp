@@ -13,7 +13,6 @@ var ms = n => n.toFixed(2) + 'ms';
 var padLeft = (s, n, p) => Array(n - s.length + 1).join(p) + s;
 var padRight = (s, n, p) => s + Array(n - s.length + 1).join(p);
 
-
 var gauss = gaussian(data);
 
 var stats = {
@@ -30,6 +29,6 @@ var stats = {
 for(var stat in stats) {
 	console.log(
 		padRight(stat + ':', 6, ' ') +
-		padLeft(ms(stats[stat]), 8, ' ')
+		padLeft(ms(stats[stat]), 10, ' ')
 	);
 }
