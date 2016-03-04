@@ -34,6 +34,7 @@ module.exports = (req, res, next) => {
 			amp_viewer: 'VIEWER',
 			referrer: '${documentReferrer}',
 			scroll_depth: '${percentageViewed}',
+			engaged_time: 'TOTAL_ENGAGED_TIME',
 			ampRequestCount: '${requestCount}',
 		},
 		device: {
