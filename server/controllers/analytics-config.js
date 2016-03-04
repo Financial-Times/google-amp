@@ -34,6 +34,7 @@ module.exports = (req, res, next) => {
 			amp_viewer: 'VIEWER',
 			referrer: '${documentReferrer}',
 			scroll_depth: '${percentageViewed}',
+			ampRequestCount: '${requestCount}',
 		},
 		device: {
 			dimensions: {
