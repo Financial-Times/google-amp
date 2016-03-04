@@ -71,154 +71,164 @@
 			</script>
 		</amp-analytics>
 
-		<header class="main-header">
-			<div class="main-header__container">
-				<div class="main-header-logo">
-					<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
-				</div>
-				{{#if accessMocked}}
-				<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
-				{{/if}}
-				<div class="amp-access-nav" amp-access="session" amp-access-hide>
-					<ul class="amp-access-nav__links">
-						<li class="amp-access-nav__link-item">
-							<a class="amp-access-nav__link" on="tap:amp-access.login-logout">Sign out</a>
-						</li>
-						<li class="amp-access-nav__link-item">
-							<a class="amp-access-nav__link" href="http://registration.ft.com/registration/selfcare/">My Account</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</header>
-
-		<main class="main" role="main">
-			<article class="article">
-				<header class="article-header">
-					{{#if primaryTheme}}
-						<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link">{{{primaryTheme.name}}}</a></h2>
-					{{/if}}
-					<h1 class="headline" itemprop="headline">{{title}}</h1>
-
-					{{#if displaySummary}}
-					<h2 class="article-standfirst">{{displaySummary}}</h2>
-					{{/if}}
-
-					<div amp-access="access OR {{freeArticle}}" amp-access-hide>
-						{{{mainImageHtml}}}
+		<div class="main-wrapper">
+			<header class="main-header">
+				<div class="main-header__container">
+					<div class="main-header-logo">
+						<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
 					</div>
+					{{#if accessMocked}}
+					<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
+					{{/if}}
+					<div class="amp-access-nav" amp-access="session" amp-access-hide>
+						<ul class="amp-access-nav__links">
+							<li class="amp-access-nav__link-item">
+								<a class="amp-access-nav__link" on="tap:amp-access.login-logout">Sign out</a>
+							</li>
+							<li class="amp-access-nav__link-item">
+								<a class="amp-access-nav__link" href="http://registration.ft.com/registration/selfcare/">My Account</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</header>
 
-					<div class="article-dateline">
-						{{{displayDate}}}
-						{{#if byline}}
-						<span class="article-author">
-							<span class="article-author-byline">
-								by
-								<span itemscope itemtype="http://schema.org/Person" itemprop="author">
-									{{{byline}}}
+			<main class="main" role="main">
+				<article class="article">
+					<header class="article-header">
+						{{#if primaryTheme}}
+							<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link">{{{primaryTheme.name}}}</a></h2>
+						{{/if}}
+						<h1 class="headline" itemprop="headline">{{title}}</h1>
+
+						{{#if displaySummary}}
+						<h2 class="article-standfirst">{{displaySummary}}</h2>
+						{{/if}}
+
+						<div amp-access="access OR {{freeArticle}}" amp-access-hide>
+							{{{mainImageHtml}}}
+						</div>
+
+						<div class="article-dateline">
+							{{{displayDate}}}
+							{{#if byline}}
+							<span class="article-author">
+								<span class="article-author-byline">
+									by
+									<span itemscope itemtype="http://schema.org/Person" itemprop="author">
+										{{{byline}}}
+									</span>
 								</span>
 							</span>
-						</span>
-						{{/if}}
+							{{/if}}
+						</div>
+					</header>
+
+					<div amp-access="access OR {{freeArticle}}" amp-access-hide>
+						<div class="article-body" itemprop="articleBody">
+							{{{htmlBody}}}
+						</div>
 					</div>
-				</header>
+				</article>
 
-				<div amp-access="access OR {{freeArticle}}" amp-access-hide>
-					<div class="article-body" itemprop="articleBody">
-						{{{htmlBody}}}
+				<div class="amp-access-login" amp-access="NOT access" amp-access-hide>
+					<div class="amp-access-login__header" amp-access="NOT session">
+						<div class="amp-access-login__header-instruction">Sign in or subscribe to FT.com to read:</div>
+						<div class="amp-access-login__header-title">{{title}}</div>
+					</div>
+					<div class="amp-access-login__header" amp-access="session">
+						<div class="amp-access-login__header-instruction">Upgrade your account to read:</div>
+						<div class="amp-access-login__header-title">{{title}}</div>
+					</div>
+					<div class="amp-access-login__body" amp-access="NOT session">
+							<a class="amp-access-login__button" on="tap:amp-access.login-login">Sign in to FT.com</a>
+							<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">View subscription packages</a>
+					</div>
+					<div class="amp-access-login__body" amp-access="session">
+					<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">Upgrade now</a>
 					</div>
 				</div>
-			</article>
 
-			<div class="amp-access-login" amp-access="NOT access" amp-access-hide>
-				<div class="amp-access-login__header">
-					<div class="amp-access-login__header-instruction">Sign in or subscribe to FT.com to read:</div>
-					<div class="amp-access-login__header-title">{{title}}</div>
-				</div>
-				<div class="amp-access-login__body">
-					<a class="amp-access-login__button" on="tap:amp-access.login-login">Sign in to FT.com</a>
-					<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">View subscription packages</a>
-				</div>
-			</div>
-
-			{{#if relatedContent}}
-			<aside class="related-content" amp-access="access OR NOT access" amp-access-hide>
-				<h2 class="related-content__header">Related stories</h2>
-				<ul class="related-content__stories">
-					{{#each relatedContent}}
-					{{#if @first}}{{#if image}}
-					<li class="related-content__story related-content__lead-story">
-						<div class="related-content__container">
-							<div class="related-content__content">
+				{{#if relatedContent}}
+				<aside class="related-content" amp-access="access OR NOT access" amp-access-hide>
+					<h2 class="related-content__header">Related stories</h2>
+					<ul class="related-content__stories">
+						{{#each relatedContent}}
+						{{#if @first}}{{#if image}}
+						<li class="related-content__story related-content__lead-story">
+							<div class="related-content__container">
+								<div class="related-content__content">
+									{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
+									<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+									<p class="related-content__summary">{{{summary}}}</p>
+									{{{date}}}
+								</div>
+								<div class="related-content__image">
+									<a href="http://www.ft.com/content/{{{id}}}">{{> image}}</a>
+								</div>
+							</div>
+						</li>
+						{{/if}}{{/if}}
+						<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
+							<div class="related-content__container">
 								{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
 								<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
 								<p class="related-content__summary">{{{summary}}}</p>
 								{{{date}}}
 							</div>
-							<div class="related-content__image">
-								<a href="http://www.ft.com/content/{{{id}}}">{{> image}}</a>
+						</li>
+						{{/each}}
+					</ul>
+				</aside>
+				{{/if}}
+
+				{{#if moreOns}}
+				<aside class="more-ons" amp-access="access OR NOT access" amp-access-hide>
+					<ul class="more-ons__items">
+						{{#each moreOns}}
+						<li class="more-ons__item">
+							<div class="more-ons__item-wrapper">
+								<div class="more-ons__type">
+									<h2 class="more-ons__type-text c-box__title-text">{{theme.type}}</h2>
+								</div>
+								<h2 class="more-ons__header">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h2>
+								<ul class="more-ons__stories">
+									{{#each articles}}
+									<li class="more-ons__story">
+										{{#if @first}}{{#if image}}
+										<div class="more-ons__image">
+											<a href="http://www.ft.com/content/{{{id}}}">{{> image}}</a>
+										</div>
+										{{/if}}{{/if}}
+										{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
+										<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+										{{{date}}}
+									</li>
+									{{/each}}
+								</ul>
 							</div>
-						</div>
-					</li>
-					{{/if}}{{/if}}
-					<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
-						<div class="related-content__container">
-							{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
-							<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
-							<p class="related-content__summary">{{{summary}}}</p>
-							{{{date}}}
-						</div>
-					</li>
-					{{/each}}
-				</ul>
-			</aside>
-			{{/if}}
+						</li>
 
-			{{#if moreOns}}
-			<aside class="more-ons" amp-access="access OR NOT access" amp-access-hide>
-				<ul class="more-ons__items">
-					{{#each moreOns}}
-					<li class="more-ons__item">
-						<div class="more-ons__item-wrapper">
-							<div class="more-ons__type">
-								<h2 class="more-ons__type-text c-box__title-text">{{theme.type}}</h2>
-							</div>
-							<h2 class="more-ons__header">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h2>
-							<ul class="more-ons__stories">
-								{{#each articles}}
-								<li class="more-ons__story">
-									{{#if @first}}{{#if image}}
-									<div class="more-ons__image">
-										<a href="http://www.ft.com/content/{{{id}}}">{{> image}}</a>
-									</div>
-									{{/if}}{{/if}}
-									{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
-									<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
-									{{{date}}}
-								</li>
-								{{/each}}
-							</ul>
-						</div>
-					</li>
+						{{/each}}
+					</ul>
+				</aside>
+				{{/if}}
+			</main>
 
-					{{/each}}
-				</ul>
-			</aside>
-			{{/if}}
-		</main>
-
-		<footer class="main-footer">
-			<div class="main-footer__container">
-				<ul class="main-footer__links">
-					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/ft-com-terms-and-conditions/">Terms &amp; conditions</a></li>
-					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/financial-times-privacy-policy/">Privacy policy</a></li>
-					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/copyright-policy/?ft_site=falcon#axzz3goHcFH3m">Copyright</a></li>
-					<li class="main-footer__link"><a href="http://help.ft.com/tools-services/how-the-ft-manages-cookies-on-its-websites/">Cookie policy</a></li>
-				</ul>
-				<div class="main-footer__brand">
-					{{{nikkeiSvg}}}
+			<footer class="main-footer">
+				<div class="main-footer__container">
+					<ul class="main-footer__links">
+						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/ft-com-terms-and-conditions/">Terms &amp; conditions</a></li>
+						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/financial-times-privacy-policy/">Privacy policy</a></li>
+						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/copyright-policy/?ft_site=falcon#axzz3goHcFH3m">Copyright</a></li>
+						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/how-the-ft-manages-cookies-on-its-websites/">Cookie policy</a></li>
+					</ul>
+					<div class="main-footer__brand">
+						{{{nikkeiSvg}}}
+					</div>
 				</div>
-			</div>
-		</footer>
+			</footer>
+		</div>
+
 	</body>
 </html>

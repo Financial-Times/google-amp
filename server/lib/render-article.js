@@ -81,9 +81,9 @@ const getMainImage = data => {
 		// Return a default logo image if an actual image is not available
 		// TODO pull out the lead image from the body XML if possible
 		return {
-			url: 'http://im.ft-static.com/m/img/masthead_main.jpg',
-			width: 435,
-			height: 36,
+			url: 'http://im.ft-static.com/m/img/social/og-ft-logo-large.png',
+			width: 600,
+			height: 600,
 		};
 	}
 };
