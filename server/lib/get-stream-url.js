@@ -6,6 +6,6 @@ module.exports = (metadatum) => {
 
 	// NB. Node 5 encounters a ZLib decompression issue if a HEAD request
 	// returns GZip content. See https://github.com/bitinn/node-fetch/issues/45.
-	return fetch(streamUrl, {method: 'HEAD', compress: false})
-		.then(res => res.status === 200 && streamUrl);
+	return fetch(streamUrl, {method: 'HEAD', compress: false, follow: 0})
+		.then(res => res.status !== 404 && streamUrl);
 };
