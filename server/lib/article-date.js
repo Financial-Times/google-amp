@@ -1,3 +1,4 @@
+'use strict';
 const oDate = require('o-date');
 
 module.exports = (timestamp, classname) => {

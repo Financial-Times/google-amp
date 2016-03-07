@@ -1,3 +1,4 @@
+'use strict';
 const Entities = require('html-entities').XmlEntities;
 const fetch = require('node-fetch');
 

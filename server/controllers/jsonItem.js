@@ -1,3 +1,4 @@
+'use strict';
 const getArticle = require('../lib/getArticle');
 
 module.exports = (req, res, next) => {
