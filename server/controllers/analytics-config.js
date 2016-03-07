@@ -37,6 +37,7 @@ module.exports = (req, res, next) => {
 			scroll_depth: '${percentageViewed}',
 			engaged_time: 'TOTAL_ENGAGED_TIME',
 			ampRequestCount: '${requestCount}',
+			ampPageViewId: '${pageViewId}',
 		},
 		device: {
 			dimensions: {
