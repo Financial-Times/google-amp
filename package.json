@@ -8,7 +8,8 @@
     "test": "npm run lint && scripts/test.sh",
     "postinstall": "scripts/postinstall.sh",
     "lint": "scripts/lint.sh",
-    "start": ". scripts/env.sh && nodemon --use-strict app.js"
+    "start": ". scripts/env.sh && nodemon --use-strict app.js",
+    "bench": "scripts/bench.sh"
   },
   "keywords": [
     "AMP",
@@ -50,11 +51,16 @@
     "node": "4.*.*"
   },
   "devDependencies": {
+    "@quarterto/gaussian": "^1.0.0",
+    "@quarterto/gaussian-percentile": "^1.0.0",
     "amp-validator-prebuilt": "^0.1.1",
     "errorhandler": "^1.4.3",
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.2",
     "lintspaces-cli": "^0.1.1",
-    "nodemon": "^1.8.1"
+    "lodash.padend": "^4.2.0",
+    "lodash.padstart": "^4.2.0",
+    "nodemon": "^1.8.1",
+    "prog-rock": "^1.2.1"
   }
 }

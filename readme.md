@@ -25,3 +25,8 @@ Tests
 ---
 
 To run the tests and linter locally, run `npm test`.
+
+Benchmarking
+------------
+
+Run `npm run bench`. This requires [Siege](https://www.joedog.org/siege-home/), which can be installed with `brew install siege`.

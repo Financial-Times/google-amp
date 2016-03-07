@@ -42,7 +42,7 @@ if(app.get('env') === 'production') {
 	ravenClient.patchGlobal(() => process.exit(1));
 }
 
-app.use(logger(app.get('env') === 'development' ? 'dev' : 'combined'));
+app.use(logger(process.env.LOG_FORMAT || (app.get('env') === 'development' ? 'dev' : 'combined')));
 app.use(cookieParser());
 
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
