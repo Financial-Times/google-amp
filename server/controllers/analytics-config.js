@@ -90,6 +90,8 @@ module.exports = (req, res, next) => {
 			standard: `${url}?spoor-id=${visitorIdentifier}&data=${JSON.stringify(spoor)}`,
 		},
 		triggers: {
+
+			// See: https://github.com/ampproject/amphtml/issues/1540
 			pageview: {
 				on: 'access-viewed',
 				request: 'standard',
