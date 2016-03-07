@@ -1,3 +1,4 @@
+'use strict';
 const api = require('next-ft-api-client');
 const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');

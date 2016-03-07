@@ -1,3 +1,4 @@
+'use strict';
 const errors = require('http-errors');
 
 const DEBUG = false;

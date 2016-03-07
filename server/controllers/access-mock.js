@@ -1,3 +1,5 @@
+'use strict';
+
 const intentionalDelay = 1000;
 
 module.exports = (req, res) => {

@@ -1,3 +1,4 @@
+'use strict';
 const getStreamUrl = require('./get-stream-url');
 
 module.exports = (article) => {

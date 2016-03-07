@@ -1,3 +1,4 @@
+'use strict';
 const handlebars = require('handlebars');
 const compileScss = require('./compile-scss');
 const fs = require('fs-promise');

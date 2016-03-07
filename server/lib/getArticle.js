@@ -1,3 +1,4 @@
+'use strict';
 const elasticSearchUrl = process.env.ELASTIC_SEARCH_URL;
 const signedFetch = require('signed-aws-es-fetch');
 const index = 'v3_api_v2';
