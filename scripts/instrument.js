@@ -2,6 +2,9 @@
 
 'use strict';
 
+const midna = require('midna');
+const fs = require('fs-promise');
+
 process.env.NODE_ENV = 'instrument';
 
 const wrapFetch = require('../server/lib/wrap-fetch');
@@ -14,7 +17,7 @@ ampPage.getAndRender(process.argv[2], {
 	alwaysFree: true,
 	relatedArticleDeduper: [process.argv[2]],
 }).then(
-	() => console.log(wrapFetch.log),
+	() => fs.writeFile(`fetch-svgs/${process.argv[2]}.svg`, midna(wrapFetch.log)),
 	err => {
 		console.error(err.stack || err.toString());
 		process.exit(1);
