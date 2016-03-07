@@ -61,6 +61,8 @@ module.exports = (req, res, next) => {
 		.catch(next);
 };
 
+module.exports.getAndRender = getAndRender;
+
 if(module === require.main) {
 	getAndRender(process.argv[2], {
 		production: false,
