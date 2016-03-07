@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 const gaussian = require('@quarterto/gaussian');
 const percentile = require('@quarterto/gaussian-percentile');
 const fs = require('fs');
