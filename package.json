@@ -6,10 +6,11 @@
   "main": "app.js",
   "scripts": {
     "test": "npm run lint && scripts/test.sh",
-    "postinstall": "scripts/postinstall.sh",
+    "postinstall": "scripts/postinstall.sh && scripts/stricthax.sh",
     "lint": "scripts/lint.sh",
     "start": ". scripts/env.sh && nodemon app.js",
-    "bench": "scripts/bench.sh"
+    "bench": "scripts/bench.sh",
+    "debug": ". scripts/env.sh && devtool app.js"
   },
   "keywords": [
     "AMP",
@@ -54,6 +55,7 @@
     "@quarterto/gaussian": "^1.0.0",
     "@quarterto/gaussian-percentile": "^1.0.0",
     "amp-validator-prebuilt": "^0.1.1",
+    "devtool": "^1.8.2",
     "errorhandler": "^1.4.3",
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.2",
