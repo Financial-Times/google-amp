@@ -1,3 +1,4 @@
+'use strict';
 const articleXsltTransform = require('../../bower_components/next-article/server/transforms/article-xslt');
 const bodyTransform = require('./body-transform');
 const dateTransform = require('./article-date');
