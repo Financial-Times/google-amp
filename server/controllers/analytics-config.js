@@ -30,6 +30,10 @@ module.exports = (req, res, next) => {
 			},
 			product: 'AMP',
 			url: '${canonicalUrl}',
+
+			// TODO: https://github.com/ampproject/amphtml/issues/2476
+			// barrier: 'NOT AUTHDATA(access)',
+
 			amp_url: '${ampdocUrl}',
 			amp_canonical_url: '${canonicalUrl}',
 			amp_source_url: 'SOURCE_URL',
@@ -87,11 +91,20 @@ module.exports = (req, res, next) => {
 		},
 		triggers: {
 			pageview: {
-				on: 'visible',
+				on: 'access-viewed',
 				request: 'standard',
 				vars: {
 					category: 'page',
 					action: 'view',
+				},
+			},
+
+			pageimpression: {
+				on: 'visible',
+				request: 'standard',
+				vars: {
+					category: 'page',
+					action: 'visible',
 				},
 			},
 
