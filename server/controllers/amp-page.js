@@ -1,3 +1,4 @@
+'use strict';
 const getArticle = require('../lib/getArticle');
 const addStoryPackage = require('../lib/related-content/story-package');
 const addMoreOns = require('../lib/related-content/more-ons');
