@@ -23,12 +23,17 @@ module.exports = (req, res, next) => {
 		category: '${category}',
 		action: '${action}',
 		context: {
+			root_id: 'ACCESS_READER_ID_${pageViewId}',
 			content: {
 				uuid: '${uuid}',
 				title: '${title}',
 			},
 			product: 'AMP',
 			url: '${canonicalUrl}',
+
+			// TODO: https://github.com/ampproject/amphtml/issues/2476
+			// barrier: '...',
+
 			amp_url: '${ampdocUrl}',
 			amp_canonical_url: '${canonicalUrl}',
 			amp_source_url: 'SOURCE_URL',
@@ -36,7 +41,10 @@ module.exports = (req, res, next) => {
 			referrer: '${documentReferrer}',
 			scroll_depth: '${percentageViewed}',
 			engaged_time: 'TOTAL_ENGAGED_TIME',
-			ampRequestCount: '${requestCount}',
+			amp_request_sequence: '${requestCount}',
+			amp_auth_access: 'AUTHDATA(access)',
+			amp_auth_debug: 'AUTHDATA(debug)',
+			amp_reader_id: 'ACCESS_READER_ID',
 		},
 		device: {
 			dimensions: {
@@ -57,13 +65,6 @@ module.exports = (req, res, next) => {
 		},
 		user: {
 			ft_session: 'AUTHDATA(session)',
-			amp_auth_access: 'AUTHDATA(access)',
-			amp_auth_debug: 'AUTHDATA(debug)',
-			amp_reader_id: 'ACCESS_READER_ID',
-
-			// When this key becomes populated in analytics, it signals that amp-access-analytics
-			// has been enabled.
-			amp_auth_ft_session: 'AUTHDATA(session)',
 		},
 		time: {
 			amp_timestamp: '${timestamp}',
@@ -89,12 +90,23 @@ module.exports = (req, res, next) => {
 			standard: `${url}?spoor-id=${visitorIdentifier}&data=${JSON.stringify(spoor)}`,
 		},
 		triggers: {
+
+			// See: https://github.com/ampproject/amphtml/issues/1540
 			pageview: {
-				on: 'visible',
+				on: 'access-viewed',
 				request: 'standard',
 				vars: {
 					category: 'page',
 					action: 'view',
+				},
+			},
+
+			pageimpression: {
+				on: 'visible',
+				request: 'standard',
+				vars: {
+					category: 'page',
+					action: 'visible',
 				},
 			},
 
