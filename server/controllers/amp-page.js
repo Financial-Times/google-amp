@@ -55,7 +55,7 @@ module.exports = (req, res, next) => {
 		accessMock: req.cookies.amp_access_mock,
 	})
 		.then(content => {
-			res.setHeader('cache-control', 'public, max-age=30');
+			res.setHeader('cache-control', 'public, max-age=30, no-transform');
 			res.send(content);
 		})
 		.catch(next);
