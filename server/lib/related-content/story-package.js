@@ -6,6 +6,7 @@ const getStreamUrl = require('../get-stream-url');
 
 const formatRelatedContent = (options, item) => {
 	const primaryTheme = (item.metadata || []).filter(metadatum => !!metadatum.primary)[0];
+	options._wrappedFetchGroup = `story-package-${item.id}`;
 
 	return getStreamUrl(primaryTheme, options)
 		// Ignore errors
@@ -24,7 +25,10 @@ const formatRelatedContent = (options, item) => {
 };
 
 module.exports = (article, options) => {
-	const getRelated = (article.storyPackage || []).map(related => getArticle(related.id));
+	const getRelated = (article.storyPackage || []).map(related => getArticle(related.id, {
+		_wrappedFetchGroup: `story-package-${related.id}`,
+	}));
+
 	return Promise.all(getRelated)
 		.catch(e => {
 			if(options.raven) {
