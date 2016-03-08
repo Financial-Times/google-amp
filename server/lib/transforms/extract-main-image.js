@@ -16,6 +16,6 @@ module.exports = $ => {
 
 	return {
 		mainImageHtml,
-		bodyHtml: $.html()
+		bodyHtml: $.html(),
 	};
-}
+};
