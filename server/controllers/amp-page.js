@@ -11,11 +11,9 @@ const liveAccessHost = 'amp-access-svc.memb.ft.com';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
-		.then(response => response._source ?
-			transformArticle(response._source, options) :
-			Promise.reject(new errors.NotFound())
-		)
+		.then(response => response._source ? response._source : Promise.reject(new errors.NotFound()))
 		.then(article => Promise.all([
+			transformArticle(article, options),
 			addStoryPackage(article, options),
 			addMoreOns(article, options),
 			addPrimaryTheme(article, options),
