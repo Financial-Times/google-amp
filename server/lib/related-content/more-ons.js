@@ -38,7 +38,7 @@ const addArticles = metadatum => apiSearch({
 		metadatum.error = e;
 	});
 
-const addStreamUrl = metadatum => getStreamUrl(metadatum)
+const addStreamUrl = (options, metadatum) => getStreamUrl(metadatum, options)
 	// Ignore errors
 	.catch(() => {})
 	.then(streamUrl => {
@@ -79,7 +79,7 @@ module.exports = (article, options) => {
 	const moreOns = article.metadata.filter(metadatum => metadatum.primary);
 
 	const promises = []
-		.concat(moreOns.map(addStreamUrl))
+		.concat(moreOns.map(addStreamUrl.bind(null, options)))
 		.concat(moreOns.map(addArticles));
 
 	return Promise.all(promises)
