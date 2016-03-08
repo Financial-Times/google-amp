@@ -1,17 +1,26 @@
 'use strict';
 
-const log = [];
-
-module.exports = (tag, fetch) => process.env.NODE_ENV !== 'instrument' ? fetch : function wrappedFetch(url, options) {
-	const label = url.filter ? url.filter[1] : url;
-	const item = {tag, label, start: process.hrtime(), group: options && options._wrappedFetchGroup};
-
-	return fetch.apply(null, arguments).then(r => {
-		item.end = process.hrtime();
-		item.length = process.hrtime(item.start);
-		log.push(item);
-		return r;
-	});
+const wrappers = {
+	instrument: require('@quarterto/instrument-fetch'),
+	cache: require('@quarterto/fetch-cache'),
 };
 
-module.exports.log = log;
+const defaults = require('lodash.defaults');
+
+const id = _ => _;
+
+module.exports = (fetch, options) => {
+	defaults(options, {
+		instrument: process.env.NODE_ENV === 'instrument',
+		cache: false,
+		getLabel: url => url.filter ? url.filter[1] : url,
+		minTTL: 7200,
+	});
+
+	return Object.keys(wrappers)
+		.reduce(
+			(wrapped, wrapperKey) => (options[wrapperKey] ? wrappers[wrapperKey] : id)(wrapped, options),
+			fetch
+		);
+};
+
