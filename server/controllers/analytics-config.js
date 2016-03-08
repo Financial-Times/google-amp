@@ -32,7 +32,7 @@ module.exports = (req, res, next) => {
 			url: '${canonicalUrl}',
 
 			// TODO: https://github.com/ampproject/amphtml/issues/2476
-			// barrier: 'NOT AUTHDATA(access)',
+			// barrier: '...',
 
 			amp_url: '${ampdocUrl}',
 			amp_canonical_url: '${canonicalUrl}',
