@@ -21,13 +21,13 @@ module.exports = function run(body, flags) {
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 	body = body.concat(copyrightNotice());
 
-	return [
+	const $ = cheerio.load(body, {decodeEntities: false});
+
+	return Promise.all([
 		externalImages,
 		trimmedLinks,
 		removeStyleAttributes,
-		extractMainImage, // must be last because it doesn't return cheerio
-	].reduce(
-		(promise$, transform) => promise$.then($ => transform($, flags)),
-		Promise.resolve(cheerio.load(body, {decodeEntities: false}))
-	);
+	].map(transform => transform($, flags)))
+		.then(() => $)
+		.then(extractMainImage);
 };
