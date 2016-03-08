@@ -4,10 +4,10 @@ const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');
 const getStreamUrl = require('../get-stream-url');
 
-const formatRelatedContent = (item) => {
+const formatRelatedContent = (options, item) => {
 	const primaryTheme = (item.metadata || []).filter(metadatum => !!metadatum.primary)[0];
 
-	return getStreamUrl(primaryTheme)
+	return getStreamUrl(primaryTheme, options)
 		// Ignore errors
 		.catch(() => {})
 		.then(streamUrl => ({
@@ -42,7 +42,7 @@ module.exports = (article, options) => {
 				options.relatedArticleDeduper.push(item.id);
 			});
 
-			return Promise.all(related.map(formatRelatedContent));
+			return Promise.all(related.map(formatRelatedContent.bind(null, options)));
 		})
 		.then(related => {
 			article.relatedContent = related;
