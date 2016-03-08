@@ -5,6 +5,7 @@ const addMoreOns = require('../lib/related-content/more-ons');
 const addPrimaryTheme = require('../lib/primary-theme');
 const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transformEsV3Item.js');
+const fetchSlideshows = require('../lib/fetch-slideshows.js');
 const errors = require('http-errors');
 
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
@@ -17,6 +18,7 @@ function getAndRender(uuid, options) {
 			addStoryPackage(article, options),
 			addMoreOns(article, options),
 			addPrimaryTheme(article, options),
+			fetchSlideshows(article, options),
 		]).then(() => article))
 		.then(data => {
 			data.AUTH_AUTHORIZATION_URL = options.accessMock ?

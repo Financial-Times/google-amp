@@ -16,7 +16,6 @@
 	<xsl:include href="./amp-links.xsl" />
 	<xsl:include href="next/pull-quotes.xsl" />
 	<xsl:include href="./amp-related-box.xsl" />
-	<xsl:include href="next/slideshow.xsl" />
 	<xsl:include href="next/subheaders.xsl" />
 	<xsl:include href="next/tables.xsl" />
 	<xsl:include href="next/toc.xsl" />
