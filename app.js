@@ -36,6 +36,7 @@ if(app.get('env') === 'production') {
 
 	app.use(raven.middleware.express.requestHandler(ravenClient));
 	app.use((req, res, next) => {
+		ravenClient.setExtraContext(raven.parsers.parseRequest(req));
 		req.raven = ravenClient;
 		next();
 	});
