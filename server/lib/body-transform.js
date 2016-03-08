@@ -19,8 +19,6 @@ function removeStyleAttributes($) {
 module.exports = function run(body, flags) {
 	body = replaceEllipses(body);
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
-	body = body.replace(/http:\/\/www\.ft\.com\/ig\//g, '/ig/');
-	body = body.replace(/http:\/\/ig\.ft\.com\//g, '/ig/');
 	body = body.concat(copyrightNotice());
 
 	return [
