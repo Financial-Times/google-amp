@@ -44,10 +44,10 @@ const getAuthors = data => {
 	return authors.length ? authors.join(', ') : (data.byline || '').replace(/^by\s+/i, '');
 };
 
-const getByline = data => {
+const getByline = (data, options) => {
 	const promises = data.metadata
 		.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
-		.map(author => getStreamUrl(author)
+		.map(author => getStreamUrl(author, options)
 			// Ignore errors
 			.catch(() => {})
 			.then(streamUrl => {
@@ -90,13 +90,13 @@ const getMainImage = data => {
 };
 
 module.exports = (data, options) => promiseAllObj({
-	template: getTemplate(options.precompiled),
-	partials: getPartials(options.precompiled),
-	css: getCss(options.precompiled),
+	template: getTemplate(options.production),
+	partials: getPartials(options.production),
+	css: getCss(options.production),
 	ftSvg: fs.readFile(`${staticPath}/ft-logo.svg`, 'utf8'),
 	nikkeiSvg: fs.readFile(`${staticPath}/nikkei-logo.svg`, 'utf8'),
 	description: data.summaries ? data.summaries[0] : '',
 	authorList: getAuthors(data),
-	byline: getByline(data),
+	byline: getByline(data, options),
 	mainImage: getMainImage(data),
 }).then(t => t.template(Object.assign(data, t)));

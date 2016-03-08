@@ -11,11 +11,9 @@ const liveAccessHost = 'amp-access-svc.memb.ft.com';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
-		.then(response => response._source ?
-			transformArticle(response._source, options) :
-			Promise.reject(new errors.NotFound())
-		)
+		.then(response => response._source ? response._source : Promise.reject(new errors.NotFound()))
 		.then(article => Promise.all([
+			transformArticle(article, options),
 			addStoryPackage(article, options),
 			addMoreOns(article, options),
 			addPrimaryTheme(article, options),
@@ -43,7 +41,7 @@ function getAndRender(uuid, options) {
 			data.accessMocked = !!options.accessMock;
 			return data;
 		})
-		.then(data => renderArticle(data, {precompiled: options.production}));
+		.then(data => renderArticle(data, options));
 }
 
 module.exports = (req, res, next) => {
@@ -51,6 +49,8 @@ module.exports = (req, res, next) => {
 		production: req.app.get('env') === 'production',
 		raven: req.raven,
 		host: req.get('host'),
+		ip: req.ip,
+		ua: req.get('User-Agent'),
 		relatedArticleDeduper: [req.params.uuid],
 		accessMock: req.cookies.amp_access_mock,
 	})
