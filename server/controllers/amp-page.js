@@ -1,3 +1,4 @@
+'use strict';
 const getArticle = require('../lib/getArticle');
 const addStoryPackage = require('../lib/related-content/story-package');
 const addMoreOns = require('../lib/related-content/more-ons');
@@ -59,6 +60,8 @@ module.exports = (req, res, next) => {
 		})
 		.catch(next);
 };
+
+module.exports.getAndRender = getAndRender;
 
 if(module === require.main) {
 	getAndRender(process.argv[2], {

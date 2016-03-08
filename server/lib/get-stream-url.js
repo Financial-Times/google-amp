@@ -1,4 +1,5 @@
-const fetch = require('node-fetch');
+'use strict';
+const fetch = require('./wrap-fetch.js')('get-stream-url', require('node-fetch'));
 
 module.exports = (metadatum) => {
 	const streamUrl = `http://www.ft.com/stream/${metadatum.taxonomy}Id/${metadatum.idV1}`;

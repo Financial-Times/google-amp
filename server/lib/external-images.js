@@ -1,5 +1,6 @@
+'use strict';
 const Entities = require('html-entities').XmlEntities;
-const fetch = require('node-fetch');
+const fetch = require('./wrap-fetch.js')('external-images', require('node-fetch'));
 
 module.exports = function externalImages($, options) {
 	const entities = new Entities();
