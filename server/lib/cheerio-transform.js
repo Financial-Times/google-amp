@@ -5,8 +5,6 @@ const replaceEllipses = require('./transforms/replace-ellipses');
 const trimmedLinks = require('../../bower_components/next-article/server/transforms/trimmed-links');
 const externalImages = require('./external-images');
 const copyrightNotice = require('./transforms/copyright-notice');
-const extractMainImage =
-	require('./transforms/extract-main-image');
 
 function removeStyleAttributes($) {
 	$('[style]').each(function eachStyle() {
@@ -28,6 +26,5 @@ module.exports = function run(body, flags) {
 		trimmedLinks,
 		removeStyleAttributes,
 	].map(transform => transform($, flags)))
-		.then(() => $)
-		.then(extractMainImage);
+		.then(() => $);
 };

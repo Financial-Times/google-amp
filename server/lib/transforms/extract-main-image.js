@@ -11,11 +11,6 @@ module.exports = $ => {
 			!$firstMainImage.prev().length &&
 			(!$firstMainImage.parent() || !$firstMainImage.parent().prev().length)
 	) {
-		mainImageHtml = $.html($firstMainImage.remove());
+		return $.html($firstMainImage.remove());
 	}
-
-	return {
-		mainImageHtml,
-		bodyHtml: $.html(),
-	};
 };

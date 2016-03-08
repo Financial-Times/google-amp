@@ -1,8 +1,9 @@
 'use strict';
 const articleXsltTransform = require('../../bower_components/next-article/server/transforms/article-xslt');
-const bodyTransform = require('./body-transform');
+const cheerioTransform = require('./cheerio-transform');
 const dateTransform = require('./article-date');
 const summaryTransform = require('./article-summary');
+const extractMainImage = require('./transforms/extract-main-image');
 
 function transformArticleBody(article, options) {
 	const xsltParams = {
@@ -21,13 +22,13 @@ function transformArticleBody(article, options) {
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams)
-		.then(articleBody => bodyTransform(articleBody, options));
+		.then(articleBody => cheerioTransform(articleBody, options));
 }
 
 module.exports = (contentItem, options) => transformArticleBody(contentItem, options)
-	.then(transformedContent => {
-		contentItem.htmlBody = transformedContent.bodyHtml;
-		contentItem.mainImageHtml = transformedContent.mainImageHtml;
+	.then(transformed$ => {
+		contentItem.mainImageHtml = extractMainImage(transformed$);
+		contentItem.htmlBody = transformed$.html();
 		contentItem.displayDate = dateTransform(contentItem.publishedDate, 'article-date');
 		contentItem.displaySummary = summaryTransform(contentItem);
 		return contentItem;
