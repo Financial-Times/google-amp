@@ -9,7 +9,7 @@ const extractMainImageAndToc =
 	require('../../bower_components/next-article/server/transforms/extract-main-image-and-toc');
 
 function removeStyleAttributes($) {
-	$('[style]').each(() => {
+	$('[style]').each(function eachStyle() {
 		$(this).removeAttr('style');
 	});
 
