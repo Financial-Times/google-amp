@@ -3,24 +3,6 @@ const articleXsltTransform = require('../../bower_components/next-article/server
 const bodyTransform = require('./body-transform');
 const dateTransform = require('./article-date');
 const summaryTransform = require('./article-summary');
-const cheerio = require('cheerio');
-
-function cheerioTransforms(transforms) {
-	return (article) => {
-		article.bodyHtml = transforms.reduce(
-			($, transform) => (transform($) || $),
-			cheerio.load(article.bodyHtml, {decodeEntities: false})
-		).html();
-
-		return article;
-	};
-}
-
-function removeStyleAttributes($) {
-	$('[style]').each(() => {
-		$(this).removeAttr('style');
-	});
-}
 
 function transformArticleBody(article, options) {
 	const xsltParams = {
@@ -39,8 +21,7 @@ function transformArticleBody(article, options) {
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams)
-		.then(articleBody => bodyTransform(articleBody, options))
-		.then(cheerioTransforms([removeStyleAttributes]));
+		.then(articleBody => bodyTransform(articleBody, options));
 }
 
 module.exports = (contentItem, options) => transformArticleBody(contentItem, options)
