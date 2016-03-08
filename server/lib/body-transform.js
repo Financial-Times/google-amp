@@ -5,8 +5,8 @@ const replaceEllipses = require('./transforms/replace-ellipses');
 const trimmedLinks = require('../../bower_components/next-article/server/transforms/trimmed-links');
 const externalImages = require('./external-images');
 const copyrightNotice = require('./transforms/copyright-notice');
-const extractMainImageAndToc =
-	require('../../bower_components/next-article/server/transforms/extract-main-image-and-toc');
+const extractMainImage =
+	require('./transforms/extract-main-image');
 
 function removeStyleAttributes($) {
 	$('[style]').each(function eachStyle() {
@@ -25,7 +25,7 @@ module.exports = function run(body, flags) {
 		externalImages,
 		trimmedLinks,
 		removeStyleAttributes,
-		extractMainImageAndToc, // must be last because it doesn't return cheerio
+		extractMainImage, // must be last because it doesn't return cheerio
 	].reduce(
 		(promise$, transform) => promise$.then($ => transform($, flags)),
 		Promise.resolve(cheerio.load(body, {decodeEntities: false}))
