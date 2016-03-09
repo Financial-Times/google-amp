@@ -8,7 +8,7 @@ set -e
 URLS=$(mktemp urls-XXXX)
 LOGPIPE=$(mktemp -u log-pipe-XXXX)
 mkfifo $LOGPIPE
-LOG=$(mktemp -u log-XXXX)
+LOG=$(mktemp log-XXXX)
 
 PORT=5001 LOG_FORMAT=":response-time[6] ms :url" node --use-strict app.js > $LOGPIPE &
 SERVER_PID=$!
