@@ -22,12 +22,12 @@ module.exports = function run(body, flags, adTargeting) {
 
 	const $ = cheerio.load(body, {decodeEntities: false});
 	const paragraph = $('p').eq(3);
-	paragraph.append(`
+	paragraph.after(`
 					<amp-ad width="300"
 						height="250"
 						type="doubleclick"
 						data-slot="${adTargeting.slot}"
-						json='{&#34;targeting&#34;:{&#34;pos&#34;: &#34;mpu&#34;}}'>
+						json="{&#34;targeting&#34;:{&#34;pos&#34;: &#34;mpu&#34;}}">
 						<div placeholder>
 								<b>Placeholder here!!!</b>
 						</div>
