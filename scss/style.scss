@@ -620,33 +620,15 @@ a:hover {
 	position: relative;
 }
 
-.slideshow__title-wrapper,
+.slideshow__title,
 .slideshow__caption {
 	background-color: rgba(51, 51, 51, 0.8);
 	color: #fff;
 }
 
-.slideshow__title-wrapper {
-	position: absolute;
-	left: 0;
-	right: 0;
-	height: 30px;
-	padding: 4px;
-	z-index: 1;
-
-	@include oGridRespondTo(M) {
-		height: 30px;
-		right: 25%;
-		padding: 10px;
-	}
-}
-
-.slideshow__title {
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	right: 10px;
-	bottom: 10px;
+.slideshow__title.slideshow__title {
+	@include oTypographySans(m);
+	padding: 10px;
 }
 
 .slideshow__caption {
@@ -659,7 +641,4 @@ a:hover {
 	line-height: 15px;
 	padding: 6px 10px;
 	min-height: 30px;
-}
-
-.slideshow__image {
 }

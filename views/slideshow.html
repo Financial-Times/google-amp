@@ -1,14 +1,11 @@
 <div class="slideshow">
-	{{#if title}}
-	<div class="slideshow__title-wrapper">
-		<amp-fit-text class="slideshow__title" layout="fill">{{title}}</amp-fit-text>
-	</div>
-	{{/if}}
+	{{#if title}}<h2 class="slideshow__title">{{title}}</h2>{{/if}}
 	<amp-carousel type="slides" loop layout="responsive" width="{{width}}" height="{{height}}">
 		{{#each slides}}
 		<div class="slideshow__slide">
 			<amp-img class="slideshow__image" src="https://h2.ft.com/image/v1/images/raw/{{url}}?source=amp&amp;fit=scale-down&amp;width=700" alt="{{alt}}" layout="responsive" width="{{width}}" height="{{height}}"></amp-img>
-			<div class="slideshow__caption">{{caption}}</div></div>
+			{{#if caption}}<div class="slideshow__caption">{{caption}}</div>{{/if}}
+		</div>
 		{{/each}}
 	</amp-carousel>
 </div>

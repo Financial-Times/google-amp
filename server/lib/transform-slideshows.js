@@ -24,6 +24,7 @@ module.exports = function run(article, options) {
 
 			if(!slideshow) return $(el).remove();
 
+			const hasCaption = slideshow.slides.some(slide => slide.caption);
 			const width = average(slideshow.slides, 'width');
 			const height = average(slideshow.slides, 'height');
 
@@ -31,7 +32,7 @@ module.exports = function run(article, options) {
 				slides: slideshow.slides,
 				title: slideshow.title,
 				width,
-				height: height + captionHeight,
+				height: height + (hasCaption ? captionHeight : 0),
 			});
 
 			return $(el).replaceWith($(templated));
