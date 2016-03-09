@@ -10,6 +10,9 @@ const viewsPath = path.resolve('views');
 const readTemplate = () => fs.readFile(`${viewsPath}/slideshow.html`, 'utf8').then(handlebars.compile);
 const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
 
+const average = (items, dimension) =>
+	items.reduce((previous, current) => previous + current[dimension], 0) / items.length;
+
 module.exports = function run(article, options) {
 	const $ = cheerio.load(article.htmlBody, {decodeEntities: false});
 
@@ -21,8 +24,8 @@ module.exports = function run(article, options) {
 
 			if(!slideshow) return $(el).remove();
 
-			const width = slideshow.slides.reduce((previous, current) => previous + current.width, 0) / slideshow.slides.length;
-			const height = slideshow.slides.reduce((previous, current) => previous + current.height, 0) / slideshow.slides.length;
+			const width = average(slideshow.slides, 'width');
+			const height = average(slideshow.slides, 'height');
 
 			const templated = template({
 				slides: slideshow.slides,
@@ -31,7 +34,7 @@ module.exports = function run(article, options) {
 				height: height + captionHeight,
 			});
 
-			$(el).replaceWith($(templated));
+			return $(el).replaceWith($(templated));
 		});
 
 		article.htmlBody = $.html();
