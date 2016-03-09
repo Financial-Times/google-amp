@@ -20,9 +20,9 @@ function getAndRender(uuid, options) {
 	return Promise.all([getArticle(uuid), getAdTargeting(uuid)])
 		.then(
 			response => {
-				targeting = response[1];
+			targeting = response[1];
 
-				return response[0]._source ? response[0]._source : Promise.reject(new errors.NotFound());
+			return response[0]._source ? response[0]._source : Promise.reject(new errors.NotFound());
 			},
 			err => (
 				console.log(err),
@@ -65,10 +65,9 @@ function getAndRender(uuid, options) {
 				`//${options.host}/amp-access-mock?type=logout&` :
 				`https://${liveAccessHost}/amp-logout?`;
 
-			article.SOURCE_PORT = options.production ? '' : ':5050';
+			article.SOURCE_PORT = options.production ? '' : ':5000';
 
-
-			article.KRUX_REMOTE = `//localhost:5050/static/remote.html`
+			article.KRUX_REMOTE = `//localhost:5000/static/remote.html`;
 
 			article.freeArticle = !!options.alwaysFree;
 			article.accessMocked = !!options.accessMock;
