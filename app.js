@@ -19,6 +19,21 @@ ftwebservice(app, {
 		audience: 'public',
 		primaryUrl: 'https://amp.ft.com',
 		serviceTier: 'bronze',
+		appVersion: process.env.HEROKU_RELEASE_VERSION,
+		contacts: [
+			{
+				name: 'Richard Still',
+				email: 'richard.still@ft.com',
+			},
+			{
+				name: 'Matthew Brennan',
+				email: 'matthew.brennan@ft.com',
+			},
+			{
+				name: 'George Crawford',
+				email: 'george.crawford@ft.com',
+			},
+		],
 	},
 });
 
