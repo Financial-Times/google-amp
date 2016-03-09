@@ -11,15 +11,15 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 ftwebservice(app, {
-    manifestPath: path.join(__dirname, 'package.json'),
-    about: {
-        "schemaVersion": 1,
-        "name": "google-amp",
-        "purpose": "Serve Google AMP pages",
-        "audience": "public",
-        "primaryUrl": "https://amp.ft.com",
-        "serviceTier": "bronze"
-    }
+	manifestPath: path.join(__dirname, 'package.json'),
+	about: {
+		schemaVersion: 1,
+		name: 'google-amp',
+		purpose: 'Serve Google AMP pages',
+		audience: 'public',
+		primaryUrl: 'https://amp.ft.com',
+		serviceTier: 'bronze',
+	},
 });
 
 let ravenClient;
