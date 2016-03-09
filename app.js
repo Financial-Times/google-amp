@@ -4,9 +4,23 @@ const logger = require('morgan');
 const raven = require('raven');
 const cookieParser = require('cookie-parser');
 const assertEnv = require('@quarterto/assert-env');
+const ftwebservice = require('express-ftwebservice');
+const path = require('path');
 
 const port = process.env.PORT || 5000;
 const app = express();
+
+ftwebservice(app, {
+    manifestPath: path.join(__dirname, 'package.json'),
+    about: {
+        "schemaVersion": 1,
+        "name": "google-amp",
+        "purpose": "Serve Google AMP pages",
+        "audience": "public",
+        "primaryUrl": "https://amp.ft.com",
+        "serviceTier": "bronze"
+    }
+});
 
 let ravenClient;
 
@@ -59,10 +73,6 @@ app.get('/_access_mock/clear', (req, res) => {
 	res.clearCookie('amp_access_mock');
 	res.status(200).send('Your amp_access_mock cookie was cleared. Please revisit the ' +
 		'<a href="javascript:history.back()">previous page</a>.');
-});
-
-app.get('/__gtg', (req, res) => {
-	res.status(200).send('OK');	
 });
 
 if(app.get('env') === 'development') {
