@@ -61,6 +61,10 @@ app.get('/_access_mock/clear', (req, res) => {
 		'<a href="javascript:history.back()">previous page</a>.');
 });
 
+app.get('/__gtg', (req, res) => {
+	res.status(200).send('OK');	
+});
+
 if(app.get('env') === 'development') {
 	app.all('/analytics', require('./server/controllers/analytics-proxy.js'));
 	app.use(require('errorhandler')());
