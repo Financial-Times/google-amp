@@ -5,7 +5,7 @@ const dateTransform = require('./article-date');
 const summaryTransform = require('./article-summary');
 const extractMainImage = require('./transforms/extract-main-image');
 
-function transformArticleBody(article, options) {
+function transformArticleBody(article, options, targeting) {
 	const xsltParams = {
 		id: article.id,
 		webUrl: article.webUrl,
@@ -22,10 +22,10 @@ function transformArticleBody(article, options) {
 	};
 
 	return articleXsltTransform(article.bodyXML, 'main', xsltParams)
-		.then(articleBody => cheerioTransform(articleBody, options));
+		.then(articleBody => cheerioTransform(articleBody, options, targeting));
 }
 
-module.exports = (contentItem, options) => transformArticleBody(contentItem, options)
+module.exports = (contentItem, options, targeting) => transformArticleBody(contentItem, options, targeting)
 	.then(transformed$ => {
 		contentItem.mainImageHtml = extractMainImage(transformed$);
 		contentItem.htmlBody = transformed$.html();

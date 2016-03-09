@@ -5,7 +5,7 @@
 		<title>{{title}}</title>
 		<link rel="canonical" href="{{webUrl}}" >
 		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-		<meta name="amp-3p-iframe-src" content="https://cdn.krxd.net/amp/remote.html">
+		<meta name="amp-3p-iframe-src" content="{{KRUX_REMOTE}}">
 		<style amp-custom>
 		{{{css}}}
 		</style>
@@ -123,15 +123,7 @@
 						<h2 class="article-standfirst">{{displaySummary}}</h2>
 						{{/if}}
 
-						<amp-ad width="300"
-							height="250"
-							type="doubleclick"
-							data-slot="/5887/ft.com/world"
-							json='{"targeting":{"pos": "mpu"}}'>
-							<div placeholder>
-								<b>Placeholder here!!!</b>
-							</div>
-						</amp-ad>
+
 
 						<div amp-access="access OR {{freeArticle}}" amp-access-hide>
 							{{{mainImageHtml}}}

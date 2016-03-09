@@ -1,5 +1,6 @@
 'use strict';
 const getArticle = require('../lib/get-article');
+const getAdTargeting = require('../lib/getAdTargeting');
 const addStoryPackage = require('../lib/related-content/story-package');
 const addMoreOns = require('../lib/related-content/more-ons');
 const addPrimaryTheme = require('../lib/primary-theme');
@@ -15,9 +16,14 @@ const lightSignupProduct = 'AMP';
 const lightSignupMailinglist = 'google-amp';
 
 function getAndRender(uuid, options) {
-	return getArticle(uuid)
+	let targeting = null;
+	return Promise.all([getArticle(uuid), getAdTargeting(uuid)])
 		.then(
-			response => response._source ? response._source : Promise.reject(new errors.NotFound()),
+			response => {
+				targeting = response[1];
+
+				return response[0]._source ? response[0]._source : Promise.reject(new errors.NotFound());
+			},
 			err => (
 				console.log(err),
 				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
@@ -27,10 +33,10 @@ function getAndRender(uuid, options) {
 		// First phase: network-dependent fetches and transforms in parallel
 		.then(article => Promise.all(
 			[
-			transformArticle(article, options),
+			transformArticle(article, options, targeting),
 			addStoryPackage(article, options),
 			addMoreOns(article, options),
-			addPrimaryTheme(article, options),
+			addPrimaryTheme(article, options)
 				fetchSlideshows(article, options),
 			])
 
@@ -59,13 +65,14 @@ function getAndRender(uuid, options) {
 				`//${options.host}/amp-access-mock?type=logout&` :
 				`https://${liveAccessHost}/amp-logout?`;
 
-			article.SOURCE_PORT = options.production ? '' : ':5000';
+			article.SOURCE_PORT = options.production ? '' : ':5050';
 
 
-			article.KRUX_REMOTE = `//${options.host}/static/remote.html`
+			article.KRUX_REMOTE = `//localhost:5050/static/remote.html`
 
 			article.freeArticle = !!options.alwaysFree;
 			article.accessMocked = !!options.accessMock;
+			article.adTargeting = targeting;
 			return article;
 		})
 		.then(article => renderArticle(article, options));

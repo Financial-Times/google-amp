@@ -10,7 +10,7 @@ const path = require('path');
 const os = require('os');
 const pkg = require('./package.json');
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5050;
 const app = express();
 
 ftwebservice(app, {
