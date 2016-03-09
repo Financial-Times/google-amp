@@ -6,6 +6,7 @@ const addPrimaryTheme = require('../lib/primary-theme');
 const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transformEsV3Item.js');
 const fetchSlideshows = require('../lib/fetch-slideshows.js');
+const transformSlideshows = require('../lib/transform-slideshows.js');
 const errors = require('http-errors');
 
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
@@ -13,37 +14,49 @@ const liveAccessHost = 'amp-access-svc.memb.ft.com';
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
 		.then(response => response._source ? response._source : Promise.reject(new errors.NotFound()))
-		.then(article => Promise.all([
-			transformArticle(article, options),
-			addStoryPackage(article, options),
-			addMoreOns(article, options),
-			addPrimaryTheme(article, options),
-			fetchSlideshows(article, options),
-		]).then(() => article))
-		.then(data => {
-			data.AUTH_AUTHORIZATION_URL = options.accessMock ?
+
+		// First phase: network-dependent fetches and transforms in parallel
+		.then(article => Promise.all(
+			[
+				transformArticle(article, options),
+				addStoryPackage(article, options),
+				addMoreOns(article, options),
+				addPrimaryTheme(article, options),
+				fetchSlideshows(article, options),
+			])
+
+			// Second phase: transforms which rely on first phase fetches
+			.then(() => Promise.all([
+				transformSlideshows(article, options),
+			])
+
+			// Return the article
+			.then(() => article))
+		)
+		.then(article => {
+			article.AUTH_AUTHORIZATION_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=access&` :
 				`https://${liveAccessHost}/amp-access?`;
 
-			data.AUTH_PINGBACK_URL = options.accessMock ?
+			article.AUTH_PINGBACK_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=pingback&` :
 				`https://${liveAccessHost}/amp-pingback?`;
 
-			data.AUTH_LOGIN_URL = options.accessMock ?
+			article.AUTH_LOGIN_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=login&` :
 				'https://accounts.ft.com/login?';
 
-			data.AUTH_LOGOUT_URL = options.accessMock ?
+			article.AUTH_LOGOUT_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=logout&` :
 				`https://${liveAccessHost}/amp-logout?`;
 
-			data.SOURCE_PORT = options.production ? '' : ':5000';
+			article.SOURCE_PORT = options.production ? '' : ':5000';
 
-			data.freeArticle = !!options.alwaysFree;
-			data.accessMocked = !!options.accessMock;
-			return data;
+			article.freeArticle = !!options.alwaysFree;
+			article.accessMocked = !!options.accessMock;
+			return article;
 		})
-		.then(data => renderArticle(data, options));
+		.then(article => renderArticle(article, options));
 }
 
 module.exports = (req, res, next) => {
