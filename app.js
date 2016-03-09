@@ -77,6 +77,8 @@ if(app.get('env') === 'production') {
 
 app.use(logger(process.env.LOG_FORMAT || (app.get('env') === 'development' ? 'dev' : 'combined')));
 app.use(cookieParser());
+app.use('/static', express.static('static'));
+
 
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/json-item.js'));

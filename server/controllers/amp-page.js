@@ -27,10 +27,10 @@ function getAndRender(uuid, options) {
 		// First phase: network-dependent fetches and transforms in parallel
 		.then(article => Promise.all(
 			[
-				transformArticle(article, options),
-				addStoryPackage(article, options),
-				addMoreOns(article, options),
-				addPrimaryTheme(article, options),
+			transformArticle(article, options),
+			addStoryPackage(article, options),
+			addMoreOns(article, options),
+			addPrimaryTheme(article, options),
 				fetchSlideshows(article, options),
 			])
 
@@ -60,6 +60,9 @@ function getAndRender(uuid, options) {
 				`https://${liveAccessHost}/amp-logout?`;
 
 			article.SOURCE_PORT = options.production ? '' : ':5000';
+
+
+			article.KRUX_REMOTE = `//${options.host}/static/remote.html`
 
 			article.freeArticle = !!options.alwaysFree;
 			article.accessMocked = !!options.accessMock;
