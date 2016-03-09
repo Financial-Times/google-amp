@@ -36,7 +36,7 @@ function getAndRender(uuid, options) {
 			transformArticle(article, options, targeting),
 			addStoryPackage(article, options),
 			addMoreOns(article, options),
-			addPrimaryTheme(article, options)
+			addPrimaryTheme(article, options),
 				fetchSlideshows(article, options),
 			])
 
@@ -67,7 +67,7 @@ function getAndRender(uuid, options) {
 
 			article.SOURCE_PORT = options.production ? '' : ':5000';
 
-			article.KRUX_REMOTE = `//localhost:5000/static/remote.html`;
+			article.KRUX_REMOTE = '//localhost:5000/static/remote.html';
 
 			article.freeArticle = !!options.alwaysFree;
 			article.accessMocked = !!options.accessMock;
