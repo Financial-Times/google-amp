@@ -13,6 +13,6 @@ module.exports = (metadatum, options) => {
 		headers['true-client-ip'] = options.ip;
 	}
 
-	return fetchHead(streamUrl, {headers})
+	return fetchHead(streamUrl, {headers, _wrappedFetchGroup: options._wrappedFetchGroup})
 		.then(res => res.status >= 200 && res.status < 400 && streamUrl);
 };
