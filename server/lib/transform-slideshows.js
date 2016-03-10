@@ -18,19 +18,21 @@ module.exports = function run(article, options) {
 
 	return getTemplate(options.production)
 	.then(template => {
-		$('ft-slideshow').map((index, el) => {
+		$('ft-slideshow').map((i, el) => {
 			const uuid = el.attribs['data-uuid'];
 			const slideshow = article.slideshows[uuid];
 
 			if(!slideshow) return $(el).remove();
 
-			const hasCaption = slideshow.slides.some(slide => slide.caption);
-			const width = average(slideshow.slides, 'width');
-			const height = average(slideshow.slides, 'height');
+			const slides = slideshow.slides.map((slide, index) => Object.assign(slide, {index}));
+			const hasCaption = slides.some(slide => slide.caption);
+			const width = average(slides, 'width');
+			const height = average(slides, 'height');
 
 			const templated = template({
-				slides: slideshow.slides,
 				title: slideshow.title,
+				uuid,
+				slides,
 				width,
 				height: height + (hasCaption ? captionHeight : 0),
 			});
