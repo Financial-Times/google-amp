@@ -33,6 +33,7 @@
     "cssnano": "^3.5.2",
     "express": "^4.13.3",
     "fetchres": "^1.5.1",
+    "express-ftwebservice": "^2.1.2",
     "forever": "^0.15.1",
     "fs-promise": "^0.4.1",
     "glob": "^7.0.0",
