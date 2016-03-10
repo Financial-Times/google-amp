@@ -23,4 +23,3 @@ module.exports = (fetch, options) => {
 			fetch
 		);
 };
-
