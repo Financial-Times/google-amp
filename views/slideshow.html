@@ -6,7 +6,7 @@
 			<amp-img src="https://h2.ft.com/image/v1/images/raw/{{url}}?source=amp" alt="{{alt}}" layout="responsive" width="{{width}}" height="{{height}}" on="tap:lightbox" role="button" tabindex="0"{{#if caption}} aria-describedby="{{uuid}}_{{index}}"{{/if}}></amp-img>
 			{{#if caption}}
 			<div class="slideshow__caption">
-				<amp-fit-text layout="fixed-height" height="30" min-font-size="14" max-font-size="14">
+				<amp-fit-text layout="fixed-height" height="30" min-font-size="16" max-font-size="16">
 					<span id="{{uuid}}_{{index}}">{{caption}}</span>
 				</amp-fit-text>
 			</div>
