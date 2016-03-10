@@ -28,7 +28,7 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 	@return $px * 100vh / $vh;
 }
 
-@mixin responsiveType($size, $min: 14px, $max: 0) {
+@mixin responsiveType($size, $min: 17px, $max: 0) {
 	font-size: $size;
 	$min-size: $min + ($size / 1vh);
 	$max-size: $max + ($size / 1vh);
