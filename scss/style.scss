@@ -28,10 +28,10 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 	@return $px * 100vh / $vh;
 }
 
-@mixin responsiveType($size, $min: 14px, $max: 0) {
+@mixin responsiveType($size, $min: 20px, $max: 50px) {
 	font-size: $size;
-	$min-size: $min + ($size / 1vh);
-	$max-size: $max + ($size / 1vh);
+	$min-size: ($size - 3vh) / 0.5vh + $min;
+	$max-size: max($min-size, $max);
 
 	@if $min != 0 {
 		@media (max-height: pxAndVhToViewport($size, $min-size)) {
