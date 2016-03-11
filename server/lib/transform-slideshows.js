@@ -13,33 +13,39 @@ const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
 const average = (items, dimension) =>
 	items.reduce((previous, current) => previous + current[dimension], 0) / items.length;
 
-module.exports = function run(article, options) {
-	const $ = cheerio.load(article.htmlBody, {decodeEntities: false});
+const transform = (html, slideshows, template) => {
+	const $ = cheerio.load(html, {decodeEntities: false});
 
-	return getTemplate(options.production)
-	.then(template => {
-		$('ft-slideshow').map((i, el) => {
-			const uuid = el.attribs['data-uuid'];
-			const slideshow = article.slideshows[uuid];
+	$('ft-slideshow').map((i, el) => {
+		const uuid = el.attribs['data-uuid'];
+		const slideshow = slideshows[uuid];
 
-			if(!slideshow) return $(el).remove();
+		if(!slideshow) return $(el).remove();
 
-			const slides = slideshow.slides.map((slide, index) => Object.assign(slide, {index}));
-			const hasCaption = slides.some(slide => slide.caption);
-			const width = average(slides, 'width');
-			const height = average(slides, 'height');
+		const slides = slideshow.slides.map((slide, index) => Object.assign(slide, {index}));
+		const hasCaption = slides.some(slide => slide.caption);
+		const width = average(slides, 'width');
+		const height = average(slides, 'height');
 
-			const templated = template({
-				title: slideshow.title,
-				uuid,
-				slides,
-				width,
-				height: height + (hasCaption ? captionHeight : 0),
-			});
-
-			return $(el).replaceWith($(templated));
+		const templated = template({
+			title: slideshow.title,
+			uuid,
+			slides,
+			width,
+			height: height + (hasCaption ? captionHeight : 0),
 		});
 
-		article.htmlBody = $.html();
+		return $(el).replaceWith($(templated));
+	});
+
+	return $.html();
+};
+
+module.exports = function run(article, options) {
+	return getTemplate(options.production)
+	.then(template => {
+		['htmlBody', 'mainImageHtml'].forEach(block => {
+			if(article[block]) article[block] = transform(article[block], article.slideshows, template);
+		});
 	});
 };

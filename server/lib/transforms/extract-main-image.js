@@ -2,7 +2,7 @@
 
 module.exports = $ => {
 	// find image in the body
-	const $firstMainImage = $('figure.article-image--full, figure.article-image--center').eq(0);
+	const $firstMainImage = $('figure.article-image--full, figure.article-image--center, ft-slideshow').eq(0);
 
 	// check that it is the first element in the body
 	if(
