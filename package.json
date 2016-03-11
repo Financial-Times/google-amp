@@ -34,6 +34,7 @@
     "cookie-parser": "^1.4.1",
     "cssnano": "^3.5.2",
     "express": "^4.13.3",
+    "express-ftwebservice": "^2.1.2",
     "forever": "^0.15.1",
     "fs-promise": "^0.4.1",
     "glob": "^7.0.0",
