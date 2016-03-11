@@ -24,7 +24,10 @@ const fetchSlideshow = uuid => fetch(`https://api.ft.com/content/items/v1/${uuid
 .catch(e => Promise.reject(Error(`Failed to fetch slideshow for UUID ${uuid}. Error: [${e.toString()}]`)));
 
 // Run just the slideshow transform to get predictable XML to match with regex
-module.exports = (article, options) => articleXsltTransform(article.bodyXML, 'slideshow-only', {})
+module.exports = (article, options) => {
+	article.slideshows = {};
+
+	return articleXsltTransform(article.bodyXML, 'slideshow-only', {})
 	.then(bodyXML => {
 		const uuidMatch = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 		const regex = new RegExp(`<ft-slideshow data-uuid="(${uuidMatch})"></ft-slideshow>`, 'g');
@@ -38,10 +41,10 @@ module.exports = (article, options) => articleXsltTransform(article.bodyXML, 'sl
 
 		return Promise.all(promises)
 		.then(res => {
-			article.slideshows = {};
 			res.forEach(slideshow => {
 				article.slideshows[slideshow.uuid] = slideshow;
 			});
 		})
 		.catch(e => options.raven && options.raven.captureException(e) || console.log(e));
 	});
+};
