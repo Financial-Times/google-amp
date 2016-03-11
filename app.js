@@ -19,7 +19,7 @@ ftwebservice(app, {
 		audience: 'public',
 		primaryUrl: 'https://amp.ft.com',
 		serviceTier: 'bronze',
-		appVersion: process.env.HEROKU_RELEASE_VERSION,
+		appVersion: process.env.HEROKU_SLUG_COMMIT,
 		contacts: [
 			{
 				name: 'Richard Still',
