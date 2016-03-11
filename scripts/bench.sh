@@ -6,14 +6,20 @@
 set -e
 
 URLS=$(mktemp urls-XXXX)
+LOGPIPE=$(mktemp -u log-pipe-XXXX)
+mkfifo $LOGPIPE
 LOG=$(mktemp log-XXXX)
-PORT=5001 LOG_FORMAT=":response-time[6] ms :url" node --use-strict app.js | tee $LOG | prog-rock 1001 &
-PID=$!
+
+PORT=5001 LOG_FORMAT=":response-time[6] ms :url" node --use-strict app.js > $LOGPIPE &
+SERVER_PID=$!
+
+tee $LOG < $LOGPIPE | prog-rock 1001 &
+PROG_PID=$!
 
 cleanup() {
+	kill $SERVER_PID
 	./scripts/analyse-log.js $LOG
-	rm -f $LOG $URLS
-	kill $PID
+	rm -f $LOG $LOGPIPE $URLS
 }
 
 trap cleanup EXIT
@@ -25,3 +31,4 @@ for UUID in "${TEST_UUIDS[@]}"; do
 done > $URLS
 
 siege -f $URLS -r 100 -c 10 > /dev/null 2>&1
+kill $PROG_PID
