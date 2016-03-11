@@ -47,6 +47,7 @@ if(app.get('env') === 'production') {
 		'BRIGHTCOVE_PLAYER_ID',
 		'ELASTIC_SEARCH_URL',
 		'SPOOR_API_KEY',
+		'API_V1_KEY',
 		'SENTRY_DSN',
 	]);
 } else {
@@ -57,6 +58,7 @@ if(app.get('env') === 'production') {
 		'BRIGHTCOVE_PLAYER_ID',
 		'ELASTIC_SEARCH_URL',
 		'SPOOR_API_KEY',
+		'API_V1_KEY',
 	]);
 }
 
