@@ -1,5 +1,7 @@
 'use strict';
-const fetchHead = require('./wrap-fetch.js')('get-stream-url', require('@quarterto/fetch-head'));
+const fetchHead = require('./wrap-fetch.js')(require('@quarterto/fetch-head'), {
+	tag: 'get-stream-url',
+});
 
 module.exports = (metadatum, options) => {
 	const streamUrl = `http://www.ft.com/stream/${metadatum.taxonomy}Id/${metadatum.idV1}`;

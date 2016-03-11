@@ -5,7 +5,9 @@ const sanitizeImage = require('../sanitize-image');
 const moreOnCount = 5;
 const getStreamUrl = require('../get-stream-url');
 
-const apiSearch = require('../wrap-fetch')('api-search', api.search);
+const apiSearch = require('../wrap-fetch')(api.search, {
+	tag: 'api-search',
+});
 
 const addArticles = metadatum => apiSearch({
 	filter: ['metadata.idV1', metadatum.idV1],
