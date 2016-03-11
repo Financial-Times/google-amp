@@ -1,7 +1,9 @@
 'use strict';
 
 const articleXsltTransform = require('../../bower_components/next-article/server/transforms/article-xslt');
-const fetch = require('./wrap-fetch.js')('slideshows', require('node-fetch'));
+const fetch = require('./wrap-fetch.js')(require('node-fetch'), {
+	tag: 'slideshows',
+});
 const fetchres = require('fetchres');
 
 const fetchSlideshow = uuid => fetch(`https://api.ft.com/content/items/v1/${uuid}?apiKey=${process.env.API_V1_KEY}`)
