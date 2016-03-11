@@ -619,6 +619,12 @@ a:hover {
 	background: black;
 	border: 1px solid black;
 	position: relative;
+
+	amp-carousel {
+		@media (orientation: landscape) {
+			max-height: 100vh;
+		}
+	}
 }
 
 .slideshow__title,
