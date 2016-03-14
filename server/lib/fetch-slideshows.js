@@ -5,6 +5,8 @@ const fetch = require('./wrap-fetch.js')(require('node-fetch'), {
 	tag: 'slideshows',
 });
 const fetchres = require('fetchres');
+const reportError = require('./report-error');
+const Warning = require('./warning');
 
 const fetchSlideshow = uuid => fetch(`https://api.ft.com/content/items/v1/${uuid}?apiKey=${process.env.API_V1_KEY}`)
 .then(fetchres.json)
@@ -23,7 +25,7 @@ const fetchSlideshow = uuid => fetch(`https://api.ft.com/content/items/v1/${uuid
 
 	throw Error(`No slideshow found in assets for UUID ${uuid}`);
 })
-.catch(e => Promise.reject(Error(`Failed to fetch slideshow for UUID ${uuid}. Error: [${e.toString()}]`)));
+.catch(e => Promise.reject(new Warning(`Failed to fetch slideshow for UUID ${uuid}. Error: [${e.toString()}]`)));
 
 // Run just the slideshow transform to get predictable XML to match with regex
 module.exports = (article, options) => {
@@ -42,11 +44,11 @@ module.exports = (article, options) => {
 		}
 
 		return Promise.all(promises)
-		.then(res => {
-			res.forEach(slideshow => {
-				article.slideshows[slideshow.uuid] = slideshow;
-			});
-		})
-		.catch(e => options.raven && options.raven.captureException(e) || console.log(e));
+			.then(res => {
+				res.forEach(slideshow => {
+					article.slideshows[slideshow.uuid] = slideshow;
+				});
+			})
+			.catch(e => reportError(options.raven, e));
 	});
 };
