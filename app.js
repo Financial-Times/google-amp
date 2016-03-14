@@ -40,38 +40,36 @@ ftwebservice(app, {
 let ravenClient;
 
 if(app.get('env') === 'production') {
-	assertEnv([
-		'AWS_ACCESS_KEY',
-		'AWS_SECRET_ACCESS_KEY',
-		'BRIGHTCOVE_ACCOUNT_ID',
-		'BRIGHTCOVE_PLAYER_ID',
-		'ELASTIC_SEARCH_URL',
-		'SPOOR_API_KEY',
-		'API_V1_KEY',
-		'SENTRY_DSN',
-	]);
-} else {
-	assertEnv([
-		'AWS_ACCESS_KEY',
-		'AWS_SECRET_ACCESS_KEY',
-		'BRIGHTCOVE_ACCOUNT_ID',
-		'BRIGHTCOVE_PLAYER_ID',
-		'ELASTIC_SEARCH_URL',
-		'SPOOR_API_KEY',
-		'API_V1_KEY',
-	]);
+	assertEnv(['SENTRY_DSN']);
+	ravenClient = new raven.Client(process.env.SENTRY_DSN);
+	ravenClient.setExtraContext({env: process.env});
+	ravenClient.patchGlobal(() => process.exit(1));
+}
+
+assertEnv([
+	'AWS_ACCESS_KEY',
+	'AWS_SECRET_ACCESS_KEY',
+	'ELASTIC_SEARCH_URL',
+]);
+
+const warnEnv = assertEnv.warn([
+	'BRIGHTCOVE_ACCOUNT_ID',
+	'BRIGHTCOVE_PLAYER_ID',
+	'SPOOR_API_KEY',
+	'API_KEY_V1',
+]);
+
+if(warnEnv) {
+	ravenClient.captureMessage(warnEnv, {level: 'warning'});
 }
 
 if(app.get('env') === 'production') {
-	ravenClient = new raven.Client(process.env.SENTRY_DSN);
-
 	app.use(raven.middleware.express.requestHandler(ravenClient));
 	app.use((req, res, next) => {
 		ravenClient.setExtraContext(raven.parsers.parseRequest(req));
 		req.raven = ravenClient;
 		next();
 	});
-	ravenClient.patchGlobal(() => process.exit(1));
 }
 
 app.use(logger(process.env.LOG_FORMAT || (app.get('env') === 'development' ? 'dev' : 'combined')));
