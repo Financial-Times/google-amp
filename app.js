@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const assertEnv = require('@quarterto/assert-env');
 const ftwebservice = require('express-ftwebservice');
 const path = require('path');
+const os = require('os');
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -43,6 +44,7 @@ if(app.get('env') === 'production') {
 	assertEnv(['SENTRY_DSN']);
 	ravenClient = new raven.Client(process.env.SENTRY_DSN);
 	ravenClient.setExtraContext({env: process.env});
+	ravenClient.setTagsContext({server_name: process.env.HEROKU_APP_NAME || os.hostname()})
 	ravenClient.patchGlobal(() => process.exit(1));
 }
 
