@@ -44,7 +44,7 @@ if(app.get('env') === 'production') {
 	assertEnv(['SENTRY_DSN']);
 	ravenClient = new raven.Client(process.env.SENTRY_DSN);
 	ravenClient.setExtraContext({env: process.env});
-	ravenClient.setTagsContext({server_name: process.env.HEROKU_APP_NAME || os.hostname()})
+	ravenClient.setTagsContext({server_name: process.env.HEROKU_APP_NAME || os.hostname()});
 	ravenClient.patchGlobal(() => process.exit(1));
 }
 
