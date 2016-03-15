@@ -3,6 +3,33 @@ const Entities = require('html-entities').XmlEntities;
 const fetch = require('./wrap-fetch.js')(require('node-fetch'), {
 	tag: 'external-images',
 });
+const fetchres = require('fetchres');
+const statusCodes = require('http').STATUS_CODES;
+const reportError = require('./report-error');
+const Warning = require('./warning');
+
+function getWidthAndRatio(metaUrl, options) {
+	return fetch(metaUrl)
+		.then(fetchres.json)
+		.catch(err => {
+			if(fetchres.originatedError(err)) {
+				return Promise.reject(
+					new Warning(
+						`Failed to get image metadata for ${metaUrl}. ${err.message}: ${statusCodes[err.message]}`
+					)
+				);
+			}
+
+			return Promise.reject(err);
+		})
+		.then(
+			meta => Object.assign(meta, {ratio: meta.height / meta.width}),
+			(e) => {
+				reportError(options.raven, e, {extra: {metaUrl}});
+				return {width: 600, ratio: 4 / 7}; // discard error and use fallback dimensions
+			}
+		);
+}
 
 module.exports = function externalImages($, options) {
 	const entities = new Entities();
@@ -23,21 +50,8 @@ module.exports = function externalImages($, options) {
 			$el.attr('src', imageSrcEncoded);
 
 			const metaUrl = entities.decode(imageSrcEncoded).replace('raw', 'metadata');
-			return fetch(metaUrl)
-				.then(response => response.ok ?
-					response :
-					Promise.reject(Error(
-						`Failed to get image metadata for ${metaUrl}.` +
-						` ${response.status}: ${response.statusText}`)
-					))
-				.then(response => response.json())
-				.then(
-					meta => Object.assign(meta, {ratio: meta.height / meta.width}),
-					(e) => (
-						options.raven && options.raven.captureException(e),
-						{width: 600, ratio: 4 / 7} // discard error and use fallback dimensions
-					)
-				).then(meta => {
+			return getWidthAndRatio(metaUrl, options)
+				.then(meta => {
 					const width = Math.min(600, meta.width);
 					const height = width * meta.ratio;
 

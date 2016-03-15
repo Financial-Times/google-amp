@@ -33,7 +33,7 @@ module.exports = (article, options) => {
 		.catch(e => {
 			if(options.raven) {
 				options.raven.captureMessage('Story Package API call failed', {
-					level: 'error',
+					level: 'warning',
 					extra: {e},
 				});
 			}

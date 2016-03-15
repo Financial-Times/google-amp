@@ -91,7 +91,7 @@ module.exports = (article, options) => {
 					if(moreOn.error) {
 						if(options.raven) {
 							options.raven.captureMessage('More-Ons API call failed', {
-								level: 'error',
+								level: 'warning',
 								extra: {moreOn},
 							});
 						}
