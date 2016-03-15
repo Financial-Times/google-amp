@@ -36,6 +36,9 @@ ftwebservice(app, {
 			},
 		],
 	},
+	healthCheck: () => Promise.all([
+		require('./server/health/elastic-search'),
+	].map(check => check())),
 });
 
 let ravenClient;
