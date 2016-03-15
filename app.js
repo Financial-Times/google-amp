@@ -62,7 +62,11 @@ const warnEnv = assertEnv.warn([
 ]);
 
 if(warnEnv) {
-	ravenClient.captureMessage(warnEnv, {level: 'warning'});
+	if(ravenClient) {
+		ravenClient.captureMessage(warnEnv, {level: 'warning'});
+	} else {
+		console.warn('Warning:', warnEnv);
+	}
 }
 
 if(app.get('env') === 'production') {
