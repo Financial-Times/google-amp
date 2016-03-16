@@ -8,12 +8,16 @@ const transformArticle = require('../lib/transformEsV3Item.js');
 const fetchSlideshows = require('../lib/fetch-slideshows.js');
 const transformSlideshows = require('../lib/transform-slideshows.js');
 const errors = require('http-errors');
+const fetchres = require('fetchres');
 
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
-		.then(response => response._source ? response._source : Promise.reject(new errors.NotFound()))
+		.then(
+			response => response._source ? response._source : Promise.reject(new errors.NotFound()),
+			err => (console.log(err), Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err))
+		)
 
 		// First phase: network-dependent fetches and transforms in parallel
 		.then(article => Promise.all(
