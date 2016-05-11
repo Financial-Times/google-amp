@@ -64,7 +64,7 @@ const warnEnv = assertEnv.warn([
 	'BRIGHTCOVE_ACCOUNT_ID',
 	'BRIGHTCOVE_PLAYER_ID',
 	'SPOOR_API_KEY',
-	'API_KEY_V1',
+	'API_V1_KEY',
 ]);
 
 if(warnEnv) {

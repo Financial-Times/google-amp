@@ -16,7 +16,10 @@ function getAndRender(uuid, options) {
 	return getArticle(uuid)
 		.then(
 			response => response._source ? response._source : Promise.reject(new errors.NotFound()),
-			err => (console.log(err), Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err))
+			err => (
+				console.log(err),
+				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
+			)
 		)
 
 		// First phase: network-dependent fetches and transforms in parallel
