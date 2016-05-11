@@ -1,6 +1,6 @@
 'use strict';
 
-const articleXsltTransform = require('../../bower_components/next-article/server/transforms/article-xslt');
+const articleXsltTransform = require('./article-xslt');
 const fetch = require('./wrap-fetch.js')(require('node-fetch'), {
 	tag: 'slideshows',
 });

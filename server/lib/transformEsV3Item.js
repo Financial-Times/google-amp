@@ -1,5 +1,5 @@
 'use strict';
-const articleXsltTransform = require('../../bower_components/next-article/server/transforms/article-xslt');
+const articleXsltTransform = require('./article-xslt');
 const cheerioTransform = require('./cheerio-transform');
 const dateTransform = require('./article-date');
 const summaryTransform = require('./article-summary');

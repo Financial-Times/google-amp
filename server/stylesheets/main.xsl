@@ -9,17 +9,17 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:include href="next/big-number.xsl" />
-	<xsl:include href="./blockquotes.xsl" />
+	<xsl:include href="big-number.xsl" />
+	<xsl:include href="blockquotes.xsl" />
 	<xsl:include href="external-image.xsl" />
-	<xsl:include href="next/interactive-graphics.xsl" />
-	<xsl:include href="./amp-links.xsl" />
-	<xsl:include href="next/pull-quotes.xsl" />
-	<xsl:include href="./amp-related-box.xsl" />
-	<xsl:include href="next/slideshow.xsl" />
-	<xsl:include href="next/subheaders.xsl" />
-	<xsl:include href="next/tables.xsl" />
-	<xsl:include href="next/toc.xsl" />
+	<xsl:include href="interactive-graphics.xsl" />
+	<xsl:include href="amp-links.xsl" />
+	<xsl:include href="pull-quotes.xsl" />
+	<xsl:include href="amp-related-box.xsl" />
+	<xsl:include href="slideshow.xsl" />
+	<xsl:include href="subheaders.xsl" />
+	<xsl:include href="tables.xsl" />
+	<xsl:include href="toc.xsl" />
 	<xsl:include href="video.xsl" />
 	<xsl:include href="ft-content.xsl" />
 

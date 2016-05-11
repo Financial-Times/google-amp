@@ -9,6 +9,6 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:include href="next/slideshow.xsl" />
+	<xsl:include href="slideshow.xsl" />
 
 </xsl:stylesheet>

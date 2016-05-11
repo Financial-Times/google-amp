@@ -2,7 +2,7 @@
 const cheerio = require('cheerio');
 
 const replaceEllipses = require('./transforms/replace-ellipses');
-const trimmedLinks = require('../../bower_components/next-article/server/transforms/trimmed-links');
+const trimmedLinks = require('./transforms/trimmed-links');
 const externalImages = require('./external-images');
 const copyrightNotice = require('./transforms/copyright-notice');
 
