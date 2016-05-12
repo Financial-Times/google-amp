@@ -1,6 +1,6 @@
 'use strict';
 const handlebars = require('handlebars');
-const compileScss = require('./compile-scss');
+const compileScss = require('@quarterto/post-sass');
 const fs = require('fs-promise');
 const path = require('path');
 const promisify = require('@quarterto/promisify');
@@ -18,7 +18,7 @@ const readCompiledCss = () => fs.readFile(`${cssPath}/style.css`, 'utf8');
 
 const getCss = precompiled => precompiled ?
 				cacheIf.always(readCompiledCss)
-				: compileScss();
+				: compileScss({postCss: ['autoprefixer', 'cssnano']});
 
 const readTemplate = () => fs.readFile(`${viewsPath}/article.html`, 'utf8').then(handlebars.compile);
 const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);

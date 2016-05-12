@@ -1,5 +1,5 @@
 {
-	"extends": "airbnb/base",
+	"extends": "airbnb-base",
 	"env": {
 		"node": true
 	},
@@ -28,6 +28,8 @@
 		"consistent-return": 0,
 		"object-shorthand": 1,
 		"prefer-rest-params": 0,
-		"no-confusing-arrow": 0
+		"no-confusing-arrow": 0,
+		"global-require": 0,
+		"no-underscore-dangle": 0
 	}
 }
