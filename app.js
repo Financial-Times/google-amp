@@ -88,7 +88,7 @@ app.use(logger(process.env.LOG_FORMAT || (app.get('env') === 'development' ? 'de
 app.use(cookieParser());
 
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
-app.get('/api/:uuid', require('./server/controllers/jsonItem.js'));
+app.get('/api/:uuid', require('./server/controllers/json-item.js'));
 
 app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
 app.get('/_access_mock', (req, res) => {

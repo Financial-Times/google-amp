@@ -1,5 +1,5 @@
 'use strict';
-const getArticle = require('../lib/getArticle');
+const getArticle = require('../lib/get-article');
 
 module.exports = (req, res, next) => {
 	getArticle(req.params.uuid)
