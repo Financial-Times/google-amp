@@ -4,4 +4,4 @@ set -x -e
 
 bower install
 
-node server/lib/compile-scss
+post-sass --postCss autoprefixer --postCss cssnano
