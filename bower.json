@@ -5,11 +5,5 @@
     "o-typography": "^3.1.0",
     "o-grid": "^4.0.7",
     "o-buttons": "^3.0.3"
-  },
-  "resolutions": {
-    "o-typography": "^3.1.0",
-    "o-fonts": "^2.0.0",
-    "n-video": "^3.2.0",
-    "o-ft-icons": "^2.3.7"
   }
 }
