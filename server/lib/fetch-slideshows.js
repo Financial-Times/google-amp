@@ -1,7 +1,7 @@
 'use strict';
 
 const articleXsltTransform = require('./article-xslt');
-const fetch = require('./wrap-fetch.js')(require('node-fetch'), {
+const fetch = require('./wrap-fetch')(require('node-fetch'), {
 	tag: 'slideshows',
 });
 const fetchres = require('fetchres');

@@ -1,12 +1,12 @@
 'use strict';
-const getArticle = require('../lib/getArticle');
+const getArticle = require('../lib/get-article');
 const addStoryPackage = require('../lib/related-content/story-package');
 const addMoreOns = require('../lib/related-content/more-ons');
 const addPrimaryTheme = require('../lib/primary-theme');
 const renderArticle = require('../lib/render-article');
-const transformArticle = require('../lib/transformEsV3Item.js');
-const fetchSlideshows = require('../lib/fetch-slideshows.js');
-const transformSlideshows = require('../lib/transform-slideshows.js');
+const transformArticle = require('../lib/transform-article');
+const fetchSlideshows = require('../lib/fetch-slideshows');
+const transformSlideshows = require('../lib/transform-slideshows');
 const errors = require('http-errors');
 const fetchres = require('fetchres');
 

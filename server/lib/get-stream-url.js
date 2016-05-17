@@ -1,5 +1,5 @@
 'use strict';
-const fetchHead = require('./wrap-fetch.js')(require('@quarterto/fetch-head'), {
+const fetchHead = require('./wrap-fetch')(require('@quarterto/fetch-head'), {
 	tag: 'get-stream-url',
 });
 
