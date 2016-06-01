@@ -30,6 +30,7 @@
 		"prefer-rest-params": 0,
 		"no-confusing-arrow": 0,
 		"global-require": 0,
-		"no-underscore-dangle": 0
+		"no-underscore-dangle": 0,
+		"no-sequences": 0
 	}
 }
