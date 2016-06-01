@@ -1,5 +1,6 @@
 'use strict';
 const errors = require('http-errors');
+const pkg = require('../../package.json');
 
 const DEBUG = false;
 
@@ -60,8 +61,7 @@ module.exports = (req, res, next) => {
 			environment: (req.app.get('env') === 'production' ? 'p' : 'd'),
 			is_live: (req.app.get('env') === 'production'),
 
-			// TODO: versioning
-			version: '1.0.0',
+			version: pkg.version,
 		},
 		user: {
 			ft_session: 'AUTHDATA(session)',

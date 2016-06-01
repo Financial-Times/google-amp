@@ -7,6 +7,7 @@ const assertEnv = require('@quarterto/assert-env');
 const ftwebservice = require('express-ftwebservice');
 const path = require('path');
 const os = require('os');
+const pkg = require('./package.json');
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -20,7 +21,7 @@ ftwebservice(app, {
 		audience: 'public',
 		primaryUrl: 'https://amp.ft.com',
 		serviceTier: 'bronze',
-		appVersion: process.env.HEROKU_SLUG_COMMIT,
+		appVersion: pkg.version,
 		contacts: [
 			{
 				name: 'Richard Still',
@@ -49,7 +50,7 @@ if(app.get('env') === 'production') {
 	ravenClient.setExtraContext({env: process.env});
 	ravenClient.setTagsContext({
 		server_name: process.env.HEROKU_APP_NAME || os.hostname(),
-		release: process.env.HEROKU_SLUG_COMMIT,
+		release: pkg.version,
 	});
 	ravenClient.patchGlobal(() => process.exit(1));
 }
