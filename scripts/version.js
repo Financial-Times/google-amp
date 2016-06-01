@@ -4,6 +4,11 @@
 const temp = require('temp').track();
 const spawn = require('@quarterto/spawn');
 
+if(!process.env.RECEIVE_DATA) {
+	console.log('Not a Heroku automatic deploy, skipping version inference');
+	process.exit(0);
+}
+
 const herokuReceiveData = JSON.parse(process.env.RECEIVE_DATA);
 const parseGithubUrl = url => {
 	const m = url.match(/github\.com\/([^\/]+)\/([^\/]+)(?:$|\/)/);
