@@ -2,7 +2,7 @@
 
 set -x -e
 
-./version.js
+./scripts/version.js
 
 bower install
 post-sass --postCss autoprefixer --postCss cssnano
