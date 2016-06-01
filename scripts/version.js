@@ -29,4 +29,4 @@ const version = `${merges}.0.0-heroku-${process.env.SOURCE_VERSION.substr(0, 7)}
 process.chdir(oldDir);
 
 console.log(`inferred version ${version}`);
-spawn('npm', ['version', version]);
+spawn('npm', ['version', '--git-tag-version=false', version]);
