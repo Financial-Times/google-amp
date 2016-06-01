@@ -6,7 +6,7 @@ const spawn = require('@quarterto/spawn');
 
 const herokuReceiveData = JSON.parse(process.env.RECEIVE_DATA);
 const parseGithubUrl = url => {
-	const m = url.match(/github\.com\/(.+)\/(.+)/);
+	const m = url.match(/github\.com\/([^\/]+)\/([^\/]+)(?:$|\/)/);
 	return m && {
 		user: m[1],
 		repo: m[2],
