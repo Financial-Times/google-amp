@@ -62,7 +62,6 @@ export TEST_UUIDS=(
 
 	# Slideshows
 	"d5ac853a-978a-11e5-95c7-d47aa298f769"
-	"0efcd9b2-5a69-11e4-be86-00144feab7de"
 	"9543d79e-e828-11e4-894a-00144feab7de"
 	"9cbd2018-e4c2-11e2-875b-00144feabdc0"
 	"e96b93ea-2933-11e2-9591-00144feabdc0"
