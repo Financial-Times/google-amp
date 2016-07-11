@@ -13,7 +13,7 @@
     "debug": ". scripts/env.sh && devtool app.js",
     "instrument-fetch": ". scripts/env.sh && scripts/instrument.js",
     "heroku-config": "heroku-config-to-env -i HEROKU_ -i NODE_ENV -l NODE_ENV=development ft-google-amp-staging scripts/env.sh",
-    "heroku-postbuild": "heroku-version-infer && package-version-sentry-release && package-version-jira-release"
+    "heroku-postbuild": "heroku-version-infer && package-version-sentry-release && package-version-jira-release && package-version-github-release"
   },
   "keywords": [
     "AMP",
@@ -27,6 +27,7 @@
     "@quarterto/fetch-head": "^1.3.0",
     "@quarterto/heroku-version-infer": "^1.0.0",
     "@quarterto/instrument-fetch": "^1.1.0",
+    "@quarterto/package-version-github-release": "^1.0.0",
     "@quarterto/package-version-jira-release": "^1.1.0",
     "@quarterto/package-version-sentry-release": "^1.1.0",
     "@quarterto/post-sass": "^1.1.3",
