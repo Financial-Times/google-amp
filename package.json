@@ -81,5 +81,13 @@
     "midna": "^1.3.0",
     "nodemon": "^1.8.1",
     "prog-rock": "^1.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Financial-Times/google-amp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Financial-Times/google-amp/issues"
+  },
+  "homepage": "https://github.com/Financial-Times/google-amp#readme"
 }
