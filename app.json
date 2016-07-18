@@ -7,10 +7,10 @@
 		"AWS_SECRET_ACCESS_KEY": {"required": true},
 		"ELASTIC_SEARCH_URL": {"required": true},
 		"SENTRY_DSN": {"required": true},
-		"BRIGHTCOVE_ACCOUNT_ID": {"required": true},
-		"BRIGHTCOVE_PLAYER_ID": {"required": true},
-		"SPOOR_API_KEY": {"required": true},
-		"API_V1_KEY": {"required": true}
+		"BRIGHTCOVE_ACCOUNT_ID": {"required": false},
+		"BRIGHTCOVE_PLAYER_ID": {"required": false},
+		"SPOOR_API_KEY": {"required": false},
+		"API_V1_KEY": {"required": false}
 	},
 	"addons": [
 		"papertrail"

@@ -1,0 +1,8 @@
+{
+	"ext": "js json",
+	"watch": [
+		"package.json",
+		"server"
+	],
+	"exec": "node -r dotenv/config"
+}
