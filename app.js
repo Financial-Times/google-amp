@@ -3,6 +3,7 @@ const express = require('express');
 const logger = require('morgan');
 const raven = require('raven');
 const cookieParser = require('cookie-parser');
+const assertHerokuEnv = require('@quarterto/assert-heroku-env');
 const assertEnv = require('@quarterto/assert-env');
 const ftwebservice = require('express-ftwebservice');
 const path = require('path');
@@ -57,26 +58,13 @@ if(app.get('env') === 'production') {
 	ravenClient.patchGlobal(() => process.exit(1));
 }
 
-assertEnv([
-	'AWS_ACCESS_KEY',
-	'AWS_SECRET_ACCESS_KEY',
-	'ELASTIC_SEARCH_URL',
-]);
-
-const warnEnv = assertEnv.warn([
-	'BRIGHTCOVE_ACCOUNT_ID',
-	'BRIGHTCOVE_PLAYER_ID',
-	'SPOOR_API_KEY',
-	'API_V1_KEY',
-]);
-
-if(warnEnv) {
+assertHerokuEnv(warnings => {
 	if(ravenClient) {
-		ravenClient.captureMessage(warnEnv, {level: 'warning'});
+		ravenClient.captureMessage(warnings, {level: 'warning'});
 	} else {
-		console.warn('Warning:', warnEnv);
+		console.warn('Warning:', warnings);
 	}
-}
+});
 
 if(app.get('env') === 'production') {
 	app.use(raven.middleware.express.requestHandler(ravenClient));
