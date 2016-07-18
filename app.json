@@ -6,7 +6,7 @@
 		"AWS_ACCESS_KEY": {"required": true},
 		"AWS_SECRET_ACCESS_KEY": {"required": true},
 		"ELASTIC_SEARCH_URL": {"required": true},
-		"SENTRY_DSN": {"required": true},
+		"SENTRY_DSN": {"required": false},
 		"BRIGHTCOVE_ACCOUNT_ID": {"required": false},
 		"BRIGHTCOVE_PLAYER_ID": {"required": false},
 		"SPOOR_API_KEY": {"required": false},
