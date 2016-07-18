@@ -11,6 +11,8 @@ const errors = require('http-errors');
 const fetchres = require('fetchres');
 
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
+const lightSignupProduct = 'Google AMP';
+const lightSignupMailinglist = 'google-amp';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
@@ -75,6 +77,11 @@ module.exports = (req, res, next) => {
 		ua: req.get('User-Agent'),
 		relatedArticleDeduper: [req.params.uuid],
 		accessMock: req.cookies.amp_access_mock,
+		lightSignupUrl: process.env.LIGHT_SIGNUP_URL || 'https://distro-light-signup-prod.herokuapp.com',
+		lightSignupProduct: encodeURIComponent(lightSignupProduct),
+		lightSignupMailinglist: encodeURIComponent(lightSignupMailinglist),
+		enableLightSignup: (process.env.ENABLE_LIGHT_SIGNUP === 'true'),
+		uuid: req.params.uuid,
 	})
 		.then(content => {
 			res.setHeader('cache-control', 'public, max-age=30, no-transform');
