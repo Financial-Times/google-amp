@@ -11,7 +11,7 @@ const errors = require('http-errors');
 const fetchres = require('fetchres');
 
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
-const lightSignupProduct = 'Google AMP';
+const lightSignupProduct = 'AMP';
 const lightSignupMailinglist = 'google-amp';
 
 function getAndRender(uuid, options) {
