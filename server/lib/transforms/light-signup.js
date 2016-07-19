@@ -18,7 +18,7 @@ const lightSignupMarkup = params => `<amp-iframe
 	width="auto"
 	height="300"
 	layout="fixed-height"
-	sandbox="allow-scripts allow-same-origin"
+	sandbox="allow-scripts allow-same-origin allow-top-navigation allow-forms"
 	frameborder="0"
 ></amp-iframe>`;
 
