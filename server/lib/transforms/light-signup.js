@@ -16,7 +16,7 @@ const formatLightSignupUrl = params => url.format(Object.assign(
 const lightSignupMarkup = params => `<amp-iframe
 	src="${formatLightSignupUrl(params)}"
 	width="auto"
-	height="300"
+	height="340"
 	layout="fixed-height"
 	sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
 	frameborder="0"
