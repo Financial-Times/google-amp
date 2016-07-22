@@ -172,9 +172,13 @@ a:hover {
 	text-align: center;
 }
 
-.main-footer__links {
+%main-footer__element {
 	margin: 0;
-	padding: 0 0 1em;
+	padding: 0 0 1rem;
+}
+
+.main-footer__links {
+	@extend %main-footer__element;
 	list-style: none;
 }
 
@@ -196,6 +200,16 @@ a:hover {
 	}
 
 	a {
+		color: inherit;
+	}
+}
+
+.main-footer__cop {
+	@extend %main-footer__element;
+	@include oTypographySans(xs);
+	color: oColorsGetPaletteColor('grey-tint1');
+
+	a:link, a:visited {
 		color: inherit;
 	}
 }
