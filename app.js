@@ -100,7 +100,11 @@ if(app.get('env') === 'development') {
 	app.use(raven.middleware.express.errorHandler(ravenClient));
 	app.use((err, req, res, next) => {
 		const status = err.status || err.statusCode || err.status_code;
-		if(status !== 404) next(err);
+		if(status === 404) {
+			res.sendStatus(404);
+		} else {
+			next(err);
+		}
 	});
 }
 
