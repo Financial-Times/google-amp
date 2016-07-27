@@ -98,6 +98,14 @@ if(app.get('env') === 'development') {
 	app.use(require('errorhandler')());
 } else if(app.get('env') === 'production') {
 	app.use(raven.middleware.express.errorHandler(ravenClient));
+	app.use((err, req, res, next) => {
+		const status = err.status || err.statusCode || err.status_code;
+		if(status === 404) {
+			res.sendStatus(404);
+		} else {
+			next(err);
+		}
+	});
 }
 
 app.all('/analytics/config.json', require('./server/controllers/analytics-config.js'));
