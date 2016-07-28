@@ -13,14 +13,16 @@ const formatLightSignupUrl = params => url.format(Object.assign(
 	}
 ));
 
-const lightSignupMarkup = params => `<amp-iframe
+const lightSignupMarkup = params => `<div amp-access="NOT session" amp-access-hide>
+<amp-iframe
 	src="${formatLightSignupUrl(params)}"
 	width="auto"
 	height="340"
 	layout="fixed-height"
 	sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
 	frameborder="0"
-></amp-iframe>`;
+></amp-iframe>
+</div>`;
 
 module.exports = function addLightSignup($, params) {
 	if(params.enableLightSignup) {
