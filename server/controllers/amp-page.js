@@ -76,7 +76,7 @@ module.exports = (req, res, next) => {
 		ip: req.ip,
 		ua: req.get('User-Agent'),
 		relatedArticleDeduper: [req.params.uuid],
-		accessMock: req.cookies.amp_access_mock,
+		accessMock: req.cookies['amp-access-mock'],
 		lightSignupUrl: process.env.LIGHT_SIGNUP_URL || 'https://distro-light-signup-prod.herokuapp.com',
 		lightSignupProduct: encodeURIComponent(lightSignupProduct),
 		lightSignupMailinglist: encodeURIComponent(lightSignupMailinglist),
