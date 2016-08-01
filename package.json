@@ -11,8 +11,8 @@
     "prestart": "enforce-node-version",
     "start": "nodemon app.js",
     "bench": "scripts/bench.sh",
-    "debug": ". scripts/env.sh && devtool app.js",
-    "instrument-fetch": ". scripts/env.sh && scripts/instrument.js",
+    "debug": ". .env && devtool app.js",
+    "instrument-fetch": ". .env && scripts/instrument.js",
     "heroku-config": "heroku-config-to-env -i HEROKU_ -i NODE_ENV -l NODE_ENV=development ft-google-amp-staging .env",
     "heroku-postbuild": "heroku-version-infer && package-version-sentry-release && package-version-jira-release && package-version-github-release"
   },
