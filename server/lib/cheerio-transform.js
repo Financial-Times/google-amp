@@ -5,6 +5,7 @@ const replaceEllipses = require('./transforms/replace-ellipses');
 const trimmedLinks = require('./transforms/trimmed-links');
 const externalImages = require('./external-images');
 const copyrightNotice = require('./transforms/copyright-notice');
+const lightSignup = require('./transforms/light-signup');
 
 function removeStyleAttributes($) {
 	$('[style]').each(function eachStyle() {
@@ -25,6 +26,7 @@ module.exports = function run(body, flags) {
 		externalImages,
 		trimmedLinks,
 		removeStyleAttributes,
+		lightSignup,
 	].map(transform => transform($, flags)))
 		.then(() => $);
 };

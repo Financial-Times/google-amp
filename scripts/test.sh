@@ -20,7 +20,7 @@ mkdir -p temp
 for UUID in "${TEST_UUIDS[@]}"; do
 	# use a temp file instead of pipes because we want it to bail asap
 	TMP=$(mktemp temp/${UUID}-XXXXXXXX)
-	node --use-strict server/controllers/amp-page.js "$UUID" > $TMP
+	node server/controllers/amp-page.js "$UUID" > $TMP
 	amp-validator-prebuilt $TMP
 done
 

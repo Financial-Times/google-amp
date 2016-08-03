@@ -10,7 +10,9 @@
 		"BRIGHTCOVE_ACCOUNT_ID": {"required": false},
 		"BRIGHTCOVE_PLAYER_ID": {"required": false},
 		"SPOOR_API_KEY": {"required": false},
-		"API_V1_KEY": {"required": false}
+		"API_V1_KEY": {"required": false},
+		"LIGHT_SIGNUP_URL": {"required": false},
+		"ENABLE_LIGHT_SIGNUP": {"required": false}
 	},
 	"addons": [
 		"papertrail"

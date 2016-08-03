@@ -15,31 +15,59 @@ module.exports = (req, res) => {
 	}
 
 	const signedIn = !!req.cookies['amp-access-mock-logged-in'];
+	const fcf = !!req.cookies['amp-access-mock-fcf'];
 
 	setTimeout(() => {
 		switch(req.query.type) {
+
 		case 'access':
 		case 'pingback':
 			res.setHeader('Content-Type', 'application/json');
 			res.status(202).json({
-				access: signedIn,
+				access: signedIn || fcf,
 				debug: 'access-mock dummy debug',
 				session: signedIn ? 'access-mock dummy session' : null,
 			});
 			break;
+
 		case 'login':
 			res.cookie('amp-access-mock-logged-in', 1);
 			res.redirect(303, req.query.location);
 			break;
+
 		case 'logout':
 			res.clearCookie('amp-access-mock-logged-in');
 			res.redirect(303, req.query.location);
 			break;
+
+		case 'enable':
+			res.cookie('amp-access-mock', '1');
+			res.status(200).send('Your amp-access-mock cookie was set. Please revisit the ' +
+				'<a href="javascript:history.back()">previous page</a>.');
+			break;
+
+		case 'clear':
+			res.clearCookie('amp-access-mock');
+			res.status(200).send('Your amp-access-mock cookie was cleared. Please revisit the ' +
+				'<a href="javascript:history.back()">previous page</a>.');
+			break;
+
+		case 'enable-fcf':
+			res.cookie('amp-access-mock-fcf', '1');
+			res.status(200).send('Your amp-access-mock-fcf cookie was set. Please revisit the ' +
+				'<a href="javascript:history.back()">previous page</a>.');
+			break;
+
+		case 'clear-fcf':
+			res.clearCookie('amp-access-mock-fcf');
+			res.status(200).send('Your amp-access-mock-fcf cookie was cleared. Please revisit the ' +
+				'<a href="javascript:history.back()">previous page</a>.');
+			break;
+
 		default:
 			res.status(404).json({
 				error: `Unknown method: ${req.query.type}`,
 			});
-			break;
 		}
 	}, intentionalDelay);
 };
