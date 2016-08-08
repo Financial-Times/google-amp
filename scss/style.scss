@@ -106,7 +106,7 @@ body {
 }
 
 .o-header__anon {
-	@include oTypographySans(m);
+	font-family: MetricWeb,sans-serif;
 }
 
 amp-sidebar {

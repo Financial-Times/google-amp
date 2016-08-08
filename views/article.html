@@ -179,12 +179,24 @@
 
 				<nav class="o-header__drawer-menu o-header__drawer-menu--user" role="navigation" aria-label="User navigation">
 					<ul class="o-header__drawer-menu-list">
-								<li class="o-header__drawer-menu-item">
-									<a class="o-header__drawer-menu-link" href="#">Subscribe</a>
-								</li>
-								<li class="o-header__drawer-menu-item">
-									<a class="o-header__drawer-menu-link" href="/login">Sign In</a>
-								</li>
+						<li class="o-header__drawer-menu-item" amp-access="NOT session" amp-access-hide>
+							<a class="o-header__drawer-menu-link" href="https://subscribe.ft.com/psp">Subscribe</a>
+						</li>
+						<li class="o-header__drawer-menu-item" amp-access="NOT session" amp-access-hide>
+							<a class="o-header__drawer-menu-link" on="tap:amp-access.login-login">Sign In</a>
+						</li>
+						<li class="o-header__drawer-menu-item">
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="https://registration.ft.com/registration/selfcare/">My Account</a>
+						</li>
+						<li class="o-header__drawer-menu-item">
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide on="tap:amp-access.login-logout">Sign Out</a>
+						</li>
+						<li class="o-header__drawer-menu-item" amp-access="session AND (NOT access)" amp-access-hide>
+							<a class="o-header__drawer-menu-link" amp-access="session" href="https://subscribe.ft.com/psp">Upgrade</a>
+						</li>
+						<li class="o-header__drawer-menu-item">
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="http://markets.ft.com/data/portfolio/dashboard">Portfolio</a>
+						</li>
 					</ul>
 				</nav>
 
@@ -220,19 +232,8 @@
 					</div>
 				</div>
 
-				<div class="o-header__row o-header__anon">
-<!-- 					<ul class="o-header__anon-list" amp-access="session" amp-access-hide>
-						<li class="o-header__anon-item">
-							<a class="o-header__anon-link" on="tap:amp-access.login-logout">Sign Out</a>
-						</li>
-						<li class="o-header__anon-item">
-							<a class="o-header__anon-link" href="http://registration.ft.com/registration/selfcare/">My Account</a>
-						</li>
-						<li class="o-header__anon-item" amp-access="NOT access">
-							<a class="o-header__anon-link" href="https://subscribe.ft.com/psp">Upgrade</a>
-						</li>
-					</ul>
--->					<ul class="o-header__anon-list" amp-access="NOT session">
+				<div class="o-header__row o-header__anon o-header__nav--mobile">
+					<ul class="o-header__anon-list" amp-access="NOT session">
 						<li class="o-header__anon-item">
 							<a class="o-header__anon-link" href="https://subscribe.ft.com/psp">Subscribe</a>
 						</li>
@@ -242,20 +243,20 @@
 					</ul>
 				</div>
 
-<!-- 				<nav id="o-header-nav-mobile" class="o-header__row o-header__nav o-header__nav--mobile" role="navigation" aria-label="Main navigation" amp-access="session" amp-access-hide>
+ 				<nav id="o-header-nav-mobile" class="o-header__row o-header__nav o-header__nav--mobile" role="navigation" aria-label="Main navigation" amp-access="session" amp-access-hide>
 					<ul class="o-header__nav-list">
 						<li class="o-header__nav-item">
-							<a class="o-header__nav-link o-header__nav-link--primary" href="" aria-selected="true">Home</a>
+							<a class="o-header__nav-link o-header__nav-link--primary" href="">Visit FT.com</a>
 						</li>
 						<li class="o-header__nav-item">
-							<a class="o-header__nav-link o-header__nav-link--primary" href="" aria-selected="">FastFT</a>
+							<a class="o-header__nav-link o-header__nav-link--primary" href="">FastFT</a>
 						</li>
 						<li class="o-header__nav-item">
-							<a class="o-header__nav-link o-header__nav-link--primary" href="" aria-selected="">Markets Data</a>
+							<a class="o-header__nav-link o-header__nav-link--primary" href="">Markets Data</a>
 						</li>
 					</ul>
 				</nav>
--->
+
 			</header>
 
 			<main class="main" role="main">
