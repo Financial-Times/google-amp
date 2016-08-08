@@ -18,7 +18,15 @@ const readCompiledCss = () => fs.readFile(`${cssPath}/style.css`, 'utf8');
 
 const getCss = precompiled => precompiled ?
 				cacheIf.always(readCompiledCss)
-				: compileScss({postCss: ['autoprefixer', 'cssnano']});
+				: compileScss({
+					postCss: [
+						'autoprefixer',
+						[
+							'cssnano',
+							{normalizeUrl: false}, // See https://github.com/ben-eb/postcss-normalize-url/issues/14
+						],
+					],
+				});
 
 const readTemplate = () => fs.readFile(`${viewsPath}/article.html`, 'utf8').then(handlebars.compile);
 const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
