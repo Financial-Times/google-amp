@@ -5,15 +5,15 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "test": "npm run lint && scripts/test.sh",
+    "test": "make test",
     "postinstall": "scripts/postinstall.sh && scripts/stricthax.sh",
-    "lint": "scripts/lint.sh",
+    "lint": "make lint",
     "prestart": "enforce-node-version",
     "start": "nodemon app.js",
     "bench": "scripts/bench.sh",
     "debug": ". scripts/env.sh && devtool app.js",
     "instrument-fetch": ". scripts/env.sh && scripts/instrument.js",
-    "heroku-config": "heroku-config-to-env -i HEROKU_ -i NODE_ENV -l NODE_ENV=development ft-google-amp-staging .env",
+    "heroku-config": "make .env",
     "heroku-postbuild": "heroku-version-infer && package-version-sentry-release && package-version-jira-release && package-version-github-release"
   },
   "keywords": [
