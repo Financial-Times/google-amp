@@ -1,7 +1,11 @@
--include .env.mk
-
 export SHELL := /bin/bash
 export PATH := $(shell npm bin):$(PATH)
+
+HEROKU := $(shell command -v heroku 2> /dev/null)
+
+ifdef HEROKU
+	-include .env.mk
+endif
 
 js-files = app.js $(shell find server -name '.js')
 lintspace-files = $(js-files) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html') $(wildcard server/stylesheets/*.xsl)
