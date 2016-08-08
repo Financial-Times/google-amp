@@ -21,6 +21,8 @@
 		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
 
 		<script id="amp-access" type="application/json">
 		{
@@ -79,26 +81,181 @@
 
 		<amp-image-lightbox id="lightbox" layout="nodisplay"></amp-image-lightbox>
 
+		<amp-sidebar class="o-header__drawer" id='sidebar' layout="nodisplay" side="left">
+			<div class="o-header__drawer-inner">
+
+				<div class="o-header__drawer-tools">
+					<a class="o-header__drawer-tools-logo" href="/">
+						<span class="o-header__visually-hidden">Financial Times</span>
+					</a>
+					<button on='tap:sidebar.close' type="button" class="o-header__drawer-tools-close" aria-controls="o-header-drawer" aria-expanded="true">
+						<span class="o-header__visually-hidden">Close</span>
+					</button>
+				</div>
+
+				<nav class="o-header__drawer-editions" role="navigation" aria-label="Edition switcher">
+					<a class="o-header__drawer-editions-link" href="/uk?edition=uk" aria-selected="true">UK Edition</a>
+					<a class="o-header__drawer-editions-link" href="/international?edition=international">International Edition</a>
+				</nav>
+
+				<nav class="o-header__drawer-menu o-header__drawer-menu--primary" role="navigation" aria-label="Primary navigation">
+					<ul class="o-header__drawer-menu-list">
+								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--heading">Top sections</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="#">FT.com</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+									<a class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="http://google.com">World</a>
+									<amp-accordion>
+										<section class="o-header__accordion-section">
+											<header class="o-header__accordion-header">
+												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected">Section 1</button>
+											</header>
+											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
+												<li class="o-header__drawer-menu-item">
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to World Economy">World Economy</a>
+												</li>
+												<li class="o-header__drawer-menu-item">
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to UK">UK</a>
+												</li>
+												<li class="o-header__drawer-menu-item">
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to US">US</a>
+												</li>
+											</ul>
+										</section>
+									</amp-accordion>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+									<a class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="http://google.com">UK</a>
+									<amp-accordion>
+										<section class="o-header__accordion-section">
+											<header class="o-header__accordion-header">
+												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected">Section 1</button>
+											</header>
+											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
+												<li class="o-header__drawer-menu-item">
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to UK Economy">UK Economy</a>
+												</li>
+											</ul>
+										</section>
+									</amp-accordion>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Science &amp; Environment">Science &amp; Environment</a>
+								</li>
+								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--heading">FT recommends</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Lex">Lex</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Alphaville">Alphaville</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Lunch with the FT">Lunch with the FT</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Video">Video</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Special Reports">Special Reports</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to News feed">News feed</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Newsletters">Newsletters</a>
+								</li>
+								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--divide">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--secondary o-header__drawer-menu-link--unselected" href="#" aria-label="Go to My FT">My FT</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--secondary o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Portfolio">Portfolio</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--secondary o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Today's Paper">Today's Paper</a>
+								</li>
+					</ul>
+				</nav>
+
+				<nav class="o-header__drawer-menu o-header__drawer-menu--user" role="navigation" aria-label="User navigation">
+					<ul class="o-header__drawer-menu-list">
+								<li class="o-header__drawer-menu-item">
+									<a class="o-header__drawer-menu-link" href="#">Subscribe</a>
+								</li>
+								<li class="o-header__drawer-menu-item">
+									<a class="o-header__drawer-menu-link" href="/login">Sign In</a>
+								</li>
+					</ul>
+				</nav>
+
+			</div>
+		</amp-sidebar>
+
+		{{#if accessMocked}}
+		<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
+		{{/if}}
+
 		<div class="main-wrapper">
-			<header class="main-header">
-				<div class="main-header__container">
-					<div class="main-header-logo">
-						<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
-					</div>
-					{{#if accessMocked}}
-					<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
-					{{/if}}
-					<div class="amp-access-nav" amp-access="session" amp-access-hide>
-						<ul class="amp-access-nav__links">
-							<li class="amp-access-nav__link-item">
-								<a class="amp-access-nav__link" on="tap:amp-access.login-logout">Sign out</a>
-							</li>
-							<li class="amp-access-nav__link-item">
-								<a class="amp-access-nav__link" href="http://registration.ft.com/registration/selfcare/">My Account</a>
-							</li>
-						</ul>
+			<header class="o-header">
+
+				<div class="o-header__row o-header__top">
+					<div class="o-header__container">
+						<div class="o-header__top-wrapper">
+							<div class="o-header__top-column o-header__top-column--left">
+								<a class="o-header__top-link o-header__top-link--menu" aria-controls="o-header-drawer" role="button" aria-expanded="false" on='tap:sidebar.open'>
+									<span class="o-header__top-link-label">Menu</span>
+								</a>
+							</div>
+							<div class="o-header__top-column o-header__top-column--center">
+								<a class="o-header__top-logo" href="http://www.ft.com" title="Go to Financial Times homepage">
+									<span class="o-header__visually-hidden">Financial Times</span>
+								</a>
+							</div>
+							<div class="o-header__top-column o-header__top-column--right" role="navigation" aria-label="Account and personalisation links">
+								<a class="o-header__top-link o-header__top-link--myft" href="http://www.ft.com/myft">
+									<span class="o-header__visually-hidden">myFT</span>
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
+
+				<div class="o-header__row o-header__anon">
+<!-- 					<ul class="o-header__anon-list" amp-access="session" amp-access-hide>
+						<li class="o-header__anon-item">
+							<a class="o-header__anon-link" on="tap:amp-access.login-logout">Sign Out</a>
+						</li>
+						<li class="o-header__anon-item">
+							<a class="o-header__anon-link" href="http://registration.ft.com/registration/selfcare/">My Account</a>
+						</li>
+						<li class="o-header__anon-item" amp-access="NOT access">
+							<a class="o-header__anon-link" href="https://subscribe.ft.com/psp">Upgrade</a>
+						</li>
+					</ul>
+ -->					<ul class="o-header__anon-list" amp-access="NOT session">
+						<li class="o-header__anon-item">
+							<a class="o-header__anon-link" href="https://subscribe.ft.com/psp">Subscribe</a>
+						</li>
+						<li class="o-header__anon-item">
+							<a class="o-header__anon-link" on="tap:amp-access.login-login">Sign In</a>
+						</li>
+					</ul>
+				</div>
+
+<!-- 				<nav id="o-header-nav-mobile" class="o-header__row o-header__nav o-header__nav--mobile" role="navigation" aria-label="Main navigation" amp-access="session" amp-access-hide>
+					<ul class="o-header__nav-list">
+						<li class="o-header__nav-item">
+							<a class="o-header__nav-link o-header__nav-link--primary" href="" aria-selected="true">Home</a>
+						</li>
+						<li class="o-header__nav-item">
+							<a class="o-header__nav-link o-header__nav-link--primary" href="" aria-selected="">FastFT</a>
+						</li>
+						<li class="o-header__nav-item">
+							<a class="o-header__nav-link o-header__nav-link--primary" href="" aria-selected="">Markets Data</a>
+						</li>
+					</ul>
+				</nav>
+ -->
 			</header>
 
 			<main class="main" role="main">
@@ -149,11 +306,11 @@
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
 					<div class="amp-access-login__body" amp-access="NOT session">
-							<a class="amp-access-login__button" on="tap:amp-access.login-login">Sign in to FT.com</a>
-							<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">View subscription packages</a>
+						<a class="amp-access-login__button" on="tap:amp-access.login-login">Sign in to FT.com</a>
+						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">View subscription packages</a>
 					</div>
 					<div class="amp-access-login__body" amp-access="session">
-					<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">Upgrade now</a>
+						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">Upgrade now</a>
 					</div>
 				</div>
 

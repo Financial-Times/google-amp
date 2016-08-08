@@ -9,6 +9,9 @@ $o-grid-ie8-rules: 'none';
 @import 'o-buttons/main';
 @import 'hacks';
 
+$o-header-is-silent: false;
+@import 'o-header/main';
+
 @include oFontsInclude(MetricWeb, light); // body
 @include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
@@ -48,7 +51,6 @@ $border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
 
 body {
 	@include oColorsFor(page, background);
-	@include oTypographyBody;
 }
 
 .main-wrapper {
@@ -58,40 +60,82 @@ body {
 }
 
 .main {
+	@include oTypographyBody;
 	@include responsiveWidth;
 	flex-grow: 1;
 }
 
-a:hover {
-	border-bottom-style: dotted;
-	border-bottom-width: 1px;
-}
-
 .article {
 	@include oTypographyBodyWrapper;
+
+	a {
+		border-bottom-color: transparent;
+
+		&:hover {
+			border-bottom-color: inherit;
+		}
+	}
 }
 
 .article__copyright-notice.article__copyright-notice {
 	@include oTypographySans(s);
 }
 
-.main-header {
-	margin-bottom: 1em;
-	background: oColorsGetPaletteColor('grey-tint5');
-	padding: .5em;
+// .main-header {
+// 	margin-bottom: 1em;
+// 	background: oColorsGetPaletteColor('grey-tint5');
+// 	padding: .5em;
+// }
+
+// .main-header__container {
+// 	position: relative;
+// }
+
+// .main-header-logo {
+// 	@include responsiveWidth(16em);
+
+// 	svg {
+// 		display: block;
+// 		max-height: 100%; // work around Webkit ridiculous height bug https://bugs.webkit.org/show_bug.cgi?id=82489
+// 	}
+// }
+
+.o-header__top-link-label {
+	@include oTypographySans(xs);
+	font-size: 10px;
 }
 
-.main-header__container {
-	position: relative;
+.o-header__anon {
+	@include oTypographySans(m);
 }
 
-.main-header-logo {
-	@include responsiveWidth(16em);
+amp-sidebar {
+	@include oColorsFor(page, background);
+	@include oTypographySans(m);
+	width: 100%;
+}
 
-	svg {
-		display: block;
-		max-height: 100%; // work around Webkit ridiculous height bug https://bugs.webkit.org/show_bug.cgi?id=82489
-	}
+.o-header__accordion-option {
+	position: absolute;
+	z-index: 1;
+}
+
+.o-header__accordion-header {
+	height: 48px;
+	border: none;
+	background: none;
+}
+
+.o-header__accordion-section[expanded] {
+	@include oColorsFor(o-header-drawer-menu-list, background);
+}
+
+.o-header__drawer-menu-list--child {
+	box-shadow: inset 0 -1px 0 oColorsGetColorFor(o-header-drawer-menu, border), inset 0 1px 0 oColorsGetColorFor(o-header-drawer-menu, border);
+}
+
+.o-header__accordion-section[expanded] .o-header__drawer-menu-toggle:before {
+	transform: rotate(180deg);
 }
 
 .article-image {
@@ -154,6 +198,8 @@ a:hover {
 			@include responsiveType(3vh);
 		}
 	}
+
+	margin-top: 1em;
 
 	a {
 		color: inherit;
@@ -524,12 +570,14 @@ a:hover {
 .access-mocked {
 	position: absolute;
 	background: pink;
-	font-size: 10px;
-	top: 0;
+	font-size: 12px;
+	top: 160px;
 	width: 30%;
 	line-height: 1em;
-	padding: 2px;
+	padding: 10px;
 	min-width: 90px;
+	right: 0;
+	z-index: 1;
 }
 
 .amp-access-login {
@@ -582,49 +630,49 @@ a:hover {
 	line-height: 1.1;
 }
 
-.amp-access-nav {
-	text-align: right;
-	margin: 0.5em 0 0;
+// .amp-access-nav {
+// 	text-align: right;
+// 	margin: 0.5em 0 0;
 
-	@include oGridRespondTo(M) {
-		position: absolute;
-		right: 0;
-		bottom: 0;
-		margin: 0;
-	}
-}
+// 	@include oGridRespondTo(M) {
+// 		position: absolute;
+// 		right: 0;
+// 		bottom: 0;
+// 		margin: 0;
+// 	}
+// }
 
-.amp-access-nav__links {
-	margin: 0;
-}
+// .amp-access-nav__links {
+// 	margin: 0;
+// }
 
-.amp-access-nav__link-item {
-	display: inline-block;
-	position: relative;
+// .amp-access-nav__link-item {
+// 	display: inline-block;
+// 	position: relative;
 
-	&:not(:first-child):before {
-		content: ' ';
-		position: absolute;
-		width: 2px;
-		height: 14px;
-		top: 50%;
-		left: -3px;
-		margin-top: -4px;
-		background-color: oColorsGetPaletteColor('warm-5');
+// 	&:not(:first-child):before {
+// 		content: ' ';
+// 		position: absolute;
+// 		width: 2px;
+// 		height: 14px;
+// 		top: 50%;
+// 		left: -3px;
+// 		margin-top: -4px;
+// 		background-color: oColorsGetPaletteColor('warm-5');
 
-		&:first-of-type {
-			display: none;
-		}
-	}
-}
+// 		&:first-of-type {
+// 			display: none;
+// 		}
+// 	}
+// }
 
-.amp-access-nav__link {
-	color: white;
-	@include oTypographySans(s);
-	text-decoration: none;
-	margin: 0 0.5em;
-	cursor: pointer;
-}
+// .amp-access-nav__link {
+// 	color: white;
+// 	@include oTypographySans(s);
+// 	text-decoration: none;
+// 	margin: 0 0.5em;
+// 	cursor: pointer;
+// }
 
 
 // Slideshows
