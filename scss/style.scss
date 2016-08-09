@@ -12,10 +12,9 @@ $o-grid-ie8-rules: 'none';
 $o-header-is-silent: false;
 @import 'o-header/main';
 
-@include oFontsInclude(MetricWeb, light); // body
+@include oFontsInclude(MetricWeb, regular); // body
 @include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
-@include oFontsInclude(FinancierDisplayWeb, $weight: light, $style: italic); // standfirst
 
 $page-width: 30em;
 
@@ -149,8 +148,8 @@ amp-sidebar {
 	@include oTypographyLead;
 
 	@include oGridRespondTo($until: M) {
-		@include responsiveType(6vh);
-		line-height: 1;
+		@include responsiveType(5vh);
+		line-height: 1.2;
 		@media (orientation: portrait) {
 			@include responsiveType(3vh);
 		}
@@ -180,7 +179,7 @@ amp-sidebar {
 		}
 	}
 
-	margin-top: 1em;
+	margin: 0.5em 0;
 
 	a {
 		color: inherit;
