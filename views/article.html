@@ -21,8 +21,10 @@
 		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
-		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+		{{#if enableSidebarMenu}}
+		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+		{{/if}}
 
 		<script id="amp-access" type="application/json">
 		{
@@ -97,7 +99,7 @@
 						<div class="o-header__top-wrapper">
 							<div class="o-header__top-column o-header__top-column--left">
 								{{#if enableSidebarMenu}}
-									<a class="o-header__top-link o-header__top-link--menu" aria-controls="o-header-drawer" role="button" aria-expanded="false" on='tap:sidebar.open'>
+									<a class="o-header__top-link o-header__top-link--menu" aria-controls="o-header-drawer" role="button" aria-expanded="false" href="#" on='tap:sidebar.open'>
 										<span class="o-header__top-link-label">Menu</span>
 									</a>
 								{{/if}}
@@ -122,7 +124,7 @@
 							<a class="o-header__anon-link" href="https://subscribe.ft.com/psp">Subscribe</a>
 						</li>
 						<li class="o-header__anon-item">
-							<a class="o-header__anon-link" on="tap:amp-access.login-login">Sign In</a>
+							<a class="o-header__anon-link" href="#" on="tap:amp-access.login-login">Sign In</a>
 						</li>
 					</ul>
 				</div>
@@ -191,7 +193,7 @@
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
 					<div class="amp-access-login__body" amp-access="NOT session">
-						<a class="amp-access-login__button" on="tap:amp-access.login-login">Sign in to FT.com</a>
+						<a class="amp-access-login__button" href="#" on="tap:amp-access.login-login">Sign in to FT.com</a>
 						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">View subscription packages</a>
 					</div>
 					<div class="amp-access-login__body" amp-access="session">
@@ -272,6 +274,10 @@
 						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/financial-times-privacy-policy/">Privacy policy</a></li>
 						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/copyright-policy/?ft_site=falcon#axzz3goHcFH3m">Copyright</a></li>
 						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/how-the-ft-manages-cookies-on-its-websites/">Cookie policy</a></li>
+						{{#unless enableSidebarMenu}}
+						<li class="main-footer__link"><a amp-access="session" amp-access-hide href="https://registration.ft.com/registration/selfcare/">My Account</a></li>
+						<li class="main-footer__link"><a amp-access="session" amp-access-hide href="#" on="tap:amp-access.login-logout">Sign Out</a></li>
+						{{/unless}}
 					</ul>
 					<div class="main-footer__cop">The Financial Times and its journalism are subject to a self-regulation regime under the FT <a href="http://www.ft.com/editorialcode">Editorial Code of Practice.</a></div>
 					<div class="main-footer__brand">
