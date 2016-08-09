@@ -25,6 +25,7 @@ const getCss = precompiled => precompiled ?
 							'cssnano',
 							{normalizeUrl: false}, // See https://github.com/ben-eb/postcss-normalize-url/issues/14
 						],
+						'@georgecrawford/postcss-remove-important',
 					],
 				});
 

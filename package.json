@@ -22,6 +22,7 @@
   ],
   "author": "richard.still@ft.com",
   "dependencies": {
+    "@georgecrawford/postcss-remove-important": "^1.4.0",
     "@quarterto/assert-env": "^1.3.0",
     "@quarterto/assert-heroku-env": "^1.3.0",
     "@quarterto/cache-if": "^1.1.0",
