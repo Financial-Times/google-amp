@@ -12,6 +12,9 @@ $o-grid-ie8-rules: 'none';
 $o-header-is-silent: false;
 @import 'o-header/main';
 
+$o-footer-is-silent: false;
+@import 'o-footer/main';
+
 @include oFontsInclude(MetricWeb, regular); // body
 @include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
@@ -237,6 +240,14 @@ amp-sidebar {
 	a:link, a:visited {
 		color: inherit;
 	}
+}
+
+.o-footer {
+	@include oTypographySans(s);
+}
+
+.o-footer__brand-logo {
+	background-image: svg-load('./static/nikkei-logo.svg');
 }
 
 // next-article component styles

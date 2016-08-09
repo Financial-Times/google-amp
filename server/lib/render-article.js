@@ -12,7 +12,6 @@ const getStreamUrl = require('./get-stream-url');
 const cssPath = path.resolve('css');
 const viewsPath = path.resolve('views');
 const partialsPath = path.resolve('views/partials');
-const staticPath = path.resolve('static');
 
 const readCompiledCss = () => fs.readFile(`${cssPath}/style.css`, 'utf8');
 
@@ -26,6 +25,7 @@ const getCss = precompiled => precompiled ?
 							{normalizeUrl: false}, // See https://github.com/ben-eb/postcss-normalize-url/issues/14
 						],
 						'@georgecrawford/postcss-remove-important',
+						'postcss-inline-svg',
 					],
 				});
 
@@ -103,8 +103,6 @@ module.exports = (data, options) => promiseAllObj({
 	template: getTemplate(options.production),
 	partials: getPartials(options.production),
 	css: getCss(options.production),
-	ftSvg: fs.readFile(`${staticPath}/ft-logo.svg`, 'utf8'),
-	nikkeiSvg: fs.readFile(`${staticPath}/nikkei-logo.svg`, 'utf8'),
 	description: data.summaries ? data.summaries[0] : '',
 	authorList: getAuthors(data),
 	byline: getByline(data, options),

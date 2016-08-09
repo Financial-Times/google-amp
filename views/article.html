@@ -262,21 +262,51 @@
 				{{/if}}
 			</main>
 
-			<footer class="main-footer">
-				<div class="main-footer__container">
-					<ul class="main-footer__links">
-						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/ft-com-terms-and-conditions/">Terms &amp; conditions</a></li>
-						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/financial-times-privacy-policy/">Privacy policy</a></li>
-						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/copyright-policy/?ft_site=falcon#axzz3goHcFH3m">Copyright</a></li>
-						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/how-the-ft-manages-cookies-on-its-websites/">Cookie policy</a></li>
-						{{#unless enableSidebarMenu}}
-						<li class="main-footer__link"><a amp-access="session" amp-access-hide href="https://registration.ft.com/registration/selfcare/">My Account</a></li>
-						<li class="main-footer__link"><a amp-access="session" amp-access-hide href="#" on="tap:amp-access.login-logout">Sign Out</a></li>
-						{{/unless}}
-					</ul>
-					<div class="main-footer__cop">The Financial Times and its journalism are subject to a self-regulation regime under the FT <a href="http://www.ft.com/editorialcode">Editorial Code of Practice.</a></div>
-					<div class="main-footer__brand">
-						{{{nikkeiSvg}}}
+			<footer class="o-footer o-footer--theme-dark" data-o-component="o-footer" data-o-footer--no-js="">
+				<div class="o-footer__container">
+
+					<div class="o-footer__row">
+						<nav class="o-footer__matrix" role="navigation" aria-label="Useful links">
+							<div class="o-footer__matrix-group o-footer__matrix-group--1">
+								<h6 class="o-footer__matrix-title">
+									Legal &amp; Privacy
+								</h6>
+								<div class="o-footer__matrix-content" id="o-footer-section-0">
+										<div class="o-footer__matrix-column">
+											<a class="o-footer__matrix-link" href="//www.ft.com/servicestools/help/terms">Terms &amp; Conditions</a>
+											<a class="o-footer__matrix-link" href="//www.ft.com/servicestools/help/privacy">Privacy</a>
+											<a class="o-footer__matrix-link" href="//www.ft.com/cookiepolicy">Cookies</a>
+											<a class="o-footer__matrix-link" href="//www.ft.com/servicestools/help/copyright">Copyright</a>
+										</div>
+								</div>
+							</div>
+							{{#unless enableSidebarMenu}}
+							<div class="o-footer__matrix-group o-footer__matrix-group--1" amp-access="session" amp-access-hide>
+								<h6 class="o-footer__matrix-title">
+									Account
+								</h6>
+								<div class="o-footer__matrix-content" id="o-footer-section-1">
+										<div class="o-footer__matrix-column">
+												<a class="o-footer__matrix-link" href="https://registration.ft.com/registration/selfcare/">My Account</a>
+												<a class="o-footer__matrix-link" href="#" on="tap:amp-access.login-logout">Sign Out</a>
+										</div>
+								</div>
+							</div>
+							{{/unless}}
+						</nav>
+					</div>
+
+					<div class="o-footer__copyright" role="contentinfo">
+						<small>
+							<abbr title="Financial Times" aria-label="F T">FT</abbr> and &#x2018;Financial Times&#x2019; are trademarks of The Financial Times Ltd.<br></br>
+							The Financial Times and its journalism are subject to a self-regulation regime under the <a href="http://www.ft.com/editorialcode" aria-label="F T Editorial Code of Practice">FT Editorial Code of Practice</a>.
+						</small>
+					</div>
+
+				</div>
+				<div class="o-footer__brand">
+					<div class="o-footer__container">
+						<div class="o-footer__brand-logo"></div>
 					</div>
 				</div>
 			</footer>
