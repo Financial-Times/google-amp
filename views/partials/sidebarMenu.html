@@ -1,0 +1,121 @@
+		<amp-sidebar class="o-header__drawer" id='sidebar' layout="nodisplay" side="left">
+			<div class="o-header__drawer-inner">
+
+				<div class="o-header__drawer-tools">
+					<a class="o-header__drawer-tools-logo" href="/">
+						<span class="o-header__visually-hidden">Financial Times</span>
+					</a>
+					<button on='tap:sidebar.close' type="button" class="o-header__drawer-tools-close" aria-controls="o-header-drawer" aria-expanded="true">
+						<span class="o-header__visually-hidden">Close</span>
+					</button>
+				</div>
+
+				<nav class="o-header__drawer-editions" role="navigation" aria-label="Edition switcher">
+					<a class="o-header__drawer-editions-link" href="/uk?edition=uk" aria-selected="true">UK Edition</a>
+					<a class="o-header__drawer-editions-link" href="/international?edition=international">International Edition</a>
+				</nav>
+
+				<nav class="o-header__drawer-menu o-header__drawer-menu--primary" role="navigation" aria-label="Primary navigation">
+					<ul class="o-header__drawer-menu-list">
+								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--heading">Top sections</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="#">FT.com</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+									<a class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="http://google.com">World</a>
+									<amp-accordion>
+										<section class="o-header__accordion-section">
+											<header class="o-header__accordion-header">
+												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected">Section 1</button>
+											</header>
+											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
+												<li class="o-header__drawer-menu-item">
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to World Economy">World Economy</a>
+												</li>
+												<li class="o-header__drawer-menu-item">
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to UK">UK</a>
+												</li>
+												<li class="o-header__drawer-menu-item">
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to US">US</a>
+												</li>
+											</ul>
+										</section>
+									</amp-accordion>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+									<a class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="http://google.com">UK</a>
+									<amp-accordion>
+										<section class="o-header__accordion-section">
+											<header class="o-header__accordion-header">
+												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected">Section 1</button>
+											</header>
+											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
+												<li class="o-header__drawer-menu-item">
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to UK Economy">UK Economy</a>
+												</li>
+											</ul>
+										</section>
+									</amp-accordion>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Science &amp; Environment">Science &amp; Environment</a>
+								</li>
+								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--heading">FT recommends</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Lex">Lex</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Alphaville">Alphaville</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Lunch with the FT">Lunch with the FT</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Video">Video</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Special Reports">Special Reports</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to News feed">News feed</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Newsletters">Newsletters</a>
+								</li>
+								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--divide">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--secondary o-header__drawer-menu-link--unselected" href="#" aria-label="Go to My FT">My FT</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--secondary o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Portfolio">Portfolio</a>
+								</li>
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--secondary o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Today's Paper">Today's Paper</a>
+								</li>
+					</ul>
+				</nav>
+
+				<nav class="o-header__drawer-menu o-header__drawer-menu--user" role="navigation" aria-label="User navigation">
+					<ul class="o-header__drawer-menu-list">
+						<li class="o-header__drawer-menu-item" amp-access="NOT session" amp-access-hide>
+							<a class="o-header__drawer-menu-link" href="https://subscribe.ft.com/psp">Subscribe</a>
+						</li>
+						<li class="o-header__drawer-menu-item" amp-access="NOT session" amp-access-hide>
+							<a class="o-header__drawer-menu-link" on="tap:amp-access.login-login">Sign In</a>
+						</li>
+						<li class="o-header__drawer-menu-item">
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="https://registration.ft.com/registration/selfcare/">My Account</a>
+						</li>
+						<li class="o-header__drawer-menu-item">
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide on="tap:amp-access.login-logout">Sign Out</a>
+						</li>
+						<li class="o-header__drawer-menu-item" amp-access="session AND (NOT access)" amp-access-hide>
+							<a class="o-header__drawer-menu-link" amp-access="session" href="https://subscribe.ft.com/psp">Upgrade</a>
+						</li>
+						<li class="o-header__drawer-menu-item">
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="http://markets.ft.com/data/portfolio/dashboard">Portfolio</a>
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+		</amp-sidebar>
