@@ -5,6 +5,11 @@ const fetchHead = require('./wrap-fetch')(require('@quarterto/fetch-head'), {
 
 module.exports = (metadatum, options) => {
 	const streamUrl = `http://www.ft.com/stream/${metadatum.taxonomy}Id/${metadatum.idV1}`;
+
+	if(process.env.VERIFY_STREAM_URLS !== 'true') {
+		return Promise.resolve(streamUrl);
+	}
+
 	const headers = {};
 
 	// Set User-Agent (to avoid Akamai blocking the request), and client IP
