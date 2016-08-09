@@ -81,25 +81,6 @@ body {
 	@include oTypographySans(s);
 }
 
-// .main-header {
-// 	margin-bottom: 1em;
-// 	background: oColorsGetPaletteColor('grey-tint5');
-// 	padding: .5em;
-// }
-
-// .main-header__container {
-// 	position: relative;
-// }
-
-// .main-header-logo {
-// 	@include responsiveWidth(16em);
-
-// 	svg {
-// 		display: block;
-// 		max-height: 100%; // work around Webkit ridiculous height bug https://bugs.webkit.org/show_bug.cgi?id=82489
-// 	}
-// }
-
 .o-header__top-link-label {
 	@include oTypographySans(xs);
 	font-size: 10px;
