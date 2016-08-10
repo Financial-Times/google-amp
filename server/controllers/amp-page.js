@@ -65,8 +65,6 @@ function getAndRender(uuid, options) {
 				`//${options.host}/amp-access-mock?type=logout&` :
 				`https://${liveAccessHost}/amp-logout?`;
 
-			article.SOURCE_PORT = options.production ? '' : ':5000';
-
 			article.KRUX_REMOTE = '//localhost:5000/static/ads-iframe.html';
 
 			article.freeArticle = !!options.alwaysFree;
