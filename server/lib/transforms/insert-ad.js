@@ -11,7 +11,10 @@ const adMarkup = ({slot}) => `<amp-ad width="300"
 </amp-ad>`;
 
 module.exports = function insertAd($, options) {
-	const paragraph = $('p').eq(3);
-	paragraph.after(adMarkup(options.targeting));
+	if(options.targeting) {
+		const paragraph = $('p').eq(3);
+		paragraph.after(adMarkup(options.targeting));
+	}
+
 	return $;
 };

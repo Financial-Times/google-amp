@@ -8,6 +8,7 @@ const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transform-article');
 const fetchSlideshows = require('../lib/fetch-slideshows');
 const transformSlideshows = require('../lib/transform-slideshows');
+const reportError = require('../lib/report-error');
 const errors = require('http-errors');
 const fetchres = require('fetchres');
 
@@ -27,6 +28,10 @@ function getAndRender(uuid, options) {
 		),
 		getAdTargeting(uuid).then(targeting => {
 			options.targeting = targeting;
+		},
+		e => {
+			e.isWarning = true;
+			reportError(options.raven, e, {tags: {from: 'getAdTargeting'}});
 		}),
 	])
 
