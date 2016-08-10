@@ -23,7 +23,6 @@ lintspaces: $(lintspace-files)
 	lintspaces -n -d tabs -l 2 $^
 
 eslint: $(js-files)
-	$(warning $(.VARIABLES))
 	eslint --fix $^
 
 lint: lintspaces eslint
