@@ -28,5 +28,13 @@ eslint: $(js-files)
 
 lint: lintspaces eslint
 
+instrument:
+	./scripts/instrument.js
+
+bench:
+	./scripts/bench.sh
+
 test: lint
 	./scripts/test.sh
+
+.PHONY: instrument bench

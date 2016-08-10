@@ -10,10 +10,9 @@
     "lint": "make lint",
     "prestart": "enforce-node-version",
     "start": "nodemon app.js",
-    "bench": "scripts/bench.sh",
-    "debug": ". scripts/env.sh && devtool app.js",
-    "instrument-fetch": ". scripts/env.sh && scripts/instrument.js",
-    "heroku-config": "make .env",
+    "bench": "make bench",
+    "instrument-fetch": "make instrument",
+    "heroku-config": "make .env -B",
     "heroku-postbuild": "heroku-version-infer && package-version-sentry-release && package-version-jira-release && package-version-github-release"
   },
   "keywords": [
@@ -74,7 +73,6 @@
     "@quarterto/gaussian-percentile": "^1.0.0",
     "@quarterto/heroku-config-to-env": "^1.3.1",
     "amp-validator-prebuilt": "^0.1.1",
-    "devtool": "^1.8.2",
     "errorhandler": "^1.4.3",
     "eslint": "^2.9.0",
     "eslint-config-airbnb-base": "^3.0.1",
