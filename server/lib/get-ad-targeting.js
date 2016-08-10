@@ -3,7 +3,7 @@ const fetch = require('./wrap-fetch.js')(require('node-fetch'), {
 	tag: 'getAdTargeting',
 });
 
-module.exports = (uuid) => fetch(`https://next-ads-api.ft.com/v1/content/${uuid}`, {
+module.exports = (uuid) => fetch(`https://ads-api.ft.com/v1/content/${uuid}`, {
 	timeout: 2000,
 })
 	.then(response => response.json())
