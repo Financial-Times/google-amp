@@ -19,7 +19,7 @@
 	<div id="c" style="position:absolute;top:0;left:0;bottom:0;right:0;">
 		<script>
 
-			fetch('https://ads-api.ft.com/v1/content/e73c07f8-dec0-11e5-b67f-a61732c1d025')
+			fetch('https://{{adsApiHost}}/v1/content/{{uuid}}')
 				.then(res => res.json())
 				.then(res => {
 					console.log('got your data shizz', res);
