@@ -1,48 +1,17 @@
 'use strict';
 const handlebars = require('handlebars');
-const compileScss = require('@quarterto/post-sass');
 const fs = require('fs-promise');
 const path = require('path');
 const promisify = require('@quarterto/promisify');
 const glob = promisify(require('glob'));
-const cacheIf = require('@quarterto/cache-if');
 const promiseAllObj = require('@quarterto/promise-all-object');
 const getStreamUrl = require('./get-stream-url');
+const getCss = require('./get-css');
+const cacheIf = require('@quarterto/cache-if');
 
-const cssPath = path.resolve('css');
 const viewsPath = path.resolve('views');
 const partialsPath = path.resolve('views/partials');
 
-const readCompiledCss = () => fs.readFile(`${cssPath}/style.css`, 'utf8');
-
-const getCss = precompiled => Promise.resolve(
-	precompiled ?
-		cacheIf.always(readCompiledCss) :
-		compileScss({
-			postCss: [
-				'autoprefixer',
-				[
-					'cssnano',
-					{normalizeUrl: false}, // See https://github.com/ben-eb/postcss-normalize-url/issues/14
-				],
-				'@georgecrawford/postcss-remove-important',
-				'postcss-inline-svg',
-			],
-		})
-)
-.then(compiled => {
-	const css = compiled.toString();
-	if(!precompiled) {
-		if(css.length > 50000) {
-			console.error(`WARNING: Compiled CSS bundle is ${css.length}, more than the AMP limit of 50,000 bytes: ` +
-				'https://www.ampproject.org/docs/reference/spec.html#maximum-size.');
-		} else if(css.length > 45000) {
-			console.error(`WARNING: Compiled CSS bundle is ${css.length}, approaching the AMP limit of 50,000 bytes: ` +
-				'https://www.ampproject.org/docs/reference/spec.html#maximum-size.');
-		}
-	}
-	return css;
-});
 
 const readTemplate = () => fs.readFile(`${viewsPath}/article.html`, 'utf8').then(handlebars.compile);
 const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);

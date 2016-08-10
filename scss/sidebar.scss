@@ -1,0 +1,20 @@
+amp-sidebar {
+	@include oColorsFor(page, background);
+	@include oTypographySans(m);
+	width: 100%;
+}
+
+.o-header__accordion-option {
+	position: absolute;
+	z-index: 1;
+}
+
+.o-header__accordion-header {
+	height: 48px;
+	border: none;
+	background: none;
+}
+
+.o-header__accordion-section[expanded] {
+	@include oColorsFor(o-header-drawer-menu-list, background);
+}
