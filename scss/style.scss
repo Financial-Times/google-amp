@@ -12,8 +12,7 @@ $o-grid-ie8-rules: 'none';
 $o-header-is-silent: false;
 @import 'o-header/main';
 
-$o-footer-is-silent: false;
-@import 'o-footer/main';
+@import 'footer';
 
 @include oFontsInclude(MetricWeb, regular); // body
 @include oFontsInclude(MetricWeb, bold); // headings
@@ -189,66 +188,6 @@ amp-sidebar {
 	}
 }
 
-.main-footer {
-	margin-top: 20px;
-	border-top: 5px solid oColorsGetPaletteColor('grey-tint3');
-	background: oColorsGetPaletteColor('grey-tint5');
-	padding: .5em;
-}
-
-.main-footer__container {
-	text-align: center;
-}
-
-%main-footer__element {
-	margin: 0;
-	padding: 0 0 1rem;
-}
-
-.main-footer__links {
-	@extend %main-footer__element;
-	list-style: none;
-}
-
-.main-footer__link {
-	@include oTypographySans(s);
-
-	color: oColorsGetPaletteColor('pink');
-
-	@include oGridRespondTo(S) {
-		display: inline;
-
-		&::after {
-			content: ' | ';
-		}
-
-		&:last-child::after {
-			content: '';
-		}
-	}
-
-	a {
-		color: inherit;
-	}
-}
-
-.main-footer__cop {
-	@extend %main-footer__element;
-	@include oTypographySans(xs);
-	color: oColorsGetPaletteColor('grey-tint1');
-
-	a:link, a:visited {
-		color: inherit;
-	}
-}
-
-.o-footer {
-	@include oTypographySans(s);
-}
-
-.o-footer__brand-logo {
-	background-image: svg-load('./static/nikkei-logo.svg');
-}
 
 // next-article component styles
 .c-box {
