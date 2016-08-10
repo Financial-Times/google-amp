@@ -2,20 +2,20 @@
 
 const url = require('url');
 
-const formatLightSignupUrl = params => url.format(Object.assign(
-	url.parse(params.lightSignupUrl),
+const formatLightSignupUrl = options => url.format(Object.assign(
+	url.parse(options.lightSignupUrl),
 	{
 		query: {
-			article: params.uuid,
-			product: params.lightSignupProduct,
-			mailinglist: params.lightSignupMailinglist,
+			article: options.uuid,
+			product: options.lightSignupProduct,
+			mailinglist: options.lightSignupMailinglist,
 		},
 	}
 ));
 
-const lightSignupMarkup = params => `<div amp-access="NOT session" amp-access-hide>
+const lightSignupMarkup = options => `<div amp-access="NOT session" amp-access-hide>
 <amp-iframe
-	src="${formatLightSignupUrl(params)}"
+	src="${formatLightSignupUrl(options)}"
 	width="auto"
 	height="340"
 	layout="fixed-height"
@@ -24,8 +24,8 @@ const lightSignupMarkup = params => `<div amp-access="NOT session" amp-access-hi
 ></amp-iframe>
 </div>`;
 
-module.exports = function addLightSignup($, params) {
-	if(params.enableLightSignup) {
+module.exports = function addLightSignup($, options) {
+	if(options.enableLightSignup) {
 		const paras = $.root().children('p');
 
 		// Zero-indexed position
@@ -49,7 +49,7 @@ module.exports = function addLightSignup($, params) {
 			}
 		}
 
-		paras.eq(position).after(lightSignupMarkup(params));
+		paras.eq(position).after(lightSignupMarkup(options));
 	}
 
 	return $;

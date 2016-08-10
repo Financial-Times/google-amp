@@ -25,13 +25,15 @@ function getAndRender(uuid, options) {
 				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
 			)
 		),
-		getAdTargeting(uuid),
+		getAdTargeting(uuid).then(targeting => {
+			options.targeting = targeting;
+		}),
 	])
 
 		// First phase: network-dependent fetches and transforms in parallel
-		.then(([article, targeting]) => Promise.all(
+		.then(([article]) => Promise.all(
 			[
-				transformArticle(article, options, targeting),
+				transformArticle(article, options),
 				addStoryPackage(article, options),
 				addMoreOns(article, options),
 				addPrimaryTheme(article, options),
@@ -44,9 +46,9 @@ function getAndRender(uuid, options) {
 			])
 
 			// Return the article
-			.then(() => [article, targeting]))
+			.then(() => article))
 		)
-		.then(([article, targeting]) => {
+		.then((article) => {
 			article.AUTH_AUTHORIZATION_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=access&` :
 				`https://${liveAccessHost}/amp-access?`;
@@ -67,7 +69,7 @@ function getAndRender(uuid, options) {
 
 			article.freeArticle = !!options.alwaysFree;
 			article.accessMocked = !!options.accessMock;
-			article.adTargeting = targeting;
+			article.adTargeting = options.targeting;
 			return article;
 		})
 		.then(article => renderArticle(article, options));
