@@ -1,7 +1,6 @@
 #!/bin/bash
 
 . ./scripts/test-uuids.sh
-. ./scripts/env.sh
 
 set -e
 

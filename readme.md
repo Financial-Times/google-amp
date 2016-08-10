@@ -10,7 +10,7 @@ Prerequisites
 
  - node 4.x and npm
  - `brew install libxslt`
- - `scripts/env.sh` that exports the required environment variables from `app.json` (see `scripts/env-example.sh`). if you have access to the staging environment on heroku, you can run `npm run heroku-config` to copy variables from staging.
+ - `.env` that contains the required environment variables from `app.json` (see `scripts/env-example.sh`). if you have access to the staging environment on heroku, you can run `npm run heroku-config` to copy variables from staging.
    - If you add another environment variable, make sure to add it to `app.json`.
 
 Running
