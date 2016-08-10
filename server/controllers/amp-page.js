@@ -65,7 +65,11 @@ function getAndRender(uuid, options) {
 				`//${options.host}/amp-access-mock?type=logout&` :
 				`https://${liveAccessHost}/amp-logout?`;
 
-			article.KRUX_REMOTE = '//localhost:5000/static/ads-iframe.html';
+			const thirdPartyHost = process.env.HEROKU_APP_NAME ?
+				`${process.env.HEROKU_APP_NAME}.herokuapp.com` :
+				'localhost:5000';
+
+			article.KRUX_REMOTE = `//${thirdPartyHost}/static/ads-iframe.html`;
 
 			article.freeArticle = !!options.alwaysFree;
 			article.accessMocked = !!options.accessMock;
