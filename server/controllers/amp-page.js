@@ -16,22 +16,20 @@ const lightSignupProduct = 'AMP';
 const lightSignupMailinglist = 'google-amp';
 
 function getAndRender(uuid, options) {
-	let targeting = null;
-	return Promise.all([getArticle(uuid), getAdTargeting(uuid)])
+	return Promise.all([
+		getArticle(uuid)
 		.then(
-			response => {
-				targeting = response[1];
-
-				return response[0]._source ? response[0]._source : Promise.reject(new errors.NotFound());
-			},
+			response => response._source ? response._source : Promise.reject(new errors.NotFound()),
 			err => (
 				console.log(err),
 				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
 			)
-		)
+		),
+		getAdTargeting(uuid),
+	])
 
 		// First phase: network-dependent fetches and transforms in parallel
-		.then(article => Promise.all(
+		.then(([article, targeting]) => Promise.all(
 			[
 				transformArticle(article, options, targeting),
 				addStoryPackage(article, options),
@@ -46,9 +44,9 @@ function getAndRender(uuid, options) {
 			])
 
 			// Return the article
-			.then(() => article))
+			.then(() => [article, targeting]))
 		)
-		.then(article => {
+		.then(([article, targeting]) => {
 			article.AUTH_AUTHORIZATION_URL = options.accessMock ?
 				`//${options.host}/amp-access-mock?type=access&` :
 				`https://${liveAccessHost}/amp-access?`;
