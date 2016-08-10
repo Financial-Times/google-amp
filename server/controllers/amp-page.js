@@ -1,6 +1,6 @@
 'use strict';
 const getArticle = require('../lib/get-article');
-const getAdTargeting = require('../lib/getAdTargeting');
+const getAdTargeting = require('../lib/get-ad-targeting');
 const addStoryPackage = require('../lib/related-content/story-package');
 const addMoreOns = require('../lib/related-content/more-ons');
 const addPrimaryTheme = require('../lib/primary-theme');
@@ -20,9 +20,9 @@ function getAndRender(uuid, options) {
 	return Promise.all([getArticle(uuid), getAdTargeting(uuid)])
 		.then(
 			response => {
-			targeting = response[1];
+				targeting = response[1];
 
-			return response[0]._source ? response[0]._source : Promise.reject(new errors.NotFound());
+				return response[0]._source ? response[0]._source : Promise.reject(new errors.NotFound());
 			},
 			err => (
 				console.log(err),
@@ -33,10 +33,10 @@ function getAndRender(uuid, options) {
 		// First phase: network-dependent fetches and transforms in parallel
 		.then(article => Promise.all(
 			[
-			transformArticle(article, options, targeting),
-			addStoryPackage(article, options),
-			addMoreOns(article, options),
-			addPrimaryTheme(article, options),
+				transformArticle(article, options, targeting),
+				addStoryPackage(article, options),
+				addMoreOns(article, options),
+				addPrimaryTheme(article, options),
 				fetchSlideshows(article, options),
 			])
 
