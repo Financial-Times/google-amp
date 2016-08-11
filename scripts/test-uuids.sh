@@ -30,6 +30,7 @@ export TEST_UUIDS=(
 	"b4284269-2951-3169-ab98-88c184da5e88"
 	"c0e910c4-d005-11e5-831d-09f7778e7377" # lunch with the ft
 	"f89bc888-8029-11e2-96ba-00144feabdc0" # Interactive graphic (HTTP)
+	"d930d316-5e5c-11e6-bb77-a121aa8abd95" # UUID with ft-concept tag
 
 	# QA Test List
 	"94e97eee-ce9a-11e5-831d-09f7778e7377"
