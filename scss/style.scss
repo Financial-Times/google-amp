@@ -1,5 +1,5 @@
-$o-fonts-path: '//h2.ft.com/build/v2/files/o-fonts-assets@1.3.0/';
-$o-grid-ie8-rules: 'none';
+@import 'variables';
+@import 'mixins';
 
 @import 'o-colors/main';
 @import 'o-fonts/main';
@@ -17,38 +17,6 @@ $o-grid-ie8-rules: 'none';
 @include oFontsInclude(MetricWeb, regular); // body
 @include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
-
-$page-width: 30em;
-
-$border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
-
-@mixin responsiveWidth($width: $page-width) {
-	margin: 0 auto;
-	padding: 0 10px;
-	max-width: $width;
-}
-
-@function pxAndVhToViewport($vh, $px) {
-	@return $px * 100vh / $vh;
-}
-
-@mixin responsiveType($size, $min: 20px, $max: 50px) {
-	font-size: $size;
-	$min-size: ($size - 3vh) / 0.5vh + $min;
-	$max-size: max($min-size, $max);
-
-	@if $min != 0 {
-		@media (max-height: pxAndVhToViewport($size, $min-size)) {
-			font-size: $min-size;
-		}
-	}
-
-	@if $max != 0 {
-		@media (min-height: pxAndVhToViewport($size, $max-size)) {
-			font-size: $max-size;
-		}
-	}
-}
 
 body {
 	@include oColorsFor(page, background);
