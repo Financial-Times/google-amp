@@ -61,7 +61,6 @@ body {
 }
 
 .main {
-	@include oTypographyBody;
 	@include responsiveWidth;
 	flex-grow: 1;
 }
@@ -473,6 +472,7 @@ body {
 }
 
 .amp-access-login {
+	@include oTypographySans(m);
 	color: oColorsGetPaletteColor(grey-tint5);
 	margin-top: 6vh;
 	margin-bottom: 8vh;
