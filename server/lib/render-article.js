@@ -83,8 +83,9 @@ const getMainImage = data => {
 		// TODO pull out the lead image from the body XML if possible
 		return {
 			url: 'http://im.ft-static.com/m/img/social/og-ft-logo-large.png',
-			width: 600,
-			height: 600,
+			// https://developers.google.com/search/docs/data-types/articles - minimum width = 696px
+			width: 696,
+			height: 696,
 		};
 	}
 };
