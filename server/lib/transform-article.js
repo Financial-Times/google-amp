@@ -3,6 +3,7 @@ const articleXsltTransform = require('./article-xslt');
 const cheerioTransform = require('./cheerio-transform');
 const dateTransform = require('./article-date');
 const summaryTransform = require('./article-summary');
+const schemaHeadlineTransform = require('./article-headline');
 const extractMainImage = require('./transforms/extract-main-image');
 
 function transformArticleBody(article, options) {
@@ -31,5 +32,6 @@ module.exports = (contentItem, options) => transformArticleBody(contentItem, opt
 		contentItem.htmlBody = transformed$.html();
 		contentItem.displayDate = dateTransform(contentItem.publishedDate, 'article-date');
 		contentItem.displaySummary = summaryTransform(contentItem);
+		contentItem.schemaHeadline = schemaHeadlineTransform(contentItem);
 		return contentItem;
 	});
