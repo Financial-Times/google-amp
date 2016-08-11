@@ -1,7 +1,7 @@
 'use strict';
 
 const validateHeadline = text => {
-	if(!text.match(/\w/)) return false;
+	if(typeof text !== 'string' || !text.match(/\w/)) return false;
 
 	if(text.length > 110) {
 		text = `${text.substr(0, 109)}…`;
