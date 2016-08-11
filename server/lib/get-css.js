@@ -10,7 +10,7 @@ const cssPath = path.resolve('css');
 const cssFile = `${cssPath}/style.css`;
 const readCompiledCss = () => fs.readFile(cssFile, 'utf8');
 
-const compileCss = compileScss({
+const compileCss = () => compileScss({
 	postCss: [
 		'autoprefixer',
 		'@georgecrawford/postcss-remove-important',
@@ -44,7 +44,7 @@ const compileCss = compileScss({
 })
 .then(compiled => compiled.toString());
 
-module.exports = precompiled => Promise.resolve(precompiled ? cacheIf.always(readCompiledCss) : compileCss)
+module.exports = precompiled => Promise.resolve(precompiled ? cacheIf.always(readCompiledCss) : compileCss())
 .then(css => {
 	if(!precompiled) {
 		if(css.length > 50000) {
