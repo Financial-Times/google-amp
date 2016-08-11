@@ -6,14 +6,8 @@ const trimmedLinks = require('./transforms/trimmed-links');
 const externalImages = require('./external-images');
 const copyrightNotice = require('./transforms/copyright-notice');
 const lightSignup = require('./transforms/light-signup');
+const removeStyleAttributes = require('./transforms/remove-styles');
 
-function removeStyleAttributes($) {
-	$('[style]').each(function eachStyle() {
-		$(this).removeAttr('style');
-	});
-
-	return $;
-}
 
 module.exports = function run(body, flags) {
 	body = replaceEllipses(body);
