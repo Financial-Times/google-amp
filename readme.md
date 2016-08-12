@@ -8,7 +8,7 @@ AMP HTML rendering for FT articles
 Prerequisites
 ---
 
- - node 4.x and npm
+ - node 6.x and npm
  - `brew install libxslt`
  - `.env` that contains the required environment variables from `app.json` (see `scripts/env-example.sh`). if you have access to the staging environment on heroku, you can run `npm run heroku-config` to copy variables from staging.
    - If you add another environment variable, make sure to add it to `app.json`.
