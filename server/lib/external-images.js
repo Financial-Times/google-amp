@@ -8,6 +8,11 @@ const statusCodes = require('http').STATUS_CODES;
 const reportError = require('./report-error');
 const Warning = require('./warning');
 
+// See Sass variables
+const maxColumnWidth = 500;
+const pagePadding = 10;
+const minColumnWidth = 320 - (2 * pagePadding);
+
 function getWidthAndRatio(metaUrl, options) {
 	return fetch(metaUrl)
 		.then(fetchres.json)
@@ -26,7 +31,7 @@ function getWidthAndRatio(metaUrl, options) {
 			meta => Object.assign(meta, {ratio: meta.height / meta.width}),
 			(e) => {
 				reportError(options.raven, e, {extra: {metaUrl}});
-				return {width: 600, ratio: 4 / 7}; // discard error and use fallback dimensions
+				return {width: maxColumnWidth, ratio: 4 / 7}; // discard error and use fallback dimensions
 			}
 		);
 }
@@ -52,7 +57,7 @@ module.exports = function externalImages($, options) {
 			const metaUrl = entities.decode(imageSrcEncoded).replace('raw', 'metadata');
 			return getWidthAndRatio(metaUrl, options)
 				.then(meta => {
-					const width = Math.min(600, meta.width);
+					const width = Math.min(maxColumnWidth, meta.width);
 					const height = width * meta.ratio;
 
 					$el.attr({
@@ -60,7 +65,7 @@ module.exports = function externalImages($, options) {
 						height,
 					});
 
-					if(!isAside && width < 600) {
+					if(!isAside && width < minColumnWidth) {
 						// don't stretch narrow inline images to page width
 						$el.attr('layout', 'fixed');
 					}
