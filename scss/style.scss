@@ -490,6 +490,18 @@ body {
 	line-height: 1.1;
 }
 
+// Comments
+
+.comments-button {
+	@include oButtons(big);
+}
+
+.comments {
+	display: flex;
+	margin-top: 2em;
+	justify-content: center;
+}
+
 // Slideshows
 .slideshow {
 	background: black;

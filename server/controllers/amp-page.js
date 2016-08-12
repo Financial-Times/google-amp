@@ -64,6 +64,9 @@ function getAndRender(uuid, options) {
 			article.freeArticle = !!options.alwaysFree;
 			article.accessMocked = !!options.accessMock;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;
+
+			article.nextUrl = `https://next.ft.com/content/${uuid}`;
+
 			return article;
 		})
 		.then(article => renderArticle(article, options));
