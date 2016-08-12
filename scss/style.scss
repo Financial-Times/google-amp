@@ -1,5 +1,5 @@
-$o-fonts-path: '//h2.ft.com/build/v2/files/o-fonts-assets@1.3.0/';
-$o-grid-ie8-rules: 'none';
+@import 'variables';
+@import 'mixins';
 
 @import 'o-colors/main';
 @import 'o-fonts/main';
@@ -7,48 +7,19 @@ $o-grid-ie8-rules: 'none';
 @import 'o-grid/main';
 
 @import 'o-buttons/main';
+
+@import 'header';
+// @import 'sidebar';
+@import 'footer';
+
 @import 'hacks';
 
-@include oFontsInclude(MetricWeb, light); // body
+@include oFontsInclude(MetricWeb, regular); // body
 @include oFontsInclude(MetricWeb, bold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
-@include oFontsInclude(FinancierDisplayWeb, $weight: light, $style: italic); // standfirst
-
-$page-width: 30em;
-
-$border-divider: 1px solid oColorsGetPaletteColor(pink-tint3);
-
-@mixin responsiveWidth($width: $page-width) {
-	margin: 0 auto;
-	padding: 0 10px;
-	max-width: $width;
-}
-
-@function pxAndVhToViewport($vh, $px) {
-	@return $px * 100vh / $vh;
-}
-
-@mixin responsiveType($size, $min: 20px, $max: 50px) {
-	font-size: $size;
-	$min-size: ($size - 3vh) / 0.5vh + $min;
-	$max-size: max($min-size, $max);
-
-	@if $min != 0 {
-		@media (max-height: pxAndVhToViewport($size, $min-size)) {
-			font-size: $min-size;
-		}
-	}
-
-	@if $max != 0 {
-		@media (min-height: pxAndVhToViewport($size, $max-size)) {
-			font-size: $max-size;
-		}
-	}
-}
 
 body {
 	@include oColorsFor(page, background);
-	@include oTypographyBody;
 }
 
 .main-wrapper {
@@ -62,36 +33,20 @@ body {
 	flex-grow: 1;
 }
 
-a:hover {
-	border-bottom-style: dotted;
-	border-bottom-width: 1px;
-}
-
 .article {
 	@include oTypographyBodyWrapper;
+
+	a {
+		border-bottom-color: transparent;
+
+		&:hover {
+			border-bottom-color: inherit;
+		}
+	}
 }
 
 .article__copyright-notice.article__copyright-notice {
 	@include oTypographySans(s);
-}
-
-.main-header {
-	margin-bottom: 1em;
-	background: oColorsGetPaletteColor('grey-tint5');
-	padding: .5em;
-}
-
-.main-header__container {
-	position: relative;
-}
-
-.main-header-logo {
-	@include responsiveWidth(16em);
-
-	svg {
-		display: block;
-		max-height: 100%; // work around Webkit ridiculous height bug https://bugs.webkit.org/show_bug.cgi?id=82489
-	}
 }
 
 .article-image {
@@ -124,8 +79,8 @@ a:hover {
 	@include oTypographyLead;
 
 	@include oGridRespondTo($until: M) {
-		@include responsiveType(6vh);
-		line-height: 1;
+		@include responsiveType(5vh);
+		line-height: 1.2;
 		@media (orientation: portrait) {
 			@include responsiveType(3vh);
 		}
@@ -155,63 +110,13 @@ a:hover {
 		}
 	}
 
-	a {
-		color: inherit;
-	}
-}
-
-.main-footer {
-	margin-top: 20px;
-	border-top: 5px solid oColorsGetPaletteColor('grey-tint3');
-	background: oColorsGetPaletteColor('grey-tint5');
-	padding: .5em;
-}
-
-.main-footer__container {
-	text-align: center;
-}
-
-%main-footer__element {
-	margin: 0;
-	padding: 0 0 1rem;
-}
-
-.main-footer__links {
-	@extend %main-footer__element;
-	list-style: none;
-}
-
-.main-footer__link {
-	@include oTypographySans(s);
-
-	color: oColorsGetPaletteColor('pink');
-
-	@include oGridRespondTo(S) {
-		display: inline;
-
-		&::after {
-			content: ' | ';
-		}
-
-		&:last-child::after {
-			content: '';
-		}
-	}
+	margin: 0.5em 0;
 
 	a {
 		color: inherit;
 	}
 }
 
-.main-footer__cop {
-	@extend %main-footer__element;
-	@include oTypographySans(xs);
-	color: oColorsGetPaletteColor('grey-tint1');
-
-	a:link, a:visited {
-		color: inherit;
-	}
-}
 
 // next-article component styles
 .c-box {
@@ -524,15 +429,18 @@ a:hover {
 .access-mocked {
 	position: absolute;
 	background: pink;
-	font-size: 10px;
-	top: 0;
+	font-size: 12px;
+	top: 160px;
 	width: 30%;
 	line-height: 1em;
-	padding: 2px;
+	padding: 10px;
 	min-width: 90px;
+	right: 0;
+	z-index: 1;
 }
 
 .amp-access-login {
+	@include oTypographySans(m);
 	color: oColorsGetPaletteColor(grey-tint5);
 	margin-top: 6vh;
 	margin-bottom: 8vh;
@@ -582,51 +490,6 @@ a:hover {
 	line-height: 1.1;
 }
 
-.amp-access-nav {
-	text-align: right;
-	margin: 0.5em 0 0;
-
-	@include oGridRespondTo(M) {
-		position: absolute;
-		right: 0;
-		bottom: 0;
-		margin: 0;
-	}
-}
-
-.amp-access-nav__links {
-	margin: 0;
-}
-
-.amp-access-nav__link-item {
-	display: inline-block;
-	position: relative;
-
-	&:not(:first-child):before {
-		content: ' ';
-		position: absolute;
-		width: 2px;
-		height: 14px;
-		top: 50%;
-		left: -3px;
-		margin-top: -4px;
-		background-color: oColorsGetPaletteColor('warm-5');
-
-		&:first-of-type {
-			display: none;
-		}
-	}
-}
-
-.amp-access-nav__link {
-	color: white;
-	@include oTypographySans(s);
-	text-decoration: none;
-	margin: 0 0.5em;
-	cursor: pointer;
-}
-
-
 // Slideshows
 .slideshow {
 	background: black;
@@ -667,4 +530,10 @@ a:hover {
 	max-height: none;
 	font-size: 16px;
 	line-height: 18px;
+}
+
+abbr[title] {
+	border-bottom: 0;
+	text-decoration: underline;
+	text-decoration: underline dotted;
 }

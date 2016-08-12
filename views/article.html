@@ -21,6 +21,10 @@
 		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		{{#if enableSidebarMenu}}
+		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+		{{/if}}
 
 		<script id="amp-access" type="application/json">
 		{
@@ -67,7 +71,7 @@
 		</script>
 	</head>
 	<body>
-		<amp-analytics config="//SOURCE_HOST{{SOURCE_PORT}}/analytics/config.json">
+		<amp-analytics config="//SOURCE_HOSTNAME{{SOURCE_PORT}}/analytics/config.json">
 			<script type="application/json">
 			{
 				"vars": {
@@ -79,27 +83,17 @@
 
 		<amp-image-lightbox id="lightbox" layout="nodisplay"></amp-image-lightbox>
 
+		{{#if enableSidebarMenu}}
+			{{> sidebarMenu}}
+		{{/if}}
+
+		{{#if accessMocked}}
+		<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
+		{{/if}}
+
 		<div class="main-wrapper">
-			<header class="main-header">
-				<div class="main-header__container">
-					<div class="main-header-logo">
-						<a href="http://www.ft.com" title="World business, finance, and political news from the Financial Times">{{{ftSvg}}}</a>
-					</div>
-					{{#if accessMocked}}
-					<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
-					{{/if}}
-					<div class="amp-access-nav" amp-access="session" amp-access-hide>
-						<ul class="amp-access-nav__links">
-							<li class="amp-access-nav__link-item">
-								<a class="amp-access-nav__link" on="tap:amp-access.login-logout">Sign out</a>
-							</li>
-							<li class="amp-access-nav__link-item">
-								<a class="amp-access-nav__link" href="http://registration.ft.com/registration/selfcare/">My Account</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</header>
+
+			{{> header}}
 
 			<main class="main" role="main">
 				<article class="article">
@@ -149,11 +143,11 @@
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
 					<div class="amp-access-login__body" amp-access="NOT session">
-							<a class="amp-access-login__button" on="tap:amp-access.login-login">Sign in to FT.com</a>
-							<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">View subscription packages</a>
+						<a class="amp-access-login__button" href="#" on="tap:amp-access.login-login">Sign in to FT.com</a>
+						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">View subscription packages</a>
 					</div>
 					<div class="amp-access-login__body" amp-access="session">
-					<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">Upgrade now</a>
+						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">Upgrade now</a>
 					</div>
 				</div>
 
@@ -223,20 +217,8 @@
 				{{/if}}
 			</main>
 
-			<footer class="main-footer">
-				<div class="main-footer__container">
-					<ul class="main-footer__links">
-						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/ft-com-terms-and-conditions/">Terms &amp; conditions</a></li>
-						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/financial-times-privacy-policy/">Privacy policy</a></li>
-						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/copyright-policy/?ft_site=falcon#axzz3goHcFH3m">Copyright</a></li>
-						<li class="main-footer__link"><a href="http://help.ft.com/tools-services/how-the-ft-manages-cookies-on-its-websites/">Cookie policy</a></li>
-					</ul>
-					<div class="main-footer__cop">The Financial Times and its journalism are subject to a self-regulation regime under the FT <a href="http://www.ft.com/editorialcode">Editorial Code of Practice.</a></div>
-					<div class="main-footer__brand">
-						{{{nikkeiSvg}}}
-					</div>
-				</div>
-			</footer>
+			{{> footer}}
+
 		</div>
 
 	</body>

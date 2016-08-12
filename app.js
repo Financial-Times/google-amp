@@ -85,6 +85,9 @@ app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
 app.get('/_access_mock', (req, res) => {
 	res.redirect(301, '/amp-access-mock?type=enable');
 });
+app.get('/_access_mock/prevent-access', (req, res) => {
+	res.redirect(301, '/amp-access-mock?type=prevent-access');
+});
 app.get('/_access_mock/clear', (req, res) => {
 	res.redirect(301, '/amp-access-mock?type=clear');
 });

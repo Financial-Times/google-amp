@@ -1,0 +1,33 @@
+amp-sidebar {
+	@include oColorsFor(page, background);
+	@include oTypographySans(m);
+	width: 100%;
+}
+
+.o-header__accordion-option {
+	position: absolute;
+	z-index: 1;
+}
+
+.o-header__accordion-header {
+	height: 48px;
+	border: none;
+	background: none;
+}
+
+.o-header__accordion-section[expanded] {
+	@include oColorsFor(o-header-drawer-menu-list, background);
+}
+
+.o-header__top-link-label {
+	@include oTypographySans(xs);
+	font-size: 10px;
+}
+
+.o-header__drawer-menu-list--child {
+	box-shadow: inset 0 -1px 0 oColorsGetColorFor(o-header-drawer-menu, border), inset 0 1px 0 oColorsGetColorFor(o-header-drawer-menu, border);
+}
+
+.o-header__accordion-section[expanded] .o-header__drawer-menu-toggle:before {
+	transform: rotate(180deg);
+}

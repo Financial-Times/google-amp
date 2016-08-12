@@ -16,6 +16,7 @@ module.exports = (req, res) => {
 
 	const signedIn = !!req.cookies['amp-access-mock-logged-in'];
 	const fcf = !!req.cookies['amp-access-mock-fcf'];
+	const hasAccess = fcf || signedIn && !req.cookies['amp_access_mock-no-access'];
 
 	setTimeout(() => {
 		switch(req.query.type) {
@@ -24,7 +25,7 @@ module.exports = (req, res) => {
 		case 'pingback':
 			res.setHeader('Content-Type', 'application/json');
 			res.status(202).json({
-				access: signedIn || fcf,
+				access: hasAccess,
 				debug: 'access-mock dummy debug',
 				session: signedIn ? 'access-mock dummy session' : null,
 			});
@@ -62,6 +63,12 @@ module.exports = (req, res) => {
 			res.clearCookie('amp-access-mock-fcf');
 			res.status(200).send('Your amp-access-mock-fcf cookie was cleared. Please revisit the ' +
 				'<a href="javascript:history.back()">previous page</a>.');
+			break;
+
+		case 'prevent-access':
+			res.cookie('amp-access-mock-no-access', '1');
+			res.status(200).send('Your amp_access_mock-no-access cookie was set. You will not be able to access' +
+				'content, even when signed-in. Please revisit the <a href="javascript:history.back()">previous page</a>.');
 			break;
 
 		default:
