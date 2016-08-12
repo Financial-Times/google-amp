@@ -61,8 +61,9 @@ module.exports = function externalImages($, options) {
 					});
 
 					if(!isAside && width < 600) {
-						// don't stretch narrow inline images to page width
-						$el.attr('layout', 'fixed');
+						// don't stretch narrow inline images to page width, and don't
+						// allow images between 480-599px to break out of .main column
+						$el.parents('figure').css('max-width', `${width}px`);
 					}
 				});
 		}
