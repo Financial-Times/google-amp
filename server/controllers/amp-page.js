@@ -1,6 +1,5 @@
 'use strict';
 const getArticle = require('../lib/get-article');
-const getAdTargeting = require('../lib/get-ad-targeting');
 const addStoryPackage = require('../lib/related-content/story-package');
 const addMoreOns = require('../lib/related-content/more-ons');
 const addPrimaryTheme = require('../lib/primary-theme');
@@ -26,13 +25,6 @@ function getAndRender(uuid, options) {
 				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
 			)
 		),
-		getAdTargeting(uuid).then(targeting => {
-			options.targeting = targeting;
-		},
-		e => {
-			e.isWarning = true;
-			reportError(options.raven, e, {tags: {from: 'getAdTargeting'}});
-		}),
 	])
 
 		// First phase: network-dependent fetches and transforms in parallel
@@ -78,7 +70,6 @@ function getAndRender(uuid, options) {
 
 			article.freeArticle = !!options.alwaysFree;
 			article.accessMocked = !!options.accessMock;
-			article.adTargeting = options.targeting;
 			return article;
 		})
 		.then(article => renderArticle(article, options));

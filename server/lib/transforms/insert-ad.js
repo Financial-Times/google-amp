@@ -1,20 +1,9 @@
 'use strict';
 
-const adMarkup = ({slot}) => `<amp-ad width="300"
-		height="250"
-		type="doubleclick"
-		data-slot="${slot}"
-		json="{&#34;targeting&#34;:{&#34;pos&#34;: &#34;mpu&#34;}}">
-		<div placeholder>
-				<b>Placeholder here!!!</b>
-		</div>
-</amp-ad>`;
+const adMarkup = () => `<div class="ad-container"><amp-ad width="300" height="250" type="doubleclick"></amp-ad></div>`;
 
 module.exports = function insertAd($, options) {
-	if(options.targeting) {
 		const paragraph = $('p').eq(3);
 		paragraph.after(adMarkup(options.targeting));
-	}
-
 	return $;
 };
