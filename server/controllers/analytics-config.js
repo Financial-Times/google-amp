@@ -2,7 +2,7 @@
 const errors = require('http-errors');
 const pkg = require('../../package.json');
 
-const DEBUG = false;
+const DEBUG = true;// @nocommit
 
 module.exports = (req, res, next) => {
 	if(!req.query.__amp_source_origin) {
@@ -46,6 +46,10 @@ module.exports = (req, res, next) => {
 			amp_auth_access: 'AUTHDATA(access)',
 			amp_auth_debug: 'AUTHDATA(debug)',
 			amp_reader_id: 'ACCESS_READER_ID',
+
+			destination: '${linkDestination}',
+			text: '${linkText}',
+			link_type: '${linkType}',
 		},
 		device: {
 			dimensions: {

@@ -8,6 +8,7 @@ const copyrightNotice = require('./transforms/copyright-notice');
 const lightSignup = require('./transforms/light-signup');
 const removeStyleAttributes = require('./transforms/remove-styles');
 const replaceFtConceptTags = require('./transforms/ft-concept');
+const linkAnalytics = require('./transforms/link-analytics');
 
 
 module.exports = function run(body, flags) {
@@ -23,6 +24,7 @@ module.exports = function run(body, flags) {
 		removeStyleAttributes,
 		lightSignup,
 		replaceFtConceptTags,
+		linkAnalytics,
 	].map(transform => transform($, flags)))
 		.then(() => $);
 };
