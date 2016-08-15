@@ -10,7 +10,7 @@ const removeStyleAttributes = require('./transforms/remove-styles');
 const replaceFtConceptTags = require('./transforms/ft-concept');
 const insertAd = require('./transforms/insert-ad');
 
-module.exports = function run(body, options) {
+module.exports = function run(body, flags) {
 	body = replaceEllipses(body);
 	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
 	body = body.concat(copyrightNotice());
