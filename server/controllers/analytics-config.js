@@ -121,6 +121,17 @@ module.exports = (req, res, next) => {
 				},
 			},
 
+			commentsclick: {
+				on: 'click',
+				selector: '.comments-button',
+				request: 'standard',
+				vars: {
+					category: 'comments-button',
+					action: 'click',
+				},
+			},
+
+
 			// Something like https://github.com/Financial-Times/n-instrumentation
 			// /blob/920a8ad7cfaeccc02720dd386a2149674719bd0b/src/analytics
 			// /scroll-depth.js#L20-L30
