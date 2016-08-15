@@ -61,5 +61,5 @@ module.exports = precompiled => Promise.resolve(precompiled ? cacheIf.always(rea
 });
 
 module.exports.compileForProduction = () => mkdirp(cssPath)
-.then(() => compileCss)
+.then(compileCss)
 .then(css => fs.writeFile(cssFile, css, 'utf8'));
