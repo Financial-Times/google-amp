@@ -10,10 +10,10 @@ module.exports = healthCheck({
 	businessImpact: 'Newly crawled FT articles will not have AMP versions ' +
 		'of content available in e.g. the Google news carousel',
 	technicalSummary: `Attempts to connect to ${elasticSearchUrl}:443. All ` +
-		'content is requested from this host; without connectivity, when ft.com' +
+		'content is requested from this host; without connectivity, when ft.com ' +
 		'is crawled, new content will not be available as AMP pages.',
-	panicGuide: 'Check connectivity by running' +
-		`\`heroku run --app ${process.env.HEROKU_APP_NAME} nc -w 5 -z ${elasticSearchUrl} 443.\``,
+	panicGuide: 'Check connectivity by running ' +
+		`\`heroku run --app ${process.env.HEROKU_APP_NAME} nc -w 5 -z ${elasticSearchUrl} 443\`.`,
 }, () => tcpFetch(elasticSearchUrl, 443)
 	.then(
 		ms => ({ok: true, checkOutput: ms}),

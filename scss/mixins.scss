@@ -1,0 +1,27 @@
+@mixin responsiveWidth($width: $page-width) {
+	margin: 0 auto;
+	padding: 0 10px;
+	max-width: $width;
+}
+
+@function pxAndVhToViewport($vh, $px) {
+	@return $px * 100vh / $vh;
+}
+
+@mixin responsiveType($size, $min: 20px, $max: 50px) {
+	font-size: $size;
+	$min-size: ($size - 3vh) / 0.5vh + $min;
+	$max-size: max($min-size, $max);
+
+	@if $min != 0 {
+		@media (max-height: pxAndVhToViewport($size, $min-size)) {
+			font-size: $min-size;
+		}
+	}
+
+	@if $max != 0 {
+		@media (min-height: pxAndVhToViewport($size, $max-size)) {
+			font-size: $max-size;
+		}
+	}
+}

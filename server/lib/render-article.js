@@ -1,24 +1,17 @@
 'use strict';
 const handlebars = require('handlebars');
-const compileScss = require('@quarterto/post-sass');
 const fs = require('fs-promise');
 const path = require('path');
 const promisify = require('@quarterto/promisify');
 const glob = promisify(require('glob'));
-const cacheIf = require('@quarterto/cache-if');
 const promiseAllObj = require('@quarterto/promise-all-object');
 const getStreamUrl = require('./get-stream-url');
+const getCss = require('./get-css');
+const cacheIf = require('@quarterto/cache-if');
 
-const cssPath = path.resolve('css');
 const viewsPath = path.resolve('views');
 const partialsPath = path.resolve('views/partials');
-const staticPath = path.resolve('static');
 
-const readCompiledCss = () => fs.readFile(`${cssPath}/style.css`, 'utf8');
-
-const getCss = precompiled => precompiled ?
-				cacheIf.always(readCompiledCss)
-				: compileScss({postCss: ['autoprefixer', 'cssnano']});
 
 const readTemplate = () => fs.readFile(`${viewsPath}/article.html`, 'utf8').then(handlebars.compile);
 const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
@@ -83,8 +76,9 @@ const getMainImage = data => {
 		// TODO pull out the lead image from the body XML if possible
 		return {
 			url: 'http://im.ft-static.com/m/img/social/og-ft-logo-large.png',
-			width: 600,
-			height: 600,
+			// https://developers.google.com/search/docs/data-types/articles - minimum width = 696px
+			width: 696,
+			height: 696,
 		};
 	}
 };
@@ -93,8 +87,6 @@ module.exports = (data, options) => promiseAllObj({
 	template: getTemplate(options.production),
 	partials: getPartials(options.production),
 	css: getCss(options.production),
-	ftSvg: fs.readFile(`${staticPath}/ft-logo.svg`, 'utf8'),
-	nikkeiSvg: fs.readFile(`${staticPath}/nikkei-logo.svg`, 'utf8'),
 	description: data.summaries ? data.summaries[0] : '',
 	authorList: getAuthors(data),
 	byline: getByline(data, options),

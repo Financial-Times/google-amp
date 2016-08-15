@@ -70,6 +70,7 @@ function getAndRender(uuid, options) {
 
 			article.freeArticle = !!options.alwaysFree;
 			article.accessMocked = !!options.accessMock;
+			article.enableSidebarMenu = !!options.enableSidebarMenu;
 			return article;
 		})
 		.then(article => renderArticle(article, options));
@@ -88,6 +89,7 @@ module.exports = (req, res, next) => {
 		lightSignupProduct: encodeURIComponent(lightSignupProduct),
 		lightSignupMailinglist: encodeURIComponent(lightSignupMailinglist),
 		enableLightSignup: (process.env.ENABLE_LIGHT_SIGNUP === 'true'),
+		enableSidebarMenu: (process.env.ENABLE_SIDEBAR_MENU === 'true'),
 		uuid: req.params.uuid,
 	})
 		.then(content => {

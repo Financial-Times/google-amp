@@ -1,0 +1,18 @@
+$o-footer-is-silent: false;
+@import 'o-footer/main';
+
+.o-footer {
+	@include oTypographySans(s);
+}
+
+.o-footer__main {
+	@include responsiveWidth;
+}
+
+.o-footer__matrix-group {
+	@include oGridColspan($span: 6);
+}
+
+.o-footer__brand-logo {
+	background-image: svg-load('./static/nikkei-logo.svg');
+}

@@ -3,4 +3,4 @@
 set -x -e
 
 bower install
-post-sass --postCss autoprefixer --postCss cssnano
+node -e "require('./server/lib/get-css.js').compileForProduction()"

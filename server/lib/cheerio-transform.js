@@ -6,15 +6,9 @@ const trimmedLinks = require('./transforms/trimmed-links');
 const externalImages = require('./external-images');
 const copyrightNotice = require('./transforms/copyright-notice');
 const lightSignup = require('./transforms/light-signup');
+const removeStyleAttributes = require('./transforms/remove-styles');
+const replaceFtConceptTags = require('./transforms/ft-concept');
 const insertAd = require('./transforms/insert-ad');
-
-function removeStyleAttributes($) {
-	$('[style]').each(function eachStyle() {
-		$(this).removeAttr('style');
-	});
-
-	return $;
-}
 
 module.exports = function run(body, options) {
 	body = replaceEllipses(body);
@@ -29,6 +23,7 @@ module.exports = function run(body, options) {
 		removeStyleAttributes,
 		insertAd,    // ← before light signup so light signup's positioning
 		lightSignup, // logic ensures they don't conflict
-	].map(transform => transform($, options)))
+		replaceFtConceptTags,
+	].map(transform => transform($, flags)))
 		.then(() => $);
 };
