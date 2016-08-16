@@ -15,6 +15,7 @@ const formatLightSignupUrl = params => url.format(Object.assign(
 
 const lightSignupMarkup = params => `<div amp-access="NOT session" amp-access-hide>
 <amp-iframe
+	id="light-signup"
 	src="${formatLightSignupUrl(params)}"
 	width="auto"
 	height="340"

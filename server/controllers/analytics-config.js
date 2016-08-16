@@ -115,13 +115,27 @@ module.exports = (req, res, next) => {
 			},
 
 			// NB: https://github.com/ampproject/amphtml/issues/2046
-			anchorclick: {
+			click: {
 				on: 'click',
-				selector: 'a',
+				selector: 'a, button',
 				request: 'standard',
 				vars: {
 					category: 'link',
 					action: 'click',
+				},
+			},
+
+			lsuVisible: {
+				on: 'visible',
+				request: 'standard',
+				visibilitySpec: {
+					selector: '#light-signup',
+					visiblePercentageMin: 99,
+					continuousTimeMin: 2000,
+				},
+				vars: {
+					category: 'light-signup',
+					action: 'dwell',
 				},
 			},
 
