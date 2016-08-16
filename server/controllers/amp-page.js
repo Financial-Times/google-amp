@@ -9,6 +9,7 @@ const fetchSlideshows = require('../lib/fetch-slideshows');
 const transformSlideshows = require('../lib/transform-slideshows');
 const errors = require('http-errors');
 const fetchres = require('fetchres');
+const querystring = require('querystring');
 const fs = require('fs-promise');
 
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
@@ -67,6 +68,9 @@ function getAndRender(uuid, options) {
 			article.enableSidebarMenu = !!options.enableSidebarMenu;
 
 			article.nextUrl = `https://next.ft.com/content/${uuid}`;
+
+			const shareParams = {};
+			article.shareUrl = `${article.webUrl}?${querystring.stringify(shareParams)}`;
 
 			return article;
 		})

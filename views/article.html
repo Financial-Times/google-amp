@@ -113,12 +113,12 @@
 						</div>
 
 						<div class="article-social-buttons">
-							<amp-social-share width="24" height="24" type="twitter"></amp-social-share>
-							<amp-social-share width="24" height="24" type="facebook"></amp-social-share>
-							<amp-social-share width="24" height="24" type="linkedin"></amp-social-share>
+							<amp-social-share width="24" height="24" type="twitter" data-param-url="{{shareUrl}}"></amp-social-share>
+							<amp-social-share width="24" height="24" type="facebook" data-param-href="{{shareUrl}}"></amp-social-share>
+							<amp-social-share width="24" height="24" type="linkedin" data-param-url="{{shareUrl}}"></amp-social-share>
 							<amp-social-share width="24" height="24" type="whatsapp"
 								data-share-endpoint="whatsapp://send"
-								data-param-text="Check out this article: TITLE - CANONICAL_URL"></amp-social-share>
+								data-param-text="Check out this article: TITLE - {{shareUrl}}"></amp-social-share>
 						</div>
 
 						<div class="article-dateline">
