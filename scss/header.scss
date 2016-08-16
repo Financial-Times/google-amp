@@ -2,3 +2,8 @@ $o-header-is-silent: false;
 @import 'o-header/main';
 
 // @import 'sidebar';
+
+// o-header makes use of !important, so need to be more specific here
+.o-header__nav--mobile .o-header__nav-item:first-child {
+	padding-left: 0;
+}
