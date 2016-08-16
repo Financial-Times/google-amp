@@ -53,6 +53,7 @@
     "handlebars": "^4.0.5",
     "html-entities": "^1.2.0",
     "http-errors": "^1.4.0",
+    "lib-sass-data-uri": "0.0.1",
     "lodash.defaults": "^4.0.1",
     "mkdirp-promise": "^1.0.3",
     "morgan": "^1.6.1",
