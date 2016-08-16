@@ -71,6 +71,7 @@ function getAndRender(uuid, options) {
 
 			const shareParams = {};
 			article.shareUrl = `${article.webUrl}?${querystring.stringify(shareParams)}`;
+			article.facebookAppId = '121355018262104';
 
 			return article;
 		})
