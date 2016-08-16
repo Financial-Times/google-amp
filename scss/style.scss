@@ -1,7 +1,8 @@
+@import 'o-colors/main';
+
 @import 'variables';
 @import 'mixins';
 
-@import 'o-colors/main';
 @import 'o-fonts/main';
 @import 'o-typography/main';
 @import 'o-grid/main';
@@ -52,10 +53,6 @@ body {
 
 .article-image {
 	margin: 1em 0;
-}
-
-.article-header .article-image {
-	border-bottom: $border-divider;
 }
 
 // HACK: override default styling of oTypographyBodyWrapper

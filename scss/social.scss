@@ -1,10 +1,18 @@
 @include oColorsSetColor('social-whatsapp', #00D36D);
 
+.article-social-buttons {
+	border-top: $border-divider;
+	border-bottom: $border-divider;
+	padding: 4px;
+	line-height: 0;
+}
+
 amp-social-share {
 	width: 24px;
 	height: 24px;
 	border-radius: 12px;
 	background-size: 75%;
+	margin-right: 4px;
 }
 
 amp-social-share[type=whatsapp] {
