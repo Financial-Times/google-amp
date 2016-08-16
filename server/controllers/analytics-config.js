@@ -2,7 +2,7 @@
 const errors = require('http-errors');
 const pkg = require('../../package.json');
 
-const DEBUG = true;// @nocommit
+const DEBUG = false;
 
 module.exports = (req, res, next) => {
 	if(!req.query.__amp_source_origin) {
