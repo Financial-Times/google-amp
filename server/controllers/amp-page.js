@@ -16,19 +16,17 @@ const lightSignupProduct = 'AMP';
 const lightSignupMailinglist = 'google-amp';
 
 function getAndRender(uuid, options) {
-	return Promise.all([
-		getArticle(uuid)
+		return getArticle(uuid)
 		.then(
 			response => response._source ? response._source : Promise.reject(new errors.NotFound()),
 			err => (
 				console.log(err),
 				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
 			)
-		),
-	])
+		)
 
 		// First phase: network-dependent fetches and transforms in parallel
-		.then(([article]) => Promise.all(
+		.then(article => Promise.all(
 			[
 				transformArticle(article, options),
 				addStoryPackage(article, options),
