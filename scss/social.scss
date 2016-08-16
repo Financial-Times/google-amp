@@ -1,6 +1,7 @@
 @include oColorsSetColor('social-whatsapp', #00D36D);
 
 .article-social-buttons {
+	margin: 1em 0;
 	border-top: $border-divider;
 	border-bottom: $border-divider;
 	padding: 4px;
