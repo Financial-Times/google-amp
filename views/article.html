@@ -99,7 +99,7 @@
 				<article class="article">
 					<header class="article-header">
 						{{#if primaryTheme}}
-							<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link">{{{primaryTheme.name}}}</a></h2>
+							<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link" data-vars-link-destination="{{{primaryTheme.url}}}" data-vars-link-text="{{{primaryTheme.name}}}" data-vars-link-type="primary-theme">{{{primaryTheme.name}}}</a></h2>
 						{{/if}}
 						<h1 class="headline" itemprop="headline">{{title}}</h1>
 
@@ -147,11 +147,11 @@
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
 					<div class="amp-access-login__body" amp-access="NOT session">
-						<a class="amp-access-login__button" href="#" on="tap:amp-access.login-login">Sign in to FT.com</a>
-						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">View subscription packages</a>
+						<a class="amp-access-login__button" href="#" on="tap:amp-access.login-login" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
+						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp" data-vars-link-destination="https://subscribe.ft.com/psp" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages">View subscription packages</a>
 					</div>
 					<div class="amp-access-login__body" amp-access="session">
-						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp">Upgrade now</a>
+						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp" data-vars-link-destination="https://subscribe.ft.com/psp" data-vars-link-type="barrier-upgrade" data-vars-link-text="Upgrade now">Upgrade now</a>
 					</div>
 				</div>
 
@@ -164,21 +164,21 @@
 						<li class="related-content__story related-content__lead-story">
 							<div class="related-content__container">
 								<div class="related-content__content">
-									{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
-									<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+									{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
+									<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
 									<p class="related-content__summary">{{{summary}}}</p>
 									{{{date}}}
 								</div>
 								<div class="related-content__image">
-									<a href="http://www.ft.com/content/{{{id}}}">{{> image}}</a>
+									<a href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-type="related-content-image">{{> image}}</a>
 								</div>
 							</div>
 						</li>
 						{{/if}}{{/if}}
 						<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
 							<div class="related-content__container">
-								{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
-								<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+								{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
+								<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
 								<p class="related-content__summary">{{{summary}}}</p>
 								{{{date}}}
 							</div>
@@ -197,17 +197,17 @@
 								<div class="more-ons__type">
 									<h2 class="more-ons__type-text c-box__title-text">{{theme.type}}</h2>
 								</div>
-								<h2 class="more-ons__header">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h2>
+								<h2 class="more-ons__header">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="more-ons-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h2>
 								<ul class="more-ons__stories">
 									{{#each articles}}
 									<li class="more-ons__story">
 										{{#if @first}}{{#if image}}
 										<div class="more-ons__image">
-											<a href="http://www.ft.com/content/{{{id}}}">{{> image}}</a>
+											<a href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-type="more-ons-image">{{> image}}</a>
 										</div>
 										{{/if}}{{/if}}
 										{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
-										<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}">{{{title}}}</a>
+										<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="more-ons-link">{{{title}}}</a>
 										{{{date}}}
 									</li>
 									{{/each}}
