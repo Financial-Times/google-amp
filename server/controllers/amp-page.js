@@ -9,6 +9,7 @@ const fetchSlideshows = require('../lib/fetch-slideshows');
 const transformSlideshows = require('../lib/transform-slideshows');
 const errors = require('http-errors');
 const fetchres = require('fetchres');
+const fs = require('fs-promise');
 
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
 const lightSignupProduct = 'AMP';
@@ -103,7 +104,7 @@ if(module === require.main) {
 		alwaysFree: true,
 		relatedArticleDeduper: [process.argv[2]],
 	}).then(
-		rendered => process.stdout.write(rendered),
+		rendered => fs.writeFile(process.argv[3], rendered),
 		err => {
 			console.error(err.stack || err.toString());
 			process.exit(1);
