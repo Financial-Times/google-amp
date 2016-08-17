@@ -74,7 +74,7 @@ function getAndRender(uuid, options) {
 				segmentid: segmentId,
 			};
 			article.shareUrl = `${article.webUrl}?${querystring.stringify(shareParams)}`;
-			article.facebookAppId = '121355018262104';
+			article.facebookAppId = '328135857526360';
 
 			return article;
 		})
