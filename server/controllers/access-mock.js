@@ -48,28 +48,32 @@ module.exports = (req, res) => {
 			res.cookie('amp-access-mock', '1');
 			if(returnUrl) return res.redirect(303, returnUrl);
 			res.status(200).send('Your amp-access-mock cookie was set. Please revisit the ' +
-				'<a href="javascript:history.back()">previous page</a>.');
+				'<a href="javascript:history.back()">previous page</a> and then ' +
+				'<strong>refresh to apply the new settings</strong>.');
 			break;
 
 		case 'clear':
 			res.clearCookie('amp-access-mock');
 			if(returnUrl) return res.redirect(303, returnUrl);
 			res.status(200).send('Your amp-access-mock cookie was cleared. Please revisit the ' +
-				'<a href="javascript:history.back()">previous page</a>.');
+				'<a href="javascript:history.back()">previous page</a> and then ' +
+				'<strong>refresh to apply the new settings</strong>.');
 			break;
 
 		case 'enable-fcf':
 			res.cookie('amp-access-mock-fcf', '1');
 			if(returnUrl) return res.redirect(303, returnUrl);
 			res.status(200).send('Your amp-access-mock-fcf cookie was set. Please revisit the ' +
-				'<a href="javascript:history.back()">previous page</a>.');
+				'<a href="javascript:history.back()">previous page</a> and then ' +
+				'<strong>refresh to apply the new settings</strong>.');
 			break;
 
 		case 'clear-fcf':
 			res.clearCookie('amp-access-mock-fcf');
 			if(returnUrl) return res.redirect(303, returnUrl);
 			res.status(200).send('Your amp-access-mock-fcf cookie was cleared. Please revisit the ' +
-				'<a href="javascript:history.back()">previous page</a>.');
+				'<a href="javascript:history.back()">previous page</a> and then ' +
+				'<strong>refresh to apply the new settings</strong>.');
 			break;
 
 		case 'prevent-access':
@@ -77,14 +81,16 @@ module.exports = (req, res) => {
 			if(returnUrl) return res.redirect(303, returnUrl);
 			res.status(200).send('Your amp_access_mock-no-access cookie was set. You will not be able to access ' +
 				'content, even when signed-in. Please revisit the ' +
-				'<a href="javascript:history.back()">previous page</a>.');
+				'<a href="javascript:history.back()">previous page</a> and then ' +
+				'<strong>refresh to apply the new settings</strong>.');
 			break;
 
 		case 'allow-access':
 			res.clearCookie('amp-access-mock-no-access');
 			if(returnUrl) return res.redirect(303, returnUrl);
 			res.status(200).send('Your amp-access-mock-no-access cookie was cleared. Please revisit the ' +
-				'<a href="javascript:history.back()">previous page</a>.');
+				'<a href="javascript:history.back()">previous page</a> and then ' +
+				'<strong>refresh to apply the new settings</strong>.');
 			break;
 
 		default:
