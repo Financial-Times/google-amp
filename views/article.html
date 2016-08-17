@@ -21,6 +21,7 @@
 		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		<script async custom-element="amp-experiment" src="https://cdn.ampproject.org/v0/amp-experiment-0.1.js"></script>
 		{{#if enableSidebarMenu}}
 		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
@@ -71,6 +72,24 @@
 		</script>
 	</head>
 	<body>
+
+		<!-- // @nocommit -->
+		<amp-experiment>
+			<script type="application/json">
+				{
+					aExperiment: {
+						sticky: true,
+						consentNotificationId: "consent-notif",
+						variants: {
+							treatment1: 12.5,
+							treatment2: 12.5,
+							treatment3: 25.0,
+						},
+					},
+				}
+			</script>
+		</amp-experiment>
+
 		<amp-analytics config="//SOURCE_HOSTNAME{{SOURCE_PORT}}/analytics/config.json">
 			<script type="application/json">
 			{
