@@ -15,6 +15,7 @@ const fs = require('fs-promise');
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
 const lightSignupProduct = 'AMP';
 const lightSignupMailinglist = 'google-amp';
+const segmentId = 'acee4131-99c2-09d3-a635-873e61754ec6';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
@@ -69,7 +70,9 @@ function getAndRender(uuid, options) {
 
 			article.nextUrl = `https://next.ft.com/content/${uuid}`;
 
-			const shareParams = {};
+			const shareParams = {
+				segmentid: segmentId,
+			};
 			article.shareUrl = `${article.webUrl}?${querystring.stringify(shareParams)}`;
 			article.facebookAppId = '121355018262104';
 
