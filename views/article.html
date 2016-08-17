@@ -88,7 +88,17 @@
 		{{/if}}
 
 		{{#if accessMocked}}
-		<div class="access-mocked">You are currently mocking membership access. <a href="/_access_mock/clear">Click here</a> to return to live membership access.</div>
+		<div class="access-mocked">
+			<ul>
+				<li>You are currently mocking membership access. <a href="/amp-access-mock?type=clear">Click here</a> to return to live membership access.</li>
+				<li>{{#if accessMockFcf}}You are mocking 'First Click Free', so all articles will be free to read, even when anonymous. <a href="/amp-access-mock?type=clear-fcf">Click here</a> to disable FCF.{{else}}<a href="/amp-access-mock?type=enable-fcf">Click here</a> to mock 'First Click Free'.{{/if}}</li>
+				<li>{{#if accessMockPreventAccess}}Access is blocked, even when signed-in (simulating premium content, and requiring an upgrade). <a href="/amp-access-mock?type=allow-access">Click here</a> to allow access.{{else}}<a href="/amp-access-mock?type=prevent-access">Click here</a> to block all access, to simulate premium content and require an upgrade.{{/if}}</li>
+				<li amp-access="access" amp-access-hide>You have access. </li>
+				<li amp-access="NOT access" amp-access-hide>You have no access. </li>
+				<li amp-access="session" amp-access-hide>You are logged in. <a href="#" on="tap:amp-access.login-logout">Click here</a> to log out.</li>
+				<li amp-access="NOT session" amp-access-hide>You are an anonymous visitor. <a  href="#" on="tap:amp-access.login-login">Click here</a> to log in.</li>
+			</ul>
+		</div>
 		{{/if}}
 
 		<div class="main-wrapper">

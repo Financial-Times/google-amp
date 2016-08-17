@@ -437,6 +437,15 @@ body {
 	min-width: 90px;
 	right: 0;
 	z-index: 1;
+
+	ul {
+		padding: 0;
+		margin: 0 0 0 10px;
+	}
+
+	li {
+		margin-bottom: 10px;
+	}
 }
 
 .amp-access-login {
