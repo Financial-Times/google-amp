@@ -1,7 +1,8 @@
-@mixin responsiveWidth($width: $page-width) {
+@mixin responsiveWidth($max: $max-width, $min: $min-width) {
 	margin: 0 auto;
-	padding: 0 10px;
-	max-width: $width;
+	padding: 0 $page-padding;
+	max-width: $max;
+	min-width: $min - (2 * $page-padding);
 }
 
 @function pxAndVhToViewport($vh, $px) {
