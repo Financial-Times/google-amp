@@ -19,7 +19,7 @@
 @include oFontsInclude(FinancierDisplayWeb); // headings
 
 body {
-	@include oColorsFor(page, background);
+	@include oColorsFor(page);
 }
 
 .main-wrapper {
@@ -35,14 +35,6 @@ body {
 
 .article {
 	@include oTypographyBodyWrapper;
-
-	a {
-		border-bottom-color: transparent;
-
-		&:hover {
-			border-bottom-color: inherit;
-		}
-	}
 }
 
 .article__copyright-notice.article__copyright-notice {
@@ -51,6 +43,20 @@ body {
 
 .article-image {
 	margin: 1em 0;
+}
+
+.article__subhead--standard.article__subhead--standard {
+	@include oTypographySansBold(m);
+}
+
+.article-header {
+	a {
+		border-bottom-color: transparent;
+
+		&:hover {
+			border-bottom-color: inherit;
+		}
+	}
 }
 
 .article-header .article-image {
@@ -94,12 +100,12 @@ body {
 }
 
 .article-author-byline__author.article-author-byline__author {
-	color: oColorsGetPaletteColor(claret);
+	@include oTypographyLinkTopic;
 	font-weight: bold;
 }
 
 .primary-theme.primary-theme {
-	color: oColorsGetPaletteColor(claret);
+	@include oTypographyLinkTopic;
 	@include oTypographySansBold(l);
 
 	@include oGridRespondTo($until: M) {
@@ -150,12 +156,7 @@ body {
 	padding: 10px;
 	padding-bottom: 0;
 	font-weight: 900;
-
-	a {
-		border-bottom: 0;
-		text-decoration: none;
-		color: oColorsGetPaletteColor('cold-1');
-	}
+	color: oColorsGetPaletteColor('cold-1');
 }
 
 .u-border--all {
@@ -177,18 +178,19 @@ body {
 }
 
 .aside--headline {
-	@include oTypographySansDataBold(xl);
+	@include oTypographySansDataBold(l);
 	margin-top: 8px;
 	margin-bottom: 8px;
 	color: oColorsGetPaletteColor('cold-3');
+	line-height: 1.3em;
 
 	p {
 		margin: 0;
 	}
 }
 
-.aside--content p {
-	margin: 5px 0 0;
+.aside--content.aside--content.aside--content p {
+	line-height: 1.4em;
 }
 
 .aside--image img {
@@ -256,15 +258,27 @@ body {
 	line-height: 1;
 }
 
-
-// Related Content
-
-.related-content {
+.related-content,
+.more-ons {
 	margin-top: 40px;
 }
 
+.related-content__theme,
+.more-ons__header {
+	@include oTypographyLinkTopic;
+	a {
+		&:hover {
+			border-bottom: 1px dotted;
+		}
+	}
+}
+
+
+
+// Related Content
+
 .related-content__header {
-	@include oTypographySerifDisplay(m);
+	@include oTypographySerifDisplay(l);
 }
 
 .related-content__stories {
@@ -350,23 +364,18 @@ body {
 
 .related-content__summary {
 	@include oTypographySans(s);
+	line-height: 1.3em;
 	margin: 0;
 	display: block;
 }
 
 .related-content__theme {
-	@include oTypographySansBold(s);
-	color: oColorsGetPaletteColor(claret);
 	margin: 0;
 }
 
 .related-content__theme-link {
 	text-decoration: none;
 	color: inherit;
-}
-
-.more-ons {
-	margin-top: 40px;
 }
 
 .more-ons__items {
