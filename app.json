@@ -16,7 +16,8 @@
 		"ENABLE_SIDEBAR_MENU": {"required": false},
 		"ENABLE_ADS": {"required": false},
 		"VERIFY_STREAM_URLS": {"required": false},
-		"ADS_API_HOST": {"required": true}
+		"ADS_API_HOST": {"required": true},
+		"NODE_ENV": {"required": false}
 	},
 	"addons": [
 		"papertrail"
