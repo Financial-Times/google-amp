@@ -83,7 +83,7 @@ function getAndRender(uuid, options) {
 
 module.exports = (req, res, next) => {
 	getAndRender(req.params.uuid, {
-		production: req.app.get('env') === 'production',
+		production: req.app.isServer,
 		raven: req.raven,
 		host: req.get('host'),
 		ip: req.ip,

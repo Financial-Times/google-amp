@@ -62,8 +62,8 @@ module.exports = (req, res, next) => {
 			source: 'amp-analytics',
 
 			// TODO: check these
-			environment: (req.app.get('env') === 'production' ? 'p' : 'd'),
-			is_live: (req.app.get('env') === 'production'),
+			environment: (req.app.isServer ? 'p' : 'd'),
+			is_live: (req.app.isServer),
 
 			version: pkg.version,
 		},
