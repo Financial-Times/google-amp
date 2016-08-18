@@ -98,6 +98,7 @@ module.exports = (req, res, next) => {
 		lightSignupMailinglist: encodeURIComponent(lightSignupMailinglist),
 		enableLightSignup: (process.env.ENABLE_LIGHT_SIGNUP === 'true'),
 		enableSidebarMenu: (process.env.ENABLE_SIDEBAR_MENU === 'true'),
+		enableAds: (process.env.ENABLE_ADS === 'true'),
 		uuid: req.params.uuid,
 	})
 		.then(content => {
