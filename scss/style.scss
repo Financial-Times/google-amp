@@ -129,7 +129,7 @@ body {
 .c-box {
 	position: relative;
 	clear: left;
-	margin: 24px 0 16px;
+	margin: 10px 0 16px;
 	padding: 16px 0;
 	width: 100%;
 
@@ -160,6 +160,10 @@ body {
 	color: oColorsGetPaletteColor('cold-1');
 }
 
+.c-box .aside--content p {
+	line-height: 1.4em;
+}
+
 .u-border--all {
 	border: 1px solid oColorsGetPaletteColor('warm-3');
 }
@@ -188,10 +192,6 @@ body {
 	p {
 		margin: 0;
 	}
-}
-
-.aside--content.aside--content.aside--content p {
-	line-height: 1.4em;
 }
 
 .aside--image img {
@@ -245,18 +245,20 @@ body {
 		font-weight: inherit;
 		color: inherit;
 		line-height: inherit;
+		margin: 0;
 	}
 }
 
 .article-big-number__title {
-	@include oTypographySerifDisplayBold(xl);
-	font-size: 3em;
-	line-height: 1em;
+	@include oTypographyBigNumber;
+
+	p {
+		margin: 0 0 5px;
+	}
 }
 
 .article-big-number__content {
-	font-size: 0.8em;
-	line-height: 1;
+	@include oTypographyFooter;
 }
 
 .related-content,
