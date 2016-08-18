@@ -563,7 +563,7 @@ abbr[title] {
 	text-align: center;
 
 	&::before {
-		@include oTypographySansData(s);
+		@include oTypographySansData(m);
 		content: "\25BE Advertisement \25BE";
 		display: block;
 	}
