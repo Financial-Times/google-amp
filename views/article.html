@@ -73,19 +73,17 @@
 	</head>
 	<body>
 
-		<!-- // @nocommit -->
 		<amp-experiment>
 			<script type="application/json">
 				{
-					aExperiment: {
-						sticky: true,
-						consentNotificationId: "consent-notif",
-						variants: {
-							treatment1: 12.5,
-							treatment2: 12.5,
-							treatment3: 25.0,
-						},
-					},
+					"experiment": {
+						"sticky": false,
+						"variants": {
+							"bucket1": 25,
+							"bucket2": 25,
+							"bucket3": 25
+						}
+					}
 				}
 			</script>
 		</amp-experiment>
