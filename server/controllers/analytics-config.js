@@ -69,6 +69,9 @@ module.exports = (req, res, next) => {
 		},
 		user: {
 			ft_session: 'AUTHDATA(session)',
+			ab: {
+				experiment: 'VARIANT(experiment)',
+			},
 		},
 		time: {
 			amp_timestamp: '${timestamp}',

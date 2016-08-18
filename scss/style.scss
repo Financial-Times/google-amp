@@ -22,6 +22,22 @@ body {
 	@include oColorsFor(page, background);
 }
 
+body[amp-x-experiment="bucket1"] {
+	background-color: red;
+}
+
+body[amp-x-experiment="bucket2"] {
+	background-color: green;
+}
+
+body[amp-x-experiment="bucket3"] {
+	background-color: blue;
+}
+
+body:not([amp-x-experiment]) {
+	background-color: grey;
+}
+
 .main-wrapper {
 	display: flex;
 	flex-direction: column;

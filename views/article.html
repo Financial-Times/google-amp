@@ -22,6 +22,7 @@
 		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		<script async custom-element="amp-experiment" src="https://cdn.ampproject.org/v0/amp-experiment-0.1.js"></script>
 		{{#if enableSidebarMenu}}
 		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
@@ -72,6 +73,22 @@
 		</script>
 	</head>
 	<body>
+
+		<amp-experiment>
+			<script type="application/json">
+				{
+					"experiment": {
+						"sticky": false,
+						"variants": {
+							"bucket1": 25,
+							"bucket2": 25,
+							"bucket3": 25
+						}
+					}
+				}
+			</script>
+		</amp-experiment>
+
 		<amp-analytics config="//SOURCE_HOSTNAME{{SOURCE_PORT}}/analytics/config.json">
 			<script type="application/json">
 			{
