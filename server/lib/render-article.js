@@ -57,7 +57,8 @@ const getByline = (data, options) => {
 				.forEach(author => {
 					byline = byline.replace(author.prefLabel,
 						'<a class="article-author-byline__author"' +
-						` href="${author.streamUrl}">${author.prefLabel}</a>`
+						` href="${author.streamUrl}" data-vars-link-destination="${author.streamUrl}" ` +
+						`data-vars-link-type="author-byline" data-vars-link-text="${author.prefLabel}">${author.prefLabel}</a>`
 					);
 				});
 			return byline;

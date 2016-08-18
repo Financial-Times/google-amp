@@ -14,7 +14,7 @@ module.exports = (req, res) => {
 
 	fs.writeFile(
 		`${path.resolve('analytics.log')}`,
-		`${new Date().toJSON()} ${req.method}: ${JSON.stringify(data)}\n`,
+		`${new Date().toJSON()} ${req.method}: \n${JSON.stringify(data, undefined, '  ')}\n`,
 		{flag: 'a'}
 	);
 

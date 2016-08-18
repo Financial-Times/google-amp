@@ -3,20 +3,21 @@
 const url = require('url');
 const getMiddleParagraph = require('./get-middle-paragraph');
 
-const formatLightSignupUrl = options => url.format(Object.assign(
-	url.parse(options.lightSignupUrl),
+const formatLightSignupUrl = params => url.format(Object.assign(
+	url.parse(params.lightSignupUrl),
 	{
 		query: {
-			article: options.uuid,
-			product: options.lightSignupProduct,
-			mailinglist: options.lightSignupMailinglist,
+			article: params.uuid,
+			product: params.lightSignupProduct,
+			mailinglist: params.lightSignupMailinglist,
 		},
 	}
 ));
 
-const lightSignupMarkup = options => `<div amp-access="NOT session" amp-access-hide>
+const lightSignupMarkup = params => `<div amp-access="NOT session" amp-access-hide>
 <amp-iframe
-	src="${formatLightSignupUrl(options)}"
+	id="light-signup"
+	src="${formatLightSignupUrl(params)}"
 	width="auto"
 	height="340"
 	layout="fixed-height"
@@ -25,9 +26,9 @@ const lightSignupMarkup = options => `<div amp-access="NOT session" amp-access-h
 ></amp-iframe>
 </div>`;
 
-module.exports = function addLightSignup($, options) {
-	if(options.enableLightSignup) {
-		getMiddleParagraph($).after(lightSignupMarkup(options));
+module.exports = function addLightSignup($, params) {
+	if(params.enableLightSignup) {
+		getMiddleParagraph($).after(lightSignupMarkup(params));
 	}
 
 	return $;

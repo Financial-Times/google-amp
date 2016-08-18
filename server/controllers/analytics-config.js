@@ -46,6 +46,10 @@ module.exports = (req, res, next) => {
 			amp_auth_access: 'AUTHDATA(access)',
 			amp_auth_debug: 'AUTHDATA(debug)',
 			amp_reader_id: 'ACCESS_READER_ID',
+
+			destination: '${linkDestination}',
+			text: '${linkText}',
+			link_type: '${linkType}',
 		},
 		device: {
 			dimensions: {
@@ -111,13 +115,27 @@ module.exports = (req, res, next) => {
 			},
 
 			// NB: https://github.com/ampproject/amphtml/issues/2046
-			anchorclick: {
+			click: {
 				on: 'click',
-				selector: 'a',
+				selector: 'a, button',
 				request: 'standard',
 				vars: {
 					category: 'link',
 					action: 'click',
+				},
+			},
+
+			lsuVisible: {
+				on: 'visible',
+				request: 'standard',
+				visibilitySpec: {
+					selector: '#light-signup',
+					visiblePercentageMin: 99,
+					continuousTimeMin: 2000,
+				},
+				vars: {
+					category: 'light-signup',
+					action: 'dwell',
 				},
 			},
 
