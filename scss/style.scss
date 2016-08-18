@@ -561,4 +561,10 @@ abbr[title] {
 
 .ad-container {
 	text-align: center;
+
+	&::before {
+		@include oTypographySansData(s);
+		content: "\25BE Advertisement \25BE";
+		display: block;
+	}
 }
