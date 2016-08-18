@@ -1,7 +1,7 @@
 'use strict';
 
 const url = require('url');
-const getMiddleParagraph = require('./get-middle-paragraph');
+const getViableParagraph = require('./get-viable-paragraph');
 
 const formatLightSignupUrl = params => url.format(Object.assign(
 	url.parse(params.lightSignupUrl),
@@ -28,7 +28,7 @@ const lightSignupMarkup = params => `<div amp-access="NOT session" amp-access-hi
 
 module.exports = function addLightSignup($, params) {
 	if(params.enableLightSignup) {
-		getMiddleParagraph($).after(lightSignupMarkup(params));
+		getViableParagraph($, {getIdeal: length => length / 2}).after(lightSignupMarkup(params));
 	}
 
 	return $;

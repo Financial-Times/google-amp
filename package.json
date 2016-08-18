@@ -55,6 +55,8 @@
     "html-entities": "^1.2.0",
     "http-errors": "^1.4.0",
     "lodash.defaults": "^4.0.1",
+    "lodash.min": "^4.0.1",
+    "lodash.minby": "^4.2.0",
     "mkdirp-promise": "^1.0.3",
     "morgan": "^1.6.1",
     "next-ft-api-client": "^3.22.0",
