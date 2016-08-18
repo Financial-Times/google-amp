@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
+	<script src="https://cdn.polyfill.io/v2/polyfill.js?features=fetch"></script>
+	<script>
+		(function() {
+			var v = location.search.substr(1);
+			if (!(/^\d+(-canary)?$/.test(v))) return;
+			var u = 'https://3p.ampproject.net/' + encodeURIComponent(v) + '/f.js';
+			document.write('<script' + ' src="' + encodeURI(u) + '"><' + '/script>');
+		})();
+	</script>
+	<script src="https://cdn.krxd.net/amp/v1/remote.min.js"></script>
+</head>
+
+<body style="margin:0">
+	<div id="c" style="position:absolute;top:0;left:0;bottom:0;right:0;">
+		<script>
+			var contextualTargetingResponse;
+			var userTargetingResponse;
+			var adUnit;
+			var targeting = [];
+			var contextualTargetingRequest = fetch('https://{{adsApiHost}}/v1/content/{{uuid}}');
+			var userTargetingRequest = fetch('https://{{adsApiHost}}/v1/user', {
+				credentials: 'include'
+			});
+
+
+			Promise.all([contextualTargetingRequest, userTargetingRequest])
+				.then((responses) => {
+					Promise.all([responses.pop().json(), responses.pop().json()]).then((output) => {
+						contextualTargetingResponse = output.pop();
+						userTargetingResponse = output.pop();
+						targeting = targeting.concat(contextualTargetingResponse.dfp.targeting, userTargetingResponse.dfp.targeting);
+						draw3p((config, done) => {
+							config.slot = '/5887/ft.com/amp.ft.com';
+							config.targeting = {
+								pos: 'mid',
+							};
+							targeting.forEach((target) => {
+								config.targeting[target.key] = target.value
+							});
+
+							var kruxFn = Krux.amp.withConfid('KHUSeE3x')
+							.withUserParam("kuid")
+							.withSegmentsParam("ksg")
+							.interchange().draw3p();
+							kruxFn(config, done);
+						});
+					})
+				});
+
+		</script>
+	</div>
+	<script>
+		if (window.docEndCallback) window.docEndCallback()
+	</script>
+</body>
+
+</html>

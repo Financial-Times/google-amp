@@ -14,7 +14,8 @@
 		"LIGHT_SIGNUP_URL": {"required": false},
 		"ENABLE_LIGHT_SIGNUP": {"required": false},
 		"ENABLE_SIDEBAR_MENU": {"required": false},
-		"VERIFY_STREAM_URLS": {"required": false}
+		"VERIFY_STREAM_URLS": {"required": false},
+		"ADS_API_HOST": {"required": true}
 	},
 	"addons": [
 		"papertrail"

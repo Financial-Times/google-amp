@@ -60,7 +60,11 @@ function getAndRender(uuid, options) {
 				`//${options.host}/amp-access-mock?type=logout&` :
 				`https://${liveAccessHost}/amp-logout?`;
 
-			article.SOURCE_PORT = options.production ? '' : ':5000';
+			const thirdPartyHost = process.env.HEROKU_APP_NAME ?
+				`${process.env.HEROKU_APP_NAME}.herokuapp.com` :
+				'localhost:5000';
+
+			article.KRUX_REMOTE = `//${thirdPartyHost}/ads-iframe/${uuid}`;
 
 			article.freeArticle = !!options.alwaysFree;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;

@@ -8,8 +8,8 @@ const copyrightNotice = require('./transforms/copyright-notice');
 const lightSignup = require('./transforms/light-signup');
 const removeStyleAttributes = require('./transforms/remove-styles');
 const replaceFtConceptTags = require('./transforms/ft-concept');
+const insertAd = require('./transforms/insert-ad');
 const linkAnalytics = require('./transforms/link-analytics');
-
 
 module.exports = function run(body, flags) {
 	body = replaceEllipses(body);
@@ -22,7 +22,8 @@ module.exports = function run(body, flags) {
 		externalImages,
 		trimmedLinks,
 		removeStyleAttributes,
-		lightSignup,
+		insertAd,    // ← before light signup so light signup's positioning
+		lightSignup, // logic ensures they don't conflict
 		replaceFtConceptTags,
 		linkAnalytics,
 	].map(transform => transform($, flags)))

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const assertHerokuEnv = require('@quarterto/assert-heroku-env');
 const assertEnv = require('@quarterto/assert-env');
 const ftwebservice = require('express-ftwebservice');
+const expressHandlebars = require('express-handlebars');
 const path = require('path');
 const os = require('os');
 const pkg = require('./package.json');
@@ -75,11 +76,17 @@ if(app.get('env') === 'production') {
 	});
 }
 
+app.engine('html', expressHandlebars());
+app.set('view engine', 'html');
+
 app.use(logger(process.env.LOG_FORMAT || (app.get('env') === 'development' ? 'dev' : 'combined')));
 app.use(cookieParser());
+app.use('/static', express.static('static'));
+
 
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/json-item.js'));
+app.get('/ads-iframe/:uuid', require('./server/controllers/ads-iframe.js'));
 
 app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
 app.get('/_access_mock', (req, res) => {
