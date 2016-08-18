@@ -6,12 +6,28 @@ const cookieParser = require('cookie-parser');
 const assertHerokuEnv = require('@quarterto/assert-heroku-env');
 const assertEnv = require('@quarterto/assert-env');
 const ftwebservice = require('express-ftwebservice');
+const expressHandlebars = require('express-handlebars');
 const path = require('path');
 const os = require('os');
 const pkg = require('./package.json');
 
 const port = process.env.PORT || 5000;
 const app = express();
+
+const isDevelopment = app.get('env') === 'development';
+const isStaging = app.get('env') === 'staging';
+const isProduction = app.get('env') === 'production';
+
+const isLocal = isDevelopment;
+const isServer = isStaging || isProduction;
+
+Object.assign(app, {
+	isDevelopment,
+	isStaging,
+	isProduction,
+	isLocal,
+	isServer,
+});
 
 ftwebservice(app, {
 	manifestPath: path.join(__dirname, 'package.json'),
@@ -45,7 +61,7 @@ ftwebservice(app, {
 
 let ravenClient;
 
-if(app.get('env') === 'production') {
+if(isServer) {
 	assertEnv(['SENTRY_DSN']);
 	ravenClient = new raven.Client(process.env.SENTRY_DSN, {
 		release: pkg.version,
@@ -66,7 +82,7 @@ assertHerokuEnv(warnings => {
 	}
 });
 
-if(app.get('env') === 'production') {
+if(isServer) {
 	app.use(raven.middleware.express.requestHandler(ravenClient));
 	app.use((req, res, next) => {
 		ravenClient.setExtraContext(raven.parsers.parseRequest(req));
@@ -75,11 +91,22 @@ if(app.get('env') === 'production') {
 	});
 }
 
+app.engine('html', expressHandlebars());
+app.set('view engine', 'html');
+
 app.use(logger(process.env.LOG_FORMAT || (app.get('env') === 'development' ? 'dev' : 'combined')));
 app.use(cookieParser());
+app.use('/static', express.static('static'));
+
+if(!isProduction) {
+	app.get('/', (req, res) => {
+		res.redirect('/content/94e97eee-ce9a-11e5-831d-09f7778e7377');
+	});
+}
 
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/json-item.js'));
+app.get('/ads-iframe/:uuid', require('./server/controllers/ads-iframe.js'));
 
 app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
 app.get('/_access_mock', (req, res) => {
@@ -92,10 +119,10 @@ app.get('/_access_mock/clear', (req, res) => {
 	res.redirect(301, '/amp-access-mock?type=clear');
 });
 
-if(app.get('env') === 'development') {
+if(isLocal) {
 	app.all('/analytics', require('./server/controllers/analytics-proxy.js'));
 	app.use(require('errorhandler')());
-} else if(app.get('env') === 'production') {
+} else {
 	app.use(raven.middleware.express.errorHandler(ravenClient));
 	app.use((err, req, res, next) => {
 		const status = err.status || err.statusCode || err.status_code;

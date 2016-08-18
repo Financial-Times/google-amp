@@ -1,7 +1,8 @@
+@import 'o-colors/main';
+
 @import 'variables';
 @import 'mixins';
 
-@import 'o-colors/main';
 @import 'o-fonts/main';
 @import 'o-typography/main';
 @import 'o-grid/main';
@@ -11,6 +12,7 @@
 @import 'header';
 // @import 'sidebar';
 @import 'footer';
+@import 'social';
 
 @import 'hacks';
 
@@ -58,10 +60,6 @@ body {
 			border-bottom-color: inherit;
 		}
 	}
-}
-
-.article-header .article-image {
-	border-bottom: $border-divider;
 }
 
 // HACK: override default styling of oTypographyBodyWrapper
@@ -568,4 +566,14 @@ abbr[title] {
 	border-bottom: 0;
 	text-decoration: underline;
 	text-decoration: underline dotted;
+}
+
+.ad-container {
+	text-align: center;
+
+	&::before {
+		@include oTypographySansData(m);
+		content: "\25BE Advertisement \25BE";
+		display: block;
+	}
 }

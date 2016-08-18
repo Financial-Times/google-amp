@@ -5,6 +5,7 @@
 		<title>{{title}}</title>
 		<link rel="canonical" href="{{webUrl}}" >
 		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+		<meta name="amp-3p-iframe-src" content="{{KRUX_REMOTE}}">
 		<style amp-custom>
 		{{{css}}}
 		</style>
@@ -21,6 +22,7 @@
 		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 		{{#if enableSidebarMenu}}
 		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
@@ -80,6 +82,7 @@
 			}
 			</script>
 		</amp-analytics>
+		<amp-analytics type="krux" config="https://cdn.krxd.net/controltag/amp/KHUSeE3x.json"></amp-analytics>
 
 		<amp-image-lightbox id="lightbox" layout="nodisplay"></amp-image-lightbox>
 
@@ -119,6 +122,17 @@
 
 						<div amp-access="access OR {{freeArticle}}" amp-access-hide>
 							{{{mainImageHtml}}}
+
+							<div class="article-social-buttons">
+								<amp-social-share width="24" height="24" type="twitter" data-param-url="{{shareUrl}}"></amp-social-share>
+								<amp-social-share width="24" height="24" type="facebook"
+									data-param-href="{{shareUrl}}"
+									data-param-app_id="{{facebookAppId}}"></amp-social-share>
+								<amp-social-share width="24" height="24" type="linkedin" data-param-url="{{shareUrl}}"></amp-social-share>
+								<amp-social-share width="24" height="24" type="whatsapp"
+									data-share-endpoint="whatsapp://send"
+									data-param-text="Check out this article: {{title}} - {{shareUrl}}"></amp-social-share>
+							</div>
 						</div>
 
 						<div class="article-dateline">

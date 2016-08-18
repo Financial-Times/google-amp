@@ -9,11 +9,13 @@ const fetchSlideshows = require('../lib/fetch-slideshows');
 const transformSlideshows = require('../lib/transform-slideshows');
 const errors = require('http-errors');
 const fetchres = require('fetchres');
+const querystring = require('querystring');
 const fs = require('fs-promise');
 
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
 const lightSignupProduct = 'AMP';
 const lightSignupMailinglist = 'google-amp';
+const segmentId = 'acee4131-99c2-09d3-a635-873e61754ec6';
 
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
@@ -60,7 +62,11 @@ function getAndRender(uuid, options) {
 				`//${options.host}/amp-access-mock?type=logout&` :
 				`https://${liveAccessHost}/amp-logout?`;
 
-			article.SOURCE_PORT = options.production ? '' : ':5000';
+			const thirdPartyHost = process.env.HEROKU_APP_NAME ?
+				`${process.env.HEROKU_APP_NAME}.herokuapp.com` :
+				'localhost:5000';
+
+			article.KRUX_REMOTE = `//${thirdPartyHost}/ads-iframe/${uuid}`;
 
 			article.freeArticle = !!options.alwaysFree;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;
@@ -72,6 +78,12 @@ function getAndRender(uuid, options) {
 
 			article.nextUrl = `https://next.ft.com/content/${uuid}`;
 
+			const shareParams = {
+				segmentid: segmentId,
+			};
+			article.shareUrl = `${article.webUrl}?${querystring.stringify(shareParams)}`;
+			article.facebookAppId = '328135857526360';
+
 			return article;
 		})
 		.then(article => renderArticle(article, options));
@@ -79,7 +91,7 @@ function getAndRender(uuid, options) {
 
 module.exports = (req, res, next) => {
 	getAndRender(req.params.uuid, {
-		production: req.app.get('env') === 'production',
+		production: req.app.isServer,
 		raven: req.raven,
 		host: req.get('host'),
 		ip: req.ip,
@@ -94,6 +106,7 @@ module.exports = (req, res, next) => {
 		lightSignupMailinglist: encodeURIComponent(lightSignupMailinglist),
 		enableLightSignup: (process.env.ENABLE_LIGHT_SIGNUP === 'true'),
 		enableSidebarMenu: (process.env.ENABLE_SIDEBAR_MENU === 'true'),
+		enableAds: (process.env.ENABLE_ADS === 'true'),
 		uuid: req.params.uuid,
 	})
 		.then(content => {
