@@ -83,6 +83,12 @@ app.use(logger(process.env.LOG_FORMAT || (app.get('env') === 'development' ? 'de
 app.use(cookieParser());
 app.use('/static', express.static('static'));
 
+if(app.get('env') !== 'production') {
+	app.get('/', (req, res) => {
+		res.redirect('/content/94e97eee-ce9a-11e5-831d-09f7778e7377');
+	});
+}
+
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/json-item.js'));
 app.get('/ads-iframe/:uuid', require('./server/controllers/ads-iframe.js'));
@@ -99,10 +105,6 @@ app.get('/_access_mock/clear', (req, res) => {
 });
 
 if(app.get('env') === 'development') {
-	app.get('/', (req, res) => {
-		res.redirect('/content/94e97eee-ce9a-11e5-831d-09f7778e7377');
-	});
-
 	app.all('/analytics', require('./server/controllers/analytics-proxy.js'));
 	app.use(require('errorhandler')());
 } else if(app.get('env') === 'production') {
