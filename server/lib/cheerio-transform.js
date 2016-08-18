@@ -22,8 +22,8 @@ module.exports = function run(body, flags) {
 		externalImages,
 		trimmedLinks,
 		removeStyleAttributes,
-		insertAd,    // ← before light signup so light signup's positioning
-		lightSignup, // logic ensures they don't conflict
+		insertAd,
+		lightSignup,
 		replaceFtConceptTags,
 		linkAnalytics,
 	].map(transform => transform($, flags)))
