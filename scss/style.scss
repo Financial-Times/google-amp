@@ -88,7 +88,7 @@ body {
 		@include responsiveType(5vh);
 		line-height: 1.2;
 		@media (orientation: portrait) {
-			@include responsiveType(3vh);
+			@include responsiveType(2.5vh);
 		}
 	}
 }
