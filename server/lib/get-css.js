@@ -5,6 +5,7 @@ const mkdirp = require('mkdirp-promise');
 const path = require('path');
 const fs = require('fs-promise');
 const compileScss = require('@quarterto/post-sass');
+const sassDataURI = require('lib-sass-data-uri');
 
 const cssPath = path.resolve('css');
 const cssFile = `${cssPath}/style.css`;
@@ -41,6 +42,8 @@ const compileCss = () => compileScss({
 		],
 		'postcss-csso',
 	],
+
+	functions: sassDataURI,
 })
 .then(compiled => compiled.toString());
 
