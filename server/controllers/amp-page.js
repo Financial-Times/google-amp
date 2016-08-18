@@ -7,7 +7,6 @@ const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transform-article');
 const fetchSlideshows = require('../lib/fetch-slideshows');
 const transformSlideshows = require('../lib/transform-slideshows');
-const reportError = require('../lib/report-error');
 const errors = require('http-errors');
 const fetchres = require('fetchres');
 const fs = require('fs-promise');
@@ -17,7 +16,7 @@ const lightSignupProduct = 'AMP';
 const lightSignupMailinglist = 'google-amp';
 
 function getAndRender(uuid, options) {
-		return getArticle(uuid)
+	return getArticle(uuid)
 		.then(
 			response => response._source ? response._source : Promise.reject(new errors.NotFound()),
 			err => (
