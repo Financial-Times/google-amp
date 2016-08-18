@@ -30,17 +30,17 @@
 
 
 			Promise.all([contextualTargetingRequest, userTargetingRequest])
-				.then((responses) => {
-					Promise.all([responses.pop().json(), responses.pop().json()]).then((output) => {
+				.then(function(responses) {
+					Promise.all([responses.pop().json(), responses.pop().json()]).then(function(output) {
 						contextualTargetingResponse = output.pop();
 						userTargetingResponse = output.pop();
 						targeting = targeting.concat(contextualTargetingResponse.dfp.targeting, userTargetingResponse.dfp.targeting);
-						draw3p((config, done) => {
+						draw3p(function(config, done) {
 							config.slot = '/5887/ft.com/amp.ft.com';
 							config.targeting = {
 								pos: 'mid',
 							};
-							targeting.forEach((target) => {
+							targeting.forEach(function(target) {
 								config.targeting[target.key] = target.value
 							});
 
