@@ -564,7 +564,7 @@ abbr[title] {
 
 	&::before {
 		@include oTypographySansData(s);
-		content: "▾ Advertisement ▾";
+		content: "\25BE Advertisement \25BE";
 		display: block;
 	}
 }
