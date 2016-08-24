@@ -17,11 +17,11 @@
 @import 'hacks';
 
 @include oFontsInclude(MetricWeb, regular); // body
-@include oFontsInclude(MetricWeb, bold); // headings
+@include oFontsInclude(MetricWeb, semibold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
 
 body {
-	@include oColorsFor(page, background);
+	@include oColorsFor(page);
 }
 
 .main-wrapper {
@@ -37,7 +37,22 @@ body {
 
 .article {
 	@include oTypographyBodyWrapper;
+}
 
+.article__copyright-notice.article__copyright-notice {
+	@include oTypographyFooter;
+	margin: 30px 0;
+}
+
+.article-image {
+	margin: 1em 0;
+}
+
+.article__subhead--standard.article__subhead--standard {
+	@include oTypographySansBold(m);
+}
+
+.article-header {
 	a {
 		border-bottom-color: transparent;
 
@@ -45,14 +60,6 @@ body {
 			border-bottom-color: inherit;
 		}
 	}
-}
-
-.article__copyright-notice.article__copyright-notice {
-	@include oTypographySans(s);
-}
-
-.article-image {
-	margin: 1em 0;
 }
 
 // HACK: override default styling of oTypographyBodyWrapper
@@ -80,7 +87,7 @@ body {
 		@include responsiveType(5vh);
 		line-height: 1.2;
 		@media (orientation: portrait) {
-			@include responsiveType(3vh);
+			@include responsiveType(2.5vh);
 		}
 	}
 }
@@ -92,12 +99,12 @@ body {
 }
 
 .article-author-byline__author.article-author-byline__author {
-	color: oColorsGetPaletteColor(claret);
+	@include oTypographyLinkTopic;
 	font-weight: bold;
 }
 
 .primary-theme.primary-theme {
-	color: oColorsGetPaletteColor(claret);
+	@include oTypographyLinkTopic;
 	@include oTypographySansBold(l);
 
 	@include oGridRespondTo($until: M) {
@@ -120,7 +127,7 @@ body {
 .c-box {
 	position: relative;
 	clear: left;
-	margin: 24px 0 16px;
+	margin: 10px 0 16px;
 	padding: 16px 0;
 	width: 100%;
 
@@ -148,12 +155,11 @@ body {
 	padding: 10px;
 	padding-bottom: 0;
 	font-weight: 900;
+	color: oColorsGetPaletteColor('cold-1');
+}
 
-	a {
-		border-bottom: 0;
-		text-decoration: none;
-		color: oColorsGetPaletteColor('cold-1');
-	}
+.c-box .aside--content p {
+	line-height: 1.4em;
 }
 
 .u-border--all {
@@ -175,18 +181,15 @@ body {
 }
 
 .aside--headline {
-	@include oTypographySansDataBold(xl);
+	@include oTypographySansDataBold(l);
 	margin-top: 8px;
 	margin-bottom: 8px;
 	color: oColorsGetPaletteColor('cold-3');
+	line-height: 1.3em;
 
 	p {
 		margin: 0;
 	}
-}
-
-.aside--content p {
-	margin: 5px 0 0;
 }
 
 .aside--image img {
@@ -240,29 +243,42 @@ body {
 		font-weight: inherit;
 		color: inherit;
 		line-height: inherit;
+		margin: 0;
 	}
 }
 
 .article-big-number__title {
-	@include oTypographySerifDisplayBold(xl);
-	font-size: 3em;
-	line-height: 1em;
+	@include oTypographyBigNumber;
+
+	p {
+		margin: 0 0 5px;
+	}
 }
 
 .article-big-number__content {
-	font-size: 0.8em;
-	line-height: 1;
+	@include oTypographyFooter;
+}
+
+.related-content,
+.more-ons {
+	margin-top: 40px;
+}
+
+.related-content__theme,
+.more-ons__header {
+	@include oTypographyLinkTopic;
+	a {
+		&:hover {
+			border-bottom: 1px dotted;
+		}
+	}
 }
 
 
 // Related Content
 
-.related-content {
-	margin-top: 40px;
-}
-
 .related-content__header {
-	@include oTypographySerifDisplay(m);
+	@include oTypographySerifDisplay(l);
 }
 
 .related-content__stories {
@@ -348,23 +364,18 @@ body {
 
 .related-content__summary {
 	@include oTypographySans(s);
+	line-height: 1.3em;
 	margin: 0;
 	display: block;
 }
 
 .related-content__theme {
-	@include oTypographySansBold(s);
-	color: oColorsGetPaletteColor(claret);
 	margin: 0;
 }
 
 .related-content__theme-link {
 	text-decoration: none;
 	color: inherit;
-}
-
-.more-ons {
-	margin-top: 40px;
 }
 
 .more-ons__items {

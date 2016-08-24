@@ -6,3 +6,6 @@ $max-width: 500px;
 $min-width: 320px;
 
 $border-divider: 1px solid oColorsGetPaletteColor('pink-tint3');
+
+// Enable hoverable styles everywhere, as no JS detect is possible
+$o-hoverable-if-hover-enabled: '';
