@@ -22,7 +22,9 @@
 		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		{{#if enableSocialShare}}
 		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+		{{/if}}
 		{{#if enableSidebarMenu}}
 		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
@@ -123,6 +125,7 @@
 						<div amp-access="access OR {{freeArticle}}" amp-access-hide>
 							{{{mainImageHtml}}}
 
+							{{#if enableSocialShare}}
 							<div class="article-social-buttons">
 								<amp-social-share width="24" height="24" type="twitter" data-param-url="{{shareUrl}}"></amp-social-share>
 								<amp-social-share width="24" height="24" type="facebook"
@@ -133,6 +136,7 @@
 									data-share-endpoint="whatsapp://send"
 									data-param-text="Check out this article: {{title}} - {{shareUrl}}"></amp-social-share>
 							</div>
+							{{/if}}
 						</div>
 
 						<div class="article-dateline">

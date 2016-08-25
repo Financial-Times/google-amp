@@ -62,6 +62,10 @@ body {
 	}
 }
 
+.article-header .article-image {
+	border-bottom: $border-divider;
+}
+
 // HACK: override default styling of oTypographyBodyWrapper
 // (rendered as '.article h1') using double classname specificity
 .headline.headline {
