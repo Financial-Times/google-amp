@@ -70,6 +70,7 @@ function getAndRender(uuid, options) {
 
 			article.freeArticle = !!options.alwaysFree;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;
+			article.enableSocialShare = !!options.enableSocialShare;
 
 			article.accessMocked = !!options.accessMocked;
 			article.accessMockLoggedIn = !!options.accessMockLoggedIn;
@@ -106,6 +107,7 @@ module.exports = (req, res, next) => {
 		lightSignupMailinglist: encodeURIComponent(lightSignupMailinglist),
 		enableLightSignup: (process.env.ENABLE_LIGHT_SIGNUP === 'true'),
 		enableSidebarMenu: (process.env.ENABLE_SIDEBAR_MENU === 'true'),
+		enableSocialShare: (process.env.ENABLE_SOCIAL_SHARE === 'true'),
 		enableAds: (process.env.ENABLE_ADS === 'true'),
 		uuid: req.params.uuid,
 	})
