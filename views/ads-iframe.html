@@ -41,7 +41,7 @@
 								pos: 'mid',
 							};
 							targeting.forEach(function(target) {
-								config.targeting[target.key] = target.value
+								config.targeting[target.key] = target.value.toString();
 							});
 
 							var kruxFn = Krux.amp.withConfid('KHUSeE3x')
