@@ -116,7 +116,7 @@ module.exports = (req, res, next) => {
 			// NB: https://github.com/ampproject/amphtml/issues/2046
 			click: {
 				on: 'click',
-				selector: 'a, button',
+				selector: 'a, button, amp-social-share',
 				request: 'standard',
 				vars: {
 					category: 'link',
