@@ -61,9 +61,8 @@ module.exports = (req, res, next) => {
 			api_key: process.env.SPOOR_API_KEY,
 			source: 'amp-analytics',
 
-			// TODO: check these
-			environment: (req.app.isServer ? 'p' : 'd'),
-			is_live: (req.app.isServer),
+			environment: req.app.get('env'),
+			is_live: !!req.app.isServer,
 
 			version: pkg.version,
 		},
@@ -76,11 +75,11 @@ module.exports = (req, res, next) => {
 	};
 
 	if(process.env.HEROKU_RELEASE_CREATED_AT) {
-		spoor.context.heroku = {
+		Object.assign(spoor.system, {
 			release_created_at: new Date(process.env.HEROKU_RELEASE_CREATED_AT).getTime(),
 			release_version: process.env.HEROKU_RELEASE_VERSION,
 			slug_commit: process.env.HEROKU_SLUG_COMMIT,
-		};
+		});
 	}
 
 	const url = DEBUG ? `//${req.get('host')}/analytics` : 'https://spoor-api.ft.com/ingest';
