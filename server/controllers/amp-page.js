@@ -46,6 +46,8 @@ function getAndRender(uuid, options) {
 			.then(() => article))
 		)
 		.then(article => {
+			article.SOURCE_PORT = options.production ? '' : ':5000';
+
 			article.AUTH_AUTHORIZATION_URL = options.accessMocked ?
 				`//${options.host}/amp-access-mock?type=access&` :
 				`https://${liveAccessHost}/amp-access?`;
