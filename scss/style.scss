@@ -62,9 +62,9 @@ body {
 	}
 }
 
-.article-header .article-image {
-	border-bottom: $border-divider;
-}
+// .article-header .article-image {
+// 	border-bottom: $border-divider;
+// }
 
 // HACK: override default styling of oTypographyBodyWrapper
 // (rendered as '.article h1') using double classname specificity
@@ -100,6 +100,9 @@ body {
 	@include oTypographySans(s);
 	margin-top: 1em;
 	margin-bottom: 1em;
+
+	padding-top: 1em;
+	border-top: $border-divider;
 }
 
 .article-author-byline__author.article-author-byline__author {
