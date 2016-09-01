@@ -119,7 +119,7 @@ module.exports = (req, res, next) => {
 				res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
 			} else {
 				res.setHeader('cache-control', 'public, max-age=30, no-transform');
-				res.setHeader('surrogate-control', 'stale-on-error=86400, stale-while-revalidate=86400');
+				res.setHeader('surrogate-control', 'stale-on-error=86400, stale-while-revalidate=300');
 			}
 
 			res.send(content);
