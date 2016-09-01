@@ -20,7 +20,13 @@ const segmentId = 'acee4131-99c2-09d3-a635-873e61754ec6';
 function getAndRender(uuid, options) {
 	return getArticle(uuid)
 		.then(
-			response => response._source ? response._source : Promise.reject(new errors.NotFound()),
+			response => {
+				if(response._source && (!response._source.originatingParty || response._source.originatingParty === 'FT')) {
+					return response._source;
+				}
+
+				return Promise.reject(new errors.NotFound());
+			},
 			err => (
 				console.log(err),
 				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
