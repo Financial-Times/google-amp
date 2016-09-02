@@ -579,10 +579,8 @@ abbr[title] {
 	text-align: center;
 
 	&::before {
-		@include oTypographySerif(s);
-		font-size: 14px;
-		line-height: 1em;
-		content: "\25BC Advertisement \25BC";
+		@include oTypographySansData(m);
+		content: "\25BE Advertisement \25BE";
 		display: block;
 	}
 }
