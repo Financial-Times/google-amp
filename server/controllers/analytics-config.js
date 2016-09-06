@@ -68,6 +68,13 @@ module.exports = (req, res, next) => {
 		},
 		user: {
 			ft_session: 'AUTHDATA(session)',
+
+/*
+			// See /views/partials/abTest.html and /scss/abTest.scss
+			ab: {
+				'background-color-test': 'VARIANT(background-color-test)',
+			},
+*/
 		},
 		time: {
 			amp_timestamp: '${timestamp}',
