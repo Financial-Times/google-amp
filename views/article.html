@@ -22,6 +22,7 @@
 		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
 		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+		<script async custom-element="amp-experiment" src="https://cdn.ampproject.org/v0/amp-experiment-0.1.js"></script>
 		{{#if enableSocialShare}}
 		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 		{{/if}}
@@ -75,6 +76,8 @@
 		</script>
 	</head>
 	<body>
+		{{> abTest}}
+
 		<amp-analytics config="//SOURCE_HOSTNAME{{SOURCE_PORT}}/analytics/config.json">
 			<script type="application/json">
 			{
