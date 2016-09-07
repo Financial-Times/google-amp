@@ -127,8 +127,11 @@ if(isLocal) {
 	app.use((err, req, res, next) => {
 		const status = err.status || err.statusCode || err.status_code;
 		if(status === 404) {
+			res.setHeader('cache-control', 'public, max-age=30, no-transform');
+			res.setHeader('surrogate-control', 'stale-on-error=86400, stale-while-revalidate=300');
 			res.sendStatus(404);
 		} else {
+			res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
 			next(err);
 		}
 	});
