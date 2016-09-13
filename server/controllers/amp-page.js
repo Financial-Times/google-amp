@@ -74,7 +74,7 @@ function getAndRender(uuid, options) {
 				`${process.env.HEROKU_APP_NAME}.herokuapp.com` :
 				'localhost:5000';
 
-			article.KRUX_REMOTE = `//${thirdPartyHost}/ads-iframe/${uuid}`;
+			article.KRUX_REMOTE = `https://${thirdPartyHost}/ads-iframe/${uuid}`;
 
 			article.freeArticle = !!options.alwaysFree;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;

@@ -35,22 +35,24 @@
 						contextualTargetingResponse = output.pop();
 						userTargetingResponse = output.pop();
 						targeting = targeting.concat(contextualTargetingResponse.dfp.targeting, userTargetingResponse.dfp.targeting);
-						draw3p(function(config, done) {
-							config.slot = '/5887/distributed.content/amp.ft';
-							config.targeting = {
-								pos: 'mid',
-							};
-							targeting.forEach(function(target) {
-								config.targeting[target.key] = target.value.toString();
-							});
 
-							var kruxFn = Krux.amp.withConfid('KHUSeE3x')
+						draw3p(Krux.amp
+							.withConfid('KHUSeE3x')
 							.withUserParam("kuid")
 							.withSegmentsParam("ksg")
-							.interchange().draw3p();
-							kruxFn(config, done);
-						});
-					})
+							.interchange()
+							.call(function(config, done) {
+								config.slot = '/5887/ft.com/amp.ft.com';
+								config.targeting = {
+									pos: 'mid',
+								};
+								targeting.forEach(function(target) {
+									config.targeting[target.key] = target.value.toString();
+								});
+								done(config);
+							})
+							.draw3p());
+					});
 				});
 
 		</script>
