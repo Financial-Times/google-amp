@@ -1,11 +1,11 @@
 'use strict';
-const getStreamUrl = require('./get-stream-url');
+const url = require('./url');
 
 module.exports = (article, options) => {
 	const primaryTheme = (article.metadata || []).filter(item => !!item.primary)[0];
 	if(!primaryTheme) return;
 
-	return getStreamUrl(primaryTheme, options)
+	return url.stream(primaryTheme, options)
 		.then(streamUrl => {
 			if(!streamUrl) return;
 

@@ -3,7 +3,6 @@ const api = require('next-ft-api-client');
 const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');
 const moreOnCount = 5;
-const getStreamUrl = require('../get-stream-url');
 const url = require('../url');
 
 const apiSearch = require('../wrap-fetch')(api.search, {
@@ -42,7 +41,7 @@ const addArticles = metadatum => apiSearch({
 		metadatum.error = e;
 	});
 
-const addStreamUrl = (options, metadatum) => getStreamUrl(metadatum, options)
+const addStreamUrl = (options, metadatum) => url.stream(metadatum, options)
 	// Ignore errors
 	.catch(() => {})
 	.then(streamUrl => {
