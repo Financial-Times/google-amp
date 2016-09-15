@@ -50,17 +50,17 @@ const processMetadata = metadatum => {
 	let type;
 
 	switch(metadatum.taxonomy) {
-	case 'authors':
-		type = 'from';
-		break;
-	case 'sections':
-		type = 'in';
-		break;
-	case 'genre':
-		type = '';
-		break;
-	default:
-		type = 'on';
+		case 'authors':
+			type = 'from';
+			break;
+		case 'sections':
+			type = 'in';
+			break;
+		case 'genre':
+			type = '';
+			break;
+		default:
+			type = 'on';
 	}
 
 	return {
