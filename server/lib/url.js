@@ -1,6 +1,6 @@
 'use strict';
 
-const fetchHead = require('./wrap-fetch')(require('@quarterto/fetch-head'), {
+const fetch = require('./wrap-fetch')(require('node-fetch'), {
 	tag: 'url.stream',
 });
 
@@ -37,16 +37,13 @@ module.exports.stream = (metadatum, options) => {
 		return Promise.resolve(streamUrl);
 	}
 
-	const headers = {};
+	const headers = {
+		// Ensure we're opted-in to Next
+		cookie: 'FT_SITE=NEXT',
+	};
 
-	// Set User-Agent (to avoid Akamai blocking the request), and client IP
-	// to avoid rate-limiting by IP.
-	if(options.ua) headers['user-agent'] = options.ua;
-	if(options.ip) {
-		headers['x-forwarded-for'] = options.ip;
-		headers['true-client-ip'] = options.ip;
-	}
-
-	return fetchHead(streamUrl, {headers, _wrappedFetchGroup: options._wrappedFetchGroup})
-		.then(res => res.status >= 200 && res.status < 400 && streamUrl);
+	return fetch(streamUrl, {headers, _wrappedFetchGroup: options._wrappedFetchGroup})
+		.then(res => res.status === 200 && res.url)
+		// Ignore errors
+		.catch(() => null);
 };

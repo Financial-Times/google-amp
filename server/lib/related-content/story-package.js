@@ -9,8 +9,6 @@ const formatRelatedContent = (options, item) => {
 	options._wrappedFetchGroup = `story-package-${item.id}`;
 
 	return url.stream(primaryTheme, options)
-		// Ignore errors
-		.catch(() => {})
 		.then(streamUrl => ({
 			date: dateTransform(item.publishedDate, 'related-content__date'),
 			id: item.id,

@@ -41,8 +41,6 @@ const getByline = (data, options) => {
 	const promises = data.metadata
 		.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
 		.map(author => url.stream(author, options)
-			// Ignore errors
-			.catch(() => {})
 			.then(streamUrl => {
 				author.streamUrl = streamUrl;
 				return author;
