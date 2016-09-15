@@ -4,6 +4,7 @@ const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');
 const moreOnCount = 5;
 const getStreamUrl = require('../get-stream-url');
+const url = require('../url');
 
 const apiSearch = require('../wrap-fetch')(api.search, {
 	tag: 'api-search',
@@ -27,6 +28,7 @@ const addArticles = metadatum => apiSearch({
 			.map(article => ({
 				date: dateTransform(article.publishedDate, 'more-ons__date'),
 				id: article.id,
+				url: url.external(article.id),
 				title: article.title,
 				summary: Array.isArray(article.summaries) ? article.summaries[0] : null,
 				image: sanitizeImage(article.mainImage),
