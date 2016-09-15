@@ -13,6 +13,5 @@ module.exports = (article, options) => {
 				url: streamUrl,
 				name: primaryTheme.prefLabel,
 			};
-		})
-		.catch(() => {});
+		});
 };

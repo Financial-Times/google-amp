@@ -42,8 +42,6 @@ const addArticles = metadatum => apiSearch({
 	});
 
 const addStreamUrl = (options, metadatum) => url.stream(metadatum, options)
-	// Ignore errors
-	.catch(() => {})
 	.then(streamUrl => {
 		metadatum.streamUrl = streamUrl;
 	});
