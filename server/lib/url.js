@@ -32,6 +32,9 @@ module.exports.external = uuid => {
 };
 
 module.exports.stream = (metadatum, options) => {
+	// Make use of cache layer in front of ES
+	// See: https://github.com/Financial-Times/next-es-interface/blob/master/server/app.js#L73-L82
+	// Currently lacking documentation!
 	const url = 'http://next-es-interface.ft.com/things?authority=http://api.ft.com/system/FT-TME' +
 		`&identifierValue=${metadatum.idV1}`;
 
