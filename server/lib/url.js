@@ -1,8 +1,9 @@
 'use strict';
 
-const fetch = require('./wrap-fetch')(require('node-fetch'), {
-	tag: 'url.stream',
-});
+const nodeFetch = require('node-fetch');
+const wrapFetch = require('./wrap-fetch');
+const fetchres = require('fetchres');
+const pkg = require('../../package.json');
 
 module.exports.canonical = article => {
 	switch(process.env.CANONICAL_URL_PHASE) {
@@ -29,19 +30,21 @@ module.exports.external = uuid => {
 };
 
 module.exports.stream = (metadatum, options) => {
-	const streamUrl = `http://www.ft.com/stream/${metadatum.taxonomy}Id/${metadatum.idV1}`;
+	const fetch = wrapFetch(nodeFetch, {
+		tag: 'url.stream',
+	});
 
-	if(process.env.VERIFY_STREAM_URLS !== 'true') {
-		return Promise.resolve(streamUrl);
-	}
+	const url = 'http://next-es-interface.ft.com/things?authority=http://api.ft.com/system/FT-TME' +
+		`&identifierValue=${metadatum.idV1}`;
 
-	const headers = {
-		// Ensure we're opted-in to Next
-		cookie: 'FT_SITE=NEXT',
-	};
-
-	return fetch(streamUrl, {headers, _wrappedFetchGroup: options._wrappedFetchGroup})
-		.then(res => res.status === 200 && res.url)
+	return fetch(url, {
+		headers: {
+			'user-agent': `ft-google-amp v${pkg.version}`,
+		},
+		_wrappedFetchGroup: options._wrappedFetchGroup,
+	})
+		.then(fetchres.json)
+		.then(json => json.term.url)
 		// Ignore errors
 		.catch(() => null);
 };
