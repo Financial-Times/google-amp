@@ -3,9 +3,16 @@
 const fetch = require('./wrap-fetch')(require('node-fetch'), {
 	tag: 'url',
 });
-
 const fetchres = require('fetchres');
 const pkg = require('../../package.json');
+const url = require('url');
+
+// Make use of cache layer in front of ES
+// See: https://github.com/Financial-Times/next-es-interface/blob/master/server/app.js#L73-L82
+// Currently lacking documentation!
+const thingsUrl = 'http://next-es-interface.ft.com/things?authority=http://api.ft.com/system/FT-TME';
+const thingsUrlObj = url.parse(thingsUrl, true);
+delete thingsUrlObj.search;
 
 module.exports.canonical = article => {
 	switch(process.env.CANONICAL_URL_PHASE) {
@@ -32,13 +39,12 @@ module.exports.external = uuid => {
 };
 
 module.exports.stream = (metadatum, options) => {
-	// Make use of cache layer in front of ES
-	// See: https://github.com/Financial-Times/next-es-interface/blob/master/server/app.js#L73-L82
-	// Currently lacking documentation!
-	const url = 'http://next-es-interface.ft.com/things?authority=http://api.ft.com/system/FT-TME' +
-		`&identifierValue=${metadatum.idV1}`;
+	const esUrl = Object.assign({}, thingsUrlObj);
+	esUrl.query = Object.assign({}, esUrl.query, {
+		identifierValue: metadatum.idV1,
+	});
 
-	return fetch(url, {
+	return fetch(url.format(esUrl), {
 		headers: {
 			'user-agent': `ft-google-amp v${pkg.version}`,
 		},
