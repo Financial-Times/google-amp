@@ -1,7 +1,9 @@
 'use strict';
 
-const nodeFetch = require('node-fetch');
-const wrapFetch = require('./wrap-fetch');
+const fetch = require('./wrap-fetch')(require('node-fetch'), {
+	tag: 'url',
+});
+
 const fetchres = require('fetchres');
 const pkg = require('../../package.json');
 
@@ -30,10 +32,6 @@ module.exports.external = uuid => {
 };
 
 module.exports.stream = (metadatum, options) => {
-	const fetch = wrapFetch(nodeFetch, {
-		tag: 'url.stream',
-	});
-
 	const url = 'http://next-es-interface.ft.com/things?authority=http://api.ft.com/system/FT-TME' +
 		`&identifierValue=${metadatum.idV1}`;
 
