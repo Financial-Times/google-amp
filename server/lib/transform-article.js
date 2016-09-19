@@ -8,7 +8,10 @@ const extractMainImage = require('./transforms/extract-main-image');
 
 function transformArticleBody(article, options) {
 	const xsltParams = {
+		id: article.id,
+		webUrl: article.webUrl,
 		renderTOC: 0,
+		suggestedRead: 0,
 		brightcoveAccountId: process.env.BRIGHTCOVE_ACCOUNT_ID,
 
 		// See: https://github.com/ampproject/amphtml/blob/master/extensions
