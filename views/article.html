@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{{title}}</title>
-		<link rel="canonical" href="{{canonicalURL}}" >
+		<link rel="canonical" href="{{webUrl}}" >
 		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 		<meta name="amp-3p-iframe-src" content="{{KRUX_REMOTE}}">
 		<style amp-custom>
@@ -32,8 +32,8 @@
 
 		<script id="amp-access" type="application/json">
 		{
-			"authorization": "{{{AUTH_AUTHORIZATION_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{canonicalURL}}}",
-			"pingback": "{{{AUTH_PINGBACK_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{canonicalURL}}}&access=AUTHDATA(access)",
+			"authorization": "{{{AUTH_AUTHORIZATION_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{webUrl}}}",
+			"pingback": "{{{AUTH_PINGBACK_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{webUrl}}}&access=AUTHDATA(access)",
 			"login": {
 				"login": "{{{AUTH_LOGIN_URL}}}readerId=READER_ID&location=RETURN_URL%23success=true",
 				"logout": "{{{AUTH_LOGOUT_URL}}}rid=READER_ID&location=RETURN_URL%23success=true"
@@ -46,7 +46,7 @@
 		{
 			"@context": "http://schema.org",
 			"@type": "NewsArticle",
-			"mainEntityofPage": "{{canonicalURL}}",
+			"mainEntityofPage": "{{webUrl}}",
 			"headline": "{{schemaHeadline}}",
 			"datePublished": "{{publishedDate}}",
 			"dateModified": "{{publishedDate}}",
@@ -155,7 +155,7 @@
 				</article>
 
 				<div class="comments" amp-access="access OR {{freeArticle}}" amp-access-hide>
-					<a class="comments-button" href="{{canonicalURL}}" data-vars-link-destination="{{canonicalURL}}" data-vars-link-type="view-comments" data-vars-link-text="View comments">View comments</a>
+					<a class="comments-button" href="{{nextUrl}}" data-vars-link-destination="{{nextUrl}}" data-vars-link-type="view-comments" data-vars-link-text="View comments">View comments</a>
 				</div>
 
 				<div class="amp-access-login" amp-access="NOT access" amp-access-hide>
@@ -186,12 +186,12 @@
 							<div class="related-content__container">
 								<div class="related-content__content">
 									{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
-									<a class="related-content__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
+									<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
 									<p class="related-content__summary">{{{summary}}}</p>
 									{{{date}}}
 								</div>
 								<div class="related-content__image">
-									<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="related-content-image">{{> image}}</a>
+									<a href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-type="related-content-image">{{> image}}</a>
 								</div>
 							</div>
 						</li>
@@ -199,7 +199,7 @@
 						<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
 							<div class="related-content__container">
 								{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
-								<a class="related-content__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
+								<a class="related-content__link" href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
 								<p class="related-content__summary">{{{summary}}}</p>
 								{{{date}}}
 							</div>
@@ -224,11 +224,11 @@
 									<li class="more-ons__story">
 										{{#if @first}}{{#if image}}
 										<div class="more-ons__image">
-											<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="more-ons-image">{{> image}}</a>
+											<a href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-type="more-ons-image">{{> image}}</a>
 										</div>
 										{{/if}}{{/if}}
 										{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
-										<a class="more-ons__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="more-ons-link">{{{title}}}</a>
+										<a class="more-ons__link" href="http://www.ft.com/content/{{{id}}}" data-vars-link-destination="http://www.ft.com/content/{{{id}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="more-ons-link">{{{title}}}</a>
 										{{{date}}}
 									</li>
 									{{/each}}

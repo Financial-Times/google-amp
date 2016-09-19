@@ -5,7 +5,7 @@ const path = require('path');
 const promisify = require('@quarterto/promisify');
 const glob = promisify(require('glob'));
 const promiseAllObj = require('@quarterto/promise-all-object');
-const url = require('./url');
+const getStreamUrl = require('./get-stream-url');
 const getCss = require('./get-css');
 const cacheIf = require('@quarterto/cache-if');
 
@@ -40,7 +40,9 @@ const getAuthors = data => {
 const getByline = (data, options) => {
 	const promises = data.metadata
 		.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
-		.map(author => url.stream(author, options)
+		.map(author => getStreamUrl(author, options)
+			// Ignore errors
+			.catch(() => {})
 			.then(streamUrl => {
 				author.streamUrl = streamUrl;
 				return author;
