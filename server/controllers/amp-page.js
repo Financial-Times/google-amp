@@ -7,7 +7,6 @@ const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transform-article');
 const fetchSlideshows = require('../lib/fetch-slideshows');
 const transformSlideshows = require('../lib/transform-slideshows');
-const url = require('../lib/url');
 const errors = require('http-errors');
 const fetchres = require('fetchres');
 const querystring = require('querystring');
@@ -86,12 +85,12 @@ function getAndRender(uuid, options) {
 			article.accessMockFcf = !!options.accessMockFcf;
 			article.accessMockPreventAccess = !!options.accessMockPreventAccess;
 
-			article.canonicalURL = url.canonical(article);
+			article.nextUrl = `https://next.ft.com/content/${uuid}`;
 
 			const shareParams = {
 				segmentid: segmentId,
 			};
-			article.shareUrl = `${article.canonicalURL}?${querystring.stringify(shareParams)}`;
+			article.shareUrl = `${article.webUrl}?${querystring.stringify(shareParams)}`;
 			article.facebookAppId = '328135857526360';
 
 			return article;

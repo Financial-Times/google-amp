@@ -3,7 +3,7 @@ const api = require('next-ft-api-client');
 const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');
 const moreOnCount = 5;
-const url = require('../url');
+const getStreamUrl = require('../get-stream-url');
 
 const apiSearch = require('../wrap-fetch')(api.search, {
 	tag: 'api-search',
@@ -27,7 +27,6 @@ const addArticles = metadatum => apiSearch({
 			.map(article => ({
 				date: dateTransform(article.publishedDate, 'more-ons__date'),
 				id: article.id,
-				url: url.external(article.id),
 				title: article.title,
 				summary: Array.isArray(article.summaries) ? article.summaries[0] : null,
 				image: sanitizeImage(article.mainImage),
@@ -41,7 +40,9 @@ const addArticles = metadatum => apiSearch({
 		metadatum.error = e;
 	});
 
-const addStreamUrl = (options, metadatum) => url.stream(metadatum, options)
+const addStreamUrl = (options, metadatum) => getStreamUrl(metadatum, options)
+	// Ignore errors
+	.catch(() => {})
 	.then(streamUrl => {
 		metadatum.streamUrl = streamUrl;
 	});
@@ -50,17 +51,17 @@ const processMetadata = metadatum => {
 	let type;
 
 	switch(metadatum.taxonomy) {
-		case 'authors':
-			type = 'from';
-			break;
-		case 'sections':
-			type = 'in';
-			break;
-		case 'genre':
-			type = '';
-			break;
-		default:
-			type = 'on';
+	case 'authors':
+		type = 'from';
+		break;
+	case 'sections':
+		type = 'in';
+		break;
+	case 'genre':
+		type = '';
+		break;
+	default:
+		type = 'on';
 	}
 
 	return {

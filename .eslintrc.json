@@ -7,7 +7,7 @@
 		"sourceType": "script"
 	},
 	"rules": {
-		"indent": [2, "tab", {"SwitchCase": 1}],
+		"indent": [2, "tab"],
 		"comma-dangle": [2, "always-multiline"],
 		"keyword-spacing": [2, {
 			"before": true,
