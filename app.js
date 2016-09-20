@@ -94,7 +94,7 @@ if(isServer) {
 app.engine('html', expressHandlebars());
 app.set('view engine', 'html');
 
-app.use(logger(process.env.LOG_FORMAT || (app.get('env') === 'development' ? 'dev' : 'combined')));
+app.use(logger(process.env.LOG_FORMAT || (isDevelopment ? 'dev' : 'combined')));
 app.use(cookieParser());
 app.use('/static', express.static('static'));
 
