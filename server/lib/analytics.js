@@ -2,14 +2,14 @@
 const pkg = require('../../package.json');
 const DEBUG = false;
 
-module.exports.getJson = ({req, uuid = null}) => {
+module.exports.getJson = ({req, uuid}) => {
 	const spoor = {
 		category: '${category}',
 		action: '${action}',
 		context: {
 			root_id: 'ACCESS_READER_ID_${pageViewId}',
 			content: {
-				uuid: uuid || '${uuid}',
+				uuid,
 				title: '${title}',
 			},
 			product: 'AMP',
