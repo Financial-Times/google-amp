@@ -1,14 +1,15 @@
 'use strict';
 const pkg = require('../../package.json');
+const DEBUG = false;
 
-module.exports.getJson = ({req, DEBUG}) => {
+module.exports.getJson = ({req, uuid = null}) => {
 	const spoor = {
 		category: '${category}',
 		action: '${action}',
 		context: {
 			root_id: 'ACCESS_READER_ID_${pageViewId}',
 			content: {
-				uuid: '${uuid}',
+				uuid: uuid || '${uuid}',
 				title: '${title}',
 			},
 			product: 'AMP',

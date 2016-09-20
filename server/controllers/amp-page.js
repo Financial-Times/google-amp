@@ -8,6 +8,7 @@ const transformArticle = require('../lib/transform-article');
 const fetchSlideshows = require('../lib/fetch-slideshows');
 const transformSlideshows = require('../lib/transform-slideshows');
 const url = require('../lib/url');
+const analytics = require('../lib/analytics');
 const errors = require('http-errors');
 const fetchres = require('fetchres');
 const querystring = require('querystring');
@@ -94,6 +95,8 @@ function getAndRender(uuid, options) {
 			article.shareUrl = `${article.canonicalURL}?${querystring.stringify(shareParams)}`;
 			article.facebookAppId = '328135857526360';
 
+			article.analyticsConfig = options.analyticsConfig;
+
 			return article;
 		})
 		.then(article => renderArticle(article, options));
@@ -119,6 +122,7 @@ module.exports = (req, res, next) => {
 		enableSocialShare: (process.env.ENABLE_SOCIAL_SHARE === 'true'),
 		enableAds: (process.env.ENABLE_ADS === 'true'),
 		uuid: req.params.uuid,
+		analyticsConfig: JSON.stringify(analytics.getJson({req, uuid: req.params.uuid})),
 	})
 		.then(content => {
 			if(req.cookies['amp-access-mock']) {
