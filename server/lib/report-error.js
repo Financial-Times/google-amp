@@ -19,6 +19,6 @@ module.exports = function reportError(raven, error, options) {
 			level: options.getErrorLevel(error),
 		}, options));
 	} else {
-		console.error(error.stack || error.message || error.toString());
+		console.error(error.stack || error.message || error.toString(), options);
 	}
 };
