@@ -552,6 +552,7 @@ body {
 .slideshow__title.slideshow__title {
 	@include oTypographySans(m);
 	padding: 10px;
+	margin: 0;
 }
 
 .slideshow__caption.slideshow__caption {
