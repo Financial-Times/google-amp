@@ -26,6 +26,10 @@ body {
 	@include oColorsFor(page);
 }
 
+.amp-access-loading .amp-access-blur {
+	filter: blur(20px);
+}
+
 .main-wrapper {
 	display: flex;
 	flex-direction: column;
