@@ -18,6 +18,7 @@
 		"ENABLE_SOCIAL_SHARE": {"required": false},
 		"VERIFY_STREAM_URLS": {"required": false},
 		"ADS_API_HOST": {"required": true},
+		"CANONICAL_URL_PHASE": {"required": true},
 		"NODE_ENV": {"required": false}
 	},
 	"addons": [
