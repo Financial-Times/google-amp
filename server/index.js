@@ -95,6 +95,13 @@ if(isServer) {
 app.engine('html', expressHandlebars());
 app.set('view engine', 'html');
 
+// before logger to avoid logging robots.txt requests
+app.get('/robots.txt', (req, res) => {
+	res.send(`user-agent: *
+disallow: /
+allow: /content/*`);
+});
+
 app.use(logger(process.env.LOG_FORMAT || (isDevelopment ? 'dev' : 'combined')));
 app.use(cookieParser());
 app.use('/static', express.static('static'));
