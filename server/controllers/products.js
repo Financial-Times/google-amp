@@ -9,6 +9,7 @@ const apiKey = process.env.BARRIER_GURU_API_KEY;
 module.exports = (req, res) =>
 	fetch('https://barrier-guru.ft.com/individual', {
 		headers: {
+			'country-code': req.get('country-code'),
 			'x-api-key': apiKey,
 		},
 	})

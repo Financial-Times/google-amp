@@ -13,7 +13,7 @@
     "bench": "make bench",
     "instrument-fetch": "make instrument",
     "heroku-config": "make .env -B",
-    "heroku-postbuild": "heroku-version-infer && package-version-sentry-release && package-version-github-release"
+    "heroku-postbuild": "heroku-version-infer && package-version-sentry-release && package-version-github-release && make deploy-vcl"
   },
   "keywords": [
     "AMP",
@@ -76,6 +76,7 @@
     "node": "^6.0.0"
   },
   "devDependencies": {
+    "@financial-times/fastly-tools": "^1.3.1",
     "@quarterto/gaussian": "^1.0.0",
     "@quarterto/gaussian-percentile": "^1.0.0",
     "@quarterto/heroku-config-to-env": "^1.3.1",
