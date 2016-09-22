@@ -81,6 +81,7 @@ function getAndRender(uuid, options) {
 			article.freeArticle = !!options.alwaysFree;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;
 			article.enableSocialShare = !!options.enableSocialShare;
+			article.enableBarrier = !!options.enableBarrier;
 
 			article.accessMocked = !!options.accessMocked;
 			article.accessMockLoggedIn = !!options.accessMockLoggedIn;
