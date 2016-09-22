@@ -87,6 +87,7 @@ function getAndRender(uuid, options) {
 			article.accessMockPreventAccess = !!options.accessMockPreventAccess;
 
 			article.canonicalURL = url.canonical(article);
+			article.pspURL = 'https://www.ft.com/products';
 
 			const shareParams = {
 				segmentid: segmentId,
