@@ -30,6 +30,8 @@
 		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
 		{{/if}}
+		<script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+		<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
 
 		<script id="amp-access" type="application/json">
 		{
@@ -159,7 +161,7 @@
 				</div>
 
 				<div class="amp-access-login" amp-access="NOT access" amp-access-hide>
-					<div class="amp-access-login__header" amp-access="NOT session">
+					{{!--<div class="amp-access-login__header" amp-access="NOT session">
 						<div class="amp-access-login__header-instruction">Sign in or subscribe to FT.com to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
@@ -173,7 +175,9 @@
 					</div>
 					<div class="amp-access-login__body" amp-access="session">
 						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp" data-vars-link-destination="https://subscribe.ft.com/psp" data-vars-link-type="barrier-upgrade" data-vars-link-text="Upgrade now">Upgrade now</a>
-					</div>
+					</div>--}}
+
+					{{> barrier}}
 				</div>
 
 				{{#if relatedContent}}

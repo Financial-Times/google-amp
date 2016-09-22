@@ -14,5 +14,7 @@ module.exports = (req, res) =>
 	})
 	.then(json)
 	.then(barrier => {
-		res.send(barrier);
+		res.send({
+			items: barrier.offers,
+		});
 	});
