@@ -2,6 +2,18 @@
 	<template type="amp-mustache">
 		<div>
 			<h2>\{{title}}</h2>
+			\{{#productImage}}
+			<amp-img layout="responsive" width="300" height="150"
+				src="\{{productImage}}">
+			</amp-img>
+			\{{/productImage}}
+			\{{^productImage}}
+			<amp-img layout="responsive" width="300" height="150"
+				src="https://next-geebee.ft.com/image/v1/images/raw/%2F%2Fnext-geebee.ft.com%2Fassets%2Fstandard_digital.png?width=800&source=next&fit=scale-down">
+			</amp-img>
+			\{{/productImage}}
+
+
 			\{{#pricing.billedYearly.weekly.amount}}
 				\{{symbol}}\{{value}} per week
 			\{{/pricing.billedYearly.weekly.amount}}
