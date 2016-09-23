@@ -4,7 +4,9 @@ sub vcl_recv {
 		return(pass);
 	}
 
-	set req.http.country-code = geoip.country_code3;
+	if (!req.http.country-code) {
+		set req.http.country-code = geoip.country_code3;
+	}
 
 	return(lookup);
 }
