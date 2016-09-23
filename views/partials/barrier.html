@@ -1,3 +1,8 @@
+<div>
+	Already a subscriber?
+	<a href="#" on="tap:amp-access.login-login" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
+</div>
+
 <amp-list src="/products" width="300" height="600" layout="responsive">
 	<template type="amp-mustache">
 		<div>
@@ -37,7 +42,7 @@
 				\{{/description.items}}
 			</ul>
 
-			<a href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">Select</a>
+			<a class="amp-access-login__button" href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">Select</a>
 		</div>
 	</template>
 </amp-list>
