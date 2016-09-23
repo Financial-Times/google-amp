@@ -1,7 +1,12 @@
 <amp-list src="/products" width="300" height="600" layout="responsive">
 	<template type="amp-mustache">
 		<div>
-			<h2>\{{title}}</h2>
+			<h2>
+				<a href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">
+					\{{title}}
+				</a>
+			</h2>
+
 			\{{#productImage}}
 			<amp-img layout="responsive" width="300" height="150"
 				src="\{{productImage}}">
