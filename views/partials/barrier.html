@@ -23,6 +23,15 @@
 				\{{/pricing.billedMonthly.trial.amount}}
 			\{{/pricing.billedYearly.weekly.amount}}
 
+			\{{#description.title}}
+				<h3>\{{description.title}}</h3>
+			\{{/description.title}}
+			<ul>
+				\{{#description.items}}
+				<li>\{{description}}</li>
+				\{{/description.items}}
+			</ul>
+
 			<a href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">Select</a>
 		</div>
 	</template>
