@@ -88,6 +88,13 @@ function getAndRender(uuid, options) {
 
 			article.canonicalURL = url.canonical(article);
 
+			// https://jira.ft.com/browse/AT-628 The access service currently uses
+			// an archaic content classification service hosted at http://www.ft.com/__access_metadata,
+			// which requires URLs in the form http://www.ft.com/cms/s/2/e8813dd4-d00d-11e5-831d-09f7778e7377.html
+			// in order to make classification decisions. Eventually, amp-access will be updated to
+			// look up classification against CAPI, and we can use the canonical URL here.
+			article.accessCheckUrl = url.accessCheck(article);
+
 			const shareParams = {
 				segmentid: segmentId,
 			};

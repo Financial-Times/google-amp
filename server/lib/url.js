@@ -26,6 +26,8 @@ module.exports.canonical = article => {
 	}
 };
 
+module.exports.accessCheck = article => article.webUrl;
+
 module.exports.external = uuid => {
 	switch(process.env.CANONICAL_URL_PHASE) {
 		case '1':
