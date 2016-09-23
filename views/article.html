@@ -116,6 +116,7 @@
 
 			<main class="main" role="main">
 				<article class="article">
+					{{#if enableBarrier}}<amp-access amp-access="access">{{/if}}
 					<header class="article-header">
 						{{#if primaryTheme}}
 							<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link" data-vars-link-destination="{{{primaryTheme.url}}}" data-vars-link-text="{{{primaryTheme.name}}}" data-vars-link-type="primary-theme">{{{primaryTheme.name}}}</a></h2>
@@ -148,6 +149,7 @@
 							{{/if}}
 						</div>
 					</header>
+					{{#if enableBarrier}}</amp-access>{{/if}}
 
 					<div amp-access="access OR {{freeArticle}}" amp-access-hide>
 						<div class="article-body" itemprop="articleBody">
