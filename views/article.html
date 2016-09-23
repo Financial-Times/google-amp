@@ -160,18 +160,18 @@
 					<a class="comments-button" href="{{canonicalURL}}" data-vars-link-destination="{{canonicalURL}}" data-vars-link-type="view-comments" data-vars-link-text="View comments">View comments</a>
 				</div>
 
-				<div class="amp-access-login" amp-access="NOT access" amp-access-hide>
+				<div class="{{#if enableBarrier}}amp-access-barrier{{else}}amp-access-login{{/if}}" amp-access="NOT access" amp-access-hide>
+					{{#if enableBarrier}}
+						{{> barrier}}
+					{{else}}
 					<div class="amp-access-login__header" amp-access="NOT session">
-						<div class="amp-access-login__header-instruction">Sign in or subscribe to FT.com to read:</div>
+						<div class="amp-access-login__header-instruction">Subscribe to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
 					<div class="amp-access-login__header" amp-access="session">
 						<div class="amp-access-login__header-instruction">Upgrade your account to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
-					{{#if enableBarrier}}
-						{{> barrier}}
-					{{else}}
 					<div class="amp-access-login__body" amp-access="NOT session">
 						<a class="amp-access-login__button" href="#" on="tap:amp-access.login-login" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
 						<a class="amp-access-login__button" href="https://subscribe.ft.com/psp" data-vars-link-destination="https://subscribe.ft.com/psp" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages">View subscription packages</a>

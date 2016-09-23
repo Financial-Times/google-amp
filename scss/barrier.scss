@@ -1,0 +1,93 @@
+.amp-access-barrier {
+	background: oColorsGetPaletteColor('white');
+
+	a {
+		@include oTypographyLink;
+	}
+
+	.amp-access-barrier__button {
+		@extend .amp-access-login__button;
+	}
+}
+
+$barrier-padding: .75em;
+
+.amp-access-barrier__header-instruction {
+	@include oTypographySansBold(m);
+	@include oColorsFor(box, background);
+	padding: $barrier-padding;
+
+	h3 {
+		@include oTypographySans(m);
+		margin: 0;
+	}
+}
+
+.amp-access-barrier__login {
+	@include oTypographySansBold(s);
+	background: oColorsGetPaletteColor('pink-tint2');
+	padding: $barrier-padding;
+}
+
+.amp-access-barrier__offer:not(:last-child) {
+	border-bottom: 1px solid oColorsGetPaletteColor('pink-tint1');
+}
+
+.amp-access-barrier__offer-title {
+	@include oTypographySansBold(s);
+	text-align: center;
+	margin-bottom: 1em;
+	text-transform: uppercase;
+}
+
+%barrier-narrow {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.amp-access-barrier__offer_image {
+	@extend %barrier-narrow;
+}
+
+.amp-access-barrier__offer-price {
+	@include oTypographySans(m);
+	text-align: center;
+}
+
+.amp-access-barrier__offer-value {
+	@include oTypographySansBold(m);
+}
+
+.amp-access-barrier__offer-description {
+	@include oTypographySans(s);
+	padding: $barrier-padding;
+}
+
+.amp-access-barrier__offer-description-title {
+	@extend %barrier-narrow;
+	@include oTypographySansBold(s);
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.amp-access-barrier__offer-description-items {
+	@extend %barrier-narrow;
+	list-style: none;
+	margin-top: 0;
+	margin-bottom: 1em;
+	padding: 0;
+
+	li {
+		position: relative;
+		margin-left: 20px;
+
+		&:before {
+			@include oIconsGetIcon('tick', #35bd14, 14);
+			content: '';
+			margin-right: 4px;
+			position: absolute;
+			top: 2px;
+			left: -20px;
+		}
+	}
+}
