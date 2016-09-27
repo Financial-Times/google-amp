@@ -37,6 +37,9 @@ instrument:
 	$(if $(UUID),,$(eval $(error UUID is required, e.g. make instrument UUID=ffffffff-ffff-ffff-ffff-ffffffffffff)))
 	./scripts/instrument.js $(UUID)
 
+instrument-products:
+	./scripts/instrument-products.js
+
 bench:
 	./scripts/bench.sh
 

@@ -7,18 +7,38 @@ const ammit = require('../lib/ammit');
 const {json} = require('fetchres');
 const apiKey = process.env.BARRIER_GURU_API_KEY;
 
-module.exports = (req, res) =>
-	ammit(req, res)
-	.then(ammitVars => fetch('https://barrier-guru.ft.com/individual', {
+const FIVE_YEARS = 5 * 365.25 * 24 * 60 * 60 * 1000;
+
+module.exports = (req, res, next) => {
+	const allocationId = req.cookies.FTAllocation;
+
+	module.exports.getProducts({
+		allocationId,
+		sessionId: req.cookies.FTSession,
+		countryCode: req.get('country-code'),
+	}).then(({items, allocation}) => {
+		if(!allocationId && allocation) {
+			res.cookie('FTAllocation', allocation, {
+				domain: 'ft.com',
+				maxAge: FIVE_YEARS,
+			});
+		}
+
+		res.send({items});
+	}).catch(next);
+};
+
+module.exports.getProducts = ({allocationId, sessionId, countryCode}) =>
+	ammit({allocationId, sessionId})
+	.then(({abVars, allocation}) => fetch('https://barrier-guru.ft.com/individual', {
 		headers: {
-			'country-code': req.get('country-code'),
+			'country-code': countryCode,
 			'x-api-key': apiKey,
-			'x-ft-ab': ammitVars,
+			'x-ft-ab': abVars,
 		},
 	})
 	.then(json)
-	.then(barrier => {
-		res.send({
-			items: barrier.offers,
-		});
-	}));
+	.then(barrier => ({
+		items: barrier.offers,
+		allocation,
+	})));

@@ -6,15 +6,11 @@ const fetch = require('./wrap-fetch')(require('node-fetch'), {
 
 const {BadServerResponseError} = require('fetchres');
 
-const FIVE_YEARS = 5 * 365.25 * 24 * 60 * 60 * 1000;
 
-module.exports = (req, res) => {
+module.exports = ({allocationId, sessionId}) => {
 	if(process.env.BARRIER_AMMIT !== 'true') {
 		return Promise.resolve();
 	}
-
-	const sessionId = req.cookies.FTSession;
-	const allocationId = req.cookies.FTAllocation;
 
 	return fetch('https://ammit-api.ft.com/uk', {
 		method: 'HEAD',
@@ -24,14 +20,8 @@ module.exports = (req, res) => {
 		},
 	})
 	.then(r => r.ok ? r : Promise.reject(new BadServerResponseError(r.status)))
-	.then(ammitResponse => {
-		if(!allocationId && ammitResponse.headers.has('ft-allocation-id')) {
-			res.cookie('FTAllocation', ammitResponse.headers.get('ft-allocation-id'), {
-				domain: 'ft.com',
-				maxAge: FIVE_YEARS,
-			});
-		}
-
-		return ammitResponse.headers.get('x-ft-ab');
-	});
+	.then(res => ({
+		abVars: res.headers.get('x-ft-ab'),
+		allocation: res.headers.get('ft-allocation-id'),
+	}));
 };
