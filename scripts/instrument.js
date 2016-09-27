@@ -10,13 +10,18 @@ process.env.NODE_ENV = 'instrument';
 const ampPage = require('../server/controllers/amp-page');
 process.env.NODE_ENV = 'production';
 
+const filename = `fetch-svgs/${process.argv[2]}-${Date.now()}.svg`;
+
 ampPage.getAndRender(process.argv[2], {
 	production: true,
 	alwaysFree: true,
 	relatedArticleDeduper: [process.argv[2]],
 }).then(
-	() => fs.writeFile(`fetch-svgs/${process.argv[2]}.svg`, midna(log))
-).catch(err => {
-	console.error(err.stack || err.toString());
-	process.exit(1);
-});
+	() => fs.writeFile(filename, midna(log))
+).then(
+	() => console.log(`Written ${filename}`),
+	err => {
+		console.error(err.stack || err.toString());
+		process.exit(1);
+	}
+);
