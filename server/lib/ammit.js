@@ -9,6 +9,10 @@ const {BadServerResponseError} = require('fetchres');
 const FIVE_YEARS = 5 * 365.25 * 24 * 60 * 60 * 1000;
 
 module.exports = (req, res) => {
+	if(process.env.BARRIER_AMMIT !== 'true') {
+		return Promise.resolve();
+	}
+
 	const sessionId = req.cookies.FTSession;
 	const allocationId = req.cookies.FTAllocation;
 
