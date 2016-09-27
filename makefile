@@ -28,7 +28,7 @@ eslint: $(js-files)
 lint: lintspaces eslint
 
 instrument:
-	./scripts/instrument.js
+	./scripts/instrument.js $(UUID)
 
 bench:
 	./scripts/bench.sh
