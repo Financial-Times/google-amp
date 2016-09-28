@@ -17,12 +17,14 @@
 	</div>
 </div>
 
-
 <amp-list src="/products" width="300" height="600" layout="responsive">
 	<template type="amp-mustache">
 		<div class="amp-access-barrier__offer">
 			<h2 class="amp-access-barrier__offer-title">
-				<a href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">
+				<a
+					data-vars-link-type="barrier-subscribe"
+					data-vars-link-destination="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}"
+					href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">
 					\{{title}}
 				</a>
 			</h2>
@@ -48,7 +50,11 @@
 					\{{/pricing.billedMonthly.trial.amount}}
 				\{{/pricing.billedYearly.weekly.amount}}
 
-				<a class="amp-access-barrier__button" href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">Select</a>
+				<a
+					data-vars-link-type="barrier-subscribe"
+					data-vars-link-destination="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}" href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">
+					Select
+				</a>
 			</div>
 
 			<div class="amp-access-barrier__offer-description">
