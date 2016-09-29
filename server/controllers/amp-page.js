@@ -41,7 +41,7 @@ function getAndRender(uuid, options) {
 		)
 
 		.then(article => {
-			if(isLiveBlog(article.webUrl)) {
+			if(options.enableLiveBlogs && isLiveBlog(article.webUrl)) {
 				return getLiveBlog(article, options);
 			}
 
@@ -94,6 +94,7 @@ function getAndRender(uuid, options) {
 			article.showEverything = !!options.showEverything;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;
 			article.enableSocialShare = !!options.enableSocialShare;
+			article.enableLiveBlogs = !!options.enableLiveBlogs;
 			article.enableBarrier = !!options.enableBarrier;
 
 			article.accessMocked = !!options.accessMocked;
@@ -145,6 +146,7 @@ module.exports = (req, res, next) => {
 		enableSidebarMenu: (process.env.ENABLE_SIDEBAR_MENU === 'true'),
 		enableSocialShare: (process.env.ENABLE_SOCIAL_SHARE === 'true'),
 		enableAds: (process.env.ENABLE_ADS === 'true'),
+		enableLiveBlogs: (process.env.ENABLE_LIVE_BLOGS === 'true'),
 		enableBarrier: (process.env.ENABLE_BARRIER === 'true'),
 		uuid: req.params.uuid,
 		analyticsConfig: JSON.stringify(analytics.getJson({req, uuid: req.params.uuid})),
