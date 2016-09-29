@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 
 const replaceEllipses = require('./transforms/replace-ellipses');
 const trimmedLinks = require('./transforms/trimmed-links');
-const externalImages = require('./external-images');
+const externalImages = require('./transforms/external-images');
 const copyrightNotice = require('./transforms/copyright-notice');
 const lightSignup = require('./transforms/light-signup');
 const removeStyleAttributes = require('./transforms/remove-styles');

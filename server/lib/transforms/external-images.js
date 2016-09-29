@@ -1,12 +1,12 @@
 'use strict';
 const Entities = require('html-entities').XmlEntities;
-const fetch = require('./wrap-fetch')(require('node-fetch'), {
+const fetch = require('../wrap-fetch')(require('node-fetch'), {
 	tag: 'external-images',
 });
 const fetchres = require('fetchres');
 const statusCodes = require('http').STATUS_CODES;
-const reportError = require('./report-error');
-const Warning = require('./warning');
+const reportError = require('../report-error');
+const Warning = require('../warning');
 
 // See Sass variables
 const maxColumnWidth = 500;
