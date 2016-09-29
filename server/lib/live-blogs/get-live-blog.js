@@ -9,13 +9,19 @@ const renderLiveBlog = require('./render');
 const url = require('url');
 const fetchres = require('fetchres');
 
-const getCatchupUrl = blogUrl => url.format(Object.assign(
+const modifyBlogUrl = query => blogUrl => url.format(Object.assign(
 	url.parse(blogUrl),
-	{query: {action: 'catchup', format: 'json'}}
+	{query}
 ));
 
-const getCatchupJson = blogUrl => fetch(getCatchupUrl(blogUrl)).then(fetchres.json);
+const catchupUrl = modifyBlogUrl({action: 'catchup', format: 'json'});
+const metaUrl = modifyBlogUrl({action: 'getmeta'});
+
+const getBlogData = getUrl => blogUrl => fetch(getUrl(blogUrl)).then(fetchres.json);
 
 module.exports = (article, options) =>
-	getCatchupJson(article.webUrl)
-	.then(catchup => renderLiveBlog(article, catchup, options));
+	Promise.all([
+		getBlogData(catchupUrl)(article.webUrl),
+		getBlogData(metaUrl)(article.webUrl),
+	])
+	.then(([catchup, meta]) => renderLiveBlog(article, {catchup, meta}, options));
