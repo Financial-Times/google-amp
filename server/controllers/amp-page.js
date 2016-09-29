@@ -7,8 +7,11 @@ const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transform-article');
 const fetchSlideshows = require('../lib/fetch-slideshows');
 const transformSlideshows = require('../lib/transform-slideshows');
+const isLiveBlog = require('../lib/live-blogs/is-live-blog');
+const getLiveBlog = require('../lib/live-blogs/get-live-blog');
 const url = require('../lib/url');
 const analytics = require('../lib/analytics');
+
 const errors = require('http-errors');
 const fetchres = require('fetchres');
 const querystring = require('querystring');
@@ -36,6 +39,14 @@ function getAndRender(uuid, options) {
 				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
 			)
 		)
+
+		.then(article => {
+			if(isLiveBlog(article.webUrl)) {
+				return getLiveBlog(article, options);
+			}
+
+			return article;
+		})
 
 		// First phase: network-dependent fetches and transforms in parallel
 		.then(article => Promise.all(
