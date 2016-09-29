@@ -1,0 +1,18 @@
+@include oColorsSetUseCase(author-colour-1, text, 'claret');
+@include oColorsSetUseCase(author-colour-2, text, 'blue');
+@include oColorsSetUseCase(author-colour-3, text, 'green');
+
+.live-blog--message {
+	margin: 1em 0;
+	border-bottom: 1px solid oColorsGetPaletteColor('pink-tint2');
+}
+
+.live-blog--author {
+	@include oTypographySansBold(s);
+}
+
+@for $i from 1 through 3 {
+	.live-blog--author-colour-#{$i} {
+		@include oColorsFor(author-colour-#{$i}, text);
+	}
+}

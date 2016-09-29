@@ -1,7 +1,7 @@
 'use strict';
 
-const renderMessage = ({data}) => `<div id="${data.mid}" data-sort-time="${data.emb}">
-<span class="article-author-byline__author">
+const renderMessage = ({data}) => `<div id="${data.mid}" data-sort-time="${data.emb}" class="live-blog--message">
+<span class="live-blog--author live-blog--author-colour-${((data.authorcolour - 1) % 3) + 1}">
 	${data.authornamestyle === 'initials' ? data.author : data.authordisplayname}
 </span>
 
