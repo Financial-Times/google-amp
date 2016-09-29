@@ -51,6 +51,11 @@ body {
 	margin: 1em 0;
 }
 
+.article-image--inline {
+	display: inline-block;
+	margin: 0;
+}
+
 .article__subhead--standard.article__subhead--standard {
 	@include oTypographySansBold(m);
 }
