@@ -3,7 +3,7 @@
 module.exports = events => events.reduce((messages, {event, data}) => {
 	switch(event) {
 		case 'editmsg':
-		case 'message': {
+		case 'msg': {
 			return messages.set(data.mid, data);
 		}
 
