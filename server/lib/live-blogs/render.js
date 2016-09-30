@@ -2,7 +2,7 @@
 
 const collateMessages = require('./collate-messages');
 
-const renderMessage = ({data}) => `<div
+const renderMessage = (data) => `<div
 id="${data.mid}"
 data-sort-time="${data.emb}"
 class="live-blog--message"

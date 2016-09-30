@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = events => events.reduce((messages, {event, data}) => {
+module.exports = events => Array.from(events.reduce((messages, {event, data}) => {
 	switch(event) {
 		case 'editmsg':
 		case 'msg': {
@@ -21,4 +21,4 @@ module.exports = events => events.reduce((messages, {event, data}) => {
 			return messages;
 		}
 	}
-}, new Map());
+}, new Map()).values());
