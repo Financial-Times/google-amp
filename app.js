@@ -137,6 +137,4 @@ if(isLocal) {
 	});
 }
 
-app.all('/analytics/config.json', require('./server/controllers/analytics-config.js'));
-
 app.listen(port, () => console.log('Up and running on port', port));

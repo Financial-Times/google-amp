@@ -78,15 +78,14 @@
 	<body>
 		{{> abTest}}
 
-		<amp-analytics config="//SOURCE_HOSTNAME{{SOURCE_PORT}}/analytics/config.json">
+		{{#if analyticsConfig}}
+		<amp-analytics>
 			<script type="application/json">
-			{
-				"vars": {
-					"uuid": "{{{id}}}"
-				}
-			}
+			{{{analyticsConfig}}}
 			</script>
 		</amp-analytics>
+		{{/if}}
+
 		<amp-analytics type="krux" config="https://cdn.krxd.net/controltag/amp/KHUSeE3x.json"></amp-analytics>
 
 		<amp-image-lightbox id="lightbox" layout="nodisplay"></amp-image-lightbox>
