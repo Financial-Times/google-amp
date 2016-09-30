@@ -1,6 +1,12 @@
 'use strict';
 
-const renderMessage = ({data}) => `<div id="${data.mid}" data-sort-time="${data.emb}" class="live-blog--message">
+const collateMessages = require('./collate-messages');
+
+const renderMessage = ({data}) => `<div
+id="${data.mid}"
+data-sort-time="${data.emb}"
+class="live-blog--message"
+${data.deleted ? 'data-tombstone' : ''}>
 <span class="live-blog--author live-blog--author-colour-${((data.authorcolour - 1) % 3) + 1}">
 	${data.authornamestyle === 'initials' ? data.author : data.authordisplayname}
 </span>
@@ -9,7 +15,7 @@ const renderMessage = ({data}) => `<div id="${data.mid}" data-sort-time="${data.
 </div>`;
 
 module.exports = (article, {catchup, meta}, options) => {
-	const messages = catchup.filter(({event}) => event === 'msg');
+	const messages = collateMessages(catchup);
 	article.isLiveBlog = true;
 	article.bodyXML = `<amp-live-list
 		id="live-blog-${article.id}"
