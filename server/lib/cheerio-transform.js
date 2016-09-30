@@ -10,6 +10,7 @@ const removeStyleAttributes = require('./transforms/remove-styles');
 const replaceFtConceptTags = require('./transforms/ft-concept');
 const insertAd = require('./transforms/insert-ad');
 const linkAnalytics = require('./transforms/link-analytics');
+const removeInvalidLinks = require('./transforms/remove-invalid-links');
 
 module.exports = function run(body, flags) {
 	body = replaceEllipses(body);
@@ -26,6 +27,7 @@ module.exports = function run(body, flags) {
 		lightSignup,
 		replaceFtConceptTags,
 		linkAnalytics,
+		removeInvalidLinks,
 	].map(transform => transform($, flags)))
 		.then(() => $);
 };
