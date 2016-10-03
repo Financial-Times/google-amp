@@ -1,20 +1,26 @@
 'use strict';
 
+const updateMessage = (messages, id, message) => {
+	id = id.toString();
+
+	if(messages.has(id)) {
+		Object.assign(messages.get(id), message);
+	} else {
+		messages.set(id, message);
+	}
+
+	return messages;
+};
+
 module.exports = events => Array.from(events.reduce((messages, {event, data}) => {
 	switch(event) {
 		case 'editmsg':
 		case 'msg': {
-			return messages.set(data.mid, data);
+			return updateMessage(messages, data.mid, data);
 		}
 
 		case 'delete': {
-			if(messages.has(data.messageid)) {
-				messages.get(data.messageid).deleted = true;
-			} else {
-				messages.set(data.messageid, {deleted: true});
-			}
-
-			return messages;
+			return updateMessage(messages, data.messageid, {deleted: true, mid: data.messageid});
 		}
 
 		default: {

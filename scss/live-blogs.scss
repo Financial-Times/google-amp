@@ -16,3 +16,9 @@
 		@include oColorsFor(author-colour-#{$i}, text);
 	}
 }
+
+.live-blog--update-button {
+	position: sticky;
+	position: fixed;
+	top: 10px;
+}

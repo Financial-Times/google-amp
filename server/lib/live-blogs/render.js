@@ -21,7 +21,7 @@ module.exports = (article, {catchup, meta}, options) => {
 		id="live-blog-${article.id}"
 		data-max-items-per-page="2000"
 		${meta.status === 'closed' ? 'disabled' : ''}>
-		<button update on="tap:live-blog-${article.id}.update">Update</button>
+		<button class="live-blog--update-button" update on="tap:live-blog-${article.id}.update">Update</button>
 		<div items>
 			${messages.map(renderMessage).join('\n')}
 		</div>
