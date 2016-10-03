@@ -9,7 +9,7 @@ const {BadServerResponseError} = require('fetchres');
 
 module.exports = ({allocationId, sessionId}) => {
 	if(process.env.BARRIER_AMMIT !== 'true') {
-		return Promise.resolve();
+		return Promise.resolve({});
 	}
 
 	return fetch('https://ammit-api.ft.com/uk', {
