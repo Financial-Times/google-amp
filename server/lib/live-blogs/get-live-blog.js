@@ -21,7 +21,7 @@ const getBlogData = getUrl => blogUrl => fetch(getUrl(blogUrl)).then(fetchres.js
 
 module.exports = (article, options) =>
 	Promise.all([
-		getBlogData(catchupUrl)(article.webUrl),
-		getBlogData(metaUrl)(article.webUrl),
+		getBlogData(catchupUrl)(options.overrideBlog || article.webUrl),
+		getBlogData(metaUrl)(options.overrideBlog || article.webUrl),
 	])
 	.then(([catchup, meta]) => renderLiveBlog(article, {catchup, meta}, options));
