@@ -1,5 +1,8 @@
 'use strict';
 
+const {XmlEntities: Entities} = require('html-entities');
+const entities = new Entities();
+
 const collateMessages = require('./collate-messages');
 const dateTransform = require('../article-date');
 
@@ -21,8 +24,8 @@ module.exports = (article, {catchup, meta, config}, options) => {
 	const {messages, postUpdated} = collateMessages(catchup, Object.assign({}, options, config));
 
 	if(postUpdated) {
-		article.title = postUpdated.data.title;
-		article.summaries = [postUpdated.data.excerpt];
+		article.title = entities.decode(postUpdated.data.title);
+		article.summaries = [entities.decode(postUpdated.data.excerpt)];
 	}
 
 	article.isLiveBlog = true;
