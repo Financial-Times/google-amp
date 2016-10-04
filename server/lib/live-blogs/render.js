@@ -6,6 +6,7 @@ const dateTransform = require('../article-date');
 const renderMessage = (data) => `<div
 id="live-blog-message-${data.mid}"
 data-sort-time="${data.emb}"
+data-update-time="${data.datemodified}"
 class="live-blog--message"
 ${data.deleted ? 'data-tombstone' : ''}>
 ${dateTransform(data.emb * 1000, {classname: 'live-blog--time', format: 'datetimeortime'})}
