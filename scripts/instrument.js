@@ -16,6 +16,7 @@ ampPage.getAndRender(process.argv[2], {
 	production: true,
 	showEverything: true,
 	relatedArticleDeduper: [process.argv[2]],
+	enableLiveBlogs: true,
 }).then(
 	() => fs.writeFile(filename, midna(log))
 ).then(

@@ -7,9 +7,9 @@ const orderBy = require('lodash.orderby');
 
 module.exports = (events, config) => {
 	const {
-		msg,
-		editmsg: edits,
-		delete: deletes,
+		msg = [],
+		editmsg: edits = [],
+		delete: deletes = [],
 	} = groupBy(events, 'event');
 
 	const messages = keyBy(msg.map(({data}) => data), 'mid');
