@@ -1,12 +1,14 @@
 'use strict';
 
 const collateMessages = require('./collate-messages');
+const dateTransform = require('../article-date');
 
 const renderMessage = (data) => `<div
 id="live-blog-message-${data.mid}"
 data-sort-time="${data.emb}"
 class="live-blog--message"
 ${data.deleted ? 'data-tombstone' : ''}>
+${dateTransform(data.emb * 1000, {classname: 'live-blog--time', format: 'datetimeortime'})}
 <span class="live-blog--author live-blog--author-colour-${((data.authorcolour - 1) % 3) + 1}">
 	${data.authornamestyle === 'initials' ? data.author : data.authordisplayname}
 </span>

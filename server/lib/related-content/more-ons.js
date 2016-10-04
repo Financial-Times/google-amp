@@ -26,7 +26,7 @@ const addArticles = metadatum => apiSearch({
 })
 	.then(res => res.filter(article => article.title)
 			.map(article => ({
-				date: dateTransform(article.publishedDate, 'more-ons__date'),
+				date: dateTransform(article.publishedDate, {classname: 'more-ons__date'}),
 				id: article.id,
 				url: url.external(article.id),
 				title: article.title,

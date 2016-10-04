@@ -28,3 +28,7 @@ amp-live-list .live-blog--update-banner {
 .live-blog--update-button {
 	@include oButtons(big, standout);
 }
+
+.live-blog--time {
+	@include oTypographySans(xs);
+}
