@@ -17,8 +17,14 @@
 	}
 }
 
-.live-blog--update-button {
-	position: sticky;
+amp-live-list .live-blog--update-banner {
 	position: fixed;
-	top: 10px;
+	bottom: 10px;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+
+.live-blog--update-button {
+	@include oButtons(big, standout);
 }
