@@ -18,7 +18,7 @@ ${dateTransform(data.emb * 1000, {classname: 'live-blog--time', format: 'datetim
 </div>`;
 
 module.exports = (article, {catchup, meta, config}, options) => {
-	const {messages, postUpdated} = collateMessages(catchup, config);
+	const {messages, postUpdated} = collateMessages(catchup, Object.assign({}, options, config));
 
 	if(postUpdated) {
 		article.title = postUpdated.data.title;

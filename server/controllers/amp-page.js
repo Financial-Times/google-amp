@@ -149,8 +149,9 @@ module.exports = (req, res, next) => {
 		enableLiveBlogs: (process.env.ENABLE_LIVE_BLOGS === 'true'),
 		enableBarrier: (process.env.ENABLE_BARRIER === 'true'),
 		uuid: req.params.uuid,
-		overrideBlog: req.query.overrideBlog,
 		analyticsConfig: JSON.stringify(analytics.getJson({req, uuid: req.params.uuid})),
+		overrideBlog: req.query.overrideBlog,
+		lastUpdate: req.query.amp_latest_update_time,
 	})
 		.then(content => {
 			if(req.cookies['amp-access-mock']) {
