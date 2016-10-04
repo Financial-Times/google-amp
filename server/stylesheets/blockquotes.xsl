@@ -7,13 +7,27 @@
 	</xsl:template>
 
 	<xsl:template match="blockquote[@class='twitter-tweet']">
-		<xsl:variable name="tweetHref" select="a[starts-with(@href, 'https://twitter.com/')][last()]/@href" />
+		<xsl:call-template name="tweet-quote">
+			<xsl:with-param name="tweetHref" select="a[starts-with(@href, 'https://twitter.com/')][last()]/@href" />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="a[starts-with(@href, 'https://twitter.com/')]">
+		<xsl:call-template name="tweet-quote">
+			<xsl:with-param name="tweetHref" select="@href" />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template name="tweet-quote">
+		<xsl:param name="tweetHref" />
+
 		<xsl:variable name="tweetId">
 			<xsl:call-template name="substring-after-last">
 				<xsl:with-param name="value" select="$tweetHref" />
 				<xsl:with-param name="separator" select="'/'" />
 			</xsl:call-template>
 		</xsl:variable>
+
 		<amp-twitter width="600" height="250" layout="responsive" data-tweetid="{$tweetId}"></amp-twitter>
 	</xsl:template>
 
