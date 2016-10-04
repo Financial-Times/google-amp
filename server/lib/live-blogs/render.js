@@ -16,6 +16,7 @@ ${data.deleted ? 'data-tombstone' : ''}>
 
 module.exports = (article, {catchup, meta, config}, options) => {
 	const messages = collateMessages(catchup, config);
+
 	article.isLiveBlog = true;
 	article.bodyXML = `<amp-live-list
 		id="live-blog-${article.id}"
@@ -28,5 +29,6 @@ module.exports = (article, {catchup, meta, config}, options) => {
 			${messages.map(renderMessage).join('\n')}
 		</div>
 	</amp-live-list>`;
+
 	return article;
 };

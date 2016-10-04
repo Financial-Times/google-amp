@@ -3,7 +3,7 @@
 const groupBy = require('lodash.groupby');
 const keyBy = require('lodash.keyby');
 const values = require('lodash.values');
-const orderBy = require('lodash.orderBy');
+const orderBy = require('lodash.orderby');
 
 module.exports = (events, config) => {
 	const {
