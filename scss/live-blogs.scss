@@ -32,3 +32,16 @@ amp-live-list .live-blog--update-banner {
 .live-blog--time {
 	@include oTypographySans(xs);
 }
+
+.live-blog--status {
+	@include oTypographySansBold(xs);
+	@include oLabels($size: big);
+}
+
+.live-blog--status-inprogress {
+	@include oLabelsState(active);
+}
+
+.live-blog--status-ended {
+	@include oLabelsState(error);
+}

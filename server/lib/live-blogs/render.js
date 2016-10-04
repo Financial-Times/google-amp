@@ -28,6 +28,14 @@ module.exports = (article, {catchup, meta, config}, options) => {
 		article.summaries = [entities.decode(postUpdated.data.excerpt)];
 	}
 
+	article.liveBlogStatus = meta.status;
+	article.liveBlogStatusLabel = ({
+		inprogress: 'In Progress',
+		closed: 'Archived',
+		pending: 'Pending',
+		comingsoon: 'Coming soon',
+	})[meta.status];
+
 	article.isLiveBlog = true;
 	article.bodyXML = `<amp-live-list
 		id="live-blog-${article.id}"

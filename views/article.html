@@ -113,7 +113,16 @@
 						{{#if primaryTheme}}
 							<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link" data-vars-link-destination="{{{primaryTheme.url}}}" data-vars-link-text="{{{primaryTheme.name}}}" data-vars-link-type="primary-theme">{{{primaryTheme.name}}}</a></h2>
 						{{/if}}
-						<h1 class="headline" itemprop="headline">{{title}}</h1>
+
+						<h1 class="headline" itemprop="headline">
+							{{title}}
+
+							{{#if liveBlogStatus}}
+							<div class='live-blog--status live-blog--status-{{liveBlogStatus}}'>
+								{{{liveBlogStatusLabel}}}
+							</div>
+							{{/if}}
+						</h1>
 
 						{{#if displaySummary}}
 						<h2 class="article-standfirst">{{displaySummary}}</h2>
