@@ -10,6 +10,7 @@ module.exports = (events, config) => {
 		msg = [],
 		editmsg: edits = [],
 		delete: deletes = [],
+		postSaved: postUpdates = [],
 	} = groupBy(events, 'event');
 
 	const messages = keyBy(msg.map(({data}) => data), 'mid');
@@ -22,5 +23,8 @@ module.exports = (events, config) => {
 		Object.assign(messages[data.messageid], {deleted: true});
 	});
 
-	return orderBy(values(messages), 'emb', config.content_order === 'descending' ? 'desc' : 'asc');
+	return {
+		messages: orderBy(values(messages), 'emb', config.content_order === 'descending' ? 'desc' : 'asc'),
+		postUpdated: config.content_order === 'descending' ? postUpdates[0] : postUpdates[postUpdates.length - 1],
+	};
 };

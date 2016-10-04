@@ -15,7 +15,12 @@ ${data.deleted ? 'data-tombstone' : ''}>
 </div>`;
 
 module.exports = (article, {catchup, meta, config}, options) => {
-	const messages = collateMessages(catchup, config);
+	const {messages, postUpdated} = collateMessages(catchup, config);
+
+	if(postUpdated) {
+		article.title = postUpdated.data.title;
+		article.summaries = [postUpdated.data.excerpt];
+	}
 
 	article.isLiveBlog = true;
 	article.bodyXML = `<amp-live-list
