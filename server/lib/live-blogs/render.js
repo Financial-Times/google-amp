@@ -3,7 +3,7 @@
 const collateMessages = require('./collate-messages');
 
 const renderMessage = (data) => `<div
-id="${data.mid}"
+id="live-blog-message-${data.mid}"
 data-sort-time="${data.emb}"
 class="live-blog--message"
 ${data.deleted ? 'data-tombstone' : ''}>
