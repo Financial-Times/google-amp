@@ -15,7 +15,7 @@ ${data.deleted ? 'data-tombstone' : ''}>
 </div>`;
 
 module.exports = (article, {catchup, meta}, options) => {
-	const messages = collateMessages(catchup);
+	const messages = collateMessages(catchup).sort((a, b) => b.emb - a.emb);
 	article.isLiveBlog = true;
 	article.bodyXML = `<amp-live-list
 		id="live-blog-${article.id}"
