@@ -1,30 +1,26 @@
 'use strict';
 
-const updateMessage = (messages, id, message) => {
-	id = id.toString();
+const groupBy = require('lodash.groupby');
+const keyBy = require('lodash.keyby');
+const values = require('lodash.values');
+const orderBy = require('lodash.orderBy');
 
-	if(messages.has(id)) {
-		Object.assign(messages.get(id), message);
-	} else {
-		messages.set(id, message);
-	}
+module.exports = (events, config) => {
+	const {
+		msg,
+		editmsg: edits,
+		delete: deletes,
+	} = groupBy(events, 'event');
 
-	return messages;
+	const messages = keyBy(msg.map(({data}) => data), 'mid');
+
+	edits.forEach(({data}) => {
+		Object.assign(messages[data.mid], data);
+	});
+
+	deletes.forEach(({data}) => {
+		Object.assign(messages[data.messageid], {deleted: true});
+	});
+
+	return orderBy(values(messages), 'emb', config.content_order === 'descending' ? 'desc' : 'asc');
 };
-
-module.exports = events => Array.from(events.reduce((messages, {event, data}) => {
-	switch(event) {
-		case 'editmsg':
-		case 'msg': {
-			return updateMessage(messages, data.mid, data);
-		}
-
-		case 'delete': {
-			return updateMessage(messages, data.messageid, {deleted: true, mid: data.messageid});
-		}
-
-		default: {
-			return messages;
-		}
-	}
-}, new Map()).values());
