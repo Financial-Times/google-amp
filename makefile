@@ -28,7 +28,8 @@ eslint: $(js-files)
 lint: lintspaces eslint
 
 instrument:
-	./scripts/instrument.js
+	$(if $(UUID),,$(eval $(error UUID is required, e.g. make instrument UUID=ffffffff-ffff-ffff-ffff-ffffffffffff)))
+	./scripts/instrument.js $(UUID)
 
 bench:
 	./scripts/bench.sh
