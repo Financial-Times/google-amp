@@ -19,12 +19,16 @@
 <body style="margin:0">
 	<div id="c" style="position:absolute;top:0;left:0;bottom:0;right:0;">
 		<script>
-			var contextualTargetingRequest = fetch('https://{{adsApiHost}}/v1/content/{{uuid}}');
-			var userTargetingRequest = fetch('https://{{adsApiHost}}/v1/user', {
-				credentials: 'include'
-			});
-
 			draw3p(function(config, done) {
+				if(config.type !== 'doubleclick') {
+					return done(config);
+				}
+
+				var contextualTargetingRequest = fetch('https://{{adsApiHost}}/v1/content/{{uuid}}');
+				var userTargetingRequest = fetch('https://{{adsApiHost}}/v1/user', {
+					credentials: 'include'
+				});
+
 				Promise.all([
 					contextualTargetingRequest.then(function(r) { return r.json() }),
 					userTargetingRequest.then(function(r) { return r.json() })
