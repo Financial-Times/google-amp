@@ -30,7 +30,7 @@ module.exports = (article, {catchup, meta, config}, options) => {
 
 	article.liveBlogStatus = meta.status;
 	article.liveBlogStatusLabel = ({
-		inprogress: 'In Progress',
+		inprogress: 'Live',
 		closed: 'Archived',
 		pending: 'Pending',
 		comingsoon: 'Coming soon',
