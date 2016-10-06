@@ -28,30 +28,30 @@
 				credentials: 'include'
 			});
 
-
-			Promise.all([contextualTargetingRequest, userTargetingRequest])
+			draw3p(function(config, done) {
+				Promise.all([contextualTargetingRequest, userTargetingRequest])
 				.then(function(responses) {
 					Promise.all([responses.pop().json(), responses.pop().json()]).then(function(output) {
 						contextualTargetingResponse = output.pop();
 						userTargetingResponse = output.pop();
 						targeting = targeting.concat(contextualTargetingResponse.dfp.targeting, userTargetingResponse.dfp.targeting);
-						draw3p(function(config, done) {
-							config.slot = '/5887/ft.com/distributed.content/amp.ft';
-							config.targeting = {
-								pos: 'mid',
-							};
-							targeting.forEach(function(target) {
-								config.targeting[target.key] = target.value.toString();
-							});
-
-							var kruxFn = Krux.amp.withConfid('KHUSeE3x')
-							.withUserParam("kuid")
-							.withSegmentsParam("ksg")
-							.interchange().draw3p();
-							kruxFn(config, done);
+						config.slot = '/5887/ft.com/distributed.content/amp.ft';
+						config.targeting = {
+							pos: 'mid',
+						};
+						targeting.forEach(function(target) {
+							config.targeting[target.key] = target.value.toString();
 						});
+
+						var kruxFn = Krux.amp.withConfid('KHUSeE3x')
+						.withUserParam("kuid")
+						.withSegmentsParam("ksg")
+						.interchange().draw3p();
+
+						kruxFn(config, done);
 					})
 				});
+			});
 
 		</script>
 	</div>
