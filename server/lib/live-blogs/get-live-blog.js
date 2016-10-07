@@ -21,10 +21,56 @@ const configUrl = modifyBlogUrl({action: 'getconfig'});
 
 const getBlogData = getUrl => blogUrl => fetch(getUrl(blogUrl)).then(fetchres.json);
 
-module.exports = (article, options) =>
-	promiseAllObject({
-		catchup: getBlogData(catchupUrl)(options.overrideBlog || article.webUrl),
-		meta: getBlogData(metaUrl)(options.overrideBlog || article.webUrl),
-		config: getBlogData(configUrl)(options.overrideBlog || article.webUrl),
-	})
-	.then(data => renderLiveBlog(article, data, options));
+const liveblogCache = {};
+
+const getLiveBlog = liveblogUrl => promiseAllObject({
+	catchup: getBlogData(catchupUrl)(liveblogUrl),
+	meta: getBlogData(metaUrl)(liveblogUrl),
+	config: getBlogData(configUrl)(liveblogUrl),
+});
+
+// how long after the last request to a particular live blog should we poll and
+// keep its data. while a user is still reading a live blog they're requesting us
+// every 15 seconds, so poll for slightly longer than that and poll every 5 seconds
+// to keep it fresh
+const pollBlogFor = 20 * 1000;
+const pollBlogEvery = 5 * 1000;
+
+const pollLiveBlog = liveblogUrl => setInterval(() => {
+	getLiveBlog(liveblogUrl).then(data => {
+		liveblogCache[liveblogUrl].data = data;
+	});
+}, pollBlogEvery);
+
+const stopPolling = liveblogUrl => {
+	if(liveblogCache[liveblogUrl]) {
+		clearInterval(liveblogCache[liveblogUrl].pollInterval);
+		clearTimeout(liveblogCache[liveblogUrl].pollStopTimeout);
+		liveblogCache[liveblogUrl] = undefined;
+	}
+};
+
+module.exports = (article, options) => {
+	const liveblogUrl = options.overrideBlog || article.webUrl;
+	let results;
+	let pollInterval;
+
+	if(liveblogCache[liveblogUrl]) {
+		clearTimeout(liveblogCache[liveblogUrl].pollStopTimeout);
+		results = liveblogCache[liveblogUrl].data;
+		pollInterval = liveblogCache[liveblogUrl].pollInterval;
+	} else {
+		results = getLiveBlog(liveblogUrl);
+		pollInterval = pollLiveBlog(liveblogUrl);
+	}
+
+	return Promise.resolve(results).then(data => {
+		liveblogCache[liveblogUrl] = {
+			data,
+			pollInterval,
+			pollStopTimeout: setTimeout(stopPolling, pollBlogFor, liveblogUrl),
+		};
+
+		return renderLiveBlog(article, data, options);
+	});
+};
