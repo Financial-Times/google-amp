@@ -55,21 +55,25 @@ module.exports = (article, options) => {
 	let results;
 	let pollInterval;
 
-	if(liveblogCache[liveblogUrl]) {
+	if(options.lastUpdate && liveblogCache[liveblogUrl]) {
 		clearTimeout(liveblogCache[liveblogUrl].pollStopTimeout);
 		results = liveblogCache[liveblogUrl].data;
 		pollInterval = liveblogCache[liveblogUrl].pollInterval;
 	} else {
 		results = getLiveBlog(liveblogUrl);
-		pollInterval = pollLiveBlog(liveblogUrl);
+		if(options.lastUpdate) {
+			pollInterval = pollLiveBlog(liveblogUrl);
+		}
 	}
 
 	return Promise.resolve(results).then(data => {
-		liveblogCache[liveblogUrl] = {
-			data,
-			pollInterval,
-			pollStopTimeout: setTimeout(stopPolling, pollBlogFor, liveblogUrl),
-		};
+		if(options.lastUpdate) {
+			liveblogCache[liveblogUrl] = {
+				data,
+				pollInterval,
+				pollStopTimeout: setTimeout(stopPolling, pollBlogFor, liveblogUrl),
+			};
+		}
 
 		return renderLiveBlog(article, data, options);
 	});
