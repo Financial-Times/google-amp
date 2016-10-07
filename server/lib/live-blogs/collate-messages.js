@@ -24,7 +24,11 @@ module.exports = (events, options) => {
 	});
 
 	deletes.forEach(({data}) => {
-		Object.assign(messages[data.messageid], {deleted: true});
+		// deletes can't be filtered by timestamp so it's possible we've got a
+		// delete for a message we've filtered
+		if(messages[data.messageid]) {
+			Object.assign(messages[data.messageid], {deleted: true});
+		}
 	});
 
 	// TODO: amp-live-list currently only supports new messages at the top
