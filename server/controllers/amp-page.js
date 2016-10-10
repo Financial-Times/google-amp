@@ -78,7 +78,7 @@ function getAndRender(uuid, options) {
 
 			article.KRUX_REMOTE = `//${thirdPartyHost}/ads-iframe/${uuid}`;
 
-			article.freeArticle = !!options.alwaysFree;
+			article.showEverything = !!options.showEverything;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;
 			article.enableSocialShare = !!options.enableSocialShare;
 			article.enableBarrier = !!options.enableBarrier;
@@ -152,7 +152,7 @@ module.exports.getAndRender = getAndRender;
 if(module === require.main) {
 	getAndRender(process.argv[2], {
 		production: false,
-		alwaysFree: true,
+		showEverything: true,
 		relatedArticleDeduper: [process.argv[2]],
 	}).then(
 		rendered => fs.writeFile(process.argv[3], rendered),

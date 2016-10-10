@@ -116,7 +116,7 @@
 
 			<main class="main" role="main">
 				<article class="article">
-					<header class="article-header" amp-access="NOT {{enableBarrier}} OR access OR {{freeArticle}} ">
+					<header class="article-header" amp-access="NOT {{enableBarrier}} OR access OR {{showEverything}} ">
 						{{#if primaryTheme}}
 							<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link" data-vars-link-destination="{{{primaryTheme.url}}}" data-vars-link-text="{{{primaryTheme.name}}}" data-vars-link-type="primary-theme">{{{primaryTheme.name}}}</a></h2>
 						{{/if}}
@@ -126,7 +126,7 @@
 						<h2 class="article-standfirst">{{displaySummary}}</h2>
 						{{/if}}
 
-						<div amp-access="access OR {{freeArticle}}" amp-access-hide>
+						<div amp-access="access OR {{showEverything}}" amp-access-hide>
 							{{{mainImageHtml}}}
 
 							{{#if enableSocialShare}}
@@ -149,14 +149,14 @@
 						</div>
 					</header>
 
-					<div amp-access="access OR {{freeArticle}}" amp-access-hide>
+					<div amp-access="access OR {{showEverything}}" amp-access-hide>
 						<div class="article-body" itemprop="articleBody">
 							{{{htmlBody}}}
 						</div>
 					</div>
 				</article>
 
-				<div class="comments" amp-access="access OR {{freeArticle}}" amp-access-hide>
+				<div class="comments" amp-access="access OR {{showEverything}}" amp-access-hide>
 					<a class="comments-button" href="{{canonicalURL}}" data-vars-link-destination="{{canonicalURL}}" data-vars-link-type="view-comments" data-vars-link-text="View comments">View comments</a>
 				</div>
 
