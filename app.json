@@ -21,7 +21,8 @@
 		"CANONICAL_URL_PHASE": {"required": true},
 		"NODE_ENV": {"required": false},
 		"BARRIER_GURU_API_KEY": {"required": true},
-		"ENABLE_BARRIER": {"required": false}
+		"ENABLE_BARRIER": {"required": false},
+		"BARRIER_AMMIT": {"required": false}
 	},
 	"addons": [
 		"papertrail"
