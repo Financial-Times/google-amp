@@ -35,6 +35,10 @@ module.exports.getJson = ({req, uuid}) => {
 			text: '${linkText}',
 			link_type: '${linkType}',
 
+			// Since https://github.com/ampproject/amphtml/issues/2476 is still
+			// unresolved, we need to construct a 'barrier' variable server-side in Spoor
+			// enrichment
+			amp_barrier_type: BARRIERTYPE,
 			opportunity: {
 				type: '${opportunityType}',
 				subtype: '${opportunitySubtype}',
