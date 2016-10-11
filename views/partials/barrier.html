@@ -49,10 +49,12 @@
 						<span class="amp-access-barrier__offer-value">\{{symbol}} \{{value}}</span> for 4 weeks
 					\{{/pricing.billedMonthly.trial.amount}}
 				\{{/pricing.billedYearly.weekly.amount}}
+				<span class="amp-access-barrier__footnote">*</span>
 
 				<a
 					data-vars-link-type="barrier-subscribe"
-					data-vars-link-destination="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}" href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">
+					data-vars-link-destination="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}" href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}"
+					class="amp-access-barrier__button">
 					Select
 				</a>
 			</div>
@@ -70,3 +72,10 @@
 		</div>
 	</template>
 </amp-list>
+
+<div class="amp-access-barrier__footer">
+	<div class="amp-access-barrier__footer-tandc">
+		<span class="amp-access-barrier__footnote">*</span>
+		<a class="o-footer__matrix-link" href="//www.ft.com/servicestools/help/terms" data-vars-link-destination="//www.ft.com/servicestools/help/terms" data-vars-link-type="barrier-tsandcs" data-vars-link-text="Terms and Conditions">Terms and Conditions</a> apply
+	</div>
+</div>

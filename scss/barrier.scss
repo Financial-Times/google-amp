@@ -30,8 +30,12 @@ $barrier-padding: .75em;
 	padding: $barrier-padding;
 }
 
-.amp-access-barrier__offer:not(:last-child) {
+%amp-access-barrier__box {
 	border-bottom: 1px solid oColorsGetPaletteColor('pink-tint1');
+}
+
+.amp-access-barrier__offer {
+	@extend %amp-access-barrier__box;
 }
 
 .amp-access-barrier__offer-title {
@@ -91,4 +95,15 @@ $barrier-padding: .75em;
 			left: -20px;
 		}
 	}
+}
+
+.amp-access-barrier__footnote {
+	color: oColorsGetPaletteColor('org-b2b');
+}
+
+.amp-access-barrier__footer {
+	@extend %amp-access-barrier__box;
+	@include oTypographySansBold(s);
+	text-align: center;
+	padding: $barrier-padding;
 }
