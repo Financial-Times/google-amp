@@ -114,19 +114,21 @@ $barrier-padding: .75em;
 
 .amp-access-barrier__footer-other-option--corporate a {
 	&:before {
-		@include oIconsGetIcon('section-business-life', oColorsGetColorFor(link, text), 35);
+		// TODO: use new corporate icon once it exists
+		// @include oIconsGetIcon('corporate', oColorsGetColorFor(link, text), 40);
+		height: 40px;
 	}
 }
 
 .amp-access-barrier__footer-other-option--newspaper a {
 	&:before {
-		@include oIconsGetIcon('newspaper', oColorsGetColorFor(link, text), 35);
+		@include oIconsGetIcon('newspaper', oColorsGetColorFor(link, text), 40);
 	}
 }
 
 .amp-access-barrier__footer-other-option--weekend a {
 	&:before {
-		@include oIconsGetIcon('ipad-portrait', oColorsGetColorFor(link, text), 35);
+		@include oIconsGetIcon('ipad', oColorsGetColorFor(link, text), 40);
 	}
 }
 
