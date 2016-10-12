@@ -101,9 +101,58 @@ $barrier-padding: .75em;
 	color: oColorsGetPaletteColor('org-b2b');
 }
 
-.amp-access-barrier__footer {
+.amp-access-barrier__footer-tandc {
 	@extend %amp-access-barrier__box;
 	@include oTypographySansBold(s);
 	text-align: center;
 	padding: $barrier-padding;
+}
+
+.amp-access-barrier__footer-other {
+	@extend %amp-access-barrier__box;
+}
+
+.amp-access-barrier__footer-other-option--corporate a {
+	&:before {
+		@include oIconsGetIcon('section-business-life', oColorsGetColorFor(link, text), 35);
+	}
+}
+
+.amp-access-barrier__footer-other-option--newspaper a {
+	&:before {
+		@include oIconsGetIcon('newspaper', oColorsGetColorFor(link, text), 35);
+	}
+}
+
+.amp-access-barrier__footer-other-option--weekend a {
+	&:before {
+		@include oIconsGetIcon('ipad-portrait', oColorsGetColorFor(link, text), 35);
+	}
+}
+
+.amp-access-barrier__footer-options {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: $barrier-padding;
+}
+
+.amp-access-barrier__footer-other-title {
+	@include oTypographySansBold(m);
+	text-align: center;
+}
+
+.amp-access-barrier__footer-other-option {
+	text-align: center;
+	flex-basis: 33%;
+
+	a {
+		@include oTypographySansBold(s);
+		border: 0 none;
+	}
+
+	a:before {
+		content: '';
+		display: block;
+		margin: 0 auto;
+	}
 }
