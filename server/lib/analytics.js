@@ -3,6 +3,8 @@ const pkg = require('../../package.json');
 const DEBUG = false;
 const BARRIERTYPE = 'trial';
 
+const fixBooleans = data => data.replace('"AUTHDATA(access)"', 'AUTHDATA(access)');
+
 module.exports.getJson = ({req, uuid}) => {
 	const spoor = {
 		category: '${category}',
@@ -88,9 +90,11 @@ module.exports.getJson = ({req, uuid}) => {
 	// this once per request, otherwise multiple different cookies are created and overwritten.
 	const visitorIdentifier = '${clientId(spoor-id)}';
 
+	const data = fixBooleans(JSON.stringify(spoor));
+
 	const json = {
 		requests: {
-			standard: `${url}?spoor-id=${visitorIdentifier}&data=${JSON.stringify(spoor)}`,
+			standard: `${url}?spoor-id=${visitorIdentifier}&data=${data}`,
 		},
 		triggers: {
 
