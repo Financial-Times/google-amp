@@ -88,6 +88,7 @@ function getAndRender(uuid, options) {
 			article.accessMockPreventAccess = !!options.accessMockPreventAccess;
 
 			article.canonicalURL = url.canonical(article);
+			article.pspURL = 'https://www.ft.com/products';
 
 			// https://jira.ft.com/browse/AT-628 The access service currently uses
 			// an archaic content classification service hosted at http://www.ft.com/__access_metadata,
