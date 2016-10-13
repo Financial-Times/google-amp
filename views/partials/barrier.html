@@ -21,23 +21,14 @@
 	<template type="amp-mustache">
 		<div class="amp-access-barrier__offer">
 			<h2 class="amp-access-barrier__offer-title">
-				<a
-					data-vars-link-type="barrier-subscribe"
-					data-vars-link-destination="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}"
-					href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}">
-					\{{title}}
-				</a>
+				{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' text='{{title}}' type='barrier-subscribe'}}
 			</h2>
 
 			\{{#productImage}}
-			<amp-img class="amp-access-barrier__offer_image" layout="responsive" width="300" height="150"
-				src="\{{productImage}}">
-			</amp-img>
+			{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' linkText='{{title}}' text='<amp-img class="amp-access-barrier__offer_image" layout="responsive" width="300" height="150" src="{{productImage}}"></amp-img>' type='barrier-image'}}
 			\{{/productImage}}
 			\{{^productImage}}
-			<amp-img class="amp-access-barrier__offer_image" layout="responsive" width="300" height="150"
-				src="https://next-geebee.ft.com/image/v1/images/raw/%2F%2Fnext-geebee.ft.com%2Fassets%2Fstandard_digital.png?width=800&source=next&fit=scale-down">
-			</amp-img>
+			{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' linkText='{{title}}' text='<amp-img class="amp-access-barrier__offer_image" layout="responsive" width="300" height="150" src="https://next-geebee.ft.com/image/v1/images/raw/%2F%2Fnext-geebee.ft.com%2Fassets%2Fstandard_digital.png?width=800&source=next&fit=scale-down"></amp-img>' type='barrier-image'}}
 			\{{/productImage}}
 
 			<div class="amp-access-barrier__offer-price">
@@ -51,12 +42,7 @@
 				\{{/pricing.billedYearly.weekly.amount}}
 				<span class="amp-access-barrier__footnote">*</span>
 
-				<a
-					data-vars-link-type="barrier-subscribe"
-					data-vars-link-destination="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}" href="\{{#href}}\{{href}}\{{/href}}\{{^href}}https://www.ft.com/signup?offerId=\{{id}}\{{/href}}"
-					class="amp-access-barrier__button">
-					Select
-				</a>
+				{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' text='Select' type='barrier-subscribe' class='amp-access-barrier__button'}}
 			</div>
 
 			<div class="amp-access-barrier__offer-description">
