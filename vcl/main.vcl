@@ -4,6 +4,10 @@ sub vcl_recv {
 		return(pass);
 	}
 
+	if (req.http.x-geoip-override) {
+		set geoip.ip_override = req.http.x-geoip-override;
+	}
+
 	if (!req.http.country-code) {
 		set req.http.country-code = geoip.country_code3;
 	}
