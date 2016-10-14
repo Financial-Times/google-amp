@@ -78,9 +78,10 @@ function getAndRender(uuid, options) {
 
 			article.KRUX_REMOTE = `//${thirdPartyHost}/ads-iframe/${uuid}`;
 
-			article.freeArticle = !!options.alwaysFree;
+			article.showEverything = !!options.showEverything;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;
 			article.enableSocialShare = !!options.enableSocialShare;
+			article.enableBarrier = !!options.enableBarrier;
 
 			article.accessMocked = !!options.accessMocked;
 			article.accessMockLoggedIn = !!options.accessMockLoggedIn;
@@ -104,6 +105,8 @@ function getAndRender(uuid, options) {
 			article.facebookAppId = '328135857526360';
 
 			article.analyticsConfig = options.analyticsConfig;
+
+			article.barrierListEndpoint = options.production ? '/products' : `//${options.host}/products`;
 
 			return article;
 		})
@@ -129,6 +132,7 @@ module.exports = (req, res, next) => {
 		enableSidebarMenu: (process.env.ENABLE_SIDEBAR_MENU === 'true'),
 		enableSocialShare: (process.env.ENABLE_SOCIAL_SHARE === 'true'),
 		enableAds: (process.env.ENABLE_ADS === 'true'),
+		enableBarrier: (process.env.ENABLE_BARRIER === 'true'),
 		uuid: req.params.uuid,
 		analyticsConfig: JSON.stringify(analytics.getJson({req, uuid: req.params.uuid})),
 	})
@@ -151,7 +155,7 @@ module.exports.getAndRender = getAndRender;
 if(module === require.main) {
 	getAndRender(process.argv[2], {
 		production: false,
-		alwaysFree: true,
+		showEverything: true,
 		relatedArticleDeduper: [process.argv[2]],
 	}).then(
 		rendered => fs.writeFile(process.argv[3], rendered),

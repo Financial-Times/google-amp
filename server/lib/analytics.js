@@ -1,6 +1,9 @@
 'use strict';
 const pkg = require('../../package.json');
 const DEBUG = false;
+const BARRIERTYPE = 'trial';
+
+const fixBooleans = data => data.replace('"AUTHDATA(access)"', 'AUTHDATA(access)');
 
 module.exports.getJson = ({req, uuid}) => {
 	const spoor = {
@@ -33,6 +36,15 @@ module.exports.getJson = ({req, uuid}) => {
 			destination: '${linkDestination}',
 			text: '${linkText}',
 			link_type: '${linkType}',
+
+			// Since https://github.com/ampproject/amphtml/issues/2476 is still
+			// unresolved, we need to construct a 'barrier' variable server-side in Spoor
+			// enrichment
+			amp_barrier_type: BARRIERTYPE,
+			opportunity: {
+				type: '${opportunityType}',
+				subtype: '${opportunitySubtype}',
+			},
 		},
 		device: {
 			dimensions: {
@@ -78,9 +90,11 @@ module.exports.getJson = ({req, uuid}) => {
 	// this once per request, otherwise multiple different cookies are created and overwritten.
 	const visitorIdentifier = '${clientId(spoor-id)}';
 
+	const data = fixBooleans(JSON.stringify(spoor));
+
 	const json = {
 		requests: {
-			standard: `${url}?spoor-id=${visitorIdentifier}&data=${JSON.stringify(spoor)}`,
+			standard: `${url}?spoor-id=${visitorIdentifier}&data=${data}`,
 		},
 		triggers: {
 
@@ -238,6 +252,22 @@ module.exports.getJson = ({req, uuid}) => {
 				vars: {
 					category: 'amp-access',
 					action: 'access-login-failed',
+				},
+			},
+			barrierView: {
+				on: 'visible',
+				request: 'standard',
+				vars: {
+					category: 'barrier',
+					action: 'view',
+					opportunityType: 'barrier',
+					opportunitySubtype: BARRIERTYPE,
+				},
+				visibilitySpec: {
+					selector: '#barrier-offers',
+					visiblePercentageMin: 0,
+					totalTimeMin: 0,
+					continuousTimeMin: 0,
 				},
 			},
 		},

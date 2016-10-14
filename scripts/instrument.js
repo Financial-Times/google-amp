@@ -14,7 +14,7 @@ const filename = `fetch-svgs/${process.argv[2]}-${Date.now()}.svg`;
 
 ampPage.getAndRender(process.argv[2], {
 	production: true,
-	alwaysFree: true,
+	showEverything: true,
 	relatedArticleDeduper: [process.argv[2]],
 }).then(
 	() => fs.writeFile(filename, midna(log))

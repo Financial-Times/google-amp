@@ -30,6 +30,8 @@
 		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
 		{{/if}}
+		<script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+		<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
 
 		<script id="amp-access" type="application/json">
 		{
@@ -114,7 +116,7 @@
 
 			<main class="main" role="main">
 				<article class="article">
-					<header class="article-header">
+					<header class="article-header" amp-access="NOT {{enableBarrier}} OR access OR {{showEverything}} ">
 						{{#if primaryTheme}}
 							<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link" data-vars-link-destination="{{{primaryTheme.url}}}" data-vars-link-text="{{{primaryTheme.name}}}" data-vars-link-type="primary-theme">{{{primaryTheme.name}}}</a></h2>
 						{{/if}}
@@ -124,7 +126,7 @@
 						<h2 class="article-standfirst">{{displaySummary}}</h2>
 						{{/if}}
 
-						<div amp-access="access OR {{freeArticle}}" amp-access-hide>
+						<div amp-access="access OR {{showEverything}}" amp-access-hide>
 							{{{mainImageHtml}}}
 
 							{{#if enableSocialShare}}
@@ -147,20 +149,23 @@
 						</div>
 					</header>
 
-					<div amp-access="access OR {{freeArticle}}" amp-access-hide>
+					<div amp-access="access OR {{showEverything}}" amp-access-hide>
 						<div class="article-body" itemprop="articleBody">
 							{{{htmlBody}}}
 						</div>
 					</div>
 				</article>
 
-				<div class="comments" amp-access="access OR {{freeArticle}}" amp-access-hide>
+				<div class="comments" amp-access="access OR {{showEverything}}" amp-access-hide>
 					<a class="comments-button" href="{{canonicalURL}}" data-vars-link-destination="{{canonicalURL}}" data-vars-link-type="view-comments" data-vars-link-text="View comments">View comments</a>
 				</div>
 
-				<div class="amp-access-login" amp-access="NOT access" amp-access-hide>
+				<div class="{{#if enableBarrier}}amp-access-barrier{{else}}amp-access-login{{/if}}" amp-access="NOT access" amp-access-hide>
+					{{#if enableBarrier}}
+						{{> barrier}}
+					{{else}}
 					<div class="amp-access-login__header" amp-access="NOT session">
-						<div class="amp-access-login__header-instruction">Sign in or subscribe to FT.com to read:</div>
+						<div class="amp-access-login__header-instruction">Subscribe to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
 					<div class="amp-access-login__header" amp-access="session">
@@ -174,6 +179,7 @@
 					<div class="amp-access-login__body" amp-access="session">
 						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-upgrade" data-vars-link-text="Upgrade now">Upgrade now</a>
 					</div>
+					{{/if}}
 				</div>
 
 				{{#if relatedContent}}

@@ -1,0 +1,89 @@
+<div class="amp-access-barrier__header" amp-access="NOT session">
+	<div class="amp-access-barrier__header-instruction">
+		Subscribe to read:
+		<h3>{{title}}</h3>
+	</div>
+
+	<div class="amp-access-barrier__login">
+		Already a subscriber?
+		<a href="#" on="tap:amp-access.login-login" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
+	</div>
+</div>
+
+<div class="amp-access-barrier__header" amp-access="session">
+	<div class="amp-access-barrier__header-instruction">
+		Upgrade your account to read:
+		<h3>{{title}}</h3>
+	</div>
+</div>
+
+<amp-list id="barrier-offers" src="{{{barrierListEndpoint}}}" width="300" height="600" layout="responsive">
+	<template type="amp-mustache">
+		<div class="amp-access-barrier__offer">
+			<h2 class="amp-access-barrier__offer-title">
+				{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' text='{{title}}' type='barrier-subscribe'}}
+			</h2>
+
+			\{{#productImage}}
+			{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' linkText='{{title}}' text='<amp-img class="amp-access-barrier__offer_image" layout="responsive" width="300" height="150" src="{{productImage}}"></amp-img>' type='barrier-image'}}
+			\{{/productImage}}
+			\{{^productImage}}
+			{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' linkText='{{title}}' text='<amp-img class="amp-access-barrier__offer_image" layout="responsive" width="300" height="150" src="https://next-geebee.ft.com/image/v1/images/raw/%2F%2Fnext-geebee.ft.com%2Fassets%2Fstandard_digital.png?width=800&source=next&fit=scale-down"></amp-img>' type='barrier-image'}}
+			\{{/productImage}}
+
+			<div class="amp-access-barrier__offer-price">
+				\{{#pricing.billedYearly.weekly.amount}}
+					<span class="amp-access-barrier__offer-value">\{{symbol}} \{{value}}</span> per week
+				\{{/pricing.billedYearly.weekly.amount}}
+				\{{^pricing.billedYearly.weekly.amount}}
+					\{{#pricing.billedMonthly.trial.amount}}
+						<span class="amp-access-barrier__offer-value">\{{symbol}} \{{value}}</span> for 4 weeks
+					\{{/pricing.billedMonthly.trial.amount}}
+				\{{/pricing.billedYearly.weekly.amount}}
+				<span class="amp-access-barrier__footnote">*</span>
+
+				{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' text='Select' type='barrier-subscribe' class='amp-access-barrier__button'}}
+			</div>
+
+			<div class="amp-access-barrier__offer-description">
+				\{{#description.title}}
+					<h3 class="amp-access-barrier__offer-description-title">\{{description.title}}</h3>
+				\{{/description.title}}
+				<ul class="amp-access-barrier__offer-description-items">
+					\{{#description.items}}
+					<li>\{{description}}</li>
+					\{{/description.items}}
+				</ul>
+			</ul>
+		</div>
+	</template>
+</amp-list>
+
+<div class="amp-access-barrier__footer">
+	<div class="amp-access-barrier__footer-tandc">
+		<span class="amp-access-barrier__footnote">*</span>
+		<a href="//www.ft.com/servicestools/help/terms" data-vars-link-destination="//www.ft.com/servicestools/help/terms" data-vars-link-type="barrier-tsandcs" data-vars-link-text="Terms and Conditions">Terms and Conditions</a> apply
+	</div>
+
+	<div class="amp-access-barrier__footer-other">
+		<h2 class="amp-access-barrier__footer-other-title">Other subscription options</h2>
+
+		<div class="amp-access-barrier__footer-options">
+			<div class="amp-access-barrier__footer-other-option amp-access-barrier__footer-other-option--corporate">
+				<a data-vars-link-type="barrier-option-corporate" data-vars-link-destination="http://ftcorporate.ft.com/" href="http://ftcorporate.ft.com/" data-vars-link-text="Corporate">
+					Corporate
+				</a>
+			</div>
+			<div class="amp-access-barrier__footer-other-option amp-access-barrier__footer-other-option--newspaper">
+				<a data-vars-link-type="barrier-option-newspaper" data-vars-link-destination="https://sub.ft.com/spa2_sub/" href="https://sub.ft.com/spa2_sub/" data-vars-link-text="Newspaper Only">
+					Newspaper Only
+				</a>
+			</div>
+			<div class="amp-access-barrier__footer-other-option amp-access-barrier__footer-other-option--weekend">
+				<a data-vars-link-type="barrier-option-weekend" data-vars-link-destination="https://sub.ft.com/weekendapp/" href="https://sub.ft.com/weekendapp/" data-vars-link-text="Weekend App Edition">
+					Weekend App Edition
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

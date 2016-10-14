@@ -107,6 +107,7 @@ if(!isProduction) {
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/json-item.js'));
 app.get('/ads-iframe/:uuid', require('./server/controllers/ads-iframe.js'));
+app.get('/products', require('./server/controllers/products.js'));
 
 app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
 app.get('/_access_mock', (req, res) => {

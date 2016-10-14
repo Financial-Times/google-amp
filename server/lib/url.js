@@ -4,7 +4,6 @@ const fetch = require('./wrap-fetch')(require('node-fetch'), {
 	tag: 'url',
 });
 const fetchres = require('fetchres');
-const pkg = require('../../package.json');
 const url = require('url');
 
 // Make use of cache layer in front of ES
@@ -47,9 +46,6 @@ module.exports.stream = (metadatum, options) => {
 	});
 
 	return fetch(url.format(esUrl), {
-		headers: {
-			'user-agent': `ft-google-amp v${pkg.version}`,
-		},
 		_wrappedFetchGroup: options._wrappedFetchGroup,
 	})
 		.then(fetchres.json)
