@@ -105,7 +105,7 @@ function getAndRender(uuid, options) {
 
 			article.analyticsConfig = options.analyticsConfig;
 
-			article.barrierListEndpoint = `//${options.host}/products`;
+			article.barrierListEndpoint = options.production ? '/products' : `//${options.host}/products`;
 
 			return article;
 		})
