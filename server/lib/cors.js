@@ -40,9 +40,7 @@ module.exports = (req, res, next) => {
 		} else {
 			return next(new Forbidden());
 		}
-	}
-
-	if(req.get('AMP-Same-Origin') !== 'true') {
+	} else if(req.get('AMP-Same-Origin') !== 'true') {
 		return next(new Forbidden());
 	}
 
