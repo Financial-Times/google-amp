@@ -22,6 +22,7 @@ module.exports = (req, res, next) => {
 		res.setHeader('Access-Control-Allow-Origin', req.get('origin'));
 		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD');
 		res.setHeader('Access-Control-Allow-Credentials', 'true');
+		res.vary('origin');
 	}
 
 	// AMP-specific
