@@ -57,19 +57,19 @@ function getAndRender(uuid, options) {
 			article.SOURCE_PORT = options.production ? '' : ':5000';
 
 			article.AUTH_AUTHORIZATION_URL = options.accessMocked ?
-				`//${options.host}/amp-access-mock?type=access&` :
+				`//${options.host}/amp-access-mock/access?` :
 				`https://${liveAccessHost}/amp-access?`;
 
 			article.AUTH_PINGBACK_URL = options.accessMocked ?
-				`//${options.host}/amp-access-mock?type=pingback&` :
+				`//${options.host}/amp-access-mock/pingback?` :
 				`https://${liveAccessHost}/amp-pingback?`;
 
 			article.AUTH_LOGIN_URL = options.accessMocked ?
-				`//${options.host}/amp-access-mock?type=login&` :
+				`//${options.host}/amp-access-mock/login?` :
 				'https://accounts.ft.com/login?';
 
 			article.AUTH_LOGOUT_URL = options.accessMocked ?
-				`//${options.host}/amp-access-mock?type=logout&` :
+				`//${options.host}/amp-access-mock/logout?` :
 				`https://${liveAccessHost}/amp-logout?`;
 
 			const thirdPartyHost = process.env.HEROKU_APP_NAME ?

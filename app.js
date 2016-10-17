@@ -110,15 +110,17 @@ app.get('/api/:uuid', require('./server/controllers/json-item.js'));
 app.get('/ads-iframe/:uuid', require('./server/controllers/ads-iframe.js'));
 app.get('/products', cors, require('./server/controllers/products.js'));
 
-app.all('/amp-access-mock', cors, require('./server/controllers/access-mock.js'));
+app.all('/amp-access-mock/:type(access|pingback)', cors, require('./server/controllers/access-mock.js'));
+app.all('/amp-access-mock/:type', require('./server/controllers/access-mock.js'));
+
 app.get('/_access_mock', (req, res) => {
-	res.redirect(301, '/amp-access-mock?type=enable');
+	res.redirect(301, '/amp-access-mock/enable');
 });
 app.get('/_access_mock/prevent-access', (req, res) => {
-	res.redirect(301, '/amp-access-mock?type=prevent-access');
+	res.redirect(301, '/amp-access-mock/prevent-access');
 });
 app.get('/_access_mock/clear', (req, res) => {
-	res.redirect(301, '/amp-access-mock?type=clear');
+	res.redirect(301, '/amp-access-mock/clear');
 });
 
 if(isLocal) {
