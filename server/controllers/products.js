@@ -10,12 +10,18 @@ const apiKey = process.env.BARRIER_GURU_API_KEY;
 const FIVE_YEARS = 5 * 365.25 * 24 * 60 * 60 * 1000;
 
 module.exports = (req, res, next) => {
-	const allocationId = req.cookies.FTAllocation;
+	const allocationId = req.get('ft-allocation-id') || req.cookies.FTAllocation;
+	const sessionId = req.get('ft-session-id') || req.cookies.FTSession;
+	const countryCode = req.get('country-code');
+
+	res.vary('ft-allocation-id');
+	res.vary('ft-session-id');
+	res.vary('country-code');
 
 	module.exports.getProducts({
 		allocationId,
-		sessionId: req.cookies.FTSession,
-		countryCode: req.get('country-code'),
+		sessionId,
+		countryCode,
 	}).then(({items, allocation}) => {
 		if(!allocationId && allocation) {
 			res.cookie('FTAllocation', allocation, {
