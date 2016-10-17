@@ -11,7 +11,7 @@ module.exports = (req, res) => {
 	setTimeout(() => {
 		const returnUrl = req.header('Referer');
 
-		switch(req.query.type) {
+		switch(req.params.type) {
 
 			case 'access':
 			case 'pingback':
@@ -19,7 +19,7 @@ module.exports = (req, res) => {
 				res.status(202).json({
 					access: hasAccess,
 					debug: 'access-mock dummy debug',
-					session: signedIn ? 'access-mock dummy session' : null,
+					session: signedIn,
 				});
 				break;
 
@@ -84,7 +84,7 @@ module.exports = (req, res) => {
 
 			default:
 				res.status(404).json({
-					error: `Unknown method: ${req.query.type}`,
+					error: `Unknown method: ${req.params.type}`,
 				});
 		}
 	}, intentionalDelay);
