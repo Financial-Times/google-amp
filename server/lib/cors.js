@@ -19,7 +19,7 @@ const validOrigin = origin => {
 
 module.exports = (req, res, next) => {
 	if(validOrigin(req.get('origin'))) {
-		res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+		res.setHeader('Access-Control-Allow-Origin', req.get('origin'));
 		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD');
 		res.setHeader('Access-Control-Allow-Credentials', 'true');
 	}
