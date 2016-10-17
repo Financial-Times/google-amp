@@ -3,17 +3,6 @@
 const intentionalDelay = 1000;
 
 module.exports = (req, res) => {
-	// CORS
-	res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, HEAD');
-	res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-	// AMP-specific
-	if(req.query.__amp_source_origin) {
-		res.setHeader('AMP-Access-Control-Allow-Source-Origin', req.query.__amp_source_origin);
-		res.setHeader('Access-Control-Expose-Headers', 'AMP-Access-Control-Allow-Source-Origin');
-	}
-
 	const signedIn = !!req.cookies['amp-access-mock-logged-in'];
 	const fcf = !!req.cookies['amp-access-mock-fcf'];
 	const noAccess = !!req.cookies['amp-access-mock-no-access'];

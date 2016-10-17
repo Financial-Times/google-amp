@@ -9,6 +9,7 @@ const ftwebservice = require('express-ftwebservice');
 const expressHandlebars = require('express-handlebars');
 const path = require('path');
 const os = require('os');
+const cors = require('./server/lib/cors');
 const pkg = require('./package.json');
 
 const port = process.env.PORT || 5000;
@@ -107,9 +108,9 @@ if(!isProduction) {
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
 app.get('/api/:uuid', require('./server/controllers/json-item.js'));
 app.get('/ads-iframe/:uuid', require('./server/controllers/ads-iframe.js'));
-app.get('/products', require('./server/controllers/products.js'));
+app.get('/products', cors, require('./server/controllers/products.js'));
 
-app.all('/amp-access-mock', require('./server/controllers/access-mock.js'));
+app.all('/amp-access-mock', cors, require('./server/controllers/access-mock.js'));
 app.get('/_access_mock', (req, res) => {
 	res.redirect(301, '/amp-access-mock?type=enable');
 });
