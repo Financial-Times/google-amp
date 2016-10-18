@@ -114,9 +114,7 @@ $barrier-padding: .75em;
 
 .amp-access-barrier__footer-other-option--corporate a {
 	&:before {
-		// TODO: use new corporate icon once it exists
-		// @include oIconsGetIcon('corporate', oColorsGetColorFor(link, text), 40);
-		height: 40px;
+		@include oIconsGetIcon('corporate', oColorsGetColorFor(link, text), 40);
 	}
 }
 
