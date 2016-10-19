@@ -31,7 +31,7 @@ const getLiveBlog = liveblogUrl => promiseAllObject({
 
 // how long after the last request to a particular live blog should we poll and
 // keep its data. while a user is still reading a live blog they're requesting us
-// every 15 seconds, so poll for slightly longer than that and poll every 5 seconds
+// every 15 seconds, so poll for slightly longer than that and poll every second
 // to keep it fresh
 const pollBlogFor = 20 * 1000;
 const pollBlogEvery = 1 * 1000;
