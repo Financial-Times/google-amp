@@ -157,6 +157,9 @@ module.exports = (req, res, next) => {
 			if(req.cookies['amp-access-mock']) {
 				// No caching, to allow access mock cookies to be applied immediately
 				res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+			} else if(req.query.amp_latest_update_time) {
+				// Cache live blogs poll requests for one second
+				res.setHeader('cache-control', 'public, max-age=1, no-transform');
 			} else {
 				res.setHeader('cache-control', 'public, max-age=30, no-transform');
 				res.setHeader('surrogate-control', 'stale-on-error=86400, stale-while-revalidate=300');
