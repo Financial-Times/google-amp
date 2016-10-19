@@ -34,7 +34,7 @@ const getLiveBlog = liveblogUrl => promiseAllObject({
 // every 15 seconds, so poll for slightly longer than that and poll every 5 seconds
 // to keep it fresh
 const pollBlogFor = 20 * 1000;
-const pollBlogEvery = 5 * 1000;
+const pollBlogEvery = 1 * 1000;
 
 const pollLiveBlog = liveblogUrl => setInterval(() => {
 	getLiveBlog(liveblogUrl).then(data => {
