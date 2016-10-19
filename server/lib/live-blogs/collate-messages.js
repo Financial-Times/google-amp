@@ -6,16 +6,12 @@ const values = require('lodash.values');
 const orderBy = require('lodash.orderby');
 
 module.exports = (events, options) => {
-	const filteredEvents = options.lastUpdate ? events.filter(event =>
-		!event.data.datemodified || event.data.datemodified >= options.lastUpdate
-	) : events;
-
 	const {
 		msg = [],
 		editmsg: edits = [],
 		delete: deletes = [],
 		postSaved: postUpdates = [],
-	} = groupBy(filteredEvents, 'event');
+	} = groupBy(events, 'event');
 
 	const messages = keyBy(msg.map(({data}) => data), 'mid');
 
@@ -35,8 +31,13 @@ module.exports = (events, options) => {
 	// https://github.com/ampproject/amphtml/issues/5396
 	const sortOrder = options.content_order === 'descending' || true ? 'desc' : 'asc';
 
+	const sortedMessages = orderBy(values(messages), 'emb', sortOrder);
+	const filteredMessages = options.lastUpdate ? sortedMessages.filter(message =>
+		!message.datemodified || message.datemodified >= options.lastUpdate
+	) : sortedMessages;
+
 	return {
-		messages: orderBy(values(messages), 'emb', sortOrder),
+		messages: filteredMessages,
 		postUpdated: options.content_order === 'descending' ? postUpdates[0] : postUpdates[postUpdates.length - 1],
 	};
 };
