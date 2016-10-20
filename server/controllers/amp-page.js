@@ -23,7 +23,9 @@ function getAndRender(uuid, options) {
 	return getArticle(uuid)
 		.then(
 			response => {
-				if(response._source && (!response._source.originatingParty || response._source.originatingParty === 'FT')) {
+				if(response._source &&
+					(!response._source.originatingParty || response._source.originatingParty === 'FT')
+				) {
 					return response._source;
 				}
 
