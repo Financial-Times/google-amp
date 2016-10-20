@@ -17,6 +17,7 @@ module.exports = ({allocationId, sessionId}) => {
 		headers: {
 			'ft-session-token': sessionId,
 			'ft-allocation-id': allocationId,
+			'api-key': process.env.AMMIT_APIKEY,
 		},
 	})
 	.then(r => r.ok ? r : Promise.reject(new BadServerResponseError(r.status)))
