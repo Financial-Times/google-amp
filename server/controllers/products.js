@@ -46,7 +46,8 @@ module.exports = (req, res, next) => {
 	}).catch(next);
 };
 
-module.exports.getProducts = ({allocationId, sessionId, countryCode, countryCodeTwoLetters, continentCode, referer, userAgent}) =>
+module.exports.getProducts = ({allocationId, sessionId, countryCode, countryCodeTwoLetters,
+	continentCode, referer, userAgent}) =>
 	ammit({allocationId, sessionId})
 	.then(({abVars, allocation}) => fetch('https://barrier-guru.ft.com/individual', {
 		headers: {
