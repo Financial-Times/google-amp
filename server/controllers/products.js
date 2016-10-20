@@ -5,6 +5,7 @@ const fetch = require('../lib/wrap-fetch')(require('node-fetch'), {
 
 const ammit = require('../lib/ammit');
 const {json} = require('fetchres');
+
 const apiKey = process.env.BARRIER_GURU_API_KEY;
 
 const FIVE_YEARS = 5 * 365.25 * 24 * 60 * 60 * 1000;

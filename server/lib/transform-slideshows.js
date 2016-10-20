@@ -1,11 +1,12 @@
 'use strict';
 const cheerio = require('cheerio');
-const captionHeight = 50;
 const handlebars = require('handlebars');
 const cacheIf = require('@quarterto/cache-if');
 const fs = require('fs-promise');
 const path = require('path');
+
 const viewsPath = path.resolve('views');
+const captionHeight = 50;
 
 const readTemplate = () => fs.readFile(`${viewsPath}/slideshow.html`, 'utf8').then(handlebars.compile);
 const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
