@@ -12,6 +12,14 @@ sub vcl_recv {
 		set req.http.country-code = geoip.country_code3;
 	}
 
+	if (!req.http.country-code-two-letters) {
+		set req.http.country-code-two-letters = geoip.country_code;
+	}
+
+	if (!req.http.continent_code) {
+		set req.http.continent_code = geoip.continent_code;
+	}
+
 	if (!req.http.ft-allocation-id && req.http.Cookie ~ "(^|; *)FTAllocation=([^;]+).*$") {
 		set req.http.ft-allocation-id = re.group.2;
 	}

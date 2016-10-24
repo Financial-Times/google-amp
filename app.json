@@ -22,7 +22,8 @@
 		"NODE_ENV": {"required": false},
 		"BARRIER_GURU_API_KEY": {"required": true},
 		"ENABLE_BARRIER": {"required": false},
-		"BARRIER_AMMIT": {"required": false}
+		"BARRIER_AMMIT": {"required": false},
+		"AMMIT_APIKEY": {"required": true}
 	},
 	"addons": [
 		"papertrail"
