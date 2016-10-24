@@ -100,9 +100,7 @@ app.use(cookieParser());
 app.use('/static', express.static('static'));
 
 if(!isProduction) {
-	app.get('/', (req, res) => {
-		res.redirect('/content/94e97eee-ce9a-11e5-831d-09f7778e7377');
-	});
+	app.get('/', require('./server/controllers/redirect.js'));
 }
 
 app.get('/content/:uuid', require('./server/controllers/amp-page.js'));
