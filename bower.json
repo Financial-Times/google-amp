@@ -7,7 +7,7 @@
     "o-buttons": "4",
     "o-header": "^6.5.1",
     "o-footer": "^5.0.3",
-    "o-labels": "^1.0.6",
+    "o-labels": "^2.0.0",
     "o-icons": "^5.0.0"
   }
 }

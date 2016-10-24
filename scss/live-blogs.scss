@@ -38,15 +38,19 @@ amp-live-list .live-blog--update-banner {
 
 .live-blog--status {
 	@include oTypographySansBold(xs);
-	@include oLabels($size: big);
+	@include oLabels();
+}
+
+.live-blog--status-pending {
+	@include oLabelsState(pending);
 }
 
 .live-blog--status-inprogress {
-	@include oLabelsState(active);
+	@include oLabelsState(live);
 }
 
-.live-blog--status-ended {
-	@include oLabelsState(error);
+.live-blog--status-closed {
+	@include oLabelsState(closed);
 }
 
 .amp-live-list-item-new {
