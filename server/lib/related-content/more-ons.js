@@ -2,8 +2,9 @@
 const api = require('next-ft-api-client');
 const dateTransform = require('../article-date');
 const sanitizeImage = require('../sanitize-image');
-const moreOnCount = 5;
 const url = require('../url');
+
+const moreOnCount = 5;
 
 const apiSearch = require('../wrap-fetch')(api.search, {
 	tag: 'api-search',

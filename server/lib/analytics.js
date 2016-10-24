@@ -1,5 +1,6 @@
 'use strict';
 const pkg = require('../../package.json');
+
 const DEBUG = false;
 const BARRIERTYPE = 'trial';
 

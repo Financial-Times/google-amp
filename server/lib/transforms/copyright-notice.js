@@ -6,7 +6,7 @@ module.exports = function getCopyrightNotice() {
 			'data-vars-link-destination="http://www.ft.com/servicestools/help/copyright" ' +
 			`data-vars-link-type="footer-copyright" data-vars-link-text="Copyright">Copyright</a>
 			The Financial Times Limited ${thisYear}. All rights reserved.
-			Please don\'t cut articles from FT.com and redistribute by email or post to the web.</p>`;
+			Please don't cut articles from FT.com and redistribute by email or post to the web.</p>`;
 
 	return copyrightNotice;
 };
