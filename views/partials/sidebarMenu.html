@@ -13,25 +13,48 @@
 				<nav class="o-header__drawer-menu o-header__drawer-menu--primary" role="navigation" aria-label="Primary navigation">
 					<ul class="o-header__drawer-menu-list">
 								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--heading">Top sections</li>
-								<li class="o-header__drawer-menu-item ">
-										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="#">FT.com</a>
+								<li class="o-header__drawer-menu-item">
+										{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com" text="FT.com" type="sidebar-top-section" }}
 								</li>
-								<li class="o-header__drawer-menu-item ">
-									<a class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="http://google.com">World</a>
+								<li class="o-header__drawer-menu-item">
+									{{> link class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="https://www.ft.com/world" text="World" type="sidebar-top-section" }}
 									<amp-accordion>
 										<section class="o-header__accordion-section">
 											<header class="o-header__accordion-header">
-												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected">Section 1</button>
+												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected">
+													Show more World links
+												</button>
 											</header>
 											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
 												<li class="o-header__drawer-menu-item">
-													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to World Economy">World Economy</a>
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/global-economy" text="World Economy" type="sidebar-top-section" }}
 												</li>
 												<li class="o-header__drawer-menu-item">
-													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to UK">UK</a>
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/uk" text="UK" type="sidebar-top-section" }}
 												</li>
 												<li class="o-header__drawer-menu-item">
-													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to US">US</a>
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/us" text="US" type="sidebar-top-section" }}
+												</li>
+												<li class="o-header__drawer-menu-item">
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/asia-pacific/china" text="China" type="sidebar-top-section" }}
+												</li>
+												<li class="o-header__drawer-menu-item">
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/africa" text="Africa" type="sidebar-top-section" }}
+												</li>
+												<li class="o-header__drawer-menu-item">
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/asia-pacific" text="Asia Pacific" type="sidebar-top-section" }}
+												</li>
+												<li class="o-header__drawer-menu-item">
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/markets/emerging-markets" text="Emerging Markets" type="sidebar-top-section" }}
+												</li>
+												<li class="o-header__drawer-menu-item">
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/europe" text="Europe" type="sidebar-top-section" }}
+												</li>
+												<li class="o-header__drawer-menu-item">
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/americas" text="Latin America" type="sidebar-top-section" }}
+												</li>
+												<li class="o-header__drawer-menu-item">
+													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/mideast" text="Middle East and North Africa" type="sidebar-top-section" }}
 												</li>
 											</ul>
 										</section>
