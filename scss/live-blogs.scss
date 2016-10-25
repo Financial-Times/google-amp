@@ -44,6 +44,7 @@
 .live-blog--status {
 	@include oTypographySansBold(xs);
 	@include oLabels();
+	vertical-align: middle;
 }
 
 .live-blog--status-pending {
