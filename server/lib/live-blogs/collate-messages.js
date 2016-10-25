@@ -20,10 +20,15 @@ module.exports = (events, options) => {
 	});
 
 	deletes.forEach(({data}) => {
-		// deletes can't be filtered by timestamp so it's possible we've got a
-		// delete for a message we've filtered
 		if(messages[data.messageid]) {
 			Object.assign(messages[data.messageid], {deleted: true});
+		} else {
+			messages[data.messageid] = {
+				mid: data.messageid,
+				deleted: true,
+				emb: Math.floor(Date.now() / 1000),
+				datemodified: Math.floor(Date.now() / 1000),
+			};
 		}
 	});
 
@@ -33,7 +38,7 @@ module.exports = (events, options) => {
 
 	const sortedMessages = orderBy(values(messages), 'emb', sortOrder);
 	const filteredMessages = options.lastUpdate ? sortedMessages.filter(message =>
-		!message.datemodified || message.datemodified >= options.lastUpdate
+		!message.datemodified || message.deleted || message.datemodified >= options.lastUpdate
 	) : sortedMessages;
 
 	return {
