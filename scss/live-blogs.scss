@@ -18,7 +18,12 @@
 	}
 }
 
-amp-live-list .live-blog--update-banner {
+.live-blog {
+	// contain the update banner so it appears above the mobilesafari toolbar
+	overflow: hidden;
+}
+
+.live-blog .live-blog--update-banner {
 	position: fixed;
 	bottom: 0;
 	left: 0;
