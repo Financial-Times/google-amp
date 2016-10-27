@@ -1,10 +1,10 @@
 'use strict';
 
 const {XmlEntities: Entities} = require('html-entities');
-const entities = new Entities();
-
 const collateMessages = require('./collate-messages');
 const dateTransform = require('../article-date');
+
+const entities = new Entities();
 
 const renderMessage = (data) => `<div
 id="live-blog-message-${data.mid}"
