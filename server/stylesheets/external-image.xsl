@@ -30,7 +30,7 @@
 				<xsl:when test="@width &lt;= 350">inline</xsl:when>
 				<xsl:when test="(@width &lt; @height) and (@width &lt; 600)">inline</xsl:when>
 				<xsl:when test="@width &lt; 700">center</xsl:when>
-				<xsl:when test="@alt = 'Emoticon'">inline</xsl:when>
+				<xsl:when test="starts-with(@class, 'emoticon ')">inline</xsl:when>
 				<xsl:otherwise>full</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
