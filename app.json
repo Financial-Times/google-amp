@@ -29,6 +29,8 @@
 		"papertrail"
 	],
 	"buildpacks": [
-		"https://github.com/heroku/heroku-buildpack-nodejs#yarn"
+		{
+			"url": "https://github.com/heroku/heroku-buildpack-nodejs#yarn"
+		}
 	]
 }
