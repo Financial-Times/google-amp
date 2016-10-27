@@ -9,3 +9,4 @@ temp
 urls-*
 log-*
 .DS_Store
+scripts/*.xml
