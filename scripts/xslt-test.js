@@ -29,7 +29,7 @@ const xsltOutput = () => {
 				highlight(
 					'html',
 					htmlBeautify(html, {
-						wrap_line_length: process.stdout.columns,
+						wrap_line_length: Math.floor(0.75 * process.stdout.columns),
 						wrap_attributes: 'force',
 					}),
 					monokai
