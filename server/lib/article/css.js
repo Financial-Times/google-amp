@@ -38,7 +38,7 @@ const compileCss = () => compileScss({
 
 module.exports = options => {
 	const start = Date.now();
-	return compileCss()
+	return compileCss(options)
 		.then(css => {
 			const time = Date.now() - start;
 			const bundleSize = `Compiled CSS bundle is ${css.length}`;
@@ -53,7 +53,6 @@ module.exports = options => {
 		} else {
 					console.log(`NOTICE: ${bundleSize} bytes. Took ${time}ms`);
 		}
-	}
 
 	return css;
 });

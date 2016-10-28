@@ -13,9 +13,9 @@ const cacheIf = require('@quarterto/cache-if');
 const viewsPath = path.resolve('views');
 const partialsPath = path.resolve('views/partials');
 
-
-const readTemplate = () => fs.readFile(`${viewsPath}/article.html`, 'utf8').then(handlebars.compile);
-const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
+const readTemplate = template => fs.readFile(`${viewsPath}/${template}.html`, 'utf8').then(handlebars.compile);
+const getBody = precompiled => cacheIf(() => precompiled, () => readTemplate('body'));
+const getLayout = precompiled => cacheIf(() => precompiled, () => readTemplate('layout'));
 
 // TODO: use n-handlebars and get this for free?
 const applyPartials = () => glob(`${partialsPath}/**/*.html`)
@@ -84,11 +84,16 @@ const getMainImage = data => {
 };
 
 module.exports = (data, options) => promiseAllObj({
-	template: getTemplate(options.production),
+	body: getBody(options.production),
+	layout: getLayout(options.production),
 	partials: getPartials(options.production),
-	css: getCss(options),
 	description: data.standfirst,
 	authorList: getAuthors(data),
 	byline: getByline(data, options),
 	mainImage: getMainImage(data),
-}).then(t => t.template(Object.assign(data, t)));
+}).then(t => {
+	const body = t.body(Object.assign(data, t));
+	return getCss(Object.assign(options, {html: body})).then(css =>
+		t.layout(Object.assign(data, {css, body}))
+	);
+});
