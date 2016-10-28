@@ -1,14 +1,6 @@
 'use strict';
 
-const cacheIf = require('@quarterto/cache-if');
-const mkdirp = require('mkdirp-promise');
-const path = require('path');
-const fs = require('fs-promise');
 const compileScss = require('@quarterto/post-sass');
-
-const cssPath = path.resolve('css');
-const cssFile = `${cssPath}/style.css`;
-const readCompiledCss = () => fs.readFile(cssFile, 'utf8');
 
 const compileCss = () => compileScss({
 	postCss: [
@@ -46,7 +38,7 @@ const compileCss = () => compileScss({
 
 module.exports = options => {
 	const start = Date.now();
-	return Promise.resolve(options.production ? cacheIf.always(readCompiledCss) : compileCss())
+	return compileCss()
 		.then(css => {
 			const time = Date.now() - start;
 			const bundleSize = `Compiled CSS bundle is ${css.length}`;
@@ -54,19 +46,14 @@ module.exports = options => {
 			const ampLimit = `the AMP limit of 50,000 bytes: ${ampUrl}`;
 
 			if(options.development) {
-				if(css.length > 50000) {
+		if(css.length > 50000) {
 					console.error(`WARNING: ${bundleSize}, more than ${ampLimit}. Took ${time}ms`);
-				} else if(css.length > 45000) {
+		} else if(css.length > 45000) {
 					console.error(`WARNING: ${bundleSize}, approaching ${ampLimit}. Took ${time}ms`);
-				} else {
+		} else {
 					console.log(`NOTICE: ${bundleSize} bytes. Took ${time}ms`);
-				}
-			}
+		}
+	}
 
-			return css;
-		});
-};
-
-module.exports.compileForProduction = () => mkdirp(cssPath)
-.then(compileCss)
-.then(css => fs.writeFile(cssFile, css, 'utf8'));
+	return css;
+});
