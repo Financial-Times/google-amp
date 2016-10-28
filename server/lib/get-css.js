@@ -1,15 +1,7 @@
 'use strict';
 
-const cacheIf = require('@quarterto/cache-if');
-const mkdirp = require('mkdirp-promise');
-const path = require('path');
-const fs = require('fs-promise');
 const compileScss = require('@quarterto/post-sass');
 const sassDataURI = require('lib-sass-data-uri');
-
-const cssPath = path.resolve('css');
-const cssFile = `${cssPath}/style.css`;
-const readCompiledCss = () => fs.readFile(cssFile, 'utf8');
 
 const compileCss = () => compileScss({
 	postCss: [
@@ -47,7 +39,7 @@ const compileCss = () => compileScss({
 })
 .then(compiled => compiled.toString());
 
-module.exports = precompiled => Promise.resolve(precompiled ? cacheIf.always(readCompiledCss) : compileCss())
+module.exports = precompiled => compileCss()
 .then(css => {
 	if(!precompiled) {
 		if(css.length > 50000) {
@@ -62,7 +54,3 @@ module.exports = precompiled => Promise.resolve(precompiled ? cacheIf.always(rea
 	}
 	return css;
 });
-
-module.exports.compileForProduction = () => mkdirp(cssPath)
-.then(compileCss)
-.then(css => fs.writeFile(cssFile, css, 'utf8'));
