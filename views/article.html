@@ -124,9 +124,18 @@
 							{{/if}}
 						</h1>
 
-						{{#if displaySummary}}
-						<h2 class="article-standfirst">{{displaySummary}}</h2>
+						{{#if liveBlogsExcerpt}}
+							<div class="article-liveblogs-excerpt">
+								{{{liveBlogsExcerpt}}}
+							</div>
+						{{else}}
+							{{#if displaySummary}}
+							<h2 class="article-standfirst">{{displaySummary}}</h2>
+							{{/if}}
 						{{/if}}
+
+
+
 
 						<div amp-access="access OR {{showEverything}}" amp-access-hide>
 							{{{mainImageHtml}}}

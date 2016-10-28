@@ -63,6 +63,13 @@
 	animation: amp-live-list-item-highlight 5s ease-in;
 }
 
+// specifity to override .article's oTypographyBodyWrapper
+.article .article-liveblogs-excerpt {
+	&, p, ol, ul {
+		@include oTypographySans(s);
+	}
+}
+
 @keyframes amp-live-list-item-highlight {
 	0% {
 		$faded-orange: rgba(oColorsGetPaletteColor('orange'), 0.5);

@@ -25,7 +25,7 @@ module.exports = (article, {catchup, meta, config}, options) => {
 
 	if(postUpdated) {
 		article.title = entities.decode(postUpdated.data.title);
-		article.summaries = [entities.decode(postUpdated.data.excerpt)];
+		article.liveBlogsExcerpt = entities.decode(postUpdated.data.excerpt);
 	}
 
 	article.liveBlogStatus = meta.status;
