@@ -39,18 +39,17 @@ const compileCss = () => compileScss({
 })
 .then(compiled => compiled.toString());
 
-module.exports = precompiled => compileCss()
+module.exports = html => compileCss(html)
 .then(css => {
-	if(!precompiled) {
-		if(css.length > 50000) {
-			console.error(`WARNING: Compiled CSS bundle is ${css.length}, more than the AMP limit of 50,000 bytes: ` +
-				'https://www.ampproject.org/docs/reference/spec.html#maximum-size.');
-		} else if(css.length > 45000) {
-			console.error(`WARNING: Compiled CSS bundle is ${css.length}, approaching the AMP limit of 50,000 bytes: ` +
-				'https://www.ampproject.org/docs/reference/spec.html#maximum-size.');
-		} else {
-			console.log(`NOTICE: Compiled CSS bundle is ${css.length} bytes.`);
-		}
+	if(css.length > 50000) {
+		console.error(`WARNING: Compiled CSS bundle is ${css.length}, more than the AMP limit of 50,000 bytes: ` +
+			'https://www.ampproject.org/docs/reference/spec.html#maximum-size.');
+	} else if(css.length > 45000) {
+		console.error(`WARNING: Compiled CSS bundle is ${css.length}, approaching the AMP limit of 50,000 bytes: ` +
+			'https://www.ampproject.org/docs/reference/spec.html#maximum-size.');
+	} else {
+		console.log(`NOTICE: Compiled CSS bundle is ${css.length} bytes.`);
 	}
+
 	return css;
 });
