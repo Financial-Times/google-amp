@@ -93,7 +93,7 @@ module.exports = (data, options) => promiseAllObj({
 	mainImage: getMainImage(data),
 }).then(t => {
 	const body = t.body(Object.assign(data, t));
-	return getCss(Object.assign(options, {html: body})).then(css =>
+	return getCss(Object.assign({html: body}, options)).then(css =>
 		t.layout(Object.assign(data, {css, body}))
 	);
 });
