@@ -9,14 +9,22 @@
 		<xsl:apply-templates select="img" mode="figure" />
 	</xsl:template>
 
-	<xsl:template match="p[img]">
+	<xsl:template match="p[img[starts-with(@class, 'emoticon ')]]">
+		<xsl:apply-templates select="current()" mode="inline" />
+	</xsl:template>
+
+	<xsl:template match="p[a/img[starts-with(@class, 'emoticon ')]]">
+		<xsl:apply-templates select="current()" mode="inline" />
+	</xsl:template>
+
+	<xsl:template match="p[img[not(starts-with(@class, 'emoticon '))]]">
 		<xsl:apply-templates select="img" mode="figure" />
 		<xsl:if test="count(child::node()[not(self::img)]) &gt; 0">
 			<p><xsl:apply-templates select="child::node()[not(self::img)]" /></p>
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="p[a/img]">
+	<xsl:template match="p[a/img[not(starts-with(@class, 'emoticon '))]]">
 		<xsl:apply-templates select="a/img" mode="figure" />
 		<xsl:if test="count(child::node()[not(self::a)]) &gt; 0">
 			<p><xsl:apply-templates select="child::node()[not(self::a/img)]" /></p>
@@ -30,10 +38,17 @@
 				<xsl:when test="@width &lt;= 350">inline</xsl:when>
 				<xsl:when test="(@width &lt; @height) and (@width &lt; 600)">inline</xsl:when>
 				<xsl:when test="@width &lt; 700">center</xsl:when>
+				<xsl:when test="starts-with(@class, 'emoticon ')">emoticon</xsl:when>
 				<xsl:otherwise>full</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 
+		<figure class="article-image article-image--{$variation}">
+			<xsl:apply-templates select="current()" mode="inline" />
+		</figure>
+	</xsl:template>
+
+	<xsl:template match="img" mode="inline">
 		<xsl:variable name="maxWidth">
 			<xsl:choose>
 				<xsl:when test="@width &lt; @height and @width &gt; 350 and @width &lt; 600">350</xsl:when>
@@ -42,36 +57,32 @@
 			</xsl:choose>
 		</xsl:variable>
 
-		<figure class="article-image article-image--{$variation}">
+		<xsl:choose>
+			<xsl:when test="@width != '' and @height != ''">
+				<xsl:apply-templates select="current()" mode="placehold-image">
+					<xsl:with-param name="maxWidth" select="$maxWidth" />
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates select="current()" mode="dont-placehold-image">
+					<xsl:with-param name="maxWidth" select="$maxWidth" />
+				</xsl:apply-templates>
+			</xsl:otherwise>
+		</xsl:choose>
 
-			<xsl:choose>
-				<xsl:when test="@width != '' and @height != ''">
-					<xsl:apply-templates select="current()" mode="placehold-image">
-						<xsl:with-param name="maxWidth" select="$maxWidth" />
-					</xsl:apply-templates>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:apply-templates select="current()" mode="dont-placehold-image">
-						<xsl:with-param name="maxWidth" select="$maxWidth" />
-					</xsl:apply-templates>
-				</xsl:otherwise>
-			</xsl:choose>
-
-			<xsl:if test="string-length(@longdesc) &gt; 0 or string-length(@data-copyright) &gt; 0">
-				<figcaption class="article-image__caption">
-					<xsl:if test="string-length(@longdesc) &gt; 0">
-						<xsl:value-of select="@longdesc" />
-					</xsl:if>
-					<xsl:if test="string-length(@longdesc) &gt; 0 and string-length(@data-copyright) &gt; 0">
-						<xsl:text> </xsl:text>
-					</xsl:if>
-					<xsl:if test="string-length(@data-copyright) &gt; 0">
-						<xsl:value-of select="@data-copyright" />
-					</xsl:if>
-				</figcaption>
-			</xsl:if>
-
-		</figure>
+		<xsl:if test="string-length(@longdesc) &gt; 0 or string-length(@data-copyright) &gt; 0">
+			<figcaption class="article-image__caption">
+				<xsl:if test="string-length(@longdesc) &gt; 0">
+					<xsl:value-of select="@longdesc" />
+				</xsl:if>
+				<xsl:if test="string-length(@longdesc) &gt; 0 and string-length(@data-copyright) &gt; 0">
+					<xsl:text> </xsl:text>
+				</xsl:if>
+				<xsl:if test="string-length(@data-copyright) &gt; 0">
+					<xsl:value-of select="@data-copyright" />
+				</xsl:if>
+			</figcaption>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="img" mode="placehold-image">

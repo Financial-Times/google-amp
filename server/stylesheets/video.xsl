@@ -34,4 +34,15 @@
 				width="480" height="270"></amp-youtube>
 	</xsl:template>
 
+	<xsl:template match="div[@class='video-container video-container-youtube']">
+		<xsl:variable name="videoId">
+			<xsl:value-of select="div[@data-asset-ref]/@data-asset-ref" />
+		</xsl:variable>
+
+		<amp-youtube
+				data-videoid="{$videoId}"
+				layout="responsive"
+				width="480" height="270"></amp-youtube>
+	</xsl:template>
+
 </xsl:stylesheet>

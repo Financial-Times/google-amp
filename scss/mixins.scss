@@ -3,6 +3,8 @@
 	padding: 0 $page-padding;
 	max-width: $max;
 	min-width: $min - (2 * $page-padding);
+	width: 100%;
+	box-sizing: border-box;
 }
 
 @function pxAndVhToViewport($vh, $px) {

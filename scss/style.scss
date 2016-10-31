@@ -7,12 +7,14 @@
 @import 'o-typography/main';
 @import 'o-grid/main';
 @import 'o-buttons/main';
+@import 'o-labels/main';
 @import 'o-icons/main';
 
 @import 'header';
 // @import 'sidebar';
 @import 'footer';
 @import 'social';
+@import 'live-blogs';
 @import 'barrier';
 
 @import 'abTest';
@@ -49,6 +51,11 @@ body {
 
 .article-image {
 	margin: 1em 0;
+}
+
+.article-image--inline {
+	display: inline-block;
+	margin: 0;
 }
 
 .article__subhead--standard.article__subhead--standard {

@@ -27,7 +27,7 @@ module.exports = (contentItem, options) => transformArticleBody(contentItem, opt
 	.then(transformed$ => {
 		contentItem.mainImageHtml = extractMainImage(transformed$);
 		contentItem.htmlBody = transformed$.html();
-		contentItem.displayDate = dateTransform(contentItem.publishedDate, 'article-date');
+		contentItem.displayDate = dateTransform(contentItem.publishedDate, {classname: 'article-date'});
 		contentItem.displaySummary = summaryTransform(contentItem);
 		contentItem.schemaHeadline = schemaHeadlineTransform(contentItem);
 		return contentItem;

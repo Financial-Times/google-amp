@@ -30,6 +30,9 @@
 		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
 		{{/if}}
+		{{#if enableLiveBlogs}}
+		<script async custom-element="amp-live-list" src="https://cdn.ampproject.org/v0/amp-live-list-0.1.js"></script>
+		{{/if}}
 		<script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
 		<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
 
@@ -110,10 +113,25 @@
 						{{#if primaryTheme}}
 							<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link" data-vars-link-destination="{{{primaryTheme.url}}}" data-vars-link-text="{{{primaryTheme.name}}}" data-vars-link-type="primary-theme">{{{primaryTheme.name}}}</a></h2>
 						{{/if}}
-						<h1 class="headline" itemprop="headline">{{title}}</h1>
 
-						{{#if displaySummary}}
-						<h2 class="article-standfirst">{{displaySummary}}</h2>
+						<h1 class="headline" itemprop="headline">
+							{{title}}
+
+							{{#if liveBlogStatus}}
+							<div class='live-blog--status live-blog--status-{{liveBlogStatus}}'>
+								{{{liveBlogStatusLabel}}}
+							</div>
+							{{/if}}
+						</h1>
+
+						{{#if liveBlogsExcerpt}}
+							<div class="article-liveblogs-excerpt">
+								{{{liveBlogsExcerpt}}}
+							</div>
+						{{else}}
+							{{#if displaySummary}}
+							<h2 class="article-standfirst">{{displaySummary}}</h2>
+							{{/if}}
 						{{/if}}
 
 						<div amp-access="access OR {{showEverything}}" amp-access-hide>

@@ -4,9 +4,10 @@
     "o-colors": "^3.3.1",
     "o-typography": "^4.3.1",
     "o-grid": "^4.0.7",
-    "o-buttons": "^4.0.2",
+    "o-buttons": "4",
     "o-header": "^6.5.1",
     "o-footer": "^5.0.3",
+    "o-labels": "^2.0.0",
     "o-icons": "^5.0.0"
   }
 }

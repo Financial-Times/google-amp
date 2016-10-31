@@ -10,7 +10,7 @@ const formatRelatedContent = (options, item) => {
 
 	return url.stream(primaryTheme, options)
 		.then(streamUrl => ({
-			date: dateTransform(item.publishedDate, 'related-content__date'),
+			date: dateTransform(item.publishedDate, {classname: 'related-content__date'}),
 			id: item.id,
 			url: url.external(item.id),
 			title: item.title,

@@ -7,8 +7,11 @@ const renderArticle = require('../lib/render-article');
 const transformArticle = require('../lib/transform-article');
 const fetchSlideshows = require('../lib/fetch-slideshows');
 const transformSlideshows = require('../lib/transform-slideshows');
+const isLiveBlog = require('../lib/live-blogs/is-live-blog');
+const getLiveBlog = require('../lib/live-blogs/get-live-blog');
 const url = require('../lib/url');
 const analytics = require('../lib/analytics');
+
 const errors = require('http-errors');
 const fetchres = require('fetchres');
 const querystring = require('querystring');
@@ -36,6 +39,14 @@ function getAndRender(uuid, options) {
 				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
 			)
 		)
+
+		.then(article => {
+			if(options.enableLiveBlogs && isLiveBlog(article.webUrl)) {
+				return getLiveBlog(article, options);
+			}
+
+			return article;
+		})
 
 		// First phase: network-dependent fetches and transforms in parallel
 		.then(article => Promise.all(
@@ -83,6 +94,7 @@ function getAndRender(uuid, options) {
 			article.showEverything = !!options.showEverything;
 			article.enableSidebarMenu = !!options.enableSidebarMenu;
 			article.enableSocialShare = !!options.enableSocialShare;
+			article.enableLiveBlogs = !!options.enableLiveBlogs;
 			article.enableBarrier = !!options.enableBarrier;
 
 			article.accessMocked = !!options.accessMocked;
@@ -134,14 +146,20 @@ module.exports = (req, res, next) => {
 		enableSidebarMenu: (process.env.ENABLE_SIDEBAR_MENU === 'true'),
 		enableSocialShare: (process.env.ENABLE_SOCIAL_SHARE === 'true'),
 		enableAds: (process.env.ENABLE_ADS === 'true'),
+		enableLiveBlogs: (process.env.ENABLE_LIVE_BLOGS === 'true'),
 		enableBarrier: (process.env.ENABLE_BARRIER === 'true'),
 		uuid: req.params.uuid,
 		analyticsConfig: JSON.stringify(analytics.getJson({req, uuid: req.params.uuid})),
+		overrideBlog: req.query.overrideBlog,
+		lastUpdate: req.query.amp_latest_update_time,
 	})
 		.then(content => {
 			if(req.cookies['amp-access-mock']) {
 				// No caching, to allow access mock cookies to be applied immediately
 				res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+			} else if(req.query.amp_latest_update_time) {
+				// Cache live blogs poll requests for one second
+				res.setHeader('cache-control', 'public, max-age=1, no-transform');
 			} else {
 				res.setHeader('cache-control', 'public, max-age=30, no-transform');
 				res.setHeader('surrogate-control', 'stale-on-error=86400, stale-while-revalidate=300');
