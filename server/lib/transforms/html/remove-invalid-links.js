@@ -27,7 +27,7 @@ const validateHref = href => {
 
 module.exports = match({
 	'a'(el, i, $, options) {
-		try{
+		try {
 			validateHref(el.attr('href'));
 		} catch(e) {
 			reportError(options.raven, e, {extra: {
