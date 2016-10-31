@@ -1,0 +1,14 @@
+body {
+	@include oColorsFor(page);
+}
+
+.main-wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.main {
+	@include responsiveWidth;
+	flex-grow: 1;
+}

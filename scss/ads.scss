@@ -1,0 +1,12 @@
+@import 'o-typography/main';
+
+.ad-container {
+	text-align: center;
+
+	&::before {
+		@include oTypographySansData(m);
+		// ▾ U+25BE BLACK DOWN-POINTING SMALL TRIANGLE
+		content: "\25BE Advertisement \25BE";
+		display: block;
+	}
+}
