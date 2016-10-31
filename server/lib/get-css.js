@@ -15,7 +15,7 @@ const autoprefixer = require('autoprefixer');
 const removeImportant = require('@georgecrawford/postcss-remove-important');
 const inlineSvg = require('postcss-inline-svg');
 const discardEmpty = require('postcss-discard-empty');
-const uncss = require('../lib/transforms/uncss');
+const removeUnused = require('postcss-remove-unused');
 const csso = require('postcss-csso');
 
 const compileCss = ({html, preserveFlags}) => renderScss({
@@ -27,8 +27,8 @@ const compileCss = ({html, preserveFlags}) => renderScss({
 	autoprefixer({browsers: 'last 2 versions'}),
 	removeImportant,
 	inlineSvg,
-	uncss({
-		html,
+	removeUnused({
+		html: `<html><body>${html}</body></html>`,
 		preserveFlags,
 	}),
 	discardEmpty,

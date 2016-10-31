@@ -1,7 +1,7 @@
 @import 'o-typography/main';
 @import 'o-grid/main';
 
-/* uncss:startPreserve(article) */
+/* pru:startPreserve(article) */
 
 .article {
 	@include oTypographyBodyWrapper;
@@ -143,4 +143,4 @@ abbr[title] {
 	text-decoration: underline dotted;
 }
 
-/* uncss:endPreserve(article) */
+/* pru:endPreserve(article) */
