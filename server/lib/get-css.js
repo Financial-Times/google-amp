@@ -4,6 +4,8 @@ const postCss = require('postcss');
 const scss = require('node-sass');
 const renderScss = require('@quarterto/promisify')(scss.render);
 const sassDataURI = require('lib-sass-data-uri');
+const sassEnv = require('@quarterto/sass-env');
+const sassFunctions = require('@quarterto/sass-functions');
 const path = require('path');
 
 const scssPath = path.resolve('scss');
@@ -14,13 +16,12 @@ const removeImportant = require('@georgecrawford/postcss-remove-important');
 const inlineSvg = require('postcss-inline-svg');
 const discardEmpty = require('postcss-discard-empty');
 const uncss = require('../lib/transforms/uncss');
-// const uncss = require('postcss-uncss');
 const csso = require('postcss-csso');
 
 const compileCss = ({html}) => renderScss({
 	file: path.join(scssPath, 'style.scss'),
 	includePaths: [scssPath, bowerPath],
-	functions: sassDataURI,
+	functions: sassFunctions(sassEnv, sassDataURI),
 })
 .then(({css}) => postCss([
 	autoprefixer({browsers: 'last 2 versions'}),
