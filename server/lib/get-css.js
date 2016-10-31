@@ -9,22 +9,27 @@ const path = require('path');
 const scssPath = path.resolve('scss');
 const bowerPath = path.resolve('bower_components');
 
-const postCssPlugins = [
-	require('autoprefixer'),
-	require('@georgecrawford/postcss-remove-important'),
-	require('postcss-inline-svg'),
-	require('postcss-discard-empty'),
-	require('../lib/transforms/uncss'),
-	// require('postcss-uncss')({html}]),
-	require('postcss-csso'),
-];
+const autoprefixer = require('autoprefixer');
+const removeImportant = require('@georgecrawford/postcss-remove-important');
+const inlineSvg = require('postcss-inline-svg');
+const discardEmpty = require('postcss-discard-empty');
+const uncss = require('../lib/transforms/uncss');
+// const uncss = require('postcss-uncss');
+const csso = require('postcss-csso');
 
-const compileCss = (options) => renderScss({
+const compileCss = ({html}) => renderScss({
 	file: path.join(scssPath, 'style.scss'),
 	includePaths: [scssPath, bowerPath],
 	functions: sassDataURI,
 })
-.then(({css}) => postCss(postCssPlugins.map(plugin => plugin(options))).process(css))
+.then(({css}) => postCss([
+	autoprefixer({browsers: 'last 2 versions'}),
+	removeImportant,
+	inlineSvg,
+	uncss({html}),
+	discardEmpty,
+	csso,
+]).process(css))
 .then(compiled => compiled.toString());
 
 module.exports = (options) => {
