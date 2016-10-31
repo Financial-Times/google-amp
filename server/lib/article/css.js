@@ -17,7 +17,7 @@ const discardEmpty = require('postcss-discard-empty');
 const uncss = require('../lib/transforms/uncss');
 const csso = require('postcss-csso');
 
-const compileCss = ({html}) => renderScss({
+const compileCss = ({html, preserveFlags}) => renderScss({
 	file: path.join(scssPath, 'style.scss'),
 	includePaths: [scssPath, bowerPath],
 	functions: sassFunctions(sassEnv),
@@ -26,7 +26,10 @@ const compileCss = ({html}) => renderScss({
 	autoprefixer({browsers: 'last 2 versions'}),
 	removeImportant,
 	inlineSvg,
-	uncss({html}),
+	uncss({
+		html,
+		preserveFlags,
+	}),
 	discardEmpty,
 	csso,
 ]).process(css))
