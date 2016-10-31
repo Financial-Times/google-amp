@@ -1,4 +1,4 @@
-@if env(ENABLE_SIDEBAR) == 'true' {
+@if env(ENABLE_SIDEBAR_MENU) == 'true' {
 	amp-sidebar {
 		@include oColorsFor(page, background);
 		@include oTypographySans(m);
