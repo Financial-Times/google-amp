@@ -1,5 +1,5 @@
 @if env(ENABLE_LIVE_BLOGS) == 'true' {
-	/* uncss:startPreserve(liveBlogs) */
+	/* pru:startPreserve(liveBlogs) */
 	@include oColorsSetUseCase(author-colour-1, text, 'claret');
 	@include oColorsSetUseCase(author-colour-2, text, 'blue');
 	@include oColorsSetUseCase(author-colour-3, text, 'green');
@@ -82,5 +82,5 @@
 		}
 	}
 
-	/* uncss:endPreserve(liveBlogs) */
+	/* pru:endPreserve(liveBlogs) */
 }
