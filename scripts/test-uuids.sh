@@ -22,7 +22,7 @@ export TEST_UUIDS=(
 	"7333e92a-d4a2-11e5-829b-8564e7528e54"
 	"a354acc6-d1d6-11e5-831d-09f7778e7377"
 	"3614af26-d177-11e5-92a1-c5e23ef99c77"
-	"e8813dd4-d00d-11e5-831d-09f7778e7377"
+# "e8813dd4-d00d-11e5-831d-09f7778e7377" temporarily disabled while we fix the image tag
 	"1f707cd0-d408-11e5-8887-98e7feb46f27"
 	"0efb495a-d446-11e5-829b-8564e7528e54" # firstFT
 	"da44fb1c-d485-11e5-8887-98e7feb46f27"
