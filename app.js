@@ -9,8 +9,14 @@ const ftwebservice = require('express-ftwebservice');
 const expressHandlebars = require('express-handlebars');
 const path = require('path');
 const os = require('os');
+const v8 = require('v8');
 const cors = require('./server/lib/cors');
 const pkg = require('./package.json');
+
+if(process.env.WEB_MEMORY) {
+	const gcMemory = Math.floor(parseInt(process.env.WEB_MEMORY, 10) * 4 / 5);
+	v8.setFlagsFromString(`--max_old_space_size=${gcMemory}`);
+}
 
 const port = process.env.PORT || 5000;
 const app = express();

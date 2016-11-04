@@ -38,6 +38,8 @@
 		"no-confusing-arrow": 0,
 		"global-require": 0,
 		"no-underscore-dangle": 0,
-		"no-sequences": 0
+		"no-sequences": 0,
+		"no-mixed-operators": [2, {"allowSamePrecedence": true}],
+		"import/no-unresolved": [2, {"ignore": ["v8"]}]
 	}
 }
