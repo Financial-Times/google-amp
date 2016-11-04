@@ -80,7 +80,8 @@
     "raven": "^0.10.0",
     "request": "^2.61.0",
     "rss": "^1.1.1",
-    "signed-aws-es-fetch": "^1.1.0"
+    "signed-aws-es-fetch": "^1.1.0",
+    "throng": "^4.0.0"
   },
   "engines": {
     "node": "^6.0.0"
