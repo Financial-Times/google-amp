@@ -107,8 +107,6 @@ app.get('/content/:uuid', require('./controllers/amp-page.js'));
 app.get('/ads-iframe/:uuid', require('./controllers/ads-iframe.js'));
 app.get('/products', cors, require('./controllers/products.js'));
 
-app.get('/__heapdump_do_not_run_on_prod', require('./controllers/heap.js'));
-
 app.all('/amp-access-mock/:type(access|pingback)', cors, require('./controllers/access-mock.js'));
 app.all('/amp-access-mock/:type', require('./controllers/access-mock.js'));
 
