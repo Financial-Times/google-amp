@@ -47,8 +47,11 @@ test: lint
 	./scripts/test.sh
 
 # heroku and fastly
-promote: deploy-vcl-prod
+promote: deploy-vcl-prod merge-fixversions
 	heroku pipelines:promote -a ft-google-amp-staging --to ft-google-amp-prod-eu,ft-google-amp-prod-us
+
+merge-fixversions:
+	jira-merge-unreleased-versions
 
 deploy-vcl-prod:
 	$(MAKE) -B HEROKU_CONFIG_APP=ft-google-amp-prod-eu .env deploy-vcl
