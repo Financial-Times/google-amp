@@ -1,10 +1,7 @@
 #!/bin/bash
 
-. ./scripts/test-uuids.sh
-
 set -e
 
-URLS=$(mktemp urls-XXXX)
 LOGPIPE=$(mktemp -u log-pipe-XXXX)
 mkfifo $LOGPIPE
 LOG=$(mktemp log-XXXX)
@@ -18,16 +15,13 @@ PROG_PID=$!
 cleanup() {
 	kill $SERVER_PID
 	./scripts/analyse-log.js $LOG
-	rm -f $LOG $LOGPIPE $URLS
+	rm -f $LOG $LOGPIPE
 }
 
 trap cleanup EXIT
 
 sleep 5
 
-for UUID in "${TEST_UUIDS[@]}"; do
-	echo "http://localhost:5001/content/$UUID"
-done > $URLS
+scripts/loadtest.sh "http://localhost:5001" > /dev/null 2>&1
 
-siege -f $URLS -r 100 -c 10 > /dev/null 2>&1
 kill $PROG_PID
