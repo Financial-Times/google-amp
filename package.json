@@ -56,7 +56,6 @@
     "fs-promise": "^0.4.1",
     "glob": "^7.0.0",
     "handlebars": "^4.0.5",
-    "heroku-node-settings": "^1.0.2",
     "html-entities": "^1.2.0",
     "http-errors": "^1.4.0",
     "lib-sass-data-uri": "0.0.2",
