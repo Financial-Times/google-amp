@@ -26,6 +26,21 @@ Tests
 
 To run the tests and linter locally, run `npm test`.
 
+Deployment
+---
+
+The `master` branch deploys automatically to staging once the tests are green. Pull requests deploy to review apps, look out for the `@username deployed to ft-google-amp-staging-pr-XXX` messages in the PR.
+
+### Production
+
+Run `make promote`.
+
+We manually promote staging builds once they're "ready". **DO NOT** use the "Promote" button on Heroku. There's no way to run code when we do that, and we need to do things like deploy to Fastly, update JIRA fix versions etc.
+
+### Rolling back
+
+Use the `Roll back to...` button on the Heroku activity tab or the `heroku releases:rollback` command.
+
 Benchmarking
 ------------
 
