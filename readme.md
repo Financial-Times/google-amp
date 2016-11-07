@@ -37,6 +37,10 @@ Run `make promote`.
 
 We manually promote staging builds once they're "ready". **DO NOT** use the "Promote" button on Heroku. There's no way to run code when we do that, and we need to do things like deploy to Fastly, update JIRA fix versions etc.
 
+### Rolling back
+
+Use the `Roll back to...` button on the Heroku activity tab or the `heroku releases:rollback` command.
+
 Benchmarking
 ------------
 
