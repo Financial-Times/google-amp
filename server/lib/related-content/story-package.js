@@ -23,33 +23,32 @@ const formatRelatedContent = (options, item) => {
 		}));
 };
 
-module.exports = (article, options) => {
-	const getRelated = (article.storyPackage || []).map(related => getArticle(related.id, {
-		_wrappedFetchGroup: `story-package-${related.id}`,
-	}));
+const getRelated = (id, options) => getArticle(id, {
+	_wrappedFetchGroup: `story-package-${id}`,
+})
+.catch(e => {
+	if(options.raven) {
+		options.raven.captureMessage('Story Package API call failed', {
+			level: 'warning',
+			extra: {e},
+		});
+	}
 
-	return Promise.all(getRelated)
-		.catch(e => {
-			if(options.raven) {
-				options.raven.captureMessage('Story Package API call failed', {
-					level: 'warning',
-					extra: {e},
-				});
-			}
+	throw e;
+});
 
-			throw e;
-		})
-		.then(related => related.map(response => response._source ? response._source : Promise.reject()))
-		.then(related => {
-			related.forEach(item => {
-				options.relatedArticleDeduper.push(item.id);
-			});
+module.exports = (article, options) =>
+	Promise.all((article.storyPackage || []).map(related => getRelated(related.id, options)))
+	.then(related => related.map(response => response._source ? response._source : Promise.reject()))
+	.then(related => {
+		related.forEach(item => {
+			options.relatedArticleDeduper.push(item.id);
+		});
 
-			return Promise.all(related.map(formatRelatedContent.bind(null, options)));
-		})
-		.then(related => {
-			article.relatedContent = related;
-			return article;
-		})
-		.catch(() => {});
-};
+		return Promise.all(related.map(formatRelatedContent.bind(null, options)));
+	})
+	.then(related => {
+		article.relatedContent = related;
+		return article;
+	})
+	.catch(() => {});
