@@ -27,6 +27,11 @@ const getRelated = (id, options) => getArticle(id, {
 	_wrappedFetchGroup: `story-package-${id}`,
 })
 .catch(e => {
+	// Ignore 404 errors, for content not in ElasticSearch
+	if(e.message === 404) {
+		return;
+	}
+
 	if(options.raven) {
 		options.raven.captureMessage('Story Package API call failed', {
 			level: 'warning',
@@ -39,6 +44,7 @@ const getRelated = (id, options) => getArticle(id, {
 
 module.exports = (article, options) =>
 	Promise.all((article.storyPackage || []).map(related => getRelated(related.id, options)))
+	.then(related => related.filter(response => response))
 	.then(related => related.map(response => response._source ? response._source : Promise.reject()))
 	.then(related => {
 		related.forEach(item => {
