@@ -89,6 +89,7 @@
     "node": "^6.0.0"
   },
   "devDependencies": {
+    "@financial-times/change-request": "^1.1.0",
     "@quarterto/emphasize-monokai-sheet": "^1.3.0",
     "@quarterto/gaussian": "^1.0.0",
     "@quarterto/gaussian-percentile": "^1.0.0",

@@ -50,20 +50,22 @@ test: lint
 promote: change-request deploy-vcl-prod merge-fixversions
 	heroku pipelines:promote -a ft-google-amp-staging --to ft-google-amp-prod-eu,ft-google-amp-prod-us
 
-change-request:
+cr-description.txt:
+	heroku pipelines:diff -a ft-google-amp-staging > $@
+
+change-request: cr-description.txt
 	$(if $(KONSTRUCTOR_CR_KEY),,$(eval $(error KONSTRUCTOR_CR_KEY is required, check your .env)))
 
 	$(eval VERSION=$(shell scripts/version.sh))
-	$(eval CHANGELOG=$(shell heroku pipelines:diff -a ft-google-amp-staging))
 
-	echo change-request \
+	change-request \
 		--api-key $(KONSTRUCTOR_CR_KEY) \
 		--summary "Release google-amp $(VERSION)" \
-		--description "$(CHANGELOG)" \
+		--description-file $< \
 		--owner-email "ftmobile@ft.com" \
 		--service "google-amp" \
 		--environment "Production" \
-		--notify-channel "ft-tech-incidents" \
+		--notify-channel "ft-tech-incidents"
 
 merge-fixversions:
 	jira-merge-unreleased-versions

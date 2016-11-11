@@ -10,3 +10,4 @@ urls-*
 log-*
 .DS_Store
 scripts/*.xml
+cr-description.txt
