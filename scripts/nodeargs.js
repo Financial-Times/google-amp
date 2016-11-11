@@ -4,7 +4,7 @@
 
 const herokuMemoryLimit = require('@quarterto/heroku-memory-limit');
 
-const limit = herokuMemoryLimit();
+const limit = Math.floor(herokuMemoryLimit() / 2);
 
 console.log([
 	'--optimize_for_size',
