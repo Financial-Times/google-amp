@@ -47,13 +47,17 @@ test: lint
 	./scripts/test.sh
 
 # heroku and fastly
-promote: change-request deploy-vcl-prod merge-fixversions
+promote: merge-fixversions change-request deploy-vcl-prod
 	heroku pipelines:promote -a ft-google-amp-staging --to ft-google-amp-prod-eu,ft-google-amp-prod-us
 
 cr-description.txt:
-	heroku pipelines:diff -a ft-google-amp-staging > $@
+	$(eval VERSION=$(shell scripts/version.sh))
 
-change-request: cr-description.txt
+	echo "JIRA tickets in $(VERSION):" > $@
+	scripts/jira-release-issues.js google-amp-$(VERSION) >> $@
+	heroku pipelines:diff -a ft-google-amp-staging >> $@
+
+change-request: cr-description.txt | merge-fixversions
 	$(if $(KONSTRUCTOR_CR_KEY),,$(eval $(error KONSTRUCTOR_CR_KEY is required, check your .env)))
 
 	$(eval VERSION=$(shell scripts/version.sh))
@@ -77,4 +81,4 @@ deploy-vcl-prod:
 deploy-vcl:
 	$(if $(FASTLY_APIKEY), node_modules/.bin/fastly deploy $(FASTLY_OPTS), @echo '⤼ No Fastly API key, not deploying VCL')
 
-.PHONY: instrument bench
+.PHONY: instrument bench cr-description.txt
