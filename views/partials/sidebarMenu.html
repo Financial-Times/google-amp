@@ -2,7 +2,7 @@
 			<div class="o-header__drawer-inner">
 
 				<div class="o-header__drawer-tools">
-					<a class="o-header__drawer-tools-logo" href="/">
+					<a class="o-header__drawer-tools-logo" href="https://www.ft.com" title="Go to Financial Times homepage" data-vars-link-destination="https://www.ft.com" data-vars-link-type="sidebar-logo" data-vars-link-text="Financial Times">
 						<span class="o-header__visually-hidden">Financial Times</span>
 					</a>
 					<button on='tap:sidebar.close' type="button" class="o-header__drawer-tools-close" aria-controls="o-header-drawer" aria-expanded="true">
@@ -344,19 +344,19 @@
 				<nav class="o-header__drawer-menu o-header__drawer-menu--user" role="navigation" aria-label="User navigation">
 					<ul class="o-header__drawer-menu-list">
 						<li class="o-header__drawer-menu-item" amp-access="NOT session" amp-access-hide>
-							<a class="o-header__drawer-menu-link" href="{{pspURL}}">Subscribe</a>
+							<a class="o-header__drawer-menu-link" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="sidebar-subscribe" data-vars-link-text="Subscribe">Subscribe</a>
 						</li>
 						<li class="o-header__drawer-menu-item" amp-access="NOT session" amp-access-hide>
-							<a class="o-header__drawer-menu-link" href="#" on="tap:amp-access.login-login">Sign In</a>
+							<a class="o-header__drawer-menu-link" href="#" on="tap:amp-access.login-login" data-vars-link-type="sidebar-login" data-vars-link-text="Sign In">Sign In</a>
 						</li>
 						<li class="o-header__drawer-menu-item">
-							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="https://myaccount.ft.com/details/core/view">My Account</a>
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="https://myaccount.ft.com/details/core/view" data-vars-link-destination="https://myaccount.ft.com/details/core/view" data-vars-link-type="sidebar-account" data-vars-link-text="My Account">My Account</a>
 						</li>
 						<li class="o-header__drawer-menu-item">
-							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="#" on="tap:amp-access.login-logout">Sign Out</a>
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="#" on="tap:amp-access.login-logout" data-vars-link-type="sidebar-logout" data-vars-link-text="Sign Out">Sign Out</a>
 						</li>
 						<li class="o-header__drawer-menu-item" amp-access="session AND (NOT access)" amp-access-hide>
-							<a class="o-header__drawer-menu-link" amp-access="session" href="{{pspURL}}">Upgrade</a>
+							<a class="o-header__drawer-menu-link" amp-access="session" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="sidebar-upgrade" data-vars-link-text="Upgrade">Upgrade</a>
 						</li>
 					</ul>
 				</nav>
