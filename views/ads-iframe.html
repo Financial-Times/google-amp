@@ -44,7 +44,9 @@
 					};
 
 					targeting.forEach(function(target) {
-						config.targeting[target.key] = target.value.toString();
+						if(target.key && target.value) {
+							config.targeting[target.key] = target.value.toString();
+						}
 					});
 
 					var kruxFn = Krux.amp.withConfid('KHUSeE3x')
