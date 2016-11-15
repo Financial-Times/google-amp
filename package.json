@@ -84,7 +84,7 @@
     "postcss-csso": "^1.1.2",
     "postcss-discard-empty": "^2.1.0",
     "postcss-inline-svg": "^2.0.1",
-    "postcss-remove-unused": "^1.0.0",
+    "postcss-remove-unused": "^1.0.1",
     "raven": "^0.10.0",
     "request": "^2.61.0",
     "rss": "^1.1.1",
