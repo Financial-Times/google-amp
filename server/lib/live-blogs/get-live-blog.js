@@ -54,24 +54,21 @@ module.exports = (article, options) => {
 	const liveblogUrl = options.overrideBlog || article.webUrl;
 	let results;
 	let pollInterval;
-	let pollStopTimeout;
 
 	if(options.lastUpdate && liveblogCache[liveblogUrl]) {
 		clearTimeout(liveblogCache[liveblogUrl].pollStopTimeout);
 		results = liveblogCache[liveblogUrl].data;
 		pollInterval = liveblogCache[liveblogUrl].pollInterval;
-		pollStopTimeout = setTimeout(stopPolling, pollBlogFor, liveblogUrl);
 	} else {
 		results = getLiveBlog(liveblogUrl);
 		if(options.lastUpdate) {
 			pollInterval = pollLiveBlog(liveblogUrl);
-			pollStopTimeout = setTimeout(stopPolling, pollBlogFor, liveblogUrl);
 		}
 	}
 
 	liveblogCache[liveblogUrl] = {
 		pollInterval,
-		pollStopTimeout,
+		pollStopTimeout: setTimeout(stopPolling, pollBlogFor, liveblogUrl),
 	};
 
 	return Promise.resolve(results).then(data => {
