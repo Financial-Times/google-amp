@@ -79,13 +79,14 @@ module.exports = (article, options) => {
 		}
 	}
 
+	liveblogCache[liveblogUrl] = {
+		pollInterval,
+		pollStopTimeout: setTimeout(stopPolling, pollBlogFor, liveblogUrl),
+	};
+
 	return Promise.resolve(results).then(data => {
 		if(options.lastUpdate) {
-			liveblogCache[liveblogUrl] = {
-				data,
-				pollInterval,
-				pollStopTimeout: setTimeout(stopPolling, pollBlogFor, liveblogUrl),
-			};
+			liveblogCache[liveblogUrl].data = data;
 		}
 
 		return renderLiveBlog(article, data, options);
