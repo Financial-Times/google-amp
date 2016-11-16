@@ -50,8 +50,21 @@ const stopPolling = liveblogUrl => {
 	}
 };
 
+// https://jira.ft.com/browse/AT-722
+const rewriteAlphavilleURL = blogUrl => {
+	const parsed = url.parse(blogUrl, true);
+	if(parsed.host === 'ftalphaville.ft.com') {
+		parsed.host = 'ftalphaville-wp.ft.com';
+		const rewritten = url.format(parsed);
+		console.log(`Rewrote ${blogUrl} to ${rewritten}`);
+		return rewritten;
+	}
+
+	return blogUrl;
+};
+
 module.exports = (article, options) => {
-	const liveblogUrl = options.overrideBlog || article.webUrl;
+	const liveblogUrl = rewriteAlphavilleURL(options.overrideBlog || article.webUrl);
 	let results;
 	let pollInterval;
 
