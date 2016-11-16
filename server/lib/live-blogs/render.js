@@ -6,9 +6,6 @@ const dateTransform = require('../article-date');
 
 const entities = new Entities();
 
-// https://jira.ft.com/browse/AT-722
-const rewriteAlphavilleURL = text => text.replace(/(https?:\/\/)ftalphaville.ft.com/g, '$1ftalphaville-wp.ft.com');
-
 const renderMessage = (data) => `<div
 id="live-blog-message-${data.mid}"
 data-sort-time="${data.emb}"
@@ -20,7 +17,7 @@ ${dateTransform(data.emb * 1000, {classname: 'live-blog--time', format: 'datetim
 	${data.authornamestyle === 'initials' ? data.author : data.authordisplayname}
 </span>
 
-<p>${rewriteAlphavilleURL(data.textrendered)}</p>
+<p>${data.textrendered}</p>
 </div>`;
 
 module.exports = (article, {catchup, meta, config}, options) => {
