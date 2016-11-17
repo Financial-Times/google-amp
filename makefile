@@ -69,7 +69,7 @@ change-request: cr-description.txt | merge-fixversions
 		--summary "Release google-amp $(VERSION)" \
 		--description-file $< \
 		--owner-email "matthew.brennan@ft.com" \
-		--service "google-amp" \
+		--service "google amp" \
 		--environment "Production" \
 		--notify-channel "ft-tech-incidents"
 
