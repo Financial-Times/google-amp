@@ -68,7 +68,7 @@ change-request: cr-description.txt | merge-fixversions
 		--api-key $(KONSTRUCTOR_CR_KEY) \
 		--summary "Release google-amp $(VERSION)" \
 		--description-file $< \
-		--owner-email "ftmobile@ft.com" \
+		--owner-email "matthew.brennan@ft.com" \
 		--service "google-amp" \
 		--environment "Production" \
 		--notify-channel "ft-tech-incidents"
