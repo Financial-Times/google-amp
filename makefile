@@ -47,7 +47,9 @@ test: lint
 	./scripts/test.sh
 
 # heroku and fastly
-promote: merge-fixversions change-request deploy-vcl-prod
+promote: merge-fixversions change-request deploy-vcl-prod heroku-promote
+
+heroku-promote:
 	heroku pipelines:promote -a ft-google-amp-staging --to ft-google-amp-prod-eu,ft-google-amp-prod-us
 
 cr-description.txt:
@@ -66,8 +68,8 @@ change-request: cr-description.txt | merge-fixversions
 		--api-key $(KONSTRUCTOR_CR_KEY) \
 		--summary "Release google-amp $(VERSION)" \
 		--description-file $< \
-		--owner-email "ftmobile@ft.com" \
-		--service "google-amp" \
+		--owner-email "matthew.brennan@ft.com" \
+		--service "google amp" \
 		--environment "Production" \
 		--notify-channel "ft-tech-incidents"
 
