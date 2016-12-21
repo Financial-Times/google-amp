@@ -1,0 +1,146 @@
+@import 'o-typography/main';
+@import 'o-grid/main';
+
+/* pru:startPreserve(article) */
+
+.article {
+	@include oTypographyBodyWrapper;
+}
+
+.article__copyright-notice.article__copyright-notice {
+	@include oTypographyFooter;
+	margin: 30px 0;
+}
+
+.article-image {
+	margin: 1em 0;
+}
+
+.article-image--inline {
+	display: inline-block;
+	margin: 0;
+}
+
+.article__subhead--standard.article__subhead--standard {
+	@include oTypographySansBold(m);
+}
+
+.article-header {
+	a {
+		border-bottom-color: transparent;
+
+		&:hover {
+			border-bottom-color: inherit;
+		}
+	}
+}
+
+// .article-header .article-image {
+// 	border-bottom: $border-divider;
+// }
+
+// HACK: override default styling of oTypographyBodyWrapper
+// (rendered as '.article h1') using double classname specificity
+.headline.headline {
+	margin: 8px 0;
+
+	@include oGridRespondTo($until: M) {
+		@include responsiveType(8vh);
+		line-height: 1;
+
+		@media (orientation: portrait) {
+			@include responsiveType(4vh);
+		}
+	}
+}
+
+// HACK: override default styling of oTypographyBodyWrapper
+// (rendered as '.article h1') using double classname specificity
+.article-standfirst.article-standfirst {
+	margin: 6px 0;
+	@include oTypographyLead;
+
+	@include oGridRespondTo($until: M) {
+		@include responsiveType(5vh);
+		line-height: 1.2;
+		@media (orientation: portrait) {
+			@include responsiveType(2.5vh);
+		}
+	}
+}
+
+.article-dateline {
+	@include oTypographySans(s);
+	margin-top: 1em;
+	margin-bottom: 1em;
+
+	padding-top: 1em;
+	border-top: $border-divider;
+}
+
+.article-author-byline__author.article-author-byline__author {
+	@include oTypographyLinkTopic;
+	font-weight: bold;
+}
+
+.primary-theme.primary-theme {
+	@include oTypographyLinkTopic;
+	@include oTypographySansBold(l);
+
+	@include oGridRespondTo($until: M) {
+		@include responsiveType(6vh);
+		line-height: 1;
+		@media (orientation: portrait) {
+			@include responsiveType(3vh);
+		}
+	}
+
+	margin: 0.5em 0;
+
+	a {
+		color: inherit;
+	}
+}
+
+.article__quote--full-quote {
+	@extend %article-quote;
+	line-height: 0; // take up as little space as possible
+}
+
+.article__quote-footer {
+	@include oTypographySansBold(s);
+}
+
+.article-big-number {
+	color: oColorsGetPaletteColor('grey-tint4');
+
+	// Reset oTypographyBodyWrapper
+	p {
+		font-size: inherit;
+		font-family: inherit;
+		font-weight: inherit;
+		color: inherit;
+		line-height: inherit;
+		margin: 0;
+	}
+}
+
+.article-big-number__title {
+	@include oTypographyBigNumber;
+
+	p {
+		margin: 0 0 5px;
+	}
+}
+
+.article-big-number__content {
+	@include oTypographyFooter;
+}
+
+abbr[title] {
+	border-bottom: 0;
+	text-decoration: underline;
+	text-decoration: underline dotted;
+}
+
+/* pru:endPreserve(article) */
