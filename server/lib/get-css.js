@@ -56,13 +56,13 @@ module.exports = precompiled => {
 			const bundleSize = `Compiled CSS bundle is ${css.length}`;
 			const ampUrl = 'https://www.ampproject.org/docs/reference/spec.html#maximum-size';
 			const ampLimit = `the AMP limit of 50,000 bytes: ${ampUrl}`;
-			if(css.length > 50000) {
+		if(css.length > 50000) {
 				console.error(`WARNING: ${bundleSize}, more than ${ampLimit}. Took ${time}ms`);
-			} else if(css.length > 45000) {
+		} else if(css.length > 45000) {
 				console.error(`WARNING: ${bundleSize}, approaching ${ampLimit}. Took ${time}ms`);
-			} else {
+		} else {
 				console.log(`NOTICE: ${bundleSize} bytes. Took ${time}ms`);
-			}
+		}
 	return css;
 });
 
