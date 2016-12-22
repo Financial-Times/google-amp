@@ -1,4 +1,5 @@
 'use strict';
+
 const handlebars = require('handlebars');
 const fs = require('fs-promise');
 const path = require('path');

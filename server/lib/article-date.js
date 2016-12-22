@@ -1,4 +1,5 @@
 'use strict';
+
 const oDate = require('o-date');
 
 const now = new Date();

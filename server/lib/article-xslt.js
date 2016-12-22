@@ -13,7 +13,7 @@ module.exports = function articleXslt(xml, stylesheet, params) {
 		];
 
 		if(params) {
-			Object.keys(params).forEach((param) => {
+			Object.keys(params).forEach(param => {
 				const string = typeof params[param] === 'string';
 				options = options.concat(string ? '--stringparam' : '--param', param, params[param]);
 			});
@@ -29,19 +29,19 @@ module.exports = function articleXslt(xml, stylesheet, params) {
 
 		xsltproc.stdin.end();
 
-		xsltproc.stdout.on('data', (data) => {
+		xsltproc.stdout.on('data', data => {
 			output.push(data);
 		});
 
-		xsltproc.stderr.on('data', (error) => {
+		xsltproc.stderr.on('data', error => {
 			errors.push(error.toString());
 		});
 
-		xsltproc.on('error', (error) => {
+		xsltproc.on('error', error => {
 			reject(error.toString());
 		});
 
-		xsltproc.on('close', (code) => {
+		xsltproc.on('close', code => {
 			if(code !== 0) {
 				return reject(`xsltproc exited with code ${code}: ${errors}`);
 			}

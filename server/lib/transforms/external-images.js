@@ -1,4 +1,5 @@
 'use strict';
+
 const Entities = require('html-entities').XmlEntities;
 const fetch = require('../wrap-fetch')(require('node-fetch'), {
 	tag: 'external-images',
@@ -29,7 +30,7 @@ function getWidthAndRatio(metaUrl, options) {
 		})
 		.then(
 			meta => Object.assign(meta, {ratio: meta.height / meta.width}),
-			(e) => {
+			e => {
 				reportError(options.raven, e, {extra: {metaUrl}});
 				return {width: maxColumnWidth, ratio: 4 / 7}; // discard error and use fallback dimensions
 			}

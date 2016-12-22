@@ -1,4 +1,5 @@
 'use strict';
+
 const cheerio = require('cheerio');
 const handlebars = require('handlebars');
 const cacheIf = require('@quarterto/cache-if');

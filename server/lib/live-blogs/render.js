@@ -6,7 +6,7 @@ const dateTransform = require('../article-date');
 
 const entities = new Entities();
 
-const renderMessage = (data) => `<div
+const renderMessage = data => `<div
 id="live-blog-message-${data.mid}"
 data-sort-time="${data.emb}"
 data-update-time="${data.datemodified}"

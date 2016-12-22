@@ -8,6 +8,7 @@
 	},
 	"rules": {
 		"indent": [2, "tab", {"SwitchCase": 1}],
+		"no-tabs": 0,
 		"comma-dangle": [2, "always-multiline"],
 		"keyword-spacing": [2, {
 			"before": true,
@@ -41,6 +42,7 @@
 		"no-sequences": 0,
 		"no-mixed-operators": [2, {"allowSamePrecedence": true}],
 		"import/no-unresolved": [2, {"ignore": ["v8"]}],
-		"import/no-extraneous-dependencies": [2, {"devDependencies": true}]
+		"import/no-extraneous-dependencies": [2, {"devDependencies": true}],
+		"arrow-parens": [2, "as-needed"]
 	}
 }

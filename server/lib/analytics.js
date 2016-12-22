@@ -1,4 +1,7 @@
 'use strict';
+
+/* eslint-disable no-template-curly-in-string */
+
 const pkg = require('../../package.json');
 
 const DEBUG = false;

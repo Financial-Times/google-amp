@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = function getCopyrightNotice() {
 	const thisYear = new Date().getFullYear();
 	const copyrightNotice =

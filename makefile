@@ -45,14 +45,9 @@ instrument-products:
 bench:
 	./scripts/bench.sh
 
-test: lint unit-test integration-test
-
-integration-test:
-	./scripts/test.sh
-
 mocha-opts := --require async-to-gen/register
 
-unit-test: $(js-files) $(test-util-files) $(test-files)
+test: lint $(js-files) $(test-util-files) $(test-files)
 	mocha $(mocha-opts) $(test-files)
 
 test/transform/%.js: server/stylesheets/main.xsl server/stylesheets/%.xsl

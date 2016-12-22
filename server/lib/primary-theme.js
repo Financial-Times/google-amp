@@ -1,4 +1,5 @@
 'use strict';
+
 const url = require('./url');
 
 module.exports = (article, options) => {

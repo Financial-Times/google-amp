@@ -1,4 +1,5 @@
 'use strict';
+
 const cheerio = require('cheerio');
 
 const replaceEllipses = require('./transforms/replace-ellipses');

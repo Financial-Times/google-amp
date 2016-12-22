@@ -47,19 +47,22 @@ const compileCss = () => compileScss({
 })
 .then(compiled => compiled.toString());
 
-module.exports = precompiled => Promise.resolve(precompiled ? cacheIf.always(readCompiledCss) : compileCss())
-.then(css => {
-	if(!precompiled) {
-		if(css.length > 50000) {
-			console.error(`WARNING: Compiled CSS bundle is ${css.length}, more than the AMP limit of 50,000 bytes: ` +
-				'https://www.ampproject.org/docs/reference/spec.html#maximum-size.');
-		} else if(css.length > 45000) {
-			console.error(`WARNING: Compiled CSS bundle is ${css.length}, approaching the AMP limit of 50,000 bytes: ` +
-				'https://www.ampproject.org/docs/reference/spec.html#maximum-size.');
-		} else {
-			console.log(`NOTICE: Compiled CSS bundle is ${css.length} bytes.`);
-		}
-		}
+module.exports = precompiled => {
+	const start = Date.now();
+	return Promise.resolve(precompiled ? cacheIf.always(readCompiledCss) : compileCss())
+		.then(css => {
+			const time = Date.now() - start;
+
+			const bundleSize = `Compiled CSS bundle is ${css.length}`;
+			const ampUrl = 'https://www.ampproject.org/docs/reference/spec.html#maximum-size';
+			const ampLimit = `the AMP limit of 50,000 bytes: ${ampUrl}`;
+			if(css.length > 50000) {
+				console.error(`WARNING: ${bundleSize}, more than ${ampLimit}. Took ${time}ms`);
+			} else if(css.length > 45000) {
+				console.error(`WARNING: ${bundleSize}, approaching ${ampLimit}. Took ${time}ms`);
+			} else {
+				console.log(`NOTICE: ${bundleSize} bytes. Took ${time}ms`);
+			}
 	return css;
 });
 
