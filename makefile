@@ -14,7 +14,9 @@ FASTLY_OPTS = --env --service FASTLY_SERVICE vcl
 endif
 
 js-files = app.js $(shell find server -name '*.js')
-lintspace-files = $(js-files) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html') $(wildcard server/stylesheets/*.xsl)
+test-files = $(shell find test -name '*.js')
+test-util-files = $(wildcard test-utils/*.js)
+lintspace-files = $(js-files) $(test-files) $(test-util-files) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html') $(wildcard server/stylesheets/*.xsl)
 
 HEROKU_CONFIG_OPTS = -i HEROKU_ -i NODE_ENV -l NODE_ENV=development
 HEROKU_CONFIG_APP = ft-google-amp-staging
@@ -28,7 +30,7 @@ HEROKU_CONFIG_APP = ft-google-amp-staging
 lintspaces: $(lintspace-files)
 	lintspaces -n -d tabs -l 2 $^
 
-eslint: $(js-files)
+eslint: $(js-files) $(test-files) $(test-util-files)
 	eslint --fix $^
 
 lint: lintspaces eslint
@@ -43,8 +45,17 @@ instrument-products:
 bench:
 	./scripts/bench.sh
 
-test: lint
+test: lint unit-test integration-test
+
+integration-test:
 	./scripts/test.sh
+
+mocha-opts := --require async-to-gen/register
+
+unit-test: $(js-files) $(test-util-files) $(test-files)
+	mocha $(mocha-opts) $(test-files)
+
+test/transform/%.js: server/stylesheets/main.xsl server/stylesheets/%.xsl
 
 # heroku and fastly
 promote: merge-fixversions change-request deploy-vcl-prod heroku-promote

@@ -59,7 +59,7 @@ module.exports = precompiled => Promise.resolve(precompiled ? cacheIf.always(rea
 		} else {
 			console.log(`NOTICE: Compiled CSS bundle is ${css.length} bytes.`);
 		}
-	}
+		}
 	return css;
 });
 

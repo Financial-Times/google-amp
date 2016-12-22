@@ -9,6 +9,10 @@
 		</xsl:copy>
 	</xsl:template>
 
+	<xsl:template match="/html/body">
+		<xsl:apply-templates />
+	</xsl:template>
+
 	<xsl:include href="big-number.xsl" />
 	<xsl:include href="blockquotes.xsl" />
 	<xsl:include href="external-image.xsl" />
@@ -19,7 +23,6 @@
 	<xsl:include href="slideshow.xsl" />
 	<xsl:include href="subheaders.xsl" />
 	<xsl:include href="tables.xsl" />
-	<xsl:include href="toc.xsl" />
 	<xsl:include href="video.xsl" />
 	<xsl:include href="ft-content.xsl" />
 

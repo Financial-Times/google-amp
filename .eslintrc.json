@@ -40,6 +40,7 @@
 		"no-underscore-dangle": 0,
 		"no-sequences": 0,
 		"no-mixed-operators": [2, {"allowSamePrecedence": true}],
-		"import/no-unresolved": [2, {"ignore": ["v8"]}]
+		"import/no-unresolved": [2, {"ignore": ["v8"]}],
+		"import/no-extraneous-dependencies": [2, {"devDependencies": true}]
 	}
 }
