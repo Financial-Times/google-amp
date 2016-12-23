@@ -6,7 +6,7 @@ const xslt = require('../../server/lib/article-xslt');
 describe('ft-content transform', () => {
 	it('should remove ft-content tags', async () => {
 		expect(
-			await xslt('<ft-content></ft-content>', 'main', {})
+			await xslt('<ft-content></ft-content>')
 		).dom.to.equal('');
 	});
 });

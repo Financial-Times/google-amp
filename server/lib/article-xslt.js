@@ -2,7 +2,7 @@
 
 const spawn = require('child_process').spawn;
 
-module.exports = function articleXslt(xml, stylesheet, params) {
+module.exports = function articleXslt(xml, stylesheet = 'main', params = {}) {
 	return new Promise((resolve, reject) => {
 		const output = [];
 		const errors = [];
