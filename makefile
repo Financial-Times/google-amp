@@ -50,6 +50,9 @@ mocha-opts := --require async-to-gen/register --timeout 5000
 test: lint $(js-files) $(test-util-files) $(test-files)
 	mocha $(mocha-opts) $(test-files)
 
+unit-test: $(js-files) $(test-util-files) $(test-files)
+	mocha $(mocha-opts) -i --grep "amp validator" $(test-files)
+
 test/transform/%.js: server/stylesheets/main.xsl server/stylesheets/%.xsl
 
 # heroku and fastly
