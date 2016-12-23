@@ -45,7 +45,7 @@ instrument-products:
 bench:
 	./scripts/bench.sh
 
-mocha-opts := --require async-to-gen/register
+mocha-opts := --require async-to-gen/register --timeout 5000
 
 test: lint $(js-files) $(test-util-files) $(test-files)
 	mocha $(mocha-opts) $(test-files)
