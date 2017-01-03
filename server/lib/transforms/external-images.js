@@ -31,6 +31,7 @@ function getWidthAndRatio(metaUrl, options) {
 		.then(
 			meta => Object.assign(meta, {ratio: meta.height / meta.width}),
 			e => {
+				console.log(e);
 				reportError(options.raven, e, {extra: {metaUrl}});
 				return {width: maxColumnWidth, ratio: 4 / 7}; // discard error and use fallback dimensions
 			}
@@ -56,6 +57,8 @@ module.exports = function externalImages($, options) {
 			$el.attr('src', imageSrcEncoded);
 
 			const metaUrl = entities.decode(imageSrcEncoded).replace('raw', 'metadata');
+			console.log(metaUrl);
+
 			return getWidthAndRatio(metaUrl, options)
 				.then(meta => {
 					const width = Math.min(maxColumnWidth, meta.width);
