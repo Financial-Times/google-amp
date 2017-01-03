@@ -3,8 +3,8 @@
 const cheerioTransform = require('./cheerio-transform');
 const articleXsltTransform = require('./article-xslt');
 
-module.exports = (body, options) => {
-	const xsltParams = {
+module.exports = (body, options = {}) => {
+	const xsltParams = Object.assign({
 		renderTOC: 0,
 		brightcoveAccountId: process.env.BRIGHTCOVE_ACCOUNT_ID,
 
@@ -14,8 +14,8 @@ module.exports = (body, options) => {
 		// Default seems fine.
 		// brightcovePlayerId: process.env.BRIGHTCOVE_PLAYER_ID
 		brightcovePlayerId: 'default',
-	};
+	}, options.xslt);
 
 	return articleXsltTransform(body, 'main', xsltParams)
-		.then(articleBody => cheerioTransform(articleBody, options));
+		.then(articleBody => cheerioTransform(articleBody, options))
 };

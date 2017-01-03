@@ -30,5 +30,5 @@ module.exports = function run(body, flags) {
 		linkAnalytics,
 		removeInvalidLinks,
 	].map(transform => transform($, flags)))
-		.then(() => $);
+		.then(() => $.html());
 };

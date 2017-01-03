@@ -1,18 +1,18 @@
 'use strict';
 
 const {expect} = require('../../test-utils/chai');
-const xslt = require('../../server/lib/article-xslt');
+const transformBody = require('../../server/lib/transform-body');
 
 describe('amp links transform', () => {
-	it('should add ft.com to /content links', async () => {
+	it('should add ft.com to /content links and add tracking attributes', async () => {
 		expect(
-			await xslt('<a href="/content/uuid">link</a>')
-		).dom.to.equal('<a href="https://www.ft.com/content/uuid">link</a>');
+			await transformBody('<a href="/content/uuid">link</a>')
+		).dom.to.equal('<a href="https://www.ft.com/content/uuid" data-vars-link-destination="https://www.ft.com/content/uuid" data-vars-link-type="inline" data-vars-link-text="link">link</a>');
 	});
 
 	it('should strip non-href attributes', async () => {
 		expect(
-			await xslt('<a href="foo" bar="baz">link</a>')
-		).dom.to.equal('<a href="foo">link</a>');
+			await transformBody('<a href="http://example.com" bar="baz">link</a>')
+		).dom.to.equal('<a href="http://example.com" data-vars-link-destination="http://example.com" data-vars-link-type="inline" data-vars-link-text="link">link</a>');
 	});
 });
