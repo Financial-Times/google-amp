@@ -10,14 +10,8 @@ describe('related box transform', () => {
 		expect(
 			await transformBody(`<ft-related type="http://www.ft.com/ontology/content/Article" url="http://api.ft.com/content/a3af7bb8-d63d-11e5-829b-8564e7528e54">
 				<headline>Should millennials save £800 a month into pension? Readers respond</headline>
-			<intro>
-				<p>FT Money story sparks Twitter storm — and cat memes — over the finances of 20-somethings</p>
-			</intro>
 			</ft-related>`)
-		).dom.to.equal(`<aside
-			class="c-box c-box--inline u-border--all"
-			data-trackable="related-box"
-			role="complementary">
+		).dom.to.equal(`<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">
 			<div class="c-box__title">
 				<div class="c-box__title-text u-background-color--pink">Related article</div>
 			</div>
@@ -30,9 +24,6 @@ describe('related box transform', () => {
 					data-vars-link-text="Should millennials save 800 a month into pension Readers respond">
 					Should millennials save £800 a month into pension? Readers respond
 				</a>
-			</div>
-			<div class="aside--content u-margin--left-right">
-				<p>FT Money story sparks Twitter storm — and cat memes — over the finances of 20-somethings</p>
 			</div>
 		</aside>`);
 	});
