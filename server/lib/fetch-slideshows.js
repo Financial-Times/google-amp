@@ -31,16 +31,16 @@ const fetchSlideshow = uuid => fetch(`https://api.ft.com/content/items/v1/${uuid
 module.exports = (article, options) => {
 	article.slideshows = {};
 
-	return articleXsltTransform(article.bodyXML, 'slideshow-only', {})
-	.then(bodyXML => {
+	return articleXsltTransform(article.bodyHTML, 'slideshow-only', {})
+	.then(bodyHTML => {
 		const uuidMatch = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 		const regex = new RegExp(`<ft-slideshow data-uuid="(${uuidMatch})"></ft-slideshow>`, 'g');
 
 		const promises = [];
-		let match = regex.exec(bodyXML);
+		let match = regex.exec(bodyHTML);
 		while(match) {
 			promises.push(fetchSlideshow(match[1]));
-			match = regex.exec(bodyXML);
+			match = regex.exec(bodyHTML);
 		}
 
 		return Promise.all(promises)

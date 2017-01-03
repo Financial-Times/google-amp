@@ -153,7 +153,7 @@ module.exports = (req, res, next) => {
 		analyticsConfig: JSON.stringify(analytics.getJson({req, uuid: req.params.uuid})),
 		overrideBlog: req.query.overrideBlog,
 		lastUpdate: req.query.amp_latest_update_time,
-		thisYear: new Date().getFullYear()
+		thisYear: new Date().getFullYear(),
 	})
 		.then(content => {
 			if(req.cookies['amp-access-mock']) {

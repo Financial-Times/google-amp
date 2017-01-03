@@ -17,5 +17,5 @@ module.exports = (body, options = {}) => {
 	}, options.xslt);
 
 	return articleXsltTransform(body, 'main', xsltParams)
-		.then(articleBody => cheerioTransform(articleBody, options))
+		.then(articleBody => cheerioTransform(articleBody, options));
 };

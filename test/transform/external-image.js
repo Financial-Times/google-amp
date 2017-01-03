@@ -12,7 +12,7 @@ describe('external image transform', () => {
 
 		expect(
 			// needs to be a real image because we're getting its dimensions from the image service lol
-			await transformBody(`<img src="http://im.ft-static.com/content/images/a60ae24b-b87f-439c-bf1b-6e54946b4cf2.img" width="600" height="337">`)
+			await transformBody('<img src="http://im.ft-static.com/content/images/a60ae24b-b87f-439c-bf1b-6e54946b4cf2.img" width="600" height="337">')
 		).dom.to.equal(`<figure class="article-image article-image--center">
 			<div class="article-image__placeholder">
 				<amp-img alt=""

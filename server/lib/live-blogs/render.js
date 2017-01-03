@@ -37,7 +37,7 @@ module.exports = (article, {catchup, meta, config}, options) => {
 	})[meta.status];
 
 	article.isLiveBlog = true;
-	article.bodyXML = `<amp-live-list
+	article.bodyHTML = `<amp-live-list
 		class="live-blog"
 		id="live-blog-${article.id}"
 		data-max-items-per-page="2000"
