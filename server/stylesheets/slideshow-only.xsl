@@ -9,6 +9,6 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:include href="slideshow.xsl" />
+	<xsl:include href="amp/slideshow.xsl" />
 
 </xsl:stylesheet>

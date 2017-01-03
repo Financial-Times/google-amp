@@ -56,7 +56,7 @@ function getAndRender(uuid, options) {
 				addStoryPackage(article, options),
 				addMoreOns(article, options),
 				addPrimaryTheme(article, options),
-				fetchSlideshows(article, options),
+				// fetchSlideshows(article, options),
 			])
 
 			// Second phase: transforms which rely on first phase fetches

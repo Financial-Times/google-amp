@@ -13,17 +13,17 @@
 		<xsl:apply-templates />
 	</xsl:template>
 
-	<xsl:include href="big-number.xsl" />
-	<xsl:include href="blockquotes.xsl" />
-	<xsl:include href="external-image.xsl" />
-	<xsl:include href="interactive-graphics.xsl" />
-	<xsl:include href="amp-links.xsl" />
-	<xsl:include href="pull-quotes.xsl" />
-	<xsl:include href="amp-related-box.xsl" />
-	<xsl:include href="slideshow.xsl" />
-	<xsl:include href="subheaders.xsl" />
-	<xsl:include href="tables.xsl" />
-	<xsl:include href="video.xsl" />
-	<xsl:include href="ft-content.xsl" />
+	<xsl:include href="content/big-number.xsl" />
+	<xsl:include href="amp/blockquotes.xsl" />
+	<xsl:include href="amp/external-image.xsl" />
+	<xsl:include href="amp/interactive-graphics.xsl" />
+	<xsl:include href="content/pull-quotes.xsl" />
+	<xsl:include href="amp/related-box.xsl" />
+	<xsl:include href="amp/links.xsl" />
+	<xsl:include href="amp/slideshow.xsl" />
+	<xsl:include href="content/subheaders.xsl" />
+	<xsl:include href="content/tables.xsl" />
+	<xsl:include href="amp/video.xsl" />
+	<xsl:include href="amp/ft-content.xsl" />
 
 </xsl:stylesheet>
