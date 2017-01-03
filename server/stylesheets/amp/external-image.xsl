@@ -112,7 +112,6 @@
 		</div>
 	</xsl:template>
 
-
 	<xsl:template match="img" mode="dont-placehold-image">
 		<xsl:param name="maxWidth" />
 
