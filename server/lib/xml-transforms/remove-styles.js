@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = function removeStyleAttributes($) {
-	$('[style]').each(function eachStyle() {
-		$(this).removeAttr('style');
-	});
+const match = require('@quarterto/cheerio-match-multiple');
 
-	return $;
-};
+module.exports = match({
+	'[style]' (el) {
+		el.removeAttr('style');
+	}
+});
