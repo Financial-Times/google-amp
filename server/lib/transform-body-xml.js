@@ -13,6 +13,8 @@ const insertAd = require('./xml-transforms/insert-ad');
 const linkAnalytics = require('./xml-transforms/link-analytics');
 const removeInvalidLinks = require('./xml-transforms/remove-invalid-links');
 const blockquotes = require('./xml-transforms/blockquotes');
+const interactiveGraphics = require('./xml-transforms/interactive-graphics');
+const contentLinks = require('./xml-transforms/content-links');
 
 const articleXsltTransform = require('./article-xslt');
 
@@ -31,6 +33,8 @@ const cheerioTransform = (body, options) => {
 		lightSignup,
 		blockquotes,
 		replaceTagsWithContent,
+		interactiveGraphics,
+		contentLinks,
 		linkAnalytics,
 		removeInvalidLinks,
 	].map(transform => transform($, options)))
