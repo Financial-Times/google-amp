@@ -14,7 +14,7 @@ FASTLY_OPTS = --env --service FASTLY_SERVICE vcl
 endif
 
 js-files = app.js $(shell find server -name '*.js')
-test-files = $(shell find test -name '*.js')
+test-files = $(shell find test -name 'index.js')
 test-util-files = $(wildcard test-utils/*.js)
 lintspace-files = $(js-files) $(test-files) $(test-util-files) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html') $(wildcard server/stylesheets/*.xsl)
 
