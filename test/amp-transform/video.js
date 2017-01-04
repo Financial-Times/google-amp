@@ -6,10 +6,10 @@ const transformBody = require('../../server/lib/transform-body-xml');
 describe('video transform', () => {
 	it('should transform video.ft.com links to amp-brightcove with account and player from parameters', async () => {
 		expect(
-			await transformBody('<a href="http://video.ft.com/video-id"></a>', {xslt: {
+			await transformBody('<a href="http://video.ft.com/video-id"></a>', {
 				brightcoveAccountId: 'account-id',
 				brightcovePlayerId: 'player-id',
-			}})
+			})
 		).dom.to.equal(`<amp-brightcove
 				data-account="account-id"
 				data-player="player-id"

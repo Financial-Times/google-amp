@@ -15,6 +15,7 @@ const removeInvalidLinks = require('./xml-transforms/remove-invalid-links');
 const blockquotes = require('./xml-transforms/blockquotes');
 const interactiveGraphics = require('./xml-transforms/interactive-graphics');
 const contentLinks = require('./xml-transforms/content-links');
+const video = require('./xml-transforms/video');
 
 const articleXsltTransform = require('./article-xslt');
 
@@ -33,6 +34,7 @@ const cheerioTransform = (body, options) => {
 		lightSignup,
 		blockquotes,
 		replaceTagsWithContent,
+		video,
 		interactiveGraphics,
 		contentLinks,
 		linkAnalytics,
@@ -41,19 +43,7 @@ const cheerioTransform = (body, options) => {
 		.then(() => $.html());
 };
 
-module.exports = (body, options = {}) => {
-	const xsltParams = Object.assign({
-		renderTOC: 0,
-		brightcoveAccountId: process.env.BRIGHTCOVE_ACCOUNT_ID,
-
-		// See: https://github.com/ampproject/amphtml/blob/master/extensions
-		// /amp-brightcove/amp-brightcove.md#player-configuration
-		// NB: Next don't use the native Brightcove player, so don't use this param.
-		// Default seems fine.
-		// brightcovePlayerId: process.env.BRIGHTCOVE_PLAYER_ID
-		brightcovePlayerId: 'default',
-	}, options.xslt);
-
-	return articleXsltTransform(body, 'main', xsltParams)
-		.then(articleBody => cheerioTransform(articleBody, options));
+module.exports = (body, {brightcoveAccountId = process.env.BRIGHTCOVE_ACCOUNT_ID, brightcovePlayerId = 'default'} = {}) => {
+	return articleXsltTransform(body)
+		.then(articleBody => cheerioTransform(articleBody, {brightcovePlayerId, brightcoveAccountId}));
 };
