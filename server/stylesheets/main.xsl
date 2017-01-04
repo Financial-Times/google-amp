@@ -14,7 +14,6 @@
 	</xsl:template>
 
 	<xsl:include href="content/big-number.xsl" />
-	<xsl:include href="amp/blockquotes.xsl" />
 	<xsl:include href="amp/external-image.xsl" />
 	<xsl:include href="amp/interactive-graphics.xsl" />
 	<xsl:include href="content/pull-quotes.xsl" />

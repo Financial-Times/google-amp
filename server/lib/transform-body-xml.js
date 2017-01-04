@@ -12,6 +12,7 @@ const replaceFtConceptTags = require('./xml-transforms/ft-concept');
 const insertAd = require('./xml-transforms/insert-ad');
 const linkAnalytics = require('./xml-transforms/link-analytics');
 const removeInvalidLinks = require('./xml-transforms/remove-invalid-links');
+const blockquotes = require('./xml-transforms/blockquotes');
 
 const articleXsltTransform = require('./article-xslt');
 
@@ -28,6 +29,7 @@ const cheerioTransform = (body, options) => {
 		removeStyleAttributes,
 		insertAd,
 		lightSignup,
+		blockquotes,
 		replaceFtConceptTags,
 		linkAnalytics,
 		removeInvalidLinks,

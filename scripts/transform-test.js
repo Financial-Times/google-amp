@@ -3,7 +3,7 @@
 'use strict';
 
 const fs = require('fs-promise');
-const transformBody = require('../server/lib/transform-body');
+const transformBody = require('../server/lib/transform-body-xml');
 const chalk = require('chalk');
 const {clearScreen, cursorHide, cursorShow} = require('ansi-escapes');
 const {highlight} = require('emphasize');
@@ -36,5 +36,6 @@ const transformOutput = () => {
 };
 
 fs.watch(path, transformOutput);
-watch('./server/lib/transforms').on('change', transformOutput);
+watch('./server/lib/xml-transforms').on('change', transformOutput);
+watch('./server/lib/html-transforms').on('change', transformOutput);
 transformOutput();
