@@ -53,7 +53,7 @@ test: lint $(js-files) $(test-util-files) $(test-files)
 unit-test: $(js-files) $(test-util-files) $(test-files)
 	mocha $(mocha-opts) -i --grep "amp validator" $(test-files)
 
-test/transform/%.js: server/stylesheets/main.xsl server/stylesheets/amp/%.xsl
+test/amp-transform/%.js: server/stylesheets/main.xsl server/stylesheets/amp/%.xsl
 
 # heroku and fastly
 promote: merge-fixversions change-request deploy-vcl-prod heroku-promote

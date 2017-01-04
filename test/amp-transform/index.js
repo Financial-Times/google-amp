@@ -1,6 +1,6 @@
 'use strict';
 
-describe('body transforms', () => {
+describe('amp-specific transforms', () => {
 	require('./blockquotes');
 	require('./external-image');
 	require('./ft-content');
