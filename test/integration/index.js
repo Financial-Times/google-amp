@@ -1,7 +1,7 @@
 'use strict';
 
-const {expect, assert} = require('../../test-utils/chai');
-const testUUIDs = require('../../test-utils/test-uuids');
+const {expect, assert} = require('../utils/chai');
+const testUUIDs = require('../utils/test-uuids');
 
 const ampValidator = require('amphtml-validator');
 const {getAndRender} = require('../../server/controllers/amp-page');

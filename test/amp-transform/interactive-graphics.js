@@ -1,6 +1,6 @@
 'use strict';
 
-const {expect} = require('../../test-utils/chai');
+const {expect} = require('../utils/chai');
 const transformBody = require('../../server/lib/transform-body');
 
 describe('interactive graphics transform', () => {
