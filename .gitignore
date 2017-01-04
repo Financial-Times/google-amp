@@ -9,5 +9,5 @@ temp
 urls-*
 log-*
 .DS_Store
-scripts/*.xml
+scripts/*.html
 cr-description.txt
