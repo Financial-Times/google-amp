@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transform-body');
+const transformBody = require('../../server/lib/transform-body-xml');
 const getArticle = require('../../server/lib/get-article');
 
 const {html: htmlBeautify} = require('js-beautify');

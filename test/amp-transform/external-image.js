@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transform-body');
+const transformBody = require('../../server/lib/transform-body-xml');
 
 // Most of this transform is from next-article circa February 2016 so I'm just testing the bits we changed
 

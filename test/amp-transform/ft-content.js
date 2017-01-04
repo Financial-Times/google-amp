@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transform-body');
+const transformBody = require('../../server/lib/transform-body-xml');
 
 describe('ft-content transform', () => {
 	it('should remove ft-content tags', async () => {
