@@ -8,12 +8,11 @@ const externalImages = require('./xml-transforms/external-images');
 const fixEmoticons = require('./xml-transforms/fix-emoticons');
 const lightSignup = require('./xml-transforms/light-signup');
 const removeStyleAttributes = require('./xml-transforms/remove-styles');
-const replaceFtConceptTags = require('./xml-transforms/ft-concept');
+const replaceTagsWithContent = require('./xml-transforms/replace-tags-with-content');
 const insertAd = require('./xml-transforms/insert-ad');
 const linkAnalytics = require('./xml-transforms/link-analytics');
 const removeInvalidLinks = require('./xml-transforms/remove-invalid-links');
 const blockquotes = require('./xml-transforms/blockquotes');
-const ftContent = require('./xml-transforms/ft-content');
 
 const articleXsltTransform = require('./article-xslt');
 
@@ -31,10 +30,9 @@ const cheerioTransform = (body, options) => {
 		insertAd,
 		lightSignup,
 		blockquotes,
-		replaceFtConceptTags,
+		replaceTagsWithContent,
 		linkAnalytics,
 		removeInvalidLinks,
-		ftContent,
 	].map(transform => transform($, options)))
 		.then(() => $.html());
 };
