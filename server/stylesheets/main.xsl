@@ -23,6 +23,5 @@
 	<xsl:include href="content/subheaders.xsl" />
 	<xsl:include href="content/tables.xsl" />
 	<xsl:include href="amp/video.xsl" />
-	<xsl:include href="amp/ft-content.xsl" />
 
 </xsl:stylesheet>

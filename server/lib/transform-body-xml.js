@@ -13,6 +13,7 @@ const insertAd = require('./xml-transforms/insert-ad');
 const linkAnalytics = require('./xml-transforms/link-analytics');
 const removeInvalidLinks = require('./xml-transforms/remove-invalid-links');
 const blockquotes = require('./xml-transforms/blockquotes');
+const ftContent = require('./xml-transforms/ft-content');
 
 const articleXsltTransform = require('./article-xslt');
 
@@ -33,6 +34,7 @@ const cheerioTransform = (body, options) => {
 		replaceFtConceptTags,
 		linkAnalytics,
 		removeInvalidLinks,
+		ftContent,
 	].map(transform => transform($, options)))
 		.then(() => $.html());
 };
