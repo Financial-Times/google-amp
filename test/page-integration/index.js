@@ -10,7 +10,7 @@ const testUUIDs = [
 	'94e97eee-ce9a-11e5-831d-09f7778e7377'
 ];
 
-describe('page transforms', () => {
+describe.skip('page transforms', () => {
 	testUUIDs.forEach(uuid => {
 		it(`should transform ${uuid} bodyXML and bodyHTML to same DOM`, async () => {
 			const {bodyXML, bodyHTML} = (await getArticle(uuid))._source;

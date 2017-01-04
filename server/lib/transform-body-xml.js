@@ -35,7 +35,6 @@ const cheerioTransform = (body, options) => {
 		.then(() => $.html());
 };
 
-
 module.exports = (body, options = {}) => {
 	const xsltParams = Object.assign({
 		renderTOC: 0,
