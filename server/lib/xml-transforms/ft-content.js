@@ -6,4 +6,4 @@ module.exports = match({
 	'ft-content' (el) {
 		return el.contents();
 	}
-})
+});
