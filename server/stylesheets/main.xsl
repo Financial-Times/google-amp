@@ -16,7 +16,7 @@
 	<xsl:include href="content/big-number.xsl" />
 	<xsl:include href="amp/external-image.xsl" />
 	<xsl:include href="content/pull-quotes.xsl" />
-	<xsl:include href="amp/related-box.xsl" />
+	<xsl:include href="content/related-box.xsl" />
 	<xsl:include href="amp/slideshow.xsl" />
 	<xsl:include href="content/subheaders.xsl" />
 	<xsl:include href="content/tables.xsl" />

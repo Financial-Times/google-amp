@@ -18,8 +18,8 @@ describe('related box transform', () => {
 			<div class="aside--headline u-margin--left-right">
 				<a
 					data-trackable="link-headline"
-					href="http://www.ft.com/content/a3af7bb8-d63d-11e5-829b-8564e7528e54"
-					data-vars-link-destination="http://www.ft.com/content/a3af7bb8-d63d-11e5-829b-8564e7528e54"
+					href="https://www.ft.com/content/a3af7bb8-d63d-11e5-829b-8564e7528e54"
+					data-vars-link-destination="https://www.ft.com/content/a3af7bb8-d63d-11e5-829b-8564e7528e54"
 					data-vars-link-type="related-box"
 					data-vars-link-text="Should millennials save 800 a month into pension Readers respond">
 					Should millennials save £800 a month into pension? Readers respond
