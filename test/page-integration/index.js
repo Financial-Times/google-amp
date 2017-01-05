@@ -7,7 +7,7 @@ const getArticle = require('../../server/lib/get-article');
 const {html: htmlBeautify} = require('js-beautify');
 
 const testUUIDs = [
-	'94e97eee-ce9a-11e5-831d-09f7778e7377'
+	'94e97eee-ce9a-11e5-831d-09f7778e7377',
 ];
 
 describe.skip('page transforms', () => {

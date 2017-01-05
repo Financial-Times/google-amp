@@ -43,7 +43,5 @@ const cheerioTransform = (body, options) => {
 		.then(() => $.html());
 };
 
-module.exports = (body, {brightcoveAccountId = process.env.BRIGHTCOVE_ACCOUNT_ID, brightcovePlayerId = 'default'} = {}) => {
-	return articleXsltTransform(body)
+module.exports = (body, {brightcoveAccountId = process.env.BRIGHTCOVE_ACCOUNT_ID, brightcovePlayerId = 'default'} = {}) => articleXsltTransform(body)
 		.then(articleBody => cheerioTransform(articleBody, {brightcovePlayerId, brightcoveAccountId}));
-};

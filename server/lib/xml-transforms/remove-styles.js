@@ -3,7 +3,7 @@
 const match = require('@quarterto/cheerio-match-multiple');
 
 module.exports = match({
-	'[style]' (el) {
+	'[style]'(el) {
 		el.removeAttr('style');
-	}
+	},
 });
