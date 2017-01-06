@@ -1,12 +1,14 @@
 'use strict';
 
-const articleXsltTransform = require('./article-xslt');
+const transformBody = require('./transform-body');
 const fetch = require('./wrap-fetch')(require('node-fetch'), {
 	tag: 'slideshows',
 });
 const fetchres = require('fetchres');
 const reportError = require('./report-error');
 const Warning = require('./warning');
+
+const slideshowTransform = transformBody(require('./xml-transforms/slideshow'));
 
 const fetchSlideshow = uuid => fetch(`https://api.ft.com/content/items/v1/${uuid}?apiKey=${process.env.API_V1_KEY}`)
 .then(fetchres.json)
@@ -31,7 +33,7 @@ const fetchSlideshow = uuid => fetch(`https://api.ft.com/content/items/v1/${uuid
 module.exports = (article, options) => {
 	article.slideshows = {};
 
-	return articleXsltTransform(article.bodyHTML, 'slideshow-only', {})
+	return slideshowTransform(article.bodyHTML)
 	.then(bodyHTML => {
 		const uuidMatch = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 		const regex = new RegExp(`<ft-slideshow data-uuid="(${uuidMatch})"></ft-slideshow>`, 'g');

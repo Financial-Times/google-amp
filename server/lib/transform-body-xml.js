@@ -1,47 +1,32 @@
 'use strict';
 
-const cheerio = require('cheerio');
-
+const transformBody = require('./transform-body');
 const replaceEllipses = require('./xml-transforms/replace-ellipses');
-const trimmedLinks = require('./xml-transforms/trimmed-links');
-const externalImages = require('./xml-transforms/external-images');
-const fixEmoticons = require('./xml-transforms/fix-emoticons');
-const lightSignup = require('./xml-transforms/light-signup');
-const removeStyleAttributes = require('./xml-transforms/remove-styles');
-const replaceTagsWithContent = require('./xml-transforms/replace-tags-with-content');
-const insertAd = require('./xml-transforms/insert-ad');
-const linkAnalytics = require('./xml-transforms/link-analytics');
-const removeInvalidLinks = require('./xml-transforms/remove-invalid-links');
-const blockquotes = require('./xml-transforms/blockquotes');
-const interactiveGraphics = require('./xml-transforms/interactive-graphics');
-const contentLinks = require('./xml-transforms/content-links');
-const video = require('./xml-transforms/video');
-
+const removeLinkWhitespace = require('./xml-transforms/remove-link-whitespace');
 const articleXsltTransform = require('./article-xslt');
 
-const cheerioTransform = (body, options) => {
-	body = replaceEllipses(body);
-	body = body.replace(/<\/a>\s+([,;.:])/mg, '</a>$1');
+const cheerioTransform = transformBody(
+	require('./xml-transforms/fix-emoticons'),
+	require('./xml-transforms/external-images'),
+	require('./xml-transforms/trimmed-links'),
+	require('./xml-transforms/remove-styles'),
+	require('./xml-transforms/insert-ad'),
+	require('./xml-transforms/light-signup'),
+	require('./xml-transforms/blockquotes'),
+	require('./xml-transforms/replace-tags-with-content'),
+	require('./xml-transforms/video'),
+	require('./xml-transforms/slideshow'),
+	require('./xml-transforms/interactive-graphics'),
+	require('./xml-transforms/content-links'),
+	require('./xml-transforms/link-analytics'),
+	require('./xml-transforms/remove-invalid-links')
+);
 
-	const $ = cheerio.load(body, {decodeEntities: false});
-
-	return Promise.all([
-		fixEmoticons,
-		externalImages,
-		trimmedLinks,
-		removeStyleAttributes,
-		insertAd,
-		lightSignup,
-		blockquotes,
-		replaceTagsWithContent,
-		video,
-		interactiveGraphics,
-		contentLinks,
-		linkAnalytics,
-		removeInvalidLinks,
-	].map(transform => transform($, options)))
-		.then(() => $.html());
-};
-
-module.exports = (body, {brightcoveAccountId = process.env.BRIGHTCOVE_ACCOUNT_ID, brightcovePlayerId = 'default'} = {}) => articleXsltTransform(body)
+module.exports = (body, {
+	brightcoveAccountId = process.env.BRIGHTCOVE_ACCOUNT_ID,
+	brightcovePlayerId = 'default',
+} = {}) =>
+	articleXsltTransform(body)
+		.then(replaceEllipses)
+		.then(removeLinkWhitespace)
 		.then(articleBody => cheerioTransform(articleBody, {brightcovePlayerId, brightcoveAccountId}));
