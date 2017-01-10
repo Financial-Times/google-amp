@@ -15,8 +15,8 @@ endif
 
 js-files = app.js $(shell find server -name '*.js')
 test-files = $(shell find test -name 'index.js')
-test-util-files = $(wildcard test/utils/*.js)
-lintspace-files = $(js-files) $(test-files) $(test-util-files) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html') $(wildcard server/stylesheets/*.xsl)
+test-files-all = $(shell find test -name '*.js')
+lintspace-files = $(js-files) $(test-files-all) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html') $(wildcard server/stylesheets/*.xsl)
 
 HEROKU_CONFIG_OPTS = -i HEROKU_ -i NODE_ENV -l NODE_ENV=development
 HEROKU_CONFIG_APP = ft-google-amp-staging
@@ -30,7 +30,7 @@ HEROKU_CONFIG_APP = ft-google-amp-staging
 lintspaces: $(lintspace-files)
 	lintspaces -n -d tabs -l 2 $^
 
-eslint: $(js-files) $(test-files) $(test-util-files)
+eslint: $(js-files) $(test-files-all)
 	eslint --fix $^
 
 lint: lintspaces eslint
@@ -47,10 +47,10 @@ bench:
 
 mocha-opts := --require async-to-gen/register --timeout 5000
 
-test: lint $(js-files) $(test-util-files) $(test-files)
+test: lint $(js-files) $(test-files-all)
 	mocha $(mocha-opts) $(test-files)
 
-unit-test: $(js-files) $(test-util-files) $(test-files)
+unit-test: $(js-files) $(test-files-all)
 	mocha $(mocha-opts) -i --grep "amp validator" $(test-files)
 
 test/amp-transform/%.js: server/stylesheets/main.xsl server/stylesheets/amp/%.xsl
