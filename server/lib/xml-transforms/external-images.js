@@ -1,13 +1,13 @@
 'use strict';
 
-const Entities = require('html-entities').XmlEntities;
+const {XmlEntities: entities} = require('html-entities');
+const fetchres = require('fetchres');
+const {STATUS_CODES: statusCodes} = require('http');
+const reportError = require('../report-error');
+const Warning = require('../warning');
 const fetch = require('../wrap-fetch')(require('node-fetch'), {
 	tag: 'external-images',
 });
-const fetchres = require('fetchres');
-const statusCodes = require('http').STATUS_CODES;
-const reportError = require('../report-error');
-const Warning = require('../warning');
 
 // See Sass variables
 const maxColumnWidth = 500;
@@ -37,10 +37,7 @@ function getWidthAndRatio(metaUrl, options) {
 		);
 }
 
-module.exports = function externalImages($, options) {
-	const entities = new Entities();
-
-	return Promise.all($('amp-img[src]').map((index, el) => {
+module.exports = ($, options) => Promise.all($('img[src]').toArray().map(el => {
 		const $el = $(el);
 		const isAside = !!$el.parents('.c-box').length;
 		const matcher = /^https:\/\/image.webservices.ft.com\/v1\/images\/raw\/(.+)\?/;
@@ -48,12 +45,14 @@ module.exports = function externalImages($, options) {
 		const externalURI = (imageSrc.match(matcher) || [])[1];
 
 		if(externalURI) {
+		const ampImg = $('<amg-img>');
+
 			// Unescape any html entites
 			const externalURIEntitiesDecoded = entities.decode(externalURI);
 			const externalURIEncoded = encodeURIComponent(externalURIEntitiesDecoded);
 			const imageSrcEncoded = imageSrc.replace(externalURI, externalURIEncoded);
 
-			$el.attr('src', imageSrcEncoded);
+		ampImg.attr('src', imageSrcEncoded);
 
 			const metaUrl = entities.decode(imageSrcEncoded).replace('raw', 'metadata');
 
@@ -62,18 +61,19 @@ module.exports = function externalImages($, options) {
 					const width = Math.min(maxColumnWidth, meta.width);
 					const height = width * meta.ratio;
 
-					$el.attr({
+				ampImg.attr({
 						width,
 						height,
 					});
 
 					if(!isAside && width < minColumnWidth) {
 						// don't stretch narrow inline images to page width
-						$el.attr('layout', 'fixed');
+					ampImg.attr('layout', 'fixed');
 					}
+
+				$el.replaceWith(ampImg);
 				});
 		}
 
-		return $el;
-	}).toArray()).then(() => $);
-};
+	return null;
+})).then(() => $);
