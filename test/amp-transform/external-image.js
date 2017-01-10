@@ -5,11 +5,11 @@ const transformBody = require('../../server/lib/transform-body-xml');
 
 // Most of this transform is from next-article circa February 2016 so I'm just testing the bits we changed
 
-describe('external image transform', () => {
-	it('should transform img to amp-image with ratio', async function() {
-		// image service can take a while
-		this.timeout(10000);
+describe('external image transform', function() {
+	// image service can take a while
+	this.timeout(10000);
 
+	it('should transform img to amp-image with ratio', async () => {
 		expect(
 			// needs to be a real image because we're getting its dimensions from the image service lol
 			await transformBody('<img src="http://im.ft-static.com/content/images/a60ae24b-b87f-439c-bf1b-6e54946b4cf2.img" width="600" height="337">')
@@ -22,5 +22,46 @@ describe('external image transform', () => {
 					layout="responsive"></amp-img>
 			</div>
 		</figure>`);
+	});
+
+	describe('emoticons', () => {
+		it('should give standalone emoticons a class', async () => {
+			expect(
+				await transformBody('<img src="https://ftalphaville-wp.ft.com/wp-content/plugins/wp-plugin-ft-web-chat/img/emoticons/omg_smile.gif" class="emoticon webchat-emoticon-">')
+			).dom.to.equal(`<figure class="article-image article-image--emoticon">
+				<amp-img alt=""
+					src="https://h2.ft.com/image/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=amp&amp;fit=scale-down&amp;width=700"
+					width="16" height="16"
+					layout="fixed"></amp-img>
+			</figure>`);
+		});
+
+		it('should not wrap paragraph emoticons in figures', async () => {
+			expect(
+				await transformBody(`<p>
+					<img src="https://ftalphaville-wp.ft.com/wp-content/plugins/wp-plugin-ft-web-chat/img/emoticons/omg_smile.gif" class="emoticon webchat-emoticon-">
+				</p>`)
+			).dom.to.equal(`<p><amp-img alt=""
+				src="https://h2.ft.com/image/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=amp&amp;fit=scale-down&amp;width=700"
+				width="16" height="16"
+				layout="fixed"></amp-img></p>`);
+		});
+
+		it('shouldn\'t move emoticons out of paragraphs with text', async () => {
+			expect(
+				await transformBody(`<p>
+					lorem ipsum
+					<img src="https://ftalphaville-wp.ft.com/wp-content/plugins/wp-plugin-ft-web-chat/img/emoticons/omg_smile.gif" class="emoticon webchat-emoticon-">
+					dolor sit amet
+				</p>`)
+			).dom.to.equal(`<p>
+				lorem ipsum
+				<amp-img alt=""
+					src="https://h2.ft.com/image/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=amp&amp;fit=scale-down&amp;width=700"
+					width="16" height="16"
+					layout="fixed"></amp-img>
+				dolor sit amet
+			</div>`);
+		});
 	});
 });

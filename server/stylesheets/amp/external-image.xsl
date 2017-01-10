@@ -10,11 +10,15 @@
 	</xsl:template>
 
 	<xsl:template match="p[img[starts-with(@class, 'emoticon ')]]">
-		<xsl:apply-templates select="current()" mode="inline" />
+		<p>
+			<xsl:apply-templates select="current()" mode="inline" />
+		</p>
 	</xsl:template>
 
 	<xsl:template match="p[a/img[starts-with(@class, 'emoticon ')]]">
-		<xsl:apply-templates select="current()" mode="inline" />
+		<p>
+			<xsl:apply-templates select="current()" mode="inline" />
+		</p>
 	</xsl:template>
 
 	<xsl:template match="p[img[not(starts-with(@class, 'emoticon '))]]">
@@ -34,11 +38,11 @@
 	<xsl:template match="img" mode="figure">
 		<xsl:variable name="variation">
 			<xsl:choose>
+				<xsl:when test="starts-with(@class, 'emoticon ')">emoticon</xsl:when>
 				<xsl:when test="@width &lt;= 150">thin</xsl:when>
 				<xsl:when test="@width &lt;= 350">inline</xsl:when>
 				<xsl:when test="(@width &lt; @height) and (@width &lt; 600)">inline</xsl:when>
 				<xsl:when test="@width &lt; 700">center</xsl:when>
-				<xsl:when test="starts-with(@class, 'emoticon ')">emoticon</xsl:when>
 				<xsl:otherwise>full</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
