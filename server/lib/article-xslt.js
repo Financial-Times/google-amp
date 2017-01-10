@@ -46,7 +46,7 @@ module.exports = function articleXslt(xml, stylesheet = 'main', params = {}) {
 				return reject(`xsltproc exited with code ${code}: ${errors}`);
 			}
 
-			resolve(output.join('').replace(/<\/?html>/g, ''));
+			resolve(output.join('').replace(/<\/?(html|body)>/g, ''));
 		});
 	});
 };
