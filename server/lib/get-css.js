@@ -41,16 +41,16 @@ module.exports = (options) => {
 	return compileCss(options)
 		.then(css => {
 			const time = Date.now() - start;
-		if(css.length > 50000) {
-			console.error(`WARNING: Compiled CSS bundle is ${css.length}, more than the AMP limit of 50,000 bytes: ` +
+			if(css.length > 50000) {
+				console.error(`WARNING: Compiled CSS bundle is ${css.length}, more than the AMP limit of 50,000 bytes: ` +
 					'https://www.ampproject.org/docs/reference/spec.html#maximum-size. Took ${time}ms');
-		} else if(css.length > 45000) {
-			console.error(`WARNING: Compiled CSS bundle is ${css.length}, approaching the AMP limit of 50,000 bytes: ` +
+			} else if(css.length > 45000) {
+				console.error(`WARNING: Compiled CSS bundle is ${css.length}, approaching the AMP limit of 50,000 bytes: ` +
 					'https://www.ampproject.org/docs/reference/spec.html#maximum-size. Took ${time}ms');
-		} else {
+			} else {
 				console.log(`NOTICE: Compiled CSS bundle is ${css.length} bytes. Took ${time}ms`);
-		}
+			}
 
-	return css;
+			return css;
 		});
 };

@@ -2,341 +2,94 @@
 			<div class="o-header__drawer-inner">
 
 				<div class="o-header__drawer-tools">
-					<a class="o-header__drawer-tools-logo" href="https://www.ft.com" title="Go to Financial Times homepage" data-vars-link-destination="https://www.ft.com" data-vars-link-type="sidebar-logo" data-vars-link-text="Financial Times">
+					<a class="o-header__drawer-tools-logo" href="/">
 						<span class="o-header__visually-hidden">Financial Times</span>
 					</a>
-					<button on='tap:sidebar.close' type="button" class="o-header__drawer-tools-close" aria-controls="o-header-drawer" aria-expanded="true" data-vars-link-type="sidebar-menu-close" data-vars-link-text="Close">
+					<button on='tap:sidebar.close' type="button" class="o-header__drawer-tools-close" aria-controls="o-header-drawer" aria-expanded="true">
 						<span class="o-header__visually-hidden">Close</span>
 					</button>
 				</div>
 
+				<nav class="o-header__drawer-editions" role="navigation" aria-label="Edition switcher">
+					<a class="o-header__drawer-editions-link" href="/uk?edition=uk" aria-selected="true">UK Edition</a>
+					<a class="o-header__drawer-editions-link" href="/international?edition=international">International Edition</a>
+				</nav>
+
 				<nav class="o-header__drawer-menu o-header__drawer-menu--primary" role="navigation" aria-label="Primary navigation">
 					<ul class="o-header__drawer-menu-list">
 								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--heading">Top sections</li>
-								<li class="o-header__drawer-menu-item">
-										{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com" text="FT.com" type="sidebar-top-section" }}
+								<li class="o-header__drawer-menu-item ">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="#">FT.com</a>
 								</li>
-								<li class="o-header__drawer-menu-item">
-									{{> link class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="https://www.ft.com/world" text="World" type="sidebar-top-section" }}
+								<li class="o-header__drawer-menu-item ">
+									<a class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="http://google.com">World</a>
 									<amp-accordion>
 										<section class="o-header__accordion-section">
 											<header class="o-header__accordion-header">
-												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected" data-vars-link-type="sidebar-section-toggle" data-vars-link-text="Show more World links">
-													Show more World links
-												</button>
+												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected">Section 1</button>
 											</header>
 											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
 												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/global-economy" text="World Economy" type="sidebar-top-section" }}
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to World Economy">World Economy</a>
 												</li>
 												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/uk" text="UK" type="sidebar-top-section" }}
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to UK">UK</a>
 												</li>
 												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/us" text="US" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/asia-pacific/china" text="China" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/africa" text="Africa" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/asia-pacific" text="Asia Pacific" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/markets/emerging-markets" text="Emerging Markets" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/europe" text="Europe" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/americas" text="Latin America" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/mideast" text="Middle East and North Africa" type="sidebar-top-section" }}
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to US">US</a>
 												</li>
 											</ul>
 										</section>
 									</amp-accordion>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/uk" text="UK" type="sidebar-top-section" }}
+									<a class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="http://google.com">UK</a>
 									<amp-accordion>
 										<section class="o-header__accordion-section">
 											<header class="o-header__accordion-header">
-												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected" data-vars-link-type="sidebar-section-toggle" data-vars-link-text="Show more UK links">
-													Show more UK links
-												</button>
+												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected">Section 1</button>
 											</header>
 											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
 												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/global-economy/uk" text="UK Economy" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/world/uk/politics" text="UK Politics &amp; Policy" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/uk" text="UK Companies" type="sidebar-top-section" }}
+													<a class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="#" aria-label="Go to UK Economy">UK Economy</a>
 												</li>
 											</ul>
 										</section>
 									</amp-accordion>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies" text="Companies" type="sidebar-top-section" }}
-									<amp-accordion>
-										<section class="o-header__accordion-section">
-											<header class="o-header__accordion-header">
-												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected" data-vars-link-type="sidebar-section-toggle" data-vars-link-text="Show more Companies links">
-													Show more Companies links
-												</button>
-											</header>
-											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/energy" text="Energy" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/financials" text="Financials" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/health" text="Health" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/industrials" text="Industrials" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/media" text="Media" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/retail-consumer" text="Retail &amp; Consumer" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/technology" text="Technology" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/telecoms" text="Telecoms" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/companies/transport" text="Transport" type="sidebar-top-section" }}
-												</li>
-											</ul>
-										</section>
-									</amp-accordion>
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Science &amp; Environment">Science &amp; Environment</a>
 								</li>
-								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="https://www.ft.com/markets" text="Markets" type="sidebar-top-section" }}
-									<amp-accordion>
-										<section class="o-header__accordion-section">
-											<header class="o-header__accordion-header">
-												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected" data-vars-link-type="sidebar-section-toggle" data-vars-link-text="Show more Markets links">
-													Show more Markets links
-												</button>
-											</header>
-											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/fastft" text="fastFT" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://ftalphaville.ft.com/" text="Alphaville" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://markets.ft.com/data" text="Markets Data" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/markets/capital-markets" text="Capital Markets" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/markets/commodities" text="Commodities" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/markets/currencies" text="Currencies" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/markets/equities" text="Equities" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/fund-management" text="Fund Management" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/markets/trading" text="Trading" type="sidebar-top-section" }}
-												</li>
-											</ul>
-										</section>
-									</amp-accordion>
-								</li>
-								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="https://www.ft.com/comment" text="Opinion" type="sidebar-top-section" }}
-									<amp-accordion>
-										<section class="o-header__accordion-section">
-											<header class="o-header__accordion-header">
-												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected" data-vars-link-type="sidebar-section-toggle" data-vars-link-text="Show more Opinion links">
-													Show more Opinion links
-												</button>
-											</header>
-											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/comment/columnists" text="Columnists" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/comment/ft-view" text="FT View" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/comment/the-big-read" text="The Big Read" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/comment/equities" text="Equities" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/instant-insight" text="Instant Insight" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/lex" text="Lex" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://ftalphaville.ft.com/" text="Alphaville" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/comment/blogs" text="Blogs" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/stream/sectionsId/MTIz-U2VjdGlvbnM=" text="Obituaries" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/comment/letters" text="Letters" type="sidebar-top-section" }}
-												</li>
-											</ul>
-										</section>
-									</amp-accordion>
-								</li>
-								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="https://www.ft.com/comment" text="Work &amp; Careers" type="sidebar-top-section" }}
-									<amp-accordion>
-										<section class="o-header__accordion-section">
-											<header class="o-header__accordion-header">
-												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected" data-vars-link-type="sidebar-section-toggle" data-vars-link-text="Show more Work &amp; Careers links">
-													Show more Work &amp; Careers links
-												</button>
-											</header>
-											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="http://rankings.ft.com/businessschoolrankings/rankings" text="Business School Rankings" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/business-education" text="Business Education" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/management/entrepeneurship" text="Entrepeneurship" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/management/recuitment" text="Recruitment" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/management/business-books" text="Business Books" type="sidebar-top-section" }}
-												</li>
-											</ul>
-										</section>
-									</amp-accordion>
-								</li>
-								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="https://www.ft.com/life-arts" text="Life &amp; Arts" type="sidebar-top-section" }}
-									<amp-accordion>
-										<section class="o-header__accordion-section">
-											<header class="o-header__accordion-header">
-												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected" data-vars-link-type="sidebar-section-toggle" data-vars-link-text="Show more Life &amp; Arts links">
-													Show more Life &amp; Arts links
-												</button>
-											</header>
-											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/house-home" text="House &amp; Home" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/books" text="Books" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/life-arts/food-drink" text="Food &amp; Drink" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/travel" text="Travel" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/life-arts/style" text="Style" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/arts" text="Arts" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/magazine" text="FT Magazine" type="sidebar-top-section" }}
-												</li>
-											</ul>
-										</section>
-									</amp-accordion>
-								</li>
-								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__accordion-option o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="https://www.ft.com/personal-finance" text="Personal Finance" type="sidebar-top-section" }}
-									<amp-accordion>
-										<section class="o-header__accordion-section">
-											<header class="o-header__accordion-header">
-												<button class="o-header__drawer-menu-toggle o-header__drawer-menu-toggle--unselected" data-vars-link-type="sidebar-section-toggle" data-vars-link-text="Show more Personal Finance links">
-													Show more Personal Finance links
-												</button>
-											</header>
-											<ul class="o-header__drawer-menu-list o-header__drawer-menu-list--child" id="o-header-drawer-child-1">
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/personal-finance/property-mortgages" text="Property &amp; Mortgages" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/personal-finance/investments" text="Investments" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/pensions" text="Pensions" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/personal-finance/tax" text="Tax" type="sidebar-top-section" }}
-												</li>
-												<li class="o-header__drawer-menu-item">
-													{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--child o-header__drawer-menu-link--unselected" href="https://www.ft.com/personal-finance/banking-savings" text="Banking &amp; Savings" type="sidebar-top-section" }}
-												</li>
-											</ul>
-										</section>
-									</amp-accordion>
-								</li>
-								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com/special-reports" text="Special Reports" type="sidebar-top-section" }}
-								</li>
-								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com/science-environment" text="Science &amp; Environment" type="sidebar-top-section" }}
-								</li>
-
-
 								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--heading">FT recommends</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com/lex" text="Lex" type="sidebar-top-section" }}
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Lex">Lex</a>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://ftalphaville.ft.com/" text="Alphaville" type="sidebar-top-section" }}
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Alphaville">Alphaville</a>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com/emerging-markets/em-squared" text="EM Squared" type="sidebar-top-section" }}
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Lunch with the FT">Lunch with the FT</a>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com/lunch-with-the-ft" text="Lunch with the FT" type="sidebar-top-section" }}
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Video">Video</a>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://video.ft.com/" text="Video" type="sidebar-top-section" }}
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Special Reports">Special Reports</a>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com/podcasts" text="Podcasts" type="sidebar-top-section" }}
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to News feed">News feed</a>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com/comment/blogs" text="Blogs" type="sidebar-top-section" }}
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link-- o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Newsletters">Newsletters</a>
+								</li>
+								<li class="o-header__drawer-menu-item o-header__drawer-menu-item--divide">
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--secondary o-header__drawer-menu-link--unselected" href="#" aria-label="Go to My FT">My FT</a>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="https://www.ft.com/news-feed" text="News Feed" type="sidebar-top-section" }}
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--secondary o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Portfolio">Portfolio</a>
 								</li>
 								<li class="o-header__drawer-menu-item ">
-									{{> link class="o-header__drawer-menu-link o-header__drawer-menu-link--" href="http://nbe.ft.com/nbe/profile.cfm?ft_site=falcon" text="Newsletters" type="sidebar-top-section" }}
+										<a class="o-header__drawer-menu-link o-header__drawer-menu-link--secondary o-header__drawer-menu-link--unselected" href="#" aria-label="Go to Today's Paper">Today's Paper</a>
 								</li>
 					</ul>
 				</nav>
@@ -344,19 +97,22 @@
 				<nav class="o-header__drawer-menu o-header__drawer-menu--user" role="navigation" aria-label="User navigation">
 					<ul class="o-header__drawer-menu-list">
 						<li class="o-header__drawer-menu-item" amp-access="NOT session" amp-access-hide>
-							<a class="o-header__drawer-menu-link" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="sidebar-subscribe" data-vars-link-text="Subscribe">Subscribe</a>
+							<a class="o-header__drawer-menu-link" href="{{pspURL}}">Subscribe</a>
 						</li>
 						<li class="o-header__drawer-menu-item" amp-access="NOT session" amp-access-hide>
-							<a class="o-header__drawer-menu-link" href="#" on="tap:amp-access.login-login" data-vars-link-type="sidebar-login" data-vars-link-text="Sign In">Sign In</a>
+							<a class="o-header__drawer-menu-link" href="#" on="tap:amp-access.login-login">Sign In</a>
 						</li>
 						<li class="o-header__drawer-menu-item">
-							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="https://myaccount.ft.com/details/core/view" data-vars-link-destination="https://myaccount.ft.com/details/core/view" data-vars-link-type="sidebar-account" data-vars-link-text="My Account">My Account</a>
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="https://myaccount.ft.com/details/core/view">My Account</a>
 						</li>
 						<li class="o-header__drawer-menu-item">
-							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="#" on="tap:amp-access.login-logout" data-vars-link-type="sidebar-logout" data-vars-link-text="Sign Out">Sign Out</a>
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="#" on="tap:amp-access.login-logout">Sign Out</a>
 						</li>
 						<li class="o-header__drawer-menu-item" amp-access="session AND (NOT access)" amp-access-hide>
-							<a class="o-header__drawer-menu-link" amp-access="session" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="sidebar-upgrade" data-vars-link-text="Upgrade">Upgrade</a>
+							<a class="o-header__drawer-menu-link" amp-access="session" href="{{pspURL}}">Upgrade</a>
+						</li>
+						<li class="o-header__drawer-menu-item">
+							<a class="o-header__drawer-menu-link" amp-access="session" amp-access-hide href="http://markets.ft.com/data/portfolio/dashboard">Portfolio</a>
 						</li>
 					</ul>
 				</nav>
