@@ -6,7 +6,7 @@ const fs = require('fs-promise');
 module.exports = (req, res) => {
 	let data;
 
-	try {
+	try{
 		data = JSON.parse(req.query.data || {});
 	} catch(e) {
 		return res.status(400).end('Failed to parse JSON from "data" query param.');

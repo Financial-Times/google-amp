@@ -9,7 +9,7 @@
 
 	<!-- Match against relative links -->
 	<xsl:template match="a[starts-with(@href, '/content')]">
-		<a href="https://www.ft.com{@href}">
+		<a href="http://www.ft.com{@href}">
 			<xsl:apply-templates />
 		</a>
 	</xsl:template>
