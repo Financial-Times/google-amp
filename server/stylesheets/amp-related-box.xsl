@@ -36,7 +36,7 @@
 			<xsl:variable name="linkurl">
 				<xsl:choose>
 					<xsl:when test="$type = 'article' and current()[@url]">
-						<xsl:value-of select="concat('http://www.ft.com', substring(@url, string-length(@url) - 44))" />
+						<xsl:value-of select="concat('https://www.ft.com', substring(@url, string-length(@url) - 44))" />
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:if test="@url">
