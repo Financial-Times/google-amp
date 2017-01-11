@@ -1,81 +1,86 @@
-@include oColorsSetUseCase(author-colour-1, text, 'claret');
-@include oColorsSetUseCase(author-colour-2, text, 'blue');
-@include oColorsSetUseCase(author-colour-3, text, 'green');
+@if env(ENABLE_LIVE_BLOGS) == 'true' {
+	/* pru:startPreserve(liveBlogs) */
+	@include oColorsSetUseCase(author-colour-1, text, 'claret');
+	@include oColorsSetUseCase(author-colour-2, text, 'blue');
+	@include oColorsSetUseCase(author-colour-3, text, 'green');
 
-.live-blog--message {
-	margin: 0 -1em;
-	padding: 1em;
-	border-bottom: 1px solid oColorsGetPaletteColor('pink-tint2');
-}
-
-.live-blog--author {
-	@include oTypographySansBold(s);
-}
-
-@for $i from 1 through 3 {
-	.live-blog--author-colour-#{$i} {
-		@include oColorsFor(author-colour-#{$i}, text);
+	.live-blog--message {
+		margin: 0 -1em;
+		padding: 1em;
+		border-bottom: 1px solid oColorsGetPaletteColor('pink-tint2');
 	}
-}
 
-.live-blog {
-	// contain the update banner so it appears above the mobilesafari toolbar
-	overflow: hidden;
-}
-
-.live-blog .live-blog--update-banner {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	text-align: center;
-	padding: 10px;
-	background: rgba(oColorsGetColorFor(o-footer-dark, background), 0.8);
-}
-
-.live-blog--update-button {
-	@include oButtons(big, standout);
-}
-
-.live-blog--time {
-	@include oTypographySans(xs);
-}
-
-.live-blog--status {
-	@include oTypographySansBold(xs);
-	@include oLabels();
-	vertical-align: middle;
-}
-
-.live-blog--status-pending {
-	@include oLabelsState(pending);
-}
-
-.live-blog--status-inprogress {
-	@include oLabelsState(live);
-}
-
-.live-blog--status-closed {
-	@include oLabelsState(closed);
-}
-
-.amp-live-list-item-new {
-	animation: amp-live-list-item-highlight 5s ease-in;
-}
-
-// specifity to override .article's oTypographyBodyWrapper
-.article .article-liveblogs-excerpt {
-	&, p, ol, ul {
-		@include oTypographySans(s);
+	.live-blog--author {
+		@include oTypographySansBold(s);
 	}
-}
 
-@keyframes amp-live-list-item-highlight {
-	0% {
-		$faded-orange: rgba(oColorsGetPaletteColor('orange'), 0.5);
-		background: $faded-orange;
+	@for $i from 1 through 3 {
+		.live-blog--author-colour-#{$i} {
+			@include oColorsFor(author-colour-#{$i}, text);
+		}
 	}
-	100% {
-		background: transparent;
+
+	.live-blog {
+		// contain the update banner so it appears above the mobilesafari toolbar
+		overflow: hidden;
 	}
+
+	.live-blog .live-blog--update-banner {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		text-align: center;
+		padding: 10px;
+		background: rgba(oColorsGetColorFor(o-footer-dark, background), 0.8);
+	}
+
+	.live-blog--update-button {
+		@include oButtons(big, standout);
+	}
+
+	.live-blog--time {
+		@include oTypographySans(xs);
+	}
+
+	.live-blog--status {
+		@include oTypographySansBold(xs);
+		@include oLabels();
+		vertical-align: middle;
+	}
+
+	.live-blog--status-pending {
+		@include oLabelsState(pending);
+	}
+
+	.live-blog--status-inprogress {
+		@include oLabelsState(live);
+	}
+
+	.live-blog--status-closed {
+		@include oLabelsState(closed);
+	}
+
+	.amp-live-list-item-new {
+		animation: amp-live-list-item-highlight 5s ease-in;
+	}
+
+	// specifity to override .article's oTypographyBodyWrapper
+	.article .article-liveblogs-excerpt {
+		&, p, ol, ul {
+			@include oTypographySans(s);
+		}
+	}
+
+	@keyframes amp-live-list-item-highlight {
+		0% {
+			$faded-orange: rgba(oColorsGetPaletteColor('orange'), 0.5);
+			background: $faded-orange;
+		}
+		100% {
+			background: transparent;
+		}
+	}
+
+	/* pru:endPreserve(liveBlogs) */
 }
