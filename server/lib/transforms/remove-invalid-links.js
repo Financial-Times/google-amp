@@ -30,7 +30,7 @@ module.exports = ($, options) => {
 	$('a').each((i, el) => {
 		const $el = $(el);
 
-		try {
+		try{
 			validate($el);
 		} catch(e) {
 			reportError(options.raven, e, {extra: {
