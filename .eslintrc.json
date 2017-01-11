@@ -16,8 +16,7 @@
 				"else": {"after": true},
 				"return": {"after": true},
 				"case": {"after": true},
-				"const": {"after": true},
-				"try": {"after": true}
+				"const": {"after": true}
 			}
 		}],
 		"max-len": [
