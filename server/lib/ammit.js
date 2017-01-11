@@ -20,7 +20,7 @@ module.exports = ({allocationId, sessionId, countryCodeTwoLetters, continentCode
 			'ft-allocation-id': allocationId,
 			'ft-ammit-country': countryCodeTwoLetters,
 			'ft-ammit-continent-code': continentCode,
-			referer,
+			'referer': referer,
 			'user-agent': userAgent,
 		},
 	})
