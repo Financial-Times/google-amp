@@ -16,9 +16,9 @@ describe('external image transform', function() {
 		).dom.to.equal(`<figure class="article-image article-image--center">
 			<div class="article-image__placeholder">
 				<amp-img alt=""
-					src="https://h2.ft.com/image/v1/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2Fa60ae24b-b87f-439c-bf1b-6e54946b4cf2.img?source=amp&amp;fit=scale-down&amp;width=600"
+					src="https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2Fa60ae24b-b87f-439c-bf1b-6e54946b4cf2.img?source=google-amp&amp;fit=scale-down&amp;width=600"
 					width="500"
-					height="281.6666666666667"
+					height="281.3786008230453"
 					layout="responsive"></amp-img>
 			</div>
 		</figure>`);
@@ -30,7 +30,7 @@ describe('external image transform', function() {
 				await transformBody('<img src="https://ftalphaville-wp.ft.com/wp-content/plugins/wp-plugin-ft-web-chat/img/emoticons/omg_smile.gif" class="emoticon webchat-emoticon-">')
 			).dom.to.equal(`<figure class="article-image article-image--emoticon">
 				<amp-img alt=""
-					src="https://h2.ft.com/image/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=amp&amp;fit=scale-down&amp;width=700"
+					src="https://image.webservices.ft.com/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=google-amp&amp;fit=scale-down&amp;width=700"
 					width="16" height="16"
 					layout="fixed"></amp-img>
 			</figure>`);
@@ -42,7 +42,7 @@ describe('external image transform', function() {
 					<img src="https://ftalphaville-wp.ft.com/wp-content/plugins/wp-plugin-ft-web-chat/img/emoticons/omg_smile.gif" class="emoticon webchat-emoticon-">
 				</p>`)
 			).dom.to.equal(`<p><amp-img alt=""
-				src="https://h2.ft.com/image/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=amp&amp;fit=scale-down&amp;width=700"
+				src="https://image.webservices.ft.com/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=google-amp&amp;fit=scale-down&amp;width=700"
 				width="16" height="16"
 				layout="fixed"></amp-img></p>`);
 		});
@@ -57,7 +57,7 @@ describe('external image transform', function() {
 			).dom.to.equal(`<p>
 				lorem ipsum
 				<amp-img alt=""
-					src="https://h2.ft.com/image/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=amp&amp;fit=scale-down&amp;width=700"
+					src="https://image.webservices.ft.com/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=google-amp&amp;fit=scale-down&amp;width=700"
 					width="16" height="16"
 					layout="fixed"></amp-img>
 				dolor sit amet

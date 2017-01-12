@@ -45,7 +45,7 @@
     "autoprefixer": "^6.3.3",
     "aws4": "^1.1.0",
     "bower": "^1.7.7",
-    "cheerio": "^0.19.0",
+    "cheerio": "^0.22.0",
     "chokidar": "^1.6.0",
     "cookie-parser": "^1.4.1",
     "css-byebye": "^1.0.1",

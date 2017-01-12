@@ -5,8 +5,22 @@ const fetchres = require('fetchres');
 const {STATUS_CODES: statusCodes} = require('http');
 const reportError = require('../report-error');
 const Warning = require('../warning');
+const url = require('url');
 const fetch = require('../wrap-fetch')(require('node-fetch'), {
 	tag: 'external-images',
+});
+
+const figureTransform = require('./figure');
+
+const imageServiceUrl = (uri, {mode, width} = {}) => url.format({
+	protocol: 'https',
+	hostname: 'image.webservices.ft.com',
+	pathname: `/v1/images/${mode}/${encodeURIComponent(uri)}`,
+	query: {
+		source: 'google-amp',
+		fit: 'scale-down',
+		width,
+	},
 });
 
 // See Sass variables
@@ -38,42 +52,35 @@ function getWidthAndRatio(metaUrl, options) {
 }
 
 module.exports = ($, options) => Promise.all($('img[src]').toArray().map(el => {
-		const $el = $(el);
-		const isAside = !!$el.parents('.c-box').length;
-		const matcher = /^https:\/\/image.webservices.ft.com\/v1\/images\/raw\/(.+)\?/;
-		const imageSrc = $el.attr('src');
-		const externalURI = (imageSrc.match(matcher) || [])[1];
+	const $el = $(el);
+	const isAside = !!$el.parents('.c-box').length;
+	const imageSrc = entities.decode($el.attr('src'));
 
-		if(externalURI) {
-		const ampImg = $('<amg-img>');
+	const ampImg = $('<amp-img>');
+	const metaUrl = imageServiceUrl(imageSrc, {mode: 'metadata'});
 
-			// Unescape any html entites
-			const externalURIEntitiesDecoded = entities.decode(externalURI);
-			const externalURIEncoded = encodeURIComponent(externalURIEntitiesDecoded);
-			const imageSrcEncoded = imageSrc.replace(externalURI, externalURIEncoded);
-
-		ampImg.attr('src', imageSrcEncoded);
-
-			const metaUrl = entities.decode(imageSrcEncoded).replace('raw', 'metadata');
-
-			return getWidthAndRatio(metaUrl, options)
-				.then(meta => {
-					const width = Math.min(maxColumnWidth, meta.width);
-					const height = width * meta.ratio;
+		return getWidthAndRatio(metaUrl, options)
+			.then(meta => {
+				const width = Math.min(maxColumnWidth, meta.width);
+				const height = width * meta.ratio;
+			const src = imageServiceUrl(imageSrc, {mode: 'raw', width: $el.attr('width') || 700});
 
 				ampImg.attr({
-						width,
-						height,
-					});
+					width,
+					height,
+				src,
+				alt: $el.attr('alt') || '',
+				layout: 'responsive',
+				'data-original-width': $el.attr('width'),
+				'data-original-height': $el.attr('height'),
+				'data-original-class': $el.attr('class'),
+				});
 
-					if(!isAside && width < minColumnWidth) {
-						// don't stretch narrow inline images to page width
+				if(!isAside && width < minColumnWidth) {
+					// don't stretch narrow inline images to page width
 					ampImg.attr('layout', 'fixed');
-					}
+				}
 
 				$el.replaceWith(ampImg);
-				});
-		}
-
-	return null;
-})).then(() => $);
+			});
+})).then(() => figureTransform($, options));
