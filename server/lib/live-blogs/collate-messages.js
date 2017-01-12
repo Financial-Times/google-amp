@@ -6,12 +6,12 @@ const values = require('lodash.values');
 const orderBy = require('lodash.orderby');
 
 module.exports = (events, options) => {
-	const {
-		msg = [],
-		editmsg: edits = [],
-		delete: deletes = [],
-		postSaved: postUpdates = [],
-	} = groupBy(events, 'event');
+	const groups = groupBy(events, 'event');
+
+	const msg = groups.msg || [];
+	const edits = groups.editmsg || [];
+	const deletes = groups.delete || [];
+	const postUpdates = groups.postSaved || [];
 
 	const messages = keyBy(msg.map(({data}) => data), 'mid');
 

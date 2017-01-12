@@ -48,10 +48,10 @@ bench:
 mocha-opts := --require async-to-gen/register --timeout 5000
 
 test: lint $(js-files) $(test-files-all)
-	mocha $(mocha-opts) $(test-files)
+	istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) $(test-files)
 
 unit-test: $(js-files) $(test-files-all)
-	mocha $(mocha-opts) -i --grep "amp validator" $(test-files)
+	istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) -i --grep "amp validator" $(test-files)
 
 test/amp-transform/%.js: server/stylesheets/main.xsl server/stylesheets/amp/%.xsl
 
