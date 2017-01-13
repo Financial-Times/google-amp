@@ -14,16 +14,11 @@ describe('blockquotes transform', () => {
 	});
 
 	it('should transform twitter link blockquotes to amp-twitter elements', async () => {
+		// example uuid b4284269-2951-3169-ab98-88c184da5e88
 		expect(
-			await transformBody(`<blockquote class="twitter-tweet">
-				<a href="https://twitter.com/user/1234">Tweet</a>
-			</blockquote>`)
-		).dom.to.equal('<amp-twitter width="600" height="250" layout="responsive" data-tweetid="1234"></amp-twitter>');
-	});
-
-	it('should transform bare twitter links to amp-twitter elements', async () => {
-		expect(
-			await transformBody('<a href="https://twitter.com/user/1234">Tweet</a>')
-		).dom.to.equal('<amp-twitter width="600" height="250" layout="responsive" data-tweetid="1234"></amp-twitter>');
+			await transformBody(`<blockquote class="n-content-blockquote n-content-blockquote--tweet twitter-tweet" data-tweet-id="699209637594267648">
+				<p>That 98-page Podemos programme for a government with the PSOE in one sentence: We don&apos;t want a government with the PSOE.</p>&#x2014; Tobias Buck (@TobiasBuckFT) <a href="https://twitter.com/TobiasBuckFT/status/699209637594267648">February 15, 2016</a>
+				</blockquote>`)
+		).dom.to.equal('<amp-twitter width="600" height="250" layout="responsive" data-tweetid="699209637594267648"></amp-twitter>');
 	});
 });

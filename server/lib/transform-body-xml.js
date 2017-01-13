@@ -24,8 +24,7 @@ const cheerioTransform = transformBody(
 module.exports = (body, {
 	brightcoveAccountId = process.env.BRIGHTCOVE_ACCOUNT_ID,
 	brightcovePlayerId = 'default',
-} = {}) =>
-	articleXsltTransform(body)
-		.then(replaceEllipses)
-		.then(removeLinkWhitespace)
-		.then(articleBody => cheerioTransform(articleBody, {brightcovePlayerId, brightcoveAccountId}));
+} = {}) => articleXsltTransform(body)
+	.then(replaceEllipses)
+	.then(removeLinkWhitespace)
+	.then(articleBody => cheerioTransform(articleBody, {brightcovePlayerId, brightcoveAccountId}));

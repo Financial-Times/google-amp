@@ -56,17 +56,6 @@ describe('external image transform', function() {
 			</figure>`);
 		});
 
-		it('should not wrap paragraph emoticons in figures', async () => {
-			expect(
-				await transformBody(`<p>
-					<img src="https://ftalphaville-wp.ft.com/wp-content/plugins/wp-plugin-ft-web-chat/img/emoticons/omg_smile.gif" class="emoticon webchat-emoticon-">
-				</p>`)
-			).dom.to.equal(`<p><amp-img alt=""
-				src="https://image.webservices.ft.com/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=google-amp&amp;fit=scale-down&amp;width=700"
-				width="16" height="16"
-				layout="fixed"></amp-img></p>`);
-		});
-
 		it('shouldn\'t move emoticons out of paragraphs with text', async () => {
 			expect(
 				await transformBody(`<p>
