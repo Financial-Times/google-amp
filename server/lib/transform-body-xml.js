@@ -6,7 +6,6 @@ const removeLinkWhitespace = require('./xml-transforms/remove-link-whitespace');
 const articleXsltTransform = require('./article-xslt');
 
 const cheerioTransform = transformBody(
-	require('./xml-transforms/fix-emoticons'),
 	require('./xml-transforms/external-images'),
 	require('./xml-transforms/trimmed-links'),
 	require('./xml-transforms/remove-styles'),

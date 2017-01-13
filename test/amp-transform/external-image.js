@@ -36,6 +36,26 @@ describe('external image transform', function() {
 			</figure>`);
 		});
 
+		it('should normalise emoticon urls', async () => {
+			expect(
+				await transformBody('<img src="https://ftalphaville.ft.com/wp-content/plugins/assanka_web_chat/img/emoticons/omg_smile.gif" class="emoticon webchat-emoticon-">')
+			).dom.to.equal(`<figure class="article-image article-image--emoticon">
+				<amp-img alt=""
+					src="https://image.webservices.ft.com/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=google-amp&amp;fit=scale-down&amp;width=700"
+					width="16" height="16"
+					layout="fixed"></amp-img>
+			</figure>`);
+
+			expect(
+				await transformBody('<img src="/wp-content/plugins/assanka_web_chat/img/emoticons/omg_smile.gif" class="emoticon webchat-emoticon-">')
+			).dom.to.equal(`<figure class="article-image article-image--emoticon">
+				<amp-img alt=""
+					src="https://image.webservices.ft.com/v1/images/raw/https%3A%2F%2Fftalphaville-wp.ft.com%2Fwp-content%2Fplugins%2Fwp-plugin-ft-web-chat%2Fimg%2Femoticons%2Fomg_smile.gif?source=google-amp&amp;fit=scale-down&amp;width=700"
+					width="16" height="16"
+					layout="fixed"></amp-img>
+			</figure>`);
+		});
+
 		it('should not wrap paragraph emoticons in figures', async () => {
 			expect(
 				await transformBody(`<p>

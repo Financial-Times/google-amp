@@ -54,7 +54,11 @@ function getWidthAndRatio(metaUrl, options) {
 module.exports = ($, options) => Promise.all($('img[src]').toArray().map(el => {
 	const $el = $(el);
 	const isAside = !!$el.parents('.c-box').length;
-	const imageSrc = entities.decode($el.attr('src'));
+	const imageSrc = entities.decode($el.attr('src')).replace(
+			/^(https?:\/\/ftalphaville.ft.com)?\/wp-content/,
+			'https://ftalphaville-wp.ft.com/wp-content'
+		)
+		.replace('assanka_web_chat', 'wp-plugin-ft-web-chat');
 
 	const ampImg = $('<amp-img>');
 	const metaUrl = imageServiceUrl(imageSrc, {mode: 'metadata'});
