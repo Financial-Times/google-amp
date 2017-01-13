@@ -3,7 +3,6 @@
 const transformBody = require('./transform-body');
 const replaceEllipses = require('./xml-transforms/replace-ellipses');
 const removeLinkWhitespace = require('./xml-transforms/remove-link-whitespace');
-// const articleXsltTransform = require('./article-xslt');
 
 const cheerioTransform = transformBody(
 	require('./xml-transforms/external-images'),
