@@ -3,7 +3,7 @@
 const transformBody = require('./transform-body');
 const replaceEllipses = require('./xml-transforms/replace-ellipses');
 const removeLinkWhitespace = require('./xml-transforms/remove-link-whitespace');
-const articleXsltTransform = require('./article-xslt');
+// const articleXsltTransform = require('./article-xslt');
 
 const cheerioTransform = transformBody(
 	require('./xml-transforms/external-images'),
@@ -24,7 +24,7 @@ const cheerioTransform = transformBody(
 module.exports = (body, {
 	brightcoveAccountId = process.env.BRIGHTCOVE_ACCOUNT_ID,
 	brightcovePlayerId = 'default',
-} = {}) => articleXsltTransform(body)
+} = {}) => Promise.resolve(body)
 	.then(replaceEllipses)
 	.then(removeLinkWhitespace)
 	.then(articleBody => cheerioTransform(articleBody, {brightcovePlayerId, brightcoveAccountId}));

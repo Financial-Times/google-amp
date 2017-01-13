@@ -38,5 +38,6 @@ module.exports = match({
 		img.removeAttr('data-original-class');
 
 		el.attr('class', `article-image article-image--${variation}`);
+		el.find('.n-content-image__caption').attr('class', 'article-image__caption');
 	},
 });
