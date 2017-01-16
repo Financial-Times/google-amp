@@ -3,27 +3,31 @@
 const {expect} = require('../utils/chai');
 const transformBody = require('../../server/lib/transform-body-xml');
 
-// Most of this transform is from next-article circa February 2016 so I'm just testing the bits we changed
-
 describe('related box transform', () => {
-	it('should convert api urls to absolute ft.com links', async () => {
+	it('should tranform next-related-box to old c-box markup', async () => {
 		expect(
-			await transformBody(`<ft-related type="http://www.ft.com/ontology/content/Article" url="http://api.ft.com/content/a3af7bb8-d63d-11e5-829b-8564e7528e54">
-				<headline>Should millennials save £800 a month into pension? Readers respond</headline>
-			</ft-related>`)
+			await transformBody(`<aside class="n-content-related-box" role="complementary">
+				<h3 class="n-content-related-box__title">
+					<span class="n-content-related-box__title-text">Special Report</span>
+				</h3>
+				<div class="n-content-related-box__headline">
+					<a href="http://www.ft.com/reports/future-of-the-renminbi">Future of the Renminbi</a>
+				</div>
+				<div class="n-content-related-box__content">
+					<p>The renminbi is at a pivotal moment. Not only is has it become a significant currency for world trade it is also about to be included in the IMF&#x2019;s basket of reserve currencies.</p>
+					<p><a href="http://www.ft.com/reports/future-of-the-renminbi">Read more</a></p>
+				</div>
+			</aside>`)
 		).dom.to.equal(`<aside class="c-box c-box--inline u-border--all" data-trackable="related-box" role="complementary">
 			<div class="c-box__title">
-				<div class="c-box__title-text u-background-color--pink">Related article</div>
+				<div class="c-box__title-text u-background-color--pink">Special Report</div>
 			</div>
 			<div class="aside--headline u-margin--left-right">
-				<a
-					data-trackable="link-headline"
-					href="https://www.ft.com/content/a3af7bb8-d63d-11e5-829b-8564e7528e54"
-					data-vars-link-destination="https://www.ft.com/content/a3af7bb8-d63d-11e5-829b-8564e7528e54"
-					data-vars-link-type="related-box"
-					data-vars-link-text="Should millennials save 800 a month into pension Readers respond">
-					Should millennials save £800 a month into pension? Readers respond
-				</a>
+				<a href="http://www.ft.com/reports/future-of-the-renminbi" data-vars-link-destination="http://www.ft.com/reports/future-of-the-renminbi" data-vars-link-type="related-box" data-vars-link-text="Future of the Renminbi">Future of the Renminbi</a>
+			</div>
+			<div class="aside--content u-margin--left-right">
+				<p>The renminbi is at a pivotal moment. Not only is has it become a significant currency for world trade it is also about to be included in the IMF’s basket of reserve currencies.</p>
+				<p><a href="http://www.ft.com/reports/future-of-the-renminbi" data-vars-link-destination="http://www.ft.com/reports/future-of-the-renminbi" data-vars-link-type="related-box" data-vars-link-text="Read more">Read more</a></p>
 			</div>
 		</aside>`);
 	});

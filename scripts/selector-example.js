@@ -61,19 +61,25 @@ Promise.all(testUUIDs.map(
 			if(result.html || result.xml) return result;
 		})))
 .then(results => results.filter(Boolean))
-.then(results => results.forEach(({uuid, title, html, xml}) => {
-	log.uuid(`${title} (${chalk.grey(uuid)})`);
-	if(html) {
-		log.html('html');
-		log.message(formatAndHighlight(html));
+.then(results => {
+	if(!results.length) {
+		throw new Error('nothing found');
 	}
-	if(xml) {
-		log.xml('xml');
-		log.message(formatAndHighlight(xml));
-	}
-	log.end('');
-	console.log();
-})).catch(err => {
+
+	results.forEach(({uuid, title, html, xml}) => {
+		log.uuid(`${title} (${chalk.grey(uuid)})`);
+		if(html) {
+			log.html('html');
+			log.message(formatAndHighlight(html));
+		}
+		if(xml) {
+			log.xml('xml');
+			log.message(formatAndHighlight(xml));
+		}
+		log.end('');
+		console.log();
+	});
+}).catch(err => {
 	log.error(err.message || err.toString());
 	if(err.stack) log.errorLine(err.stack.replace(err.message, ''));
 	console.log();

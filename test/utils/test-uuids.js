@@ -2,7 +2,7 @@
 
 module.exports = [
 	// test articles (more likely to fail, so test them earlier):
-	'3ee29f96-88e0-11e3-bb5f-00144feab7de',
+	// '3ee29f96-88e0-11e3-bb5f-00144feab7de', article has disappeared
 	// real articles:
 	'70d0bfd8-d1b3-11e5-831d-09f7778e7377',
 	'3559f46e-d9c5-11e5-98fd-06d75973fe09',
@@ -24,7 +24,7 @@ module.exports = [
 	'7333e92a-d4a2-11e5-829b-8564e7528e54',
 	'a354acc6-d1d6-11e5-831d-09f7778e7377',
 	'3614af26-d177-11e5-92a1-c5e23ef99c77',
-// 'e8813dd4-d00d-11e5-831d-09f7778e7377' temporarily disabled while we fix the image tag
+	// 'e8813dd4-d00d-11e5-831d-09f7778e7377', temporarily disabled while we fix the image tag
 	'1f707cd0-d408-11e5-8887-98e7feb46f27',
 	'0efb495a-d446-11e5-829b-8564e7528e54', // firstFT
 	'da44fb1c-d485-11e5-8887-98e7feb46f27',
