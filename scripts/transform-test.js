@@ -3,13 +3,13 @@
 'use strict';
 
 const fs = require('fs-promise');
-const transformBody = require('../server/lib/transform-body-xml');
 const chalk = require('chalk');
 const {clearScreen, cursorHide, cursorShow} = require('ansi-escapes');
 const {highlight} = require('emphasize');
 const {html: htmlBeautify} = require('js-beautify');
 const {watch} = require('chokidar');
 const monokai = require('@quarterto/emphasize-monokai-sheet');
+const requireUncached = require('require-uncached');
 
 const path = process.argv[2];
 
@@ -17,6 +17,8 @@ process.stdout.write(cursorHide);
 process.on('exit', () => process.stdout.write(cursorShow));
 
 const transformOutput = () => {
+	const transformBody = requireUncached('../server/lib/transform-body-xml');
+
 	fs.readFile(path, 'utf8')
 		.then(transformBody)
 		.then(html => {
@@ -36,6 +38,5 @@ const transformOutput = () => {
 };
 
 fs.watch(path, transformOutput);
-watch('./server/lib/xml-transforms').on('change', transformOutput);
-watch('./server/lib/html-transforms').on('change', transformOutput);
+watch('./server/lib').on('change', transformOutput);
 transformOutput();

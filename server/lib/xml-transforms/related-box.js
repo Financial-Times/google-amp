@@ -19,6 +19,12 @@ module.exports = match({
 		return $('<div class="c-box__title">').append(el.contents());
 	},
 
+	'.n-content-related-box__image-link'(el) {
+		el.attr('class', null);
+		el.attr('data-trackable', 'link-image');
+		el.wrap('<div class="aside--image">');
+	},
+
 	'.n-content-related-box'(el) {
 		el.attr('class', 'c-box c-box--inline u-border--all');
 		el.attr('data-trackable', 'related-box');

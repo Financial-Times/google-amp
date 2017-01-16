@@ -51,7 +51,10 @@ function getWidthAndRatio(metaUrl, options) {
 		);
 }
 
+console.error('\n==============================\n');
+
 module.exports = ($, options) => Promise.all($('img[src]').toArray().map(el => {
+	console.error('is it?', $.html(el));
 	const $el = $(el);
 	const isAside = !!$el.parents('.c-box').length;
 	const imageSrc = entities.decode($el.attr('src')).replace(
@@ -63,28 +66,30 @@ module.exports = ($, options) => Promise.all($('img[src]').toArray().map(el => {
 	const ampImg = $('<amp-img>');
 	const metaUrl = imageServiceUrl(imageSrc, {mode: 'metadata'});
 
-		return getWidthAndRatio(metaUrl, options)
-			.then(meta => {
-				const width = Math.min(maxColumnWidth, meta.width);
-				const height = width * meta.ratio;
+	return getWidthAndRatio(metaUrl, options)
+		.then(meta => {
+			console.error(meta);
+			const width = Math.min(maxColumnWidth, meta.width);
+			const height = width * meta.ratio;
 			const src = imageServiceUrl(imageSrc, {mode: 'raw', width: $el.attr('width') || 700});
 
-				ampImg.attr({
-					width,
-					height,
+			ampImg.attr({
+				width,
+				height,
 				src,
 				alt: $el.attr('alt') || '',
 				layout: 'responsive',
 				'data-original-width': $el.attr('width'),
 				'data-original-height': $el.attr('height'),
 				'data-original-class': $el.attr('class'),
-				});
-
-				if(!isAside && width < minColumnWidth) {
-					// don't stretch narrow inline images to page width
-					ampImg.attr('layout', 'fixed');
-				}
-
-				$el.replaceWith(ampImg);
 			});
+
+			if(!isAside && width < minColumnWidth) {
+				// don't stretch narrow inline images to page width
+				ampImg.attr('layout', 'fixed');
+			}
+
+			console.error($.html(ampImg))
+			$el.replaceWith(ampImg);
+		});
 })).then(() => figureTransform($, options));
