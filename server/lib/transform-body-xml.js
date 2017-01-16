@@ -16,6 +16,7 @@ const cheerioTransform = transformBody(
 	require('./xml-transforms/slideshow'),
 	require('./xml-transforms/interactive-graphics'),
 	require('./xml-transforms/related-box'),
+	require('./xml-transforms/info-box'),
 	require('./xml-transforms/content-links'),
 	require('./xml-transforms/link-analytics'),
 	require('./xml-transforms/remove-invalid-links')
