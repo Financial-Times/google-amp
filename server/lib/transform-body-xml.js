@@ -1,26 +1,45 @@
 'use strict';
 
-const transformBody = require('./transform-body');
+const {parallel, deps} = require('@quarterto/promise-deps-parallel');
 const replaceEllipses = require('./xml-transforms/replace-ellipses');
 const removeLinkWhitespace = require('./xml-transforms/remove-link-whitespace');
+const transformBody = require('./transform-body');
 
-const cheerioTransform = transformBody(
-	require('./xml-transforms/external-images'),
-	require('./xml-transforms/trimmed-links'),
-	require('./xml-transforms/remove-styles'),
-	require('./xml-transforms/insert-ad'),
-	require('./xml-transforms/light-signup'),
-	require('./xml-transforms/blockquotes'),
-	require('./xml-transforms/replace-tags-with-content'),
-	require('./xml-transforms/video'),
-	require('./xml-transforms/slideshow'),
-	require('./xml-transforms/interactive-graphics'),
-	require('./xml-transforms/related-box'),
-	require('./xml-transforms/info-box'),
-	require('./xml-transforms/content-links'),
-	require('./xml-transforms/link-analytics'),
-	require('./xml-transforms/remove-invalid-links')
-);
+const relatedBox = require('./xml-transforms/related-box');
+const externalImages = require('./xml-transforms/external-images');
+const trimmedLinks = require('./xml-transforms/trimmed-links');
+const removeStyles = require('./xml-transforms/remove-styles');
+const insertAd = require('./xml-transforms/insert-ad');
+const lightSignup = require('./xml-transforms/light-signup');
+const blockquotes = require('./xml-transforms/blockquotes');
+const replaceTagsWithContent = require('./xml-transforms/replace-tags-with-content');
+const video = require('./xml-transforms/video');
+const slideshow = require('./xml-transforms/slideshow');
+const interactiveGraphics = require('./xml-transforms/interactive-graphics');
+const infoBox = require('./xml-transforms/info-box');
+const contentLinks = require('./xml-transforms/content-links');
+const linkAnalytics = require('./xml-transforms/link-analytics');
+const removeInvalidLinks = require('./xml-transforms/remove-invalid-links');
+const figure = require('./xml-transforms/figure');
+
+const cheerioTransform = transformBody(parallel({
+	relatedBox: deps('externalImages')(relatedBox),
+	figure: deps('externalImages')(figure),
+	linkAnalytics: deps('contentLinks')(linkAnalytics),
+	removeInvalidLinks: deps('contentLinks', 'linkAnalytics')(removeInvalidLinks),
+	externalImages,
+	trimmedLinks,
+	removeStyles,
+	insertAd,
+	lightSignup,
+	blockquotes,
+	replaceTagsWithContent,
+	video,
+	slideshow,
+	interactiveGraphics,
+	infoBox,
+	contentLinks,
+}));
 
 module.exports = (body, {
 	brightcoveAccountId = process.env.BRIGHTCOVE_ACCOUNT_ID,

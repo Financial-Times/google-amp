@@ -10,7 +10,6 @@ const fetch = require('../wrap-fetch')(require('node-fetch'), {
 	tag: 'external-images',
 });
 
-const figureTransform = require('./figure');
 
 const imageServiceUrl = (uri, {mode, width} = {}) => url.format({
 	protocol: 'https',
@@ -52,9 +51,8 @@ function getWidthAndRatio(metaUrl, options) {
 }
 
 
-module.exports = ($, options) => Promise.all($('img[src]').toArray().map(el => {
-	console.error('\n==============================\n');
-	console.error('is it?', $.html(el));
+module.exports = ($, options) => Promise.all($('img[src]').map((i, el) => {
+	// console.error('\n==============================\n');
 	const $el = $(el);
 	const isAside = !!$el.parents('.c-box').length;
 	const imageSrc = entities.decode($el.attr('src')).replace(
@@ -68,7 +66,7 @@ module.exports = ($, options) => Promise.all($('img[src]').toArray().map(el => {
 
 	return getWidthAndRatio(metaUrl, options)
 		.then(meta => {
-			console.error(meta);
+			// console.error(meta);
 			const width = Math.min(maxColumnWidth, meta.width);
 			const height = width * meta.ratio;
 			const src = imageServiceUrl(imageSrc, {mode: 'raw', width: $el.attr('width') || 700});
@@ -89,7 +87,8 @@ module.exports = ($, options) => Promise.all($('img[src]').toArray().map(el => {
 				ampImg.attr('layout', 'fixed');
 			}
 
-			console.error($.html(ampImg))
+			// console.error($el.parent().length);
 			$el.replaceWith(ampImg);
+			// console.error($.html());
 		});
-})).then(() => figureTransform($, options));
+}).toArray());

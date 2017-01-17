@@ -2,10 +2,8 @@
 
 const cheerio = require('cheerio');
 
-module.exports = (...transforms) => (body, options) => {
+module.exports = transforms => (body, options) => {
 	const $ = cheerio.load(body, {decodeEntities: false});
 
-	return Promise.all(transforms.map(
-		transform => transform($, options)
-	)).then(() => $.html());
+	return transforms($, options).then(() => $.html());
 };
