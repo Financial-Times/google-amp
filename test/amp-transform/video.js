@@ -56,5 +56,14 @@ describe('video transform', () => {
 				layout="responsive"
 				width="480" height="270"></amp-youtube>`);
 		});
+
+		it('should transform youtube iframes', async () => {
+			expect(
+				await transformBody('<iframe frameborder="0" src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>')
+			).dom.to.equal(`<amp-youtube
+				data-videoid="dQw4w9WgXcQ"
+				layout="responsive"
+				width="480" height="270"></amp-youtube>`);
+		});
 	});
 });

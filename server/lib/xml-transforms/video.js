@@ -35,4 +35,10 @@ module.exports = match({
 	'div.video-container.video-container-youtube'(el) {
 		return youtube(el.find('[data-asset-ref]').data('asset-ref'));
 	},
+
+	'iframe[src^="https://www.youtube.com/embed/"]'(el) {
+		const {pathname} = url.parse(el.attr('src'));
+		const [, videoId] = pathname.match(/\/embed\/(.+)$/) || [];
+		return youtube(videoId);
+	},
 });
