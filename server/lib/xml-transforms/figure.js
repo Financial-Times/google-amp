@@ -33,10 +33,6 @@ module.exports = match({
 			img.wrap('<div class="article-image__placeholder">');
 		}
 
-		img.removeAttr('data-original-width');
-		img.removeAttr('data-original-height');
-		img.removeAttr('data-original-class');
-
 		el.attr('class', `article-image article-image--${variation}`);
 		el.find('.n-content-image__caption').attr('class', 'article-image__caption');
 	},
