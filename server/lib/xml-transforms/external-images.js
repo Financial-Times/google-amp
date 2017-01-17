@@ -27,6 +27,8 @@ const maxColumnWidth = 500;
 const pagePadding = 10;
 const minColumnWidth = 320 - (2 * pagePadding);
 
+const maxAsideWidth = 470;
+
 function getWidthAndRatio(metaUrl, options) {
 	return fetch(metaUrl)
 		.then(fetchres.json)
@@ -52,7 +54,7 @@ function getWidthAndRatio(metaUrl, options) {
 
 module.exports = ($, options) => Promise.all($('img[src]').map((i, el) => {
 	const $el = $(el);
-	const isAside = !!$el.parents('.c-box').length;
+	const isAside = !!$el.parents('.n-content-related-box').length;
 	const imageSrc = entities.decode($el.attr('src')).replace(
 			/^(https?:\/\/ftalphaville.ft.com)?\/wp-content/,
 			'https://ftalphaville-wp.ft.com/wp-content'
@@ -64,9 +66,9 @@ module.exports = ($, options) => Promise.all($('img[src]').map((i, el) => {
 
 	return getWidthAndRatio(metaUrl, options)
 		.then(meta => {
-			const width = Math.min(maxColumnWidth, meta.width);
+			const width = Math.min(isAside ? maxAsideWidth : maxColumnWidth, meta.width);
 			const height = width * meta.ratio;
-			const src = imageServiceUrl(imageSrc, {mode: 'raw', width: $el.attr('width') || 700});
+			const src = imageServiceUrl(imageSrc, {mode: 'raw', width});
 
 			ampImg.attr({
 				width,
