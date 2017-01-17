@@ -45,7 +45,7 @@ instrument-products:
 bench:
 	./scripts/bench.sh
 
-mocha-opts := --require async-to-gen/register --timeout 5000
+mocha-opts := --require async-to-gen/register
 
 test: lint $(js-files) $(test-files-all)
 	istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) $(test-files)

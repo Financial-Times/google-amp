@@ -6,7 +6,8 @@ const testUUIDs = require('../utils/test-uuids');
 const ampValidator = require('amphtml-validator');
 const {getAndRender} = require('../../server/controllers/amp-page');
 
-describe('amp validator', () => {
+describe('amp validator', function() {
+	this.timeout(10000);
 	let validator;
 
 	before(async () => {
