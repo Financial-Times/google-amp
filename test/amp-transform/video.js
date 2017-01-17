@@ -50,7 +50,7 @@ describe('video transform', () => {
 
 		it('should transform video-container divs', async () => {
 			expect(
-				await transformBody('<div class="video-container video-container-youtube"><div data-asset-ref="dQw4w9WgXcQ"></a></p>')
+				await transformBody('<div class="video-container video-container-youtube"><div data-asset-ref="dQw4w9WgXcQ"></div></div>')
 			).dom.to.equal(`<amp-youtube
 				data-videoid="dQw4w9WgXcQ"
 				layout="responsive"
