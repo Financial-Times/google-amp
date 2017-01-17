@@ -50,7 +50,6 @@ function getWidthAndRatio(metaUrl, options) {
 		);
 }
 
-
 module.exports = ($, options) => Promise.all($('img[src]').map((i, el) => {
 	const $el = $(el);
 	const isAside = !!$el.parents('.c-box').length;

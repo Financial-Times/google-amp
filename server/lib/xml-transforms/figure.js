@@ -29,10 +29,6 @@ module.exports = match({
 			variation = 'full';
 		}
 
-		if(width && height) {
-			img.wrap('<div class="article-image__placeholder">');
-		}
-
 		el.attr('class', `article-image article-image--${variation}`);
 		el.find('.n-content-image__caption').attr('class', 'article-image__caption');
 	},

@@ -22,13 +22,15 @@ const linkAnalytics = require('./xml-transforms/link-analytics');
 const removeInvalidLinks = require('./xml-transforms/remove-invalid-links');
 const figure = require('./xml-transforms/figure');
 const removeImageData = require('./xml-transforms/remove-image-data');
+const imagePlaceholder = require('./xml-transforms/image-placeholder');
 
 const cheerioTransform = transformBody(parallel({
 	relatedBox: deps('externalImages')(relatedBox),
 	figure: deps('externalImages')(figure),
 	linkAnalytics: deps('contentLinks', 'relatedBox')(linkAnalytics),
 	removeInvalidLinks: deps('contentLinks', 'linkAnalytics')(removeInvalidLinks),
-	removeImageData: deps('externalImages', 'relatedBox', 'figure')(removeImageData),
+	imagePlaceholder: deps('externalImages', 'relatedBox', 'figure')(imagePlaceholder),
+	removeImageData: deps('externalImages', 'relatedBox', 'figure', 'imagePlaceholder')(removeImageData),
 	externalImages,
 	trimmedLinks,
 	removeStyles,
