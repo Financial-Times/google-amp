@@ -32,4 +32,3 @@ fs.readFile(path, 'utf8')
 		);
 	})
 	.catch(e => console.error(`${chalk.red('✘')} ${e.stack || e.message || e}`));
-
