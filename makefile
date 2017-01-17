@@ -48,10 +48,10 @@ bench:
 mocha-opts := --require async-to-gen/register
 
 test: lint $(js-files) $(test-files-all)
-	istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) $(test-files)
+	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) $(test-files)
 
 unit-test: $(js-files) $(test-files-all)
-	istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) -i --grep "amp validator" $(test-files)
+	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) -i --grep "amp validator" $(test-files)
 
 test/amp-transform/%.js: server/stylesheets/main.xsl server/stylesheets/amp/%.xsl
 

@@ -130,6 +130,7 @@ function getAndRender(uuid, options) {
 
 module.exports = (req, res, next) => {
 	getAndRender(req.params.uuid, {
+		development: req.app.isDevelopment,
 		production: req.app.isServer,
 		raven: req.raven,
 		host: req.get('host'),
