@@ -51,9 +51,9 @@ function getWidthAndRatio(metaUrl, options) {
 		);
 }
 
-console.error('\n==============================\n');
 
 module.exports = ($, options) => Promise.all($('img[src]').toArray().map(el => {
+	console.error('\n==============================\n');
 	console.error('is it?', $.html(el));
 	const $el = $(el);
 	const isAside = !!$el.parents('.c-box').length;

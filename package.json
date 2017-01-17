@@ -14,7 +14,8 @@
     "bench": "make bench",
     "instrument-fetch": "make instrument",
     "heroku-config": "make .env -B",
-    "heroku-postbuild": "heroku-version-infer && package-version-sentry-release && package-version-github-release && make deploy-vcl"
+    "heroku-postbuild": "heroku-version-infer && package-version-sentry-release && package-version-github-release && make deploy-vcl",
+    "transform-test": "nodemon -q -w server scripts/transform-test.js"
   },
   "keywords": [
     "AMP",
@@ -46,7 +47,6 @@
     "aws4": "^1.1.0",
     "bower": "^1.7.7",
     "cheerio": "^0.22.0",
-    "chokidar": "^1.6.0",
     "cookie-parser": "^1.4.1",
     "css-byebye": "^1.0.1",
     "dotenv": "^2.0.0",
@@ -116,8 +116,7 @@
     "midna": "^1.3.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.8.1",
-    "prog-rock": "^1.2.1",
-    "require-uncached": "^1.0.3"
+    "prog-rock": "^1.2.1"
   },
   "repository": {
     "type": "git",
