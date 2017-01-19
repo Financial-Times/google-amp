@@ -7,7 +7,7 @@ const ampValidator = require('amphtml-validator');
 const {getAndRender} = require('../../server/controllers/amp-page');
 
 describe('amp validator', function() {
-	this.timeout(10000);
+	this.timeout(30000);
 	let validator;
 
 	before(async () => {
