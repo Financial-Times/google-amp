@@ -4,7 +4,7 @@ const {expect} = require('../utils/chai');
 const transformBody = require('../../server/lib/transform-body-xml');
 
 describe('blockquotes transform', () => {
-	it('should add classes and quotes', async () => {
+	it('should add classes and quotes to pullquotes', async () => {
 		expect(
 			await transformBody(`<blockquote class="n-content-pullquote">
 				<div class="n-content-pullquote__content">
@@ -20,6 +20,18 @@ describe('blockquotes transform', () => {
 					in new products</p>
 					<footer class="article__quote-footer">Mike Flewitt, chief executive</footer>
 				</div>
+			</blockquote>`);
+	});
+
+	it('should add classes to bare blockquotes', async () => {
+		expect(
+			await transformBody(`<blockquote>
+				<p>You couldn&#x2019;t just be a P1 company and generate the returns to keep investing
+					in new products</p>
+			</blockquote>`)
+			).dom.to.equal(`<blockquote class="article__quote article__quote--full-quote aside--content c-box u-border--left u-padding--left-right">
+				<p>You couldn&#x2019;t just be a P1 company and generate the returns to keep investing
+					in new products</p>
 			</blockquote>`);
 	});
 
