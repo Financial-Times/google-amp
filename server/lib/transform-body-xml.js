@@ -23,6 +23,7 @@ const removeInvalidLinks = require('./xml-transforms/remove-invalid-links');
 const figure = require('./xml-transforms/figure');
 const removeImageData = require('./xml-transforms/remove-image-data');
 const imagePlaceholder = require('./xml-transforms/image-placeholder');
+const subhead = require('./xml-transforms/subhead');
 
 const cheerioTransform = transformBody(parallel({
 	relatedBox: deps('externalImages')(relatedBox),
@@ -43,6 +44,7 @@ const cheerioTransform = transformBody(parallel({
 	interactiveGraphics,
 	infoBox,
 	contentLinks,
+	subhead,
 }));
 
 module.exports = (body, {
