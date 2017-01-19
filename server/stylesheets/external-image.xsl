@@ -108,7 +108,7 @@
 		</xsl:variable>
 
 		<div class="article-image__placeholder" >
-			<amp-img alt="{@alt}" src="https://h2.ft.com/image/v1/images/raw/{@src}?source=amp&amp;fit=scale-down&amp;width={$imageWidth}" width="{$imageWidth}" height="{$imageHeight}" layout="responsive" />
+			<amp-img alt="{@alt}" src="https://image.webservices.ft.com/v1/images/raw/{@src}?source=amp&amp;fit=scale-down&amp;width={$imageWidth}" width="{$imageWidth}" height="{$imageHeight}" layout="responsive" />
 		</div>
 	</xsl:template>
 
@@ -116,7 +116,7 @@
 	<xsl:template match="img" mode="dont-placehold-image">
 		<xsl:param name="maxWidth" />
 
-		<amp-img alt="{@alt}" src="https://h2.ft.com/image/v1/images/raw/{@src}?source=amp&amp;fit=scale-down&amp;width={$maxWidth}" width="{@width}" height="{@height}" layout="responsive" />
+		<amp-img alt="{@alt}" src="https://image.webservices.ft.com/v1/images/raw/{@src}?source=amp&amp;fit=scale-down&amp;width={$maxWidth}" width="{@width}" height="{@height}" layout="responsive" />
 	</xsl:template>
 
 </xsl:stylesheet>

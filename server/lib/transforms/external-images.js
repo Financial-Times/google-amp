@@ -42,7 +42,7 @@ module.exports = function externalImages($, options) {
 	return Promise.all($('amp-img[src]').map((index, el) => {
 		const $el = $(el);
 		const isAside = !!$el.parents('.c-box').length;
-		const matcher = /^https:\/\/h2.ft.com\/image\/v1\/images\/raw\/(.+)\?/;
+		const matcher = /^https:\/\/image.webservices.ft.com\/v1\/images\/raw\/(.+)\?/;
 		const imageSrc = $el.attr('src');
 		const externalURI = (imageSrc.match(matcher) || [])[1];
 
