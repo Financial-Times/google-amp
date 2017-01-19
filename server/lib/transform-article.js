@@ -9,7 +9,11 @@ const cheerio = require('cheerio');
 
 module.exports = (contentItem, options) => transformBody(contentItem.bodyHTML, options)
 	.then(transformedBody => {
-		contentItem.mainImageHtml = extractMainImage(cheerio.load(transformedBody), {decodeEntities: false});
+		const $ = cheerio.load(transformedBody, {decodeEntities: false});
+		contentItem.mainImageHtml = extractMainImage($);
+		return $.html();
+	})
+	.then(transformedBody => {
 		contentItem.htmlBody = transformedBody;
 		contentItem.displayDate = dateTransform(contentItem.publishedDate, {classname: 'article-date'});
 		contentItem.displaySummary = summaryTransform(contentItem);
