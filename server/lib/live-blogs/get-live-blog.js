@@ -68,7 +68,7 @@ module.exports = (article, options) => {
 	let results;
 	let pollInterval;
 
-	if(options.lastUpdate && liveblogCache[liveblogUrl]) {
+	if(options.lastUpdate && liveblogCache[liveblogUrl] && liveblogCache[liveblogUrl].data) {
 		clearTimeout(liveblogCache[liveblogUrl].pollStopTimeout);
 		results = liveblogCache[liveblogUrl].data;
 		pollInterval = liveblogCache[liveblogUrl].pollInterval;
