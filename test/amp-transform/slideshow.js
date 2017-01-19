@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transform-body-xml');
+const transformBody = require('../../server/lib/transform-body');
 
 describe('slideshow transform', () => {
 	it('should transform paragraphs that have a slideshow-looking link to ft-slideshow', async () => {

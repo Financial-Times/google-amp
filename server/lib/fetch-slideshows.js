@@ -1,6 +1,6 @@
 'use strict';
 
-const transformBody = require('./transform-body');
+const cheerioTransform = require('./cheerio-transform');
 const fetch = require('./wrap-fetch')(require('node-fetch'), {
 	tag: 'slideshows',
 });
@@ -8,7 +8,7 @@ const fetchres = require('fetchres');
 const reportError = require('./report-error');
 const Warning = require('./warning');
 
-const slideshowTransform = transformBody(require('./xml-transforms/slideshow'));
+const slideshowTransform = cheerioTransform(require('./transforms/slideshow'));
 
 const fetchSlideshow = uuid => fetch(`https://api.ft.com/content/items/v1/${uuid}?apiKey=${process.env.API_V1_KEY}`)
 .then(fetchres.json)

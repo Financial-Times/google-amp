@@ -3,8 +3,8 @@
 const dateTransform = require('./article-date');
 const summaryTransform = require('./article-summary');
 const schemaHeadlineTransform = require('./article-headline');
-const extractMainImage = require('./xml-transforms/extract-main-image');
-const transformBody = require('./transform-body-xml');
+const extractMainImage = require('./transforms/extract-main-image');
+const transformBody = require('./transform-body');
 const cheerio = require('cheerio');
 
 module.exports = (contentItem, options) => transformBody(contentItem.bodyHTML, options)

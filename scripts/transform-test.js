@@ -14,7 +14,7 @@ const path = process.argv[2];
 process.stdout.write(cursorHide);
 process.on('exit', () => process.stdout.write(cursorShow));
 
-const transformBody = require('../server/lib/transform-body-xml');
+const transformBody = require('../server/lib/transform-body');
 
 fs.readFile(path, 'utf8')
 	.then(transformBody)

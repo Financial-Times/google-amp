@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transform-body-xml');
+const transformBody = require('../../server/lib/transform-body');
 
 describe('related box transform', () => {
 	it('should tranform next-related-box to old c-box markup', async () => {

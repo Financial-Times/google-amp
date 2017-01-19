@@ -1,12 +1,12 @@
 'use strict';
 
-const transformBody = require('../transform-body');
+const cheerioTransform = require('../cheeerio-transform');
 const {parallel} = require('@quarterto/promise-deps-parallel');
 
-const externalImages = require('../xml-transforms/external-images');
-const blockquotes = require('../xml-transforms/blockquotes');
+const externalImages = require('../transforms/external-images');
+const blockquotes = require('../transforms/blockquotes');
 
-module.exports = transformBody(parallel({
+module.exports = cheerioTransform(parallel({
 	externalImages,
 	blockquotes,
 }));
