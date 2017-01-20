@@ -16,7 +16,7 @@ endif
 js-files = app.js $(shell find server -name '*.js')
 test-files = $(shell find test -name 'index.js')
 test-files-all = $(shell find test -name '*.js')
-lintspace-files = $(js-files) $(test-files-all) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html') $(wildcard server/stylesheets/*.xsl)
+lintspace-files = $(js-files) $(test-files-all) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html')
 
 HEROKU_CONFIG_OPTS = -i HEROKU_ -i NODE_ENV -l NODE_ENV=development
 HEROKU_CONFIG_APP = ft-google-amp-staging
@@ -52,8 +52,6 @@ test: lint $(js-files) $(test-files-all)
 
 unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) -i --grep "amp validator" $(test-files)
-
-test/amp-transform/%.js: server/stylesheets/main.xsl server/stylesheets/amp/%.xsl
 
 # heroku and fastly
 promote: merge-fixversions change-request deploy-vcl-prod heroku-promote
