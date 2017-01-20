@@ -1,10 +1,10 @@
 'use strict';
 
-const pkg = require('../../package.json');
+const pkg = require('../../../package.json');
 
 const wrappers = {
 	instrument: require('@quarterto/instrument-fetch'),
-	userAgent: require('./fetch-user-agent'),
+	userAgent: require('./user-agent'),
 };
 
 const defaults = require('lodash.defaults');

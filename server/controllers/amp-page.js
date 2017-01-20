@@ -1,13 +1,13 @@
 'use strict';
 
-const getArticle = require('../lib/get-article');
+const getArticle = require('../lib/article/get-article');
 const addStoryPackage = require('../lib/related-content/story-package');
 const addMoreOns = require('../lib/related-content/more-ons');
-const addPrimaryTheme = require('../lib/primary-theme');
-const renderArticle = require('../lib/render-article');
-const transformArticle = require('../lib/transform-article');
-const fetchSlideshows = require('../lib/fetch-slideshows');
-const transformSlideshows = require('../lib/transform-slideshows');
+const addPrimaryTheme = require('../lib/transforms/extra/primary-theme');
+const renderArticle = require('../lib/article/render-article');
+const transformArticle = require('../lib/transforms/article');
+const fetchSlideshows = require('../lib/article/fetch-slideshows');
+const transformSlideshows = require('../lib/transforms/slideshows');
 const isLiveBlog = require('../lib/live-blogs/is-live-blog');
 const getLiveBlog = require('../lib/live-blogs/get-live-blog');
 const url = require('../lib/url');

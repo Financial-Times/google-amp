@@ -1,11 +1,10 @@
 'use strict';
 
-const fetch = require('./wrap-fetch')(require('node-fetch'), {
+const fetch = require('./fetch/wrap')(require('node-fetch'), {
 	tag: 'ammit',
 });
 
 const {BadServerResponseError} = require('fetchres');
-
 
 module.exports = ({allocationId, sessionId, countryCodeTwoLetters, continentCode, referer, userAgent}) => {
 	if(process.env.BARRIER_AMMIT !== 'true') {

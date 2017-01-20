@@ -1,6 +1,6 @@
 'use strict';
 
-const fetch = require('../lib/wrap-fetch')(require('node-fetch'), {
+const fetch = require('../lib/fetch/wrap')(require('node-fetch'), {
 	tag: 'barrier-guru',
 });
 

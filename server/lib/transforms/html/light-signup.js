@@ -1,7 +1,7 @@
 'use strict';
 
 const url = require('url');
-const getViableParagraph = require('./get-viable-paragraph');
+const getViableParagraph = require('../utils/get-viable-paragraph');
 
 const formatLightSignupUrl = params => url.format(Object.assign(
 	url.parse(params.lightSignupUrl),

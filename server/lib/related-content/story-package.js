@@ -1,7 +1,7 @@
 'use strict';
 
-const getArticle = require('../get-article');
-const dateTransform = require('../article-date');
+const getArticle = require('../article/get-article');
+const dateTransform = require('../transforms/extra/date');
 const sanitizeImage = require('../sanitize-image');
 const url = require('../url');
 

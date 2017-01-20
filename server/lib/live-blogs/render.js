@@ -2,7 +2,7 @@
 
 const {XmlEntities: Entities} = require('html-entities');
 const collateMessages = require('./collate-messages');
-const dateTransform = require('../article-date');
+const dateTransform = require('../transforms/extra/date');
 
 const entities = new Entities();
 

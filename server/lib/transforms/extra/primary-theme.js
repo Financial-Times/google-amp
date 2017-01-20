@@ -1,6 +1,6 @@
 'use strict';
 
-const url = require('./url');
+const url = require('../../url');
 
 module.exports = (article, options) => {
 	const primaryTheme = (article.metadata || []).filter(item => !!item.primary)[0];

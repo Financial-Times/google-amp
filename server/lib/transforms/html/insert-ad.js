@@ -1,6 +1,6 @@
 'use strict';
 
-const getViableParagraph = require('./get-viable-paragraph');
+const getViableParagraph = require('../utils/get-viable-paragraph');
 
 const secondAdMinPosition = 8;
 const adMarkup = () => '<div class="ad-container"><amp-ad width="300" height="250" type="doubleclick"></amp-ad></div>';

@@ -1,14 +1,12 @@
 'use strict';
 
-const util = require('util');
-
-function Warning(message) {
-	this.message = message;
-	this.isWarning = true;
-	Error.call(this);
-	if(Error.captureStackTrace) Error.captureStackTrace(this, Warning);
+class Warning extends Error {
+	constructor(message) {
+		super(message);
+		this.message = message;
+		this.isWarning = true;
+		if(Error.captureStackTrace) Error.captureStackTrace(this, Warning);
+	}
 }
-
-util.inherits(Warning, Error);
 
 module.exports = Warning;

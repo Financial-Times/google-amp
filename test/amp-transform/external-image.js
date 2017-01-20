@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transform-body');
+const transformBody = require('../../server/lib/transforms/body');
 
 describe('external image transform', function() {
 	// image service can take a while

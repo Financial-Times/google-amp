@@ -1,7 +1,8 @@
 'use strict';
 
 const url = require('url');
-const reportError = require('../report-error');
+const reportError = require('../../report-error');
+const match = require('@quarterto/cheerio-match-multiple');
 
 const validProtocols = [
 	'ftp', 'http', 'https', 'mailto', 'fb-messenger', 'skype',
@@ -9,9 +10,7 @@ const validProtocols = [
 ];
 
 // See https://github.com/ampproject/amphtml/blob/master/validator/validator-main.protoascii
-const validate = $el => {
-	const href = $el.attr('href');
-
+const validateHref = href => {
 	// AMP links must have an href
 	if(!href) {
 		throw Error('Link with empty href');
@@ -26,19 +25,16 @@ const validate = $el => {
 	}
 };
 
-module.exports = ($, options) => {
-	$('a').each((i, el) => {
-		const $el = $(el);
-
+module.exports = match({
+	'a'(el, i, $, options) {
 		try{
-			validate($el);
+			validateHref(el.attr('href'));
 		} catch(e) {
 			reportError(options.raven, e, {extra: {
-				linkHtml: $.html($el),
+				linkHtml: $.html(el),
 			}});
-			$el.replaceWith($el.contents());
-		}
-	});
 
-	return $;
-};
+			el.replaceWith(el.contents());
+		}
+	},
+});

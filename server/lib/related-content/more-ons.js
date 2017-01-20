@@ -1,13 +1,13 @@
 'use strict';
 
 const api = require('next-ft-api-client');
-const dateTransform = require('../article-date');
+const dateTransform = require('../transforms/extra/date');
 const sanitizeImage = require('../sanitize-image');
 const url = require('../url');
 
 const moreOnCount = 5;
 
-const apiSearch = require('../wrap-fetch')(api.search, {
+const apiSearch = require('../fetch/wrap')(api.search, {
 	tag: 'api-search',
 });
 

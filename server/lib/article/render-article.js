@@ -6,8 +6,8 @@ const path = require('path');
 const promisify = require('@quarterto/promisify');
 const glob = promisify(require('glob'));
 const promiseAllObj = require('@quarterto/promise-all-object');
-const url = require('./url');
-const getCss = require('./get-css');
+const url = require('../url');
+const getCss = require('./css');
 const cacheIf = require('@quarterto/cache-if');
 
 const viewsPath = path.resolve('views');

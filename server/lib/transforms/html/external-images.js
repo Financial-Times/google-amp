@@ -3,10 +3,10 @@
 const {XmlEntities: entities} = require('html-entities');
 const fetchres = require('fetchres');
 const {STATUS_CODES: statusCodes} = require('http');
-const reportError = require('../report-error');
-const Warning = require('../warning');
+const reportError = require('../../report-error');
+const Warning = require('../../warning');
 const url = require('url');
-const fetch = require('../wrap-fetch')(require('node-fetch'), {
+const fetch = require('../../fetch/wrap')(require('node-fetch'), {
 	tag: 'external-images',
 });
 
