@@ -4,7 +4,6 @@ const {expect} = require('../utils/chai');
 const extractMainImage = require('../../server/lib/transforms/extract-main-image');
 const cheerio = require('cheerio');
 
-
 describe('main image transform', () => {
 	it('should remove and return main image that\'s a first child', () => {
 		const $ = cheerio.load('<figure class="article-image--full">image</figure><p>lorem ipsum dolor sit amet</p>');

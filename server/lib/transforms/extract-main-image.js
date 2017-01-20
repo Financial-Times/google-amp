@@ -5,7 +5,7 @@ module.exports = $ => {
 	const $firstMainImage = $('figure.article-image--full, figure.article-image--center, ft-slideshow').eq(0);
 
 	const exists = !!$firstMainImage.length;
-	const isFirstChild = $firstMainImage.is(':first-child');
+	const isFirstChild = !$firstMainImage.prev().length;
 	const hasNoParent = !$firstMainImage.parent().length;
 	const parentIsFirstChild = !$firstMainImage.parent().prev().length;
 
