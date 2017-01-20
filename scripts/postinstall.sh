@@ -3,4 +3,4 @@
 set -x -e
 
 bower install
-node -e "require('./server/lib/get-css.js').compileForProduction()"
+node -e "require('./server/lib/article/css.js').compileForProduction()"
