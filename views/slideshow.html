@@ -3,7 +3,7 @@
 	<amp-carousel type="slides" loop controls layout="responsive" width="{{width}}" height="{{height}}">
 		{{#each slides}}
 		<figure class="slideshow__slide">
-			<amp-img src="https://image.webservices.ft.com/v1/images/raw/{{url}}?source=amp" alt="{{alt}}" layout="responsive" width="{{width}}" height="{{height}}" on="tap:lightbox" role="button" tabindex="0"{{#if caption}} aria-describedby="{{uuid}}_{{index}}"{{/if}}></amp-img>
+			<amp-img src="https://www.ft.com/__origami/service/image/v2/images/raw/{{url}}?source=amp" alt="{{alt}}" layout="responsive" width="{{width}}" height="{{height}}" on="tap:lightbox" role="button" tabindex="0"{{#if caption}} aria-describedby="{{uuid}}_{{index}}"{{/if}}></amp-img>
 			{{#if caption}}
 			<div class="slideshow__caption">
 				<amp-fit-text layout="fixed-height" height="30" min-font-size="16" max-font-size="16">
