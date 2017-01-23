@@ -1,5 +1,6 @@
 'use strict';
-module.exports = (image) => {
+
+module.exports = image => {
 	if(!image) return null;
 
 	return {

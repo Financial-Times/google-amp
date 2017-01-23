@@ -1,6 +1,6 @@
 'use strict';
 
-const fetch = require('../wrap-fetch')(require('node-fetch'), {
+const fetch = require('../fetch/wrap')(require('node-fetch'), {
 	tag: 'live-blogs',
 });
 
@@ -68,7 +68,7 @@ module.exports = (article, options) => {
 	let results;
 	let pollInterval;
 
-	if(options.lastUpdate && liveblogCache[liveblogUrl]) {
+	if(options.lastUpdate && liveblogCache[liveblogUrl] && liveblogCache[liveblogUrl].data) {
 		clearTimeout(liveblogCache[liveblogUrl].pollStopTimeout);
 		results = liveblogCache[liveblogUrl].data;
 		pollInterval = liveblogCache[liveblogUrl].pollInterval;
@@ -85,7 +85,7 @@ module.exports = (article, options) => {
 	};
 
 	return Promise.resolve(results).then(data => {
-		if(options.lastUpdate) {
+		if(options.lastUpdate && liveblogCache[liveblogUrl]) {
 			liveblogCache[liveblogUrl].data = data;
 		}
 

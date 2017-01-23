@@ -2,11 +2,11 @@
 
 const {XmlEntities: Entities} = require('html-entities');
 const collateMessages = require('./collate-messages');
-const dateTransform = require('../article-date');
+const dateTransform = require('../transforms/extra/date');
 
 const entities = new Entities();
 
-const renderMessage = (data) => `<div
+const renderMessage = data => `<div
 id="live-blog-message-${data.mid}"
 data-sort-time="${data.emb}"
 data-update-time="${data.datemodified}"
@@ -37,7 +37,7 @@ module.exports = (article, {catchup, meta, config}, options) => {
 	})[meta.status];
 
 	article.isLiveBlog = true;
-	article.bodyXML = `<amp-live-list
+	article.bodyHTML = `<amp-live-list
 		class="live-blog"
 		id="live-blog-${article.id}"
 		data-max-items-per-page="2000"

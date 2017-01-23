@@ -1,4 +1,5 @@
 'use strict';
+
 const gif = new Buffer('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64');
 const path = require('path');
 const fs = require('fs-promise');
