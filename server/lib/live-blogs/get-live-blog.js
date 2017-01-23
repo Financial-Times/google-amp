@@ -85,7 +85,7 @@ module.exports = (article, options) => {
 	};
 
 	return Promise.resolve(results).then(data => {
-		if(options.lastUpdate) {
+		if(options.lastUpdate && liveblogCache[liveblogUrl]) {
 			liveblogCache[liveblogUrl].data = data;
 		}
 
