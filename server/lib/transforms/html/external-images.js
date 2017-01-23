@@ -10,16 +10,14 @@ const fetch = require('../../fetch/wrap')(require('node-fetch'), {
 	tag: 'external-images',
 });
 
-
 const imageServiceUrl = (uri, {mode, width} = {}) => url.format({
 	protocol: 'https',
-	hostname: 'image.webservices.ft.com',
-	pathname: `/v1/images/${mode}/${encodeURIComponent(uri)}`,
-	query: {
+	hostname: 'www.ft.com',
+	pathname: `/__origami/service/image/v2/images/${mode}/${encodeURIComponent(uri)}`,
+	query: Object.assign({
 		source: 'google-amp',
 		fit: 'scale-down',
-		width,
-	},
+	}, width ? {width} : {}),
 });
 
 // See Sass variables
