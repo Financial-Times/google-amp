@@ -1,6 +1,7 @@
 'use strict';
 
 const match = require('@quarterto/cheerio-match-multiple');
+const apply = require('@quarterto/cheerio-apply');
 const url = require('url');
 
 const youtube = videoId => `<amp-youtube
@@ -23,8 +24,8 @@ module.exports = match({
 		</amp-brightcove>`;
 	},
 
-	'p:has(a[href*="youtube.com/watch"]:empty)'(el) {
-		return this['a[href*="youtube.com/watch"]:empty'](el.find('a[href*="youtube.com/watch"]'));
+	'p:has(a[href*="youtube.com/watch"]:only-child:empty)'(el) {
+		return apply(this, 'a[href*="youtube.com/watch"]:empty', el);
 	},
 
 	'a[href*="youtube.com/watch"]:empty'(el) {
