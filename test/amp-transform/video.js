@@ -20,6 +20,15 @@ describe('video transform', () => {
 		</amp-brightcove>`);
 	});
 
+	it('should leave non-empty video links alone', async () => {
+		expect(
+			await transformBody('<a href="http://video.ft.com/video-id">hello</a>')
+		).dom.to.equal(`<a href="http://video.ft.com/video-id"
+			data-vars-link-destination="http://video.ft.com/video-id"
+			data-vars-link-type="inline"
+			data-vars-link-text="hello">hello</a>`);
+	});
+
 	describe('youtube', () => {
 		it('should transform youtube.com/watch links to amp-youtube', async () => {
 			expect(
@@ -28,6 +37,15 @@ describe('video transform', () => {
 				data-videoid="dQw4w9WgXcQ"
 				layout="responsive"
 				width="480" height="270"></amp-youtube>`);
+		});
+
+		it('should leave non-empty youtube links alone', async () => {
+			expect(
+				await transformBody('<a href="http://youtube.com/watch?v=dQw4w9WgXcQ">hello</a>')
+			).dom.to.equal(`<a href="http://youtube.com/watch?v=dQw4w9WgXcQ"
+			data-vars-link-destination="http://youtube.com/watch?v=dQw4w9WgXcQ"
+			data-vars-link-type="inline"
+			data-vars-link-text="hello">hello</a>`);
 		});
 
 		it('should transform youtube.com/watch links and unwrap paragraph', async () => {
