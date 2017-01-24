@@ -87,7 +87,7 @@ module.exports = (data, options) => promiseAllObj({
 	template: getTemplate(options.production),
 	partials: getPartials(options.production),
 	css: getCss(options.production),
-	description: data.summaries ? data.summaries[0] : '',
+	description: data.standfirst,
 	authorList: getAuthors(data),
 	byline: getByline(data, options),
 	mainImage: getMainImage(data),

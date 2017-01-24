@@ -16,7 +16,7 @@ const formatRelatedContent = (options, item) => {
 			url: url.external(item.id),
 			title: item.title,
 			image: sanitizeImage(item.mainImage),
-			summary: Array.isArray(item.summaries) ? item.summaries[0] : null,
+			summary: item.standfirst,
 			theme: {
 				url: streamUrl,
 				name: primaryTheme.prefLabel,

@@ -12,5 +12,5 @@ const validateHeadline = text => {
 
 module.exports = contentItem =>
 	validateHeadline(contentItem.title) ||
-	validateHeadline(contentItem.displaySummary) ||
+	validateHeadline(contentItem.standfirst) ||
 	'Financial Times';
