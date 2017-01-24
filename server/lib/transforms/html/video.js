@@ -10,7 +10,7 @@ const youtube = videoId => `<amp-youtube
 </amp-youtube>`;
 
 module.exports = match({
-	'a[href^="http://video.ft.com/"]'(el, i, $, {brightcoveAccountId, brightcovePlayerId} = {}) {
+	'a[href^="http://video.ft.com/"]:empty'(el, i, $, {brightcoveAccountId, brightcovePlayerId} = {}) {
 		const [, videoId] = el.attr('href').match(/http:\/\/video.ft.com\/(.+)$/);
 
 		return `<amp-brightcove
@@ -23,11 +23,11 @@ module.exports = match({
 		</amp-brightcove>`;
 	},
 
-	'p:has(a[href*="youtube.com/watch"])'(el) {
-		return this['a[href*="youtube.com/watch"]'](el.find('a[href*="youtube.com/watch"]'));
+	'p:has(a[href*="youtube.com/watch"]:empty)'(el) {
+		return this['a[href*="youtube.com/watch"]:empty'](el.find('a[href*="youtube.com/watch"]'));
 	},
 
-	'a[href*="youtube.com/watch"]'(el) {
+	'a[href*="youtube.com/watch"]:empty'(el) {
 		const {query: {v: videoId}} = url.parse(el.attr('href'), true);
 		return youtube(videoId);
 	},
