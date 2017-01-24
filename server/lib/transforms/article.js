@@ -1,7 +1,6 @@
 'use strict';
 
 const dateTransform = require('./extra/date');
-const summaryTransform = require('./extra/summary');
 const schemaHeadlineTransform = require('./extra/schema-headline');
 const extractMainImage = require('./extra/extract-main-image');
 const transformBody = require('./body');
@@ -16,7 +15,6 @@ module.exports = (contentItem, options) => transformBody(contentItem.bodyHTML, o
 	.then(transformedBody => {
 		contentItem.htmlBody = transformedBody;
 		contentItem.displayDate = dateTransform(contentItem.publishedDate, {classname: 'article-date'});
-		contentItem.displaySummary = summaryTransform(contentItem);
 		contentItem.schemaHeadline = schemaHeadlineTransform(contentItem);
 		return contentItem;
 	});

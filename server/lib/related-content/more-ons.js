@@ -20,7 +20,7 @@ const addArticles = metadatum => apiSearch({
 		'id',
 		'title',
 		'metadata',
-		'summaries',
+		'standfirst',
 		'mainImage',
 		'publishedDate',
 	],
@@ -31,7 +31,7 @@ const addArticles = metadatum => apiSearch({
 				id: article.id,
 				url: url.external(article.id),
 				title: article.title,
-				summary: Array.isArray(article.summaries) ? article.summaries[0] : null,
+				summary: article.standfirst,
 				image: sanitizeImage(article.mainImage),
 			}))
 	)
