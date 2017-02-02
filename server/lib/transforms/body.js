@@ -52,10 +52,7 @@ const transformBody = cheerioTransform(parallel({
 	subhead,
 }));
 
-module.exports = (body, {
-	brightcoveAccountId = process.env.BRIGHTCOVE_ACCOUNT_ID,
-	brightcovePlayerId = 'default',
-} = {}) => Promise.resolve(body)
+module.exports = (body, options = {}) => Promise.resolve(body)
 	.then(replaceEllipses)
 	.then(removeLinkWhitespace)
-	.then(articleBody => transformBody(articleBody, {brightcovePlayerId, brightcoveAccountId}));
+	.then(articleBody => transformBody(articleBody, options));
