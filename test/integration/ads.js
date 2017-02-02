@@ -3,7 +3,6 @@
 const {expect} = require('../utils/chai');
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
-const cheerio = require('cheerio');
 
 const getArticleStub = sinon.stub();
 
@@ -17,8 +16,8 @@ describe('ads', () => {
 	it('should be inserted if enableAds is set in controller', async () => {
 		getArticleStub.withArgs('72402230-e6db-11e6-967b-c88452263daf').returns(Promise.resolve(fixture));
 
-		const content = await getAndRender('72402230-e6db-11e6-967b-c88452263daf', {enableAds: true});
-		const $ = cheerio.load(content);
-		expect($('amp-ad')).to.have.length.above(0);
+		expect(
+			await getAndRender('72402230-e6db-11e6-967b-c88452263daf', {enableAds: true})
+		).to.have.selector('amp-ad');
 	});
 });
