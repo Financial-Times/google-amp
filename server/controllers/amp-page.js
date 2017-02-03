@@ -141,6 +141,8 @@ module.exports = (req, res, next) => {
 		accessMockLoggedIn: req.cookies['amp-access-mock-logged-in'],
 		accessMockFcf: req.cookies['amp-access-mock-fcf'],
 		accessMockPreventAccess: req.cookies['amp-access-mock-no-access'],
+		brightcoveAccountId: process.env.BRIGHTCOVE_ACCOUNT_ID,
+		brightcovePlayerId: 'default',
 		lightSignupUrl: process.env.LIGHT_SIGNUP_URL || 'https://distro-light-signup-prod.herokuapp.com',
 		lightSignupProduct: encodeURIComponent(lightSignupProduct),
 		lightSignupMailinglist: encodeURIComponent(lightSignupMailinglist),
