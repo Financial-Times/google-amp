@@ -12,6 +12,7 @@ const isLiveBlog = require('../lib/live-blogs/is-live-blog');
 const getLiveBlog = require('../lib/live-blogs/get-live-blog');
 const url = require('../lib/url');
 const analytics = require('../lib/analytics');
+const segmentArticle = require('../lib/article/segment');
 
 const errors = require('http-errors');
 const fetchres = require('fetchres');
@@ -122,6 +123,8 @@ function getAndRender(uuid, options) {
 			article.analyticsConfig = options.analyticsConfig;
 
 			article.barrierListEndpoint = options.production ? '/products' : `//${options.host}/products`;
+
+			article.visibilityOptIn = segmentArticle(article);
 
 			return article;
 		})
