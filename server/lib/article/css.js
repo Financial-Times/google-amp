@@ -6,6 +6,8 @@ const renderScss = require('@quarterto/promisify')(scss.render);
 const sassEnv = require('@quarterto/sass-env');
 const sassFunctions = require('@quarterto/sass-functions');
 const path = require('path');
+const Warning = require('../warning');
+const reportError = require('../report-error');
 
 const scssPath = path.resolve('scss');
 const bowerPath = path.resolve('bower_components');
@@ -35,21 +37,27 @@ const compileCss = ({html, preserveFlags}) => renderScss({
 ]).process(css))
 .then(compiled => compiled.toString());
 
-module.exports = (options) => {
+module.exports = (options, article) => {
 	const start = Date.now();
 	return compileCss(options)
 		.then(css => {
 			const time = Date.now() - start;
 			const bundleSize = `Compiled CSS bundle is ${css.length}`;
-			const ampUrl = 'https://www.ampproject.org/docs/reference/spec.html#maximum-size';
-			const ampLimit = `the AMP limit of 50,000 bytes: ${ampUrl}`;
+			const ampLimit = 'the AMP limit of 50,000 bytes.';
 
-			if(css.length > 50000) {
-				console.error(`WARNING: ${bundleSize}, more than ${ampLimit}. Took ${time}ms`);
-			} else if(css.length > 45000) {
-				console.error(`WARNING: ${bundleSize}, approaching ${ampLimit}. Took ${time}ms`);
-			} else {
-				console.log(`NOTICE: ${bundleSize} bytes. Took ${time}ms`);
+			if(css.length > 45000) {
+				const exceeding = css.length > 50000;
+				const err = new (exceeding ? Error : Warning)(
+					`${bundleSize}, ${exceeding ? 'exceeding' : 'approaching'} ${ampLimit}.`
+				);
+
+				reportError(options.raven, err, {extra: {
+					articleUUID: article.id,
+					cssTime: time,
+					cssSize: css.length,
+				}});
+			} else if(options.development) {
+				console.log(`Notice: ${bundleSize}. Took ${time}ms`);
 			}
 
 			return css;
