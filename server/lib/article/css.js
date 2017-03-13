@@ -64,10 +64,11 @@ module.exports = (options, article) => {
 	const start = Date.now();
 	return Promise.resolve(options.production ? cacheIf.always(readFeatureCSS) : compileFeatureCSS())
 		.then(features => {
-			const bundledCSS = selectFeatures(features, {
+			const enabledFeatures = {
 				base: true,
-			}).join('\n');
+			};
 
+			const bundledCSS = selectFeatures(features, enabledFeatures).join('\n');
 			const {css} = csso.minify(bundledCSS);
 
 			const time = Date.now() - start;
@@ -84,6 +85,7 @@ module.exports = (options, article) => {
 					articleUUID: article.id,
 					cssTime: time,
 					cssSize: css.length,
+					features: enabledFeatures,
 				}});
 			} else if(options.development) {
 				console.log(`Notice: ${bundleSize}. Took ${time}ms`);
