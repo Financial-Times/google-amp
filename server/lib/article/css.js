@@ -72,7 +72,7 @@ module.exports = (options, article) => {
 			const {css} = csso.minify(bundledCSS);
 
 			const time = Date.now() - start;
-			const ampLimit = 'the AMP limit of 50,000 bytes.';
+			const ampLimit = 'the AMP limit of 50KB';
 			const bundleSize = `Compiled CSS bundle is ${css.length}`;
 
 			if(css.length > 45000) {
