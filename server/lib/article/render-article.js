@@ -91,7 +91,6 @@ module.exports = (data, options) => promiseAllObj({
 	authorList: getAuthors(data),
 	byline: getByline(data, options),
 	mainImage: getMainImage(data),
-
 }).then(t => {
 	const body = t.body(Object.assign(data, t));
 	return getCss(

@@ -3,8 +3,10 @@
 const postCss = require('postcss');
 const scss = require('node-sass');
 const renderScss = require('@quarterto/promisify')(scss.render);
-const sassEnv = require('@quarterto/sass-env');
 const sassFunctions = require('@quarterto/sass-functions');
+const sassEnv = require('@quarterto/sass-env');
+const sassFlag = require('@quarterto/sass-flag');
+const featureMatrix = require('@quarterto/feature-matrix');
 const path = require('path');
 const Warning = require('../warning');
 const reportError = require('../report-error');
@@ -19,27 +21,33 @@ const discardEmpty = require('postcss-discard-empty');
 const removeUnused = require('postcss-remove-unused');
 const csso = require('postcss-csso');
 
-const compileCss = ({html, preserveFlags}) => renderScss({
+const featureList = [
+	'test',
+	'test2',
+];
+
+const compileCss = features => renderScss({
 	file: path.join(scssPath, 'style.scss'),
 	includePaths: [scssPath, bowerPath],
-	functions: sassFunctions(sassEnv),
+	functions: sassFunctions(sassEnv, sassFlag(features)),
 })
 .then(({css}) => postCss([
 	autoprefixer({browsers: 'last 2 versions'}),
 	removeImportant,
 	inlineSvg,
-	removeUnused({
-		html: `<html><body>${html}</body></html>`,
-		preserveFlags,
-	}),
 	discardEmpty,
 	csso,
 ]).process(css))
 .then(compiled => compiled.toString());
 
+const featureCSS = featureMatrix(featureList, compileCss);
+
 module.exports = (options, article) => {
 	const start = Date.now();
-	return compileCss(options)
+	return featureCSS({
+		test: article.id[0] === 'd',
+		test2: article.id[0] === '9',
+	})
 		.then(css => {
 			const time = Date.now() - start;
 			const bundleSize = `Compiled CSS bundle is ${css.length}`;

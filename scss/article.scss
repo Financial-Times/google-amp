@@ -144,3 +144,11 @@ abbr[title] {
 }
 
 /* pru:endPreserve(article) */
+
+@if flag(test) {
+	body:before { content: "test" }
+}
+
+@if flag(test2) {
+	body:before { content: "test2" }
+}
