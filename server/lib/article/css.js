@@ -1,57 +1,78 @@
 'use strict';
 
+const cacheIf = require('@quarterto/cache-if');
 const postCss = require('postcss');
 const scss = require('node-sass');
 const renderScss = require('@quarterto/promisify')(scss.render);
 const sassFunctions = require('@quarterto/sass-functions');
 const sassEnv = require('@quarterto/sass-env');
-const sassFlag = require('@quarterto/sass-flag');
-const featureMatrix = require('@quarterto/feature-matrix');
+const fs = require('fs-promise');
+const mkdirp = require('mkdirp-promise');
 const path = require('path');
 const Warning = require('../warning');
 const reportError = require('../report-error');
+const promiseAllObject = require('@quarterto/promise-all-object');
+const selectFeatures = require('@quarterto/select-features');
 
 const scssPath = path.resolve('scss');
 const bowerPath = path.resolve('bower_components');
+const cssPath = path.resolve('css');
+const cssFile = entry => `${cssPath}/${entry}.css`;
+const readCompiledCss = ({entry}) => fs.readFile(cssFile(entry), 'utf8');
 
 const autoprefixer = require('autoprefixer');
 const removeImportant = require('@georgecrawford/postcss-remove-important');
 const inlineSvg = require('postcss-inline-svg');
 const discardEmpty = require('postcss-discard-empty');
-const removeUnused = require('postcss-remove-unused');
-const csso = require('postcss-csso');
 
-const featureList = [
-	'test',
-	'test2',
-];
+const csso = require('csso');
 
-const compileCss = features => renderScss({
-	file: path.join(scssPath, 'style.scss'),
+const compileCss = ({entry, html} = {}) => renderScss({
+	file: path.join(scssPath, `${entry}.scss`),
 	includePaths: [scssPath, bowerPath],
-	functions: sassFunctions(sassEnv, sassFlag(features)),
+	functions: sassFunctions(sassEnv),
 })
 .then(({css}) => postCss([
 	autoprefixer({browsers: 'last 2 versions'}),
 	removeImportant,
 	inlineSvg,
 	discardEmpty,
-	csso,
 ]).process(css))
 .then(compiled => compiled.toString());
 
-const featureCSS = featureMatrix(featureList, compileCss);
+const getCSSEntries = () => fs.readdir(scssPath)
+	.then(files => files.filter(file => file.endsWith('.scss') && !file.startsWith('_'))
+	.map(file => path.basename(file, '.scss')));
+
+const getFeatureCSS = getCSS => () => getCSSEntries().then(entries => promiseAllObject(
+	entries.reduce((css, entry) => Object.assign(css, {
+		[entry]: getCSS({entry}),
+	}), {})
+));
+
+const compileFeatureCSS = getFeatureCSS(compileCss);
+const readFeatureCSS = getFeatureCSS(readCompiledCss);
+const writeFeatureCSS = () => mkdirp(cssPath)
+.then(compileFeatureCSS)
+.then(features => Promise.all(
+	Object.keys(features).map(
+		feature => fs.writeFile(cssFile(feature), features[feature], 'utf8')
+	)
+));
 
 module.exports = (options, article) => {
 	const start = Date.now();
-	return featureCSS({
-		test: article.id[0] === 'd',
-		test2: article.id[0] === '9',
-	})
-		.then(css => {
+	return Promise.resolve(options.production ? cacheIf.always(readFeatureCSS) : compileFeatureCSS())
+		.then(features => {
+			const bundledCSS = selectFeatures(features, {
+				base: true,
+			}).join('\n');
+
+			const {css} = csso.minify(bundledCSS);
+
 			const time = Date.now() - start;
-			const bundleSize = `Compiled CSS bundle is ${css.length}`;
 			const ampLimit = 'the AMP limit of 50,000 bytes.';
+			const bundleSize = `Compiled CSS bundle is ${css.length}`;
 
 			if(css.length > 45000) {
 				const exceeding = css.length > 50000;
@@ -71,3 +92,5 @@ module.exports = (options, article) => {
 			return css;
 		});
 };
+
+module.exports.compileForProduction = writeFeatureCSS;
