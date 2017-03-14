@@ -13,6 +13,8 @@ const Warning = require('../warning');
 const reportError = require('../report-error');
 const promiseAllObject = require('@quarterto/promise-all-object');
 const selectFeatures = require('@quarterto/select-features');
+const handlebars = require('../handlebars');
+const environmentOptions = require('./environment-options');
 
 const scssPath = path.resolve('scss');
 const bowerPath = path.resolve('bower_components');
@@ -24,10 +26,11 @@ const autoprefixer = require('autoprefixer');
 const removeImportant = require('@georgecrawford/postcss-remove-important');
 const inlineSvg = require('postcss-inline-svg');
 const discardEmpty = require('postcss-discard-empty');
+const removeUnused = require('postcss-remove-unused');
 
 const csso = require('csso');
 
-const compileCss = ({entry} = {}) => renderScss({
+const compileCss = ({entry, html} = {}) => renderScss({
 	file: path.join(scssPath, `${entry}.scss`),
 	includePaths: [scssPath, bowerPath],
 	functions: sassFunctions(sassEnv),
@@ -37,16 +40,25 @@ const compileCss = ({entry} = {}) => renderScss({
 	removeImportant,
 	inlineSvg,
 	discardEmpty,
-]).process(css))
+].concat(html ? [
+	removeUnused({html}),
+] : [])).process(css))
 .then(compiled => compiled.toString());
 
 const getCSSEntries = () => fs.readdir(scssPath)
 	.then(files => files.filter(file => file.endsWith('.scss') && !file.startsWith('_'))
 	.map(file => path.basename(file, '.scss')));
 
+const getBaseHTML = entry => entry === 'base' ?
+	handlebars.standalone().then(
+		hbs => hbs.renderView('layouts/layout', Object.assign({
+			body: '',
+		}, environmentOptions))
+	) : Promise.resolve(false);
+
 const getFeatureCSS = getCSS => () => getCSSEntries().then(entries => promiseAllObject(
 	entries.reduce((css, entry) => Object.assign(css, {
-		[entry]: getCSS({entry}),
+		[entry]: getBaseHTML(entry).then(html => getCSS({entry, html})),
 	}), {})
 ));
 
@@ -95,4 +107,27 @@ module.exports = (article, options) => {
 		});
 };
 
-module.exports.compileForProduction = writeFeatureCSS;
+if(module === require.main) {
+	const label = 'Generated production CSS files';
+	console.time(label);
+	writeFeatureCSS().then(() => {
+		console.timeEnd(label);
+		return readFeatureCSS();
+	}).then(features => {
+		console.log();
+		console.log('Feature sizes');
+		console.log('━━━━━━━━━━━━━━━━━');
+
+		const totalSize = Object.keys(features).reduce((total, feature) => {
+			const size = features[feature].length / 1000;
+			console.log(`${feature}:\t${size.toFixed(2)}kb`);
+			return total + size;
+		}, 0);
+
+		console.log('─────────────────');
+		console.log(`total:\t${totalSize.toFixed(2)}kb`);
+	}).catch(err => {
+		console.error(err.stack || err.toString());
+		process.exit(1);
+	});
+}

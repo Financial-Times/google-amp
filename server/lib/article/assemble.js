@@ -13,7 +13,6 @@ const getLiveBlog = require('../live-blogs/get-live-blog');
 
 const errors = require('http-errors');
 const fetchres = require('fetchres');
-const promisify = require('@quarterto/promisify');
 
 const promiseAllObj = require('@quarterto/promise-all-object');
 const url = require('../url');
@@ -124,20 +123,15 @@ const assembleArticle = (uuid, options) => {
 			.then(() => Promise.all([
 				transformSlideshows(article, options),
 				extraArticleData(article, options),
-			])
+			]))
 
 			// Return the article
-			.then(() => article))
+			.then(() => article)
 		);
 };
 
 module.exports = assembleArticle;
-
-const renderView = hbs => promisify(hbs.renderView.bind(hbs));
 module.exports.render = (uuid, options) => assembleArticle(uuid, options)
 	.then(article => handlebars.standalone().then(
-		hbs => renderView(hbs)(
-			'views/article.html',
-			Object.assign({layout: 'layout'}, article)
-		)
+		hbs => hbs.renderView('article', Object.assign({layout: 'layout'}, article))
 	));
