@@ -108,6 +108,8 @@ module.exports = (article, options) => {
 };
 
 if(module === require.main) {
+	const padEnd = require('lodash.padend');
+
 	const label = 'Generated production CSS files';
 	console.time(label);
 	writeFeatureCSS().then(() => {
@@ -120,12 +122,13 @@ if(module === require.main) {
 
 		const totalSize = Object.keys(features).reduce((total, feature) => {
 			const size = features[feature].length / 1000;
-			console.log(`${feature}:\t${size.toFixed(2)}kb`);
+			const featureLabel = padEnd(`${feature}:`, 10);
+			console.log(`${featureLabel}${size.toFixed(2)}kb`);
 			return total + size;
 		}, 0);
 
 		console.log('─────────────────');
-		console.log(`total:\t${totalSize.toFixed(2)}kb`);
+		console.log(`total:    ${totalSize.toFixed(2)}kb`);
 	}).catch(err => {
 		console.error(err.stack || err.toString());
 		process.exit(1);
