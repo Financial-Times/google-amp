@@ -111,8 +111,8 @@ const assembleArticle = (uuid, options) => {
 		})
 
 		// First phase: network-dependent fetches and transforms in parallel
-		.then(article => Promise.all(
-			[
+		.then(article =>
+			Promise.all([
 				transformArticle(article, options),
 				addStoryPackage(article, options),
 				addMoreOns(article, options),
