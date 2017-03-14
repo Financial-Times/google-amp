@@ -5,7 +5,7 @@
 require('dotenv/config');
 
 const testUUIDs = require('../test/utils/test-uuids');
-const getArticle = require('../server/lib/get-article');
+const getArticle = require('../server/lib/article/get-article');
 const cheerio = require('cheerio');
 const {highlight} = require('emphasize');
 const {html: htmlBeautify} = require('js-beautify');

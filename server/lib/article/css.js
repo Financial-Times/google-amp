@@ -121,17 +121,20 @@ if(module === require.main) {
 		console.log('Feature sizes');
 		console.log('━━━━━━━━━━━━━━━━━━');
 
-		const totalSize = Object.keys(features).reduce((total, feature) => {
+		const cat = Object.keys(features).reduce((css, feature) => {
 			const size = features[feature].length / 1000;
 			const featureLabel = padEnd(`${feature}`, 10);
 			const sizeLabel = padStart(size.toFixed(2), 6);
 			console.log(`${featureLabel}${sizeLabel}kb`);
-			return total + size;
-		}, 0);
+			return css + features[feature];
+		}, '');
 
-		const sizeLabel = padStart(totalSize.toFixed(2), 6);
+		const sizeLabel = padStart((cat.length / 1000).toFixed(2), 6);
+		const minLabel = padStart((csso.minify(cat).css.length / 1000).toFixed(2), 6);
+
 		console.log('──────────────────');
 		console.log(`total     ${sizeLabel}kb`);
+		console.log(`minified  ${minLabel}kb`);
 	}).catch(err => {
 		console.error(err.stack || err.toString());
 		process.exit(1);
