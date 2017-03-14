@@ -123,7 +123,7 @@ if(module === require.main) {
 
 		const totalSize = Object.keys(features).reduce((total, feature) => {
 			const size = features[feature].length / 1000;
-			const featureLabel = padEnd(`${feature}:`, 10);
+			const featureLabel = padEnd(`${feature}`, 10);
 			const sizeLabel = padStart(size.toFixed(2), 6);
 			console.log(`${featureLabel}${sizeLabel}kb`);
 			return total + size;
@@ -131,7 +131,7 @@ if(module === require.main) {
 
 		const sizeLabel = padStart(totalSize.toFixed(2), 6);
 		console.log('──────────────────');
-		console.log(`total:    ${sizeLabel}kb`);
+		console.log(`total     ${sizeLabel}kb`);
 	}).catch(err => {
 		console.error(err.stack || err.toString());
 		process.exit(1);
