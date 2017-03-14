@@ -13,7 +13,6 @@ const getLiveBlog = require('../live-blogs/get-live-blog');
 
 const errors = require('http-errors');
 const fetchres = require('fetchres');
-const fs = require('fs-promise');
 const promisify = require('@quarterto/promisify');
 
 const promiseAllObj = require('@quarterto/promise-all-object');
@@ -84,7 +83,8 @@ const extraArticleData = (article, options) => promiseAllObj({
 }).then(extra => Object.assign(article, extra));
 
 const assembleArticle = (uuid, options) => {
-	Object.assign(options, environmentOptions);
+	options = Object.assign({}, environmentOptions, options);
+
 	return getArticle(uuid)
 		.then(
 			response => {
@@ -133,23 +133,11 @@ const assembleArticle = (uuid, options) => {
 
 module.exports = assembleArticle;
 
-const render = hbs => promisify(hbs.renderView.bind(hbs));
-
-if(module === require.main) {
-	assembleArticle(process.argv[2], {
-		production: false,
-		showEverything: true,
-		relatedArticleDeduper: [process.argv[2]],
-	}).then(
-		article => handlebars.standalone().then(
-			hbs => render(hbs)('views/article.html', Object.assign({layout: 'layout'}, article))
+const renderView = hbs => promisify(hbs.renderView.bind(hbs));
+module.exports.render = (uuid, options) => assembleArticle(uuid, options)
+	.then(article => handlebars.standalone().then(
+		hbs => renderView(hbs)(
+			'views/article.html',
+			Object.assign({layout: 'layout'}, article)
 		)
-	).then(
-		rendered => fs.writeFile(process.argv[3], rendered)
-	).catch(
-		err => {
-			console.error(err.stack || err.toString());
-			process.exit(1);
-		}
-	);
-}
+	));

@@ -4,7 +4,7 @@ const {expect, assert} = require('../utils/chai');
 const testUUIDs = require('../utils/test-uuids');
 
 const ampValidator = require('amphtml-validator');
-const {getAndRender} = require('../../server/controllers/amp-page');
+const {render} = require('../../server/lib/article/assemble');
 
 describe('amp validator', function() {
 	this.timeout(30000);
@@ -15,7 +15,7 @@ describe('amp validator', function() {
 	});
 
 	testUUIDs.forEach(uuid => it(`should pass for uuid ${uuid}`, async () => {
-		const article = await getAndRender(uuid, {
+		const article = await render(uuid, {
 			production: false,
 			showEverything: true,
 			relatedArticleDeduper: [uuid],
