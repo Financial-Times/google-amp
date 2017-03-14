@@ -27,7 +27,7 @@ const discardEmpty = require('postcss-discard-empty');
 
 const csso = require('csso');
 
-const compileCss = ({entry, html} = {}) => renderScss({
+const compileCss = ({entry} = {}) => renderScss({
 	file: path.join(scssPath, `${entry}.scss`),
 	includePaths: [scssPath, bowerPath],
 	functions: sassFunctions(sassEnv),
@@ -60,7 +60,7 @@ const writeFeatureCSS = () => mkdirp(cssPath)
 	)
 ));
 
-module.exports = (options, article) => {
+module.exports = (article, options) => {
 	const start = Date.now();
 	return Promise.resolve(options.production ? cacheIf.always(readFeatureCSS) : compileFeatureCSS())
 		.then(features => {
