@@ -76,6 +76,7 @@
     "lodash.minby": "^4.2.0",
     "lodash.orderby": "^4.6.0",
     "lodash.padend": "^4.6.1",
+    "lodash.padstart": "^4.6.1",
     "lodash.values": "^4.1.0",
     "mkdirp-promise": "^1.0.3",
     "morgan": "^1.6.1",

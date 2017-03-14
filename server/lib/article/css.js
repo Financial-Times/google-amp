@@ -100,7 +100,7 @@ module.exports = (article, options) => {
 					features: enabledFeatures,
 				}});
 			} else if(options.development) {
-				console.log(`Notice: ${bundleSize}. Took ${time}ms`);
+				console.log(`Notice: ${bundleSize}. Took ${time}ms. Detected features: ${JSON.stringify(enabledFeatures)}`);
 			}
 
 			return css;
@@ -109,6 +109,7 @@ module.exports = (article, options) => {
 
 if(module === require.main) {
 	const padEnd = require('lodash.padend');
+	const padStart = require('lodash.padstart');
 
 	const label = 'Generated production CSS files';
 	console.time(label);
@@ -118,17 +119,19 @@ if(module === require.main) {
 	}).then(features => {
 		console.log();
 		console.log('Feature sizes');
-		console.log('━━━━━━━━━━━━━━━━━');
+		console.log('━━━━━━━━━━━━━━━━━━');
 
 		const totalSize = Object.keys(features).reduce((total, feature) => {
 			const size = features[feature].length / 1000;
 			const featureLabel = padEnd(`${feature}:`, 10);
-			console.log(`${featureLabel}${size.toFixed(2)}kb`);
+			const sizeLabel = padStart(size.toFixed(2), 6);
+			console.log(`${featureLabel}${sizeLabel}kb`);
 			return total + size;
 		}, 0);
 
-		console.log('─────────────────');
-		console.log(`total:    ${totalSize.toFixed(2)}kb`);
+		const sizeLabel = padStart(totalSize.toFixed(2), 6);
+		console.log('──────────────────');
+		console.log(`total:    ${sizeLabel}kb`);
 	}).catch(err => {
 		console.error(err.stack || err.toString());
 		process.exit(1);
