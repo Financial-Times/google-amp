@@ -89,6 +89,7 @@ module.exports = (article, options) => {
 				comments: true,
 				'live-blogs': options.enableLiveBlogs && !!article.isLiveBlog,
 				related: !!article.moreOns.length || !!article.storyPackage.length,
+				sidebar: options.enableSidebarMenu,
 				slideshow: Object.keys(article.slideshows).length > 0,
 				social: options.enableSocialShare,
 			};
