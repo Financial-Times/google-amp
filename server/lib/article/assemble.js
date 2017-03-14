@@ -14,11 +14,13 @@ const getLiveBlog = require('../live-blogs/get-live-blog');
 const errors = require('http-errors');
 const fetchres = require('fetchres');
 const fs = require('fs-promise');
+const promisify = require('@quarterto/promisify');
 
 const promiseAllObj = require('@quarterto/promise-all-object');
 const url = require('../url');
 const getCSS = require('./css');
 const environmentOptions = require('./environment-options');
+const handlebars = require('../handlebars');
 
 const getAuthors = data => {
 	const authors = data.metadata
@@ -131,13 +133,20 @@ const assembleArticle = (uuid, options) => {
 
 module.exports = assembleArticle;
 
+const render = hbs => promisify(hbs.renderView.bind(hbs));
+
 if(module === require.main) {
 	assembleArticle(process.argv[2], {
 		production: false,
 		showEverything: true,
 		relatedArticleDeduper: [process.argv[2]],
 	}).then(
-		rendered => fs.writeFile(process.argv[3], rendered),
+		article => handlebars.standalone().then(
+			hbs => render(hbs)('views/article.html', Object.assign({layout: 'layout'}, article))
+		)
+	).then(
+		rendered => fs.writeFile(process.argv[3], rendered)
+	).catch(
 		err => {
 			console.error(err.stack || err.toString());
 			process.exit(1);
