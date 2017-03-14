@@ -1,5 +1,7 @@
+@import 'setup';
+@import 'o-footer/main';
+
 @if env(ENABLE_LIVE_BLOGS) == 'true' {
-	/* pru:startPreserve(liveBlogs) */
 	@include oColorsSetUseCase(author-colour-1, text, 'claret');
 	@include oColorsSetUseCase(author-colour-2, text, 'blue');
 	@include oColorsSetUseCase(author-colour-3, text, 'green');
@@ -82,5 +84,4 @@
 		}
 	}
 
-	/* pru:endPreserve(liveBlogs) */
 }

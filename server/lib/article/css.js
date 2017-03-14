@@ -74,10 +74,23 @@ const writeFeatureCSS = () => mkdirp(cssPath)
 
 module.exports = (article, options) => {
 	const start = Date.now();
+
 	return Promise.resolve(options.production ? cacheIf.always(readFeatureCSS) : compileFeatureCSS())
 		.then(features => {
+			// These checks are intentionally naive so they're fast. We'd rather accidentally
+			// include some CSS but do it fast than block requests to shave a few KB.
 			const enabledFeatures = {
 				base: true,
+				article: true,
+				ads: article.htmlBody.includes('<amp-ad'),
+				asides: article.htmlBody.includes('c-box'),
+				barrier: options.enableBarrier && !options.showEverything,
+				'barrier-old': !options.enableBarrier && !options.showEverything,
+				comments: true,
+				'live-blogs': options.enableLiveBlogs && !!article.isLiveBlog,
+				related: !!article.moreOns.length || !!article.storyPackage.length,
+				slideshow: Object.keys(article.slideshows).length > 0,
+				social: options.enableSocialShare,
 			};
 
 			const bundledCSS = selectFeatures(features, enabledFeatures).join('\n');
@@ -119,11 +132,11 @@ if(module === require.main) {
 	}).then(features => {
 		console.log();
 		console.log('Feature sizes');
-		console.log('━━━━━━━━━━━━━━━━━━');
+		console.log('━━━━━━━━━━━━━━━━━━━━');
 
 		const cat = Object.keys(features).reduce((css, feature) => {
 			const size = features[feature].length / 1000;
-			const featureLabel = padEnd(`${feature}`, 10);
+			const featureLabel = padEnd(`${feature}`, 12);
 			const sizeLabel = padStart(size.toFixed(2), 6);
 			console.log(`${featureLabel}${sizeLabel}kb`);
 			return css + features[feature];
@@ -132,9 +145,9 @@ if(module === require.main) {
 		const sizeLabel = padStart((cat.length / 1000).toFixed(2), 6);
 		const minLabel = padStart((csso.minify(cat).css.length / 1000).toFixed(2), 6);
 
-		console.log('──────────────────');
-		console.log(`total     ${sizeLabel}kb`);
-		console.log(`minified  ${minLabel}kb`);
+		console.log('────────────────────');
+		console.log(`total       ${sizeLabel}kb`);
+		console.log(`minified    ${minLabel}kb`);
 	}).catch(err => {
 		console.error(err.stack || err.toString());
 		process.exit(1);

@@ -50,11 +50,5 @@ module.exports = (article, {catchup, meta, config}, options) => {
 		</div>
 	</amp-live-list>`;
 
-	// don't strip css, we don't know if we'll need it
-	options.preserveFlags = {
-		article: true,
-		liveBlogs: true,
-	};
-
 	return article;
 };

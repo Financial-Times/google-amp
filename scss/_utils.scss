@@ -1,0 +1,26 @@
+.u-border--all {
+	border: 1px solid oColorsGetPaletteColor('warm-3');
+}
+
+.u-border--left {
+	border-left: 1px solid oColorsGetPaletteColor('warm-3');
+}
+
+.u-margin--left-right {
+	margin-right: 16px;
+	margin-left: 16px;
+}
+
+.u-padding--left-right {
+	padding-right: 16px;
+	padding-left: 16px;
+}
+
+%article-quote::before {
+	@include oTypographySerifDisplay(s);
+	display: inline-block;
+	vertical-align: -.5em; // sit around the baseline
+	line-height: inherit;
+	font-size: 80px; // enormous quote
+	content: '\201C';
+}

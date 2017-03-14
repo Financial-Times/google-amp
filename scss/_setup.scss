@@ -11,7 +11,3 @@
 @import 'o-icons/main';
 
 @import 'hacks';
-
-@include oFontsInclude(MetricWeb, regular); // body
-@include oFontsInclude(MetricWeb, semibold); // headings
-@include oFontsInclude(FinancierDisplayWeb); // headings
