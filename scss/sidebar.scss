@@ -1,4 +1,5 @@
 @import 'setup';
+@import 'o-header/main';
 
 amp-sidebar {
 	@include oColorsFor(page, background);
