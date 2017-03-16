@@ -49,16 +49,21 @@ const getCSSEntries = () => fs.readdir(scssPath)
 	.then(files => files.filter(file => file.endsWith('.scss') && !file.startsWith('_'))
 	.map(file => path.basename(file, '.scss')));
 
-const getBaseHTML = entry => entry === 'base' ?
+const featureTemplate = {
+	base: 'layouts/layout',
+	sidebar: 'partials/sidebarMenu',
+};
+
+const getFeatureHTML = entry => entry in featureTemplate ?
 	handlebars.standalone().then(
-		hbs => hbs.renderView('layouts/layout', Object.assign({
+		hbs => hbs.renderView(featureTemplate[entry], Object.assign({
 			body: '',
 		}, environmentOptions))
 	) : Promise.resolve(false);
 
 const getFeatureCSS = getCSS => () => getCSSEntries().then(entries => promiseAllObject(
 	entries.reduce((css, entry) => Object.assign(css, {
-		[entry]: getBaseHTML(entry).then(html => getCSS({entry, html})),
+		[entry]: getFeatureHTML(entry).then(html => getCSS({entry, html})),
 	}), {})
 ));
 

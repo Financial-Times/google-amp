@@ -1,5 +1,7 @@
 @import 'setup';
+
 @import 'o-header/main';
+@include oHeaderDrawer;
 
 amp-sidebar {
 	@include oColorsFor(page, background);
