@@ -32,10 +32,6 @@
 	}
 }
 
-// .article-header .article-image {
-// 	border-bottom: $border-divider;
-// }
-
 // HACK: override default styling of oTypographyBodyWrapper
 // (rendered as '.article h1') using double classname specificity
 .headline.headline {
@@ -60,6 +56,7 @@
 	@include oGridRespondTo($until: M) {
 		@include responsiveType(5vh);
 		line-height: 1.2;
+
 		@media (orientation: portrait) {
 			@include responsiveType(2.5vh);
 		}
@@ -87,6 +84,7 @@
 	@include oGridRespondTo($until: M) {
 		@include responsiveType(6vh);
 		line-height: 1;
+
 		@media (orientation: portrait) {
 			@include responsiveType(3vh);
 		}
@@ -136,7 +134,6 @@
 
 abbr[title] {
 	border-bottom: 0;
-	text-decoration: underline;
 	text-decoration: underline dotted;
 }
 

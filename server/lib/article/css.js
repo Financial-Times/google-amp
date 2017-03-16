@@ -79,12 +79,12 @@ const getFeatureCSS = getCSS => () => getCSSEntries().then(entries => promiseAll
 const compileFeatureCSS = getFeatureCSS(compileCss);
 const readFeatureCSS = getFeatureCSS(readCompiledCss);
 const writeFeatureCSS = () => mkdirp(cssPath)
-.then(compileFeatureCSS)
-.then(features => Promise.all(
-	Object.keys(features).map(
-		feature => fs.writeFile(cssFile(feature), features[feature], 'utf8')
-	)
-));
+	.then(compileFeatureCSS)
+	.then(features => Promise.all(
+		Object.keys(features).map(
+			feature => fs.writeFile(cssFile(feature), features[feature], 'utf8')
+		)
+	));
 
 module.exports = (article, options) => {
 	const start = Date.now();
