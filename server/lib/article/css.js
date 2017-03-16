@@ -14,7 +14,6 @@ const reportError = require('../report-error');
 const promiseAllObject = require('@quarterto/promise-all-object');
 const selectFeatures = require('@quarterto/select-features');
 const handlebars = require('../handlebars');
-const environmentOptions = require('./environment-options');
 
 const scssPath = path.resolve('scss');
 const bowerPath = path.resolve('bower_components');
@@ -52,13 +51,23 @@ const getCSSEntries = () => fs.readdir(scssPath)
 const featureTemplate = {
 	base: 'layouts/layout',
 	sidebar: 'partials/sidebarMenu',
+	header: 'partials/header',
+};
+
+const enableAllFlags = {
+	enableLightSignup: true,
+	enableSidebarMenu: true,
+	enableSocialShare: true,
+	enableAds: true,
+	enableLiveBlogs: true,
+	enableBarrier: true,
 };
 
 const getFeatureHTML = entry => entry in featureTemplate ?
 	handlebars.standalone().then(
 		hbs => hbs.renderView(featureTemplate[entry], Object.assign({
 			body: '',
-		}, environmentOptions))
+		}, enableAllFlags))
 	) : Promise.resolve(false);
 
 const getFeatureCSS = getCSS => () => getCSSEntries().then(entries => promiseAllObject(
@@ -92,6 +101,7 @@ module.exports = (article, options) => {
 				barrier: options.enableBarrier && !options.showEverything,
 				'barrier-old': !options.enableBarrier && !options.showEverything,
 				comments: true,
+				header: true,
 				'live-blogs': options.enableLiveBlogs && !!article.isLiveBlog,
 				related: !!article.moreOns.length || !!article.storyPackage.length,
 				sidebar: options.enableSidebarMenu,
