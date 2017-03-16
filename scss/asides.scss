@@ -1,5 +1,4 @@
 @import 'setup';
-@import 'utils';
 
 .c-box {
 	position: relative;
@@ -73,3 +72,5 @@
 	padding: 0 10px;
 	line-height: 0; // take up as little space as possible
 }
+
+@import 'utils';
