@@ -1,3 +1,8 @@
+@import 'setup';
+
+@import 'o-header/main';
+@include oHeaderDrawer;
+
 amp-sidebar {
 	@include oColorsFor(page, background);
 	@include oTypographySans(m);
@@ -30,4 +35,8 @@ amp-sidebar {
 
 .o-header__accordion-section[expanded] .o-header__drawer-menu-toggle:before {
 	transform: rotate(180deg);
+}
+
+.o-header__drawer-tools-logo {
+	width: 200px;
 }

@@ -3,4 +3,5 @@
 set -x -e
 
 bower install
-node -e "require('./server/lib/article/css.js').compileForProduction()"
+
+node -r dotenv/config server/lib/article/css

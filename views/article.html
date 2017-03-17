@@ -1,276 +1,133 @@
-<!doctype html>
-<html ⚡>
-	<head>
-		<meta charset="utf-8">
-		<title>{{title}}</title>
-		<link rel="canonical" href="{{canonicalURL}}" >
-		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-		<meta name="amp-3p-iframe-src" content="{{KRUX_REMOTE}}">
-		{{#if visibilityOptIn}}
-		<meta name="amp-experiments-opt-in" content="visibility-v2">
-		{{/if}}
-		<style amp-custom>
-		{{{css}}}
-		</style>
-
-		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-
-		<script async src="https://cdn.ampproject.org/v0.js"></script>
-		<script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
-		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-		<script async custom-element="amp-brightcove" src="https://cdn.ampproject.org/v0/amp-brightcove-0.1.js"></script>
-		<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
-		<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
-		<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
-		<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
-		<script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
-		<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
-		<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-		{{#if enableSocialShare}}
-		<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-		{{/if}}
-		{{#if enableSidebarMenu}}
-		<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-		<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
-		{{/if}}
-		{{#if enableLiveBlogs}}
-		<script async custom-element="amp-live-list" src="https://cdn.ampproject.org/v0/amp-live-list-0.1.js"></script>
-		{{/if}}
-		<script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
-		<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
-
-		<script id="amp-access" type="application/json">
-		{
-			"authorization": "{{{AUTH_AUTHORIZATION_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}",
-			"pingback": "{{{AUTH_PINGBACK_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}&access=AUTHDATA(access)",
-			"login": {
-				"login": "{{{AUTH_LOGIN_URL}}}readerId=READER_ID&location=RETURN_URL%23success=true",
-				"logout": "{{{AUTH_LOGOUT_URL}}}rid=READER_ID&location=RETURN_URL%23success=true"
-			},
-			"authorizationFallbackResponse": {"access": true, "error": true}
-		}
-		</script>
-
-		<script type="application/ld+json">
-		{
-			"@context": "http://schema.org",
-			"@type": "NewsArticle",
-			"mainEntityofPage": "{{canonicalURL}}",
-			"headline": "{{schemaHeadline}}",
-			"datePublished": "{{publishedDate}}",
-			"dateModified": "{{publishedDate}}",
-			"description": "{{description}}",
-			"image": {
-				"@type": "ImageObject",
-				"url": "{{mainImage.url}}",
-				"width": {{mainImage.width}},
-				"height": {{mainImage.height}}
-			},
-			"author": {
-				"@type": "Person",
-				"name": "{{authorList}}"
-			},
-			"publisher": {
-				"@type": "Organization",
-				"name": "The Financial Times",
-				"logo": {
-					"@type": "ImageObject",
-					"url": "http://im.ft-static.com/m/img/masthead_main.jpg",
-					"width": 435,
-					"height": 36
-				}
-			}
-		}
-		</script>
-	</head>
-	<body>
-		{{> abTest}}
-
-		{{#if analyticsConfig}}
-		<amp-analytics>
-			<script type="application/json">
-			{{{analyticsConfig}}}
-			</script>
-		</amp-analytics>
+<article class="article">
+	<header class="article-header" amp-access="NOT {{enableBarrier}} OR access OR {{showEverything}} ">
+		{{#if primaryTheme}}
+			<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link" data-vars-link-destination="{{{primaryTheme.url}}}" data-vars-link-text="{{{primaryTheme.name}}}" data-vars-link-type="primary-theme">{{{primaryTheme.name}}}</a></h2>
 		{{/if}}
 
-		<amp-analytics type="krux" config="https://cdn.krxd.net/controltag/amp/KHUSeE3x.json"></amp-analytics>
+		<h1 class="headline" itemprop="headline">
+			{{title}}
 
-		<amp-image-lightbox id="lightbox" layout="nodisplay"></amp-image-lightbox>
+			{{#if liveBlogStatus}}
+			<div class='live-blog--status live-blog--status-{{liveBlogStatus}}'>
+				{{{liveBlogStatusLabel}}}
+			</div>
+			{{/if}}
+		</h1>
 
-		{{#if enableSidebarMenu}}
-			{{> sidebarMenu}}
+		{{#if liveBlogsExcerpt}}
+			<div class="article-liveblogs-excerpt">
+				{{{liveBlogsExcerpt}}}
+			</div>
+		{{else}}
+			{{#if standfirst}}
+				<h2 class="article-standfirst">{{standfirst}}</h2>
+			{{/if}}
 		{{/if}}
 
-		{{#if accessMocked}}
-			{{> mockAccess}}
-		{{/if}}
+		<div amp-access="access OR {{showEverything}}" amp-access-hide>
+			{{{mainImageHtml}}}
 
-		<div class="main-wrapper">
-
-			{{> header}}
-
-			<main class="main" role="main">
-				<article class="article">
-					<header class="article-header" amp-access="NOT {{enableBarrier}} OR access OR {{showEverything}} ">
-						{{#if primaryTheme}}
-							<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link" data-vars-link-destination="{{{primaryTheme.url}}}" data-vars-link-text="{{{primaryTheme.name}}}" data-vars-link-type="primary-theme">{{{primaryTheme.name}}}</a></h2>
-						{{/if}}
-
-						<h1 class="headline" itemprop="headline">
-							{{title}}
-
-							{{#if liveBlogStatus}}
-							<div class='live-blog--status live-blog--status-{{liveBlogStatus}}'>
-								{{{liveBlogStatusLabel}}}
-							</div>
-							{{/if}}
-						</h1>
-
-						{{#if liveBlogsExcerpt}}
-							<div class="article-liveblogs-excerpt">
-								{{{liveBlogsExcerpt}}}
-							</div>
-						{{else}}
-							{{#if standfirst}}
-							<h2 class="article-standfirst">{{standfirst}}</h2>
-							{{/if}}
-						{{/if}}
-
-						<div amp-access="access OR {{showEverything}}" amp-access-hide>
-							{{{mainImageHtml}}}
-
-							{{#if enableSocialShare}}
-								{{>social}}
-							{{/if}}
-						</div>
-
-						<div class="article-dateline">
-							{{{displayDate}}}
-							{{#if byline}}
-							<span class="article-author">
-								<span class="article-author-byline">
-									by
-									<span itemscope itemtype="http://schema.org/Person" itemprop="author">
-										{{{byline}}}
-									</span>
-								</span>
-							</span>
-							{{/if}}
-						</div>
-					</header>
-
-					<div amp-access="access OR {{showEverything}}" amp-access-hide>
-						<div class="article-body" itemprop="articleBody">
-							{{{htmlBody}}}
-
-							<p class="article__copyright-notice">
-								<a
-									href="https://www.ft.com/servicestools/help/copyright"
-									data-vars-link-destination="https://www.ft.com/servicestools/help/copyright"
-									data-vars-link-type="footer-copyright"
-									data-vars-link-text="Copyright">Copyright</a>
-								The Financial Times Limited {{thisYear}}. All rights reserved. Please don't cut articles from FT.com and redistribute by email or post to the web.
-							</p>
-						</div>
-					</div>
-				</article>
-
-				<div class="comments" amp-access="access OR {{showEverything}}" amp-access-hide>
-					<a class="comments-button" href="{{canonicalURL}}" data-vars-link-destination="{{canonicalURL}}" data-vars-link-type="view-comments" data-vars-link-text="View comments">View comments</a>
-				</div>
-
-				<div class="{{#if enableBarrier}}amp-access-barrier{{else}}amp-access-login{{/if}}" amp-access="NOT access" amp-access-hide>
-					{{#if enableBarrier}}
-						{{> barrier}}
-					{{else}}
-					<div class="amp-access-login__header" amp-access="NOT session">
-						<div class="amp-access-login__header-instruction">Subscribe to read:</div>
-						<div class="amp-access-login__header-title">{{title}}</div>
-					</div>
-					<div class="amp-access-login__header" amp-access="session">
-						<div class="amp-access-login__header-instruction">Upgrade your account to read:</div>
-						<div class="amp-access-login__header-title">{{title}}</div>
-					</div>
-					<div class="amp-access-login__body" amp-access="NOT session">
-						<a class="amp-access-login__button" href="#" on="tap:amp-access.login-login" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
-						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages">View subscription packages</a>
-					</div>
-					<div class="amp-access-login__body" amp-access="session">
-						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-upgrade" data-vars-link-text="Upgrade now">Upgrade now</a>
-					</div>
-					{{/if}}
-				</div>
-
-				{{#if relatedContent}}
-				<aside class="related-content" amp-access="access OR NOT access" amp-access-hide>
-					<h2 class="related-content__header">Related stories</h2>
-					<ul class="related-content__stories">
-						{{#each relatedContent}}
-						{{#if @first}}{{#if image}}
-						<li class="related-content__story related-content__lead-story">
-							<div class="related-content__container">
-								<div class="related-content__content">
-									{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
-									<a class="related-content__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
-									<p class="related-content__summary">{{{summary}}}</p>
-									{{{date}}}
-								</div>
-								<div class="related-content__image">
-									<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="related-content-image">{{> image}}</a>
-								</div>
-							</div>
-						</li>
-						{{/if}}{{/if}}
-						<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
-							<div class="related-content__container">
-								{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
-								<a class="related-content__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
-								<p class="related-content__summary">{{{summary}}}</p>
-								{{{date}}}
-							</div>
-						</li>
-						{{/each}}
-					</ul>
-				</aside>
-				{{/if}}
-
-				{{#if moreOns}}
-				<aside class="more-ons" amp-access="access OR NOT access" amp-access-hide>
-					<ul class="more-ons__items">
-						{{#each moreOns}}
-						<li class="more-ons__item">
-							<div class="more-ons__item-wrapper">
-								<div class="more-ons__type">
-									<h2 class="more-ons__type-text c-box__title-text">{{theme.type}}</h2>
-								</div>
-								<h2 class="more-ons__header">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="more-ons-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h2>
-								<ul class="more-ons__stories">
-									{{#each articles}}
-									<li class="more-ons__story">
-										{{#if @first}}{{#if image}}
-										<div class="more-ons__image">
-											<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="more-ons-image">{{> image}}</a>
-										</div>
-										{{/if}}{{/if}}
-										{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
-										<a class="more-ons__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="more-ons-link">{{{title}}}</a>
-										{{{date}}}
-									</li>
-									{{/each}}
-								</ul>
-							</div>
-						</li>
-
-						{{/each}}
-					</ul>
-				</aside>
-				{{/if}}
-			</main>
-
-			{{> footer}}
-
+			{{#if enableSocialShare}}
+				{{>social}}
+			{{/if}}
 		</div>
 
-	</body>
-</html>
+		<div class="article-dateline">
+			{{{displayDate}}}
+			{{#if byline}}
+			<span class="article-author">
+				<span class="article-author-byline">
+					by
+					<span itemscope itemtype="http://schema.org/Person" itemprop="author">
+						{{{byline}}}
+					</span>
+				</span>
+			</span>
+			{{/if}}
+		</div>
+	</header>
+
+	<div amp-access="access OR {{showEverything}}" amp-access-hide>
+		<div class="article-body" itemprop="articleBody">
+			{{{htmlBody}}}
+
+			<p class="article__copyright-notice">
+				<a
+					href="https://www.ft.com/servicestools/help/copyright"
+					data-vars-link-destination="https://www.ft.com/servicestools/help/copyright"
+					data-vars-link-type="footer-copyright"
+					data-vars-link-text="Copyright">Copyright</a>
+				The Financial Times Limited {{thisYear}}. All rights reserved. Please don't cut articles from FT.com and redistribute by email or post to the web.
+			</p>
+		</div>
+	</div>
+</article>
+
+<div class="comments" amp-access="access OR {{showEverything}}" amp-access-hide>
+	<a class="comments-button" href="{{canonicalURL}}" data-vars-link-destination="{{canonicalURL}}" data-vars-link-type="view-comments" data-vars-link-text="View comments">View comments</a>
+</div>
+
+{{#if relatedContent}}
+<aside class="related-content" amp-access="access OR NOT access" amp-access-hide>
+	<h2 class="related-content__header">Related stories</h2>
+	<ul class="related-content__stories">
+		{{#each relatedContent}}
+		{{#if @first}}{{#if image}}
+		<li class="related-content__story related-content__lead-story">
+			<div class="related-content__container">
+				<div class="related-content__content">
+					{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
+					<a class="related-content__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
+					<p class="related-content__summary">{{{summary}}}</p>
+					{{{date}}}
+				</div>
+				<div class="related-content__image">
+					<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="related-content-image">{{> image}}</a>
+				</div>
+			</div>
+		</li>
+		{{/if}}{{/if}}
+		<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
+			<div class="related-content__container">
+				{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
+				<a class="related-content__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
+				<p class="related-content__summary">{{{summary}}}</p>
+				{{{date}}}
+			</div>
+		</li>
+		{{/each}}
+	</ul>
+</aside>
+{{/if}}
+
+{{#if moreOns}}
+<aside class="more-ons" amp-access="access OR NOT access" amp-access-hide>
+	<ul class="more-ons__items">
+		{{#each moreOns}}
+		<li class="more-ons__item">
+			<div class="more-ons__item-wrapper">
+				<div class="more-ons__type">
+					<h2 class="more-ons__type-text c-box__title-text">{{theme.type}}</h2>
+				</div>
+				<h2 class="more-ons__header">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="more-ons-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h2>
+				<ul class="more-ons__stories">
+					{{#each articles}}
+					<li class="more-ons__story">
+						{{#if @first}}{{#if image}}
+						<div class="more-ons__image">
+							<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="more-ons-image">{{> image}}</a>
+						</div>
+						{{/if}}{{/if}}
+						{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
+						<a class="more-ons__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="more-ons-link">{{{title}}}</a>
+						{{{date}}}
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+		</li>
+
+		{{/each}}
+	</ul>
+</aside>
+{{/if}}

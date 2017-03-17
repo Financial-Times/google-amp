@@ -1,0 +1,7 @@
+.amp-access-login__button {
+	@include oButtons(big, standout);
+	padding: 10px;
+	margin: 1vh 10px;
+	text-transform: inherit;
+	line-height: 1.1;
+}

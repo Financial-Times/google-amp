@@ -7,11 +7,11 @@ const cookieParser = require('cookie-parser');
 const assertHerokuEnv = require('@quarterto/assert-heroku-env');
 const assertEnv = require('@quarterto/assert-env');
 const ftwebservice = require('express-ftwebservice');
-const expressHandlebars = require('express-handlebars');
 const path = require('path');
 const os = require('os');
 
 const cors = require('./lib/cors');
+const handlebars = require('./lib/handlebars');
 const pkg = require('../package.json');
 
 const app = express();
@@ -93,8 +93,7 @@ if(isServer) {
 	});
 }
 
-app.engine('html', expressHandlebars());
-app.set('view engine', 'html');
+handlebars.express(app);
 
 // before logger to avoid logging robots.txt requests
 app.get('/robots.txt', (req, res) => {

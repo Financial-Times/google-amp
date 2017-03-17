@@ -1,0 +1,11 @@
+@import 'setup';
+
+.comments-button {
+	@include oButtons(big);
+}
+
+.comments {
+	display: flex;
+	margin-top: 2em;
+	justify-content: center;
+}
