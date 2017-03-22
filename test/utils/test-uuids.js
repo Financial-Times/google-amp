@@ -74,3 +74,7 @@ module.exports = [
 	'74f09d76-a9f2-11e3-adab-00144feab7de',
 	'0630ca5a-e38a-11e4-b407-00144feab7de',
 ];
+
+if(module === require.main) {
+	console.log(module.exports.join('\n'));
+}
