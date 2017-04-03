@@ -59,7 +59,7 @@ module.exports = (article, options) => Object.assign(article, {
 	// look up classification against CAPI, and we can use the canonical URL here.
 	accessCheckUrl: url.accessCheck(article),
 
-	shareUrl: `${article.canonicalURL}?${querystring.stringify(shareParams)}`,
+	shareUrl: `${url.canonical(article)}?${querystring.stringify(shareParams)}`,
 	facebookAppId: '328135857526360',
 
 	analyticsConfig: options.analyticsConfig,
