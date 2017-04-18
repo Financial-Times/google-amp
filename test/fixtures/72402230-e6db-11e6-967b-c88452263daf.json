@@ -1,161 +1,159 @@
 {
-  "_source": {
-    "type": "article",
-    "id": "72402230-e6db-11e6-967b-c88452263daf",
-    "title": "Are you a financial ostrich, engineer or pragmatist?",
-    "alternativeTitles": {
-      "promotionalTitle": "Are you an ostrich, engineer or pragmatist?"
+  "type": "article",
+  "id": "72402230-e6db-11e6-967b-c88452263daf",
+  "title": "Are you a financial ostrich, engineer or pragmatist?",
+  "alternativeTitles": {
+    "promotionalTitle": "Are you an ostrich, engineer or pragmatist?"
+  },
+  "standfirst": "Work out the comfort and financial security you can expect in later life",
+  "byline": "Jason Butler",
+  "publishReference": "tid_ohmrnnqabz",
+  "publishedDate": "2017-01-31T05:07:34.000Z",
+  "initialPublishedDate": "2017-01-31T05:07:34Z",
+  "annotations": [
+    {
+      "idV2": "dbb0bdae-1f0c-11e4-b0cb-b2227cce2b54",
+      "prefLabel": "Financial Times",
+      "directType": "http://www.ft.com/ontology/product/Brand",
+      "attributes": [
+
+      ]
     },
-    "standfirst": "Work out the comfort and financial security you can expect in later life",
-    "byline": "Jason Butler",
-    "publishReference": "tid_ohmrnnqabz",
-    "publishedDate": "2017-01-31T05:07:34.000Z",
-    "initialPublishedDate": "2017-01-31T05:07:34Z",
-    "annotations": [
-      {
-        "idV2": "dbb0bdae-1f0c-11e4-b0cb-b2227cce2b54",
-        "prefLabel": "Financial Times",
-        "directType": "http://www.ft.com/ontology/product/Brand",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "acb24d4d-efa1-3916-8985-59d868208053",
-        "prefLabel": "Twitter, Inc.",
-        "directType": "http://www.ft.com/ontology/company/PublicCompany",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "3de9af27-6403-3b84-b927-58e26c68e6a3",
-        "prefLabel": "Morningstar, Inc.",
-        "directType": "http://www.ft.com/ontology/company/PublicCompany",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "a48d1000-be8b-3634-a54a-79a737ba62ee",
-        "prefLabel": "Total SA",
-        "directType": "http://www.ft.com/ontology/company/PublicCompany",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "59fd6642-055c-30b0-b2b8-8120bc2990af",
-        "prefLabel": "Personal Finance",
-        "directType": "http://www.ft.com/ontology/Section",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "0a757042-e321-304f-97c0-e04337bc698e",
-        "prefLabel": "Pensions",
-        "directType": "http://www.ft.com/ontology/Section",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "dfa0c008-68a4-3901-9300-e35fb3c15cc4",
-        "prefLabel": "Advice & Comment",
-        "directType": "http://www.ft.com/ontology/Section",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "3e0674b7-ea87-369a-b536-ead47dd076ae",
-        "prefLabel": "Investments",
-        "directType": "http://www.ft.com/ontology/Section",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "dfa0c008-68a4-3901-9300-e35fb3c15cc4",
-        "prefLabel": "Advice & Comment",
-        "directType": "http://www.ft.com/ontology/Section",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "f662a1e8-4e85-30c2-b02c-83436557ad31",
-        "prefLabel": "The Wealth Man",
-        "directType": "http://www.ft.com/ontology/product/Brand",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "70f66462-e313-3e83-ad39-d7724973d276",
-        "prefLabel": "Savings",
-        "directType": "http://www.ft.com/ontology/Section",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "b224ad07-c818-3ad6-94af-a4d351dbb619",
-        "prefLabel": "Economic Indicators",
-        "directType": "http://www.ft.com/ontology/Subject",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "e569e23b-0c3e-3d20-8ed0-4c17b8177c05",
-        "prefLabel": "Comment",
-        "directType": "http://www.ft.com/ontology/Genre",
-        "attributes": [
-          
-        ]
-      },
-      {
-        "idV2": "e97e5795-7f5a-32d3-9daa-a41b1182e8dc",
-        "prefLabel": "Jason Butler",
-        "directType": "http://www.ft.com/ontology/person/Person",
-        "attributes": [
-          
-        ]
-      }
-    ],
-    "webUrl": "http://www.ft.com/cms/s/0/72402230-e6db-11e6-967b-c88452263daf.html",
-    "provenance": [
-      "http://api.ft.com/content/items/v1/72402230-e6db-11e6-967b-c88452263daf",
-      "http://api.ft.com/enrichedcontent/72402230-e6db-11e6-967b-c88452263daf"
-    ],
-    "originatingParty": "FT",
-    "storyPackage": [
-      
-    ],
-    "standout": {
-      "editorsChoice": false,
-      "exclusive": false,
-      "scoop": false
+    {
+      "idV2": "acb24d4d-efa1-3916-8985-59d868208053",
+      "prefLabel": "Twitter, Inc.",
+      "directType": "http://www.ft.com/ontology/company/PublicCompany",
+      "attributes": [
+
+      ]
     },
-    "realtime": false,
-    "comments": {
-      "enabled": true
+    {
+      "idV2": "3de9af27-6403-3b84-b927-58e26c68e6a3",
+      "prefLabel": "Morningstar, Inc.",
+      "directType": "http://www.ft.com/ontology/company/PublicCompany",
+      "attributes": [
+
+      ]
     },
-    "canBeSyndicated": "yes",
-    "_lastUpdatedDateTime": "2017-02-02T05:02:21.692Z",
-    "url": "https://www.ft.com/content/72402230-e6db-11e6-967b-c88452263daf",
-    "metadata": [],
-    "mainImage": {
-      "title": "",
-      "description": "This picture taken on March 24, 2015 shows an ostrich looking over the fence of a fawn in Riederfelde near Luebz, eastern Germany.\nBird flu threatens even the most experienced ostrich farms in northeastern Germany. / AFP / dpa / Jens Büttner / Germany OUT        (Photo credit should read JENS BUTTNER/AFP/Getty Images)",
-      "url": "http://prod-upp-image-read.ft.com/833d264c-e707-11e6-967b-c88452263daf",
-      "width": 2048,
-      "height": 1152,
-      "ratio": 1.7777777777777777
+    {
+      "idV2": "a48d1000-be8b-3634-a54a-79a737ba62ee",
+      "prefLabel": "Total SA",
+      "directType": "http://www.ft.com/ontology/company/PublicCompany",
+      "attributes": [
+
+      ]
     },
-    "bodyXML": "<img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/833d264c-e707-11e6-967b-c88452263daf\" alt=\"This picture taken on March 24, 2015 shows an ostrich looking over the fence of a fawn in Riederfelde near Luebz, eastern Germany.\nBird flu threatens even the most experienced ostrich farms in northeastern Germany. / AFP / dpa / Jens Büttner / Germany OUT        (Photo credit should read JENS BUTTNER/AFP/Getty Images)\" width=\"2048\" height=\"1152\" data-copyright=\"© AFP\"><p>Are you an ostrich, engineer or pragmatist? </p><p>When I was a financial adviser the main question that most clients wanted answered was whether they would be OK financially — whether they would run out of life before they ran out of money.</p><p>Knowing how much money you need to earn from working to meet monthly lifestyle costs is one thing. Knowing how much wealth you need to accumulate to fund your entire lifetime, including when you can’t or don’t want to work, can be more challenging.</p><p>In my experience, people adopt one of three approaches to thinking about their <a href=\"/content/208627f2-d1d0-11e6-9341-7393bb2e1b51\">financial wellbeing</a> and long-term security.</p><p>The first is what I term the ostrich method. Like an ostrich you put your head in the sand and <a href=\"/content/7caeb2e2-953f-11e6-a1dc-bdf38d484582\">avoid thinking</a> about long-term planning in too much detail, living very much for today. You participate at the minimum level in your employer-<br>funded retirement plan and perhaps save into an Individual Savings Account, but typically have a large mortgage and other lifestyle costs.</p><p>Unless your income surplus is very large, the ostrich approach — aimlessly going through life without any sense of what you need to earn, save and invest — increases the probability of you either having to work until you drop or spend your old age in poverty. </p><promo-box><promo-title><p>FT Money Comment</p></promo-title><promo-headline><p>Jason Butler: The Wealth Man</p></promo-headline><promo-image><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/046785ae-d282-11e6-b06b-680c49b4b4c0\" alt=\"Byline portraits - Jason Butler for FT Money\" width=\"2048\" height=\"1152\"></promo-image><promo-intro><p><a href=\"/content/208627f2-d1d0-11e6-9341-7393bb2e1b51\">Can money make you happy?</a></p><p><a href=\"/content/9976553a-b586-11e6-961e-a1acd97f622d\">Robots can’t solve real-world financial problems</a></p><p><a href=\"/content/7caeb2e2-953f-11e6-a1dc-bdf38d484582\">What financial treasures and terrors lurk in your attic?</a><br></p></promo-intro></promo-box><p>Approach two is what I term the engineer method. You create (sometimes with the help of a financial planner) a very detailed and elaborate lifetime cashflow analysis. This sets out your long-term financial situation in terms of income, spending and required level of investment returns. These calculations then inform the detailed actions to be taken in terms of savings, investment, insurance and tax strategy.</p><p>The problem with planning for the long term is that whatever assumptions you use, they will almost certainly all turn out to be wrong. Therefore, while the engineer approach can be intellectually interesting, particularly if resources are finely balanced, you won’t necessarily have a better outcome if the assumptions turn out to be wrong.</p><p>The third approach is the pragmatist method. You develop a broad understanding of what needs to be saved, invested and withdrawn, using highly simplified assumptions and financial calculations. The idea is to have a general idea of your key financial planning numbers which you can quickly and easily check regularly, so you can make necessary changes to income, saving and investing, thus improving the chance of achieving a good financial outcome.</p><p>To calculate a simplified wealth accumulation strategy, the three main planning assumptions you need to focus on are: the real (after inflation) investment return while saving, the sustainable portfolio withdrawal rate as you start to spend more than you save (wealth decumulation) and the time horizon.</p><p>Last year, Morningstar, the financial research company, published some research on sustainable <a href=\"/content/b59b9fb4-4505-11e6-9b66-0712b3873ae1\">portfolio withdrawal </a>rates. Using forward looking expected investment returns (which were lower than historical returns) they found that there was a 90 per cent probability of sustainability for an initial withdrawal rate of 2.8 per cent a year with a portfolio with 40 per cent invested in equities and 60 per cent bonds. The rate was 3.1 per cent a year for a portfolio with 60 per cent invested in equities and 40 per cent in bonds.</p><p>In both cases the initial portfolio withdrawal was assumed to be adjusted by inflation each year over a 30-year period. This compares to the current 3 per cent starting yield on an inflation linked pension annuity for a 65-year-old in good health with a 10-year guarantee. Total investment costs were assumed to be 1 per cent a year. It seems reasonable, therefore, for the pragmatist to assume a sustainable withdrawal rate of 3 per cent a year (inflation adjusted) if they are prepared to invest between 40-60 per cent of long-term savings in equities and the rest in bonds.</p><p>The real return you achieve on your savings before you start to draw down — and the time horizon before and after — will have a big impact on how much you need to save regularly. The ready reckoner table shows the approximate monthly savings required to build an investment pot over various time frames to sustain a 3 per cent a year inflation-adjusted withdrawal, assuming a 3 per cent real return during savings. A lower assumed real investment return would mean you’ll need to save more or for longer.</p><p>To work out roughly <a href=\"/content/da3984c2-4a9a-11e6-8d68-72e9211e86ab\">what you should be saving </a>for the long term, multiply the relevant monthly amount for your chosen time frame by your desired target annual income. For example, if you have an income shortfall of £30,000 in 20 years you need to save approximately £3,000 (30 x £100) a month initially. The initial monthly savings required to generate this over 10 years are approximately £7,200 so the cost of delay is evident.</p><p>Those of you who are experts with spreadsheets will come up with slightly different results than my ready reckoner because I’ve rounded numbers. But if numbers aren’t your thing it’s far better to have a rough idea of whether you are saving enough and do something about it now than to ignore the issue. It might even inspire you to take a closer look at your financial numbers.</p><p>Morningstar’s sustainable portfolio research and the current cost of inflation protected annuities also have implications if you are thinking of exchanging your deferred final salary pension benefit for a transfer or are about to take benefits from your personal pension. You need to consider very carefully the rate of annual withdrawals and monitor those in the light of actual investment returns, particularly in the early years.</p><p>The US businessman Charles Kettering once said: “My interest is in the future because I am going to spend the rest of my life there.” When it comes to planning your future, ask yourself whether you are an ostrich, engineer or pragmatist: the answer could determine the comfort and financial security you can expect in your later years. </p><p><em><br>Jason Butler is a personal finance expert and a former financial adviser. Twitter: <a href=\"https://twitter.com/jbthewealthman?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor\">@jbthewealthman</a></em></p>",
-    "bodyHTML": "<figure class=\"n-content-image\"><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/833d264c-e707-11e6-967b-c88452263daf\" alt=\"This picture taken on March 24, 2015 shows an ostrich looking over the fence of a fawn in Riederfelde near Luebz, eastern Germany.\nBird flu threatens even the most experienced ostrich farms in northeastern Germany. / AFP / dpa / Jens Büttner / Germany OUT        (Photo credit should read JENS BUTTNER/AFP/Getty Images)\" width=\"2048\" height=\"1152\" data-copyright=\"© AFP\"><figcaption class=\"n-content-image__caption\">© AFP</figcaption></figure><p>Are you an ostrich, engineer or pragmatist? </p><p>When I was a financial adviser the main question that most clients wanted answered was whether they would be OK financially — whether they would run out of life before they ran out of money.</p><p>Knowing how much money you need to earn from working to meet monthly lifestyle costs is one thing. Knowing how much wealth you need to accumulate to fund your entire lifetime, including when you can’t or don’t want to work, can be more challenging.</p><p>In my experience, people adopt one of three approaches to thinking about their <a href=\"/content/208627f2-d1d0-11e6-9341-7393bb2e1b51\">financial wellbeing</a> and long-term security.</p><p>The first is what I term the ostrich method. Like an ostrich you put your head in the sand and <a href=\"/content/7caeb2e2-953f-11e6-a1dc-bdf38d484582\">avoid thinking</a> about long-term planning in too much detail, living very much for today. You participate at the minimum level in your employer-<br>funded retirement plan and perhaps save into an Individual Savings Account, but typically have a large mortgage and other lifestyle costs.</p><p>Unless your income surplus is very large, the ostrich approach — aimlessly going through life without any sense of what you need to earn, save and invest — increases the probability of you either having to work until you drop or spend your old age in poverty. </p><aside class=\"n-content-related-box\" role=\"complementary\"><h3 class=\"n-content-related-box__title\"><span class=\"n-content-related-box__title-text\">FT Money Comment</span></h3><div class=\"n-content-related-box__headline\">Jason Butler: The Wealth Man</div><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/046785ae-d282-11e6-b06b-680c49b4b4c0\" alt=\"Byline portraits - Jason Butler for FT Money\" width=\"2048\" height=\"1152\"><div class=\"n-content-related-box__content\"><p><a href=\"/content/208627f2-d1d0-11e6-9341-7393bb2e1b51\">Can money make you happy?</a></p><p><a href=\"/content/9976553a-b586-11e6-961e-a1acd97f622d\">Robots can’t solve real-world financial problems</a></p><p><a href=\"/content/7caeb2e2-953f-11e6-a1dc-bdf38d484582\">What financial treasures and terrors lurk in your attic?</a><br></p></div></aside><p>Approach two is what I term the engineer method. You create (sometimes with the help of a financial planner) a very detailed and elaborate lifetime cashflow analysis. This sets out your long-term financial situation in terms of income, spending and required level of investment returns. These calculations then inform the detailed actions to be taken in terms of savings, investment, insurance and tax strategy.</p><p>The problem with planning for the long term is that whatever assumptions you use, they will almost certainly all turn out to be wrong. Therefore, while the engineer approach can be intellectually interesting, particularly if resources are finely balanced, you won’t necessarily have a better outcome if the assumptions turn out to be wrong.</p><p>The third approach is the pragmatist method. You develop a broad understanding of what needs to be saved, invested and withdrawn, using highly simplified assumptions and financial calculations. The idea is to have a general idea of your key financial planning numbers which you can quickly and easily check regularly, so you can make necessary changes to income, saving and investing, thus improving the chance of achieving a good financial outcome.</p><p>To calculate a simplified wealth accumulation strategy, the three main planning assumptions you need to focus on are: the real (after inflation) investment return while saving, the sustainable portfolio withdrawal rate as you start to spend more than you save (wealth decumulation) and the time horizon.</p><p>Last year, Morningstar, the financial research company, published some research on sustainable <a href=\"/content/b59b9fb4-4505-11e6-9b66-0712b3873ae1\">portfolio withdrawal </a>rates. Using forward looking expected investment returns (which were lower than historical returns) they found that there was a 90 per cent probability of sustainability for an initial withdrawal rate of 2.8 per cent a year with a portfolio with 40 per cent invested in equities and 60 per cent bonds. The rate was 3.1 per cent a year for a portfolio with 60 per cent invested in equities and 40 per cent in bonds.</p><p>In both cases the initial portfolio withdrawal was assumed to be adjusted by inflation each year over a 30-year period. This compares to the current 3 per cent starting yield on an inflation linked pension annuity for a 65-year-old in good health with a 10-year guarantee. Total investment costs were assumed to be 1 per cent a year. It seems reasonable, therefore, for the pragmatist to assume a sustainable withdrawal rate of 3 per cent a year (inflation adjusted) if they are prepared to invest between 40-60 per cent of long-term savings in equities and the rest in bonds.</p><p>The real return you achieve on your savings before you start to draw down — and the time horizon before and after — will have a big impact on how much you need to save regularly. The ready reckoner table shows the approximate monthly savings required to build an investment pot over various time frames to sustain a 3 per cent a year inflation-adjusted withdrawal, assuming a 3 per cent real return during savings. A lower assumed real investment return would mean you’ll need to save more or for longer.</p><p>To work out roughly <a href=\"/content/da3984c2-4a9a-11e6-8d68-72e9211e86ab\">what you should be saving </a>for the long term, multiply the relevant monthly amount for your chosen time frame by your desired target annual income. For example, if you have an income shortfall of £30,000 in 20 years you need to save approximately £3,000 (30 x £100) a month initially. The initial monthly savings required to generate this over 10 years are approximately £7,200 so the cost of delay is evident.</p><p>Those of you who are experts with spreadsheets will come up with slightly different results than my ready reckoner because I’ve rounded numbers. But if numbers aren’t your thing it’s far better to have a rough idea of whether you are saving enough and do something about it now than to ignore the issue. It might even inspire you to take a closer look at your financial numbers.</p><p>Morningstar’s sustainable portfolio research and the current cost of inflation protected annuities also have implications if you are thinking of exchanging your deferred final salary pension benefit for a transfer or are about to take benefits from your personal pension. You need to consider very carefully the rate of annual withdrawals and monitor those in the light of actual investment returns, particularly in the early years.</p><p>The US businessman Charles Kettering once said: “My interest is in the future because I am going to spend the rest of my life there.” When it comes to planning your future, ask yourself whether you are an ostrich, engineer or pragmatist: the answer could determine the comfort and financial security you can expect in your later years. </p><p><em><br>Jason Butler is a personal finance expert and a former financial adviser. Twitter: <a href=\"https://twitter.com/jbthewealthman?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor\">@jbthewealthman</a></em></p>"
-  }
+    {
+      "idV2": "59fd6642-055c-30b0-b2b8-8120bc2990af",
+      "prefLabel": "Personal Finance",
+      "directType": "http://www.ft.com/ontology/Section",
+      "attributes": [
+
+      ]
+    },
+    {
+      "idV2": "0a757042-e321-304f-97c0-e04337bc698e",
+      "prefLabel": "Pensions",
+      "directType": "http://www.ft.com/ontology/Section",
+      "attributes": [
+
+      ]
+    },
+    {
+      "idV2": "dfa0c008-68a4-3901-9300-e35fb3c15cc4",
+      "prefLabel": "Advice & Comment",
+      "directType": "http://www.ft.com/ontology/Section",
+      "attributes": [
+
+      ]
+    },
+    {
+      "idV2": "3e0674b7-ea87-369a-b536-ead47dd076ae",
+      "prefLabel": "Investments",
+      "directType": "http://www.ft.com/ontology/Section",
+      "attributes": [
+
+      ]
+    },
+    {
+      "idV2": "dfa0c008-68a4-3901-9300-e35fb3c15cc4",
+      "prefLabel": "Advice & Comment",
+      "directType": "http://www.ft.com/ontology/Section",
+      "attributes": [
+
+      ]
+    },
+    {
+      "idV2": "f662a1e8-4e85-30c2-b02c-83436557ad31",
+      "prefLabel": "The Wealth Man",
+      "directType": "http://www.ft.com/ontology/product/Brand",
+      "attributes": [
+
+      ]
+    },
+    {
+      "idV2": "70f66462-e313-3e83-ad39-d7724973d276",
+      "prefLabel": "Savings",
+      "directType": "http://www.ft.com/ontology/Section",
+      "attributes": [
+
+      ]
+    },
+    {
+      "idV2": "b224ad07-c818-3ad6-94af-a4d351dbb619",
+      "prefLabel": "Economic Indicators",
+      "directType": "http://www.ft.com/ontology/Subject",
+      "attributes": [
+
+      ]
+    },
+    {
+      "idV2": "e569e23b-0c3e-3d20-8ed0-4c17b8177c05",
+      "prefLabel": "Comment",
+      "directType": "http://www.ft.com/ontology/Genre",
+      "attributes": [
+
+      ]
+    },
+    {
+      "idV2": "e97e5795-7f5a-32d3-9daa-a41b1182e8dc",
+      "prefLabel": "Jason Butler",
+      "directType": "http://www.ft.com/ontology/person/Person",
+      "attributes": [
+
+      ]
+    }
+  ],
+  "webUrl": "http://www.ft.com/cms/s/0/72402230-e6db-11e6-967b-c88452263daf.html",
+  "provenance": [
+    "http://api.ft.com/content/items/v1/72402230-e6db-11e6-967b-c88452263daf",
+    "http://api.ft.com/enrichedcontent/72402230-e6db-11e6-967b-c88452263daf"
+  ],
+  "originatingParty": "FT",
+  "storyPackage": [
+
+  ],
+  "standout": {
+    "editorsChoice": false,
+    "exclusive": false,
+    "scoop": false
+  },
+  "realtime": false,
+  "comments": {
+    "enabled": true
+  },
+  "canBeSyndicated": "yes",
+  "_lastUpdatedDateTime": "2017-02-02T05:02:21.692Z",
+  "url": "https://www.ft.com/content/72402230-e6db-11e6-967b-c88452263daf",
+  "metadata": [],
+  "mainImage": {
+    "title": "",
+    "description": "This picture taken on March 24, 2015 shows an ostrich looking over the fence of a fawn in Riederfelde near Luebz, eastern Germany.\nBird flu threatens even the most experienced ostrich farms in northeastern Germany. / AFP / dpa / Jens Büttner / Germany OUT        (Photo credit should read JENS BUTTNER/AFP/Getty Images)",
+    "url": "http://prod-upp-image-read.ft.com/833d264c-e707-11e6-967b-c88452263daf",
+    "width": 2048,
+    "height": 1152,
+    "ratio": 1.7777777777777777
+  },
+  "bodyXML": "<img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/833d264c-e707-11e6-967b-c88452263daf\" alt=\"This picture taken on March 24, 2015 shows an ostrich looking over the fence of a fawn in Riederfelde near Luebz, eastern Germany.\nBird flu threatens even the most experienced ostrich farms in northeastern Germany. / AFP / dpa / Jens Büttner / Germany OUT        (Photo credit should read JENS BUTTNER/AFP/Getty Images)\" width=\"2048\" height=\"1152\" data-copyright=\"© AFP\"><p>Are you an ostrich, engineer or pragmatist? </p><p>When I was a financial adviser the main question that most clients wanted answered was whether they would be OK financially — whether they would run out of life before they ran out of money.</p><p>Knowing how much money you need to earn from working to meet monthly lifestyle costs is one thing. Knowing how much wealth you need to accumulate to fund your entire lifetime, including when you can’t or don’t want to work, can be more challenging.</p><p>In my experience, people adopt one of three approaches to thinking about their <a href=\"/content/208627f2-d1d0-11e6-9341-7393bb2e1b51\">financial wellbeing</a> and long-term security.</p><p>The first is what I term the ostrich method. Like an ostrich you put your head in the sand and <a href=\"/content/7caeb2e2-953f-11e6-a1dc-bdf38d484582\">avoid thinking</a> about long-term planning in too much detail, living very much for today. You participate at the minimum level in your employer-<br>funded retirement plan and perhaps save into an Individual Savings Account, but typically have a large mortgage and other lifestyle costs.</p><p>Unless your income surplus is very large, the ostrich approach — aimlessly going through life without any sense of what you need to earn, save and invest — increases the probability of you either having to work until you drop or spend your old age in poverty. </p><promo-box><promo-title><p>FT Money Comment</p></promo-title><promo-headline><p>Jason Butler: The Wealth Man</p></promo-headline><promo-image><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/046785ae-d282-11e6-b06b-680c49b4b4c0\" alt=\"Byline portraits - Jason Butler for FT Money\" width=\"2048\" height=\"1152\"></promo-image><promo-intro><p><a href=\"/content/208627f2-d1d0-11e6-9341-7393bb2e1b51\">Can money make you happy?</a></p><p><a href=\"/content/9976553a-b586-11e6-961e-a1acd97f622d\">Robots can’t solve real-world financial problems</a></p><p><a href=\"/content/7caeb2e2-953f-11e6-a1dc-bdf38d484582\">What financial treasures and terrors lurk in your attic?</a><br></p></promo-intro></promo-box><p>Approach two is what I term the engineer method. You create (sometimes with the help of a financial planner) a very detailed and elaborate lifetime cashflow analysis. This sets out your long-term financial situation in terms of income, spending and required level of investment returns. These calculations then inform the detailed actions to be taken in terms of savings, investment, insurance and tax strategy.</p><p>The problem with planning for the long term is that whatever assumptions you use, they will almost certainly all turn out to be wrong. Therefore, while the engineer approach can be intellectually interesting, particularly if resources are finely balanced, you won’t necessarily have a better outcome if the assumptions turn out to be wrong.</p><p>The third approach is the pragmatist method. You develop a broad understanding of what needs to be saved, invested and withdrawn, using highly simplified assumptions and financial calculations. The idea is to have a general idea of your key financial planning numbers which you can quickly and easily check regularly, so you can make necessary changes to income, saving and investing, thus improving the chance of achieving a good financial outcome.</p><p>To calculate a simplified wealth accumulation strategy, the three main planning assumptions you need to focus on are: the real (after inflation) investment return while saving, the sustainable portfolio withdrawal rate as you start to spend more than you save (wealth decumulation) and the time horizon.</p><p>Last year, Morningstar, the financial research company, published some research on sustainable <a href=\"/content/b59b9fb4-4505-11e6-9b66-0712b3873ae1\">portfolio withdrawal </a>rates. Using forward looking expected investment returns (which were lower than historical returns) they found that there was a 90 per cent probability of sustainability for an initial withdrawal rate of 2.8 per cent a year with a portfolio with 40 per cent invested in equities and 60 per cent bonds. The rate was 3.1 per cent a year for a portfolio with 60 per cent invested in equities and 40 per cent in bonds.</p><p>In both cases the initial portfolio withdrawal was assumed to be adjusted by inflation each year over a 30-year period. This compares to the current 3 per cent starting yield on an inflation linked pension annuity for a 65-year-old in good health with a 10-year guarantee. Total investment costs were assumed to be 1 per cent a year. It seems reasonable, therefore, for the pragmatist to assume a sustainable withdrawal rate of 3 per cent a year (inflation adjusted) if they are prepared to invest between 40-60 per cent of long-term savings in equities and the rest in bonds.</p><p>The real return you achieve on your savings before you start to draw down — and the time horizon before and after — will have a big impact on how much you need to save regularly. The ready reckoner table shows the approximate monthly savings required to build an investment pot over various time frames to sustain a 3 per cent a year inflation-adjusted withdrawal, assuming a 3 per cent real return during savings. A lower assumed real investment return would mean you’ll need to save more or for longer.</p><p>To work out roughly <a href=\"/content/da3984c2-4a9a-11e6-8d68-72e9211e86ab\">what you should be saving </a>for the long term, multiply the relevant monthly amount for your chosen time frame by your desired target annual income. For example, if you have an income shortfall of £30,000 in 20 years you need to save approximately £3,000 (30 x £100) a month initially. The initial monthly savings required to generate this over 10 years are approximately £7,200 so the cost of delay is evident.</p><p>Those of you who are experts with spreadsheets will come up with slightly different results than my ready reckoner because I’ve rounded numbers. But if numbers aren’t your thing it’s far better to have a rough idea of whether you are saving enough and do something about it now than to ignore the issue. It might even inspire you to take a closer look at your financial numbers.</p><p>Morningstar’s sustainable portfolio research and the current cost of inflation protected annuities also have implications if you are thinking of exchanging your deferred final salary pension benefit for a transfer or are about to take benefits from your personal pension. You need to consider very carefully the rate of annual withdrawals and monitor those in the light of actual investment returns, particularly in the early years.</p><p>The US businessman Charles Kettering once said: “My interest is in the future because I am going to spend the rest of my life there.” When it comes to planning your future, ask yourself whether you are an ostrich, engineer or pragmatist: the answer could determine the comfort and financial security you can expect in your later years. </p><p><em><br>Jason Butler is a personal finance expert and a former financial adviser. Twitter: <a href=\"https://twitter.com/jbthewealthman?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor\">@jbthewealthman</a></em></p>",
+  "bodyHTML": "<figure class=\"n-content-image\"><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/833d264c-e707-11e6-967b-c88452263daf\" alt=\"This picture taken on March 24, 2015 shows an ostrich looking over the fence of a fawn in Riederfelde near Luebz, eastern Germany.\nBird flu threatens even the most experienced ostrich farms in northeastern Germany. / AFP / dpa / Jens Büttner / Germany OUT        (Photo credit should read JENS BUTTNER/AFP/Getty Images)\" width=\"2048\" height=\"1152\" data-copyright=\"© AFP\"><figcaption class=\"n-content-image__caption\">© AFP</figcaption></figure><p>Are you an ostrich, engineer or pragmatist? </p><p>When I was a financial adviser the main question that most clients wanted answered was whether they would be OK financially — whether they would run out of life before they ran out of money.</p><p>Knowing how much money you need to earn from working to meet monthly lifestyle costs is one thing. Knowing how much wealth you need to accumulate to fund your entire lifetime, including when you can’t or don’t want to work, can be more challenging.</p><p>In my experience, people adopt one of three approaches to thinking about their <a href=\"/content/208627f2-d1d0-11e6-9341-7393bb2e1b51\">financial wellbeing</a> and long-term security.</p><p>The first is what I term the ostrich method. Like an ostrich you put your head in the sand and <a href=\"/content/7caeb2e2-953f-11e6-a1dc-bdf38d484582\">avoid thinking</a> about long-term planning in too much detail, living very much for today. You participate at the minimum level in your employer-<br>funded retirement plan and perhaps save into an Individual Savings Account, but typically have a large mortgage and other lifestyle costs.</p><p>Unless your income surplus is very large, the ostrich approach — aimlessly going through life without any sense of what you need to earn, save and invest — increases the probability of you either having to work until you drop or spend your old age in poverty. </p><aside class=\"n-content-related-box\" role=\"complementary\"><h3 class=\"n-content-related-box__title\"><span class=\"n-content-related-box__title-text\">FT Money Comment</span></h3><div class=\"n-content-related-box__headline\">Jason Butler: The Wealth Man</div><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/046785ae-d282-11e6-b06b-680c49b4b4c0\" alt=\"Byline portraits - Jason Butler for FT Money\" width=\"2048\" height=\"1152\"><div class=\"n-content-related-box__content\"><p><a href=\"/content/208627f2-d1d0-11e6-9341-7393bb2e1b51\">Can money make you happy?</a></p><p><a href=\"/content/9976553a-b586-11e6-961e-a1acd97f622d\">Robots can’t solve real-world financial problems</a></p><p><a href=\"/content/7caeb2e2-953f-11e6-a1dc-bdf38d484582\">What financial treasures and terrors lurk in your attic?</a><br></p></div></aside><p>Approach two is what I term the engineer method. You create (sometimes with the help of a financial planner) a very detailed and elaborate lifetime cashflow analysis. This sets out your long-term financial situation in terms of income, spending and required level of investment returns. These calculations then inform the detailed actions to be taken in terms of savings, investment, insurance and tax strategy.</p><p>The problem with planning for the long term is that whatever assumptions you use, they will almost certainly all turn out to be wrong. Therefore, while the engineer approach can be intellectually interesting, particularly if resources are finely balanced, you won’t necessarily have a better outcome if the assumptions turn out to be wrong.</p><p>The third approach is the pragmatist method. You develop a broad understanding of what needs to be saved, invested and withdrawn, using highly simplified assumptions and financial calculations. The idea is to have a general idea of your key financial planning numbers which you can quickly and easily check regularly, so you can make necessary changes to income, saving and investing, thus improving the chance of achieving a good financial outcome.</p><p>To calculate a simplified wealth accumulation strategy, the three main planning assumptions you need to focus on are: the real (after inflation) investment return while saving, the sustainable portfolio withdrawal rate as you start to spend more than you save (wealth decumulation) and the time horizon.</p><p>Last year, Morningstar, the financial research company, published some research on sustainable <a href=\"/content/b59b9fb4-4505-11e6-9b66-0712b3873ae1\">portfolio withdrawal </a>rates. Using forward looking expected investment returns (which were lower than historical returns) they found that there was a 90 per cent probability of sustainability for an initial withdrawal rate of 2.8 per cent a year with a portfolio with 40 per cent invested in equities and 60 per cent bonds. The rate was 3.1 per cent a year for a portfolio with 60 per cent invested in equities and 40 per cent in bonds.</p><p>In both cases the initial portfolio withdrawal was assumed to be adjusted by inflation each year over a 30-year period. This compares to the current 3 per cent starting yield on an inflation linked pension annuity for a 65-year-old in good health with a 10-year guarantee. Total investment costs were assumed to be 1 per cent a year. It seems reasonable, therefore, for the pragmatist to assume a sustainable withdrawal rate of 3 per cent a year (inflation adjusted) if they are prepared to invest between 40-60 per cent of long-term savings in equities and the rest in bonds.</p><p>The real return you achieve on your savings before you start to draw down — and the time horizon before and after — will have a big impact on how much you need to save regularly. The ready reckoner table shows the approximate monthly savings required to build an investment pot over various time frames to sustain a 3 per cent a year inflation-adjusted withdrawal, assuming a 3 per cent real return during savings. A lower assumed real investment return would mean you’ll need to save more or for longer.</p><p>To work out roughly <a href=\"/content/da3984c2-4a9a-11e6-8d68-72e9211e86ab\">what you should be saving </a>for the long term, multiply the relevant monthly amount for your chosen time frame by your desired target annual income. For example, if you have an income shortfall of £30,000 in 20 years you need to save approximately £3,000 (30 x £100) a month initially. The initial monthly savings required to generate this over 10 years are approximately £7,200 so the cost of delay is evident.</p><p>Those of you who are experts with spreadsheets will come up with slightly different results than my ready reckoner because I’ve rounded numbers. But if numbers aren’t your thing it’s far better to have a rough idea of whether you are saving enough and do something about it now than to ignore the issue. It might even inspire you to take a closer look at your financial numbers.</p><p>Morningstar’s sustainable portfolio research and the current cost of inflation protected annuities also have implications if you are thinking of exchanging your deferred final salary pension benefit for a transfer or are about to take benefits from your personal pension. You need to consider very carefully the rate of annual withdrawals and monitor those in the light of actual investment returns, particularly in the early years.</p><p>The US businessman Charles Kettering once said: “My interest is in the future because I am going to spend the rest of my life there.” When it comes to planning your future, ask yourself whether you are an ostrich, engineer or pragmatist: the answer could determine the comfort and financial security you can expect in your later years. </p><p><em><br>Jason Butler is a personal finance expert and a former financial adviser. Twitter: <a href=\"https://twitter.com/jbthewealthman?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor\">@jbthewealthman</a></em></p>"
 }

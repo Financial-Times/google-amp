@@ -51,10 +51,10 @@ const formatAndHighlight = html => highlight('html', htmlBeautify(html, {
 
 Promise.all(testUUIDs.map(
 	uuid => getArticle(uuid)
-		.then(({_source}) => {
-			const $h = cheerio.load(_source.bodyHTML);
-			const $x = cheerio.load(_source.bodyXML);
-			const result = {uuid, title: _source.title};
+		.then(article => {
+			const $h = cheerio.load(article.bodyHTML);
+			const $x = cheerio.load(article.bodyXML);
+			const result = {uuid, title: article.title};
 
 			if($h(selector).length) result.html = $h.html(selector);
 			if($x(selector).length) result.xml = $x.html(selector);
