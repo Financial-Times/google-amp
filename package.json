@@ -25,6 +25,7 @@
   "author": "richard.still@ft.com",
   "dependencies": {
     "@financial-times/fastly-tools": "^1.4.1",
+    "@financial-times/n-es-client": "^1.0.0-beta.6",
     "@financial-times/n-handlebars": "^1.16.4",
     "@georgecrawford/postcss-remove-important": "^1.4.0",
     "@quarterto/assert-env": "^1.3.0",
@@ -80,7 +81,6 @@
     "lodash.values": "^4.1.0",
     "mkdirp-promise": "^1.0.3",
     "morgan": "^1.6.1",
-    "next-ft-api-client": "^3.22.0",
     "node-fetch": "^1.3.3",
     "node-sass": "^3.10.1",
     "o-date": "github:financial-times/o-date",
@@ -91,8 +91,7 @@
     "postcss-remove-unused": "^1.0.1",
     "raven": "^0.10.0",
     "request": "^2.61.0",
-    "rss": "^1.1.1",
-    "signed-aws-es-fetch": "^1.1.0"
+    "rss": "^1.1.1"
   },
   "engines": {
     "node": "^6.0.0"

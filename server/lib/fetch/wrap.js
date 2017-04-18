@@ -15,7 +15,7 @@ module.exports = (fetch, options) => {
 	options = defaults(options, {
 		instrument: process.env.NODE_ENV === 'instrument',
 		userAgent: `ft-google-amp v${pkg.version}`,
-		getLabel: url => url.filter ? url.filter[1] : url,
+		getLabel: url => url.query ? JSON.stringify(url.query) : url,
 	});
 
 	return Object.keys(wrappers)
