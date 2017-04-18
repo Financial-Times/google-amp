@@ -1,22 +1,23 @@
 'use strict';
 
-const api = require('next-ft-api-client');
+const nEsClient = require('@financial-times/n-es-client');
 const dateTransform = require('../transforms/extra/date');
 const sanitizeImage = require('../sanitize-image');
 const url = require('../url');
 
 const moreOnCount = 5;
 
-const apiSearch = require('../fetch/wrap')(api.search, {
-	tag: 'api-search',
-});
+const apiSearch = require('../fetch/wrap')(
+	options => nEsClient.search(options),
+	{tag: 'api-search'}
+);
 
 const addArticles = metadatum => apiSearch({
-	filter: ['metadata.idV1', metadatum.idV1],
+	query: {term: {'metadata.idV1': metadatum.idV1}},
 
-		// Fetch twice as many as we need, to allow for deduping
-	count: moreOnCount * 2,
-	fields: [
+	// Fetch twice as many as we need, to allow for deduping
+	size: moreOnCount * 2,
+	_source: [
 		'id',
 		'title',
 		'metadata',
