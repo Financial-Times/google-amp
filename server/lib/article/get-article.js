@@ -9,4 +9,9 @@ const fetchres = require('fetchres');
 const index = 'content';
 
 module.exports = (uuid, options) => signedFetch(`https://${elasticSearchUrl}/${index}/item/${uuid}`, options)
-	.then(fetchres.json);
+	.then(res => Promise.resolve(res)
+		.then(fetchres.json)
+		.catch(err => {
+			err.response = res;
+			throw err;
+		}));

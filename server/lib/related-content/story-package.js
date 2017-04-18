@@ -29,7 +29,7 @@ const getRelated = (id, options) => getArticle(id, {
 })
 .catch(e => {
 	// Ignore 404 errors, for content not in ElasticSearch
-	if(e.message === 404) {
+	if(e.response && e.response.status === 404) {
 		return;
 	}
 
