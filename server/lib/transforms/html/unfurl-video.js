@@ -1,11 +1,7 @@
 'use strict';
 
 const match = require('@quarterto/cheerio-match-multiple');
-const fetchres = require('fetchres');
-
-const fetch = require('../../fetch/wrap')(require('node-fetch'), {
-	tag: 'unfurl-videos',
-});
+const getVideo = require('../utils/get-video');
 
 const getSources = ({renditions}) => renditions.map(
 	({url, mediaType, width}) => `<source src="${url}" type=${mediaType} media="(max-width: ${width}px)">`
@@ -17,13 +13,11 @@ const getDimensions = ({renditions}) => {
 };
 
 const videoTemplate = video => `
-<amp-video ${getDimensions(video)} poster="${video.posterImageUrl}" controls>
+<amp-video ${getDimensions(video)} poster="${video.posterImageUrl}" controls layout="responsive">
 	${getSources(video)}
 </amp-video>`;
 
-const unfurlVideo = videoId => fetch(`https://next-media-api.ft.com/v1/${videoId}`)
-	.then(fetchres.json)
-	.then(videoTemplate);
+const unfurlVideo = videoId => getVideo(videoId).then(videoTemplate);
 
 module.exports = ($, options = {}) => {
 	const promises = [];
