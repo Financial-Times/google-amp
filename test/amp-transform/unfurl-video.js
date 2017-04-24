@@ -47,7 +47,7 @@ describe('video unfurl transform', () => {
 		).dom.to.equal(`<amp-video width="480" height="270"
 		poster="https://bcsecure01-a.akamaihd.net/13/47628783001/201704/2536/47628783001_5402191225001_5402157396001-vs.jpg?pubId=47628783001&videoId=5402157396001"
 		controls layout="responsive">
-		    <source
+		<source
 		src="https://bcsecure04-a.akamaihd.net/34/47628783001/201704/2536/47628783001_5402189291001_5402157396001.mp4?pubId=47628783001&videoId=5402157396001"
 		type="video/mp4" media="(max-width: 480px)">
 		<source
