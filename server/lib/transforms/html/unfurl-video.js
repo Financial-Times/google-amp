@@ -16,24 +16,31 @@ const getDimensions = ({renditions}) => {
 	return `width="480" height="${Math.round(480 * aspect)}"`;
 };
 
+const videoTemplate = video => `
+<amp-video ${getDimensions(video)} poster="${video.posterImageUrl}" controls>
+	${getSources(video)}
+</amp-video>`;
+
 const unfurlVideo = videoId => fetch(`https://next-media-api.ft.com/v1/${videoId}`)
 	.then(fetchres.json)
-	.then(video =>
-`<amp-video ${getDimensions(video)} poster="${video.posterImageUrl}" controls>
-	${getSources(video)}
-</amp-video>`);
+	.then(videoTemplate);
 
 module.exports = ($, options = {}) => {
 	if(!options.unfurlVideos) return $;
 
 	const promises = [];
-	const queueUnfurl = (el, videoId) => promises.push(
+	const queueUnfurl = (el, videoId) => videoId && promises.push(
 		unfurlVideo(videoId).then(video => el.replaceWith(video))
 	);
 
 	match({
 		'.n-content-video--brightcove'(el) {
-			const [, videoId] = el.find('a').attr('href').match(/http:\/\/video.ft.com\/(.+)$/);
+			const [, videoId] = el.find('a').attr('href').match(/http:\/\/video.ft.com\/(.+)$/) || [];
+			queueUnfurl(el, videoId);
+		},
+
+		'.n-content-video--internal'(el) {
+			const [, videoId] = el.find('a').attr('href').match(/www.ft.com\/video\/(.+)$/) || [];
 			queueUnfurl(el, videoId);
 		},
 	})($, options);
