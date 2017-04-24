@@ -39,7 +39,7 @@ const transformBody = cheerioTransform(parallel({
 	imagePlaceholder: deps('externalImages', 'relatedBox', 'figure')(imagePlaceholder),
 	removeImageData: deps('externalImages', 'relatedBox', 'figure', 'imagePlaceholder')(removeImageData),
 	video: deps('unfurlVideo')(video),
-	externalImages,
+	externalImages: deps('unfurlVideo')(externalImages),
 	trimmedLinks,
 	removeStyles,
 	insertAd,

@@ -61,6 +61,7 @@ const enableAllFlags = {
 	enableAds: true,
 	enableLiveBlogs: true,
 	enableBarrier: true,
+	unfurlVideos: true,
 };
 
 const getFeatureHTML = entry => entry in featureTemplate ?
@@ -107,6 +108,7 @@ module.exports = (article, options) => {
 				sidebar: options.enableSidebarMenu,
 				slideshow: Object.keys(article.slideshows).length > 0,
 				social: options.enableSocialShare,
+				video: !!options.unfurlVideos && article.htmlBody.includes('<amp-video'),
 			};
 
 			const bundledCSS = selectFeatures(features, enabledFeatures).join('\n');

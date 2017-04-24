@@ -16,8 +16,24 @@ const getDimensions = ({renditions}) => {
 	return `width="480" height="${Math.round(480 * aspect)}"`;
 };
 
+const videoPlaceholder = video => `
+<div class="o-video__placeholder o-video--small" placeholder>
+	<amp-img class="o-video__placeholder-image" alt="" src="${video.posterImageUrl}" ${getDimensions(video)}></amp-img>
+
+	<div class="o-video__info">
+		${video.brand ? `<span class="o-video__info-brand">${video.brand.name}</span>` : ''}
+		<h4 class="o-video__info-title">${video.name}</h4>
+	</div>
+
+	<div class="o-video__play-button">
+		<span class="o-video__play-button-text">Play video</span>
+		<i class="o-video__play-button-icon"></i>
+	</div>
+</div>`;
+
 const videoTemplate = video => `
-<amp-video ${getDimensions(video)} poster="${video.posterImageUrl}" controls>
+<amp-video ${getDimensions(video)} poster="${video.posterImageUrl}" layout="responsive">
+	${videoPlaceholder(video)}
 	${getSources(video)}
 </amp-video>`;
 
