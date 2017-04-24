@@ -26,8 +26,6 @@ const unfurlVideo = videoId => fetch(`https://next-media-api.ft.com/v1/${videoId
 	.then(videoTemplate);
 
 module.exports = ($, options = {}) => {
-	if(!options.unfurlVideos) return $;
-
 	const promises = [];
 	const queueUnfurl = (el, videoId) => videoId && promises.push(
 		unfurlVideo(videoId).then(video => el.replaceWith(video))
@@ -35,6 +33,8 @@ module.exports = ($, options = {}) => {
 
 	match({
 		'.n-content-video--brightcove'(el) {
+			if(!options.unfurlBrightcove) return;
+
 			const [, videoId] = el.find('a').attr('href').match(/http:\/\/video.ft.com\/(.+)$/) || [];
 			queueUnfurl(el, videoId);
 		},

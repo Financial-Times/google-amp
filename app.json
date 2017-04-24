@@ -24,7 +24,7 @@
 		"ENABLE_BARRIER": {"required": false},
 		"BARRIER_AMMIT": {"required": false},
 		"AMMIT_APIKEY": {"required": true},
-		"UNFURL_VIDEOS": {"required": false}
+		"UNFURL_BRIGHTCOVE": {"required": false}
 	},
 	"addons": [
 		"papertrail"
