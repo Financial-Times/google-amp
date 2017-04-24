@@ -48,6 +48,7 @@ module.exports = (article, options) => Object.assign(article, {
 	enableSocialShare: !!options.enableSocialShare,
 	enableLiveBlogs: !!options.enableLiveBlogs,
 	enableBarrier: !!options.enableBarrier,
+	unfurlVideos: !!options.unfurlVideos,
 
 	canonicalURL: url.canonical(article),
 	pspURL: 'https://www.ft.com/products',

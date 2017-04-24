@@ -16,4 +16,5 @@ module.exports = {
 	enableLiveBlogs: (process.env.ENABLE_LIVE_BLOGS === 'true'),
 	enableBarrier: (process.env.ENABLE_BARRIER === 'true'),
 	thisYear: new Date().getFullYear(),
+	unfurlVideos: (process.env.UNFURL_VIDEOS === 'true'),
 };

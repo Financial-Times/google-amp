@@ -17,6 +17,7 @@ const lightSignup = require('./html/light-signup');
 const blockquotes = require('./html/blockquotes');
 const replaceTagsWithContent = require('./html/replace-tags-with-content');
 const video = require('./html/video');
+const unfurlVideo = require('./html/unfurl-video');
 const slideshow = require('./html/slideshow');
 const interactiveGraphics = require('./html/interactive-graphics');
 const infoBox = require('./html/info-box');
@@ -37,6 +38,7 @@ const transformBody = cheerioTransform(parallel({
 	removeInvalidLinks: deps('contentLinks', 'linkAnalytics')(removeInvalidLinks),
 	imagePlaceholder: deps('externalImages', 'relatedBox', 'figure')(imagePlaceholder),
 	removeImageData: deps('externalImages', 'relatedBox', 'figure', 'imagePlaceholder')(removeImageData),
+	video: deps('unfurlVideo')(video),
 	externalImages,
 	trimmedLinks,
 	removeStyles,
@@ -44,7 +46,7 @@ const transformBody = cheerioTransform(parallel({
 	lightSignup,
 	blockquotes,
 	replaceTagsWithContent,
-	video,
+	unfurlVideo,
 	slideshow,
 	interactiveGraphics,
 	infoBox,
