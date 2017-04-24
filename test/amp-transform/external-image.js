@@ -15,8 +15,8 @@ describe('external image transform', () => {
 			.reply(200, imageResponse);
 	});
 
-	after(() => {
-		nock.restore();
+	afterEach(() => {
+		nock.cleanAll();
 	});
 
 	it('should transform img to amp-image with ratio', async () => {
