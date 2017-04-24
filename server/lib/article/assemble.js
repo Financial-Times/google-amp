@@ -88,7 +88,8 @@ const assembleArticle = (uuid, options) => {
 		.then(
 			response => {
 				if(response &&
-					(!response.originatingParty || response.originatingParty === 'FT')
+					(!response.originatingParty || response.originatingParty === 'FT') &&
+					(!response.type || response.type === 'article')
 				) {
 					return response;
 				}
