@@ -4,16 +4,16 @@ const match = require('@quarterto/cheerio-match-multiple');
 const getVideo = require('../utils/get-video');
 
 const getSources = ({renditions}) => renditions.map(
-	({url, mediaType, width}) => `<source src="${url}" type=${mediaType} media="(max-width: ${width}px)">`
+	({url, mediaType, pixelWidth}) => `<source src="${url}" type=${mediaType} media="(max-width: ${pixelWidth}px)">`
 ).join('\n');
 
 const getDimensions = ({renditions}) => {
-	const aspect = renditions[0].height / renditions[0].width;
+	const aspect = renditions[0].pixelHeight / renditions[0].pixelWidth;
 	return `width="480" height="${Math.round(480 * aspect)}"`;
 };
 
 const videoTemplate = video => `
-<amp-video ${getDimensions(video)} poster="${video.posterImageUrl}" controls layout="responsive">
+<amp-video ${getDimensions(video)} poster="${video.mainImageUrl}" controls layout="responsive">
 	${getSources(video)}
 </amp-video>`;
 
