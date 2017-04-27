@@ -9,7 +9,10 @@ const moreOnCount = 5;
 
 const apiSearch = require('../fetch/wrap')(
 	options => nEsClient.search(options),
-	{tag: 'api-search'}
+	{
+		tag: 'api-search',
+		userAgent: false,
+	}
 );
 
 const addArticles = metadatum => apiSearch({
