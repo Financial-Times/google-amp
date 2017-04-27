@@ -12,7 +12,7 @@ const isLiveBlog = require('../live-blogs/is-live-blog');
 const getLiveBlog = require('../live-blogs/get-live-blog');
 
 const errors = require('http-errors');
-const fetchres = require('fetchres');
+const reportError = require('../report-error');
 
 const promiseAllObj = require('@quarterto/promise-all-object');
 const url = require('../url');
@@ -94,12 +94,21 @@ const assembleArticle = (uuid, options) => {
 					return response;
 				}
 
-				return Promise.reject(new errors.NotFound());
+				throw new errors.NotFound(`Article ${uuid} not found`);
 			},
-			err => (
-				console.log(err),
-				Promise.reject(err.name === fetchres.BadServerResponseError.name ? new errors.NotFound() : err)
-			)
+			err => {
+				if(err.status === 404) {
+					throw new errors.NotFound(`Article ${uuid} not found`);
+				}
+
+				if(err.status) {
+					reportError(options.raven, err);
+
+					throw new errors.InternalServerError(`Elastic Search error fetching article ${uuid}`);
+				}
+
+				throw err;
+			}
 		)
 		.then(article => articleFlags(article, options))
 		.then(article => {
