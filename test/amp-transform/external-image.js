@@ -2,14 +2,25 @@
 
 const {expect} = require('../utils/chai');
 const transformBody = require('../../server/lib/transforms/body');
+const nock = require('nock');
 
-describe('external image transform', function() {
-	// image service can take a while
-	this.timeout(10000);
+const imageResponse = require('../fixtures/56f6ad50-da52-11e5-a72f-1e7744c66818.json');
+
+describe('external image transform', () => {
+	let imageService;
+
+	beforeEach(() => {
+		imageService = nock('https://www.ft.com')
+			.get(/\/__origami\/service\/image\/v2\/images\/metadata\//)
+			.reply(200, imageResponse);
+	});
+
+	afterEach(() => {
+		nock.cleanAll();
+	});
 
 	it('should transform img to amp-image with ratio', async () => {
 		expect(
-			// needs to be a real image because we're getting its dimensions from the image service lol
 			await transformBody(`<figure class="n-content-image">
 				<img src="http://com.ft.imagepublish.prod.s3.amazonaws.com/56f6ad50-da52-11e5-a72f-1e7744c66818"
 					longdesc="The blaze at the Make in India relaunch on February 14. The stage that caught fire was made in India"
@@ -25,5 +36,7 @@ describe('external image transform', function() {
 			</div>
 			<figcaption class="article-image__caption">The blaze at the Make in India relaunch on February 14. The stage that caught fire was made in India © Getty</figcaption>
 			</figure>`);
+
+		imageService.isDone();
 	});
 });

@@ -20,6 +20,7 @@ describe('brightcove', () => {
 			brightcoveAccountId: 'account-id',
 			brightcovePlayerId: 'player-id',
 			relatedArticleDeduper: [],
+			unfurlBrightcove: false,
 		});
 
 		const $ = cheerio.load(content);

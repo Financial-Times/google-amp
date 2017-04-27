@@ -1,0 +1,52 @@
+{
+	"id": "1eaebabd-d5b4-3deb-a325-8183feb9f9a3",
+	"name": "Ukraine divide echoes cold war",
+	"standfirst": "Neil Buckley questions Russia's role in the Ukraine crisis",
+	"description": "As many as 70 Ukrainians were killed on Thursday as unidentified snipers fired on protesters in the capital's central square. Neil Buckley, East Europe editor, reports from Kiev on Russia's involvement and why there are echoes of the cold war.",
+	"mainImageUrl": "https://httpsak-a.akamaihd.net/47628783001/47628783001_3235665917001_MAS-FTworld-kiev21.jpg?pubId=47628783001&videoId=3235593137001",
+	"renditions": [{
+		"mediaType": "video/mp4",
+		"codec": "H264",
+		"url": "https://udso-a.akamaihd.net/47628783001/47628783001_3235682780001_210214-WRLD-Ukraine-Buckley.mp4?pubId=47628783001&videoId=3235593137001",
+		"pixelWidth": 720,
+		"pixelHeight": 404,
+		"duration": 268771
+	}, {
+		"mediaType": "video/mp4",
+		"codec": "H264",
+		"url": "https://udso-a.akamaihd.net/47628783001/47628783001_3235682784001_210214-WRLD-Ukraine-Buckley.mp4?pubId=47628783001&videoId=3235593137001",
+		"pixelWidth": 640,
+		"pixelHeight": 360,
+		"duration": 268771
+	}, {
+		"mediaType": "video/mp4",
+		"codec": "H264",
+		"url": "https://udso-a.akamaihd.net/47628783001/47628783001_3235682805001_210214-WRLD-Ukraine-Buckley.mp4?pubId=47628783001&videoId=3235593137001",
+		"pixelWidth": 400,
+		"pixelHeight": 224,
+		"duration": 268800
+	}, {
+		"mediaType": "video/mp4",
+		"codec": "H264",
+		"url": "https://udso-a.akamaihd.net/47628783001/47628783001_3235682809001_210214-WRLD-Ukraine-Buckley.mp4?pubId=47628783001&videoId=3235593137001",
+		"pixelWidth": 400,
+		"pixelHeight": 224,
+		"duration": 268771
+	}, {
+		"mediaType": "video/mp4",
+		"codec": "H264",
+		"url": "https://udso-a.akamaihd.net/47628783001/47628783001_3235682818001_210214-WRLD-Ukraine-Buckley.mp4?pubId=47628783001&videoId=3235593137001",
+		"pixelWidth": 480,
+		"pixelHeight": 268,
+		"duration": 268771
+	}, {
+		"mediaType": "video/mp4",
+		"codec": "H264",
+		"url": "https://udso-a.akamaihd.net/47628783001/47628783001_3235682855001_210214-WRLD-Ukraine-Buckley.mp4?pubId=47628783001&videoId=3235593137001",
+		"pixelWidth": 1280,
+		"pixelHeight": 720,
+		"duration": 268771
+	}],
+	"captionsUrl": null,
+	"brand": null
+}

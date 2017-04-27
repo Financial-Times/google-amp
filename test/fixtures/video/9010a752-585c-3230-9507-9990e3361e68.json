@@ -1,0 +1,33 @@
+{
+	"id": "9010a752-585c-3230-9507-9990e3361e68",
+	"name": "Likely impact of election on UK economy",
+	"standfirst": "Jonathan Eley explains how early UK elections might impact the pound and the FTSE",
+	"description": "The FT's Jonathan Eley looks at the British pound and the FTSE index in view of the recently announced UK snap election. While the move might bring volatility in the short term, the long term outcome could be positive",
+	"mainImageUrl": "https://bcsecure01-a.akamaihd.net/13/47628783001/201704/2536/47628783001_5402191225001_5402157396001-vs.jpg?pubId=47628783001&videoId=5402157396001",
+	"renditions": [{
+		"mediaType": "video/mp4",
+		"codec": "H264",
+		"url": "https://bcsecure04-a.akamaihd.net/34/47628783001/201704/2536/47628783001_5402189291001_5402157396001.mp4?pubId=47628783001&videoId=5402157396001",
+		"pixelWidth": 480,
+		"pixelHeight": 270,
+		"duration": 119743
+	}, {
+		"mediaType": "video/mp4",
+		"codec": "H264",
+		"url": "https://bcsecure04-a.akamaihd.net/34/47628783001/201704/2536/47628783001_5402192260001_5402157396001.mp4?pubId=47628783001&videoId=5402157396001",
+		"pixelWidth": 640,
+		"pixelHeight": 360,
+		"duration": 119743
+	}, {
+		"mediaType": "video/mp4",
+		"codec": "H264",
+		"url": "https://bcsecure04-a.akamaihd.net/34/47628783001/201704/2536/47628783001_5402193902001_5402157396001.mp4?pubId=47628783001&videoId=5402157396001",
+		"pixelWidth": 960,
+		"pixelHeight": 540,
+		"duration": 119743
+	}],
+	"captionsUrl": "https://next-media-api.ft.com/v1/5402157396001.vtt",
+	"brand": {
+		"name": "The Short View"
+	}
+}

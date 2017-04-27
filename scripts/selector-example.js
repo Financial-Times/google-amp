@@ -53,12 +53,13 @@ Promise.all(testUUIDs.map(
 	uuid => getArticle(uuid)
 		.then(article => {
 			const $h = cheerio.load(article.bodyHTML);
-			const $x = cheerio.load(article.bodyXML);
 			const result = {uuid, title: article.title};
 
-			if($h(selector).length) result.html = $h.html(selector);
-			if($x(selector).length) result.xml = $x.html(selector);
-			if(result.html || result.xml) return result;
+			if($h(selector).length) {
+				return Object.assign({
+					html: $h.html(selector),
+				}, result);
+			}
 		})))
 .then(results => results.filter(Boolean))
 .then(results => {
@@ -66,15 +67,11 @@ Promise.all(testUUIDs.map(
 		throw new Error('nothing found');
 	}
 
-	results.forEach(({uuid, title, html, xml}) => {
+	results.forEach(({uuid, title, html}) => {
 		log.uuid(`${title} (${chalk.grey(uuid)})`);
 		if(html) {
 			log.html('html');
 			log.message(formatAndHighlight(html));
-		}
-		if(xml) {
-			log.xml('xml');
-			log.message(formatAndHighlight(xml));
 		}
 		log.end('');
 		console.log();

@@ -6,18 +6,22 @@ const transformBody = require('../../server/lib/transforms/body');
 describe('video transform', () => {
 	it('should transform video.ft.com links to amp-brightcove with account and player from parameters', async () => {
 		expect(
-			await transformBody('<a href="http://video.ft.com/video-id"></a>', {
+			await transformBody(`<div class="n-content-video n-content-video--brightcove">
+				<a href="http://video.ft.com/video-id"></a>
+			</div>`, {
 				brightcoveAccountId: 'account-id',
 				brightcovePlayerId: 'player-id',
 			})
-		).dom.to.equal(`<amp-brightcove
+		).dom.to.equal(`<div class="n-content-video n-content-video--brightcove">
+			<amp-brightcove
 				data-account="account-id"
 				data-player="player-id"
 				data-embed="default"
 				data-video-id="video-id"
 				layout="responsive"
 				width="480" height="270">
-		</amp-brightcove>`);
+			</amp-brightcove>
+		</div>`);
 	});
 
 	it('should leave non-empty video links alone', async () => {
