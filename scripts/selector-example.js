@@ -5,7 +5,7 @@
 require('dotenv/config');
 
 const testUUIDs = require('../test/utils/test-uuids');
-const getArticle = require('../server/lib/article/get-article');
+const nEsClient = require('@financial-times/n-es-client');
 const cheerio = require('cheerio');
 const {highlight} = require('emphasize');
 const {html: htmlBeautify} = require('js-beautify');
@@ -50,7 +50,7 @@ const formatAndHighlight = html => highlight('html', htmlBeautify(html, {
 }), monokai).value;
 
 Promise.all(testUUIDs.map(
-	uuid => getArticle(uuid)
+	uuid => nEsClient.get(uuid)
 		.then(article => {
 			const $h = cheerio.load(article.bodyHTML);
 			const result = {uuid, title: article.title};

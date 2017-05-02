@@ -1,9 +1,7 @@
 'use strict';
 
 const cheerioTransform = require('../cheerio-transform');
-const fetch = require('../fetch/wrap')(require('node-fetch'), {
-	tag: 'slideshows',
-});
+const fetch = require('../fetch/wrap')(require('node-fetch'));
 const fetchres = require('fetchres');
 const reportError = require('../report-error');
 const Warning = require('../warning');

@@ -1,9 +1,6 @@
 'use strict';
 
-const fetch = require('../lib/fetch/wrap')(require('node-fetch'), {
-	tag: 'barrier-guru',
-});
-
+const fetch = require('../lib/fetch/wrap')(require('node-fetch'));
 const ammit = require('../lib/ammit');
 const {json} = require('fetchres');
 

@@ -1,9 +1,6 @@
 'use strict';
 
-const fetch = require('../fetch/wrap')(require('node-fetch'), {
-	tag: 'live-blogs',
-});
-
+const fetch = require('../fetch/wrap')(require('node-fetch'));
 const renderLiveBlog = require('./render');
 
 const url = require('url');

@@ -1,13 +1,12 @@
 'use strict';
 
-const getArticle = require('../article/get-article');
+const nEsClient = require('@financial-times/n-es-client');
 const dateTransform = require('../transforms/extra/date');
 const sanitizeImage = require('../sanitize-image');
 const url = require('../url');
 
 const formatRelatedContent = (options, item) => {
 	const primaryTheme = (item.metadata || []).filter(metadatum => !!metadatum.primary)[0];
-	options._wrappedFetchGroup = `story-package-${item.id}`;
 
 	return url.stream(primaryTheme, options)
 		.then(streamUrl => ({
@@ -24,7 +23,7 @@ const formatRelatedContent = (options, item) => {
 		}));
 };
 
-const getRelated = (id, options) => getArticle(id, {
+const getRelated = (id, options) => nEsClient.get(id, {
 	_wrappedFetchGroup: `story-package-${id}`,
 })
 .catch(e => {

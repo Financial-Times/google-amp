@@ -1,6 +1,6 @@
 'use strict';
 
-const getArticle = require('../article/get-article');
+const nEsClient = require('@financial-times/n-es-client');
 const addStoryPackage = require('../related-content/story-package');
 const addMoreOns = require('../related-content/more-ons');
 const addPrimaryTheme = require('../transforms/extra/primary-theme');
@@ -84,7 +84,7 @@ const extraArticleData = (article, options) => promiseAllObj({
 const assembleArticle = (uuid, options) => {
 	options = Object.assign({}, environmentOptions, options);
 
-	return getArticle(uuid)
+	return nEsClient.get(uuid)
 		.then(
 			response => {
 				if(response &&

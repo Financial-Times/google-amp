@@ -1,145 +1,143 @@
 {
-	"_source": {
-		"type": "article",
-		"id": "ca04513c-e9c7-11e6-893c-082c54a7f539",
-		"title": "Kim Jong Un fires North Korea spy chief",
-		"alternativeTitles": {
-			"promotionalTitle": "Kim Jong Un fires North Korea spy chief"
+	"type": "article",
+	"id": "ca04513c-e9c7-11e6-893c-082c54a7f539",
+	"title": "Kim Jong Un fires North Korea spy chief",
+	"alternativeTitles": {
+		"promotionalTitle": "Kim Jong Un fires North Korea spy chief"
+	},
+	"standfirst": "Regime’s top security official dismissed over alleged human rights abuses",
+	"byline": "Bryan Harris in Seoul",
+	"publishReference": "tid_xdtk9vf29a",
+	"publishedDate": "2017-02-03T05:57:26.000Z",
+	"initialPublishedDate": "2017-02-03T05:57:26Z",
+	"annotations": [
+		{
+			"idV2": "dbb0bdae-1f0c-11e4-b0cb-b2227cce2b54",
+			"prefLabel": "Financial Times",
+			"directType": "http://www.ft.com/ontology/product/Brand",
+			"attributes": [
+
+			]
 		},
-		"standfirst": "Regime’s top security official dismissed over alleged human rights abuses",
-		"byline": "Bryan Harris in Seoul",
-		"publishReference": "tid_xdtk9vf29a",
-		"publishedDate": "2017-02-03T05:57:26.000Z",
-		"initialPublishedDate": "2017-02-03T05:57:26Z",
-		"annotations": [
-			{
-				"idV2": "dbb0bdae-1f0c-11e4-b0cb-b2227cce2b54",
-				"prefLabel": "Financial Times",
-				"directType": "http://www.ft.com/ontology/product/Brand",
-				"attributes": [
+		{
+			"idV2": "9b40e89c-e87b-3d4f-b72c-2cf7511d2146",
+			"prefLabel": "News",
+			"directType": "http://www.ft.com/ontology/Genre",
+			"attributes": [
 
-				]
-			},
-			{
-				"idV2": "9b40e89c-e87b-3d4f-b72c-2cf7511d2146",
-				"prefLabel": "News",
-				"directType": "http://www.ft.com/ontology/Genre",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "03f40642-b279-3c0d-babb-65671a2fd5c3",
-				"prefLabel": "North Korea",
-				"directType": "http://www.ft.com/ontology/Section",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "476cb8ee-4410-3a8a-83c2-8733018f699e",
-				"prefLabel": "South Korea Politics & Policy",
-				"directType": "http://www.ft.com/ontology/Topic",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "d67cef02-e3ee-3260-8ac1-9c67d7a1263c",
-				"prefLabel": "North Korea",
-				"directType": "http://www.ft.com/ontology/Location",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "d67cef02-e3ee-3260-8ac1-9c67d7a1263c",
-				"prefLabel": "North Korea",
-				"directType": "http://www.ft.com/ontology/Location",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "5c67d874-f84f-35b5-af31-b09f04ed5186",
-				"prefLabel": "Nuclear proliferation",
-				"directType": "http://www.ft.com/ontology/Topic",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "6ac7aa8d-7477-38f9-94e3-fb5576a516d4",
-				"prefLabel": "Bryan Harris",
-				"directType": "http://www.ft.com/ontology/person/Person",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "fd12214a-9f96-3375-9b44-3cf2f2f753bc",
-				"prefLabel": "Asia-Pacific",
-				"directType": "http://www.ft.com/ontology/Section",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "cadbdb74-5419-3635-8c2a-79d61ba2e6a7",
-				"prefLabel": "Kim Jong Un",
-				"directType": "http://www.ft.com/ontology/person/Person",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "03f40642-b279-3c0d-babb-65671a2fd5c3",
-				"prefLabel": "North Korea",
-				"directType": "http://www.ft.com/ontology/Section",
-				"attributes": [
-
-				]
-			},
-			{
-				"idV2": "d8009323-f898-3207-b543-eab4427b7a77",
-				"prefLabel": "World",
-				"directType": "http://www.ft.com/ontology/Section",
-				"attributes": [
-
-				]
-			}
-		],
-		"webUrl": "http://www.ft.com/cms/s/0/ca04513c-e9c7-11e6-893c-082c54a7f539.html",
-		"provenance": [
-			"http://api.ft.com/content/items/v1/ca04513c-e9c7-11e6-893c-082c54a7f539",
-			"http://api.ft.com/enrichedcontent/ca04513c-e9c7-11e6-893c-082c54a7f539"
-		],
-		"originatingParty": "FT",
-		"storyPackage": [
-
-		],
-		"standout": {
-			"editorsChoice": false,
-			"exclusive": false,
-			"scoop": false
+			]
 		},
-		"realtime": false,
-		"comments": {
-			"enabled": true
+		{
+			"idV2": "03f40642-b279-3c0d-babb-65671a2fd5c3",
+			"prefLabel": "North Korea",
+			"directType": "http://www.ft.com/ontology/Section",
+			"attributes": [
+
+			]
 		},
-		"canBeSyndicated": "yes",
-		"_lastUpdatedDateTime": "2017-02-03T07:19:38.249Z",
-		"url": "https://www.ft.com/content/ca04513c-e9c7-11e6-893c-082c54a7f539",
-		"bodyXML": "<img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/b476ec0e-e9d5-11e6-893c-082c54a7f539\" longdesc=\"Kim Won Hong (left) and Kim Jong Un\" width=\"2048\" height=\"1152\"><p><a href=\"https://www.ft.com/topics/places/North_Korea\">North Korea</a> has sacked its top security official after claims the national intelligence agency he ran had engaged in human rights violations, including torture.</p><p>Kim Won Hong was dismissed as minister for state security last month following a probe by the country’s Workers’ party, the South Korean government said on Friday.</p><p>Mr Kim was a close aide of North Korean leader Kim Jong Un, who <a href=\"/content/5d7e8fa0-6902-11e6-a0b1-d87a9fea034f\">defectors</a> and experts say has doubled down on the brutal and repressive policies of his father and grandfather, the country’s two previous leaders.</p><p>North Korea is regularly ranked among the world’s worst human rights abusers, with <a href=\"/content/14c2b5e8-f91e-11e4-be00-00144feab7de\">summary executions</a> and torture deemed commonplace.</p><p>A 2014 UN inquiry found that the “gravity, scale and nature of these violations reveal a state that does not have any parallel in the contemporary world”.</p><ft-related type=\"http://www.ft.com/ontology/content/Article\" url=\"http://api.ft.com/content/a220e68e-e900-11e6-893c-082c54a7f539\"><headline>US warns North Korea against nuclear attack</headline><media><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/341defba-e905-11e6-967b-c88452263daf\" longdesc=\"US defense secretary James Mattis arrives in South Korea to discuss the the mounting nuclear threat from Pyongyang\" alt=\"U.S. Defense Secretary James Mattis (R) arrives at Osan Air Base in Osan, South Korea, February 2, 2017. REUTERS/Staff TPX IMAGES OF THE DAY\" width=\"2048\" height=\"1152\" data-copyright=\"© Reuters\"></media><intro><p>Defence secretary Mattis says US response to Pyongyang would be ‘overwhelming’</p></intro></ft-related><p>The 72-year-old spy chief, who oversaw the country’s extensive surveillance state and network of concentration camps, was also demoted from full general to major general.</p><p>An official for the Ministry of Unification in Seoul said it was likely more North Korean government figures would be investigated in the future, leading to growing unrest among the country’s elite.</p><p>Last week a prominent North Korean defector told reporters in Seoul that the country’s upper echelons are increasingly turning against Kim Jong Un.</p><p>“We have to spray gasoline on North Korea, and let the North Korean people set fire to it,” said Thae Yong Ho, former deputy ambassador to London, arguing that the regime of Kim Jong Un would not survive.</p><p>“The dismissal [of Kim Won Hong] appears to be aimed at easing complaints from North Koreans and showing that the leader cares for his people,” South Korea’s Yonhap News Agency quoted a Seoul official as saying.</p><a href=\"http://video.ft.com/5308913094001\" data-embedded=\"true\" data-asset-type=\"video\"></a><br>",
-		"mainImage": {
-			"title": "Kim Won Hong (left) and Kim Jong Un",
-			"description": "",
-			"url": "http://prod-upp-image-read.ft.com/b476ec0e-e9d5-11e6-893c-082c54a7f539",
-			"width": 2048,
-			"height": 1152,
-			"ratio": 1.7777777777777777
+		{
+			"idV2": "476cb8ee-4410-3a8a-83c2-8733018f699e",
+			"prefLabel": "South Korea Politics & Policy",
+			"directType": "http://www.ft.com/ontology/Topic",
+			"attributes": [
+
+			]
 		},
-		"bodyHTML": "<figure class=\"n-content-image\"><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/b476ec0e-e9d5-11e6-893c-082c54a7f539\" longdesc=\"Kim Won Hong (left) and Kim Jong Un\" width=\"2048\" height=\"1152\"><figcaption class=\"n-content-image__caption\">Kim Won Hong (left) and Kim Jong Un</figcaption></figure><p><a href=\"https://www.ft.com/topics/places/North_Korea\">North Korea</a> has sacked its top security official after claims the national intelligence agency he ran had engaged in human rights violations, including torture.</p><p>Kim Won Hong was dismissed as minister for state security last month following a probe by the country’s Workers’ party, the South Korean government said on Friday.</p><p>Mr Kim was a close aide of North Korean leader Kim Jong Un, who <a href=\"/content/5d7e8fa0-6902-11e6-a0b1-d87a9fea034f\">defectors</a> and experts say has doubled down on the brutal and repressive policies of his father and grandfather, the country’s two previous leaders.</p><p>North Korea is regularly ranked among the world’s worst human rights abusers, with <a href=\"/content/14c2b5e8-f91e-11e4-be00-00144feab7de\">summary executions</a> and torture deemed commonplace.</p><p>A 2014 UN inquiry found that the “gravity, scale and nature of these violations reveal a state that does not have any parallel in the contemporary world”.</p><aside class=\"n-content-related-box\" role=\"complementary\"><h3 class=\"n-content-related-box__title\"><span class=\"n-content-related-box__title-text\">Related article</span></h3><a class=\"n-content-related-box__image-link\" href=\"/content/a220e68e-e900-11e6-893c-082c54a7f539\"><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/341defba-e905-11e6-967b-c88452263daf\" longdesc=\"US defense secretary James Mattis arrives in South Korea to discuss the the mounting nuclear threat from Pyongyang\" alt=\"U.S. Defense Secretary James Mattis (R) arrives at Osan Air Base in Osan, South Korea, February 2, 2017. REUTERS/Staff TPX IMAGES OF THE DAY\" width=\"2048\" height=\"1152\" data-copyright=\"© Reuters\"></a><div class=\"n-content-related-box__headline\"><a class=\"n-content-related-box__headline-link\" href=\"/content/a220e68e-e900-11e6-893c-082c54a7f539\">US warns North Korea against nuclear attack</a></div><div class=\"n-content-related-box__content\"><p>Defence secretary Mattis says US response to Pyongyang would be ‘overwhelming’</p></div></aside><p>The 72-year-old spy chief, who oversaw the country’s extensive surveillance state and network of concentration camps, was also demoted from full general to major general.</p><p>An official for the Ministry of Unification in Seoul said it was likely more North Korean government figures would be investigated in the future, leading to growing unrest among the country’s elite.</p><p>Last week a prominent North Korean defector told reporters in Seoul that the country’s upper echelons are increasingly turning against Kim Jong Un.</p><p>“We have to spray gasoline on North Korea, and let the North Korean people set fire to it,” said Thae Yong Ho, former deputy ambassador to London, arguing that the regime of Kim Jong Un would not survive.</p><p>“The dismissal [of Kim Won Hong] appears to be aimed at easing complaints from North Koreans and showing that the leader cares for his people,” South Korea’s Yonhap News Agency quoted a Seoul official as saying.</p><div class=\"n-content-video n-content-video--brightcove\"><a href=\"http://video.ft.com/5308913094001\" data-embedded=\"true\" data-asset-type=\"video\"></a></div><br>",
-		"metadata": []
-	}
+		{
+			"idV2": "d67cef02-e3ee-3260-8ac1-9c67d7a1263c",
+			"prefLabel": "North Korea",
+			"directType": "http://www.ft.com/ontology/Location",
+			"attributes": [
+
+			]
+		},
+		{
+			"idV2": "d67cef02-e3ee-3260-8ac1-9c67d7a1263c",
+			"prefLabel": "North Korea",
+			"directType": "http://www.ft.com/ontology/Location",
+			"attributes": [
+
+			]
+		},
+		{
+			"idV2": "5c67d874-f84f-35b5-af31-b09f04ed5186",
+			"prefLabel": "Nuclear proliferation",
+			"directType": "http://www.ft.com/ontology/Topic",
+			"attributes": [
+
+			]
+		},
+		{
+			"idV2": "6ac7aa8d-7477-38f9-94e3-fb5576a516d4",
+			"prefLabel": "Bryan Harris",
+			"directType": "http://www.ft.com/ontology/person/Person",
+			"attributes": [
+
+			]
+		},
+		{
+			"idV2": "fd12214a-9f96-3375-9b44-3cf2f2f753bc",
+			"prefLabel": "Asia-Pacific",
+			"directType": "http://www.ft.com/ontology/Section",
+			"attributes": [
+
+			]
+		},
+		{
+			"idV2": "cadbdb74-5419-3635-8c2a-79d61ba2e6a7",
+			"prefLabel": "Kim Jong Un",
+			"directType": "http://www.ft.com/ontology/person/Person",
+			"attributes": [
+
+			]
+		},
+		{
+			"idV2": "03f40642-b279-3c0d-babb-65671a2fd5c3",
+			"prefLabel": "North Korea",
+			"directType": "http://www.ft.com/ontology/Section",
+			"attributes": [
+
+			]
+		},
+		{
+			"idV2": "d8009323-f898-3207-b543-eab4427b7a77",
+			"prefLabel": "World",
+			"directType": "http://www.ft.com/ontology/Section",
+			"attributes": [
+
+			]
+		}
+	],
+	"webUrl": "http://www.ft.com/cms/s/0/ca04513c-e9c7-11e6-893c-082c54a7f539.html",
+	"provenance": [
+		"http://api.ft.com/content/items/v1/ca04513c-e9c7-11e6-893c-082c54a7f539",
+		"http://api.ft.com/enrichedcontent/ca04513c-e9c7-11e6-893c-082c54a7f539"
+	],
+	"originatingParty": "FT",
+	"storyPackage": [
+
+	],
+	"standout": {
+		"editorsChoice": false,
+		"exclusive": false,
+		"scoop": false
+	},
+	"realtime": false,
+	"comments": {
+		"enabled": true
+	},
+	"canBeSyndicated": "yes",
+	"_lastUpdatedDateTime": "2017-02-03T07:19:38.249Z",
+	"url": "https://www.ft.com/content/ca04513c-e9c7-11e6-893c-082c54a7f539",
+	"bodyXML": "<img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/b476ec0e-e9d5-11e6-893c-082c54a7f539\" longdesc=\"Kim Won Hong (left) and Kim Jong Un\" width=\"2048\" height=\"1152\"><p><a href=\"https://www.ft.com/topics/places/North_Korea\">North Korea</a> has sacked its top security official after claims the national intelligence agency he ran had engaged in human rights violations, including torture.</p><p>Kim Won Hong was dismissed as minister for state security last month following a probe by the country’s Workers’ party, the South Korean government said on Friday.</p><p>Mr Kim was a close aide of North Korean leader Kim Jong Un, who <a href=\"/content/5d7e8fa0-6902-11e6-a0b1-d87a9fea034f\">defectors</a> and experts say has doubled down on the brutal and repressive policies of his father and grandfather, the country’s two previous leaders.</p><p>North Korea is regularly ranked among the world’s worst human rights abusers, with <a href=\"/content/14c2b5e8-f91e-11e4-be00-00144feab7de\">summary executions</a> and torture deemed commonplace.</p><p>A 2014 UN inquiry found that the “gravity, scale and nature of these violations reveal a state that does not have any parallel in the contemporary world”.</p><ft-related type=\"http://www.ft.com/ontology/content/Article\" url=\"http://api.ft.com/content/a220e68e-e900-11e6-893c-082c54a7f539\"><headline>US warns North Korea against nuclear attack</headline><media><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/341defba-e905-11e6-967b-c88452263daf\" longdesc=\"US defense secretary James Mattis arrives in South Korea to discuss the the mounting nuclear threat from Pyongyang\" alt=\"U.S. Defense Secretary James Mattis (R) arrives at Osan Air Base in Osan, South Korea, February 2, 2017. REUTERS/Staff TPX IMAGES OF THE DAY\" width=\"2048\" height=\"1152\" data-copyright=\"© Reuters\"></media><intro><p>Defence secretary Mattis says US response to Pyongyang would be ‘overwhelming’</p></intro></ft-related><p>The 72-year-old spy chief, who oversaw the country’s extensive surveillance state and network of concentration camps, was also demoted from full general to major general.</p><p>An official for the Ministry of Unification in Seoul said it was likely more North Korean government figures would be investigated in the future, leading to growing unrest among the country’s elite.</p><p>Last week a prominent North Korean defector told reporters in Seoul that the country’s upper echelons are increasingly turning against Kim Jong Un.</p><p>“We have to spray gasoline on North Korea, and let the North Korean people set fire to it,” said Thae Yong Ho, former deputy ambassador to London, arguing that the regime of Kim Jong Un would not survive.</p><p>“The dismissal [of Kim Won Hong] appears to be aimed at easing complaints from North Koreans and showing that the leader cares for his people,” South Korea’s Yonhap News Agency quoted a Seoul official as saying.</p><a href=\"http://video.ft.com/5308913094001\" data-embedded=\"true\" data-asset-type=\"video\"></a><br>",
+	"mainImage": {
+		"title": "Kim Won Hong (left) and Kim Jong Un",
+		"description": "",
+		"url": "http://prod-upp-image-read.ft.com/b476ec0e-e9d5-11e6-893c-082c54a7f539",
+		"width": 2048,
+		"height": 1152,
+		"ratio": 1.7777777777777777
+	},
+	"bodyHTML": "<figure class=\"n-content-image\"><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/b476ec0e-e9d5-11e6-893c-082c54a7f539\" longdesc=\"Kim Won Hong (left) and Kim Jong Un\" width=\"2048\" height=\"1152\"><figcaption class=\"n-content-image__caption\">Kim Won Hong (left) and Kim Jong Un</figcaption></figure><p><a href=\"https://www.ft.com/topics/places/North_Korea\">North Korea</a> has sacked its top security official after claims the national intelligence agency he ran had engaged in human rights violations, including torture.</p><p>Kim Won Hong was dismissed as minister for state security last month following a probe by the country’s Workers’ party, the South Korean government said on Friday.</p><p>Mr Kim was a close aide of North Korean leader Kim Jong Un, who <a href=\"/content/5d7e8fa0-6902-11e6-a0b1-d87a9fea034f\">defectors</a> and experts say has doubled down on the brutal and repressive policies of his father and grandfather, the country’s two previous leaders.</p><p>North Korea is regularly ranked among the world’s worst human rights abusers, with <a href=\"/content/14c2b5e8-f91e-11e4-be00-00144feab7de\">summary executions</a> and torture deemed commonplace.</p><p>A 2014 UN inquiry found that the “gravity, scale and nature of these violations reveal a state that does not have any parallel in the contemporary world”.</p><aside class=\"n-content-related-box\" role=\"complementary\"><h3 class=\"n-content-related-box__title\"><span class=\"n-content-related-box__title-text\">Related article</span></h3><a class=\"n-content-related-box__image-link\" href=\"/content/a220e68e-e900-11e6-893c-082c54a7f539\"><img src=\"http://com.ft.imagepublish.prod-us.s3.amazonaws.com/341defba-e905-11e6-967b-c88452263daf\" longdesc=\"US defense secretary James Mattis arrives in South Korea to discuss the the mounting nuclear threat from Pyongyang\" alt=\"U.S. Defense Secretary James Mattis (R) arrives at Osan Air Base in Osan, South Korea, February 2, 2017. REUTERS/Staff TPX IMAGES OF THE DAY\" width=\"2048\" height=\"1152\" data-copyright=\"© Reuters\"></a><div class=\"n-content-related-box__headline\"><a class=\"n-content-related-box__headline-link\" href=\"/content/a220e68e-e900-11e6-893c-082c54a7f539\">US warns North Korea against nuclear attack</a></div><div class=\"n-content-related-box__content\"><p>Defence secretary Mattis says US response to Pyongyang would be ‘overwhelming’</p></div></aside><p>The 72-year-old spy chief, who oversaw the country’s extensive surveillance state and network of concentration camps, was also demoted from full general to major general.</p><p>An official for the Ministry of Unification in Seoul said it was likely more North Korean government figures would be investigated in the future, leading to growing unrest among the country’s elite.</p><p>Last week a prominent North Korean defector told reporters in Seoul that the country’s upper echelons are increasingly turning against Kim Jong Un.</p><p>“We have to spray gasoline on North Korea, and let the North Korean people set fire to it,” said Thae Yong Ho, former deputy ambassador to London, arguing that the regime of Kim Jong Un would not survive.</p><p>“The dismissal [of Kim Won Hong] appears to be aimed at easing complaints from North Koreans and showing that the leader cares for his people,” South Korea’s Yonhap News Agency quoted a Seoul official as saying.</p><div class=\"n-content-video n-content-video--brightcove\"><a href=\"http://video.ft.com/5308913094001\" data-embedded=\"true\" data-asset-type=\"video\"></a></div><br>",
+	"metadata": []
 }
