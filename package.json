@@ -38,7 +38,6 @@
     "@quarterto/heroku-cluster": "^1.2.0",
     "@quarterto/heroku-memory-limit": "^1.2.0",
     "@quarterto/heroku-version-infer": "^3.2.3",
-    "@quarterto/instrument-fetch": "^1.1.0",
     "@quarterto/jira-get-release-issues": "^1.0.0",
     "@quarterto/mocha-describe-folder": "^1.4.0",
     "@quarterto/package-version-github-release": "^1.2.0",

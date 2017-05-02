@@ -1,20 +1,27 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const proxyquire = require('proxyquire').noPreserveCache();
+const {render} = require('../../server/lib/article/assemble');
+const nEsClient = require('@financial-times/n-es-client');
 const sinon = require('sinon');
-
-const getArticleStub = sinon.stub();
-
-const {render} = proxyquire('../../server/lib/article/assemble', {
-	'./get-article': getArticleStub,
-});
 
 const fixture = require('../fixtures/72402230-e6db-11e6-967b-c88452263daf.json');
 
 describe('ads', () => {
+	before(() => {
+		sinon.stub(nEsClient, 'get');
+	});
+
+	afterEach(() => {
+		nEsClient.get.reset();
+	});
+
+	after(() => {
+		nEsClient.get.restore();
+	});
+
 	it('should be inserted if enableAds is set in controller', async () => {
-		getArticleStub.withArgs('72402230-e6db-11e6-967b-c88452263daf').returns(Promise.resolve(fixture));
+		nEsClient.get.withArgs('72402230-e6db-11e6-967b-c88452263daf').returns(Promise.resolve(fixture));
 
 		expect(
 			await render('72402230-e6db-11e6-967b-c88452263daf', {

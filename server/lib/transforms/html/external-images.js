@@ -6,9 +6,7 @@ const {STATUS_CODES: statusCodes} = require('http');
 const reportError = require('../../report-error');
 const Warning = require('../../warning');
 const url = require('url');
-const fetch = require('../../fetch/wrap')(require('node-fetch'), {
-	tag: 'external-images',
-});
+const fetch = require('../../fetch/wrap')(require('node-fetch'));
 
 const imageServiceUrl = (uri, {mode, width} = {}) => url.format({
 	protocol: 'https',

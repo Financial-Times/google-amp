@@ -7,15 +7,7 @@ const url = require('../url');
 
 const moreOnCount = 5;
 
-const apiSearch = require('../fetch/wrap')(
-	options => nEsClient.search(options),
-	{
-		tag: 'api-search',
-		userAgent: false,
-	}
-);
-
-const addArticles = metadatum => apiSearch({
+const addArticles = metadatum => nEsClient.search({
 	query: {term: {'metadata.idV1': metadatum.idV1}},
 
 	// Fetch twice as many as we need, to allow for deduping

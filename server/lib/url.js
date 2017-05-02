@@ -1,8 +1,6 @@
 'use strict';
 
-const fetch = require('./fetch/wrap')(require('node-fetch'), {
-	tag: 'url',
-});
+const fetch = require('./fetch/wrap')(require('node-fetch'));
 const fetchres = require('fetchres');
 const url = require('url');
 

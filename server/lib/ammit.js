@@ -1,8 +1,6 @@
 'use strict';
 
-const fetch = require('./fetch/wrap')(require('node-fetch'), {
-	tag: 'ammit',
-});
+const fetch = require('./fetch/wrap')(require('node-fetch'));
 
 const {BadServerResponseError} = require('fetchres');
 
