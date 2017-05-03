@@ -23,10 +23,7 @@ const formatRelatedContent = (options, item) => {
 		}));
 };
 
-const getRelated = (id, options) => nEsClient.get(id, {
-	_wrappedFetchGroup: `story-package-${id}`,
-})
-.catch(e => {
+const getRelated = (id, options) => nEsClient.get(id).catch(e => {
 	// Ignore 404 errors, for content not in ElasticSearch
 	if(e.status === 404) {
 		return;
