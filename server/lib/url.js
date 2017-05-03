@@ -37,7 +37,7 @@ module.exports.external = uuid => {
 	}
 };
 
-module.exports.stream = (metadatum, options) => {
+module.exports.stream = metadatum => {
 	const esUrl = Object.assign({}, thingsUrlObj);
 	esUrl.query = Object.assign({}, esUrl.query, {
 		identifierValue: metadatum.idV1,
