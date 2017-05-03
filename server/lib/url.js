@@ -43,9 +43,7 @@ module.exports.stream = (metadatum, options) => {
 		identifierValue: metadatum.idV1,
 	});
 
-	return fetch(url.format(esUrl), {
-		_wrappedFetchGroup: options._wrappedFetchGroup,
-	})
+	return fetch(url.format(esUrl))
 		.then(fetchres.json)
 		.then(json => json.term.url)
 		// Ignore errors
