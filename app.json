@@ -31,7 +31,7 @@
 	],
 	"buildpacks": [
 		{
-			"url": "urn:buildpack:heroku/nodejs"
+			"url": "https://github.com/heroku/heroku-buildpack-nodejs#yarn"
 		}
 	]
 }
