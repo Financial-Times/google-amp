@@ -23,7 +23,8 @@ module.exports.canonical = article => {
 	}
 };
 
-module.exports.accessCheck = article => article.webUrl;
+// HACK:MB:20170705 magic url from Tyrone that amp-access-svc understands
+module.exports.accessCheck = article => `https://api.ft.com/content/${article.id}`;
 
 module.exports.external = uuid => {
 	switch(process.env.CANONICAL_URL_PHASE) {
