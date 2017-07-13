@@ -55,7 +55,6 @@ const featureTemplate = {
 };
 
 const enableAllFlags = {
-	enableLightSignup: true,
 	enableSidebarMenu: true,
 	enableSocialShare: true,
 	enableAds: true,

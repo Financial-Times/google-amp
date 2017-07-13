@@ -13,7 +13,6 @@ const externalImages = require('./html/external-images');
 const trimmedLinks = require('./html/trimmed-links');
 const removeStyles = require('./html/remove-styles');
 const insertAd = require('./html/insert-ad');
-const lightSignup = require('./html/light-signup');
 const blockquotes = require('./html/blockquotes');
 const replaceTagsWithContent = require('./html/replace-tags-with-content');
 const video = require('./html/video');
@@ -43,7 +42,6 @@ const transformBody = cheerioTransform(parallel({
 	trimmedLinks,
 	removeStyles,
 	insertAd,
-	lightSignup,
 	blockquotes,
 	replaceTagsWithContent,
 	unfurlVideo,
