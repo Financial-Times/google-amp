@@ -134,20 +134,6 @@ module.exports.getJson = ({req, uuid}) => {
 				},
 			},
 
-			lsuVisible: {
-				on: 'visible',
-				request: 'standard',
-				visibilitySpec: {
-					selector: '#light-signup',
-					visiblePercentageMin: 99,
-					continuousTimeMin: 2000,
-				},
-				vars: {
-					category: 'light-signup',
-					action: 'dwell',
-				},
-			},
-
 			// Something like https://github.com/Financial-Times/n-ui/components/n-ui/tracking
 			// /blob/920a8ad7cfaeccc02720dd386a2149674719bd0b/src/analytics
 			// /scroll-depth.js#L20-L30
