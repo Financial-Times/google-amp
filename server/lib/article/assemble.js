@@ -21,7 +21,7 @@ const environmentOptions = require('./environment-options');
 const handlebars = require('../handlebars');
 
 const getAuthors = data => {
-	const authors = data.metadata
+	const authors = (data.metadata || [])
 		.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
 		.map(item => item.prefLabel);
 
@@ -30,7 +30,7 @@ const getAuthors = data => {
 };
 
 const getByline = (data, options) => {
-	const promises = data.metadata
+	const promises = (data.metadata || [])
 		.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
 		.map(author => url.stream(author, options)
 			.then(streamUrl => {
