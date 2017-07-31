@@ -75,7 +75,7 @@ const processMetadata = metadatum => {
 
 module.exports = (article, options) => {
 	// Filter only the metadata with a primary taxonomy
-	const moreOns = article.metadata.filter(metadatum => metadatum.primary);
+	const moreOns = (article.metadata || []).filter(metadatum => metadatum.primary);
 
 	const promises = []
 		.concat(moreOns.map(addStreamUrl.bind(null, options)))
