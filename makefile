@@ -1,10 +1,12 @@
 export SHELL := /bin/bash
 export PATH := $(shell npm bin):$(PATH)
 
-HEROKU := $(shell command -v heroku 2> /dev/null)
+HAS_HEROKU_CLI := $(shell command -v heroku 2> /dev/null)
 
-ifdef HEROKU
+ifdef HAS_HEROKU_CLI
+ifndef CI
 	-include .env.mk
+endif
 endif
 
 ifeq (,$(wildcard .env))
