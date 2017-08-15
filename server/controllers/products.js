@@ -48,7 +48,7 @@ module.exports = (req, res, next) => {
 module.exports.getProducts = ({allocationId, sessionId, countryCode, countryCodeTwoLetters,
 	continentCode, referer, userAgent}) =>
 	ammit({allocationId, sessionId, countryCodeTwoLetters, continentCode, referer, userAgent})
-	.then(({abVars, allocation}) => fetch('https://barrier-guru.ft.com/individual', {
+	.then(({abVars, allocation}) => fetch('https://barrier-guru.ft.com/barrier', {
 		headers: {
 			'country-code': countryCode,
 			'x-api-key': apiKey,
@@ -57,6 +57,6 @@ module.exports.getProducts = ({allocationId, sessionId, countryCode, countryCode
 	})
 	.then(json)
 	.then(barrier => ({
-		items: barrier.offers,
+		items: barrier.offers || [],
 		allocation,
 	})));
