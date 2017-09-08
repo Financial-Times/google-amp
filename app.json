@@ -1,8 +1,7 @@
 {
 	"name": "google-amp",
-	"scripts": {
-	},
 	"env": {
+		"HEROKU_APP_NAME": {"required": true},
 		"AWS_ACCESS_KEY": {"required": true},
 		"AWS_SECRET_ACCESS_KEY": {"required": true},
 		"SENTRY_DSN": {"required": false},
@@ -24,9 +23,6 @@
 		"AMMIT_APIKEY": {"required": true},
 		"UNFURL_BRIGHTCOVE": {"required": false}
 	},
-	"addons": [
-		"papertrail"
-	],
 	"buildpacks": [
 		{
 			"url": "urn:buildpack:heroku/nodejs"
