@@ -37,13 +37,6 @@ eslint: $(js-files) $(test-files-all)
 
 lint: lintspaces eslint
 
-instrument:
-	$(if $(UUID),,$(eval $(error UUID is required, e.g. make instrument UUID=ffffffff-ffff-ffff-ffff-ffffffffffff)))
-	./scripts/instrument.js $(UUID)
-
-instrument-products:
-	./scripts/instrument-products.js
-
 bench:
 	./scripts/bench.sh
 
@@ -92,4 +85,4 @@ deploy-vcl-prod:
 deploy-vcl:
 	$(if $(FASTLY_APIKEY), node_modules/.bin/fastly deploy $(FASTLY_OPTS), @echo '⤼ No Fastly API key, not deploying VCL')
 
-.PHONY: instrument bench cr-description.txt
+.PHONY: bench cr-description.txt
