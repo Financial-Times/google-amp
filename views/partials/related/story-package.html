@@ -3,27 +3,26 @@
 	<h2 class="related-content__header">Related stories</h2>
 	<ul class="related-content__stories">
 		{{#each relatedContent}}
-		{{#if @first}}{{#if image}}
-		<li class="related-content__story related-content__lead-story">
+		<li class="related-content__story {{#if @first}}related-content__lead-story{{/if}}">
 			<div class="related-content__container">
 				<div class="related-content__content">
-					{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
-					<a class="related-content__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
+					{{#if theme}}
+						{{> related/theme theme class='related-content__theme' linkType='related-content-theme'}}
+					{{/if}}
+
+					{{> link class='related-content__link' href=url text=title type='related-content-link'}}
+
 					<p class="related-content__summary">{{{summary}}}</p>
 					{{{date}}}
 				</div>
+
+				{{#if @first}}{{#if image}}
 				<div class="related-content__image">
-					<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="related-content-image">{{> image}}</a>
+					{{#>link href=url type='related-content-image'}}
+						{{> image}}
+					{{/link}}
 				</div>
-			</div>
-		</li>
-		{{/if}}{{/if}}
-		<li class="related-content__story{{#if @first}}{{#if image}} related-content__lead-story-alternate{{/if}}{{/if}}">
-			<div class="related-content__container">
-				{{#if theme}}<h3 class="related-content__theme">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="related-content-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h3>{{/if}}
-				<a class="related-content__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="related-content-link">{{{title}}}</a>
-				<p class="related-content__summary">{{{summary}}}</p>
-				{{{date}}}
+				{{/if}}{{/if}}
 			</div>
 		</li>
 		{{/each}}

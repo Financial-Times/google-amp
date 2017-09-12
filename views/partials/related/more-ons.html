@@ -7,19 +7,17 @@
 					<div class="more-ons__type">
 						<h2 class="more-ons__type-text c-box__title-text">Latest {{preposition}}</h2>
 					</div>
-					<h2 class="more-ons__header">
-						{{#if url}}
-							{{> link class='related-content__theme-link' href=url type='more-ons-theme' text=prefLabel}}
-						{{else}}
-							{{prefLabel}}
-						{{/if}}
-					</h2>
+
+					{{> related/theme class='more-ons__header' linkType='more-ons-theme'}}
+
 					<ul class="more-ons__stories">
 						{{#each articles}}
 						<li class="more-ons__story">
 							{{#if @first}}{{#if image}}
 							<div class="more-ons__image">
-								<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="more-ons-image">{{> image}}</a>
+								{{#>link href=url type='more-ons-image'}}
+									{{> image}}
+								{{/link}}
 							</div>
 							{{/if}}{{/if}}
 

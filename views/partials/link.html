@@ -4,5 +4,9 @@
 	{{#if type}}data-vars-link-type="{{type}}"{{/if}}
 	{{#if class}}class="{{class}}"{{/if}}
 	data-vars-link-text="{{#if varsText}}{{varsText}}{{else}}{{text}}{{/if}}">
-{{{text}}}
+
+{{! if a block was passed to the partial, render that, else output text}}
+{{#> @partial-block}}
+	{{{text}}}
+{{/@partial-block}}
 </a>
