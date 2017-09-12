@@ -101,33 +101,43 @@
 {{/if}}
 
 {{#if moreOns}}
-<aside class="more-ons" amp-access="access OR NOT access" amp-access-hide>
-	<ul class="more-ons__items">
-		{{#each moreOns}}
-		<li class="more-ons__item">
-			<div class="more-ons__item-wrapper">
-				<div class="more-ons__type">
-					<h2 class="more-ons__type-text c-box__title-text">{{theme.type}}</h2>
-				</div>
-				<h2 class="more-ons__header">{{#if theme.url}}<a class="related-content__theme-link" href="{{{theme.url}}}" data-vars-link-destination="{{{theme.url}}}" data-vars-link-text="{{{theme.name}}}" data-vars-link-type="more-ons-theme">{{/if}}{{theme.name}}{{#if theme.url}}</a>{{/if}}</h2>
-				<ul class="more-ons__stories">
-					{{#each articles}}
-					<li class="more-ons__story">
-						{{#if @first}}{{#if image}}
-						<div class="more-ons__image">
-							<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="more-ons-image">{{> image}}</a>
-						</div>
-						{{/if}}{{/if}}
-						{{#if theme}}<h3 class="more-ons__theme">{{{theme}}}</h3>{{/if}}
-						<a class="more-ons__link" href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-text="{{{title}}}" data-vars-link-type="more-ons-link">{{{title}}}</a>
-						{{{date}}}
-					</li>
-					{{/each}}
-				</ul>
-			</div>
-		</li>
+	<aside class="more-ons" amp-access="access OR NOT access" amp-access-hide>
+		<ul class="more-ons__items">
+			{{#each moreOns}}
+			<li class="more-ons__item">
+				<div class="more-ons__item-wrapper">
+					<div class="more-ons__type">
+						<h2 class="more-ons__type-text c-box__title-text">{{theme.type}}</h2>
+					</div>
+					<h2 class="more-ons__header">
+						{{#if theme.url}}
+							{{> link class='related-content__theme-link' href=theme.url type='more-ons-theme' text=theme.name}}
+						{{else}}
+							{{theme.name}}
+						{{/if}}
+					</h2>
+					<ul class="more-ons__stories">
+						{{#each articles}}
+						<li class="more-ons__story">
+							{{#if @first}}{{#if image}}
+							<div class="more-ons__image">
+								<a href="{{{url}}}" data-vars-link-destination="{{{url}}}" data-vars-link-type="more-ons-image">{{> image}}</a>
+							</div>
+							{{/if}}{{/if}}
 
-		{{/each}}
-	</ul>
-</aside>
+							{{#if theme}}
+								<h3 class="more-ons__theme">{{{theme}}}</h3>
+							{{/if}}
+
+							{{> link class='more-ons__link' href=url text=title type='more-ons-link'}}
+
+							{{{date}}}
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+			</li>
+			{{/each}}
+		</ul>
+	</aside>
 {{/if}}
