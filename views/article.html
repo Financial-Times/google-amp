@@ -1,7 +1,9 @@
 <article class="article">
 	<header class="article-header" amp-access="NOT {{enableBarrier}} OR access OR {{showEverything}} ">
 		{{#if displayConcept}}
-			<h2 class="primary-theme"><a href="{{{displayConcept.url}}}" class="primary-theme__link" data-vars-link-destination="{{{displayConcept.url}}}" data-vars-link-text="{{{displayConcept.prefLabel}}}" data-vars-link-type="primary-theme">{{{displayConcept.prefLabel}}}</a></h2>
+			<h2 class="primary-theme">
+				{{> link href=displayConcept.url class='primary-theme__link' text=displayConcept.prefLabel type='primary-theme'}}
+			</h2>
 		{{/if}}
 
 		<h1 class="headline" itemprop="headline">
@@ -52,11 +54,8 @@
 			{{{htmlBody}}}
 
 			<p class="article__copyright-notice">
-				<a
-					href="https://www.ft.com/servicestools/help/copyright"
-					data-vars-link-destination="https://www.ft.com/servicestools/help/copyright"
-					data-vars-link-type="footer-copyright"
-					data-vars-link-text="Copyright">Copyright</a>
+				{{> link href='https://www.ft.com/servicestools/help/copyright' type='footer-copyright' text='Copyright'}}
+
 				The Financial Times Limited {{thisYear}}. All rights reserved. Please don't copy articles from FT.com and redistribute by email or post to the web.
 			</p>
 		</div>
@@ -64,7 +63,7 @@
 </article>
 
 <div class="comments" amp-access="access OR {{showEverything}}" amp-access-hide>
-	<a class="comments-button" href="{{canonicalURL}}#comments" data-vars-link-destination="{{canonicalURL}}" data-vars-link-type="view-comments" data-vars-link-text="View comments">View comments</a>
+	{{> link class='comments-button' href=(concat canonicalURL '#comments') type='view-comments' text='View comments'}}
 </div>
 
 {{> related/story-package}}
