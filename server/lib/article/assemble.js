@@ -3,7 +3,6 @@
 const nEsClient = require('@financial-times/n-es-client');
 const addStoryPackage = require('../related-content/story-package');
 const addMoreOns = require('../related-content/more-ons');
-const addPrimaryTheme = require('../transforms/extra/primary-theme');
 const articleFlags = require('../article/article-flags');
 const transformArticle = require('../transforms/article');
 const fetchSlideshows = require('../article/fetch-slideshows');
@@ -125,7 +124,6 @@ const assembleArticle = (uuid, options) => {
 				transformArticle(article, options),
 				addStoryPackage(article, options),
 				addMoreOns(article, options),
-				addPrimaryTheme(article, options),
 				fetchSlideshows(article, options),
 			])
 

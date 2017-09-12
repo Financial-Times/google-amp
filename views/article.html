@@ -1,7 +1,7 @@
 <article class="article">
 	<header class="article-header" amp-access="NOT {{enableBarrier}} OR access OR {{showEverything}} ">
-		{{#if primaryTheme}}
-			<h2 class="primary-theme"><a href="{{{primaryTheme.url}}}" class="primary-theme__link" data-vars-link-destination="{{{primaryTheme.url}}}" data-vars-link-text="{{{primaryTheme.name}}}" data-vars-link-type="primary-theme">{{{primaryTheme.name}}}</a></h2>
+		{{#if displayConcept}}
+			<h2 class="primary-theme"><a href="{{{displayConcept.url}}}" class="primary-theme__link" data-vars-link-destination="{{{displayConcept.url}}}" data-vars-link-text="{{{displayConcept.prefLabel}}}" data-vars-link-type="primary-theme">{{{displayConcept.prefLabel}}}</a></h2>
 		{{/if}}
 
 		<h1 class="headline" itemprop="headline">
