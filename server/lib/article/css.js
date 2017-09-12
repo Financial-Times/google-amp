@@ -92,19 +92,21 @@ module.exports = (article, options) => {
 		.then(features => {
 			// These checks are intentionally naive so they're fast. We'd rather accidentally
 			// include some CSS but do it fast than block requests to shave a few KB.
+			const related = (article.moreOns && !!article.moreOns.length)
+				|| (article.storyPackage && !!article.storyPackage.length)
+				|| (article.relatedContent && !!article.relatedContent.length);
+
 			const enabledFeatures = {
 				base: true,
 				article: true,
 				ads: article.htmlBody.includes('<amp-ad'),
-				asides: article.htmlBody.includes('c-box'),
+				asides: related || article.htmlBody.includes('c-box'),
 				barrier: options.enableBarrier && !options.showEverything,
 				'barrier-old': !options.enableBarrier && !options.showEverything,
 				comments: true,
 				header: true,
 				'live-blogs': options.enableLiveBlogs && !!article.isLiveBlog,
-				related: (article.moreOns && !!article.moreOns.length)
-					|| (article.storyPackage && !!article.storyPackage.length)
-					|| (article.relatedContent && !!article.relatedContent.length),
+				related,
 				sidebar: options.enableSidebarMenu,
 				slideshow: Object.keys(article.slideshows).length > 0,
 				social: options.enableSocialShare,
