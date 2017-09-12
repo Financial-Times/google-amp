@@ -32,7 +32,7 @@ const addArticles = annotation => nEsClient.search({
 		}))
 	)
 	.then(articles => Object.assign(annotation, {articles}))
-	.catch(error => Object.assign(annotation, {error}))
+	.catch(error => Object.assign(annotation, {error}));
 
 const getMoreOnTags = content => {
 	const moreOnTags = [];

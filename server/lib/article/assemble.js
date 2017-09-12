@@ -14,7 +14,6 @@ const errors = require('http-errors');
 const reportError = require('../report-error');
 
 const promiseAllObj = require('@quarterto/promise-all-object');
-const url = require('../url');
 const getCSS = require('./css');
 const environmentOptions = require('./environment-options');
 const handlebars = require('../handlebars');
@@ -28,7 +27,7 @@ const getAuthors = data => {
 	return authors.length ? authors.join(', ') : (data.byline || '').replace(/^by\s+/i, '');
 };
 
-const getByline = article => article.authorConcepts.reduce(
+const getByline = article => (article.authorConcepts || []).reduce(
 	(byline, author) => byline.replace(author.prefLabel, `
 		<a
 			class="article-author-byline__author"
