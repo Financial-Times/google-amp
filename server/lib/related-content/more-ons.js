@@ -34,23 +34,6 @@ const addArticles = annotation => nEsClient.search({
 	.then(articles => Object.assign(annotation, {articles}))
 	.catch(error => Object.assign(annotation, {error}))
 
-const getPreposition = annotation => ({
-	authors: 'from',
-	sections: 'in',
-	genre: '',
-})[annotation.taxonomy] || 'on';
-
-const processMetadata = annotation => ({
-	articles: annotation.articles,
-	key: annotation.id,
-	taxonomy: annotation.taxonomy,
-	theme: {
-		url: annotation.url,
-		type: `Latest ${getPreposition(annotation)}`,
-		name: annotation.prefLabel,
-	},
-});
-
 const getMoreOnTags = content => {
 	const moreOnTags = [];
 
@@ -104,6 +87,5 @@ module.exports = (article, options) => Promise.all(
 			})
 			.slice(0, moreOnCount);
 			return !!moreOn.articles.length;
-		})
-		.map(processMetadata);
+		});
 });
