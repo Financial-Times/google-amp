@@ -7,8 +7,8 @@ const url = require('../url');
 
 const moreOnCount = 5;
 
-const addArticles = metadatum => nEsClient.search({
-	query: {term: {'metadata.idV1': metadatum.idV1}},
+const addArticles = annotation => nEsClient.search({
+	query: {term: {'annotations.id': annotation.id}},
 
 	// Fetch twice as many as we need, to allow for deduping
 	size: moreOnCount * 2,
@@ -22,90 +22,88 @@ const addArticles = metadatum => nEsClient.search({
 	],
 })
 	.then(res => res.filter(article => article.title)
-			.map(article => ({
-				date: dateTransform(article.publishedDate, {classname: 'more-ons__date'}),
-				id: article.id,
-				url: url.external(article.id),
-				title: article.title,
-				summary: article.standfirst,
-				image: sanitizeImage(article.mainImage),
-			}))
+		.map(article => ({
+			date: dateTransform(article.publishedDate, {classname: 'more-ons__date'}),
+			id: article.id,
+			url: url.external(article.id),
+			title: article.title,
+			summary: article.standfirst,
+			image: sanitizeImage(article.mainImage),
+		}))
 	)
-	.then(articles => {
-		metadatum.articles = articles;
-	})
-	// Ignore errors
-	.catch(e => {
-		metadatum.error = e;
-	});
+	.then(articles => Object.assign(annotation, {articles}))
+	.catch(error => Object.assign(annotation, {error}))
 
-const addStreamUrl = (options, metadatum) => url.stream(metadatum, options)
-	.then(streamUrl => {
-		metadatum.streamUrl = streamUrl;
-	});
+const getPreposition = annotation => ({
+	authors: 'from',
+	sections: 'in',
+	genre: '',
+})[annotation.taxonomy] || 'on';
 
-const processMetadata = metadatum => {
-	let type;
+const processMetadata = annotation => ({
+	articles: annotation.articles,
+	key: annotation.id,
+	taxonomy: annotation.taxonomy,
+	theme: {
+		url: annotation.url,
+		type: `Latest ${getPreposition(annotation)}`,
+		name: annotation.prefLabel,
+	},
+});
 
-	switch(metadatum.taxonomy) {
-		case 'authors':
-			type = 'from';
-			break;
-		case 'sections':
-			type = 'in';
-			break;
-		case 'genre':
-			type = '';
-			break;
-		default:
-			type = 'on';
+const getMoreOnTags = content => {
+	const moreOnTags = [];
+
+	const about = content.annotations.find(
+		annotation => annotation.predicate === 'http://www.ft.com/ontology/annotation/about'
+	);
+	const primarilyClassifiedBy = content.annotations.find(
+		annotation => annotation.predicate === 'http://www.ft.com/ontology/classification/isPrimarilyClassifiedBy'
+	);
+	const brand = content.annotations.find(
+		annotation => annotation.types && annotation.types.includes('http://www.ft.com/ontology/product/Brand')
+	);
+
+	if(about) {
+		moreOnTags.push(about);
 	}
 
-	return {
-		articles: metadatum.articles,
-		key: metadatum.idV1,
-		taxonomy: metadatum.taxonomy,
-		theme: {
-			url: metadatum.streamUrl,
-			type: `Latest ${type}`,
-			name: metadatum.prefLabel,
-		},
-	};
+	if(primarilyClassifiedBy) {
+		moreOnTags.push(primarilyClassifiedBy);
+	}
+
+	if(brand && brand !== primarilyClassifiedBy) {
+		moreOnTags.push(brand);
+	}
+
+	return moreOnTags.slice(0, 2);
 };
 
-module.exports = (article, options) => {
-	// Filter only the metadata with a primary taxonomy
-	const moreOns = (article.metadata || []).filter(metadatum => metadatum.primary);
+module.exports = (article, options) => Promise.all(
+	getMoreOnTags(article).map(addArticles)
+).then(moreOns => {
+	article.moreOns = moreOns
+		.filter(moreOn => {
+			if(moreOn.error) {
+				if(options.raven) {
+					options.raven.captureMessage('More-Ons API call failed', {
+						level: 'warning',
+						extra: {moreOn},
+					});
+				}
+				return false;
+			}
+			return true;
+		})
+		.filter(moreOn => {
+			moreOn.articles = moreOn.articles.filter(item => {
+				if(options.relatedArticleDeduper.indexOf(item.id) >= 0) return false;
 
-	const promises = []
-		.concat(moreOns.map(addStreamUrl.bind(null, options)))
-		.concat(moreOns.map(addArticles));
-
-	return Promise.all(promises)
-		.then(() => {
-			article.moreOns = moreOns
-				.filter(moreOn => {
-					if(moreOn.error) {
-						if(options.raven) {
-							options.raven.captureMessage('More-Ons API call failed', {
-								level: 'warning',
-								extra: {moreOn},
-							});
-						}
-						return false;
-					}
-					return true;
-				})
-				.filter(moreOn => {
-					moreOn.articles = moreOn.articles.filter(item => {
-						if(options.relatedArticleDeduper.indexOf(item.id) >= 0) return false;
-
-						options.relatedArticleDeduper.push(item.id);
-						return true;
-					})
-					.slice(0, moreOnCount);
-					return !!moreOn.articles.length;
-				})
-				.map(processMetadata);
-		});
-};
+				options.relatedArticleDeduper.push(item.id);
+				return true;
+			})
+			.slice(0, moreOnCount);
+			return !!moreOn.articles.length;
+		})
+		.map(processMetadata);
+});
