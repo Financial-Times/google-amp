@@ -3,7 +3,6 @@
 const nEsClient = require('@financial-times/n-es-client');
 const addStoryPackage = require('../related-content/story-package');
 const addMoreOns = require('../related-content/more-ons');
-const addPrimaryTheme = require('../transforms/extra/primary-theme');
 const articleFlags = require('../article/article-flags');
 const transformArticle = require('../transforms/article');
 const fetchSlideshows = require('../article/fetch-slideshows');
@@ -15,7 +14,6 @@ const errors = require('http-errors');
 const reportError = require('../report-error');
 
 const promiseAllObj = require('@quarterto/promise-all-object');
-const url = require('../url');
 const getCSS = require('./css');
 const environmentOptions = require('./environment-options');
 const handlebars = require('../handlebars');
@@ -29,31 +27,19 @@ const getAuthors = data => {
 	return authors.length ? authors.join(', ') : (data.byline || '').replace(/^by\s+/i, '');
 };
 
-const getByline = (data, options) => {
-	const promises = (data.metadata || [])
-		.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
-		.map(author => url.stream(author, options)
-			.then(streamUrl => {
-				author.streamUrl = streamUrl;
-				return author;
-			})
-		);
-
-	return Promise.all(promises)
-		.then(authors => {
-			let byline = (data.byline || '').replace(/^by\s+/i, '');
-
-			authors.filter(author => !!author.streamUrl)
-				.forEach(author => {
-					byline = byline.replace(author.prefLabel,
-						'<a class="article-author-byline__author"' +
-						` href="${author.streamUrl}" data-vars-link-destination="${author.streamUrl}" ` +
-						`data-vars-link-type="author-byline" data-vars-link-text="${author.prefLabel}">${author.prefLabel}</a>`
-					);
-				});
-			return byline;
-		});
-};
+const getByline = article => (article.authorConcepts || []).reduce(
+	(byline, author) => byline.replace(author.prefLabel, `
+		<a
+			class="article-author-byline__author"
+			href="${author.url}"
+			data-vars-link-destination="${author.url}"
+			data-vars-link-type="author-byline"
+			data-vars-link-text="${author.prefLabel}">
+			${author.prefLabel}
+		</a>
+	`),
+	(article.byline || '').replace(/^by\s+/i, '')
+);
 
 const getMainImage = data => {
 	if(data.mainImage) {
@@ -125,7 +111,6 @@ const assembleArticle = (uuid, options) => {
 				transformArticle(article, options),
 				addStoryPackage(article, options),
 				addMoreOns(article, options),
-				addPrimaryTheme(article, options),
 				fetchSlideshows(article, options),
 			])
 

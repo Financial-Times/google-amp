@@ -1,0 +1,31 @@
+{{#if relatedContent}}
+<aside class="related-content" amp-access="access OR NOT access" amp-access-hide>
+	<h2 class="related-content__header">Related stories</h2>
+	<ul class="related-content__stories">
+		{{#each relatedContent}}
+		<li class="related-content__story {{#if @first}}related-content__lead-story{{/if}}">
+			<div class="related-content__container">
+				<div class="related-content__content">
+					{{#if theme}}
+						{{> related/theme theme class='related-content__theme' linkType='related-content-theme'}}
+					{{/if}}
+
+					{{> link class='related-content__link' href=url text=title type='related-content-link'}}
+
+					<p class="related-content__summary">{{{summary}}}</p>
+					{{{date}}}
+				</div>
+
+				{{#if @first}}{{#if image}}
+				<div class="related-content__image">
+					{{#>link href=url type='related-content-image'}}
+						{{> image}}
+					{{/link}}
+				</div>
+				{{/if}}{{/if}}
+			</div>
+		</li>
+		{{/each}}
+	</ul>
+</aside>
+{{/if}}
