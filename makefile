@@ -18,7 +18,7 @@ endif
 js-files = app.js $(shell find server -name '*.js')
 test-files = $(shell find test -name 'index.js')
 test-files-all = $(shell find test -name '*.js')
-lintspace-files = $(js-files) $(test-files-all) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html')
+lintspace-files = $(js-files) $(test-files-all) $(shell find scripts -name '*.js' -or -name '*.sh') $(wildcard scss/*.scss) $(shell find views -name '*.html')
 
 HEROKU_CONFIG_OPTS = -i HEROKU_ -i NODE_ENV -l NODE_ENV=development
 HEROKU_CONFIG_APP = ft-google-amp-staging

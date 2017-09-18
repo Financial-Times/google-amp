@@ -1,74 +1,39 @@
 #!/usr/bin/env node
 
+'use strict';
+
+const {Tasks, deps, logger} = require('@quarterto/log-task');
 const assertEnv = require('@quarterto/assert-env');
 const pkg = require('../../package.json');
-const symbolLogger = require('@quarterto/symbol-logger');
-const {parallel, deps} = require('@quarterto/promise-deps-parallel');
-
-const logger = symbolLogger({
-	start: '⬢',
-	log: '│',
-	done: '✓',
-	error: '✗',
-});
-
-const taskLogger = name => symbolLogger({
-	log: `├─❨${name}❩─`,
-}).log;
 
 assertEnv(['HEROKU_APP_NAME']);
 
 const {HEROKU_APP_NAME: appName} = process.env;
 
-const tasks = {
-	releaseLog({log}) {
-		log('doing a thing');
-	},
-	githubVersion() {},
-	sentryVersion() {},
-	vcl() {},
-	jiraRelease() {},
-};
-
-const envTasks = {
-	staging: [
-		'releaseLog',
-		'githubVersion',
-		'sentryVersion',
-		'vcl',
-	],
-
-	production: [
-		'releaseLog',
-		'jiraRelease',
-		'vcl',
-	],
-
-	dev: [],
-};
-
-const runTask = name => {
-	const start = Date.now();
-	logger.log(`starting ${name}`);
-
-	const task = tasks[name];
-
-	if(!task) return Promise.reject(new Error(`no task ${name}`));
-
-	return Promise.resolve(task({
-		log: taskLogger(name),
-	})).then(
-		done('resolve'),
-		done('reject')
-	);
-
-	function done(andThen) {
-		return result => {
-			const ms = Date.now() - start;
-			logger.log(`${name} took ${ms}ms`);
-			return Promise[andThen](result);
-		}
+class ReleaseTasks extends Tasks {
+	async staging() {
+		await deps(this.releaseLog, this.githubVersion, this.sentryVersion, this.vcl);
 	}
+
+	async production() {
+		await deps(this.releaseLog, this.githubVersion, this.sentryVersion, this.vcl);
+	}
+
+	async dev({log}) {
+		log('no release tasks for dev environment');
+	}
+
+	async releaseLog({log}) {
+		log('doing a thing');
+	}
+
+	async githubVersion() {}
+
+	async sentryVersion() {}
+
+	async vcl() {}
+
+	async jiraRelease() {}
 }
 
 const env = {
@@ -79,9 +44,7 @@ const env = {
 
 logger.start(`performing release tasks for ${env} app ${appName}`);
 
-Promise.all(
-	envTasks[env].map(runTask)
-).then(
+ReleaseTasks.run(env).then(
 	() => {
 		logger.done(`all good, releasing ${pkg.version} to ${appName}`);
 	},
