@@ -10,7 +10,6 @@ const flags = [
 	'--gc_interval=100',
 	'--max_semi_space_size=1',
 	`--max_old_space_size=${limit}`,
-	`--max_executable_size=${limit}`,
 ].join(' ');
 
 console.error(`Node flags: ${flags}`);
