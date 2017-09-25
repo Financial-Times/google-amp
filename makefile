@@ -9,16 +9,10 @@ ifndef CI
 endif
 endif
 
-ifeq (,$(wildcard .env))
-FASTLY_OPTS = --service FASTLY_SERVICE vcl
-else
-FASTLY_OPTS = --env --service FASTLY_SERVICE vcl
-endif
-
 js-files = app.js $(shell find server -name '*.js')
 test-files = $(shell find test -name 'index.js')
 test-files-all = $(shell find test -name '*.js')
-lintspace-files = $(js-files) $(test-files-all) $(wildcard scripts/*) $(wildcard scss/*.scss) $(shell find views -name '*.html')
+lintspace-files = $(js-files) $(test-files-all) $(shell find scripts -name '*.js' -or -name '*.sh') $(wildcard scss/*.scss) $(shell find views -name '*.html')
 
 HEROKU_CONFIG_OPTS = -i HEROKU_ -i NODE_ENV -l NODE_ENV=development
 HEROKU_CONFIG_APP = ft-google-amp-staging
@@ -37,13 +31,6 @@ eslint: $(js-files) $(test-files-all)
 
 lint: lintspaces eslint
 
-instrument:
-	$(if $(UUID),,$(eval $(error UUID is required, e.g. make instrument UUID=ffffffff-ffff-ffff-ffff-ffffffffffff)))
-	./scripts/instrument.js $(UUID)
-
-instrument-products:
-	./scripts/instrument-products.js
-
 bench:
 	./scripts/bench.sh
 
@@ -55,41 +42,4 @@ test: lint $(js-files) $(test-files-all)
 unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) -i --grep "amp validator" $(test-files)
 
-# heroku and fastly
-promote: merge-fixversions change-request deploy-vcl-prod heroku-promote
-
-heroku-promote:
-	heroku pipelines:promote -a ft-google-amp-staging --to ft-google-amp-prod-eu,ft-google-amp-prod-us
-
-cr-description.txt:
-	$(eval VERSION=$(shell scripts/version.sh))
-
-	echo "JIRA tickets in $(VERSION):" > $@
-	scripts/jira-release-issues.js google-amp-$(VERSION) >> $@
-	heroku pipelines:diff -a ft-google-amp-staging >> $@
-
-change-request: cr-description.txt | merge-fixversions
-	$(if $(KONSTRUCTOR_CR_KEY),,$(eval $(error KONSTRUCTOR_CR_KEY is required, check your .env)))
-
-	$(eval VERSION=$(shell scripts/version.sh))
-
-	change-request \
-		--api-key $(KONSTRUCTOR_CR_KEY) \
-		--summary "Release google-amp $(VERSION)" \
-		--description-file $< \
-		--owner-email "matthew.brennan@ft.com" \
-		--service "google amp" \
-		--environment "Production" \
-		--notify-channel "ft-tech-incidents"
-
-merge-fixversions:
-	jira-merge-unreleased-versions
-
-deploy-vcl-prod:
-	$(MAKE) -B HEROKU_CONFIG_APP=ft-google-amp-prod-eu .env deploy-vcl
-	$(MAKE) -B .env
-
-deploy-vcl:
-	$(if $(FASTLY_APIKEY), node_modules/.bin/fastly deploy $(FASTLY_OPTS), @echo '⤼ No Fastly API key, not deploying VCL')
-
-.PHONY: instrument bench cr-description.txt
+.PHONY: bench

@@ -14,7 +14,7 @@ PROG_PID=$!
 
 cleanup() {
 	kill $SERVER_PID
-	./scripts/analyse-log.js $LOG
+	./scripts/dev-utils/analyse-log.js $LOG
 	rm -f $LOG $LOGPIPE
 }
 
