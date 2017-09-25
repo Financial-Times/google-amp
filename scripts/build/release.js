@@ -124,7 +124,7 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 			changeDescription,
 			serviceIds: 'amp',
 			notify: true,
-			notifyChannel: 'apps-tech',
+			notifyChannel: 'ft-tech-incidents',
 			willThereBeAnOutage: false,
 			environment,
 		});
@@ -144,7 +144,7 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 			closedByEmailAddress: pkg.author,
 			closeCategory,
 			notify: true,
-			notifyChannel: 'apps-tech',
+			notifyChannel: 'ft-tech-incidents',
 		});
 
 		log(`Closed release log ${this.releaseLogId} as ${closeCategory}`);
@@ -177,6 +177,7 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 
 		await fastlyDeploy('vcl', {
 			service: process.env.FASTLY_SERVICE,
+			disableLogs: true,
 		});
 	}
 
