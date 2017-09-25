@@ -42,11 +42,4 @@ test: lint $(js-files) $(test-files-all)
 unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) -i --grep "amp validator" $(test-files)
 
-deploy-vcl-prod:
-	$(MAKE) -B HEROKU_CONFIG_APP=ft-google-amp-prod-eu .env deploy-vcl
-	$(MAKE) -B .env
-
-deploy-vcl:
-	$(if $(FASTLY_APIKEY), node_modules/.bin/fastly deploy $(FASTLY_OPTS), @echo '⤼ No Fastly API key, not deploying VCL')
-
 .PHONY: bench
