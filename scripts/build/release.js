@@ -71,7 +71,7 @@ class ReleaseTasks extends Tasks {
 				project: process.env.JIRA_PROJECT,
 				user: process.env.JIRA_USERNAME,
 				pass: process.env.JIRA_PASSWORD,
-			})).json();
+			})).json() || [];
 
 			return issues.map(({key}) => `https://${process.env.JIRA_HOST}/browse/${key}`);
 		} catch(e) {
