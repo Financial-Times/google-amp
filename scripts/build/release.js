@@ -7,6 +7,7 @@ const assertEnv = require('@quarterto/assert-env');
 const pkg = require('../../package.json');
 const ReleaseLogClient = require('@financial-times/release-log');
 const jiraGetReleaseIssues = require('@quarterto/jira-get-release-issues');
+const jiraMergeUnreleasedVersions = require('jira-merge-unreleased-versions');
 
 assertEnv(['HEROKU_APP_NAME']);
 
@@ -149,7 +150,25 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 
 	async vcl() {}
 
-	async jiraRelease() {}
+	async jiraRelease({log}) {
+		assertEnv(['JIRA_HOST', 'JIRA_PROJECT', 'JIRA_USERNAME', 'JIRA_PASSWORD']);
+
+		const {unreleased, latestUnreleased} = await jiraMergeUnreleasedVersions({
+			packageName: pkg.name,
+			hostname: process.env.JIRA_HOST,
+			project: process.env.JIRA_PROJECT,
+			user: process.env.JIRA_USERNAME,
+			pass: process.env.JIRA_PASSWORD,
+		});
+
+		if(unreleased.length === 1) {
+			log(`merging 1 version into ${latestUnreleased.name} and setting it as released`);
+		} else if(unreleased.length) {
+			log(`merging ${unreleased.length} versions into ${latestUnreleased.name} and setting it as released`);
+		} else {
+			log(`setting ${latestUnreleased.name} as released`);
+		}
+	}
 }
 
 logger.start(`performing release tasks for ${env} app ${appName}`);
