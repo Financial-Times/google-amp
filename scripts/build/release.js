@@ -9,6 +9,7 @@ const jiraGetReleaseIssues = require('@quarterto/jira-get-release-issues');
 const jiraMergeUnreleasedVersions = require('jira-merge-unreleased-versions');
 const sentryCreateRelease = require('@quarterto/sentry-create-release');
 const githubCreateRelease = require('@quarterto/github-create-release');
+const fastlyDeploy = require('@financial-times/fastly-tools/tasks/deploy');
 
 const pkg = require('../../package.json');
 
@@ -171,7 +172,13 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 		});
 	}
 
-	async vcl() {}
+	async vcl() {
+		assertEnv(['FASTLY_APIKEY', 'FASTLY_SERVICE']);
+
+		await fastlyDeploy('vcl', {
+			service: process.env.FASTLY_SERVICE,
+		});
+	}
 
 	async jiraRelease({log}) {
 		assertEnv(['JIRA_HOST', 'JIRA_PROJECT', 'JIRA_USERNAME', 'JIRA_PASSWORD']);
