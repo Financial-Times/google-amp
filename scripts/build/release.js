@@ -23,7 +23,7 @@ const env = {
 	'ft-google-amp-prod-us': 'production',
 }[appName] || 'dev';
 
-const [, commit] = pkg.match(/([a-f\d]{7})$/) || [];
+const [, commit] = pkg.version.match(/([a-f\d]{7})$/) || [];
 
 class ReleaseTasks extends Tasks {
 	async wrapReleaseLog(_, ...tasks) {
