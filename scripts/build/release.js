@@ -4,10 +4,13 @@
 
 const {Tasks, deps, logger} = require('@quarterto/log-task');
 const assertEnv = require('@quarterto/assert-env');
-const pkg = require('../../package.json');
 const ReleaseLogClient = require('@financial-times/release-log');
 const jiraGetReleaseIssues = require('@quarterto/jira-get-release-issues');
 const jiraMergeUnreleasedVersions = require('jira-merge-unreleased-versions');
+const sentryCreateRelease = require('@quarterto/sentry-create-release');
+const githubCreateRelease = require('@quarterto/github-create-release');
+
+const pkg = require('../../package.json');
 
 assertEnv(['HEROKU_APP_NAME']);
 
@@ -18,6 +21,8 @@ const env = {
 	'ft-google-amp-prod-eu': 'production',
 	'ft-google-amp-prod-us': 'production',
 }[appName] || 'dev';
+
+const [, commit] = pkg.match(/([a-f\d]{7})$/) || [];
 
 class ReleaseTasks extends Tasks {
 	async wrapReleaseLog(_, ...tasks) {
@@ -144,9 +149,27 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 		log(`Closed release log ${this.releaseLogId} as ${closeCategory}`);
 	}
 
-	async githubVersion() {}
+	async githubVersion() {
+		assertEnv(['GITHUB_RELEASE_REPO', 'GITHUB_RELEASE_USER', 'GITHUB_RELEASE_TOKEN']);
 
-	async sentryVersion() {}
+		await githubCreateRelease({
+			version: pkg.version,
+			commit,
+			repository: process.env.GITHUB_RELEASE_REPO,
+			user: process.env.GITHUB_RELEASE_USER,
+			pass: process.env.GITHUB_RELEASE_TOKEN,
+		});
+	}
+
+	async sentryVersion() {
+		assertEnv(['SENTRY_RELEASE_HOOK']);
+
+		await sentryCreateRelease({
+			sentryReleaseHook: process.env.SENTRY_RELEASE_HOOK,
+			version: pkg.version,
+			commit,
+		});
+	}
 
 	async vcl() {}
 
@@ -162,11 +185,11 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 		});
 
 		if(unreleased.length === 1) {
-			log(`merging 1 version into ${latestUnreleased.name} and setting it as released`);
+			log(`merged 1 version into ${latestUnreleased.name} and set it as released`);
 		} else if(unreleased.length) {
-			log(`merging ${unreleased.length} versions into ${latestUnreleased.name} and setting it as released`);
+			log(`merged ${unreleased.length} versions into ${latestUnreleased.name} and set it as released`);
 		} else {
-			log(`setting ${latestUnreleased.name} as released`);
+			log(`set ${latestUnreleased.name} as released`);
 		}
 	}
 }
