@@ -201,11 +201,11 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 	}
 }
 
-logger.start(`performing release tasks for ${env} app ${appName}`);
+logger.start(`performing release tasks for ${env} app ${appName} v${pkg.version}`);
 
 ReleaseTasks.run(env).then(
 	() => {
-		logger.done(`all good, releasing ${pkg.version} to ${appName}`);
+		logger.done(`all good, releasing v${pkg.version} to ${appName}`);
 	},
 
 	err => {
