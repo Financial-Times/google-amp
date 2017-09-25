@@ -7,7 +7,6 @@ const assertEnv = require('@quarterto/assert-env');
 const pkg = require('../../package.json');
 const ReleaseLogClient = require('@financial-times/release-log');
 const jiraGetReleaseIssues = require('@quarterto/jira-get-release-issues');
-const util = require('util');
 
 assertEnv(['HEROKU_APP_NAME']);
 
@@ -30,7 +29,7 @@ class ReleaseTasks extends Tasks {
 			await this.closeReleaseLog();
 		} catch(e) {
 			await this.closeReleaseLog({
-				closeCategory: 'Cancelled'
+				closeCategory: 'Cancelled',
 			});
 
 			throw e;
