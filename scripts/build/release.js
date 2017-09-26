@@ -118,7 +118,7 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 		})[env] || 'Development';
 
 		const {body: {changeRequests: [releaseLog]}} = await releaseLogClient.open({
-			summaryOfChange: `Release google-amp ${pkg.version}`,
+			summaryOfChange: `Release google-amp ${pkg.version} to ${appName}`,
 			ownerEmailAddress: pkg.author,
 			resourceOne: pkg.author,
 			changeDescription,
