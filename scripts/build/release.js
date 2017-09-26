@@ -122,7 +122,7 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 			ownerEmailAddress: pkg.author,
 			resourceOne: pkg.author,
 			changeDescription,
-			serviceIds: 'amp',
+			serviceIds: 'google amp',
 			notify: true,
 			notifyChannel: 'ft-tech-incidents',
 			willThereBeAnOutage: false,
