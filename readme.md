@@ -50,9 +50,11 @@ The `master` branch deploys automatically to staging once the tests are green. P
 
 ### Production
 
-Run `make promote`.
-
-We manually promote staging builds once they're "ready". **DO NOT** use the "Promote" button on Heroku. There's no way to run code when we do that, and we need to do things like deploy to Fastly, update JIRA fix versions etc.
+1. On the pipeline page, press the `Promote to production...` button
+2. Have a look at the commits and diff on each app to validate what you're promoting
+3. Hit `Promote`
+4. ???
+5. Profit!
 
 ### Rolling back
 
