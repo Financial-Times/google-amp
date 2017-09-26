@@ -66,7 +66,7 @@ class ReleaseTasks extends Tasks {
 		assertEnv(['JIRA_HOST', 'JIRA_PROJECT', 'JIRA_USERNAME', 'JIRA_PASSWORD']);
 
 		try {
-			const issues = await (await jiraGetReleaseIssues(`google-amp-${pkg.version}`, {
+			const {issues} = await (await jiraGetReleaseIssues(`google-amp-${pkg.version}`, {
 				hostname: process.env.JIRA_HOST,
 				project: process.env.JIRA_PROJECT,
 				user: process.env.JIRA_USERNAME,
