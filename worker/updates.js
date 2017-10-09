@@ -5,12 +5,13 @@ const fetch = require('node-fetch');
 const assertEnv = require('@quarterto/assert-env');
 const logPromise = require('@quarterto/log-promise');
 const url = require('url');
+const util = require('util');
 
 const missing = assertEnv.warn(['FASTLY_PURGEKEY', 'FASTLY_HOST']);
 
 const logPurge = ({name, uuid}) => logPromise(
 	` purged ${uuid} from ${name}`,
-	err => ` ${err.message} from ${name}${(err.data ? `\n\n${err.data}` : '')}`
+	err => ` ${err.message} from ${name}${(err.data ? `\n\n${util.inspect(err.data)}` : '')}`
 );
 
 const purgeUrl = uuid => url.format({
