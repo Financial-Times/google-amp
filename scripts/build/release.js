@@ -144,7 +144,7 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 			closedByEmailAddress: pkg.author,
 			closeCategory,
 			notify: true,
-			notifyChannel: 'ft-tech-incidents',
+			notifyChannel: env === 'production' ? 'ft-tech-incidents' : 'apps-tech',
 		});
 
 		log(`Closed release log ${this.releaseLogId} as ${closeCategory}`);
