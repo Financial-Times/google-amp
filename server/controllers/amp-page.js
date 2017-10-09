@@ -29,8 +29,11 @@ module.exports = (req, res, next) => {
 				// Cache live blogs poll requests for one second
 				res.setHeader('cache-control', 'public, max-age=1, no-transform');
 			} else {
-				res.setHeader('cache-control', 'public, max-age=30, no-transform');
-				res.setHeader('surrogate-control', 'stale-on-error=86400, stale-while-revalidate=300');
+				const oneDay = 24 * 60 * 60;
+				const oneWeek = 7 * oneDay;
+
+				res.setHeader('cache-control', `public, max-age=${oneWeek}, no-transform`);
+				res.setHeader('surrogate-control', `stale-on-error=${oneWeek}, stale-while-revalidate=${oneDay}`);
 			}
 
 			res.render('article', Object.assign({layout: 'layout'}, article));
