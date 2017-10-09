@@ -2,6 +2,8 @@
 	"ext": "js json",
 	"watch": [
 		"package.json",
+		"app.js",
+		"worker.js",
 		"server"
 	],
 	"exec": "node -r dotenv/config"

@@ -10,6 +10,7 @@
     "lint": "make lint",
     "prestart": "enforce-node-version",
     "start": "nodemon app.js",
+    "worker": "nodemon worker.js",
     "debug": "node --inspect -r dotenv/config app.js",
     "bench": "make bench",
     "heroku-config": "make .env -B",
