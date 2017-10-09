@@ -28,6 +28,10 @@ sub vcl_recv {
 		set req.http.ft-session-id = re.group.2;
 	}
 
+	if (req.request == "FASTLYPURGE") {
+		set req.http.Fastly-Purge-Requires-Auth = "1";
+	}
+
 	return(lookup);
 }
 

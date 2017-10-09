@@ -4,7 +4,8 @@
 		"package.json",
 		"app.js",
 		"worker.js",
-		"server"
+		"server",
+		"worker"
 	],
 	"exec": "node -r dotenv/config"
 }
