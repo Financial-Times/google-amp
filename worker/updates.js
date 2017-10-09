@@ -46,6 +46,10 @@ const purgeFastly = async uuid => {
 		},
 	});
 
+	// GET once from fastly (but don't wait) to ensure the fastly shield has
+	// fresh content
+	fetch(purgeUrl(uuid));
+
 	await handleResponse(response);
 };
 
