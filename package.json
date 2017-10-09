@@ -73,6 +73,7 @@
     "html-entities": "^1.2.0",
     "http-errors": "^1.4.0",
     "jira-merge-unreleased-versions": "^1.0.0",
+    "kinesis": "^1.2.2",
     "lodash.defaults": "^4.0.1",
     "lodash.groupby": "^4.4.0",
     "lodash.keyby": "^4.4.0",
