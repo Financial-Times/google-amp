@@ -124,7 +124,7 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 			changeDescription,
 			serviceIds: 'google amp',
 			notify: true,
-			notifyChannel: 'ft-tech-incidents',
+			notifyChannel: env === 'production' ? 'ft-tech-incidents' : 'apps-tech',
 			willThereBeAnOutage: false,
 			environment,
 		});
