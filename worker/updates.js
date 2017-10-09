@@ -10,7 +10,7 @@ const missing = assertEnv.warn(['FASTLY_PURGEKEY', 'FASTLY_HOST']);
 
 const logPurge = ({name, uuid}) => logPromise(
 	` purged ${uuid} from ${name}`,
-	err => ` ${err.message} ${(err.data ? `\n\n${err.data}` : '')}`
+	err => ` ${err.message} from ${name}${(err.data ? `\n\n${err.data}` : '')}`
 );
 
 const purgeUrl = uuid => url.format({
@@ -21,7 +21,7 @@ const purgeUrl = uuid => url.format({
 
 const handleResponse = async response => {
 	if(response.status < 200 || response.status >= 300) {
-		const err = new Error(`Failed to purge ${purgeUrl} from Fastly`);
+		const err = new Error(`failed to purge ${purgeUrl}`);
 
 		const data = await response.text();
 
