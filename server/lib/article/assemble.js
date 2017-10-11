@@ -18,14 +18,11 @@ const getCSS = require('./css');
 const environmentOptions = require('./environment-options');
 const handlebars = require('../handlebars');
 
-const getAuthors = data => {
-	const authors = (data.metadata || [])
-		.filter(item => !!(item.taxonomy && item.taxonomy === 'authors'))
-		.map(item => item.prefLabel);
-
+const getAuthors = article =>
 	// Somtimes there are no authors in the taxonomy. It's very sad but it's true.
-	return authors.length ? authors.join(', ') : (data.byline || '').replace(/^by\s+/i, '');
-};
+	article.authorConcepts.length
+		? article.authorConcepts.join(', ')
+		: (article.byline || '').replace(/^by\s+/i, '');
 
 const getByline = article => (article.authorConcepts || []).reduce(
 	(byline, author) => byline.replace(author.prefLabel, `
