@@ -86,6 +86,13 @@ sub vcl_fetch {
 		restart;
 	}
 
+	# Deliver stale if possible when unexpected requests are received from origin
+	if ((beresp.status >= 400) {
+		if (stale.exists) {
+			return(deliver_stale);
+		}
+	}
+
 	if(req.restarts > 0 ) {
 		set beresp.http.Fastly-Restarts = req.restarts;
 	}
