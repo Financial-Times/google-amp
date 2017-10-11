@@ -67,6 +67,7 @@ if(missing) {
 
 	stream.on('data', data => {
 		switch(data.event) {
+			case 'CREATE':
 			case 'UPDATE':
 			case 'DELETE': {
 				console.log(`⟳  received ${data.event} for ${data.uuid}`);
