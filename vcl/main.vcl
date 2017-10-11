@@ -86,12 +86,6 @@ sub vcl_fetch {
 		restart;
 	}
 
-	# Deliver stale if possible when unexpected requests are received from origin
-	if ((beresp.status >= 400) {
-		if (stale.exists) {
-			return(deliver_stale);
-		}
-	}
 
 	if(req.restarts > 0 ) {
 		set beresp.http.Fastly-Restarts = req.restarts;
@@ -112,6 +106,19 @@ sub vcl_fetch {
 		set beresp.ttl = 1s;
 		set beresp.grace = 5s;
 		return (deliver);
+	}
+
+	if (beresp.status == 404) {
+		if ((!beresp.http.Expires) && (!beresp.http.Cache-Control:max-age) && (!beresp.http.Surrogate-Control:max-age) && (!beresp.http.Cache-Control:s-maxage)) {
+      set beresp.ttl = 7d;
+    }
+	}
+
+	# Deliver stale if possible when unexpected requests are received from origin
+	if (beresp.status >= 400) {
+		if (stale.exists) {
+			return(deliver_stale);
+		}
 	}
 
 	if (beresp.http.Expires || beresp.http.Surrogate-Control ~ "max-age" || beresp.http.Cache-Control ~"(s-maxage|max-age)") {
