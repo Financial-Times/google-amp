@@ -82,7 +82,15 @@
 					"width": 435,
 					"height": 36
 				}
-			}
+			},
+			{{#unless isFree}}
+			"hasPart": {
+				"@type": "WebPageElement",
+				"isAccessibleForFree": "False",
+				"cssSelector" : ".{{#if enableBarrier}}amp-access-barrier{{else}}amp-access-login{{/if}}"
+			},
+			{{/unless}}
+			"isAccessibleForFree": "{{#if isFree}}True{{else}}False{{/if}}"
 		}
 		</script>
 	</head>
