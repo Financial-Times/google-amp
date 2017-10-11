@@ -1,24 +1,46 @@
+table origin_hosts {
+  "us-prod": "ft-google-amp-prod-us.herokuapp.com",
+  "us-staging": "ft-google-amp-staging.herokuapp.com",
+  "eu-prod": "ft-google-amp-prod-eu.herokuapp.com",
+  "eu-staging": "ft-google-amp-staging.herokuapp.com"
+}
+
 sub vcl_recv {
 #FASTLY recv
 
 	#
 	# Multi-region routing to serve requests from the nearest backend.
 	#
-	if (server.region ~ "(APAC|Asia|North-America|South-America|US-Central|US-East|US-West)") {
-		# Serve from the US Heroku region.
+
+	declare local var.env STRING;
+	declare local var.geo STRING;
+	declare local var.server STRING;
+
+	# Set origin environment - by default match VCL environment, but allow override via header for testing
+	set var.env = if (req.http.X-Origin-Env == "staging" || req.http.X-Origin-Env == "prod" , req.http.X-Origin-Env, if(req.http.Host == "amp-staging.ft.com", "staging", "prod"));
+
+	# Set origin geography - US servers or EU servers
+	set var.geo = if (server.region ~ "(APAC|Asia|North-America|South-America|US-Central|US-East|US-West)", "us", "eu");
+
+	set var.server = var.geo "-" var.env;
+	set req.http.Host = table.lookup(origin_hosts, var.server);
+
+	if (var.geo == "us") {
 		set req.backend = US;
-		set req.http.host = "ft-google-amp-prod-us.herokuapp.com";
-		if (!req.backend.healthy) {
-			set req.backend = EU;
-			set req.http.host = "ft-google-amp-prod-eu.herokuapp.com";
-		}
 	} else {
-		# Serve from the EU Heroku region.
 		set req.backend = EU;
-		set req.http.host = "ft-google-amp-prod-eu.herokuapp.com";
-		if (!req.backend.healthy) {
+	}
+
+	# Swap to the other geography if the primary one is down
+	if (!req.backend.healthy) {
+		set var.geo = if (var.geo == "us", "eu", "us");
+		set var.server = var.geo "-" var.env;
+		set req.http.Host = table.lookup(origin_hosts, var.server);
+
+		if (var.geo == "us") {
 			set req.backend = US;
-			set req.http.host = "ft-google-amp-prod-us.herokuapp.com";
+		} else {
+			set req.backend = EU;
 		}
 	}
 
