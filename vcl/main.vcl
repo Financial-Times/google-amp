@@ -1,5 +1,27 @@
 sub vcl_recv {
 #FASTLY recv
+
+	#
+	# Multi-region routing to serve requests from the nearest backend.
+	#
+	if (server.region ~ "(APAC|Asia|North-America|South-America|US-Central|US-East|US-West)") {
+		// Serve from the US Heroku region.
+		set req.backend = US;
+		set req.http.host = "ft-google-amp-prod-us.herokuapp.com";
+		if (!req.backend.healthy) {
+			set req.backend = EU;
+			set req.http.host = "ft-google-amp-prod-eu.herokuapp.com";
+		}
+	} else {
+    // Serve from the EU Heroku region.
+		set req.backend = EU;
+		set req.http.host = "ft-google-amp-prod-eu.herokuapp.com";
+		if (!req.backend.healthy) {
+			set req.backend = US;
+			set req.http.host = "ft-google-amp-prod-us.herokuapp.com";
+		}
+	}
+
 	if (req.request != "HEAD" && req.request != "GET" && req.request != "FASTLYPURGE") {
 		return(pass);
 	}
