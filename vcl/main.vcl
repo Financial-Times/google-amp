@@ -5,7 +5,7 @@ sub vcl_recv {
 	# Multi-region routing to serve requests from the nearest backend.
 	#
 	if (server.region ~ "(APAC|Asia|North-America|South-America|US-Central|US-East|US-West)") {
-		// Serve from the US Heroku region.
+		# Serve from the US Heroku region.
 		set req.backend = US;
 		set req.http.host = "ft-google-amp-prod-us.herokuapp.com";
 		if (!req.backend.healthy) {
@@ -13,7 +13,7 @@ sub vcl_recv {
 			set req.http.host = "ft-google-amp-prod-eu.herokuapp.com";
 		}
 	} else {
-    // Serve from the EU Heroku region.
+		# Serve from the EU Heroku region.
 		set req.backend = EU;
 		set req.http.host = "ft-google-amp-prod-eu.herokuapp.com";
 		if (!req.backend.healthy) {
