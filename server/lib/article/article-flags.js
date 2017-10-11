@@ -38,6 +38,7 @@ module.exports = (article, options) => Object.assign(article, {
 	description: article.standfirst,
 
 	showEverything: !!options.showEverything,
+	isFree: article.accessLevel === 'free',
 
 	accessMocked: !!options.accessMocked,
 	accessMockLoggedIn: !!options.accessMockLoggedIn,
