@@ -20,7 +20,7 @@ const {HEROKU_APP_NAME: appName} = process.env;
 const env = {
 	'ft-google-amp-staging': 'staging',
 	'ft-google-amp-prod-eu': 'production',
-	'ft-google-amp-prod-us': 'production',
+	'ft-google-amp-prod-us': 'productionUs',
 }[appName] || 'dev';
 
 const [, commit] = pkg.version.match(/([a-f\d]{7})$/) || [];
@@ -55,6 +55,13 @@ class ReleaseTasks extends Tasks {
 		await this.wrapReleaseLog(
 			this.jiraRelease,
 			this.vcl
+		);
+	}
+
+	async productionUs() {
+		await deps(
+			this.openReleaseLog,
+			this.closeReleaseLog
 		);
 	}
 
