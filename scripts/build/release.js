@@ -59,10 +59,8 @@ class ReleaseTasks extends Tasks {
 	}
 
 	async productionUs() {
-		await deps(
-			this.openReleaseLog,
-			this.closeReleaseLog
-		);
+		await this.openReleaseLog();
+		await this.closeReleaseLog();
 	}
 
 	async dev({log}) {
