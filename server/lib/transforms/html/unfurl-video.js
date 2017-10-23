@@ -22,7 +22,19 @@ const unfurlVideo = videoId => getVideo(videoId).then(videoTemplate);
 module.exports = ($, options = {}) => {
 	const promises = [];
 	const queueUnfurl = (el, videoId) => videoId && promises.push(
-		unfurlVideo(videoId).then(video => el.replaceWith(video))
+		unfurlVideo(videoId).then(
+			video => el.replaceWith(video),
+			e => {
+				if(options.raven) {
+					options.raven.captureMessage('Next Media API call failed', {
+						level: 'warning',
+						extra: {e, videoId},
+					});
+				}
+
+				el.remove();
+			}
+		)
 	);
 
 	match({
