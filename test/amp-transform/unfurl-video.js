@@ -60,4 +60,16 @@ describe('video unfurl transform', () => {
 
 		mediaApi.isDone();
 	});
+
+	it('should strip video if api call fails', async () => {
+		mediaApi
+			.get(/\/v1\/ffffffff-ffff-ffff-ffff-ffffffffffff/)
+			.reply(503, 'Service unavailable');
+
+		expect(
+			await transformBody(`<p><div class="n-content-video n-content-video--internal">
+				<a href="https://www.ft.com/video/ffffffff-ffff-ffff-ffff-ffffffffffff"></a>
+			</div></p>`)
+		).dom.to.equal('<p></p>');
+	});
 });
