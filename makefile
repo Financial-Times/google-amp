@@ -34,12 +34,10 @@ lint: lintspaces eslint
 bench:
 	./scripts/bench.sh
 
-mocha-opts := --require async-to-gen/register
-
 test: lint $(js-files) $(test-files-all)
-	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) $(test-files)
+	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(test-files)
 
 unit-test: $(js-files) $(test-files-all)
-	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(mocha-opts) -i --grep "amp validator" $(test-files)
+	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)
 
 .PHONY: bench
