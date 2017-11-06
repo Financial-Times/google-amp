@@ -1,3 +1,8 @@
 {
-	"presets": ["preact"]
+  "presets": [
+    "preact"
+  ],
+  "plugins": [
+    "transform-class-properties"
+  ]
 }

@@ -40,4 +40,7 @@ test: lint $(js-files) $(test-files-all)
 unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)
 
-.PHONY: bench
+test-cpr: test-cpr.js
+	babel-node test-cpr.js
+
+.PHONY: bench test-cpr
