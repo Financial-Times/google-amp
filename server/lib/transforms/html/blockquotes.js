@@ -5,7 +5,7 @@ const c = require('classnames');
 const {is} = require('css-select');
 
 module.exports = class Blockquote extends Component {
-	static selector = 'blockquote:not([data-tweet-id])';
+	static selector = 'blockquote';
 
 	static preprocess({el, original, match}) {
 		return {
