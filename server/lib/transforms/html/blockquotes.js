@@ -1,27 +1,41 @@
 'use strict';
 
-const match = require('@quarterto/cheerio-match-multiple');
+const {h, Component} = require('preact');
+const c = require('classnames');
+const {is} = require('css-select');
 
-const tweetQuote = tweetId => `<amp-twitter
-	width="600"
-	height="250"
-	layout="responsive"
-	data-tweetid="${tweetId}">
-</amp-twitter>`;
+module.exports = class Blockquote extends Component {
+	static selector = 'blockquote:not([data-tweet-id])';
 
-module.exports = match({
-	'blockquote:not(.n-content-pullquote)'(el) {
-		el.attr('class', 'article__quote article__quote--full-quote aside--content c-box u-border--left u-padding--left-right');
-	},
+	static preprocess({el, original, match}) {
+		return {
+			isPullquote: is(el, '.n-content-pullquote'),
+			content: match('.n-content-pullquote__content')[0],
+			footer: match('.n-content-pullquote__footer')[0],
+			original
+		};
+	}
 
-	'blockquote.n-content-pullquote'(el) {
-		el.attr('class', 'article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all');
-		el.prepend('<div class="pull-quote__quote-marks"></div>');
-		el.find('.n-content-pullquote__content').attr('class', 'u-padding--left-right');
-		el.find('.n-content-pullquote__footer').attr('class', 'article__quote-footer');
-	},
+	render({original, isPullquote, content, footer}) {
+		original.attributes.class = c(
+			'article__quote',
+			'aside--content',
+			'c-box',
+			{
+				'article__quote--full-quote': !isPullquote,
+				'article__quote--pull-quote': isPullquote,
+				'u-border--left': !isPullquote,
+				'u-padding--left-right': !isPullquote,
+				'u-border--all': isPullquote,
+			}
+		);
 
-	'blockquote[data-tweet-id]'(el) {
-		return tweetQuote(el.data('tweet-id'));
-	},
-});
+		if(isPullquote) {
+			original.children.unshift(<div class="pull-quote__quote-marks"></div>);
+			content.attributes.class = 'u-padding--left-right';
+			footer.attributes.class = 'article__quote-footer';
+		}
+
+		return original;
+	}
+};
