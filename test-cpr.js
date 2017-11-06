@@ -3,6 +3,8 @@ const cpr = require('@quarterto/cheerio-preact-replace');
 const cheerio = require('cheerio');
 const renderToString = require('preact-render-to-string');
 
+// TODO: remove cheerio, just use htmlparser2 and cssselect
+
 class Transform extends Component {
 	static get selector() {
 		throw new Error('unimplemented');
