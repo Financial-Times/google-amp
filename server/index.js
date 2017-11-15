@@ -99,7 +99,10 @@ handlebars.express(app);
 app.get('/robots.txt', (req, res) => {
 	res.send(`user-agent: *
 disallow: /
-allow: /content/*`);
+allow: /content/*
+allow: /products
+allow: /ads-iframe/*
+allow: /static/*`);
 });
 
 app.use(logger(process.env.LOG_FORMAT || (isDevelopment ? 'dev' : 'combined')));
