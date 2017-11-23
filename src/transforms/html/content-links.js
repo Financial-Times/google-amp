@@ -1,5 +1,6 @@
 'use strict';
 
+const match = require('@quarterto/cheerio-match-multiple');
 const {h, Component} = require('preact');
 
 module.exports = class ContentLink extends Component {
@@ -8,7 +9,7 @@ module.exports = class ContentLink extends Component {
 	static preprocess({el, original}) {
 		console.log(el);
 		return {
-			href: el.attribs.href,
+			href: `https://www.ft.com${el.attribs.href}`,
 			original
 		};
 	}

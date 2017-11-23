@@ -45,7 +45,7 @@
     "@quarterto/kinesis-decoded": "^1.0.0",
     "@quarterto/log-promise": "^1.1.0",
     "@quarterto/log-task": "^1.3.0",
-    "@quarterto/markup-components": "^1.14.0",
+    "@quarterto/markup-components": "^1.15.0",
     "@quarterto/mocha-describe-folder": "^1.4.0",
     "@quarterto/package-version-github-release": "^1.2.0",
     "@quarterto/package-version-sentry-release": "^1.1.0",

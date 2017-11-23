@@ -108,12 +108,10 @@ const assembleArticle = (uuid, options) => {
 				transformArticle(article, options),
 				addStoryPackage(article, options),
 				addMoreOns(article, options),
-				fetchSlideshows(article, options),
 			])
 
 			// Second phase: transforms which rely on first phase fetches
 			.then(() => Promise.all([
-				transformSlideshows(article, options),
 				extraArticleData(article, options),
 			]))
 

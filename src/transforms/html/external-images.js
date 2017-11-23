@@ -1,5 +1,7 @@
 'use strict';
 
+const {h, Component} = require('preact');
+
 const {XmlEntities: entities} = require('html-entities');
 const fetchres = require('fetchres');
 const {STATUS_CODES: statusCodes} = require('http');
@@ -22,66 +24,63 @@ const imageServiceUrl = (uri, {mode, width} = {}) => url.format({
 const maxColumnWidth = 500;
 const pagePadding = 10;
 const minColumnWidth = 320 - (2 * pagePadding);
-
 const maxAsideWidth = 470;
 
-function getWidthAndRatio(metaUrl, options) {
-	return fetch(metaUrl)
-		.then(fetchres.json)
-		.catch(err => {
-			if(fetchres.originatedError(err)) {
-				return Promise.reject(
-					new Warning(
-						`Failed to get image metadata for ${metaUrl}. ${err.message}: ${statusCodes[err.message]}`
-					)
-				);
-			}
+async function getWidthAndRatio(metaUrl, options) {
+	try {
+		const meta = await fetchres.json(await fetch(metaUrl));
+		return Object.assign(meta, {
+			ratio: meta.height / meta.width
+		});
+	} catch(err) {
+		if(fetchres.originatedError(err)) {
+			reportError(
+				options.raven,
+				new Warning(
+					`Failed to get image metadata for ${metaUrl}. ${err.message}: ${statusCodes[err.message]}`
+				),
+				{extra: {metaUrl}}
+			);
 
-			return Promise.reject(err);
-		})
-		.then(
-			meta => Object.assign(meta, {ratio: meta.height / meta.width}),
-			e => {
-				reportError(options.raven, e, {extra: {metaUrl}});
-				return {width: maxColumnWidth, ratio: 4 / 7}; // discard error and use fallback dimensions
-			}
-		);
+			return {width: maxColumnWidth, ratio: 4 / 7}; // discard error and use fallback dimensions
+		}
+
+		throw err;
+	}
 }
 
-module.exports = ($, options) => Promise.all($('img[src]').map((i, el) => {
-	const $el = $(el);
-	const isAside = !!$el.parents('.n-content-related-box').length;
-	const imageSrc = entities.decode($el.attr('src')).replace(
-			/^(https?:\/\/ftalphaville.ft.com)?\/wp-content/,
-			'https://ftalphaville-wp.ft.com/wp-content'
-		)
-		.replace('assanka_web_chat', 'wp-plugin-ft-web-chat');
+module.exports = class ExternalImages extends Component {
+	static selector = 'img[src]';
 
-	const ampImg = $('<amp-img>');
-	const metaUrl = imageServiceUrl(imageSrc, {mode: 'metadata'});
+	static async preprocess({el, original}) {
+		const imageSrc = entities.decode(el.attribs.src).replace(
+				/^(https?:\/\/ftalphaville.ft.com)?\/wp-content/,
+				'https://ftalphaville-wp.ft.com/wp-content'
+			)
+			.replace('assanka_web_chat', 'wp-plugin-ft-web-chat');
 
-	return getWidthAndRatio(metaUrl, options)
-		.then(meta => {
-			const width = Math.min(isAside ? maxAsideWidth : maxColumnWidth, meta.width);
-			const height = width * meta.ratio;
-			const src = imageServiceUrl(imageSrc, {mode: 'raw', width});
+		const metaUrl = imageServiceUrl(imageSrc, {mode: 'metadata'});
+		const meta = await getWidthAndRatio(metaUrl, {});
+		const isAside = false;
+		const width = Math.min(isAside ? maxAsideWidth : maxColumnWidth, meta.width);
+		const height = width * meta.ratio;
+		const src = imageServiceUrl(imageSrc, {mode: 'raw', width});
 
-			ampImg.attr({
-				width,
-				height,
-				src,
-				alt: $el.attr('alt') || '',
-				layout: 'responsive',
-				'data-original-width': $el.attr('width'),
-				'data-original-height': $el.attr('height'),
-				'data-original-class': $el.attr('class'),
-			});
+		return {src, width, height, originalDimensions: {}, alt: el.attribs.alt, originalClass: ''};
+	}
 
-			if(!isAside && width < minColumnWidth) {
-				// don't stretch narrow inline images to page width
-				ampImg.attr('layout', 'fixed');
-			}
+	render({src, width, height, originalDimensions, alt = '', originalClass}) {
+		// if(!isAside && width < minColumnWidth) {
+		// 	// don't stretch narrow inline images to page width
+		// 	ampImg.attr('layout', 'fixed');
+		// }
 
-			$el.replaceWith(ampImg);
-		});
-}).toArray());
+		return <amp-img
+			src={src}
+			width={width}
+			height={height}
+			alt={alt}
+			layout='responsive'
+		/>;
+	}
+}

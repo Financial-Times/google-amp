@@ -7,5 +7,5 @@
 		"src",
 		"worker"
 	],
-	"exec": "make -j4 babel && node -r dotenv/config"
+	"exec": "make -j4 babel ; node -r dotenv/config"
 }

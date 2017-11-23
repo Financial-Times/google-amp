@@ -108,7 +108,6 @@ module.exports = (article, options) => {
 				'live-blogs': options.enableLiveBlogs && !!article.isLiveBlog,
 				related,
 				sidebar: options.enableSidebarMenu,
-				slideshow: Object.keys(article.slideshows).length > 0,
 				social: options.enableSocialShare,
 			};
 

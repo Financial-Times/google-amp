@@ -1,9 +1,14 @@
 'use strict';
 
 const match = require('@quarterto/cheerio-match-multiple');
+const {h, Component} = require('preact');
 
-module.exports = match({
-	'ft-content, ft-concept, picture, picture > source, ft-embedded-content'(el) {
-		return el.contents();
-	},
-});
+module.exports = class ReplaceUnsupported extends Component {
+	static selector = 'ft-content, ft-concept, ft-embedded-content';
+
+	static preprocess() {}
+
+	render() {
+		return null
+	}
+};

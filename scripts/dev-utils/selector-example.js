@@ -4,7 +4,7 @@
 
 require('dotenv/config');
 
-const testUUIDs = require('../test/utils/test-uuids');
+const testUUIDs = require('../../test/utils/test-uuids');
 const nEsClient = require('@financial-times/n-es-client');
 const cheerio = require('cheerio');
 const {highlight} = require('emphasize');
