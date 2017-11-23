@@ -39,6 +39,13 @@ $(css-files): lib/article/css.js $(scss-files)
 	node -r dotenv/config lib/article/css.js
 
 .env:
+	@if ! command -v heroku 2> /dev/null ; then\
+		echo "✘ Trying to get env vars from Heroku, but you don't have the Heroku CLI installed" ;\
+		echo "https://devcenter.heroku.com/articles/heroku-cli" ;\
+		echo ;\
+		exit 1 ;\
+	fi
+	if ! heroku whoami ; then heroku login --sso ; fi
 	heroku-config-to-env $(HEROKU_CONFIG_OPTS) $(HEROKU_CONFIG_APP) $@
 
 .env.mk: .env

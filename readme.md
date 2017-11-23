@@ -9,8 +9,7 @@ Prerequisites
 ---
 
  - node 6.x and npm
- - `.env` that contains the required environment variables from `app.json` (see `scripts/env-example.sh`). if you have access to the staging environment on heroku, you can run `npm run heroku-config` to copy variables from staging.
-   - If you add another environment variable, make sure to add it to `app.json`.
+ - the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
 Running
 ---
@@ -19,6 +18,8 @@ npm install
 npm start
 open http://localhost:5000/content/<FT article uuid>
 ```
+
+If you've never run the app before, it will prompt you to log in to Heroku so it can fetch environment variables. You'll need access to the `ft-google-amp` pipeline. Give us a shout in #apps-tech for access.
 
 Tests
 ---
