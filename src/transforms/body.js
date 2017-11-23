@@ -13,14 +13,12 @@ const externalImages = require('./html/external-images');
 const trimmedLinks = require('./html/trimmed-links');
 const removeStyles = require('./html/remove-styles');
 const insertAd = require('./html/insert-ad');
-// const blockquotes = require('./html/blockquotes');
 const replaceTagsWithContent = require('./html/replace-tags-with-content');
 const video = require('./html/video');
 const unfurlVideo = require('./html/unfurl-video');
 const slideshow = require('./html/slideshow');
 const interactiveGraphics = require('./html/interactive-graphics');
 const infoBox = require('./html/info-box');
-const contentLinks = require('./html/content-links');
 const linkAnalytics = require('./html/link-analytics');
 const removeInvalidLinks = require('./html/remove-invalid-links');
 const figure = require('./html/figure');
@@ -33,8 +31,8 @@ const subhead = require('./html/subhead');
 const transformBody = cheerioTransform(parallel({
 	relatedBox: deps('externalImages')(relatedBox),
 	figure: deps('externalImages')(figure),
-	linkAnalytics: deps('contentLinks', 'relatedBox')(linkAnalytics),
-	removeInvalidLinks: deps('contentLinks', 'linkAnalytics')(removeInvalidLinks),
+	linkAnalytics: deps('relatedBox')(linkAnalytics),
+	removeInvalidLinks: deps('linkAnalytics')(removeInvalidLinks),
 	imagePlaceholder: deps('externalImages', 'relatedBox', 'figure')(imagePlaceholder),
 	removeImageData: deps('externalImages', 'relatedBox', 'figure', 'imagePlaceholder')(removeImageData),
 	video: deps('unfurlVideo')(video),
@@ -42,13 +40,11 @@ const transformBody = cheerioTransform(parallel({
 	trimmedLinks,
 	removeStyles,
 	insertAd,
-	// blockquotes,
 	replaceTagsWithContent,
 	unfurlVideo,
 	slideshow,
 	interactiveGraphics,
 	infoBox,
-	contentLinks,
 	subhead,
 }));
 
@@ -76,7 +72,7 @@ if(module === require.main) {
 
 	const Tweet = require('./html/tweet')
 	const Blockquote = require('./html/blockquotes');
-
+	const ContentLink = require('./html/content-links');
 
 	const dom = parseDOM(html);
 	const transform = createTransformer(

@@ -10,8 +10,8 @@ const ftwebservice = require('express-ftwebservice');
 const path = require('path');
 const os = require('os');
 
-const cors = require('./lib/cors');
-const handlebars = require('./lib/handlebars');
+const cors = require('./cors');
+const handlebars = require('./handlebars');
 const pkg = require('../package.json');
 
 const app = express();

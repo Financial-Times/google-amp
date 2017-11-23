@@ -1,7 +1,7 @@
 'use strict';
 
-const fetch = require('../lib/fetch/wrap')(require('node-fetch'));
-const ammit = require('../lib/ammit');
+const fetch = require('../fetch/wrap')(require('node-fetch'));
+const ammit = require('../ammit');
 const {json} = require('fetchres');
 
 const apiKey = process.env.BARRIER_GURU_API_KEY;

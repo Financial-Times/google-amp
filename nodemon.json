@@ -4,8 +4,8 @@
 		"package.json",
 		"app.js",
 		"worker.js",
-		"server",
+		"src",
 		"worker"
 	],
-	"exec": "node -r dotenv/config"
+	"exec": "make -j4 babel && node -r dotenv/config"
 }

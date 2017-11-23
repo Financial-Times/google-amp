@@ -1,7 +1,7 @@
 'use strict';
 
-const assembleArticle = require('../lib/article/assemble');
-const analytics = require('../lib/analytics');
+const assembleArticle = require('../article/assemble');
+const analytics = require('../analytics');
 
 module.exports = (req, res, next) => {
 	assembleArticle(req.params.uuid, {

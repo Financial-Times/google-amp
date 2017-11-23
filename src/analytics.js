@@ -2,8 +2,8 @@
 
 /* eslint-disable no-template-curly-in-string */
 
-const pkg = require('../../package.json');
-const segmentArticle = require('../lib/article/segment');
+const pkg = require('../package.json');
+const segmentArticle = require('./article/segment');
 
 const DEBUG = false;
 const BARRIERTYPE = 'trial';

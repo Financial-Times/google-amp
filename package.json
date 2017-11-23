@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "test": "make test",
-    "postinstall": "scripts/build/postinstall.sh && scripts/build/stricthax.sh",
+    "postinstall": "bower install && make",
     "lint": "make lint",
     "prestart": "enforce-node-version",
     "start": "nodemon app.js",
@@ -15,7 +15,7 @@
     "bench": "make bench",
     "heroku-config": "make .env -B",
     "heroku-postbuild": "heroku-version-infer",
-    "transform-test": "nodemon -q -w server scripts/dev-utils/transform-test.js"
+    "transform-test": "nodemon -q -w "
   },
   "keywords": [
     "AMP",
