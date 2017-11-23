@@ -7,7 +7,6 @@ module.exports = class ContentLink extends Component {
 	static selector = 'a[href^="/content"]';
 
 	static preprocess({el, original}) {
-		console.log(el);
 		return {
 			href: `https://www.ft.com${el.attribs.href}`,
 			original

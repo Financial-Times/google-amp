@@ -58,7 +58,7 @@ const transform = createTransformer(
 	require('./html/content-links'),
 	require('./html/external-images'),
 	require('./html/interactive-graphics'),
-	require('./html/replace-tags-with-content'),
+	require('./html/remove-unsupported'),
 	require('./html/unfurl-video'),
 	require('./html/youtube'),
 	require('./html/picture')
