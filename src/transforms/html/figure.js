@@ -1,21 +1,17 @@
 'use strict';
 
-const match = require('@quarterto/cheerio-match-multiple');
+const {h, Component} = require('preact');
 
-module.exports = match({
-	'figure.n-content-image + p'(el, i, $) {
-		console.log($.html(el));
-	},
+module.exports = class Figure extends Component {
+	static selector = 'figure.n-content-image';
 
-	'figure.n-content-image'(el) {
-		const img = el.find('amp-img');
-		const width = parseInt(img.attr('data-original-width'), 10);
-		const height = parseInt(img.attr('data-original-height'), 10);
-		const origClass = img.attr('data-original-class');
+	static preprocess({match, original}) {
+		const img = match('img')[0];
+		const {width, height, className} = img.attributes;
 
 		let variation;
 
-		if(/emoticon/.test(origClass)) {
+		if(/emoticon/.test(className)) {
 			variation = 'emoticon';
 		} else if(width <= 150) {
 			variation = 'thin';
@@ -29,7 +25,11 @@ module.exports = match({
 			variation = 'full';
 		}
 
-		el.attr('class', `article-image article-image--${variation}`);
-		el.find('.n-content-image__caption').attr('class', 'article-image__caption');
-	},
-});
+		return {variation, original};
+	}
+
+	render({variation, original}) {
+		console.log(variation, original);
+		return original;
+	}
+}

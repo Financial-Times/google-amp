@@ -61,7 +61,8 @@ const transform = createTransformer(
 	require('./html/remove-unsupported'),
 	require('./html/unfurl-video'),
 	require('./html/youtube'),
-	require('./html/picture')
+	require('./html/picture'),
+	require('./html/figure')
 );
 
 const timePromise = require('@quarterto/time-promise');
