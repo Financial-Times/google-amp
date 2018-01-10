@@ -37,13 +37,16 @@ const addArticles = annotation => nEsClient.search({
 const getMoreOnTags = content => {
 	const moreOnTags = [];
 
-	const about = content.annotations.find(
+	// HACK: temporary whilst we handle the SmartLogic migration
+	const filteredAnnotations = content.annotations.filter(({ migration }) => !migration);
+
+	const about = filteredAnnotations.find(
 		annotation => annotation.predicate === 'http://www.ft.com/ontology/annotation/about'
 	);
-	const primarilyClassifiedBy = content.annotations.find(
+	const primarilyClassifiedBy = filteredAnnotations.find(
 		annotation => annotation.predicate === 'http://www.ft.com/ontology/classification/isPrimarilyClassifiedBy'
 	);
-	const brand = content.annotations.find(
+	const brand = filteredAnnotations.find(
 		annotation => annotation.types && annotation.types.includes('http://www.ft.com/ontology/product/Brand')
 	);
 
