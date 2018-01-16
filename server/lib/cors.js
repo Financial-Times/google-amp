@@ -7,7 +7,7 @@ const validFtOrigin = origin => {
 		return true;
 	}
 
-	if(new RegExp(`^https?://${process.env.HEROKU_APP_NAME}\.herokuapp\.com$`).test(origin)) {
+	if(new RegExp(`^https?://${process.env.HEROKU_APP_NAME}\\.herokuapp\\.com$`).test(origin)) {
 		return true;
 	}
 
