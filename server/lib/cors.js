@@ -7,8 +7,7 @@ const validFtOrigin = origin => {
 		return true;
 	}
 
-	// TODO: better regex
-	if(/ft-google-amp.+\.herokuapp\.com$/.test(origin)) {
+	if(new RegExp(`^https?://${process.env.HEROKU_APP_NAME}\\.herokuapp\\.com$`).test(origin)) {
 		return true;
 	}
 
