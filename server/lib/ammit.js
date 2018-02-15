@@ -1,6 +1,7 @@
 'use strict';
 
 const fetch = require('./fetch/wrap')(require('node-fetch'));
+const querystring = require('querystring');
 
 const {BadServerResponseError} = require('fetchres');
 
@@ -9,12 +10,15 @@ module.exports = ({allocationId, sessionId, countryCodeTwoLetters, continentCode
 		return Promise.resolve({});
 	}
 
-	return fetch('https://ammit-api.ft.com/uk', {
+	const qs = {
+		'allocation-id': allocationId
+	};
+	const ammitUrl = `https://ammit-api.ft.com/uk?${querystring.stringify(qs)}`;
+	return fetch(ammitUrl, {
 		method: 'HEAD',
 		headers: {
 			'api-key': process.env.AMMIT_APIKEY,
 			'ft-session-token': sessionId,
-			'ft-allocation-id': allocationId,
 			'ft-ammit-country': countryCodeTwoLetters,
 			'ft-ammit-continent-code': continentCode,
 			referer,
