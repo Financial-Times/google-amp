@@ -60,7 +60,10 @@ const transform = createTransformer(
 	require('./html/youtube'),
 	require('./html/picture'),
 	require('./html/figure'),
-	require('./html/figcaption')
+	require('./html/figcaption'),
+	require('./html/info-box'),
+	require('./html/info-box-content'),
+	require('./html/info-box-headline')
 );
 
 const timePromise = require('@quarterto/time-promise');
