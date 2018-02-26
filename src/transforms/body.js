@@ -52,18 +52,21 @@ const createTransformer = require('@quarterto/markup-components')(require('preac
 const transform = createTransformer(
 	require('./html/tweet'),
 	require('./html/blockquotes'),
-	require('./html/content-links'),
 	require('./html/external-images'),
 	require('./html/interactive-graphics'),
 	require('./html/remove-unsupported'),
 	require('./html/unfurl-video'),
 	require('./html/youtube'),
+	require('./html/youtube-link'),
+	require('./html/youtube-container'),
 	require('./html/picture'),
 	require('./html/figure'),
 	require('./html/figcaption'),
 	require('./html/info-box'),
 	require('./html/info-box-content'),
-	require('./html/info-box-headline')
+	require('./html/info-box-headline'),
+	require('./html/related-box'),
+	require('./html/link')
 );
 
 const timePromise = require('@quarterto/time-promise');
