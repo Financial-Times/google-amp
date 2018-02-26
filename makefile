@@ -62,10 +62,10 @@ lint: lintspaces eslint
 bench:
 	./scripts/bench.sh
 
-test: lint $(js-files) $(test-files-all)
-	NODE_ENV=test mocha -- $(test-files)
+test: lint $(lib-files) $(test-files-all)
+	NODE_ENV=test mocha $(test-files)
 
-unit-test: $(js-files) $(test-files-all)
-	NODE_ENV=test mocha -- -i --grep "amp validator" $(test-files)
+unit-test: $(lib-files) $(test-files-all)
+	NODE_ENV=test mocha -i --grep "amp validator" $(test-files)
 
 .PHONY: bench

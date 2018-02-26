@@ -67,5 +67,11 @@ const timePromise = require('@quarterto/time-promise');
 module.exports = (body, options = {}) => timePromise('body transform')(Promise.resolve(body)
 	.then(replaceEllipses)
 	.then(removeLinkWhitespace)
-	.then(articleBody => transform(parseDOM(articleBody, options)))
+	.then(articleBody => parseDOM(articleBody, Object.assign({
+		withDomLvl1: true,
+		normalizeWhitespace: false,
+		xmlMode: false,
+		decodeEntities: true,
+	}, options)))
+	.then(transform)
 	.then(renderToString));
