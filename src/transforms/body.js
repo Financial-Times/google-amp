@@ -59,7 +59,8 @@ const transform = createTransformer(
 	require('./html/unfurl-video'),
 	require('./html/youtube'),
 	require('./html/picture'),
-	require('./html/figure')
+	require('./html/figure'),
+	require('./html/figcaption')
 );
 
 const timePromise = require('@quarterto/time-promise');

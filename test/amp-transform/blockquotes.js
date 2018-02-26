@@ -13,7 +13,7 @@ describe('blockquotes transform', () => {
 					<footer class="n-content-pullquote__footer">Mike Flewitt, chief executive</footer>
 				</div>
 			</blockquote>`)
-			).dom.to.equal(`<blockquote class="article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all">
+			).dom.to.equal(`<blockquote class="article__quote aside--content c-box article__quote--pull-quote u-border--all c-box--inline">
 				<div class="pull-quote__quote-marks"></div>
 				<div class="u-padding--left-right">
 					<p>You couldn&#x2019;t just be a P1 company and generate the returns to keep investing
@@ -29,7 +29,7 @@ describe('blockquotes transform', () => {
 				<p>You couldn&#x2019;t just be a P1 company and generate the returns to keep investing
 					in new products</p>
 			</blockquote>`)
-			).dom.to.equal(`<blockquote class="article__quote article__quote--full-quote aside--content c-box u-border--left u-padding--left-right">
+			).dom.to.equal(`<blockquote class="article__quote aside--content c-box article__quote--full-quote u-border--left u-padding--left-right">
 				<p>You couldn&#x2019;t just be a P1 company and generate the returns to keep investing
 					in new products</p>
 			</blockquote>`);

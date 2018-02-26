@@ -27,6 +27,7 @@ module.exports = class Blockquote extends Component {
 				'u-border--left': !isPullquote,
 				'u-padding--left-right': !isPullquote,
 				'u-border--all': isPullquote,
+				'c-box--inline': isPullquote,
 			}
 		);
 
