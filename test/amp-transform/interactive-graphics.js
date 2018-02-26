@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transforms/body');
+const transformBody = require('../../lib/transforms/body');
 
 describe('interactive graphics transform', () => {
 	it('should transform to iframe if href is https', async () => {

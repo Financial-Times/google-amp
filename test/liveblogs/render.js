@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const renderLiveBlog = require('../../server/lib/live-blogs/render');
+const renderLiveBlog = require('../../lib/live-blogs/render');
 const oDate = require('o-date');
 
 describe('render', () => {

@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transforms/body');
+const transformBody = require('../../lib/transforms/body');
 
 describe('video transform', () => {
 	it('should transform video.ft.com links to amp-brightcove with account and player from parameters', async () => {

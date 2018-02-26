@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transforms/body');
+const transformBody = require('../../lib/transforms/body');
 
 describe('blockquotes transform', () => {
 	it('should add classes and quotes to pullquotes', async () => {

@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transforms/body');
+const transformBody = require('../../lib/transforms/body');
 
 describe('amp links transform', () => {
 	it('should add ft.com to /content links and add tracking attributes', async () => {

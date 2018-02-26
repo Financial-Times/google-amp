@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const extractMainImage = require('../../server/lib/transforms/extra/extract-main-image');
+const extractMainImage = require('../../lib/transforms/extra/extract-main-image');
 const cheerio = require('cheerio');
 
 describe('main image transform', () => {

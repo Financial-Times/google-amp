@@ -63,9 +63,9 @@ bench:
 	./scripts/bench.sh
 
 test: lint $(js-files) $(test-files-all)
-	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(test-files)
+	NODE_ENV=test nyc node_modules/.bin/mocha -- $(test-files)
 
 unit-test: $(js-files) $(test-files-all)
-	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)
+	NODE_ENV=test nyc node_modules/.bin/mocha -- -i --grep "amp validator" $(test-files)
 
 .PHONY: bench

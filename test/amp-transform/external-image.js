@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const transformBody = require('../../server/lib/transforms/body');
+const transformBody = require('../../lib/transforms/body');
 const nock = require('nock');
 
 const imageResponse = require('../fixtures/56f6ad50-da52-11e5-a72f-1e7744c66818.json');

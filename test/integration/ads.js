@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const {render} = require('../../server/lib/article/assemble');
+const {render} = require('../../lib/article/assemble');
 const nEsClient = require('@financial-times/n-es-client');
 const sinon = require('sinon');
 
