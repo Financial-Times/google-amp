@@ -34,6 +34,7 @@ module.exports = (events, options) => {
 
 	// TODO: amp-live-list currently only supports new messages at the top
 	// https://github.com/ampproject/amphtml/issues/5396
+	// eslint-disable-next-line no-constant-condition
 	const sortOrder = options.content_order === 'descending' || true ? 'desc' : 'asc';
 
 	const sortedMessages = orderBy(values(messages), 'emb', sortOrder);

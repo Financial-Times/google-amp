@@ -1,6 +1,5 @@
 'use strict';
 
-const match = require('@quarterto/cheerio-match-multiple');
 const {h, Component} = require('preact');
 
 module.exports = class InteractiveGraphic extends Component {
@@ -12,7 +11,7 @@ module.exports = class InteractiveGraphic extends Component {
 			replace: el.attribs.href.startsWith('https'),
 			width: el.attribs['data-width'],
 			height: el.attribs['data-height'],
-		}
+		};
 	}
 
 	render({replace, href, width, height}) {
@@ -29,4 +28,4 @@ module.exports = class InteractiveGraphic extends Component {
 
 		return null;
 	}
-}
+};

@@ -22,15 +22,15 @@ const imageServiceUrl = (uri, {mode, width} = {}) => url.format({
 
 // See Sass variables
 const maxColumnWidth = 500;
-const pagePadding = 10;
-const minColumnWidth = 320 - (2 * pagePadding);
+// const pagePadding = 10;
+// const minColumnWidth = 320 - (2 * pagePadding);
 const maxAsideWidth = 470;
 
 async function getWidthAndRatio(metaUrl, options) {
 	try {
 		const meta = await fetchres.json(await fetch(metaUrl));
 		return Object.assign(meta, {
-			ratio: meta.height / meta.width
+			ratio: meta.height / meta.width,
 		});
 	} catch(err) {
 		if(fetchres.originatedError(err)) {
@@ -52,7 +52,7 @@ async function getWidthAndRatio(metaUrl, options) {
 module.exports = class ExternalImages extends Component {
 	static selector = 'img[src]';
 
-	static async preprocess({el, original}) {
+	static async preprocess({el}) {
 		const imageSrc = entities.decode(el.attribs.src).replace(
 				/^(https?:\/\/ftalphaville.ft.com)?\/wp-content/,
 				'https://ftalphaville-wp.ft.com/wp-content'
@@ -69,7 +69,7 @@ module.exports = class ExternalImages extends Component {
 		return {src, width, height, originalDimensions: {}, alt: el.attribs.alt, originalClass: ''};
 	}
 
-	render({src, width, height, originalDimensions, alt = '', originalClass}) {
+	render({src, width, height, alt = ''/*, originalDimensions, originalClass */}) {
 		// if(!isAside && width < minColumnWidth) {
 		// 	// don't stretch narrow inline images to page width
 		// 	ampImg.attr('layout', 'fixed');
@@ -83,4 +83,4 @@ module.exports = class ExternalImages extends Component {
 			layout='responsive'
 		/>;
 	}
-}
+};

@@ -1,7 +1,6 @@
 'use strict';
 
-const match = require('@quarterto/cheerio-match-multiple');
-const {h, Component} = require('preact');
+const {Component} = require('preact');
 
 module.exports = class ContentLink extends Component {
 	static selector = 'a[href^="/content"]';
@@ -9,7 +8,7 @@ module.exports = class ContentLink extends Component {
 	static preprocess({el, original}) {
 		return {
 			href: `https://www.ft.com${el.attribs.href}`,
-			original
+			original,
 		};
 	}
 
@@ -17,4 +16,4 @@ module.exports = class ContentLink extends Component {
 		original.attributes.href = href;
 		return original;
 	}
-}
+};

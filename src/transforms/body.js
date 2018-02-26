@@ -1,8 +1,5 @@
 'use strict';
 
-const {parallel, deps} = require('@quarterto/promise-deps-parallel');
-const cheerioTransform = require('../cheerio-transform');
-
 // text-based transforms
 const replaceEllipses = require('./text/replace-ellipses');
 const removeLinkWhitespace = require('./text/remove-link-whitespace');

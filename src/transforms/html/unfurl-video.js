@@ -1,21 +1,21 @@
 'use strict';
 
 const {h, Component} = require('preact');
-const {is, selectOne} = require('css-select');
+const {selectOne} = require('css-select');
 const getVideo = require('../utils/get-video');
 
 const getDimensions = ({renditions}) => {
 	const aspect = renditions[0].pixelHeight / renditions[0].pixelWidth;
 	return {
 		width: 480,
-		height: Math.round(480 * aspect)
+		height: Math.round(480 * aspect),
 	};
 };
 
 module.exports = class UnfurlVideo extends Component {
 	static selector = '.n-content-video--internal, .n-content-video--brightcove';
 
-	static async preprocess({el, original, match}) {
+	static async preprocess({el, original, options}) {
 		const a = selectOne('a[href]', el);
 
 		const [, videoId] = a.attribs.href.match(
@@ -45,6 +45,7 @@ module.exports = class UnfurlVideo extends Component {
 		return <amp-video {...getDimensions(video)} poster={video.mainImageUrl} controls layout="responsive">
 			{video.renditions.map(
 				({url, mediaType, pixelWidth}) => <source
+					key={url}
 					src={url}
 					type={mediaType}
 					media={`(max-width: ${pixelWidth}px)`}

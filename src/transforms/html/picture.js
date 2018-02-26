@@ -1,6 +1,6 @@
 'use strict';
 
-const {h, Component} = require('preact');
+const {Component} = require('preact');
 
 module.exports = class Picture extends Component {
 	static selector = 'picture';
@@ -13,4 +13,4 @@ module.exports = class Picture extends Component {
 	render({fallback}) {
 		return fallback || null;
 	}
-}
+};

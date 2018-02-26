@@ -17,4 +17,4 @@ module.exports = class Tweet extends Component {
 			layout="responsive"
 			data-tweetid={tweetId} />;
 	}
-}
+};

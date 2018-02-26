@@ -1,6 +1,6 @@
 'use strict';
 
-const {h, Component} = require('preact');
+const {Component} = require('preact');
 
 module.exports = class Figure extends Component {
 	static selector = 'figure.n-content-image';
@@ -32,4 +32,4 @@ module.exports = class Figure extends Component {
 		console.log(variation, original);
 		return original;
 	}
-}
+};

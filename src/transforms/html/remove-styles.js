@@ -1,16 +1,16 @@
 'use strict';
 
-const match = require('@quarterto/cheerio-match-multiple');
+const {Component} = require('preact');
 
-module.exports = class RemoveStyle {
+module.exports = class RemoveStyle extends Component {
 	static selector = '[style]';
 
 	static preprocess(original) {
-		return {original}
+		return {original};
 	}
 
 	render({original}) {
 		original.attributes.style = null;
 		return original;
 	}
-}
+};

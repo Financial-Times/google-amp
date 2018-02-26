@@ -12,7 +12,7 @@ module.exports = class Blockquote extends Component {
 			isPullquote: is(el, '.n-content-pullquote'),
 			content: match('.n-content-pullquote__content')[0],
 			footer: match('.n-content-pullquote__footer')[0],
-			original
+			original,
 		};
 	}
 
@@ -31,7 +31,7 @@ module.exports = class Blockquote extends Component {
 		);
 
 		if(isPullquote) {
-			original.children.unshift(<div class="pull-quote__quote-marks"></div>);
+			original.children.unshift(<div className="pull-quote__quote-marks"></div>);
 			content.attributes.class = 'u-padding--left-right';
 			footer.attributes.class = 'article__quote-footer';
 		}
