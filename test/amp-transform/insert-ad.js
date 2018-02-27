@@ -1,7 +1,7 @@
 'use strict';
 
 const {expect} = require('../utils/chai');
-const insertAd = require('../../server/lib/transforms/html/insert-ad');
+const insertAd = require('../../lib/transforms/html/insert-ad');
 const cheerio = require('cheerio');
 
 describe('insert ad transform', () => {
