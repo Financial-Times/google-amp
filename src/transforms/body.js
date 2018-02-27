@@ -87,5 +87,5 @@ module.exports = (body, options = {}) => timePromise('body transform')(Promise.r
 		xmlMode: false,
 		decodeEntities: true,
 	}, options)))
-	.then(transform)
+	.then(dom => transform(dom, options))
 	.then(renderToString));

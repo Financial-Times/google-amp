@@ -6,13 +6,13 @@ const Link = require('./link');
 module.exports = class RelatedImage extends Component {
 	static selector = 'a.n-content-related-box__image-link';
 
-	static preprocess(props) {
+	static async preprocess(props) {
 		const {original, match} = props;
 		const img = match('img')[0];
 		return {
 			original,
 			img,
-			link: Link.preprocess(props),
+			link: await Link.preprocess(props),
 		};
 	}
 
@@ -27,7 +27,7 @@ module.exports = class RelatedImage extends Component {
 		});
 
 		return <div className='aside--image'>
-			<Link {...link} />
+			<Link {...link} original={original} />
 		</div>;
 	}
 };
