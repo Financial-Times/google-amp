@@ -5,8 +5,6 @@
 		"AWS_ACCESS_KEY": {"required": true},
 		"AWS_SECRET_ACCESS_KEY": {"required": true},
 		"SENTRY_DSN": {"required": false},
-		"BRIGHTCOVE_ACCOUNT_ID": {"required": false},
-		"BRIGHTCOVE_PLAYER_ID": {"required": false},
 		"SPOOR_API_KEY": {"required": false},
 		"API_V1_KEY": {"required": false},
 		"ENABLE_SIDEBAR_MENU": {"required": false},
@@ -21,7 +19,6 @@
 		"ENABLE_BARRIER": {"required": false},
 		"BARRIER_AMMIT": {"required": false},
 		"AMMIT_APIKEY": {"required": true},
-		"UNFURL_BRIGHTCOVE": {"required": false}
 	},
 	"buildpacks": [
 		{

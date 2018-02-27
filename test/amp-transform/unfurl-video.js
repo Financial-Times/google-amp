@@ -20,13 +20,11 @@ describe('video unfurl transform', () => {
 		nock.cleanAll();
 	});
 
-	it('should transform brightcove videos if unfurlBrightcove is true', async () => {
+	it('should transform brightcove videos', async () => {
 		expect(
 			await transformBody(`<div class="n-content-video n-content-video--brightcove">
 				<a href="http://video.ft.com/3235593137001"></a>
-			</div>`, {
-				unfurlBrightcove: true,
-			})
+			</div>`)
 		).dom.to.equal(`<amp-video width="480" height="269" poster="https://httpsak-a.akamaihd.net/47628783001/47628783001_3235665917001_MAS-FTworld-kiev21.jpg?pubId=47628783001&videoId=3235593137001" controls layout="responsive">
 	<source src="https://udso-a.akamaihd.net/47628783001/47628783001_3235682780001_210214-WRLD-Ukraine-Buckley.mp4?pubId=47628783001&videoId=3235593137001" type="video/mp4" media="(max-width: 720px)">
 <source src="https://udso-a.akamaihd.net/47628783001/47628783001_3235682784001_210214-WRLD-Ukraine-Buckley.mp4?pubId=47628783001&videoId=3235593137001" type="video/mp4" media="(max-width: 640px)">
