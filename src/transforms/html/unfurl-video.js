@@ -15,16 +15,15 @@ const getDimensions = ({renditions}) => {
 module.exports = class UnfurlVideo extends Component {
 	static selector = '.n-content-video--internal, .n-content-video--brightcove';
 
-	static async preprocess({el, original, options}) {
+	static async preprocess({el, options = {}}) {
 		const a = selectOne('a[href]', el);
 
 		const [, videoId] = a.attribs.href.match(
-			/(?:http:\/\/video.ft.com\|www.ft.com\/video\/)(.+)$/
+			/(?:http:\/\/video.ft.com|https:\/\/www.ft.com\/video\/)(.+)$/
 		) || [];
 
 		try {
 			return {
-				original,
 				video: videoId && await getVideo(videoId),
 			};
 		} catch(e) {
