@@ -76,9 +76,7 @@ const transform = createTransformer(
 	require('./html/link')
 );
 
-const timePromise = require('@quarterto/time-promise');
-
-module.exports = (body, options = {}) => timePromise('body transform')(Promise.resolve(body)
+module.exports = (body, options = {}) => Promise.resolve(body)
 	.then(replaceEllipses)
 	.then(removeLinkWhitespace)
 	.then(articleBody => parseDOM(articleBody, Object.assign({
@@ -88,4 +86,4 @@ module.exports = (body, options = {}) => timePromise('body transform')(Promise.r
 		decodeEntities: true,
 	}, options)))
 	.then(dom => transform(dom, options))
-	.then(renderToString));
+	.then(renderToString);

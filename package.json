@@ -60,7 +60,6 @@
 		"@quarterto/sentry-create-release": "^1.0.0",
 		"@quarterto/set-package-version": "^1.1.0",
 		"@quarterto/tcp-fetch": "^1.0.0",
-		"@quarterto/time-promise": "^1.0.0",
 		"autoprefixer": "^6.3.3",
 		"aws4": "^1.1.0",
 		"bower": "^1.7.7",
