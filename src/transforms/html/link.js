@@ -2,19 +2,7 @@
 
 const {Component} = require('preact');
 const textContent = require('@quarterto/domhandler-text-content');
-const {is} = require('css-select');
-
-const findParent = (el, selector) => {
-	if(is(el, selector)) {
-		return el;
-	}
-
-	if(el.parent) {
-		return findParent(el.parent, selector);
-	}
-
-	return null;
-};
+const findParent = require('../utils/find-parent');
 
 const sanitise = text => text.replace(/[^\w ]/g, '');
 
@@ -33,7 +21,7 @@ module.exports = class LinkAnalytics extends Component {
 		return {
 			original,
 			href,
-			text: sanitise(textContent(el)),
+			text: sanitise(textContent(el)) || null,
 			type: related ? 'related-box' : 'inline',
 		};
 	}

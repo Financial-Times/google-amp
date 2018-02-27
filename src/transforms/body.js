@@ -70,6 +70,7 @@ const transform = createTransformer(
 	require('./html/related-box-title-text'),
 	require('./html/related-box-headline'),
 	require('./html/related-box-content'),
+	require('./html/related-image'),
 	require('./html/subhead'),
 	require('./html/subhead-crosshead'),
 	require('./html/link')

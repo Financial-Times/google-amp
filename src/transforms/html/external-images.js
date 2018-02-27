@@ -9,6 +9,7 @@ const reportError = require('../../report-error');
 const Warning = require('../../warning');
 const url = require('url');
 const fetch = require('../../fetch/wrap')(require('node-fetch'));
+const findParent = require('../utils/find-parent');
 
 const imageServiceUrl = (uri, {mode, width} = {}) => url.format({
 	protocol: 'https',
@@ -61,7 +62,7 @@ module.exports = class ExternalImages extends Component {
 
 		const metaUrl = imageServiceUrl(imageSrc, {mode: 'metadata'});
 		const meta = await getWidthAndRatio(metaUrl, {});
-		const isAside = false;
+		const isAside = !!findParent(el, '.n-content-related-box');
 		const width = Math.min(isAside ? maxAsideWidth : maxColumnWidth, meta.width);
 		const height = width * meta.ratio;
 		const src = imageServiceUrl(imageSrc, {mode: 'raw', width});
