@@ -99,7 +99,6 @@
 
 .article__quote--full-quote {
 	@extend %article-quote;
-	line-height: 0; // take up as little space as possible
 }
 
 .article__quote-footer {
