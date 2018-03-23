@@ -32,9 +32,7 @@ module.exports = (article, options) => Object.assign(article, {
 	AUTH_LOGOUT_URL: options.accessMocked ?
 		`//${options.host}/amp-access-mock/logout?` :
 		`https://${liveAccessHost}/amp-logout?`,
-
-	KRUX_REMOTE: `//${thirdPartyHost}/ads-iframe/${article.id}`,
-
+	
 	description: article.standfirst,
 
 	showEverything: !!options.showEverything,

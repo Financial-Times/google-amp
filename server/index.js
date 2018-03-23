@@ -101,7 +101,6 @@ app.get('/robots.txt', (req, res) => {
 disallow: /
 allow: /content/*
 allow: /products
-allow: /ads-iframe/*
 allow: /static/*`);
 });
 
@@ -114,7 +113,6 @@ if(!isProduction) {
 }
 
 app.get('/content/:uuid', require('./controllers/amp-page.js'));
-app.get('/ads-iframe/:uuid', require('./controllers/ads-iframe.js'));
 app.get('/products', cors, require('./controllers/products.js'));
 
 app.all('/amp-access-mock/:type(access|pingback)', cors, require('./controllers/access-mock.js'));
