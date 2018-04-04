@@ -9,8 +9,7 @@ const adMarkup = uuid => `
 			height="250"
 			type="doubleclick"
 			data-slot="/5887/ft.com/distributed.content/amp.ft"
-			rtc-config="{'urls':['https://ads-api.ft.com/v1/content/${uuid}?amp=true','https://ads-api.ft.com/v1/user?amp=true']}">
-			
+			rtc-config='{"urls":["https://ads-api.ft.com/v1/content/${uuid}?amp=true","https://ads-api.ft.com/v1/user?amp=true", "https://cdn.krxd.net/userdata/v2/amp/HINzStCn?segments_key=ksg&kuid_key=kuid"]}'>
 		</amp-ad>
 	</div>`;
 
