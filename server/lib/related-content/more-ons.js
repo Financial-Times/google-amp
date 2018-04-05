@@ -38,7 +38,7 @@ const getMoreOnTags = content => {
 	const moreOnTags = [];
 
 	// HACK: temporary whilst we handle the SmartLogic migration
-	const filteredAnnotations = content.annotations.filter(({ migration }) => !migration);
+	const filteredAnnotations = content.annotations.filter(({migration}) => !migration);
 
 	const about = filteredAnnotations.find(
 		annotation => annotation.predicate === 'http://www.ft.com/ontology/annotation/about'
