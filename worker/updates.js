@@ -60,38 +60,44 @@ const purgeAmp = async uuid => {
 	await handleResponse(response);
 };
 
-if(missing) {
-	console.log(`⤼  ${missing}, not listening for content updates`);
-} else {
-	const stream = kinesisDecoded({name: 'next-elasticsearch-changelog', region: 'eu-west-1'});
+const purge = uuid => {
+	logPurge({
+		uuid,
+		name: 'Fastly',
+	})(purgeFastly(uuid));
 
-	stream.on('data', data => {
-		switch(data.event) {
-			case 'CREATE':
-			case 'UPDATE':
-			case 'DELETE': {
-				console.log(`⟳  received ${data.event} for ${data.uuid}`);
+	logPurge({
+		uuid,
+		name: 'AMP',
+	})(purgeAmp(uuid));
+};
 
-				logPurge({
-					uuid: data.uuid,
-					name: 'Fastly',
-				})(purgeFastly(data.uuid));
+module.exports = purge;
 
-				logPurge({
-					uuid: data.uuid,
-					name: 'AMP',
-				})(purgeAmp(data.uuid));
+if(module === require.main) {
+	if(missing) {
+		console.log(`⤼  ${missing}, not listening for content updates`);
+	} else {
+		const stream = kinesisDecoded({name: 'next-elasticsearch-changelog', region: 'eu-west-1'});
 
-				break;
+		stream.on('data', data => {
+			switch(data.event) {
+				case 'CREATE':
+				case 'UPDATE':
+				case 'DELETE': {
+					console.log(`⟳  received ${data.event} for ${data.uuid}`);
+					purge(data.uuid);
+					break;
+				}
+
+				default: {
+					console.log(`⤼  skipping ${data.event} event for ${data.uuid}`);
+				}
 			}
+		});
 
-			default: {
-				console.log(`⤼  skipping ${data.event} event for ${data.uuid}`);
-			}
-		}
-	});
-
-	stream.on('error', e => {
-		console.error(e.stack);
-	});
+		stream.on('error', e => {
+			console.error(e.stack);
+		});
+	}
 }
