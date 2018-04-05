@@ -4,10 +4,6 @@ const querystring = require('querystring');
 const url = require('../url');
 const segmentArticle = require('./segment');
 
-const thirdPartyHost = process.env.HEROKU_APP_NAME ?
-	`${process.env.HEROKU_APP_NAME}.herokuapp.com` :
-	'localhost:5000';
-
 const liveAccessHost = 'amp-access-svc.memb.ft.com';
 
 const shareParams = {
@@ -32,7 +28,7 @@ module.exports = (article, options) => Object.assign(article, {
 	AUTH_LOGOUT_URL: options.accessMocked ?
 		`//${options.host}/amp-access-mock/logout?` :
 		`https://${liveAccessHost}/amp-logout?`,
-	
+
 	description: article.standfirst,
 
 	showEverything: !!options.showEverything,
