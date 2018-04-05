@@ -12,9 +12,10 @@ describe('insert ad transform', () => {
 			'<p>Third paragraph</p>' +
 			'<p>Fourth paragraph</p>');
 
-		const adMarkup = '<div class="ad-container"><amp-ad width="300" height="250" type="doubleclick"></amp-ad></div>';
-		const htmlWithAd = insertAd($, {enableAds: true});
+		const adMarkup = '<div class="ad-container"><amp-ad width="300"	height="250" type="doubleclick" data-slot="/5887/ft.com/distributed.content/amp.ft" rtc-config=\'{"urls":["https://ads-api.ft.com/v1/content/1234?amp=true","https://ads-api.ft.com/v1/user?amp=true", "https://cdn.krxd.net/userdata/v2/amp/HINzStCn?segments_key=ksg&kuid_key=kuid"]}\'></amp-ad></div>';
+		const htmlWithAd = insertAd($, {enableAds: true, uuid: 1234});
 		const expectedAdSlot = htmlWithAd('p')[2].next;
+
 		expect(expectedAdSlot).dom.to.equal(adMarkup);
 	});
 });

@@ -11,7 +11,7 @@ module.exports = ({allocationId, sessionId, countryCodeTwoLetters, continentCode
 	}
 
 	const qs = {
-		'allocation-id': allocationId
+		'allocation-id': allocationId,
 	};
 	const ammitUrl = `https://ammit-api.ft.com/uk?${querystring.stringify(qs)}`;
 	return fetch(ammitUrl, {
