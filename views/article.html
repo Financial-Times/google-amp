@@ -1,5 +1,5 @@
 <article class="article">
-	<header class="article-header" amp-access="NOT {{enableBarrier}} OR access OR {{showEverything}} ">
+	<header class="article-header" {{#unless showEverything}}subscriptions-section="content"{{/unless}}>
 		{{#if displayConcept}}
 			<h2 class="primary-theme">
 				{{> link href=displayConcept.url class='primary-theme__link' text=displayConcept.prefLabel type='primary-theme'}}
@@ -26,7 +26,7 @@
 			{{/if}}
 		{{/if}}
 
-		<div amp-access="access OR {{showEverything}}" amp-access-hide>
+		<div subscriptions-display="granted OR {{showEverything}}" amp-access-hide>
 			{{{mainImageHtml}}}
 
 			{{#if enableSocialShare}}
@@ -49,7 +49,7 @@
 		</div>
 	</header>
 
-	<div amp-access="access OR {{showEverything}}" amp-access-hide>
+	<div subscriptions-display="granted OR {{showEverything}}" amp-access-hide>
 		<div class="article-body" itemprop="articleBody">
 			{{{htmlBody}}}
 
@@ -62,7 +62,7 @@
 	</div>
 </article>
 
-<div class="comments" amp-access="access OR {{showEverything}}" amp-access-hide>
+<div class="comments" subscriptions-display="granted OR {{showEverything}}" amp-access-hide>
 	{{> link class='comments-button' href=(concat canonicalURL '#comments') type='view-comments' text='View comments'}}
 </div>
 
