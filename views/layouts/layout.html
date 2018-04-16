@@ -52,8 +52,8 @@
 						"login": "{{{AUTH_LOGIN_URL}}}readerId=READER_ID&location=RETURN_URL%23success=true",
 						"logout": "{{{AUTH_LOGOUT_URL}}}rid=READER_ID&location=RETURN_URL%23success=true"
 					},
-					"authorizationFallbackResponse": {"access": true, "error": true}
-				}
+					"authorizationFallbackResponse": { "access": true, "error": true }
+				},
 				{ "serviceId": "subscribe.google.com" }
 			],
 			"preferViewerSupport": true
@@ -137,25 +137,27 @@
 					{{#if enableBarrier}}
 						{{> barrier}}
 					{{else}}
-					<div class="amp-access-login__header" amp-access="NOT session">
+					<div class="amp-access-login__header" subscriptions-display="NOT loggedIn">
 						<div class="amp-access-login__header-instruction">Subscribe to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
-					<div class="amp-access-login__header" amp-access="session">
+					<div class="amp-access-login__header" subscriptions-display="loggedIn">
 						<div class="amp-access-login__header-instruction">Upgrade your account to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
-					<div class="amp-access-login__body" amp-access="NOT session">
+					<div class="amp-access-login__body" subscriptions-display="NOT loggedIn">
 						<a class="amp-access-login__button" href="#" on="tap:amp-access.login-login" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
 						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages">View subscription packages</a>
 					</div>
-					<div class="amp-access-login__body" amp-access="session">
+					<div class="amp-access-login__body" subscriptions-display="loggedIn">
 						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-upgrade" data-vars-link-text="Upgrade now">Upgrade now</a>
 					</div>
 					{{/if}}
 				</div>
 
-				{{{body}}}
+				<div {{#unless showEverything}}subscriptions-section="content"{{/unless}}>
+					{{{body}}}
+				</div>
 			</main>
 
 			{{> footer}}
