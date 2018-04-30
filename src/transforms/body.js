@@ -33,17 +33,21 @@ const transform = createTransformer(
 	require('./html/related-image'),
 	require('./html/subhead'),
 	require('./html/subhead-crosshead'),
-	require('./html/link')
+	require('./html/link'),
+	require('./html/insert-ad')
 );
 
 module.exports = (body, options = {}) => Promise.resolve(body)
 	.then(replaceEllipses)
 	.then(removeLinkWhitespace)
-	.then(articleBody => parseDOM(articleBody, Object.assign({
+	.then(articleBody => parseDOM(`<article>${articleBody}</article>`, Object.assign({
 		withDomLvl1: true,
 		normalizeWhitespace: false,
 		xmlMode: false,
 		decodeEntities: true,
 	}, options)))
 	.then(dom => transform(dom, options))
+	.then(a => (console.log(a), a))
+	.then(transformed => transformed[0].children)
+	.then(a => (console.log(a), a))
 	.then(renderToString);
