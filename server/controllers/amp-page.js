@@ -36,6 +36,7 @@ module.exports = (req, res, next) => {
 				res.setHeader('surrogate-control', `stale-on-error=${oneWeek}, stale-while-revalidate=${oneDay}`);
 			}
 
+			console.log(article);
 			res.render('article', Object.assign({layout: 'layout'}, article));
 		})
 		.catch(next);

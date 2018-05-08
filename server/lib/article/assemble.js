@@ -18,11 +18,7 @@ const getCSS = require('./css');
 const environmentOptions = require('./environment-options');
 const handlebars = require('../handlebars');
 
-const getAuthors = article =>
-	// Somtimes there are no authors in the taxonomy. It's very sad but it's true.
-	article.authorConcepts && article.authorConcepts.length
-		? article.authorConcepts.join(', ')
-		: (article.byline || '').replace(/^by\s+/i, '');
+const getAuthors = article => (article.byline || '').replace(/^by\s+/i, '');
 
 const getByline = article => (article.authorConcepts || []).reduce(
 	(byline, author) => byline.replace(author.prefLabel, `
