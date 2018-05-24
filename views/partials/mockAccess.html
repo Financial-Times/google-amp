@@ -5,7 +5,7 @@
 		<li>{{#if accessMockPreventAccess}}Access is blocked, even when signed-in (simulating premium content, and requiring an upgrade). <a data-vars-link-type="qa" href="/amp-access-mock/allow-access">Click here</a> to allow access.{{else}}<a data-vars-link-type="qa" href="/amp-access-mock/prevent-access">Click here</a> to block all access, to simulate premium content and require an upgrade.{{/if}}</li>
 		<li subscriptions-section="content">You have access. </li>
 		<li subscriptions-section="content-not-granted">You have no access. </li>
-		<li subscriptions-display="loggedIn" amp-access-hide>You are logged in. <a data-vars-link-type="qa" href="#" on="tap:amp-access.login-logout">Click here</a> to log out.</li>
-		<li subscriptions-display="NOT loggedIn" amp-access-hide>You are an anonymous visitor. <a data-vars-link-type="qa" href="#" on="tap:amp-access.login-login">Click here</a> to log in.</li>
+		<li subscriptions-actions subscriptions-display="loggedIn">You are logged in. <a data-vars-link-type="qa" href="#" subscriptions-action="logout" subscriptions-display="loggedIn">Click here</a> to log out.</li>
+		<li subscriptions-actions subscriptions-display="NOT loggedIn">You are an anonymous visitor. <a data-vars-link-type="qa" href="#" subscriptions-action="login" subscriptions-display="NOT loggedIn">Click here</a> to log in.</li>
 	</ul>
 </div>

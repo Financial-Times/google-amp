@@ -46,11 +46,12 @@
 		{
 			"services": [
 				{
-					"authorization": "{{{AUTH_AUTHORIZATION_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}",
-					"pingback": "{{{AUTH_PINGBACK_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}&access=AUTHDATA(access)",
-					"login": {
+					"authorizationUrl": "{{{AUTH_AUTHORIZATION_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}",
+					"pingbackUrl": "{{{AUTH_PINGBACK_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}&access=AUTHDATA(access)",
+					"actions": {
 						"login": "{{{AUTH_LOGIN_URL}}}readerId=READER_ID&location=RETURN_URL%23success=true",
-						"logout": "{{{AUTH_LOGOUT_URL}}}rid=READER_ID&location=RETURN_URL%23success=true"
+						"logout": "{{{AUTH_LOGOUT_URL}}}rid=READER_ID&location=RETURN_URL%23success=true",
+						"subscribe": "{{{barrierListEndpoint}}}"
 					},
 					"authorizationFallbackResponse": { "access": true, "error": true }
 				},
@@ -137,19 +138,19 @@
 					{{#if enableBarrier}}
 						{{> barrier}}
 					{{else}}
-					<div class="amp-access-login__header" subscriptions-display="NOT loggedIn">
+					<div class="amp-access-login__header" subscriptions-actions subscriptions-display="NOT loggedIn">
 						<div class="amp-access-login__header-instruction">Subscribe to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
-					<div class="amp-access-login__header" subscriptions-display="loggedIn AND NOT granted">
+					<div class="amp-access-login__header" subscriptions-actions subscriptions-display="loggedIn AND NOT granted">
 						<div class="amp-access-login__header-instruction">Upgrade your account to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
-					<div class="amp-access-login__body" subscriptions-display="NOT loggedIn">
-						<a class="amp-access-login__button" href="#" on="tap:amp-access.login-login" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
+					<div class="amp-access-login__body" subscriptions-actions subscriptions-display="NOT loggedIn">
+						<a class="amp-access-login__button" href="#" subscriptions-action="login" subscriptions-display="NOT loggedIn" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
 						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages">View subscription packages</a>
 					</div>
-					<div class="amp-access-login__body" subscriptions-display="loggedIn">
+					<div class="amp-access-login__body" subscriptions-actions subscriptions-display="loggedIn">
 						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-upgrade" data-vars-link-text="Upgrade now">Upgrade now</a>
 					</div>
 					{{/if}}

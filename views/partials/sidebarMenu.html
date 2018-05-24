@@ -346,17 +346,17 @@
 						<li class="o-header__drawer-menu-item" subscriptions-section="content-not-granted">
 							<a class="o-header__drawer-menu-link" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="sidebar-subscribe" data-vars-link-text="Subscribe">Subscribe</a>
 						</li>
-						<li class="o-header__drawer-menu-item" subscriptions-display="NOT loggedIn" amp-access-hide>
-							<a class="o-header__drawer-menu-link" href="#" on="tap:amp-access.login-login" data-vars-link-type="sidebar-login" data-vars-link-text="Sign In">Sign In</a>
+						<li class="o-header__drawer-menu-item" subscriptions-actions subscriptions-display="NOT loggedIn">
+							<a class="o-header__drawer-menu-link" href="#" subscriptions-action="login" subscriptions-display="NOT loggedIn" data-vars-link-type="sidebar-login" data-vars-link-text="Sign In">Sign In</a>
 						</li>
 						<li class="o-header__drawer-menu-item">
-							<a class="o-header__drawer-menu-link" subscriptions-display="loggedIn" amp-access-hide href="https://myaccount.ft.com/details/core/view" data-vars-link-destination="https://myaccount.ft.com/details/core/view" data-vars-link-type="sidebar-account" data-vars-link-text="My Account">My Account</a>
+							<a class="o-header__drawer-menu-link" subscriptions-actions subscriptions-display="loggedIn" href="https://myaccount.ft.com/details/core/view" data-vars-link-destination="https://myaccount.ft.com/details/core/view" data-vars-link-type="sidebar-account" data-vars-link-text="My Account">My Account</a>
 						</li>
 						<li class="o-header__drawer-menu-item">
-							<a class="o-header__drawer-menu-link" subscriptions-display="loggedIn" amp-access-hide href="#" on="tap:amp-access.login-logout" data-vars-link-type="sidebar-logout" data-vars-link-text="Sign Out">Sign Out</a>
+							<a class="o-header__drawer-menu-link" subscriptions-actions subscriptions-display="loggedIn" href="#" subscriptions-action="logout" subscriptions-display="loggedIn" data-vars-link-type="sidebar-logout" data-vars-link-text="Sign Out">Sign Out</a>
 						</li>
-						<li class="o-header__drawer-menu-item" subscriptions-display="loggedIn AND (NOT granted)" amp-access-hide>
-							<a class="o-header__drawer-menu-link" subscriptions-display="loggedIn" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="sidebar-upgrade" data-vars-link-text="Upgrade">Upgrade</a>
+						<li class="o-header__drawer-menu-item" subscriptions-actions subscriptions-display="loggedIn AND (NOT granted)">
+							<a class="o-header__drawer-menu-link" subscriptions-actions subscriptions-display="loggedIn" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="sidebar-upgrade" data-vars-link-text="Upgrade">Upgrade</a>
 						</li>
 					</ul>
 				</nav>
