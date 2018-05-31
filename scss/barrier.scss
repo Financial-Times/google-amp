@@ -16,6 +16,15 @@
 
 $barrier-padding: .75em;
 
+%amp-access-barrier__box {
+	border-bottom: 1px solid oColorsGetPaletteColor('pink-tint1');
+}
+
+.amp-access-barrier__header {
+	@extend %amp-access-barrier__box;
+	padding-bottom: 10px;
+}
+
 .amp-access-barrier__header-instruction {
 	@include oTypographySansBold(m);
 	@include oColorsFor(box, background);
@@ -31,10 +40,6 @@ $barrier-padding: .75em;
 	@include oTypographySansBold(s);
 	background: oColorsGetPaletteColor('pink-tint2');
 	padding: $barrier-padding;
-}
-
-%amp-access-barrier__box {
-	border-bottom: 1px solid oColorsGetPaletteColor('pink-tint1');
 }
 
 .amp-access-barrier__offer {
@@ -158,4 +163,9 @@ $barrier-padding: .75em;
 		display: block;
 		margin: 0 auto;
 	}
+}
+
+.amp-access-barrier__swg-button {
+	display: block;
+	margin: 10px auto 0;
 }
