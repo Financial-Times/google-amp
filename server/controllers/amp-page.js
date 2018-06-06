@@ -20,6 +20,7 @@ module.exports = (req, res, next) => {
 		analyticsConfig: JSON.stringify(analytics.getJson({req, uuid: req.params.uuid})),
 		overrideBlog: req.query.overrideBlog,
 		lastUpdate: req.query.amp_latest_update_time,
+		ftConsentCookie: req.cookies.FTConsent,
 	})
 		.then(article => {
 			if(req.cookies['amp-access-mock']) {
@@ -36,7 +37,6 @@ module.exports = (req, res, next) => {
 				res.setHeader('surrogate-control', `stale-on-error=${oneWeek}, stale-while-revalidate=${oneDay}`);
 			}
 
-			console.log(article);
 			res.render('article', Object.assign({layout: 'layout'}, article));
 		})
 		.catch(next);
