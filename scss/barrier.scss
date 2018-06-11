@@ -88,7 +88,7 @@ $barrier-padding: 20px;
 		color: oColorsGetPaletteColor('black');
 		// TODO: Upgrade to latest o-typography
 		line-height: 20px;
-    font-size: 16px;
+		font-size: 16px;
 		position: relative;
 	}
 }
@@ -152,4 +152,8 @@ $barrier-padding: 20px;
 .amp-access-barrier__swg-button {
 	display: block;
 	margin: 10px auto 0;
+
+	&.swg-button-light {
+		width: 100%;
+	}
 }
