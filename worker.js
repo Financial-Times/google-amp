@@ -1,3 +1,5 @@
 'use strict';
 
-require('./worker/updates');
+const {worker} = require('./worker/updates');
+
+worker();

@@ -7,8 +7,6 @@ const logPromise = require('@quarterto/log-promise');
 const url = require('url');
 const util = require('util');
 
-const missing = assertEnv.warn(['FASTLY_PURGEKEY', 'FASTLY_HOST']);
-
 const logPurge = ({name, uuid}) => logPromise(
 	` purged ${uuid} from ${name}`,
 	err => ` ${err.message} from ${name}${(err.data ? `\n\n${util.inspect(err.data)}` : '')}`
@@ -74,9 +72,11 @@ const purge = uuid => {
 
 module.exports = purge;
 
-if(module === require.main) {
-	if(missing) {
-		console.log(`⤼  ${missing}, not listening for content updates`);
+module.exports.worker = () => {
+	const missingEnv = assertEnv.warn(['FASTLY_PURGEKEY', 'FASTLY_HOST']);
+
+	if(missingEnv) {
+		console.log(`⤼  ${missingEnv}, not listening for content updates`);
 	} else {
 		const stream = kinesisDecoded({name: 'next-elasticsearch-changelog', region: 'eu-west-1'});
 
@@ -100,4 +100,4 @@ if(module === require.main) {
 			console.error(e.stack);
 		});
 	}
-}
+};
