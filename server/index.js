@@ -17,18 +17,11 @@ const pkg = require('../package.json');
 const app = express();
 
 const isDevelopment = app.get('env') === 'development';
-const isStaging = app.get('env') === 'staging';
 const isProduction = app.get('env') === 'production';
-
-const isLocal = isDevelopment;
-const isServer = isStaging || isProduction;
 
 Object.assign(app, {
 	isDevelopment,
-	isStaging,
 	isProduction,
-	isLocal,
-	isServer,
 });
 
 ftwebservice(app, {
@@ -63,7 +56,7 @@ ftwebservice(app, {
 
 let ravenClient;
 
-if(isServer) {
+if(isProduction) {
 	assertEnv(['SENTRY_DSN']);
 	ravenClient = new raven.Client(process.env.SENTRY_DSN, {
 		release: pkg.version,
@@ -84,7 +77,7 @@ assertHerokuEnv(warnings => {
 	}
 });
 
-if(isServer) {
+if(isProduction) {
 	app.use(raven.middleware.express.requestHandler(ravenClient));
 	app.use((req, res, next) => {
 		ravenClient.setExtraContext(raven.parsers.parseRequest(req));
@@ -128,13 +121,14 @@ app.get('/_access_mock/clear', (req, res) => {
 	res.redirect(301, '/amp-access-mock/clear');
 });
 
-if(isLocal) {
+if(isDevelopment) {
 	app.all('/analytics', require('./controllers/analytics-proxy.js'));
 	app.use(require('errorhandler')());
 } else {
 	app.use(raven.middleware.express.errorHandler(ravenClient));
 	app.use((err, req, res, next) => {
 		const status = err.status || err.statusCode || err.status_code;
+
 		if(status === 404) {
 			res.setHeader('cache-control', 'public, max-age=30, no-transform');
 			res.setHeader('surrogate-control', 'stale-on-error=86400, stale-while-revalidate=300');

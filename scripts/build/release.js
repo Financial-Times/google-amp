@@ -18,7 +18,6 @@ assertEnv(['HEROKU_APP_NAME']);
 const {HEROKU_APP_NAME: appName} = process.env;
 
 const env = {
-	'ft-google-amp-staging': 'staging',
 	'ft-google-amp-prod-eu': 'production',
 	'ft-google-amp-prod-us': 'productionUs',
 }[appName] || 'dev';
@@ -43,24 +42,17 @@ class ReleaseTasks extends Tasks {
 		}
 	}
 
-	async staging() {
+	async production() {
 		await this.wrapReleaseLog(
 			this.githubVersion,
 			this.sentryVersion,
-			this.vcl
-		);
-	}
-
-	async production() {
-		await this.wrapReleaseLog(
 			this.jiraRelease,
 			this.vcl
 		);
 	}
 
 	async productionUs() {
-		await this.openReleaseLog();
-		await this.closeReleaseLog();
+		log('no release tasks for prod-us environment');
 	}
 
 	async dev({log}) {
@@ -118,7 +110,6 @@ ${issues.length ? issues.join('\n') : 'None'}`;
 
 		const environment = ({
 			production: 'Production',
-			staging: 'Test',
 			dev: 'Development',
 		})[env] || 'Development';
 
