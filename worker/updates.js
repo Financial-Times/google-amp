@@ -7,14 +7,14 @@ const logPromise = require('@quarterto/log-promise');
 const url = require('url');
 const util = require('util');
 
-const logPurge = ({name, purgeUrl}) => logPromise(
-	` purged ${purgeUrl} from ${name}`,
-	err => ` ${err.message} from ${name}${(err.data ? `\n\n${util.inspect(err.data)}` : '')}`
+const logPurge = label => logPromise(
+	response => ` purged ${response.url} from ${label}`,
+	err => ` ${err.message} from ${label}${(err.data ? `\n\n${util.inspect(err.data)}` : '')}`
 );
 
-const handleResponse = async (response, purgeUrl) => {
+const handleResponse = async response => {
 	if(response.status < 200 || response.status >= 300) {
-		const err = new Error(`failed to purge ${purgeUrl}`);
+		const err = new Error(`failed to purge ${response.url}`);
 
 		const data = await response.text();
 
@@ -30,10 +30,7 @@ const handleResponse = async (response, purgeUrl) => {
 	return response;
 };
 
-const purgeFastly = purgeUrl => logPurge({
-	purgeUrl,
-	name: 'Fastly',
-})((async () => {
+const purgeFastly = purgeUrl => logPurge('Fastly')((async () => {
 	const response = await fetch(purgeUrl, {
 		method: 'PURGE',
 		headers: {
@@ -45,17 +42,14 @@ const purgeFastly = purgeUrl => logPurge({
 	// fresh content
 	fetch(purgeUrl);
 
-	return handleResponse(response, purgeUrl);
+	return handleResponse(response);
 })());
 
-const purgeAmp = purgeUrl => logPurge({
-	purgeUrl,
-	name: 'AMP',
-})((async () => {
+const purgeAmp = purgeUrl => logPurge('AMP')((async () => {
 	const {hostname, pathname} = url.parse(purgeUrl);
 	const response = fetch(`https://cdn.ampproject.org/update-ping/i/s/${hostname}${pathname}`);
 
-	return handleResponse(response, purgeUrl);
+	return handleResponse(response);
 })());
 
 const formatPurgeUrl = (uuid, host) => url.format({
