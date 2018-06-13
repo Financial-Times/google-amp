@@ -7,18 +7,12 @@ const logPromise = require('@quarterto/log-promise');
 const url = require('url');
 const util = require('util');
 
-const logPurge = ({name, uuid}) => logPromise(
-	` purged ${uuid} from ${name}`,
+const logPurge = ({name, purgeUrl}) => logPromise(
+	` purged ${purgeUrl} from ${name}`,
 	err => ` ${err.message} from ${name}${(err.data ? `\n\n${util.inspect(err.data)}` : '')}`
 );
 
-const purgeUrl = uuid => url.format({
-	protocol: 'https',
-	host: process.env.FASTLY_HOST,
-	path: `/content/${uuid}`,
-});
-
-const handleResponse = async response => {
+const handleResponse = async (response, purgeUrl) => {
 	if(response.status < 200 || response.status >= 300) {
 		const err = new Error(`failed to purge ${purgeUrl}`);
 
@@ -36,8 +30,11 @@ const handleResponse = async response => {
 	return response;
 };
 
-const purgeFastly = async uuid => {
-	const response = await fetch(purgeUrl(uuid), {
+const purgeFastly = purgeUrl => logPurge({
+	purgeUrl,
+	name: 'Fastly',
+})((async () => {
+	const response = await fetch(purgeUrl, {
 		method: 'PURGE',
 		headers: {
 			'Fastly-Key': process.env.FASTLY_PURGEKEY,
@@ -46,34 +43,51 @@ const purgeFastly = async uuid => {
 
 	// GET once from fastly (but don't wait) to ensure the fastly shield has
 	// fresh content
-	fetch(purgeUrl(uuid));
+	fetch(purgeUrl);
 
-	await handleResponse(response);
-};
+	return handleResponse(response, purgeUrl);
+})());
 
-const purgeAmp = async uuid => {
-	const {hostname, pathname} = url.parse(purgeUrl(uuid));
+const purgeAmp = purgeUrl => logPurge({
+	purgeUrl,
+	name: 'AMP',
+})((async () => {
+	const {hostname, pathname} = url.parse(purgeUrl);
 	const response = fetch(`https://cdn.ampproject.org/update-ping/i/s/${hostname}${pathname}`);
 
-	await handleResponse(response);
+	return handleResponse(response, purgeUrl);
+})());
+
+const formatPurgeUrl = (uuid, host) => url.format({
+	protocol: 'https',
+	host,
+	pathname: `/content/${uuid}`,
+});
+
+const purge = async uuid => {
+	const fastlyHosts = process.env.NODE_ENV === 'staging'
+		? ['amp-staging.ft.com']
+		: [
+			'amp.ft.com',
+			'amp-eu.ft.com',
+			'amp-us.ft.com',
+		];
+
+	const ampHost = fastlyHosts[0];
+
+	await Promise.all(fastlyHosts.map(
+		host => purgeFastly(formatPurgeUrl(uuid, host))
+	));
+
+	await purgeAmp(formatPurgeUrl(uuid, ampHost));
 };
 
-const purge = uuid => {
-	logPurge({
-		uuid,
-		name: 'Fastly',
-	})(purgeFastly(uuid));
+exports.purgeFastly = purgeFastly;
+exports.purgeAmp = purgeAmp;
+exports.purge = purge;
 
-	logPurge({
-		uuid,
-		name: 'AMP',
-	})(purgeAmp(uuid));
-};
-
-module.exports = purge;
-
-module.exports.worker = () => {
-	const missingEnv = assertEnv.warn(['FASTLY_PURGEKEY', 'FASTLY_HOST']);
+exports.worker = () => {
+	const missingEnv = assertEnv.warn(['FASTLY_PURGEKEY']);
 
 	if(missingEnv) {
 		console.log(`⤼  ${missingEnv}, not listening for content updates`);
@@ -86,7 +100,9 @@ module.exports.worker = () => {
 				case 'UPDATE':
 				case 'DELETE': {
 					console.log(`⟳  received ${data.event} for ${data.uuid}`);
+
 					purge(data.uuid);
+
 					break;
 				}
 
