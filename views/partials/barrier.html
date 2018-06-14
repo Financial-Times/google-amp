@@ -1,4 +1,4 @@
-<div class="amp-access-barrier__header" subscriptions-actions subscriptions-display="NOT loggedIn">
+<div class="amp-access-barrier__header" subscriptions-actions subscriptions-display="NOT data.session">
 	<div class="amp-access-barrier__header-instruction">
 		Subscribe to read:
 		<h3>{{title}}</h3>
@@ -6,11 +6,11 @@
 
 	<div class="amp-access-barrier__login">
 		Already a subscriber?
-		<a href="#" subscriptions-action="login" subscriptions-service="local" subscriptions-display="NOT loggedIn" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
+		<a href="#" subscriptions-action="login" subscriptions-service="local" subscriptions-display="NOT data.session" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
 	</div>
 </div>
 
-<div class="amp-access-barrier__header" subscriptions-actions subscriptions-display="loggedIn AND NOT granted">
+<div class="amp-access-barrier__header" subscriptions-actions subscriptions-display="data.session AND NOT granted">
 	<div class="amp-access-barrier__header-instruction">
 		Upgrade your account to read:
 		<h3>{{title}}</h3>
