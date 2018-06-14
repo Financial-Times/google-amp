@@ -46,7 +46,7 @@ The [scripts directory](scripts) has a few scripts that might be useful when dev
 Deployment
 ---
 
-The `master` branch deploys automatically to prod once the tests are green. Pull requests deploy to review apps, look out for the `@username deployed to ft-google-amp-staging-pr-XXX` messages in the PR.
+The `master` branch deploys automatically to prod once the tests are green. Pull requests deploy to review apps, look out for the `@username deployed to ft-google-amp-prod-eu-pr-XXX` messages in the PR.
 
 ### Rolling back
 
