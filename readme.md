@@ -9,7 +9,7 @@ Prerequisites
 ---
 
  - node 6.x and npm
- - `.env` that contains the required environment variables from `app.json` (see `scripts/env-example.sh`). if you have access to the staging environment on heroku, you can run `npm run heroku-config` to copy variables from staging.
+ - `.env` that contains the required environment variables from `app.json` (see `scripts/env-example.sh`). if you have access to the heroku pipeline, you can run `npm run heroku-config` to copy variables from it.
    - If you add another environment variable, make sure to add it to `app.json`.
 
 Running
@@ -46,15 +46,7 @@ The [scripts directory](scripts) has a few scripts that might be useful when dev
 Deployment
 ---
 
-The `master` branch deploys automatically to staging once the tests are green. Pull requests deploy to review apps, look out for the `@username deployed to ft-google-amp-staging-pr-XXX` messages in the PR.
-
-### Production
-
-1. On the pipeline page, press the `Promote to production...` button
-2. Have a look at the commits and diff on each app to validate what you're promoting
-3. Hit `Promote`
-4. ???
-5. Profit!
+The `master` branch deploys automatically to prod once the tests are green. Pull requests deploy to review apps, look out for the `@username deployed to ft-google-amp-staging-pr-XXX` messages in the PR.
 
 ### Rolling back
 

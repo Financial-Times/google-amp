@@ -59,13 +59,11 @@ const formatPurgeUrl = (uuid, host) => url.format({
 });
 
 const purge = async uuid => {
-	const fastlyHosts = process.env.NODE_ENV === 'staging'
-		? ['amp-staging.ft.com']
-		: [
-			'amp.ft.com',
-			'amp-eu.ft.com',
-			'amp-us.ft.com',
-		];
+	const fastlyHosts = [
+		'amp.ft.com',
+		'amp-eu.ft.com',
+		'amp-us.ft.com',
+	];
 
 	const ampHost = fastlyHosts[0];
 

@@ -51,7 +51,7 @@ class ReleaseTasks extends Tasks {
 		);
 	}
 
-	async productionUs() {
+	async productionUs({log}) {
 		log('no release tasks for prod-us environment');
 	}
 
