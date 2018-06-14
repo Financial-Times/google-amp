@@ -15,7 +15,7 @@ test-files-all = $(shell find test -name '*.js')
 lintspace-files = $(js-files) $(test-files-all) $(shell find scripts -name '*.js' -or -name '*.sh') $(wildcard scss/*.scss) $(shell find views -name '*.html')
 
 HEROKU_CONFIG_OPTS = -i HEROKU_ -i NODE_ENV -l NODE_ENV=development
-HEROKU_CONFIG_APP = ft-google-amp-staging
+HEROKU_CONFIG_APP = ft-google-amp-prod-eu
 
 .env:
 	heroku-config-to-env $(HEROKU_CONFIG_OPTS) $(HEROKU_CONFIG_APP) $@

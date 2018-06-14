@@ -68,7 +68,6 @@
     "express": "^4.13.3",
     "express-ftwebservice": "^2.1.2",
     "fetchres": "^1.5.1",
-    "forever": "^0.15.1",
     "fs-promise": "^0.4.1",
     "glob": "^7.0.0",
     "handlebars": "^4.0.5",
