@@ -63,7 +63,7 @@ module.exports.getJson = ({req, uuid}) => {
 			source: 'amp-analytics',
 
 			environment: req.app.get('env'),
-			is_live: !!req.app.isServer,
+			is_live: !!req.app.isProduction,
 
 			version: pkg.version,
 		},
