@@ -20,6 +20,8 @@ npm start
 open http://localhost:5000/content/<FT article uuid>
 ```
 
+To run the app and test `amp-subscriptions`, you'll need to have both a `cert.pem` and a `key.pem` file locally.
+
 Tests
 ---
 

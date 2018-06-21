@@ -13,3 +13,4 @@ scripts/*.html
 cr-description.txt
 coverage
 transform.log
+*.pem
