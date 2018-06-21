@@ -6,7 +6,7 @@ const analytics = require('../lib/analytics');
 module.exports = (req, res, next) => {
 	assembleArticle(req.params.uuid, {
 		development: req.app.isDevelopment,
-		production: req.app.isServer,
+		production: req.app.isProduction,
 		raven: req.raven,
 		host: req.get('host'),
 		ip: req.ip,
