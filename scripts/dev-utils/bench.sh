@@ -22,6 +22,6 @@ trap cleanup EXIT
 
 sleep 5
 
-scripts/loadtest.sh "http://localhost:5001" > /dev/null 2>&1
+scripts/dev-utils/loadtest.sh "http://localhost:5050" > /dev/null 2>&1
 
 kill $PROG_PID

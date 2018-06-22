@@ -4,4 +4,4 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master
 PATH="$HOME/.linuxbrew/bin:$PATH"
 brew install siege
 
-scripts/loadtest.sh https://ft-google-amp-memory-test.herokuapp.com 50000 255
+scripts/dev-utils/loadtest.sh https://ft-google-amp-memory-test.herokuapp.com 50000 255

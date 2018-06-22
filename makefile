@@ -32,7 +32,7 @@ eslint: $(js-files) $(test-files-all)
 lint: lintspaces eslint
 
 bench:
-	./scripts/bench.sh
+	./scripts/dev-utils/bench.sh
 
 test: lint $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(test-files)
