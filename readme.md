@@ -13,7 +13,7 @@ Prerequisites
    - To generate one, after running `npm install` you can login to Heroku with `heroku login --sso` and then make the file by running `npm run heroku-config`
    - If you add another environment variable, make sure to add it to `app.json`
 3. A self-signed certificate
-	 - To generate one, run `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365`
+	 - To generate one, run `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj '/CN=localhost'`
 
 Running
 ---
