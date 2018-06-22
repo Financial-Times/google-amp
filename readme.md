@@ -22,6 +22,12 @@ open http://localhost:5000/content/<FT article uuid>
 
 To run the app and test `amp-subscriptions`, you'll need to have both a `cert.pem` and a `key.pem` file locally.
 
+You can make these files with the following command.
+
+```
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
+```
+
 Tests
 ---
 
