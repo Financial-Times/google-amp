@@ -21,7 +21,7 @@ Running
 ```
 npm install
 npm start
-open http://localhost:5000/content/<FT article uuid>
+open http://localhost:5050/content/<FT article uuid>
 ```
 
 Tests
