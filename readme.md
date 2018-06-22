@@ -10,7 +10,7 @@ Prerequisites
 
 - Node.js 8 (`nvm install --lts=carbon`)
 - An `.env` file that contains the required environment variables from `app.json`
-  - After an `npm install` you can login to Heroku with `heroku login --sso` and then run `npm run heroku-config`
+  - To generate one, after running `npm install` you can login to Heroku with `heroku login --sso` and then make the file by running `npm run heroku-config`
   - If you add another environment variable, make sure to add it to `app.json`
 
 Running
