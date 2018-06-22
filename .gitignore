@@ -12,6 +12,6 @@ log-*
 scripts/*.html
 cr-description.txt
 coverage
-test/test-results.xml
+test-results
 transform.log
 *.pem

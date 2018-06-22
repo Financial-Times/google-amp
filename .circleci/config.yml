@@ -35,4 +35,4 @@ jobs:
           destination: coverage
 
       - store_test_results:
-          path: test
+          path: test-results
