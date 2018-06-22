@@ -1,0 +1,38 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/Financial-Times/google-amp
+
+    docker:
+      - image: circleci/node:8
+
+    steps:
+      - checkout
+
+      - restore_cache:
+					key: npm-cache-{{ checksum "package-lock.json" }}
+
+      - run:
+        	command: npm install
+
+      - save_cache:
+					key: npm-cache-{{ checksum "package-lock.json" }}
+					paths:
+						- ./node_modules
+
+      - run:
+					command: npm test
+					environment:
+						MOCHA_FILE: test-results/mocha/test-results.xml
+
+      - store_artifacts:
+					path: test-results
+					destination: test-results
+
+      - store_artifacts:
+					path: coverage
+					destination: coverage
+
+      - store_test_results:
+					path: test

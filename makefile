@@ -35,7 +35,11 @@ bench:
 	./scripts/dev-utils/bench.sh
 
 test: lint $(js-files) $(test-files-all)
+ifeq ($(CI),true)
+	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- --reporter mocha-junit-reporter $(test-files)
+else
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(test-files)
+endif
 
 unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)

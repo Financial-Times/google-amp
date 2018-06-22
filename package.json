@@ -129,6 +129,7 @@
     "lodash.padstart": "^4.2.0",
     "midna": "^1.3.0",
     "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.17.0",
     "nock": "^9.0.13",
     "nodemon": "^1.8.1",
     "prog-rock": "^1.2.1",
