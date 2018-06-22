@@ -1,5 +1,5 @@
 export SHELL := /bin/bash
-export PATH := $(shell npm bin):$(PATH)
+export PATH := $(PATH):$(shell npm bin)
 
 HAS_HEROKU_CLI := $(shell command -v heroku 2> /dev/null)
 
