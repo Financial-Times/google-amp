@@ -88,6 +88,15 @@ if(isProduction) {
 
 handlebars.express(app);
 
+// Add header for HSTS policy.
+app.use((req, res, next) => {
+	if (req.secure) {
+		res.set('strict-transport-security', 'max-age=63072000; includeSubDomains; preload');
+	}
+
+	next();
+});
+
 // before logger to avoid logging robots.txt requests
 app.get('/robots.txt', (req, res) => {
 	res.send(`user-agent: *
