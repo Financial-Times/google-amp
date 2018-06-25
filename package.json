@@ -58,7 +58,7 @@
     "@quarterto/tcp-fetch": "^1.0.0",
     "autoprefixer": "^6.3.3",
     "aws4": "^1.1.0",
-    "bower": "^1.7.7",
+    "bower": "^1.8.4",
     "cheerio": "^0.22.0",
     "cookie-parser": "^1.4.1",
     "csso": "^2.3.2",
