@@ -100,7 +100,11 @@ app.get('*', (req, res, next) => {
 		return next();
 	}
 
-	res.redirect(301, 'https://' + req.hostname + req.url);
+	if (isProduction) {
+		res.redirect(301, 'https://amp.ft.com' + req.url);
+	} else {
+		res.redirect(301, 'https://' + req.hostname + req.url);
+	}
 });
 
 // Add header for HSTS policy.
