@@ -27,5 +27,11 @@ module.exports = function getViableParagraph($, {getIdeal = () => 2, minPosition
 		getScore({idealPosition, minPosition}), $
 	)).toArray();
 
-	return paras.eq(minBy(scores, ({score}) => score).index);
+	const para = minBy(scores, ({score}) => score);
+
+	if(para && para.index) {
+		return paras.eq(para.index);
+	}
+
+	return null;
 };

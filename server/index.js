@@ -96,20 +96,20 @@ app.disable('x-powered-by');
 
 // Redirect http requests to https.
 app.get('*', (req, res, next) => {
-	if (req.secure) {
+	if(req.secure) {
 		return next();
 	}
 
-	if (isProduction) {
-		res.redirect(301, 'https://amp.ft.com' + req.url);
+	if(isProduction) {
+		res.redirect(301, `https://amp.ft.com${req.url}`);
 	} else {
-		res.redirect(301, 'https://' + req.hostname + req.url);
+		res.redirect(301, `https://${req.hostname}${req.url}`);
 	}
 });
 
 // Add header for HSTS policy.
 app.use((req, res, next) => {
-	if (req.secure) {
+	if(req.secure) {
 		res.set('strict-transport-security', 'max-age=63072000; includeSubDomains; preload');
 	}
 
