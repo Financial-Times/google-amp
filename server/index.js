@@ -88,6 +88,30 @@ if(isProduction) {
 
 handlebars.express(app);
 
+// Trust headers such as x-forwarded-for-proto from Heroku and Fastly.
+app.enable('trust proxy');
+
+// Remove the x-powered-by response header.
+app.disable('x-powered-by');
+
+// Redirect http requests to https.
+app.get('*', (req, res, next) => {
+	if (req.secure) {
+		return next();
+	}
+
+	res.redirect(301, 'https://' + req.hostname + req.url);
+});
+
+// Add header for HSTS policy.
+app.use((req, res, next) => {
+	if (req.secure) {
+		res.set('strict-transport-security', 'max-age=63072000; includeSubDomains; preload');
+	}
+
+	next();
+});
+
 // before logger to avoid logging robots.txt requests
 app.get('/robots.txt', (req, res) => {
 	res.send(`user-agent: *

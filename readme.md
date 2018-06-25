@@ -13,7 +13,8 @@ Prerequisites
    - To generate one, after running `npm install` you can login to Heroku with `heroku login --sso` and then make the file by running `npm run heroku-config` (note: for this command to work you will need to have access to the Heroku pipeline for this app)
    - If you add another environment variable, make sure to add it to `app.json`
 3. A self-signed certificate
-	 - To generate one, run `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj '/CN=localhost'`
+	 - Generate one with `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 1461 -nodes -config scripts/dev-utils/certificate.cnf`
+	 - Trust the certificate with `security import cert.pem; security add-trusted-cert cert.pem`
 
 Running
 ---
@@ -21,7 +22,7 @@ Running
 ```
 npm install
 npm start
-open http://localhost:5050/content/<FT article uuid>
+open https://local.ft.com:5050/content/<FT article uuid>
 ```
 
 Tests
