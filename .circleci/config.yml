@@ -5,16 +5,18 @@ jobs:
     working_directory: ~/Financial-Times/google-amp
 
     docker:
-      - image: circleci/node:8
+      - image: node:8
 
     steps:
       - checkout
 
       - restore_cache:
-          key: npm-cache-{{ checksum "package-lock.json" }}
+          keys:
+            - npm-cache-{{ checksum "package-lock.json" }}
+            - npm-cache-
 
       - run:
-          command: npm install
+          command: npm ci
 
       - save_cache:
           key: npm-cache-{{ checksum "package-lock.json" }}
