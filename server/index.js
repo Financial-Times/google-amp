@@ -88,7 +88,11 @@ if(isProduction) {
 
 handlebars.express(app);
 
-app.set('x-powered-by', false);
+// Trust headers such as x-forwarded-for-proto from Heroku and Fastly.
+app.enable('trust proxy');
+
+// Remove the x-powered-by response header.
+app.disable('x-powered-by');
 
 // Redirect http requests to https.
 app.get('*', (req, res, next) => {
