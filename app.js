@@ -7,8 +7,10 @@ const fs = require('fs');
 const app = require('./server');
 
 const isDevelopment = app.get('env') === 'development';
+const hasCertificate = fs.existsSync(path.resolve(__dirname, 'key.pem'))
+	&& fs.existsSync(path.resolve(__dirname, 'cert.pem'));
 
-if(isDevelopment) {
+if(isDevelopment && hasCertificate) {
 	httpolyglot.createServer({
 		key: fs.readFileSync(path.resolve(__dirname, 'key.pem')),
 		cert: fs.readFileSync(path.resolve(__dirname, 'cert.pem')),
