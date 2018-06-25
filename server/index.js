@@ -88,6 +88,17 @@ if(isProduction) {
 
 handlebars.express(app);
 
+app.set('x-powered-by', false);
+
+// Redirect http requests to https.
+app.get('*', (req, res, next) => {
+	if (req.secure) {
+		return next();
+	}
+
+	res.redirect(301, 'https://' + req.hostname + req.url);
+});
+
 // Add header for HSTS policy.
 app.use((req, res, next) => {
 	if (req.secure) {
