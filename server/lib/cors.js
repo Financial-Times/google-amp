@@ -11,7 +11,7 @@ const validFtOrigin = origin => {
 		return true;
 	}
 
-	if(/^https?:\/\/localhost[\w.]*(:\d+)?$/.test(origin)) {
+	if(/^https?:\/\/(localhost|local.ft.com)[\w.]*(:\d+)?$/.test(origin)) {
 		return true;
 	}
 
