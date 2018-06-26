@@ -31,4 +31,12 @@ describe('insert ad transform', () => {
 			expect(expectedAdSlot).dom.to.equal(adMarkup);
 		});
 	});
+	context('there are not paragraphs in the content', () => {
+		it('should not bother adding an advert', () => {
+			const $ = cheerio.load('<blockquote>First quote</blockquote>');
+			const html = insertAd($, {enableAds: true, uuid: 1234});
+			const adSlot = html('amp-ad');
+			expect(adSlot.length).to.equal(0);
+		});
+	});
 });
