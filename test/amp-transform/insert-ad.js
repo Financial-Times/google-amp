@@ -33,10 +33,10 @@ describe('insert ad transform', () => {
 	});
 	context('there are not paragraphs in the content', () => {
 		it('should not bother adding an advert', () => {
-			const $ = cheerio.load('<p>First quote</p>');
+			const $ = cheerio.load('<blockquote>First quote</blockquote>');
 			const html = insertAd($, {enableAds: true, uuid: 1234});
-			const adSlot = html('.ad-container');
-			expect(adSlot).to.be.null;
+			const adSlot = html('amp-ad');
+			expect(adSlot.length).to.equal(0);
 		});
 	});
 });

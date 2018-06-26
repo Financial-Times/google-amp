@@ -15,7 +15,7 @@ const adMarkup = (uuid, ftConsentCookie) => {
 module.exports = function insertAd($, options) {
 	if(options.enableAds) {
 		const para = getViableParagraph($);
-		if (para) {
+		if(para) {
 			para.after(adMarkup(options.uuid, options.ftConsentCookie));
 		}
 	}
