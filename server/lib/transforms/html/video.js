@@ -24,6 +24,21 @@ module.exports = match({
 		</amp-brightcove>`;
 	},
 
+	'div.video-container.video-container-ftvideo'(el, i, $, {brightcoveAccountId, brightcovePlayerId} = {}) {
+		const [, videoId] = el.find('param[name="linkBaseURL"]').attr('value').match(/http:\/\/video.ft.com\/v\/(.+)$/);
+
+		return `<div class="n-content-video n-content-video--brightcove">
+		<amp-brightcove
+			data-account="${brightcoveAccountId}"
+			data-player="${brightcovePlayerId}"
+			data-embed="default"
+			data-video-id="${videoId}"
+			layout="responsive"
+			width="480" height="270">
+		</amp-brightcove>
+		</div>`;
+	},
+
 	'p:has(a[href*="youtube.com/watch"]:only-child:empty)'(el) {
 		return apply(this, 'a[href*="youtube.com/watch"]:empty', el);
 	},
