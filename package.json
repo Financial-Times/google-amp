@@ -5,7 +5,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "test": "make test",
+    "test": "snyk test && make test",
     "postinstall": "scripts/build/postinstall.sh && scripts/build/stricthax.sh",
     "lint": "make lint",
     "prestart": "enforce-node-version",
@@ -24,9 +24,6 @@
   ],
   "author": "matthew.brennan@ft.com",
   "dependencies": {
-    "@financial-times/fastly-tools": "^1.4.1",
-    "@financial-times/n-es-client": "^1.0.0-beta.6",
-    "@financial-times/n-handlebars": "^1.16.4",
     "@financial-times/release-log": "^1.1.2",
     "@georgecrawford/postcss-remove-important": "^1.4.0",
     "@quarterto/assert-env": "^1.3.0",
@@ -47,11 +44,9 @@
     "@quarterto/mocha-describe-folder": "^1.4.0",
     "@quarterto/package-version-github-release": "^1.2.0",
     "@quarterto/package-version-sentry-release": "^1.1.0",
-    "@quarterto/post-sass": "^1.3.0",
     "@quarterto/promise-all-object": "^1.1.0",
     "@quarterto/promise-deps-parallel": "1.3.0",
     "@quarterto/promisify": "^1.0.0",
-    "@quarterto/sass-env": "^1.0.0",
     "@quarterto/sass-functions": "^1.1.0",
     "@quarterto/select-features": "^1.1.0",
     "@quarterto/sentry-create-release": "^1.0.0",
@@ -65,7 +60,6 @@
     "dotenv": "^2.0.0",
     "emphasize": "^1.0.0",
     "errorhandler": "^1.4.3",
-    "express": "^4.13.3",
     "express-ftwebservice": "^2.1.2",
     "fetchres": "^1.5.1",
     "fs-promise": "^0.4.1",
@@ -74,7 +68,6 @@
     "html-entities": "^1.2.0",
     "http-errors": "^1.4.0",
     "httpolyglot": "^0.1.2",
-    "jira-merge-unreleased-versions": "^1.0.0",
     "kinesis": "^1.2.2",
     "lodash.defaults": "^4.0.1",
     "lodash.groupby": "^4.4.0",
@@ -87,9 +80,7 @@
     "lodash.values": "^4.1.0",
     "mkdirp": "^0.5.1",
     "mkdirp-promise": "^1.0.3",
-    "morgan": "^1.6.1",
     "node-fetch": "^1.3.3",
-    "node-sass": "^4.9.0",
     "o-date": "github:financial-times/o-date",
     "postcss": "^5.2.5",
     "postcss-csso": "^1.1.2",
@@ -97,7 +88,6 @@
     "postcss-inline-svg": "^2.0.1",
     "postcss-remove-unused": "^1.0.1",
     "raven": "^0.10.0",
-    "request": "^2.61.0",
     "rss": "^1.1.1"
   },
   "engines": {
@@ -134,7 +124,8 @@
     "nodemon": "^1.8.1",
     "prog-rock": "^1.2.1",
     "proxyquire": "^1.7.11",
-    "sinon": "^1.17.7"
+    "sinon": "^1.17.7",
+    "snyk": "^1.85.0"
   },
   "repository": {
     "type": "git",
