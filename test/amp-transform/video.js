@@ -33,32 +33,6 @@ describe('video transform', () => {
 			data-vars-link-text="hello">hello</a>`);
 	});
 
-	describe('brightcove', () => {
-		it('should transform live-blogs brightcove objects to amp-brightcove', async () => {
-			expect(
-				await transformBody(`<div class="video-container video-container-ftvideo">
-				<div data-asset-type="video" data-asset-source="Brightcove" data-asset-ref="video-id">
-				<object>
-					<param name="linkBaseURL" value="http://video.ft.com/v/video-id">
-				</object>
-				</div>
-				</div>`, {
-					brightcoveAccountId: 'account-id',
-					brightcovePlayerId: 'player-id',
-				})
-			).dom.to.equal(`<div class="n-content-video n-content-video--brightcove">
-			<amp-brightcove
-				data-account="account-id"
-				data-player="player-id"
-				data-embed="default"
-				data-video-id="video-id"
-				layout="responsive"
-				width="480" height="270">
-			</amp-brightcove>
-		</div>`);
-		});
-	});
-
 	describe('youtube', () => {
 		it('should transform youtube.com/watch links to amp-youtube', async () => {
 			expect(
