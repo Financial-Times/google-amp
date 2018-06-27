@@ -1,0 +1,51 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.12.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:hoek:20180212':
+    - '@quarterto/sass-env > node-sass > node-gyp > request > hawk > cryptiles > boom > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/post-sass > node-sass > node-gyp > request > hawk > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/post-sass > node-sass > node-gyp > request > hawk > sntp > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/post-sass > node-sass > node-gyp > request > hawk > cryptiles > boom > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/sass-env > node-sass > request > hawk > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/sass-env > node-sass > request > hawk > boom > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/sass-env > node-sass > request > hawk > sntp > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/sass-env > node-sass > request > hawk > cryptiles > boom > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/sass-env > node-sass > node-gyp > request > hawk > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/sass-env > node-sass > node-gyp > request > hawk > boom > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/sass-env > node-sass > node-gyp > request > hawk > sntp > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - '@quarterto/post-sass > node-sass > node-gyp > request > hawk > boom > hoek':
+        patched: '2018-06-27T14:37:17.210Z'
+    - node-sass > request > hawk > hoek:
+        patched: '2018-06-27T14:37:17.210Z'
+    - node-sass > request > hawk > boom > hoek:
+        patched: '2018-06-27T14:37:17.210Z'
+    - node-sass > request > hawk > sntp > hoek:
+        patched: '2018-06-27T14:37:17.210Z'
+    - node-sass > request > hawk > cryptiles > boom > hoek:
+        patched: '2018-06-27T14:37:17.210Z'
+    - node-sass > node-gyp > request > hawk > hoek:
+        patched: '2018-06-27T14:37:17.210Z'
+    - node-sass > node-gyp > request > hawk > boom > hoek:
+        patched: '2018-06-27T14:37:17.210Z'
+    - node-sass > node-gyp > request > hawk > sntp > hoek:
+        patched: '2018-06-27T14:37:17.210Z'
+    - node-sass > node-gyp > request > hawk > cryptiles > boom > hoek:
+        patched: '2018-06-27T14:37:17.210Z'
+  'npm:tunnel-agent:20170305':
+    - '@quarterto/sass-env > node-sass > request > tunnel-agent':
+        patched: '2018-06-27T14:37:17.210Z'
+    - node-sass > request > tunnel-agent:
+        patched: '2018-06-27T14:37:17.210Z'
