@@ -15,7 +15,9 @@
     "bench": "make bench",
     "heroku-config": "make .env -B",
     "heroku-postbuild": "heroku-version-infer",
-    "transform-test": "nodemon -q -w server scripts/dev-utils/transform-test.js"
+    "transform-test": "nodemon -q -w server scripts/dev-utils/transform-test.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "AMP",
@@ -98,7 +100,8 @@
     "postcss-remove-unused": "^1.0.1",
     "raven": "^0.10.0",
     "request": "^2.61.0",
-    "rss": "^1.1.1"
+    "rss": "^1.1.1",
+    "snyk": "^1.85.0"
   },
   "engines": {
     "node": "^8.4.0",
@@ -143,5 +146,6 @@
   "bugs": {
     "url": "https://github.com/Financial-Times/google-amp/issues"
   },
-  "homepage": "https://github.com/Financial-Times/google-amp#readme"
+  "homepage": "https://github.com/Financial-Times/google-amp#readme",
+  "snyk": true
 }
