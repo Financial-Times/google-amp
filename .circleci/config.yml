@@ -14,6 +14,9 @@ jobs:
           key: npm-cache-{{ checksum "package-lock.json" }}
 
       - run:
+          command: sudo npm install -g npm@latest
+
+      - run:
           command: npm install
 
       - save_cache:
