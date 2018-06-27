@@ -14,7 +14,7 @@ module.exports = match({
 	},
 
 	'a[href$="#slide0"]'(el) {
-		const [, uuid] = el.attr('href').match(/(........-....-....-....-............)\.html#slide0$/);
+		const [, uuid] = el.attr('href').match(/(........-....-....-....-............)\.html(?:\?.+)?#slide0$/);
 		return `<ft-slideshow data-uuid="${uuid}" />`;
 	},
 });

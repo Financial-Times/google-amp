@@ -73,6 +73,14 @@ module.exports = [
 	'59192b0c-b994-11e3-b74f-00144feabdc0',
 	'74f09d76-a9f2-11e3-adab-00144feab7de',
 	'0630ca5a-e38a-11e4-b407-00144feab7de',
+
+	// Reported as 5xx in Google Search Console
+	'514abee5-c09b-34f6-9a3a-865a64540a65',
+	// '21b5893e-ba3a-32dc-bf31-271449002cc0', // Live-blog, this is just bad content, I think.
+	// 'f50909a8-95dd-3688-9b12-a67e1198e6d5', // Again a live-blog, bad content.
+
+	// Reported as 404s in Google Search Console
+	// '079a37bc-db50-11e7-a039-c64b1c09b482', // TODO
 ];
 
 if(module === require.main) {

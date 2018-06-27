@@ -18,4 +18,10 @@ describe('slideshow transform', () => {
 			</p>`)
 		).dom.to.equal('<ft-slideshow data-uuid="ffffffff-ffff-ffff-ffff-ffffffffffff"></ft-slideshow><p>hello</p>');
 	});
+
+	it('should not TypeError on el.attr(...).match is not a function or its return value is not iterable', async () => {
+		expect(
+			await transformBody('<a href="http://www.ft.com/cms/s/0/ffffffff-ffff-ffff-ffff-ffffffffffff.html?siteedition=uk#slide0">port of Sevastopol</a>')
+		).dom.to.equal('<ft-slideshow data-uuid="ffffffff-ffff-ffff-ffff-ffffffffffff"></ft-slideshow>');
+	});
 });
