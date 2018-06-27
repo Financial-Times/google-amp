@@ -16,7 +16,7 @@ jobs:
             - npm-cache-
 
       - run:
-          command: sudo npm install -g npm@latest
+          command: sudo npm install -g --no-progress npm@latest
 
       - run:
           command: npm install
