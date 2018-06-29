@@ -145,13 +145,13 @@
 						<div class="amp-access-login__header-instruction">Subscribe to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
-					<div class="amp-access-login__header" subscriptions-actions subscriptions-display="data.session">
+					<div class="amp-access-login__header" subscriptions-actions subscriptions-display="data.session AND NOT granted">
 						<div class="amp-access-login__header-instruction">Upgrade your account to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
 					<div class="amp-access-login__body" subscriptions-actions subscriptions-display="NOT data.session">
-						<a class="amp-access-login__button" href="#" subscriptions-action="login" subscriptions-service="local" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
-						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages" subscriptions-section="content-not-granted">View subscription packages</a>
+						<a class="amp-access-login__button" href="#" subscriptions-action="login" subscriptions-service="local" subscriptions-display="NOT data.session" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
+						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages">View subscription packages</a>
 					</div>
 					<div class="amp-access-login__body" subscriptions-actions subscriptions-display="data.session">
 						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-upgrade" data-vars-link-text="Upgrade now">Upgrade now</a>

@@ -25,12 +25,12 @@
 	</div>
 
 	<nav id="o-header-nav-mobile" class="o-header__row o-header__nav o-header__nav--mobile" role="navigation" aria-label="Main navigation">
-		<ul class="o-header__nav-list" subscriptions-actions subscriptions-display="NOT data OR NOT data.session">
+		<ul class="o-header__nav-list" subscriptions-actions subscriptions-display="NOT data.session">
 			<li class="o-header__nav-item">
-				<a class="o-header__nav-link o-header__nav-link--primary" href="#" subscriptions-action="login" subscriptions-service="local" data-vars-link-type="nav-login" data-vars-link-text="Sign In">Sign In</a>
+				<a class="o-header__nav-link o-header__nav-link--primary" href="#" subscriptions-action="login" subscriptions-service="local" subscriptions-display="NOT data.session" data-vars-link-type="nav-login" data-vars-link-text="Sign In">Sign In</a>
 			</li>
 		</ul>
-		<ul class="o-header__nav-list">
+		<ul class="o-header__nav-list" subscriptions-actions subscriptions-display="data.session">
 			<li class="o-header__nav-item">
 				<a class="o-header__nav-link o-header__nav-link--primary" href="https://www.ft.com" data-vars-link-destination="https://www.ft.com" data-vars-link-type="nav-ftcom" data-vars-link-text="Visit FT.com">Visit FT.com</a>
 			</li>
