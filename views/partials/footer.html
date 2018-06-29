@@ -18,15 +18,15 @@
 					</div>
 				</div>
 				{{#unless enableSidebarMenu}}
-				<div class="o-footer__matrix-group o-footer__matrix-group--1">
+				<div class="o-footer__matrix-group o-footer__matrix-group--1" subscriptions-actions subscriptions-display="data.session OR {{showEverything}}">
 					<h6 class="o-footer__matrix-title">
 						Account
 					</h6>
 					<div class="o-footer__matrix-content" id="o-footer-section-1">
-						<div class="o-footer__matrix-column">
-							<a class="o-footer__matrix-link" href="https://myaccount.ft.com/details/core/view" data-vars-link-destination="https://myaccount.ft.com/details/core/view" data-vars-link-type="footer-account" data-vars-link-text="My Account">My Account</a>
-							<a class="o-footer__matrix-link" href="#" subscriptions-action="logout" subscriptions-display="data.session" data-vars-link-type="footer-logout" data-vars-link-text="Sign Out">Sign Out</a>
-						</div>
+							<div class="o-footer__matrix-column">
+									<a class="o-footer__matrix-link" href="https://myaccount.ft.com/details/core/view" data-vars-link-destination="https://myaccount.ft.com/details/core/view" data-vars-link-type="footer-account" data-vars-link-text="My Account">My Account</a>
+									<a class="o-footer__matrix-link" href="#" subscriptions-action="logout" subscriptions-display="data.session" data-vars-link-type="footer-logout" data-vars-link-text="Sign Out">Sign Out</a>
+							</div>
 					</div>
 				</div>
 				{{/unless}}
