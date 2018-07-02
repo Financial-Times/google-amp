@@ -6,20 +6,36 @@ patch:
   'npm:hoek:20180212':
     - '@quarterto/sass-env > node-sass > request > hawk > boom > hoek':
         patched: '2018-06-27T16:43:56.641Z'
+      '@quarterto/sass-env > node-sass > node-gyp > request > hawk > boom > hoek':
+        patched: '2018-07-02T09:02:17.403Z'
     - '@quarterto/sass-env > node-sass > request > hawk > sntp > hoek':
         patched: '2018-06-27T16:43:56.641Z'
+      '@quarterto/sass-env > node-sass > node-gyp > request > hawk > sntp > hoek':
+        patched: '2018-07-02T09:02:17.403Z'
     - '@quarterto/sass-env > node-sass > request > hawk > cryptiles > boom > hoek':
         patched: '2018-06-27T16:43:56.641Z'
+      '@quarterto/sass-env > node-sass > node-gyp > request > hawk > cryptiles > boom > hoek':
+        patched: '2018-07-02T09:02:17.403Z'
     - node-sass > request > hawk > hoek:
         patched: '2018-06-27T16:43:56.641Z'
+      node-sass > node-gyp > request > hawk > hoek:
+        patched: '2018-07-02T09:02:17.403Z'
     - node-sass > request > hawk > boom > hoek:
         patched: '2018-06-27T16:43:56.641Z'
+      node-sass > node-gyp > request > hawk > boom > hoek:
+        patched: '2018-07-02T09:02:17.403Z'
     - node-sass > request > hawk > sntp > hoek:
         patched: '2018-06-27T16:43:56.641Z'
+      node-sass > node-gyp > request > hawk > sntp > hoek:
+        patched: '2018-07-02T09:02:17.403Z'
     - node-sass > request > hawk > cryptiles > boom > hoek:
         patched: '2018-06-27T16:43:56.641Z'
+      node-sass > node-gyp > request > hawk > cryptiles > boom > hoek:
+        patched: '2018-07-02T09:02:17.403Z'
     - '@quarterto/sass-env > node-sass > request > hawk > hoek':
         patched: '2018-06-27T16:43:56.641Z'
+      '@quarterto/sass-env > node-sass > node-gyp > request > hawk > hoek':
+        patched: '2018-07-02T09:02:17.403Z'
   'npm:tunnel-agent:20170305':
     - node-sass > request > tunnel-agent:
         patched: '2018-06-27T16:43:56.641Z'

@@ -35,6 +35,7 @@ bench:
 	./scripts/dev-utils/bench.sh
 
 test: lint $(js-files) $(test-files-all)
+	snyk test
 ifeq ($(CI),true)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- --reporter mocha-junit-reporter $(test-files)
 else
