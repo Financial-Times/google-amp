@@ -11,7 +11,12 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: npm-cache-{{ checksum "package-lock.json" }}
+          keys:
+            - npm-cache-{{ checksum "package-lock.json" }}
+            - npm-cache-
+
+      - run:
+          command: sudo npm install -g --no-progress npm@latest
 
       - run:
           command: npm install
