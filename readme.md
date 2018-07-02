@@ -56,8 +56,3 @@ The `master` branch deploys automatically to prod once the tests are green. Pull
 ### Rolling back
 
 Use the `Roll back to...` button on the Heroku activity tab or the `heroku releases:rollback` command.
-
-Benchmarking
-------------
-
-Run `npm run bench`. This requires [Siege](https://www.joedog.org/siege-home/), which can be installed with `brew install siege`.

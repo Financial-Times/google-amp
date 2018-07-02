@@ -31,9 +31,6 @@ eslint: $(js-files) $(test-files-all)
 
 lint: lintspaces eslint
 
-bench:
-	./scripts/dev-utils/bench.sh
-
 test: lint $(js-files) $(test-files-all)
 	snyk test
 ifeq ($(CI),true)
