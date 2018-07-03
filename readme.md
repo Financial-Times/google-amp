@@ -1,7 +1,6 @@
-google-amp
-===
+# google-amp
 
-[![Circle CI](https://circleci.com/gh/Financial-Times/google-amp/tree/master.svg?style=svg)](https://circleci.com/gh/Financial-Times/google-amp/tree/master)
+[![Circle CI](https://circleci.com/gh/Financial-Times/google-amp/tree/master.svg?style=svg)](https://circleci.com/gh/Financial-Times/google-amp/tree/master) [![Known Vulnerabilities](https://snyk.io/test/github/Financial-Times/google-amp/badge.svg)](https://snyk.io/test/github/Financial-Times/google-amp)
 
 AMP HTML rendering for FT articles
 
