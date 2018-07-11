@@ -63,4 +63,6 @@ module.exports = (article, options) => Object.assign(article, {
 	barrierListEndpoint: options.production ? '/products' : `//${options.host}/products`,
 
 	visibilityOptIn: segmentArticle(article),
+
+	showSwGButton: process.env.SHOW_SWG_BUTTON,
 });
