@@ -104,13 +104,29 @@ module.exports.getJson = ({req, uuid}) => {
 		},
 		triggers: {
 
-			// See: https://github.com/ampproject/amphtml/issues/1540
 			pageview: {
-				on: 'access-viewed',
+				on: 'subscriptions-access-granted',
 				request: 'standard',
 				vars: {
 					category: 'page',
 					action: 'view',
+				},
+			},
+
+			barrierView: {
+				on: 'visible',
+				request: 'standard',
+				vars: {
+					category: 'barrier',
+					action: 'view',
+					opportunityType: 'barrier',
+					opportunitySubtype: BARRIERTYPE,
+				},
+				visibilitySpec: {
+					selector: '#barrier-offers',
+					visiblePercentageMin: 0,
+					totalTimeMin: 0,
+					continuousTimeMin: 0,
 				},
 			},
 
@@ -174,94 +190,79 @@ module.exports.getJson = ({req, uuid}) => {
 				},
 			},
 
-			accessAuthorizationReceived: {
-				on: 'access-authorization-received',
+			subscriptionsAccessGranted: {
+				on: 'subscriptions-access-granted',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-authorization-received',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-access-granted',
 				},
 			},
-			accessAuthorizationFailed: {
-				on: 'access-authorization-failed',
+			subscriptionsAccessDenied: {
+				on: 'subscriptions-access-denied',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-authorization-failed',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-access-denied',
 				},
 			},
-			accessViewed: {
-				on: 'access-viewed',
+			subscriptionsActionDelegated: {
+				on: 'subscriptions-action-delegated',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-viewed',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-action-delegated',
 				},
 			},
-			accessPingbackSent: {
-				on: 'access-pingback-sent',
+			subscriptionsEntitlementResolved: {
+				on: 'subscriptions-entitlement-resolved',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-pingback-sent',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-entitlement-resolved',
 				},
 			},
-			accessPingbackFailed: {
-				on: 'access-pingback-failed',
+			subscriptionsStarted: {
+				on: 'subscriptions-started',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-pingback-failed',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-started',
 				},
 			},
-			accessLoginStarted: {
-				on: 'access-login-started',
+			subscriptionsLoginStarted: {
+				on: 'subscriptions-login-started',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-login-started',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-login-started',
 				},
 			},
-			accessLoginSuccess: {
-				on: 'access-login-success',
+			subscriptionsLoginFailed: {
+				on: 'subscriptions-login-failed',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-login-success',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-login-failed',
 				},
 			},
-			accessLoginRejected: {
-				on: 'access-login-rejected',
+			subscriptionsLoginSuccess: {
+				on: 'subscriptions-login-success',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-login-rejected',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-login-success',
 				},
 			},
-			accessLoginFailed: {
-				on: 'access-login-failed',
+			subscriptionsLoginRejected: {
+				on: 'subscriptions-login-rejected',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-login-failed',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-login-rejected',
 				},
 			},
-			barrierView: {
-				on: 'visible',
-				request: 'standard',
-				vars: {
-					category: 'barrier',
-					action: 'view',
-					opportunityType: 'barrier',
-					opportunitySubtype: BARRIERTYPE,
-				},
-				visibilitySpec: {
-					selector: '#barrier-offers',
-					visiblePercentageMin: 0,
-					totalTimeMin: 0,
-					continuousTimeMin: 0,
-				},
-			},
+
 		},
 		transport: {
 			beacon: true,
