@@ -230,36 +230,37 @@ module.exports.getJson = ({req, uuid}) => {
 					action: 'subscriptions-started',
 				},
 			},
-			subscriptionsLoginStarted: {
+			// Note: For posterity and to maintain historical tracking, we're keeping the `access` name for these.
+			accessLoginStarted: {
 				on: 'subscriptions-login-started',
 				request: 'standard',
 				vars: {
-					category: 'amp-subscriptions',
-					action: 'subscriptions-login-started',
+					category: 'amp-access',
+					action: 'access-login-started',
 				},
 			},
-			subscriptionsLoginFailed: {
+			accessLoginFailed: {
 				on: 'subscriptions-login-failed',
 				request: 'standard',
 				vars: {
-					category: 'amp-subscriptions',
-					action: 'subscriptions-login-failed',
+					category: 'amp-access',
+					action: 'access-login-failed',
 				},
 			},
-			subscriptionsLoginSuccess: {
+			accessLoginSuccess: {
 				on: 'subscriptions-login-success',
 				request: 'standard',
 				vars: {
-					category: 'amp-subscriptions',
-					action: 'subscriptions-login-success',
+					category: 'amp-access',
+					action: 'access-login-success',
 				},
 			},
-			subscriptionsLoginRejected: {
+			accessLoginRejected: {
 				on: 'subscriptions-login-rejected',
 				request: 'standard',
 				vars: {
-					category: 'amp-subscriptions',
-					action: 'subscriptions-login-rejected',
+					category: 'amp-access',
+					action: 'access-login-rejected',
 				},
 			},
 
