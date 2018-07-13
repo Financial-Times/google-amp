@@ -8,7 +8,16 @@ const segmentArticle = require('../lib/article/segment');
 const DEBUG = false;
 const BARRIERTYPE = 'trial';
 
-const fixBooleans = data => data.replace('"AUTHDATA(data.access)"', 'AUTHDATA(data.access)');
+const fixAuthData = data => {
+	const authDataString = '"AUTHDATA(access)"';
+
+	// When `access` is `false`, amp-analytics for some reason outputs an empty string.
+	if(authDataString === '""') {
+		return data.replace(authDataString, 'false');
+	} else {
+		return data.replace(authDataString, 'AUTHDATA(access)');
+	}
+};
 
 module.exports.getJson = ({req, uuid}) => {
 	const spoor = {
@@ -34,7 +43,7 @@ module.exports.getJson = ({req, uuid}) => {
 			scroll_depth: '${percentageViewed}',
 			engaged_time: 'TOTAL_ENGAGED_TIME',
 			amp_request_sequence: '${requestCount}',
-			amp_auth_access: 'AUTHDATA(data.access)',
+			amp_auth_access: 'AUTHDATA(access)',
 			amp_auth_debug: 'AUTHDATA(data.debug)',
 			amp_reader_id: 'ACCESS_READER_ID',
 			amp_visibility_experiment_enabled: segmentArticle({id: uuid}),
@@ -96,7 +105,7 @@ module.exports.getJson = ({req, uuid}) => {
 	// this once per request, otherwise multiple different cookies are created and overwritten.
 	const visitorIdentifier = '${clientId(spoor-id)}';
 
-	const data = fixBooleans(JSON.stringify(spoor));
+	const data = fixAuthData(JSON.stringify(spoor));
 
 	const json = {
 		requests: {
