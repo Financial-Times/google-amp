@@ -16,7 +16,7 @@
 					</a>
 				</div>
 				<div class="o-header__top-column o-header__top-column--right" role="navigation" aria-label="Account and personalisation links">
-					<a class="o-header__top-link o-header__top-link--myft" href="https://www.ft.com/myft" subscriptions-actions subscriptions-display="data.session" data-vars-link-destination="https://www.ft.com/myft" data-vars-link-type="header-myft" data-vars-link-text="myFT">
+					<a class="o-header__top-link o-header__top-link--myft" href="https://www.ft.com/myft" amp-access="session" amp-access-hide data-vars-link-destination="https://www.ft.com/myft" data-vars-link-type="header-myft" data-vars-link-text="myFT">
 						<span class="o-header__visually-hidden">myFT</span>
 					</a>
 				</div>
@@ -25,12 +25,15 @@
 	</div>
 
 	<nav id="o-header-nav-mobile" class="o-header__row o-header__nav o-header__nav--mobile" role="navigation" aria-label="Main navigation">
-		<ul class="o-header__nav-list" subscriptions-actions subscriptions-display="NOT data OR NOT data.session">
+		<ul class="o-header__nav-list" amp-access="NOT session">
 			<li class="o-header__nav-item">
-				<a class="o-header__nav-link o-header__nav-link--primary" href="#" subscriptions-action="login" subscriptions-service="local" data-vars-link-type="nav-login" data-vars-link-text="Sign In">Sign In</a>
+				<a class="o-header__nav-link o-header__nav-link--primary" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="nav-subscribe" data-vars-link-text="Subscribe">Subscribe</a>
+			</li>
+			<li class="o-header__nav-item">
+				<a class="o-header__nav-link o-header__nav-link--primary" href="#" on="tap:amp-access.login-login" data-vars-link-type="nav-login" data-vars-link-text="Sign In">Sign In</a>
 			</li>
 		</ul>
-		<ul class="o-header__nav-list">
+		<ul class="o-header__nav-list" amp-access="session" amp-access-hide>
 			<li class="o-header__nav-item">
 				<a class="o-header__nav-link o-header__nav-link--primary" href="https://www.ft.com" data-vars-link-destination="https://www.ft.com" data-vars-link-type="nav-ftcom" data-vars-link-text="Visit FT.com">Visit FT.com</a>
 			</li>
