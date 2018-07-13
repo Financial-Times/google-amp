@@ -15,8 +15,7 @@
 		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
 		<script async src="https://cdn.ampproject.org/v0.js"></script>
-		<script async custom-element="amp-subscriptions" src="https://cdn.ampproject.org/v0/amp-subscriptions-0.1.js"></script>
-		<script async custom-element="amp-subscriptions-google" src="https://cdn.ampproject.org/v0/amp-subscriptions-google-0.1.js"></script>
+		<script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<script async custom-element="amp-brightcove" src="https://cdn.ampproject.org/v0/amp-brightcove-0.1.js"></script>
 		<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
@@ -42,25 +41,15 @@
 		<script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
 		{{/if}}
 
-		<script id="amp-subscriptions" type="application/json">
+		<script id="amp-access" type="application/json">
 		{
-			"services": [
-				{
-					"authorizationUrl": "{{{AUTH_AUTHORIZATION_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}",
-					"pingbackUrl": "{{{AUTH_PINGBACK_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}&access=AUTHDATA(access)",
-					"actions": {
-						"login": "{{{AUTH_LOGIN_URL}}}readerId=READER_ID&location=RETURN_URL%23success=true",
-						"logout": "{{{AUTH_LOGOUT_URL}}}rid=READER_ID&location=RETURN_URL%23success=true",
-						"subscribe": "{{{barrierListEndpoint}}}"
-					},
-					"authorizationFallbackResponse": { "access": true, "error": true }
-				},
-				{ "serviceId": "subscribe.google.com" }
-			],
-			"preferViewerSupport": true,
-			"score": {
-				"supportsViewer": 0
-			}
+			"authorization": "{{{AUTH_AUTHORIZATION_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}",
+			"pingback": "{{{AUTH_PINGBACK_URL}}}rid=READER_ID&ref=DOCUMENT_REFERRER&url={{{accessCheckUrl}}}&access=AUTHDATA(access)",
+			"login": {
+				"login": "{{{AUTH_LOGIN_URL}}}readerId=READER_ID&location=RETURN_URL%23success=true",
+				"logout": "{{{AUTH_LOGOUT_URL}}}rid=READER_ID&location=RETURN_URL%23success=true"
+			},
+			"authorizationFallbackResponse": {"access": true, "error": true}
 		}
 		</script>
 
@@ -100,11 +89,6 @@
 				"cssSelector" : ".{{#if enableBarrier}}amp-access-barrier{{else}}amp-access-login{{/if}}"
 			},
 			{{/unless}}
-			"isPartOf": {
-				"@type": ["CreativeWork", "Product"],
-				"name" : "Financial Times",
-				"productID": "ft.com:{{accessLevel}}"
-			},
 			"isAccessibleForFree": "{{#if isFree}}True{{else}}False{{/if}}"
 		}
 		</script>
@@ -137,31 +121,29 @@
 			{{> header}}
 
 			<main class="main" role="main">
-				<div class="{{#if enableBarrier}}amp-access-barrier{{else}}amp-access-login{{/if}}" subscriptions-section="content-not-granted">
+				<div class="{{#if enableBarrier}}amp-access-barrier{{else}}amp-access-login{{/if}}" amp-access="NOT access" amp-access-hide>
 					{{#if enableBarrier}}
-						{{> barrier }}
+						{{> barrier}}
 					{{else}}
-					<div class="amp-access-login__header" subscriptions-actions subscriptions-display="NOT data.session">
+					<div class="amp-access-login__header" amp-access="NOT session">
 						<div class="amp-access-login__header-instruction">Subscribe to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
-					<div class="amp-access-login__header" subscriptions-actions subscriptions-display="data.session">
+					<div class="amp-access-login__header" amp-access="session">
 						<div class="amp-access-login__header-instruction">Upgrade your account to read:</div>
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
-					<div class="amp-access-login__body" subscriptions-actions subscriptions-display="NOT data.session">
-						<a class="amp-access-login__button" href="#" subscriptions-action="login" subscriptions-service="local" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
-						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages" subscriptions-section="content-not-granted">View subscription packages</a>
+					<div class="amp-access-login__body" amp-access="NOT session">
+						<a class="amp-access-login__button" href="#" on="tap:amp-access.login-login" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
+						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages">View subscription packages</a>
 					</div>
-					<div class="amp-access-login__body" subscriptions-actions subscriptions-display="data.session">
+					<div class="amp-access-login__body" amp-access="session">
 						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-upgrade" data-vars-link-text="Upgrade now">Upgrade now</a>
 					</div>
 					{{/if}}
 				</div>
 
-				<div {{#unless showEverything}}subscriptions-section="content"{{/unless}}>
-					{{{body}}}
-				</div>
+				{{{body}}}
 			</main>
 
 			{{> footer}}

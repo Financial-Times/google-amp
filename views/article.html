@@ -1,5 +1,5 @@
 <article class="article">
-	<header class="article-header">
+	<header class="article-header" amp-access="NOT {{enableBarrier}} OR access OR {{showEverything}} ">
 		{{#if displayConcept}}
 			<h2 class="primary-theme">
 				{{> link href=displayConcept.url class='primary-theme__link' text=displayConcept.prefLabel type='primary-theme'}}
@@ -26,11 +26,13 @@
 			{{/if}}
 		{{/if}}
 
-		{{{mainImageHtml}}}
+		<div amp-access="access OR {{showEverything}}" amp-access-hide>
+			{{{mainImageHtml}}}
 
-		{{#if enableSocialShare}}
-			{{>social}}
-		{{/if}}
+			{{#if enableSocialShare}}
+				{{>social}}
+			{{/if}}
+		</div>
 
 		<div class="article-dateline">
 			{{{displayDate}}}
@@ -47,18 +49,20 @@
 		</div>
 	</header>
 
-	<div class="article-body" itemprop="articleBody">
-		{{{htmlBody}}}
+	<div amp-access="access OR {{showEverything}}" amp-access-hide>
+		<div class="article-body" itemprop="articleBody">
+			{{{htmlBody}}}
 
-		<p class="article__copyright-notice">
-			{{> link href='https://www.ft.com/servicestools/help/copyright' type='footer-copyright' text='Copyright'}}
+			<p class="article__copyright-notice">
+				{{> link href='https://www.ft.com/servicestools/help/copyright' type='footer-copyright' text='Copyright'}}
 
-			The Financial Times Limited {{thisYear}}. All rights reserved. Please don't copy articles from FT.com and redistribute by email or post to the web.
-		</p>
+				The Financial Times Limited {{thisYear}}. All rights reserved. Please don't copy articles from FT.com and redistribute by email or post to the web.
+			</p>
+		</div>
 	</div>
 </article>
 
-<div class="comments">
+<div class="comments" amp-access="access OR {{showEverything}}" amp-access-hide>
 	{{> link class='comments-button' href=(concat canonicalURL '#comments') type='view-comments' text='View comments'}}
 </div>
 
