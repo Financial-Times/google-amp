@@ -35,7 +35,7 @@ module.exports.getJson = ({req, uuid}) => {
 			engaged_time: 'TOTAL_ENGAGED_TIME',
 			amp_request_sequence: '${requestCount}',
 			amp_auth_access: 'AUTHDATA(access)',
-			amp_auth_debug: 'AUTHDATA(debug)',
+			amp_auth_debug: 'AUTHDATA(data.debug)',
 			amp_reader_id: 'ACCESS_READER_ID',
 			amp_visibility_experiment_enabled: segmentArticle({id: uuid}),
 
@@ -68,7 +68,7 @@ module.exports.getJson = ({req, uuid}) => {
 			version: pkg.version,
 		},
 		user: {
-			ft_session: 'AUTHDATA(session)',
+			ft_session: 'AUTHDATA(data.session)',
 
 /*
 			// See /views/partials/abTest.html and /scss/abTest.scss
@@ -104,13 +104,29 @@ module.exports.getJson = ({req, uuid}) => {
 		},
 		triggers: {
 
-			// See: https://github.com/ampproject/amphtml/issues/1540
 			pageview: {
-				on: 'access-viewed',
+				on: 'subscriptions-access-granted',
 				request: 'standard',
 				vars: {
 					category: 'page',
 					action: 'view',
+				},
+			},
+
+			barrierView: {
+				on: 'visible',
+				request: 'standard',
+				vars: {
+					category: 'barrier',
+					action: 'view',
+					opportunityType: 'barrier',
+					opportunitySubtype: BARRIERTYPE,
+				},
+				visibilitySpec: {
+					selector: '#barrier-offers',
+					visiblePercentageMin: 0,
+					totalTimeMin: 0,
+					continuousTimeMin: 0,
 				},
 			},
 
@@ -174,56 +190,65 @@ module.exports.getJson = ({req, uuid}) => {
 				},
 			},
 
-			accessAuthorizationReceived: {
-				on: 'access-authorization-received',
+			subscriptionsAccessGranted: {
+				on: 'subscriptions-access-granted',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-authorization-received',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-access-granted',
 				},
 			},
-			accessAuthorizationFailed: {
-				on: 'access-authorization-failed',
+			subscriptionsAccessDenied: {
+				on: 'subscriptions-access-denied',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-authorization-failed',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-access-denied',
 				},
 			},
-			accessViewed: {
-				on: 'access-viewed',
+			subscriptionsActionDelegated: {
+				on: 'subscriptions-action-delegated',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-viewed',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-action-delegated',
 				},
 			},
-			accessPingbackSent: {
-				on: 'access-pingback-sent',
+			subscriptionsEntitlementResolved: {
+				on: 'subscriptions-entitlement-resolved',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-pingback-sent',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-entitlement-resolved',
 				},
 			},
-			accessPingbackFailed: {
-				on: 'access-pingback-failed',
+			subscriptionsStarted: {
+				on: 'subscriptions-started',
 				request: 'standard',
 				vars: {
-					category: 'amp-access',
-					action: 'access-pingback-failed',
+					category: 'amp-subscriptions',
+					action: 'subscriptions-started',
 				},
 			},
+			// Note: For posterity and to maintain historical tracking, we're keeping the `access` name for these.
 			accessLoginStarted: {
-				on: 'access-login-started',
+				on: 'subscriptions-login-started',
 				request: 'standard',
 				vars: {
 					category: 'amp-access',
 					action: 'access-login-started',
 				},
 			},
+			accessLoginFailed: {
+				on: 'subscriptions-login-failed',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-login-failed',
+				},
+			},
 			accessLoginSuccess: {
-				on: 'access-login-success',
+				on: 'subscriptions-login-success',
 				request: 'standard',
 				vars: {
 					category: 'amp-access',
@@ -231,37 +256,14 @@ module.exports.getJson = ({req, uuid}) => {
 				},
 			},
 			accessLoginRejected: {
-				on: 'access-login-rejected',
+				on: 'subscriptions-login-rejected',
 				request: 'standard',
 				vars: {
 					category: 'amp-access',
 					action: 'access-login-rejected',
 				},
 			},
-			accessLoginFailed: {
-				on: 'access-login-failed',
-				request: 'standard',
-				vars: {
-					category: 'amp-access',
-					action: 'access-login-failed',
-				},
-			},
-			barrierView: {
-				on: 'visible',
-				request: 'standard',
-				vars: {
-					category: 'barrier',
-					action: 'view',
-					opportunityType: 'barrier',
-					opportunitySubtype: BARRIERTYPE,
-				},
-				visibilitySpec: {
-					selector: '#barrier-offers',
-					visiblePercentageMin: 0,
-					totalTimeMin: 0,
-					continuousTimeMin: 0,
-				},
-			},
+
 		},
 		transport: {
 			beacon: true,

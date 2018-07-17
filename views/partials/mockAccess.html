@@ -3,9 +3,9 @@
 		<li>You are currently mocking membership access. <a data-vars-link-type="qa" href="/amp-access-mock/clear">Click here</a> to return to live membership access.</li>
 		<li>{{#if accessMockFcf}}You are mocking 'First Click Free', so all articles will be free to read, even when anonymous. <a data-vars-link-type="qa" href="/amp-access-mock/clear-fcf">Click here</a> to disable FCF.{{else}}<a data-vars-link-type="qa" href="/amp-access-mock/enable-fcf">Click here</a> to mock 'First Click Free'.{{/if}}</li>
 		<li>{{#if accessMockPreventAccess}}Access is blocked, even when signed-in (simulating premium content, and requiring an upgrade). <a data-vars-link-type="qa" href="/amp-access-mock/allow-access">Click here</a> to allow access.{{else}}<a data-vars-link-type="qa" href="/amp-access-mock/prevent-access">Click here</a> to block all access, to simulate premium content and require an upgrade.{{/if}}</li>
-		<li amp-access="access" amp-access-hide>You have access. </li>
-		<li amp-access="NOT access" amp-access-hide>You have no access. </li>
-		<li amp-access="session" amp-access-hide>You are logged in. <a data-vars-link-type="qa" href="#" on="tap:amp-access.login-logout">Click here</a> to log out.</li>
-		<li amp-access="NOT session" amp-access-hide>You are an anonymous visitor. <a data-vars-link-type="qa" href="#" on="tap:amp-access.login-login">Click here</a> to log in.</li>
+		<li subscriptions-section="content">You have access. </li>
+		<li subscriptions-section="content-not-granted">You have no access. </li>
+		<li subscriptions-actions subscriptions-display="data.session">You are logged in. <a data-vars-link-type="qa" href="#" subscriptions-action="logout" subscriptions-display="data.session">Click here</a> to log out.</li>
+		<li subscriptions-actions subscriptions-display="NOT data.session">You are an anonymous visitor. <a data-vars-link-type="qa" href="#" subscriptions-action="login" subscriptions-service="local" subscriptions-display="NOT data.session">Click here</a> to log in.</li>
 	</ul>
 </div>
