@@ -8,7 +8,7 @@ const segmentArticle = require('../lib/article/segment');
 const DEBUG = false;
 const BARRIERTYPE = 'trial';
 
-const fixBooleans = data => data.replace('"AUTHDATA(access)"', 'AUTHDATA(access)');
+const fixBooleans = data => data.replace('"AUTHDATA(granted)"', 'AUTHDATA(granted)');
 
 module.exports.getJson = ({req, uuid}) => {
 	const spoor = {
@@ -34,7 +34,7 @@ module.exports.getJson = ({req, uuid}) => {
 			scroll_depth: '${percentageViewed}',
 			engaged_time: 'TOTAL_ENGAGED_TIME',
 			amp_request_sequence: '${requestCount}',
-			amp_auth_access: 'AUTHDATA(access)',
+			amp_auth_access: 'AUTHDATA(granted)',
 			amp_auth_debug: 'AUTHDATA(debug)',
 			amp_reader_id: 'ACCESS_READER_ID',
 			amp_visibility_experiment_enabled: segmentArticle({id: uuid}),
