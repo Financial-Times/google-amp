@@ -1,4 +1,4 @@
-<div class="amp-access-barrier__header" amp-access="NOT session">
+<div class="amp-access-barrier__header" subscriptions-section="content-not-granted">
 	<div class="amp-access-barrier__header-instruction">
 		Subscribe to read:
 		<h3>{{title}}</h3>
@@ -6,14 +6,16 @@
 
 	<div class="amp-access-barrier__login">
 		Already a subscriber?
-		<a href="#" on="tap:amp-access.login-login" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
+		<a href="#" subscriptions-action="login" subscriptions-service="local" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
 	</div>
 </div>
 
-<div class="amp-access-barrier__header" amp-access="session">
-	<div class="amp-access-barrier__header-instruction">
-		Upgrade your account to read:
-		<h3>{{title}}</h3>
+<div subscriptions-section="content-not-granted">
+	<div class="amp-access-barrier__header" subscriptions-actions subscriptions-display="data.session">
+		<div class="amp-access-barrier__header-instruction">
+			Upgrade your account to read:
+			<h3>{{title}}</h3>
+		</div>
 	</div>
 </div>
 
@@ -21,17 +23,21 @@
 	<template type="amp-mustache">
 		<div class="amp-access-barrier__offer">
 			<h2 class="amp-access-barrier__offer-title">
-				{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' text='{{title}}' type='barrier-subscribe'}}
+				\{{{title}}}
 			</h2>
 
-			\{{#productImage}}
-			{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' linkText='{{title}}' text='<amp-img class="amp-access-barrier__offer_image" layout="responsive" width="300" height="150" src="{{productImage}}"></amp-img>' type='barrier-image'}}
-			\{{/productImage}}
-			\{{^productImage}}
-			{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' linkText='{{title}}' text='<amp-img class="amp-access-barrier__offer_image" layout="responsive" width="300" height="150" src="https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fft.com%2F__assets%2Fcreatives%2Fproduct%2Fmarch2017-pack-shots%2FMar2017_StandardDigital.png?source=amp&width=800&fit=scale-down"></amp-img>' type='barrier-image'}}
-			\{{/productImage}}
+			<div class="amp-access-barrier__offer-description">
+				\{{#description.title}}
+				<h3 class="amp-access-barrier__offer-description-title">\{{description.title}}</h3>
+				\{{/description.title}}
+				<ul class="amp-access-barrier__offer-description-items">
+					\{{#description.items}}
+					<li>\{{description}}</li>
+					\{{/description.items}}
+				</ul>
+			</div>
 
-			<div class="amp-access-barrier__offer-price">
+			<p class="amp-access-barrier__offer-price">
 				\{{#pricinghref}}
 					View {{> link href='{{pricinghref}}' text='pricing &amp; plans' type='barrier-pricing'}}
 				\{{/pricinghref}}
@@ -41,28 +47,30 @@
 					\{{/pricing.billedYearly.weekly.amount}}
 					\{{^pricing.billedYearly.weekly.amount}}
 						\{{#pricing.billedMonthly.trial.amount}}
-							<span class="amp-access-barrier__offer-value">\{{value}}</span> for 4 weeks
+							<span class="amp-access-barrier__offer-value">\{{pricing.billedMonthly.trial.amount}}</span> for 4 weeks
 						\{{/pricing.billedMonthly.trial.amount}}
 					\{{/pricing.billedYearly.weekly.amount}}
 					<span class="amp-access-barrier__footnote">*</span>
 				\{{/pricinghref}}
+			</p>
 
-				{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' text='{{#free}}Free team trial{{/free}}{{^free}}Select{{/free}}' type='barrier-subscribe' class='amp-access-barrier__button'}}
-			</div>
-
-			<div class="amp-access-barrier__offer-description">
-				\{{#description.title}}
-					<h3 class="amp-access-barrier__offer-description-title">\{{description.title}}</h3>
-				\{{/description.title}}
-				<ul class="amp-access-barrier__offer-description-items">
-					\{{#description.items}}
-					<li>\{{description}}</li>
-					\{{/description.items}}
-				</ul>
-			</div>
+			{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' text='{{#free}}Free team trial{{/free}}{{^free}}Select{{/free}}' type='barrier-subscribe' class='amp-access-barrier__button'}}
 		</div>
 	</template>
 </amp-list>
+
+{{#if showSwGButton}}
+<div class="amp-access-barrier__offer">
+	<h2 class="amp-access-barrier__offer-title">
+		Digital or Premium Digital
+	</h2>
+
+	<div class="amp-access-barrier__offer-description">
+		You can also subscribe to the FT Digital or Premium Digital with Google
+	</div>
+	<button class="amp-access-barrier__swg-button" subscriptions-action="subscribe" subscriptions-service="subscribe.google.com" subscriptions-display="NOT granted">Subscribe with Google</button>
+</div>
+{{/if}}
 
 <div class="amp-access-barrier__footer">
 	<div class="amp-access-barrier__footer-tandc">
