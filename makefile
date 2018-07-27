@@ -37,7 +37,6 @@ ifeq ($(CI),true)
 else
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(test-files)
 endif
-	snyk test
 
 unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)
