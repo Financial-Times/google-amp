@@ -4,7 +4,7 @@ const querystring = require('querystring');
 const url = require('../url');
 const segmentArticle = require('./segment');
 
-const liveAccessHost = 'amp-access-svc.memb.ft.com';
+const liveAccessHost = process.env.ACCESS_SVC_HOST;
 
 const shareParams = {
 	segmentid: 'acee4131-99c2-09d3-a635-873e61754ec6',
