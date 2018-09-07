@@ -41,3 +41,7 @@ jobs:
 
       - store_test_results:
           path: test-results
+
+notify:
+  webhooks:
+    - url: https://ft-next-webhooks.herokuapp.com/circleci2-workflow
