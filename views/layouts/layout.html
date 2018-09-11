@@ -53,7 +53,11 @@
 						"logout": "{{{AUTH_LOGOUT_URL}}}rid=READER_ID&location=RETURN_URL%23success=true",
 						"subscribe": "{{{barrierListEndpoint}}}"
 					},
-					"authorizationFallbackResponse": { "access": true, "error": true }
+					"fallbackEntitlement": {
+						"source": "fallback",
+						"granted": true,
+						"grantReason": "METERING"
+					}
 				},
 				{ "serviceId": "subscribe.google.com" }
 			],
