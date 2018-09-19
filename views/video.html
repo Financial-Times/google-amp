@@ -7,15 +7,28 @@
 			<source src="{{attachments.0.url}}" type="video/mp4">
 		</amp-ima-video>
 
-		<div class="video-info">
-			{{#if displayConcept}}
-			<a href="{{displayConcept.url}}" class="video-tag">{{displayConcept.prefLabel}}</a>
-			{{/if}}
+		{{#if bodyHTML}}
+		<amp-selector role="tablist" layout="container" class="video-tabs">
+			<div role="tab" class="video-tab" selected option="a">Video description</div>
+			<div role="tabpanel" class="video-tab-content video-info">
+		{{else}}
+			<div class="video-info">
+		{{/if}}
+				{{#if displayConcept}}
+				<a href="{{displayConcept.url}}" class="video-tag">{{displayConcept.prefLabel}}</a>
+				{{/if}}
 
-			<h1>{{title}}</h1>
+				<h1>{{title}}</h1>
 
-			<p class="video-standfirst">{{description}}</p>
-			<p class="video-byline">{{byline}}</p>
-		</div>
+				<p class="video-standfirst">{{description}}</p>
+				<p class="video-byline">{{byline}}</p>
+			</div>
+		{{#if bodyHTML}}
+			<div role="tab" class="video-tab" option="b">Transcript</div>
+			<div role="tabpanel" class="video-tab-content video-transcript">
+				{{{bodyHTML}}}
+			</div>
+		</amp-selector>
+		{{/if}}
 	</div>
 </article>

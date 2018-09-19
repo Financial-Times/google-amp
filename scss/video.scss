@@ -1,10 +1,12 @@
 @import 'setup';
 
 .video-page {
+	@include responsiveWidth;
 	grid-column: bleed;
 }
 
 .video {
+	grid-column: bleed;
 	background: oColorsGetPaletteColor('slate');
 	-webkit-font-smoothing: antialiased;
 	color: white;
@@ -21,10 +23,12 @@
 	}
 }
 
-.video-info {
+.video-tabs {
 	grid-column: info;
 	padding: 1rem;
+}
 
+.video-info {
 	h1 {
 		@include oTypographySans(l);
 	}
@@ -45,4 +49,42 @@
 	.video-byline {
 		@include oTypographySans(xs);
 	}
+}
+
+.video-transcript {
+	@include oTypographySans(m);
+	grid-column: main;
+	overflow-y: auto;
+}
+
+.video-tabs {
+	padding: 1em;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+.video-tab {
+	@include oTypographySansBold(m);
+	order: 1;
+	outline: none;
+
+	height: 1em;
+	padding-bottom: .5em;
+	margin-right: 1em;
+
+	&.video-tab[selected] {
+		outline: none;
+		border-bottom: 3px solid white;
+	}
+}
+
+.video-tab-content {
+	order: 2;
+	display: none;
+	max-height: 16rem;
+}
+
+.video-tab[selected] + .video-tab-content {
+	display: block;
 }
