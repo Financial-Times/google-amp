@@ -1,12 +1,13 @@
 'use strict';
 
 const analytics = require('../lib/analytics');
+const environmentOptions = require('./environment-options');
 
 module.exports = ({fetch, transform, template}) => async (req, res, next) => {
 	try {
 		const content = await transform(
 			await fetch(req.params.uuid),
-			{
+			Object.assign({
 				development: req.app.isDevelopment,
 				production: req.app.isProduction,
 				raven: req.raven,
@@ -23,7 +24,7 @@ module.exports = ({fetch, transform, template}) => async (req, res, next) => {
 				overrideBlog: req.query.overrideBlog,
 				lastUpdate: req.query.amp_latest_update_time,
 				ftConsentCookie: req.cookies.FTConsent,
-			}
+			}, environmentOptions)
 		);
 
 		if(req.cookies['amp-access-mock']) {

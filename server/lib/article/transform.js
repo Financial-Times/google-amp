@@ -8,13 +8,10 @@ const fetchSlideshows = require('../article/fetch-slideshows');
 const transformSlideshows = require('../transforms/slideshows');
 const isLiveBlog = require('../live-blogs/is-live-blog');
 const getLiveBlog = require('../live-blogs/get-live-blog');
-const environmentOptions = require('./environment-options');
 const handlebars = require('../handlebars');
 const extraData = require('../content/extra-data');
 
 const assembleArticle = async (article, options) => {
-	options = Object.assign({}, environmentOptions, options);
-
 	await contentFlags(article, options);
 
 	if(article.enableLiveBlogs && isLiveBlog(article.webUrl)) {
