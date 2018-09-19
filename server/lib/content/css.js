@@ -85,32 +85,32 @@ const writeFeatureCSS = () => mkdirp(cssPath)
 		)
 	));
 
-module.exports = (article, options) => {
+module.exports = (content, options) => {
 	const start = Date.now();
 
 	return Promise.resolve(options.production ? cacheIf.always(readFeatureCSS) : compileFeatureCSS())
 		.then(features => {
 			// These checks are intentionally naive so they're fast. We'd rather accidentally
 			// include some CSS but do it fast than block requests to shave a few KB.
-			const related = (article.moreOns && !!article.moreOns.length)
-				|| (article.storyPackage && !!article.storyPackage.length)
-				|| (article.relatedContent && !!article.relatedContent.length);
+			const related = (content.moreOns && !!content.moreOns.length)
+				|| (content.storyPackage && !!content.storyPackage.length)
+				|| (content.relatedContent && !!content.relatedContent.length);
 
 			const enabledFeatures = {
 				base: true,
 				article: true,
-				ads: article.htmlBody && article.htmlBody.includes('<amp-ad'),
-				asides: related || (article.htmlBody && article.htmlBody.includes('c-box')),
+				ads: content.htmlBody && content.htmlBody.includes('<amp-ad'),
+				asides: related || (content.htmlBody && content.htmlBody.includes('c-box')),
 				barrier: options.enableBarrier && !options.showEverything,
 				'barrier-old': !options.enableBarrier && !options.showEverything,
 				comments: true,
 				header: true,
-				'live-blogs': options.enableLiveBlogs && !!article.isLiveBlog,
+				'live-blogs': options.enableLiveBlogs && !!content.isLiveBlog,
 				related,
 				sidebar: options.enableSidebarMenu,
-				slideshow: article.slideshows && Object.keys(article.slideshows).length > 0,
+				slideshow: content.slideshows && Object.keys(content.slideshows).length > 0,
 				social: options.enableSocialShare,
-				video: false,
+				video: !!content.isVideo,
 			};
 
 			const bundledCSS = selectFeatures(features, enabledFeatures).join('\n');
@@ -127,7 +127,7 @@ module.exports = (article, options) => {
 				);
 
 				reportError(options.raven, err, {extra: {
-					articleUUID: article.id,
+					articleUUID: content.id,
 					cssTime: time,
 					cssSize: css.length,
 					features: enabledFeatures,
