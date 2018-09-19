@@ -1,10 +1,13 @@
-@mixin responsiveWidth($max: $max-width, $min: $min-width) {
-	margin: 0 auto;
-	padding: 0 $page-padding;
-	max-width: $max;
-	min-width: $min - (2 * $page-padding);
-	width: 100%;
-	box-sizing: border-box;
+@mixin responsiveWidth {
+	display: grid;
+	grid-template-columns:
+		[bleed-start]
+			minmax(1rem, auto)
+		[main-start]
+			minmax(auto, 40em)
+		[main-end]
+			minmax(1rem, auto)
+		[bleed-end];
 }
 
 @function pxAndVhToViewport($vh, $px) {

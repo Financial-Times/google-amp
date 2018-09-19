@@ -56,11 +56,11 @@
 			The Financial Times Limited {{thisYear}}. All rights reserved. Please don't copy articles from FT.com and redistribute by email or post to the web.
 		</p>
 	</div>
+
+	<div class="comments">
+		{{> link class='comments-button' href=(concat canonicalURL '#comments') type='view-comments' text='View comments'}}
+	</div>
+
+	{{> related/story-package}}
+	{{> related/more-ons}}
 </article>
-
-<div class="comments">
-	{{> link class='comments-button' href=(concat canonicalURL '#comments') type='view-comments' text='View comments'}}
-</div>
-
-{{> related/story-package}}
-{{> related/more-ons}}

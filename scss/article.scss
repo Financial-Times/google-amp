@@ -2,6 +2,7 @@
 
 .article {
 	@include oTypographyBodyWrapper;
+	grid-column: main;
 }
 
 .article__copyright-notice.article__copyright-notice {

@@ -5,10 +5,6 @@ $o-footer-is-silent: false;
 	@include oTypographySans(s);
 }
 
-.o-footer__main {
-	@include responsiveWidth;
-}
-
 .o-footer__matrix-group {
 	@include oGridColspan($span: 6);
 }
