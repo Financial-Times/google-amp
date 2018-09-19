@@ -3,6 +3,11 @@
 .video-page {
 	@include responsiveWidth;
 	grid-column: bleed;
+
+	&::after {
+		content: '';
+		height: 30vh;
+	}
 }
 
 .video {
@@ -29,6 +34,8 @@
 }
 
 .video-info {
+	padding: 1rem;
+
 	h1 {
 		@include oTypographySans(l);
 	}
@@ -58,10 +65,14 @@
 }
 
 .video-tabs {
-	padding: 1em;
+	padding: 1rem;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
+
+	.video-info {
+		padding: 0;
+	}
 }
 
 .video-tab {
