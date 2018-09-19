@@ -143,16 +143,13 @@
 
 			<main class="main" role="main">
 				<div class="amp-access-barrier" subscriptions-section="content-not-granted">
-					{{> barrier }}
+					{{> barrier}}
 				</div>
 
-				<div {{#unless showEverything}}subscriptions-section="content"{{/unless}}>
-					{{{body}}}
-				</div>
+				{{{body}}}
 			</main>
 
 			{{> footer}}
-
 		</div>
 	</body>
 </html>
