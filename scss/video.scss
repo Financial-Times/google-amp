@@ -1,5 +1,48 @@
 @import 'setup';
 
+.video-page {
+	grid-column: bleed;
+}
+
 .video {
 	background: oColorsGetPaletteColor('slate');
+	-webkit-font-smoothing: antialiased;
+	color: white;
+
+	display: grid;
+	grid-template-columns: auto [video-start info-start] minmax(auto, 640px) [video-end info-end] auto;
+
+	@media (min-width: 40rem) {
+		grid-template-columns: auto [video-start] minmax(auto, 40rem) [video-end info-start] minmax(auto, 20rem) [info-end] auto;
+	}
+
+	amp-ima-video {
+		grid-column: video;
+	}
+}
+
+.video-info {
+	grid-column: info;
+	padding: 1rem;
+
+	h1 {
+		@include oTypographySans(l);
+	}
+
+	.video-tag {
+		@include oTypographyLinkTopic;
+		color: white;
+
+		&:hover, &:active {
+			color: #eee;
+		}
+	}
+
+	.video-standfirst {
+		@include oTypographySans(m);
+	}
+
+	.video-byline {
+		@include oTypographySans(xs);
+	}
 }

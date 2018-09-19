@@ -1,6 +1,21 @@
-<amp-ima-video id="myVideo"
-      width="640" height="360" layout="responsive"
-      data-tag="https://pubads.g.doubleclick.net/gampad/ads?env=vp&gdfp_req=1&output=xml_vast4&iu=%2F5887%2Fft.com&sz=592x333%7C400x225&unviewed_position_start=1&scp=pos%3Dvideo%26ttid%3D{{uuid}}&sdkv=h.3.236.0&sdki=44d&correlator=3366610317086825&scor=3743760422720166&adk=1251267432&media_url=https%3A%2F%2Fnext-media-api.ft.com%2Frenditions%2F15371808062160%2F1920x1080.mp4&u_so=l&osd=2&frm=0&sdr=1&is_amp=0&adsid=AHva7otqByiJJ9lNLKDFPFagk8D7Bci1VuJV4vZ_0iTjkefizupoJQISNTo3HxCHQK02&pucrd=CgYgASgBOAF4Aw&jar=2018-9-19-11&hl=en&cookie=ID%3D62f60f28014b8dbe%3AT%3D1536940278%3AS%3DALNI_MbMBD1Vqo8y3JGAGAZ6jXtD7ATLmg&afvsz=450x50%2C468x60%2C480x70&url=https%3A%2F%2Fwww.ft.com%2Fvideo%2F{{uuid}}%3Fplaylist-name%3Deditors-picks%26playlist-offset%3D0&ged=ve4_td52_tt1_pd52_la52000_er138.50.520.730_vi138.0.519.1280_vp100_eb23147"
-      data-poster={{mainImage.url}}>
-    <source src={{attachments.0.url}} type="video/mp4">
-  </amp-ima-video>
+<article class="video-page">
+	<div class="video">
+		<amp-ima-video
+		width="640" height="360" layout="responsive"
+		data-tag="https://pubads.g.doubleclick.net/gampad/ads?env=vp&gdfp_req=1&output=xml_vast4&iu=%2F5887%2Fft.com&sz=592x333%7C400x225&unviewed_position_start=1&scp=pos%3Dvideo%26ttid%3D{{uuid}}&sdkv=h.3.236.0&sdki=44d&correlator=3366610317086825&scor=3743760422720166&adk=1251267432&media_url=https%3A%2F%2Fnext-media-api.ft.com%2Frenditions%2F15371808062160%2F1920x1080.mp4&u_so=l&osd=2&frm=0&sdr=1&is_amp=0&adsid=AHva7otqByiJJ9lNLKDFPFagk8D7Bci1VuJV4vZ_0iTjkefizupoJQISNTo3HxCHQK02&pucrd=CgYgASgBOAF4Aw&jar=2018-9-19-11&hl=en&cookie=ID%3D62f60f28014b8dbe%3AT%3D1536940278%3AS%3DALNI_MbMBD1Vqo8y3JGAGAZ6jXtD7ATLmg&afvsz=450x50%2C468x60%2C480x70&url=https%3A%2F%2Fwww.ft.com%2Fvideo%2F{{uuid}}%3Fplaylist-name%3Deditors-picks%26playlist-offset%3D0&ged=ve4_td52_tt1_pd52_la52000_er138.50.520.730_vi138.0.519.1280_vp100_eb23147"
+		data-poster={{mainImage.url}}>
+			<source src={{attachments.0.url}} type="video/mp4">
+		</amp-ima-video>
+
+		<div class="video-info">
+			{{#if displayConcept}}
+			<a href="{{displayConcept.url}}" class="video-tag">{{displayConcept.prefLabel}}</a>
+			{{/if}}
+
+			<h1>{{title}}</h1>
+
+			<p class="video-standfirst">{{description}}</p>
+			<p class="video-byline">{{byline}}</p>
+		</div>
+	</div>
+</article>
