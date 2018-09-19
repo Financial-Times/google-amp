@@ -33,6 +33,7 @@ module.exports = (req, res, next) => {
 		)
 		// .then(article => articleFlags(article, options))
     .then(video => {
+      console.log("videooooo ", video)
 			if(req.cookies['amp-access-mock']) {
 				// No caching, to allow access mock cookies to be applied immediately
 				res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
