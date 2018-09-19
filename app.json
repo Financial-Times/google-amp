@@ -18,7 +18,6 @@
 		"CANONICAL_URL_PHASE": {"required": true},
 		"NODE_ENV": {"required": false, "value": "development"},
 		"BARRIER_GURU_API_KEY": {"required": true},
-		"ENABLE_BARRIER": {"required": false},
 		"BARRIER_AMMIT": {"required": false},
 		"AMMIT_APIKEY": {"required": true},
 		"UNFURL_BRIGHTCOVE": {"required": false},
