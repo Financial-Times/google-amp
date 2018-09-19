@@ -23,6 +23,7 @@ module.exports = (req, res, next) => {
 		ftConsentCookie: req.cookies.FTConsent,
 	})
 		.then(article => {
+			console.log("article ", article);
 			if(req.cookies['amp-access-mock']) {
 				// No caching, to allow access mock cookies to be applied immediately
 				res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
