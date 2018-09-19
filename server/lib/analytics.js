@@ -3,7 +3,7 @@
 /* eslint-disable no-template-curly-in-string */
 
 const pkg = require('../../package.json');
-const segmentArticle = require('../lib/article/segment');
+const segmentContent = require('../lib/content/segment');
 
 const DEBUG = false;
 const BARRIERTYPE = 'trial';
@@ -37,7 +37,7 @@ module.exports.getJson = ({req, uuid}) => {
 			amp_auth_access: 'AUTHDATA(granted)',
 			amp_auth_debug: 'AUTHDATA(data.debug)',
 			amp_reader_id: 'ACCESS_READER_ID',
-			amp_visibility_experiment_enabled: segmentArticle({id: uuid}),
+			amp_visibility_experiment_enabled: segmentContent({id: uuid}),
 
 			destination: '${linkDestination}',
 			text: '${linkText}',

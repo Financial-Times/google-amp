@@ -99,8 +99,8 @@ module.exports = (article, options) => {
 			const enabledFeatures = {
 				base: true,
 				article: true,
-				ads: article.htmlBody.includes('<amp-ad'),
-				asides: related || article.htmlBody.includes('c-box'),
+				ads: article.htmlBody && article.htmlBody.includes('<amp-ad'),
+				asides: related || (article.htmlBody && article.htmlBody.includes('c-box')),
 				barrier: options.enableBarrier && !options.showEverything,
 				'barrier-old': !options.enableBarrier && !options.showEverything,
 				comments: true,
@@ -108,8 +108,9 @@ module.exports = (article, options) => {
 				'live-blogs': options.enableLiveBlogs && !!article.isLiveBlog,
 				related,
 				sidebar: options.enableSidebarMenu,
-				slideshow: Object.keys(article.slideshows).length > 0,
+				slideshow: article.slideshows && Object.keys(article.slideshows).length > 0,
 				social: options.enableSocialShare,
+				video: false,
 			};
 
 			const bundledCSS = selectFeatures(features, enabledFeatures).join('\n');

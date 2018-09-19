@@ -2,7 +2,7 @@
 
 const querystring = require('querystring');
 const url = require('../url');
-const segmentArticle = require('./segment');
+const segmentContent = require('./segment');
 
 const liveAccessHost = process.env.ACCESS_SVC_HOST;
 
@@ -10,7 +10,7 @@ const shareParams = {
 	segmentid: 'acee4131-99c2-09d3-a635-873e61754ec6',
 };
 
-module.exports = (article, options) => Object.assign(article, {
+module.exports = (content, options) => Object.assign(content, {
 	SOURCE_PORT: options.production ? '' : ':5000',
 
 	AUTH_AUTHORIZATION_URL: options.accessMocked ?
@@ -29,10 +29,10 @@ module.exports = (article, options) => Object.assign(article, {
 		`//${options.host}/amp-access-mock/logout?` :
 		`https://${liveAccessHost}/amp-logout?`,
 
-	description: article.standfirst,
+	description: content.standfirst,
 
 	showEverything: !!options.showEverything,
-	isFree: article.accessLevel === 'free',
+	isFree: content.accessLevel === 'free',
 
 	accessMocked: !!options.accessMocked,
 	accessMockLoggedIn: !!options.accessMockLoggedIn,
@@ -45,7 +45,7 @@ module.exports = (article, options) => Object.assign(article, {
 	enableBarrier: !!options.enableBarrier,
 	unfurlBrightcove: !!options.unfurlBrightcove,
 
-	canonicalURL: url.canonical(article),
+	canonicalURL: url.canonical(content),
 	pspURL: 'https://www.ft.com/products',
 
 	// https://jira.ft.com/browse/AT-628 The access service currently uses
@@ -53,16 +53,16 @@ module.exports = (article, options) => Object.assign(article, {
 	// which requires URLs in the form http://www.ft.com/cms/s/2/e8813dd4-d00d-11e5-831d-09f7778e7377.html
 	// in order to make classification decisions. Eventually, amp-access will be updated to
 	// look up classification against CAPI, and we can use the canonical URL here.
-	accessCheckUrl: url.accessCheck(article),
+	accessCheckUrl: url.accessCheck(content),
 
-	shareUrl: `${url.canonical(article)}?${querystring.stringify(shareParams)}`,
+	shareUrl: `${url.canonical(content)}?${querystring.stringify(shareParams)}`,
 	facebookAppId: '328135857526360',
 
 	analyticsConfig: options.analyticsConfig,
 
 	barrierListEndpoint: options.production ? '/products' : `//${options.host}/products`,
 
-	visibilityOptIn: segmentArticle(article),
+	visibilityOptIn: segmentContent(content),
 
 	showSwGButton: process.env.SHOW_SWG_BUTTON,
 });
