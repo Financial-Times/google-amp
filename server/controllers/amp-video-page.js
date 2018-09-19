@@ -2,9 +2,11 @@
 
 const nEsClient = require('@financial-times/n-es-client');
 const errors = require('http-errors');
+const reportError = require('../report-error');
+
 module.exports = (req, res, next) => {
-  const uuid = req.params.uuid;
-  nEsClient.get(uuid)
+	const uuid = req.params.uuid;
+	nEsClient.get(uuid)
 		.then(
 			response => {
         // console.log(response);
@@ -23,7 +25,7 @@ module.exports = (req, res, next) => {
 				}
 
 				if(err.status) {
-					reportError(options.raven, err);
+					reportError(req.raven, err);
 
 					throw new errors.InternalServerError(`Elastic Search error fetching video ${uuid}`);
 				}
@@ -32,8 +34,9 @@ module.exports = (req, res, next) => {
 			}
 		)
 		// .then(article => articleFlags(article, options))
-    .then(video => {
-      console.log("videooooo ", video)
+		.then(video => {
+			console.log('videooooo ', video);
+
 			if(req.cookies['amp-access-mock']) {
 				// No caching, to allow access mock cookies to be applied immediately
 				res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
@@ -50,5 +53,5 @@ module.exports = (req, res, next) => {
 
 			res.render('video', Object.assign({layout: 'layout'}, video));
 		})
-    .catch(next);
-}
+		.catch(next);
+};
