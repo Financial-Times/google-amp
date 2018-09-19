@@ -134,6 +134,7 @@ if(!isProduction) {
 }
 
 app.get('/content/:uuid', require('./controllers/amp-page.js'));
+app.get('/video/:uuid', require('./controllers/amp-video-page.js'));
 app.get('/products', cors, require('./controllers/products.js'));
 
 app.all('/amp-access-mock/:type(access|pingback)', cors, require('./controllers/access-mock.js'));
