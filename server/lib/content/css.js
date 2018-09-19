@@ -59,7 +59,6 @@ const enableAllFlags = {
 	enableSocialShare: true,
 	enableAds: true,
 	enableLiveBlogs: true,
-	enableBarrier: true,
 };
 
 const getFeatureHTML = entry => entry in featureTemplate ?
@@ -101,8 +100,7 @@ module.exports = (content, options) => {
 				article: true,
 				ads: content.htmlBody && content.htmlBody.includes('<amp-ad'),
 				asides: related || (content.htmlBody && content.htmlBody.includes('c-box')),
-				barrier: options.enableBarrier && !options.showEverything,
-				'barrier-old': !options.enableBarrier && !options.showEverything,
+				barrier: !options.showEverything,
 				comments: true,
 				header: true,
 				'live-blogs': options.enableLiveBlogs && !!content.isLiveBlog,

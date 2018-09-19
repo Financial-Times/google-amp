@@ -42,7 +42,6 @@ module.exports = (content, options) => Object.assign(content, {
 	enableSidebarMenu: !!options.enableSidebarMenu,
 	enableSocialShare: !!options.enableSocialShare,
 	enableLiveBlogs: !!options.enableLiveBlogs,
-	enableBarrier: !!options.enableBarrier,
 	unfurlBrightcove: !!options.unfurlBrightcove,
 
 	canonicalURL: url.canonical(content),
