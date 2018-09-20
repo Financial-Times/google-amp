@@ -40,7 +40,15 @@ module.exports = ({fetch, transform, template}) => async (req, res, next) => {
 			res.setHeader('surrogate-control', `stale-on-error=${oneWeek}, stale-while-revalidate=${oneDay}`);
 		}
 
-		res.render(template, Object.assign({layout: 'layout'}, content));
+		content.scrollContent = JSON.stringify(content.relatedContent.map( article  => {
+			return 		{
+						"title": article.title,
+						"image": "https://ampbyexample.com/img/social.png",
+						"ampUrl": `https://localhost:5050/content/${article.id}?continuousScrolling=true`
+					}
+		}))
+		console.log(content.scrollContent)
+		res.render(template, Object.assign({layout: 'layout'}, content, {continuousScrolling: req.query.continuousScrolling}));
 	} catch(error) {
 		next(error);
 	}

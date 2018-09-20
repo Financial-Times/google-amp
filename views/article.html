@@ -1,3 +1,4 @@
+
 <article class="article">
 	<header class="article-header">
 		{{#if displayConcept}}
@@ -62,5 +63,13 @@
 	{{> link class='comments-button' href=(concat canonicalURL '#comments') type='view-comments' text='View comments'}}
 </div>
 
-{{> related/story-package}}
-{{> related/more-ons}}
+<amp-next-page>
+	<script type="application/json">
+
+		{
+			"pages":
+				{{{ scrollContent}}}
+
+		}
+	</script>
+</amp-next-page>
