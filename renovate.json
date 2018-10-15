@@ -1,6 +1,15 @@
 {
   "extends": [
     "config:base",
-		":preserveSemverRanges"
+    ":preserveSemverRanges"
+  ],
+  "masterIssue": true,
+  "packageRules": [
+    {
+      "depTypeList": [
+        "devDependencies"
+      ],
+      "masterIssueApproval": true
+    }
   ]
 }
