@@ -61,7 +61,7 @@
     "cookie-parser": "^1.4.1",
     "csso": "^2.3.2",
     "dotenv": "^2.0.0",
-    "emphasize": "^1.0.0",
+    "emphasize": "^2.0.0",
     "errorhandler": "^1.4.3",
     "express": "^4.16.3",
     "express-ftwebservice": "^2.3.0",
