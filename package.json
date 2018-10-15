@@ -59,7 +59,7 @@
     "bower": "^1.8.4",
     "cheerio": "^0.22.0",
     "cookie-parser": "^1.4.1",
-    "csso": "^2.3.2",
+    "csso": "^3.0.0",
     "dotenv": "^2.0.0",
     "emphasize": "^1.0.0",
     "errorhandler": "^1.4.3",
