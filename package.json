@@ -39,7 +39,7 @@
     "@quarterto/github-create-release": "^1.4.0",
     "@quarterto/heroku-cluster": "^1.2.0",
     "@quarterto/heroku-memory-limit": "^1.2.0",
-    "@quarterto/heroku-version-infer": "^3.2.3",
+    "@quarterto/heroku-version-infer": "^4.0.0",
     "@quarterto/jira-get-release-issues": "^1.0.0",
     "@quarterto/kinesis-decoded": "^1.0.0",
     "@quarterto/log-promise": "^1.1.0",
