@@ -7,7 +7,7 @@ AMP HTML rendering for FT articles
 Prerequisites
 ---
 
-1. Node.js 8 (`nvm install --lts=carbon`)
+1. Node.js v10 (`nvm install stable`)
 2. An `.env` file that contains the required environment variables from `app.json`
    - To generate one, after running `npm install` you can login to Heroku with `heroku login --sso` and then make the file by running `npm run heroku-config` (note: for this command to work you will need to have access to the Heroku pipeline for this app)
    - If you add another environment variable, make sure to add it to `app.json`
