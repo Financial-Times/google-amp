@@ -92,7 +92,7 @@
     "postcss": "^5.2.18",
     "postcss-csso": "^1.1.2",
     "postcss-discard-empty": "^2.1.0",
-    "postcss-inline-svg": "^2.0.1",
+    "postcss-inline-svg": "^3.0.0",
     "postcss-remove-unused": "^1.2.0",
     "raven": "^0.10.0",
     "request": "^2.87.0",
