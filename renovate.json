@@ -3,6 +3,8 @@
     "config:base",
     ":preserveSemverRanges"
   ],
+	"prConcurrentLimit": 5,
+	"prHourlyLimit": 1,
   "masterIssue": true,
   "packageRules": [
     {
