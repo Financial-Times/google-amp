@@ -3,7 +3,7 @@
     "config:base",
     ":preserveSemverRanges",
     "group:postcss",
-		"group:linters"
+    "group:linters"
   ],
   "prConcurrentLimit": 5,
   "prHourlyLimit": 1,
