@@ -88,7 +88,7 @@
     "morgan": "^1.9.0",
     "node-fetch": "^2.0.0",
     "node-sass": "^4.9.4",
-    "o-date": "github:Financial-Times/o-date#semver:^2.11.0",
+    "o-date": "github:Financial-Times/o-date#2.11.0",
     "postcss": "^7.0.0",
     "postcss-csso": "^3.0.0",
     "postcss-discard-empty": "^4.0.0",
