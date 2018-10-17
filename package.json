@@ -99,7 +99,7 @@
     "rss": "^1.1.1"
   },
   "engines": {
-    "node": "^10.12.0",
+    "node": "^8.12.0",
     "npm": "^6.4.1"
   },
   "devDependencies": {
