@@ -19,6 +19,19 @@
 	</div>
 </div>
 
+{{#if showSwGButton}}
+<div class="amp-access-barrier__offer">
+	<h2 class="amp-access-barrier__offer-title">
+		Digital or Premium Digital
+	</h2>
+
+	<div class="amp-access-barrier__offer-description">
+		You can also subscribe to the FT Digital or Premium Digital with Google
+	</div>
+	<button class="amp-access-barrier__swg-button" subscriptions-action="subscribe" subscriptions-service="subscribe.google.com" subscriptions-display="NOT granted">Subscribe with Google</button>
+</div>
+{{/if}}
+
 <amp-list id="barrier-offers" src="{{{barrierListEndpoint}}}" credentials="include" width="300" height="600" layout="responsive">
 	<template type="amp-mustache">
 		<div class="amp-access-barrier__offer">
@@ -58,19 +71,6 @@
 		</div>
 	</template>
 </amp-list>
-
-{{#if showSwGButton}}
-<div class="amp-access-barrier__offer">
-	<h2 class="amp-access-barrier__offer-title">
-		Digital or Premium Digital
-	</h2>
-
-	<div class="amp-access-barrier__offer-description">
-		You can also subscribe to the FT Digital or Premium Digital with Google
-	</div>
-	<button class="amp-access-barrier__swg-button" subscriptions-action="subscribe" subscriptions-service="subscribe.google.com" subscriptions-display="NOT granted">Subscribe with Google</button>
-</div>
-{{/if}}
 
 <div class="amp-access-barrier__footer">
 	<div class="amp-access-barrier__footer-tandc">
