@@ -155,7 +155,7 @@
 						<div class="amp-access-login__header-title">{{title}}</div>
 					</div>
 					<div class="amp-access-login__body" subscriptions-actions subscriptions-display="NOT data.session">
-						<a class="amp-access-login__button" href="#" subscriptions-action="login" subscriptions-display="NOT data.session" subscriptions-service="local" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
+						<a class="amp-access-login__button" href="#" subscriptions-action="login" subscriptions-display="NOT data.session" subscriptions-service="{{#if enableGoogleAccountLinking}}subscribe.google.com{{else}}local{{/if}}" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in to FT.com</a>
 						<a class="amp-access-login__button" href="{{pspURL}}" data-vars-link-destination="{{pspURL}}" data-vars-link-type="barrier-psp" data-vars-link-text="View subscription packages" subscriptions-section="content-not-granted">View subscription packages</a>
 					</div>
 					<div class="amp-access-login__body" subscriptions-actions subscriptions-display="data.session">

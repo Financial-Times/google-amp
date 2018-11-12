@@ -6,6 +6,6 @@
 		<li subscriptions-section="content">You have access. </li>
 		<li subscriptions-section="content-not-granted">You have no access. </li>
 		<li subscriptions-actions subscriptions-display="data.session">You are logged in. <a data-vars-link-type="qa" href="#" subscriptions-action="logout" subscriptions-display="data.session">Click here</a> to log out.</li>
-		<li subscriptions-actions subscriptions-display="NOT data.session">You are an anonymous visitor. <a data-vars-link-type="qa" href="#" subscriptions-action="login" subscriptions-service="local" subscriptions-display="NOT data.session">Click here</a> to log in.</li>
+		<li subscriptions-actions subscriptions-display="NOT data.session">You are an anonymous visitor. <a data-vars-link-type="qa" href="#" subscriptions-action="login" subscriptions-service="{{#if enableGoogleAccountLinking}}subscribe.google.com{{else}}local{{/if}}" subscriptions-display="NOT data.session">Click here</a> to log in.</li>
 	</ul>
 </div>
