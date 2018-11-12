@@ -6,7 +6,7 @@
 
 	<div class="amp-access-barrier__login">
 		Already a subscriber?
-		<a href="#" subscriptions-action="login"{{#if enableGoogleAccountLinking}} subscriptions-service="subscribe.google.com"{{/if}} subscriptions-display="NOT data.session" subscriptions-service="local" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
+		<a href="#" subscriptions-action="login" subscriptions-display="NOT data.session" subscriptions-service="{{#if enableGoogleAccountLinking}}subscribe.google.com{{else}}local{{/if}}" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
 	</div>
 </div>
 
