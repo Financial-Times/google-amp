@@ -6,7 +6,7 @@
 
 	<div class="amp-access-barrier__login">
 		Already a subscriber?
-		<a href="#" subscriptions-action="login" subscriptions-display="NOT data.session" subscriptions-service="local" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
+		<a href="#" subscriptions-action="login"{{#if enableGoogleAccountLinking}} subscriptions-service="subscribe.google.com"{{/if}} subscriptions-display="NOT data.session" subscriptions-service="local" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
 	</div>
 </div>
 
@@ -28,7 +28,7 @@
 	<div class="amp-access-barrier__offer-description">
 		You can also subscribe to the FT Digital or Premium Digital with Google
 	</div>
-	<button class="amp-access-barrier__swg-button" subscriptions-action="subscribe" subscriptions-service="subscribe.google.com" subscriptions-display="NOT granted">Subscribe with Google</button>
+	<button class="amp-access-barrier__swg-button" subscriptions-action="subscribe"{{#if enableGoogleAccountLinking}} subscriptions-service="subscribe.google.com"{{/if}} subscriptions-display="NOT granted">Subscribe with Google</button>
 </div>
 {{/if}}
 

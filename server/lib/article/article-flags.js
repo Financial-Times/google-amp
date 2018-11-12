@@ -43,6 +43,9 @@ module.exports = (article, options) => Object.assign(article, {
 	enableSocialShare: !!options.enableSocialShare,
 	enableLiveBlogs: !!options.enableLiveBlogs,
 	enableBarrier: !!options.enableBarrier,
+	//! NB: This is super temporary while Google test the account linking on AMP.
+	// Uses a publicly available dummy article - needs to eventually work via env var as the above do.
+	enableGoogleAccountLinking: options.uuid === '4f654b8c-2d20-11e8-9b4b-bc4b9f08f381',
 	unfurlBrightcove: !!options.unfurlBrightcove,
 
 	canonicalURL: url.canonical(article),
