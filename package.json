@@ -85,7 +85,7 @@
     "lodash.values": "^4.1.0",
     "mkdirp": "^0.5.1",
     "mkdirp-promise": "^5.0.0",
-    "morgan": "^1.9.0",
+    "morgan": "^1.9.1",
     "node-fetch": "^2.0.0",
     "node-sass": "^4.9.4",
     "o-date": "https://github.com/Financial-Times/o-date#v2.11.0",
