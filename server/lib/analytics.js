@@ -263,7 +263,30 @@ module.exports.getJson = ({req, uuid}) => {
 					action: 'access-login-rejected',
 				},
 			},
-
+			accessLinkRequested: {
+				on: 'subscriptions-link-requested',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-link-requested',
+				},
+			},
+			accessLinkComplete: {
+				on: 'subscriptions-link-complete',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-link-complete',
+				},
+			},
+			accessLinkCanceled: {
+				on: 'subscriptions-link-canceled',
+				request: 'standard',
+				vars: {
+					category: 'amp-access',
+					action: 'access-link-canceled',
+				},
+			},
 		},
 		transport: {
 			beacon: true,
