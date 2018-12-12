@@ -1,9 +1,12 @@
 {
   "extends": [
     "config:base",
+    ":preserveSemverRanges",
     "group:postcss",
     "group:linters"
   ],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 1,
   "masterIssue": true,
   "packageRules": [
     {
