@@ -57,6 +57,6 @@ module.exports.getProducts = ({allocationId, sessionId, countryCode, countryCode
 	})
 	.then(json)
 	.then(barrier => ({
-		items: barrier.offers || [],
+		items: barrier.offers.filter(offer => offer.name !== 'subscription-premium-digital-variant') || [],
 		allocation,
 	})));
