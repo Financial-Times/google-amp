@@ -22,13 +22,9 @@
 				"try": {"after": true}
 			}
 		}],
-		"max-len": [
-			1,
-			{
-				"code": 120,
-				"ignoreTemplateLiterals": true
-			}
-		],
+		"no-constant-condition": "off",
+		"func-names": "off",
+		"max-len": 0,
 		"object-curly-spacing": [2, "never"],
 		"space-before-function-paren": [2, "never"],
 		"strict": [2, "global"],
