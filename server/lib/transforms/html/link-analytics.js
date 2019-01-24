@@ -15,10 +15,12 @@ module.exports = match({
 		const text = sanitise(el.text());
 
 		// Ensure URLs don't break out of data attribute
-		const href = el.attr('href').replace('"', '%22');
+		if(el.attr('href')) {
+			const href = el.attr('href').replace('"', '%22');
 
-		if(!el.attr('data-vars-link-destination')) {
-			el.attr('data-vars-link-destination', href);
+			if(!el.attr('data-vars-link-destination')) {
+				el.attr('data-vars-link-destination', href);
+			}
 		}
 
 		if(!el.attr('data-vars-link-type')) {
