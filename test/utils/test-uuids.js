@@ -75,6 +75,7 @@ module.exports = [
 
 	// Reported as 5xx in Google Search Console
 	'514abee5-c09b-34f6-9a3a-865a64540a65',
+	'b0de8ce3-0822-3b6e-b8f1-b2c97bc92c88',
 	// '21b5893e-ba3a-32dc-bf31-271449002cc0', // Live-blog, this is just bad content, I think.
 	// 'f50909a8-95dd-3688-9b12-a67e1198e6d5', // Again a live-blog, bad content.
 
