@@ -16,9 +16,9 @@ describe('table transform', () => {
 			</div>
 		`;
 		expect(
-			await transformBody(tableHtml)
+			await transformBody(tableHtml, {uuid: '00000000-000-0000-0000-000000000000'})
 		).dom.to.equal(
-			`<a href="https://ft.com/content/00000000-000-0000-0000-000000000000#${tableId}">Go to table</a>`
+			`<a href="https://ft.com/content/00000000-000-0000-0000-000000000000#${tableId}">View the table</a>`
 		);
 	});
 });

@@ -2,17 +2,16 @@
 
 const match = require('@quarterto/cheerio-match-multiple');
 
-function generateTableHref(el) {
+function generateTableHref(el, uuid) {
 	const tableId = el.attr('id');
-	const contentId = tableId.match(/table-(.*)_\d/)[1];
 
-	return `https://ft.com/content/${contentId}#${tableId}`;
+	return `https://ft.com/content/${uuid}#${tableId}`;
 }
 
 module.exports = match({
-	'table'(el) {
-		const href = generateTableHref(el);
+	'table'(el, a, b, {uuid}) {
+		const href = generateTableHref(el, uuid);
 
-		el.closest('.o-table-container').replaceWith(`<a href="${href}">Go to table</a>`);
+		el.closest('.o-table-container').replaceWith(`<a href="${href}">View the table</a>`);
 	},
 });
