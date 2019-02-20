@@ -27,6 +27,7 @@ const figure = require('./html/figure');
 const removeImageData = require('./html/remove-image-data');
 const imagePlaceholder = require('./html/image-placeholder');
 const subhead = require('./html/subhead');
+const table = require('./html/table');
 
 // runs transforms in parallel, keeping transforms that depend on each other in order.
 // `deps('foo')(bar)` tells `parallel` to run `foo` before `bar`.
@@ -50,6 +51,7 @@ const transformBody = cheerioTransform(parallel({
 	infoBox,
 	contentLinks,
 	subhead,
+	table,
 }));
 
 module.exports = (body, options = {}) => Promise.resolve(body)
