@@ -60,7 +60,7 @@
     "cheerio": "^0.22.0",
     "cookie-parser": "^1.4.1",
     "csso": "^3.0.0",
-    "dotenv": "^6.2.0",
+    "dotenv": "^7.0.0",
     "emphasize": "^2.0.0",
     "errorhandler": "^1.4.3",
     "express": "^4.16.4",
