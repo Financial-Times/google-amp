@@ -22,7 +22,7 @@
     "Google",
     "AMP-HTML"
   ],
-  "author": "matthew.brennan@ft.com",
+  "author": "bren.brightwell@ft.com",
   "dependencies": {
     "@financial-times/fastly-tools": "^1.7.1",
     "@financial-times/n-es-client": "^1.6.2",
