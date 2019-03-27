@@ -40,12 +40,12 @@ ftwebservice(app, {
 				email: 'richard.still@ft.com',
 			},
 			{
-				name: 'Matthew Brennan',
-				email: 'matthew.brennan@ft.com',
+				name: 'Bren Brightwell',
+				email: 'bren.brightwell@ft.com',
 			},
 			{
-				name: 'George Crawford',
-				email: 'george.crawford@ft.com',
+				name: 'Rowan Beentje',
+				email: 'rowan.beentje@ft.com',
 			},
 		],
 	},
