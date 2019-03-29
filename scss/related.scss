@@ -7,7 +7,7 @@
 
 .related-content__theme,
 .more-ons__header {
-	@include oTypographyLinkTopic;
+	@include oTypographyTopic;
 	a {
 		&:hover {
 			border-bottom: 1px dotted;
@@ -19,7 +19,7 @@
 // Related Content
 
 .related-content__header {
-	@include oTypographySerifDisplay(l);
+	@include oTypographyDisplay(3);
 }
 
 .related-content__stories {
@@ -67,23 +67,23 @@
 
 .related-content__container {
 	background-color: oColorsGetColorFor(box, background);
-	border: 1px solid oColorsGetPaletteColor("warm-3");
+	border: 1px solid oColorsGetPaletteColor('black-20');
 	padding: oGridGutter(S);
 }
 
 .related-content__link {
 	@include oTypographyLink;
-	@include oTypographySans(m);
+	@include oTypographySans(-1);
 }
 
 .related-content__date {
-	@include oTypographySans(xs);
+	@include oTypographySans(-2);
 	display: block;
 	margin-top: 1em;
 }
 
 .related-content__summary {
-	@include oTypographySans(s);
+	@include oTypographySans(-1);
 	line-height: 1.3em;
 	margin: 0;
 	display: block;
@@ -110,7 +110,7 @@
 }
 
 .more-ons__item-wrapper {
-	border: 1px solid oColorsGetPaletteColor('warm-3');
+	border: 1px solid oColorsGetPaletteColor('black-20');
 	padding: oGridGutter(L) oGridGutter(L) 0;
 	margin-bottom: oGridGutter(L);
 }
@@ -120,8 +120,8 @@
 }
 
 .more-ons__header {
-	@include oTypographySansBold(l);
-	color: oColorsGetPaletteColor(claret);
+	@include oTypographySansBold(2);
+	color: oColorsGetPaletteColor('claret');
 	margin-top: 0;
 }
 
@@ -140,11 +140,11 @@
 
 .more-ons__link {
 	@include oTypographyLink;
-	@include oTypographySans(m);
+	@include oTypographySans(-1);
 }
 
 .more-ons__date {
-	@include oTypographySans(xs);
+	@include oTypographySans(-1);
 	display: block;
 	margin-top: 0.5em;
 }

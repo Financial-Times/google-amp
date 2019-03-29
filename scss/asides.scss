@@ -25,13 +25,13 @@
 
 .c-box__title-text {
 	@include oColorsFor(page, background);
-	@include oTypographySerifDisplay(m);
+	@include oTypographyDisplay(0);
 	display: inline-block;
 	margin: 0;
 	padding: 10px;
 	padding-bottom: 0;
 	font-weight: 900;
-	color: oColorsGetPaletteColor('cold-1');
+	color: oColorsGetPaletteColor('black-70');
 }
 
 .c-box .aside--content p {
@@ -39,10 +39,10 @@
 }
 
 .aside--headline {
-	@include oTypographySansDataBold(l);
+	@include oTypographySans(2);
 	margin-top: 8px;
 	margin-bottom: 8px;
-	color: oColorsGetPaletteColor('cold-3');
+	color: oColorsGetPaletteColor('black-90');
 	line-height: 1.3em;
 
 	p {
@@ -60,17 +60,6 @@
 .aside--list {
 	margin: 10px 0;
 	padding-left: 20px;
-}
-
-.pull-quote__quote-marks {
-	@extend %article-quote;
-
-	position: absolute;
-	top: -1px; // place just on top of border
-	left: 10px;
-	background-color: oColorsGetPaletteColor('pink');
-	padding: 0 10px;
-	line-height: 0; // take up as little space as possible
 }
 
 @import 'utils';

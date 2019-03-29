@@ -5,7 +5,7 @@
 
 amp-sidebar {
 	@include oColorsFor(page, background);
-	@include oTypographySans(m);
+	@include oTypographySans(-1);
 	width: 100%;
 }
 
@@ -25,7 +25,7 @@ amp-sidebar {
 }
 
 .o-header__top-link-label {
-	@include oTypographySans(xs);
+	@include oTypographySans(-2);
 	font-size: 10px;
 }
 

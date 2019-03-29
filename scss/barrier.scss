@@ -18,7 +18,7 @@
 $barrier-padding: 20px;
 
 %amp-access-barrier__box {
-	border-bottom: 1px solid oColorsGetPaletteColor('pink-tint1');
+	border-bottom: 1px solid oColorsGetPaletteColor('black-5');
 }
 
 .amp-access-barrier__header {
@@ -27,19 +27,19 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__header-instruction {
-	@include oTypographySansBold(m);
+	@include oTypographySansBold(-1);
 	@include oColorsFor(box, background);
 	padding: $barrier-padding;
 
 	h3 {
-		@include oTypographySans(m);
+		@include oTypographySans(-1);
 		margin: 0;
 	}
 }
 
 .amp-access-barrier__login {
-	@include oTypographySansBold(s);
-	background: oColorsGetPaletteColor('pink-tint2');
+	@include oTypographySansBold(-2);
+	background: oColorsGetPaletteColor('black-10');
 	padding: $barrier-padding;
 }
 
@@ -51,7 +51,7 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__offer-title {
-	@include oTypographySansBold(l);
+	@include oTypographySansBold(2);
 	// TODO: Upgrade to latest o-typography
 	font-size: 24px;
 	line-height: 28px;
@@ -61,7 +61,7 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__offer-price {
-	@include oTypographySans(m);
+	@include oTypographySans(-1);
 	color: oColorsGetPaletteColor('black');
 	// TODO: Upgrade to latest o-typography
 	line-height: 20px;
@@ -70,11 +70,11 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__offer-description {
-	@include oTypographySans(s);
+	@include oTypographySans(-2);
 }
 
 .amp-access-barrier__offer-description-title {
-	@include oTypographySansBold(s);
+	@include oTypographySansBold(-2);
 	margin-top: 0;
 	margin-bottom: 0;
 }
@@ -85,7 +85,7 @@ $barrier-padding: 20px;
 	padding: 0;
 
 	li {
-		@include oTypographySans(s);
+		@include oTypographySans(-2);
 		color: oColorsGetPaletteColor('black');
 		// TODO: Upgrade to latest o-typography
 		line-height: 20px;
@@ -96,7 +96,7 @@ $barrier-padding: 20px;
 
 .amp-access-barrier__footer-tandc {
 	@extend %amp-access-barrier__box;
-	@include oTypographySansBold(s);
+	@include oTypographySansBold(-2);
 	text-align: center;
 	padding: $barrier-padding;
 }
@@ -130,7 +130,7 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__footer-other-title {
-	@include oTypographySansBold(m);
+	@include oTypographySansBold(-1);
 	text-align: center;
 }
 
@@ -139,7 +139,7 @@ $barrier-padding: 20px;
 	flex-basis: 33%;
 
 	a {
-		@include oTypographySansBold(s);
+		@include oTypographySansBold(-2);
 		border: 0 none;
 	}
 

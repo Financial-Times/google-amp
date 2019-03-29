@@ -1,9 +1,1 @@
-$o-buttons-themes__standout: map-merge($o-buttons-themes__standout, (
-	pressedselected: (
-		background: oColorsGetColorFor(o-buttons-standout-pressedselected, background)
-	)
-));
 
-$o-buttons-themes: map-merge($o-buttons-themes, (
-	standout: $o-buttons-themes__standout
-));

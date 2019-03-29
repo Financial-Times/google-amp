@@ -2,7 +2,7 @@ $o-footer-is-silent: false;
 @import 'o-footer/main';
 
 .o-footer {
-	@include oTypographySans(s);
+	@include oTypographySans(-1);
 }
 
 .o-footer__main {
@@ -10,7 +10,7 @@ $o-footer-is-silent: false;
 }
 
 .o-footer__matrix-group {
-	@include oGridColspan($span: 6);
+	@include oGridColspan((default: 6));
 }
 
 .o-footer__brand-logo {

@@ -1,9 +1,9 @@
 .u-border--all {
-	border: 1px solid oColorsGetPaletteColor('warm-3');
+	border: 1px solid oColorsGetPaletteColor('black-20');
 }
 
 .u-border--left {
-	border-left: 1px solid oColorsGetPaletteColor('warm-3');
+	border-left: 1px solid oColorsGetPaletteColor('black-20');
 }
 
 .u-margin--left-right {
@@ -14,13 +14,4 @@
 .u-padding--left-right {
 	padding-right: 16px;
 	padding-left: 16px;
-}
-
-%article-quote::before {
-	@include oTypographySerifDisplay(s);
-	display: inline-block;
-	vertical-align: -.5em; // sit around the baseline
-	line-height: inherit;
-	font-size: 80px; // enormous quote
-	content: '\201C';
 }

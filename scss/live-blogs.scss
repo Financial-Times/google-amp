@@ -2,17 +2,17 @@
 @import 'o-footer/main';
 
 @include oColorsSetUseCase(author-colour-1, text, 'claret');
-@include oColorsSetUseCase(author-colour-2, text, 'blue');
-@include oColorsSetUseCase(author-colour-3, text, 'green');
+@include oColorsSetUseCase(author-colour-2, text, 'oxford');
+@include oColorsSetUseCase(author-colour-3, text, 'jade');
 
 .live-blog--message {
 	margin: 0 -1em;
 	padding: 1em;
-	border-bottom: 1px solid oColorsGetPaletteColor('pink-tint2');
+	border-bottom: 1px solid oColorsGetPaletteColor('black-10');
 }
 
 .live-blog--author {
-	@include oTypographySansBold(s);
+	@include oTypographySansBold(-2);
 }
 
 @for $i from 1 through 3 {
@@ -37,29 +37,23 @@
 }
 
 .live-blog--update-button {
-	@include oButtons(big, standout);
+	@include oButtons(big, primary);
 }
 
 .live-blog--time {
-	@include oTypographySans(xs);
+	@include oTypographySans(-2);
 }
 
 .live-blog--status {
-	@include oTypographySansBold(xs);
-	@include oLabels();
+	@include oLabelsContent($opts: (
+		'base': true
+	));
 	vertical-align: middle;
 }
 
-.live-blog--status-pending {
-	@include oLabelsState(pending);
-}
-
 .live-blog--status-inprogress {
-	@include oLabelsState(live);
-}
-
-.live-blog--status-closed {
-	@include oLabelsState(closed);
+	background-color: oColorsGetPaletteColor('crimson');
+	color: oColorsGetPaletteColor('white');
 }
 
 .amp-live-list-item-new {
@@ -69,13 +63,13 @@
 // specifity to override .article's oTypographyBodyWrapper
 .article .article-liveblogs-excerpt {
 	&, p, ol, ul {
-		@include oTypographySans(s);
+		@include oTypographySans(-2);
 	}
 }
 
 @keyframes amp-live-list-item-highlight {
 	0% {
-		$faded-orange: rgba(oColorsGetPaletteColor('orange'), 0.5);
+		$faded-orange: rgba(oColorsGetPaletteColor('mandarin'), 0.5);
 		background: $faded-orange;
 	}
 	100% {

@@ -1,7 +1,7 @@
 @import 'setup';
 
 .article {
-	@include oTypographyBodyWrapper;
+	@include oTypographyWrapper;
 }
 
 .article__copyright-notice.article__copyright-notice {
@@ -19,7 +19,7 @@
 }
 
 .article__subhead--standard.article__subhead--standard {
-	@include oTypographySansBold(m);
+	@include oTypographySansBold(-1);
 }
 
 .article-header {
@@ -35,78 +35,35 @@
 // HACK: override default styling of oTypographyBodyWrapper
 // (rendered as '.article h1') using double classname specificity
 .headline.headline {
-	margin: 8px 0;
-
-	@include oGridRespondTo($until: M) {
-		@include responsiveType(8vh);
-		line-height: 1;
-
-		@media (orientation: portrait) {
-			@include responsiveType(4vh);
-		}
-	}
+	@include oTypographyHeadline;
 }
 
 // HACK: override default styling of oTypographyBodyWrapper
 // (rendered as '.article h1') using double classname specificity
 .article-standfirst.article-standfirst {
-	margin: 6px 0;
-	@include oTypographyLead;
-
-	@include oGridRespondTo($until: M) {
-		@include responsiveType(5vh);
-		line-height: 1.2;
-
-		@media (orientation: portrait) {
-			@include responsiveType(2.5vh);
-		}
-	}
+	@include oTypographyStandfirst;
+	font-weight: normal;
 }
 
 .article-dateline {
-	@include oTypographySans(s);
-	margin-top: 1em;
-	margin-bottom: 1em;
-
-	padding-top: 1em;
-	border-top: $border-divider;
+	@include oTypographyTimestamp;
 }
 
 .article-author-byline__author.article-author-byline__author {
-	@include oTypographyLinkTopic;
-	font-weight: bold;
+	@include oTypographyAuthor;
 }
 
 .primary-theme.primary-theme {
-	@include oTypographyLinkTopic;
-	@include oTypographySansBold(l);
-
-	@include oGridRespondTo($until: M) {
-		@include responsiveType(6vh);
-		line-height: 1;
-
-		@media (orientation: portrait) {
-			@include responsiveType(3vh);
-		}
-	}
-
-	margin: 0.5em 0;
-
-	a {
-		color: inherit;
-	}
-}
-
-.article__quote--full-quote {
-	@extend %article-quote;
+	@include oTypographyTopic;
+	margin-top: 1em;
 }
 
 .article__quote-footer {
-	@include oTypographySansBold(s);
+	@include oTypographySansBold(-2);
 }
 
 .article-big-number {
-	color: oColorsGetPaletteColor('grey-tint4');
+	color: oColorsGetPaletteColor('black-70');
 
 	// Reset oTypographyBodyWrapper
 	p {

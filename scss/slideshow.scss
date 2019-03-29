@@ -20,7 +20,7 @@
 }
 
 .slideshow__title.slideshow__title {
-	@include oTypographySans(m);
+	@include oTypographySans(-1);
 	padding: 10px;
 	margin: 0;
 }
