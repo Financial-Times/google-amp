@@ -1,0 +1,38 @@
+
+@mixin nContentMargins($headingTop: 0, $headingBottom: 1, $pSize: 1, $elementSize: 5) {
+	@include oTypographyMargin($top: $headingTop, $bottom: $headingBottom);
+
+	& + p {
+		@include oTypographyMargin($top: $pSize);
+	}
+
+	& + figure,
+	& + div:not(.n-content-layout__slot),
+	& + ul,
+	& + li,
+	& + aside {
+		@include oTypographyMargin($top: $elementSize);
+	}
+}
+
+.n-content-heading-2.n-content-heading-2 {
+	@include oTypographyHeadingLevel2();
+	@include nContentMargins($headingTop: 8);
+	// trigger a new formatting context so it won't run into floats
+	overflow: hidden;
+}
+
+.n-content-heading-3.n-content-heading-3 {
+	@include oTypographyHeadingLevel3();
+	@include nContentMargins();
+}
+
+.n-content-heading-4.n-content-heading-4 {
+	@include oTypographyHeadingLevel4();
+	@include nContentMargins($headingBottom: 3);
+}
+
+.n-content-heading-5.n-content-heading-5 {
+	@include oTypographyHeadingLevel5();
+	@include nContentMargins();
+}

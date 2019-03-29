@@ -1,4 +1,5 @@
 @import 'setup';
+@import '_headings';
 
 .article {
 	@include oTypographyWrapper;
@@ -34,12 +35,6 @@
 
 // HACK: override default styling of oTypographyBodyWrapper
 // (rendered as '.article h1') using double classname specificity
-.headline.headline {
-	@include oTypographyHeadline;
-}
-
-// HACK: override default styling of oTypographyBodyWrapper
-// (rendered as '.article h1') using double classname specificity
 .article-standfirst.article-standfirst {
 	@include oTypographyStandfirst;
 	font-weight: normal;
@@ -58,6 +53,9 @@
 	margin-top: 1em;
 }
 
+.article__quote {
+	margin: 0;
+}
 .article__quote-footer {
 	@include oTypographySansBold(-2);
 }

@@ -11,11 +11,11 @@ const tweetQuote = tweetId => `<amp-twitter
 
 module.exports = match({
 	'blockquote:not(.n-content-pullquote)'(el) {
-		el.attr('class', 'article__quote article__quote--full-quote aside--content c-box u-border--left u-padding--left-right');
+		el.attr('class', 'article__quote article__quote--full-quote');
 	},
 
 	'blockquote.n-content-pullquote'(el) {
-		el.attr('class', 'article__quote article__quote--pull-quote aside--content c-box c-box--inline u-border--all');
+		el.attr('class', 'article__quote article__quote--pull-quote');
 		el.prepend('<div class="pull-quote__quote-marks"></div>');
 		el.find('.n-content-pullquote__content').attr('class', 'u-padding--left-right');
 		el.find('.n-content-pullquote__footer').attr('class', 'article__quote-footer');

@@ -12,7 +12,7 @@
 }
 
 .live-blog--author {
-	@include oTypographySansBold(-2);
+	@include oTypographyAuthor
 }
 
 @for $i from 1 through 3 {
@@ -41,7 +41,8 @@
 }
 
 .live-blog--time {
-	@include oTypographySans(-2);
+	@include oTypographyTimestamp;
+	margin-bottom: 0;
 }
 
 .live-blog--status {
@@ -63,7 +64,7 @@
 // specifity to override .article's oTypographyBodyWrapper
 .article .article-liveblogs-excerpt {
 	&, p, ol, ul {
-		@include oTypographySans(-2);
+		@include oTypographyStandfirst;
 	}
 }
 
