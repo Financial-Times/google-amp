@@ -17,7 +17,6 @@ module.exports = match({
 	'blockquote.n-content-pullquote'(el) {
 		el.attr('class', 'article__quote article__quote--pull-quote');
 		el.prepend('<div class="pull-quote__quote-marks"></div>');
-		el.find('.n-content-pullquote__content').attr('class', 'u-padding--left-right');
 		el.find('.n-content-pullquote__footer').attr('class', 'article__quote-footer');
 	},
 

@@ -54,35 +54,19 @@
 }
 
 .article__quote {
-	margin: 0;
+	margin: 0 0 1em;
 }
 .article__quote-footer {
 	@include oTypographySansBold(-2);
 }
 
-.article-big-number {
-	color: oColorsGetPaletteColor('black-70');
-
-	// Reset oTypographyBodyWrapper
-	p {
-		font-size: inherit;
-		font-family: inherit;
-		font-weight: inherit;
-		color: inherit;
-		line-height: inherit;
-		margin: 0;
-	}
-}
-
-.article-big-number__title {
+.n-content-big-number,
+.n-content-big-number__title,
+.n-content-big-number__title > p {
 	@include oTypographyBigNumber;
-
-	p {
-		margin: 0 0 5px;
-	}
 }
 
-.article-big-number__content {
+.n-content-big-number__content > p {
 	@include oTypographyFooter;
 }
 
