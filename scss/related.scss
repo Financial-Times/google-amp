@@ -5,8 +5,7 @@
 	margin-top: 40px;
 }
 
-.related-content__theme,
-.more-ons__header {
+.related-content__theme {
 	@include oTypographyTopic;
 	display: block;
 	a {
@@ -86,12 +85,12 @@
 .related-content__summary {
 	@include oTypographySans(-1);
 	line-height: 1.3em;
-	margin: 0;
+	margin: 8px 0;
 	display: block;
 }
 
 .related-content__theme {
-	margin: 0;
+	margin: 8px 0;
 }
 
 .related-content__theme-link {
@@ -110,19 +109,8 @@
 	@include oGridColspan((default: 12, M: 6));
 }
 
-.more-ons__item-wrapper {
-	border: 1px solid oColorsGetPaletteColor('black-20');
-	padding: oGridGutter(L) oGridGutter(L) 0;
-	margin-bottom: oGridGutter(L);
-}
-
-.more-ons__type {
-	margin: -40px 0 8px 10px;
-}
-
 .more-ons__header {
-	@include oTypographySansBold(2);
-	color: oColorsGetPaletteColor('claret');
+	@include oTypographyProductHeadingLevel7;
 	margin-top: 0;
 }
 
@@ -141,11 +129,11 @@
 
 .more-ons__link {
 	@include oTypographyLink;
-	@include oTypographySans(-1);
+	@include oTypographySans(1);
 }
 
 .more-ons__date {
-	@include oTypographySans(-1);
+	@include oTypographyTimestamp;
 	display: block;
 	margin-top: 0.5em;
 }

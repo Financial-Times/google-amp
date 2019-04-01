@@ -1,15 +1,11 @@
 {{#if moreOns}}
 	<aside class="more-ons">
+
 		<ul class="more-ons__items">
 			{{#each moreOns}}
 			<li class="more-ons__item">
 				<div class="more-ons__item-wrapper">
-					<div class="more-ons__type">
-						<h2 class="more-ons__type-text c-box__title-text">Latest {{preposition}}</h2>
-					</div>
-
-					{{> related/theme class='more-ons__header' linkType='more-ons-theme'}}
-
+					<h2 class="more-ons__header">Latest {{preposition}} {{prefLabel}}</h2>
 					<ul class="more-ons__stories">
 						{{#each articles}}
 						<li class="more-ons__story">
