@@ -3,6 +3,7 @@
 @include oFontsInclude(MetricWeb, regular); // body
 @include oFontsInclude(MetricWeb, semibold); // headings
 @include oFontsInclude(FinancierDisplayWeb); // headings
+@include oFontsInclude(FinancierDisplayWeb, bold); // headings
 
 @import 'footer';
 

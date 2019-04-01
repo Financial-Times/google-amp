@@ -36,3 +36,7 @@
 	@include oTypographyHeadingLevel5();
 	@include nContentMargins();
 }
+
+.headline.headline--large {
+	@include oTypographyHeadlineLarge;
+}
