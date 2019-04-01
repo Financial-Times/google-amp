@@ -70,6 +70,10 @@
 	@include oTypographyFooter;
 }
 
+.n-content-recommended__title.n-content-recommended__title {
+	@include oTypographySansBold(1);
+}
+
 abbr[title] {
 	border-bottom: 0;
 	text-decoration: underline dotted;
