@@ -14,7 +14,7 @@ const formatRelatedContent = (options, item) => ({
 	summary: item.standfirst,
 	theme: {
 		url: item.displayConcept.url,
-		name: item.displayConcept.prefLabel,
+		prefLabel: item.displayConcept.prefLabel,
 	},
 });
 
@@ -43,7 +43,6 @@ module.exports = (article, options) => Promise.all(
 		related.forEach(item => {
 			options.relatedArticleDeduper.push(item.id);
 		});
-
 		return Promise.all(related.map(formatRelatedContent.bind(null, options)));
 	})
 	.then(relatedContent => Object.assign(article, {relatedContent}))

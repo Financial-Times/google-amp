@@ -8,6 +8,7 @@
 .related-content__theme,
 .more-ons__header {
 	@include oTypographyTopic;
+	display: block;
 	a {
 		&:hover {
 			border-bottom: 1px dotted;
@@ -19,7 +20,7 @@
 // Related Content
 
 .related-content__header {
-	@include oTypographyDisplay(3);
+	@include oTypographyProductHeadingLevel7;
 }
 
 .related-content__stories {
@@ -73,7 +74,7 @@
 
 .related-content__link {
 	@include oTypographyLink;
-	@include oTypographySans(-1);
+	@include oTypographySans(1);
 }
 
 .related-content__date {
