@@ -12,4 +12,3 @@ for(let i = 0; i < contentToBePurged.length; i++) {
 		purgeAmp(`https://amp.ft.com/content/${contentToBePurged[i]}`);
 	}, (i + 1) * 3000);
 }
-
