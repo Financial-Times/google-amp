@@ -1,46 +1,182 @@
+references:
+
+  container_config_node10: &container_config_node10
+    working_directory: ~/project/build
+    docker:
+      - image: circleci/node:10.15-browsers
+
+  workspace_root: &workspace_root
+    ~/project
+
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
+
+  npm_cache_keys: &npm_cache_keys
+    keys:
+        - v2-dependency-npm-{{ checksum "package.json" }}-
+        - v2-dependency-npm-{{ checksum "package.json" }}
+        - v2-dependency-npm-
+
+  cache_npm_cache: &cache_npm_cache
+    save_cache:
+        key: v2-dependency-npm-{{ checksum "package.json" }}-{{ epoch }}
+        paths:
+        - ./node_modules/
+
+  restore_npm_cache: &restore_npm_cache
+    restore_cache:
+        <<: *npm_cache_keys
+
+  filters_only_master: &filters_only_master
+    branches:
+      only: master
+
+  filters_ignore_master: &filters_ignore_master
+    branches:
+      ignore: master
+
+  filters_ignore_tags: &filters_ignore_tags
+    tags:
+      ignore: /.*/
+
+  filters_version_tag: &filters_version_tag
+    tags:
+      only:
+        - /^v?\d+\.\d+\.\d+(?:-beta\.\d+)?$/
+    branches:
+      ignore: /.*/
+
 version: 2
 
 jobs:
+
   build:
-    working_directory: ~/Financial-Times/google-amp
-
-    docker:
-      - image: circleci/node:8
-
+    <<: *container_config_node10
     steps:
       - checkout
-
-      - restore_cache:
-          keys:
-            - npm-cache-{{ checksum "package-lock.json" }}
-            - npm-cache-
-
       - run:
-          command: sudo npm install -g --no-progress npm@latest
-
+          name: Checkout next-ci-shared-helpers
+          command: git clone --depth 1 git@github.com:Financial-Times/next-ci-shared-helpers.git .circleci/shared-helpers
+      - *restore_npm_cache
       - run:
-          command: npm install
-
-      - save_cache:
-          key: npm-cache-{{ checksum "package-lock.json" }}
+          name: Install project dependencies
+          command: make install
+      - run:
+          name: shared-helper / npm-install-peer-deps
+          command: .circleci/shared-helpers/helper-npm-install-peer-deps
+      - run:
+          name: shared-helper / npm-update
+          command: .circleci/shared-helpers/helper-npm-update
+      - run:
+          name: Run the project build-production task
+          command: make build-production
+      - run:
+          name: shared-helper / generate-build-state-artifacts
+          command: .circleci/shared-helpers/helper-generate-build-state-artifacts
+          when: always
+      - *cache_npm_cache
+      - store_artifacts:
+          path: build-state
+          destination: build-state
+      - persist_to_workspace:
+          root: *workspace_root
           paths:
-            - ./node_modules
+            - build
 
+  test:
+    <<: *container_config_node10
+    steps:
+      - *attach_workspace
       - run:
-          command: npm test
+          name: Run tests
+          command: make test
           environment:
-            MOCHA_FILE: test-results/mocha/test-results.xml
-
+            JEST_JUNIT_OUTPUT: test-results/jest/results.xml
+            MOCHA_FILE: test-results/mocha/results.xml
+      - store_test_results:
+          path: test-results
       - store_artifacts:
           path: test-results
           destination: test-results
 
-      - store_artifacts:
-          path: coverage
-          destination: coverage
+  provision:
+    <<: *container_config_node10
+    steps:
+      - *attach_workspace
+      - run:
+          name: shared-helper / setup-heroku-cli
+          command: .circleci/shared-helpers/helper-setup-heroku-cli
+          # TODO: Move this out into next circleci app preset env variables in Vault
+          environment:
+            HEROKU_LOGIN: next.developers@ft.com
+      - run:
+          name: Create and test Heroku review app
+          command: make test-review-app
 
-      - store_test_results:
-          path: test-results
+
+  deploy:
+    <<: *container_config_node10
+    steps:
+      - *attach_workspace
+      - run:
+          name: shared-helper / helper-setup-heroku-cli
+          command: .circleci/shared-helpers/helper-setup-heroku-cli
+          # TODO: Move this out into next circleci app preset env variables in Vault
+          environment:
+            HEROKU_LOGIN: next.developers@ft.com
+      - run:
+          name: shared-helper / helper-install-puppeteer-deps
+          command: bash .circleci/shared-helpers/helper-install-puppeteer-deps
+      - run:
+          name: Deploy to production
+          command: make deploy
+
+workflows:
+
+  version: 2
+
+  build-test-provision:
+    jobs:
+      - build:
+          filters:
+            <<: *filters_ignore_master
+      - test:
+          requires:
+            - build
+      - provision:
+          requires:
+            - build
+
+  build-test-deploy:
+    jobs:
+      - build:
+          filters:
+            <<: *filters_only_master
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            <<: *filters_only_master
+    jobs:
+      - build:
+          context: next-nightly-build
+      - test:
+          requires:
+            - build
+          context: next-nightly-build
+      - provision:
+          requires:
+            - build
+          context: next-nightly-build
 
 notify:
   webhooks:
