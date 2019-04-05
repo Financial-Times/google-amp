@@ -13,21 +13,21 @@ const shareParams = {
 module.exports = (article, options) => Object.assign(article, {
 	SOURCE_PORT: options.production ? '' : ':5000',
 
-	AUTH_AUTHORIZATION_URL: options.accessMocked ?
-		`//${options.host}/amp-access-mock/access?` :
-		`https://${liveAccessHost}/amp-access?`,
+	AUTH_AUTHORIZATION_URL: options.accessMocked
+		? `//${options.host}/amp-access-mock/access?`
+		: `https://${liveAccessHost}/amp-access?`,
 
-	AUTH_PINGBACK_URL: options.accessMocked ?
-		`//${options.host}/amp-access-mock/pingback?` :
-		`https://${liveAccessHost}/amp-pingback?`,
+	AUTH_PINGBACK_URL: options.accessMocked
+		? `//${options.host}/amp-access-mock/pingback?`
+		: `https://${liveAccessHost}/amp-pingback?`,
 
-	AUTH_LOGIN_URL: options.accessMocked ?
-		`//${options.host}/amp-access-mock/login?` :
-		'https://accounts.ft.com/login?',
+	AUTH_LOGIN_URL: options.accessMocked
+		? `//${options.host}/amp-access-mock/login?`
+		: 'https://accounts.ft.com/login?',
 
-	AUTH_LOGOUT_URL: options.accessMocked ?
-		`//${options.host}/amp-access-mock/logout?` :
-		`https://${liveAccessHost}/amp-logout?`,
+	AUTH_LOGOUT_URL: options.accessMocked
+		? `//${options.host}/amp-access-mock/logout?`
+		: `https://${liveAccessHost}/amp-logout?`,
 
 	description: article.standfirst,
 

@@ -45,9 +45,12 @@ module.exports = (req, res, next) => {
 	}).catch(next);
 };
 
-module.exports.getProducts = ({allocationId, sessionId, countryCode, countryCodeTwoLetters,
-	continentCode, referer, userAgent}) =>
-	ammit({allocationId, sessionId, countryCodeTwoLetters, continentCode, referer, userAgent})
+module.exports.getProducts = ({
+	allocationId, sessionId, countryCode, countryCodeTwoLetters,
+	continentCode, referer, userAgent,
+}) => ammit({
+	allocationId, sessionId, countryCodeTwoLetters, continentCode, referer, userAgent,
+})
 	.then(({abVars, allocation}) => fetch('https://barrier-guru.ft.com/barrier', {
 		headers: {
 			'country-code': countryCode,
@@ -55,8 +58,8 @@ module.exports.getProducts = ({allocationId, sessionId, countryCode, countryCode
 			'x-ft-ab': abVars,
 		},
 	})
-	.then(json)
-	.then(barrier => ({
-		items: barrier.offers.filter(offer => offer.name !== 'subscription-premium-digital-variant') || [],
-		allocation,
-	})));
+		.then(json)
+		.then(barrier => ({
+			items: barrier.offers.filter(offer => offer.name !== 'subscription-premium-digital-variant') || [],
+			allocation,
+		})));

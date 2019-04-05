@@ -1,6 +1,8 @@
 'use strict';
 
 const nEsClient = require('@financial-times/n-es-client');
+const errors = require('http-errors');
+const promiseAllObj = require('@quarterto/promise-all-object');
 const addStoryPackage = require('../related-content/story-package');
 const addMoreOns = require('../related-content/more-ons');
 const articleFlags = require('../article/article-flags');
@@ -10,10 +12,8 @@ const transformSlideshows = require('../transforms/slideshows');
 const isLiveBlog = require('../live-blogs/is-live-blog');
 const getLiveBlog = require('../live-blogs/get-live-blog');
 
-const errors = require('http-errors');
 const reportError = require('../report-error');
 
-const promiseAllObj = require('@quarterto/promise-all-object');
 const getCSS = require('./css');
 const environmentOptions = require('./environment-options');
 const handlebars = require('../handlebars');
@@ -66,9 +66,9 @@ const assembleArticle = (uuid, options) => {
 	return nEsClient.get(uuid)
 		.then(
 			response => {
-				if(response &&
-					(!response.originatingParty || response.originatingParty === 'FT') &&
-					(!response.type || response.type === 'article')
+				if(response
+					&& (!response.originatingParty || response.originatingParty === 'FT')
+					&& (!response.type || response.type === 'article')
 				) {
 					return response;
 				}
@@ -99,13 +99,12 @@ const assembleArticle = (uuid, options) => {
 		})
 
 		// First phase: network-dependent fetches and transforms in parallel
-		.then(article =>
-			Promise.all([
-				transformArticle(article, options),
-				addStoryPackage(article, options),
-				addMoreOns(article, options),
-				fetchSlideshows(article, options),
-			])
+		.then(article => Promise.all([
+			transformArticle(article, options),
+			addStoryPackage(article, options),
+			addMoreOns(article, options),
+			fetchSlideshows(article, options),
+		])
 
 			// Second phase: transforms which rely on first phase fetches
 			.then(() => Promise.all([
@@ -114,8 +113,7 @@ const assembleArticle = (uuid, options) => {
 			]))
 
 			// Return the article
-			.then(() => article)
-		);
+			.then(() => article));
 };
 
 module.exports = assembleArticle;

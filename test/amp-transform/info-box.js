@@ -4,7 +4,7 @@ const {expect} = require('../utils/chai');
 const transformBody = require('../../server/lib/transforms/body');
 
 describe('info box transform', () => {
-	it('should transform next info-box to old c-box markup', async () => {
+	it('should transform next info-box to old c-box markup', async() => {
 		expect(await transformBody(`<aside class="n-content-info-box">
 			<h3 class="n-content-info-box__headline">Driven by choice</h3>
 			<div class="n-content-info-box__content">

@@ -3,9 +3,9 @@
 const {XmlEntities: entities} = require('html-entities');
 const fetchres = require('fetchres');
 const {STATUS_CODES: statusCodes} = require('http');
+const url = require('url');
 const reportError = require('../../report-error');
 const Warning = require('../../warning');
-const url = require('url');
 const fetch = require('../../fetch/wrap')(require('node-fetch'));
 
 const imageServiceUrl = (uri, {mode, width} = {}) => url.format({
@@ -52,9 +52,9 @@ module.exports = ($, options) => Promise.all($('img[src]').map((i, el) => {
 	const $el = $(el);
 	const isAside = !!$el.parents('.n-content-related-box').length;
 	const imageSrc = entities.decode($el.attr('src')).replace(
-			/^(https?:\/\/ftalphaville.ft.com)?\/wp-content/,
-			'https://ftalphaville-wp.ft.com/wp-content'
-		)
+		/^(https?:\/\/ftalphaville.ft.com)?\/wp-content/,
+		'https://ftalphaville-wp.ft.com/wp-content'
+	)
 		.replace('assanka_web_chat', 'wp-plugin-ft-web-chat');
 
 	const ampImg = $('<amp-img>');

@@ -26,7 +26,10 @@ unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)
 
 eslint: $(js-files) $(test-files-all)
-	eslint --fix $^
+	npx eslint --fix $^
+
+lintspaces: $(lintspace-files)
+	lintspaces -n -d tabs -l 2 $^
 
 lint: lintspaces eslint
 

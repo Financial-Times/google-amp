@@ -10,11 +10,11 @@ describe('amp validator', function() {
 	this.timeout(30000);
 	let validator;
 
-	before(async () => {
+	before(async() => {
 		validator = await ampValidator.getInstance();
 	});
 
-	testUUIDs.forEach(uuid => it(`should pass for uuid ${uuid}`, async () => {
+	testUUIDs.forEach(uuid => it(`should pass for uuid ${uuid}`, async() => {
 		const article = await render(uuid, {
 			production: false,
 			showEverything: true,
