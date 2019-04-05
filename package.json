@@ -6,7 +6,6 @@
   "main": "app.js",
   "scripts": {
     "test": "make test",
-    "postinstall": "scripts/build/postinstall.sh && scripts/build/stricthax.sh",
     "lint": "make lint",
     "prestart": "enforce-node-version",
     "start": "nodemon app.js",
@@ -104,7 +103,7 @@
     "rss": "^1.1.1"
   },
   "engines": {
-    "node": "^10.15.0",
+    "node": "^10.15.0 || ^11",
     "npm": "^6.5.0"
   },
   "devDependencies": {
