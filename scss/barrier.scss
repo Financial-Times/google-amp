@@ -23,6 +23,7 @@ $barrier-padding: 20px;
 
 .amp-access-barrier__header {
 	@extend %amp-access-barrier__box;
+	margin-bottom: 20px;
 }
 
 .amp-access-barrier__header-instruction {
