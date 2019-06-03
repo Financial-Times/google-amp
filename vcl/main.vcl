@@ -1,6 +1,6 @@
 table origin_hosts {
-	"us": "ft-google-amp-prod-us.herokuapp.com",
-	"eu": "ft-google-amp-prod-eu.herokuapp.com",
+	"us": "google-amp-prod-us.herokuapp.com",
+	"eu": "google-amp-prod-eu.herokuapp.com",
 }
 
 sub vcl_recv {

@@ -6,9 +6,9 @@ node_modules/@financial-times/n-gage/index.mk:
 
 
 VAULT_NAME=google-amp
-HEROKU_APP_STAGING=ft-google-amp-staging
-HEROKU_APP_EU=ft-google-amp-prod-eu
-HEROKU_APP_US=ft-google-amp-prod-us
+HEROKU_APP_STAGING=google-amp-staging
+HEROKU_APP_EU=google-amp-prod-eu
+HEROKU_APP_US=google-amp-prod-us
 
 js-files = app.js $(shell find server -name '*.js')
 test-files = $(shell find test -name 'index.js')
