@@ -16,7 +16,7 @@ module.exports = [
 			'/content/146da558-4dee-11e3-8fa5-00144feabdc0': {
 				status: 200,
 				waitUntil: 'load',
-				pageErrors: 2, //some URLs don't work on 3002 and so error
+				pageErrors: 2, // some URLs don't work on 3002 and so error
 				cacheHeaders: true,
 				performance: 10000,
 				elements: {
