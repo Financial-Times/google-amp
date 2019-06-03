@@ -38,13 +38,3 @@ run:
 
 build-production:
 	node -r dotenv/config server/lib/article/css
-
-test-review-ap%:
-	$(MAKE) gtg-review-app
-	TEST_URL="https://$$(cat $(REVIEW_APP_FILE)).herokuapp.com" \
-		$(MAKE) smoke a11y
-	# Destroy review app if it passes tests on the master branch
-ifeq ($(CIRCLE_BRANCH),master)
-	heroku destroy -a $$(cat $(REVIEW_APP_FILE)) --confirm $$(cat $(REVIEW_APP_FILE))
-endif
-	@$(DONE)
