@@ -5,7 +5,7 @@ module.exports = [
 	{
 		timeout: 10000,
 		urls: {
-			'/__health': 200,
+			'/__health': {status: 200, https: true},
 		},
 	},
 
@@ -15,6 +15,7 @@ module.exports = [
 		urls: {
 			'/content/146da558-4dee-11e3-8fa5-00144feabdc0': {
 				status: 200,
+				https: true,
 				waitUntil: ['load', 'networkidle2'],
 				pageErrors: 2, // some URLs don't work on 3002 and so error
 				cacheHeaders: true,
