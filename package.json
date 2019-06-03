@@ -28,9 +28,7 @@
   "dependencies": {
     "@financial-times/fastly-tools": "^1.7.1",
     "@financial-times/n-es-client": "^1.6.2",
-    "@financial-times/n-gage": "^3.7.1",
     "@financial-times/n-handlebars": "^1.22.1",
-    "@financial-times/n-heroku-tools": "^8.1.3",
     "@financial-times/release-log": "^1.1.5",
     "@georgecrawford/postcss-remove-important": "^1.4.0",
     "@quarterto/assert-env": "^1.4.0",
@@ -108,6 +106,8 @@
   },
   "devDependencies": {
     "@financial-times/change-request": "^1.1.0",
+    "@financial-times/n-gage": "^3.7.1",
+    "@financial-times/n-heroku-tools": "^8.1.3",
     "@financial-times/n-test": "^1.13.11",
     "@quarterto/chai-dom-equal": "^1.6.0",
     "@quarterto/chai-selector": "^1.3.0",
