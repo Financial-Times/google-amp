@@ -1,8 +1,8 @@
 'use strict';
 
 const url = require('url');
-const reportError = require('../../report-error');
 const match = require('@quarterto/cheerio-match-multiple');
+const reportError = require('../../report-error');
 
 const validProtocols = [
 	'ftp', 'http', 'https', 'mailto', 'fb-messenger', 'skype',
@@ -30,9 +30,11 @@ module.exports = match({
 		try {
 			validateHref(el.attr('href'));
 		} catch(e) {
-			reportError(options.raven, e, {extra: {
-				linkHtml: $.html(el),
-			}});
+			reportError(options.raven, e, {
+				extra: {
+					linkHtml: $.html(el),
+				},
+			});
 
 			el.replaceWith(el.contents());
 		}

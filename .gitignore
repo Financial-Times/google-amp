@@ -1,5 +1,5 @@
 node_modules
-.env
+*.env*
 .env.mk
 bower_components
 css

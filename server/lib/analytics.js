@@ -70,7 +70,7 @@ module.exports.getJson = ({req, uuid}) => {
 		user: {
 			ft_session: 'AUTHDATA(data.session)',
 
-/*
+			/*
 			// See /views/partials/abTest.html and /scss/abTest.scss
 			ab: {
 				'background-color-test': 'VARIANT(background-color-test)',

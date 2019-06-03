@@ -4,7 +4,7 @@ const {expect} = require('../utils/chai');
 const transformBody = require('../../server/lib/transforms/body');
 
 describe('table transform', () => {
-	it('should replace table with link', async () => {
+	it('should replace table with link', async() => {
 		const tableId = 'table-00000000-000-0000-0000-000000000000_2';
 		const tableHtml = `
 			<div class="o-table-container o-table-container--contracted">

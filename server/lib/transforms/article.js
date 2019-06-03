@@ -1,10 +1,10 @@
 'use strict';
 
+const cheerio = require('cheerio');
 const dateTransform = require('./extra/date');
 const schemaHeadlineTransform = require('./extra/schema-headline');
 const extractMainImage = require('./extra/extract-main-image');
 const transformBody = require('./body');
-const cheerio = require('cheerio');
 
 module.exports = (contentItem, options) => transformBody(contentItem.bodyHTML, options)
 	.then(transformedBody => {

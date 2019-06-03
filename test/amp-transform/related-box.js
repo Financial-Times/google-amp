@@ -4,7 +4,7 @@ const {expect} = require('../utils/chai');
 const transformBody = require('../../server/lib/transforms/body');
 
 describe('related box transform', () => {
-	it('should tranform next-related-box to old c-box markup', async () => {
+	it('should tranform next-related-box to old c-box markup', async() => {
 		expect(
 			await transformBody(`<aside class="n-content-related-box" role="complementary">
 				<h3 class="n-content-related-box__title">
@@ -32,7 +32,7 @@ describe('related box transform', () => {
 		</aside>`);
 	});
 
-	it('should tranform aside image links properly', async () => {
+	it('should tranform aside image links properly', async() => {
 		expect(
 			await transformBody(`<aside class="n-content-related-box" role="complementary">
 				<a class="n-content-related-box__image-link" href="/content/0a5e1620-c0f5-11e5-846f-79b0e3d20eaf">

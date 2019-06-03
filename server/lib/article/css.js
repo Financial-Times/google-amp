@@ -9,11 +9,8 @@ const sassEnv = require('@quarterto/sass-env');
 const fs = require('fs-promise');
 const mkdirp = require('mkdirp-promise');
 const path = require('path');
-const Warning = require('../warning');
-const reportError = require('../report-error');
 const promiseAllObject = require('@quarterto/promise-all-object');
 const selectFeatures = require('@quarterto/select-features');
-const handlebars = require('../handlebars');
 
 const scssPath = path.resolve('scss');
 const bowerPath = path.resolve('bower_components');
@@ -28,25 +25,28 @@ const discardEmpty = require('postcss-discard-empty');
 const removeUnused = require('postcss-remove-unused');
 
 const csso = require('csso');
+const handlebars = require('../handlebars');
+const reportError = require('../report-error');
+const Warning = require('../warning');
 
 const compileCss = ({entry, html} = {}) => renderScss({
 	file: path.join(scssPath, `${entry}.scss`),
 	includePaths: [scssPath, bowerPath],
 	functions: sassFunctions(sassEnv),
 })
-.then(({css}) => postCss([
-	autoprefixer({browsers: 'last 2 versions'}),
-	removeImportant,
-	inlineSvg,
-	discardEmpty,
-].concat(html ? [
-	removeUnused({html}),
-] : [])).process(css))
-.then(compiled => compiled.toString());
+	.then(({css}) => postCss([
+		autoprefixer({browsers: 'last 2 versions'}),
+		removeImportant,
+		inlineSvg,
+		discardEmpty,
+	].concat(html ? [
+		removeUnused({html}),
+	] : [])).process(css))
+	.then(compiled => compiled.toString());
 
 const getCSSEntries = () => fs.readdir(scssPath)
 	.then(files => files.filter(file => file.endsWith('.scss') && !file.startsWith('_'))
-	.map(file => path.basename(file, '.scss')));
+		.map(file => path.basename(file, '.scss')));
 
 const featureTemplate = {
 	base: 'layouts/layout',
@@ -62,8 +62,8 @@ const enableAllFlags = {
 	enableBarrier: true,
 };
 
-const getFeatureHTML = entry => entry in featureTemplate ?
-	handlebars.standalone().then(
+const getFeatureHTML = entry => entry in featureTemplate
+	? handlebars.standalone().then(
 		hbs => hbs.renderView(featureTemplate[entry], Object.assign({
 			body: '',
 		}, enableAllFlags))
@@ -125,12 +125,14 @@ module.exports = (article, options) => {
 					`${bundleSize}, ${exceeding ? 'exceeding' : 'approaching'} ${ampLimit}.`
 				);
 
-				reportError(options.raven, err, {extra: {
-					articleUUID: article.id,
-					cssTime: time,
-					cssSize: css.length,
-					features: enabledFeatures,
-				}});
+				reportError(options.raven, err, {
+					extra: {
+						articleUUID: article.id,
+						cssTime: time,
+						cssSize: css.length,
+						features: enabledFeatures,
+					},
+				});
 			} else if(options.development) {
 				console.log(`Notice: ${bundleSize}. Took ${time}ms. Detected features: ${JSON.stringify(enabledFeatures)}`);
 			}

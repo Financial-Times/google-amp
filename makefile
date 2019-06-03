@@ -1,35 +1,19 @@
-export SHELL := /bin/bash
-export PATH := $(PATH):$(shell npm bin)
+node_modules/@financial-times/n-gage/index.mk:
+	npm install --no-save --no-package-lock @financial-times/n-gage
+	touch $@
 
-HAS_HEROKU_CLI := $(shell command -v heroku 2> /dev/null)
+-include node_modules/@financial-times/n-gage/index.mk
 
-ifdef HAS_HEROKU_CLI
-ifndef CI
-	-include .env.mk
-endif
-endif
+
+VAULT_NAME=google-amp
+HEROKU_APP_STAGING=google-amp-staging
+HEROKU_APP_EU=google-amp-prod-eu
+HEROKU_APP_US=google-amp-prod-us
 
 js-files = app.js $(shell find server -name '*.js')
 test-files = $(shell find test -name 'index.js')
 test-files-all = $(shell find test -name '*.js')
 lintspace-files = $(js-files) $(test-files-all) $(shell find scripts -name '*.js' -or -name '*.sh') $(wildcard scss/*.scss) $(shell find views -name '*.html')
-
-HEROKU_CONFIG_OPTS = -i HEROKU_ -i NODE_ENV -l NODE_ENV=development
-HEROKU_CONFIG_APP = ft-google-amp-prod-eu
-
-.env:
-	heroku-config-to-env $(HEROKU_CONFIG_OPTS) $(HEROKU_CONFIG_APP) $@
-
-.env.mk: .env
-	sed 's/"//g ; s/=/:=/ ; s/^/export /' < $< > $@
-
-lintspaces: $(lintspace-files)
-	lintspaces -n -d tabs -l 2 $^
-
-eslint: $(js-files) $(test-files-all)
-	eslint --fix $^
-
-lint: lintspaces eslint
 
 test: lint $(js-files) $(test-files-all)
 ifeq ($(CI),true)
@@ -41,4 +25,26 @@ endif
 unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)
 
-.PHONY: bench
+eslint: $(js-files) $(test-files-all)
+	npx eslint --fix $^
+
+lintspaces: $(lintspace-files)
+	lintspaces -n -d tabs -l 2 $^
+
+lint: lintspaces eslint
+
+run:
+	npm start
+
+build-production:
+	node -r dotenv/config server/lib/article/css
+
+test-review-ap%:
+	$(MAKE) gtg-review-app
+	TEST_URL="https://$$(cat $(REVIEW_APP_FILE)).herokuapp.com" \
+		$(MAKE) smoke a11y
+	# Destroy review app if it passes tests on the master branch
+ifeq ($(CIRCLE_BRANCH),master)
+	heroku destroy -a $$(cat $(REVIEW_APP_FILE)) --confirm $$(cat $(REVIEW_APP_FILE))
+endif
+	@$(DONE)

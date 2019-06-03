@@ -29,8 +29,7 @@ const addArticles = annotation => nEsClient.search({
 			title: article.title,
 			summary: article.standfirst,
 			image: sanitizeImage(article.mainImage),
-		}))
-	)
+		})))
 	.then(articles => Object.assign(annotation, {articles}))
 	.catch(error => Object.assign(annotation, {error}));
 
@@ -88,7 +87,7 @@ module.exports = (article, options) => Promise.all(
 				options.relatedArticleDeduper.push(item.id);
 				return true;
 			})
-			.slice(0, moreOnCount);
+				.slice(0, moreOnCount);
 			return !!moreOn.articles.length;
 		});
 });

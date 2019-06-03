@@ -1,6 +1,6 @@
 table origin_hosts {
-  "us": "ft-google-amp-prod-us.herokuapp.com",
-  "eu": "ft-google-amp-prod-eu.herokuapp.com",
+	"us": "google-amp-prod-us.herokuapp.com",
+	"eu": "google-amp-prod-eu.herokuapp.com",
 }
 
 sub vcl_recv {
@@ -100,8 +100,8 @@ sub vcl_fetch {
 
 	if (beresp.status == 404) {
 		if ((!beresp.http.Expires) && (!beresp.http.Cache-Control:max-age) && (!beresp.http.Surrogate-Control:max-age) && (!beresp.http.Cache-Control:s-maxage)) {
-      set beresp.ttl = 7d;
-    }
+			set beresp.ttl = 7d;
+		}
 	}
 
 	# Deliver stale if possible when unexpected requests are received from origin

@@ -37,9 +37,7 @@ module.exports = (events, options) => {
 	const sortOrder = options.content_order === 'descending' || true ? 'desc' : 'asc';
 
 	const sortedMessages = orderBy(values(messages), 'emb', sortOrder);
-	const filteredMessages = options.lastUpdate ? sortedMessages.filter(message =>
-		!message.datemodified || message.deleted || message.datemodified >= options.lastUpdate
-	) : sortedMessages;
+	const filteredMessages = options.lastUpdate ? sortedMessages.filter(message => !message.datemodified || message.deleted || message.datemodified >= options.lastUpdate) : sortedMessages;
 
 	return {
 		messages: filteredMessages,

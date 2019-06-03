@@ -10,7 +10,6 @@ const validateHeadline = text => {
 	return text;
 };
 
-module.exports = contentItem =>
-	validateHeadline(contentItem.title) ||
-	validateHeadline(contentItem.standfirst) ||
-	'Financial Times';
+module.exports = contentItem => validateHeadline(contentItem.title)
+	|| validateHeadline(contentItem.standfirst)
+	|| 'Financial Times';

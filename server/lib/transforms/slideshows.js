@@ -12,8 +12,7 @@ const captionHeight = 50;
 const readTemplate = () => fs.readFile(`${viewsPath}/slideshow.html`, 'utf8').then(handlebars.compile);
 const getTemplate = precompiled => cacheIf(() => precompiled, readTemplate);
 
-const average = (items, dimension) =>
-	items.reduce((previous, current) => previous + current[dimension], 0) / items.length;
+const average = (items, dimension) => items.reduce((previous, current) => previous + current[dimension], 0) / items.length;
 
 const transform = (html, slideshows, template) => {
 	const $ = cheerio.load(html, {decodeEntities: false});
@@ -45,9 +44,9 @@ const transform = (html, slideshows, template) => {
 
 module.exports = function run(article, options) {
 	return getTemplate(options.production)
-	.then(template => {
-		['htmlBody', 'mainImageHtml'].forEach(block => {
-			if(article[block]) article[block] = transform(article[block], article.slideshows, template);
+		.then(template => {
+			['htmlBody', 'mainImageHtml'].forEach(block => {
+				if(article[block]) article[block] = transform(article[block], article.slideshows, template);
+			});
 		});
-	});
 };

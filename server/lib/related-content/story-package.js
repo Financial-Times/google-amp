@@ -34,11 +34,10 @@ const getRelated = (id, options) => nEsClient.get(id).catch(e => {
 	throw e;
 });
 
-module.exports = (article, options) =>
-	Promise.all(
-		(article.curatedRelatedContent || article.storyPackage || [])
-			.map(related => getRelated(related.id, options))
-	)
+module.exports = (article, options) => Promise.all(
+	(article.curatedRelatedContent || article.storyPackage || [])
+		.map(related => getRelated(related.id, options))
+)
 	.then(related => related.filter(response => response))
 	.then(related => {
 		related.forEach(item => {

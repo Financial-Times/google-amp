@@ -1,11 +1,13 @@
 'use strict';
 
-const fetch = require('./fetch/wrap')(require('node-fetch'));
 const querystring = require('querystring');
 
 const {BadServerResponseError} = require('fetchres');
+const fetch = require('./fetch/wrap')(require('node-fetch'));
 
-module.exports = ({allocationId, sessionId, countryCodeTwoLetters, continentCode, referer, userAgent}) => {
+module.exports = ({
+	allocationId, sessionId, countryCodeTwoLetters, continentCode, referer, userAgent,
+}) => {
 	if(process.env.BARRIER_AMMIT !== 'true') {
 		return Promise.resolve({});
 	}
@@ -25,9 +27,9 @@ module.exports = ({allocationId, sessionId, countryCodeTwoLetters, continentCode
 			'user-agent': userAgent,
 		},
 	})
-	.then(r => r.ok ? r : Promise.reject(new BadServerResponseError(r.status)))
-	.then(res => ({
-		abVars: res.headers.get('x-ft-ab'),
-		allocation: res.headers.get('ft-allocation-id'),
-	}));
+		.then(r => r.ok ? r : Promise.reject(new BadServerResponseError(r.status)))
+		.then(res => ({
+			abVars: res.headers.get('x-ft-ab'),
+			allocation: res.headers.get('ft-allocation-id'),
+		}));
 };

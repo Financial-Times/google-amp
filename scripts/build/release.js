@@ -18,8 +18,8 @@ assertEnv(['HEROKU_APP_NAME']);
 const {HEROKU_APP_NAME: appName} = process.env;
 
 const env = {
-	'ft-google-amp-prod-eu': 'production',
-	'ft-google-amp-prod-us': 'productionUs',
+	'google-amp-prod-eu': 'production',
+	'google-amp-prod-us': 'productionUs',
 }[appName] || 'dev';
 
 const [, commit] = pkg.version.match(/([a-f\d]{7})$/) || [];

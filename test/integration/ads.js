@@ -20,7 +20,7 @@ describe('ads', () => {
 		nEsClient.get.restore();
 	});
 
-	it('should be inserted if enableAds is set in controller', async () => {
+	it('should be inserted if enableAds is set in controller', async() => {
 		nEsClient.get.withArgs('72402230-e6db-11e6-967b-c88452263daf').returns(Promise.resolve(fixture));
 
 		expect(

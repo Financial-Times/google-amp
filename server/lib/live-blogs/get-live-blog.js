@@ -1,11 +1,11 @@
 'use strict';
 
-const fetch = require('../fetch/wrap')(require('node-fetch'));
-const renderLiveBlog = require('./render');
 
 const url = require('url');
 const fetchres = require('fetchres');
 const promiseAllObject = require('@quarterto/promise-all-object');
+const fetch = require('../fetch/wrap')(require('node-fetch'));
+const renderLiveBlog = require('./render');
 
 const modifyBlogUrl = query => blogUrl => url.format(Object.assign(
 	url.parse(blogUrl),
@@ -68,7 +68,7 @@ module.exports = (article, options) => {
 	if(options.lastUpdate && liveblogCache[liveblogUrl] && liveblogCache[liveblogUrl].data) {
 		clearTimeout(liveblogCache[liveblogUrl].pollStopTimeout);
 		results = liveblogCache[liveblogUrl].data;
-		pollInterval = liveblogCache[liveblogUrl].pollInterval;
+		({pollInterval} = liveblogCache[liveblogUrl]);
 	} else {
 		results = getLiveBlog(liveblogUrl);
 		if(options.lastUpdate) {
