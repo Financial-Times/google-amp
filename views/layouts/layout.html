@@ -101,7 +101,7 @@
 			{{#unless isFree}}
 			"hasPart": {
 				"@type": "WebPageElement",
-				"isAccessibleForFree": "False",
+				"isAccessibleForFree": false,
 				"cssSelector" : ".{{#if enableBarrier}}amp-access-barrier{{else}}amp-access-login{{/if}}"
 			},
 			{{/unless}}
@@ -110,7 +110,7 @@
 				"name" : "Financial Times",
 				"productID": "ft.com:{{accessLevel}}"
 			},
-			"isAccessibleForFree": "{{#if isFree}}True{{else}}False{{/if}}"
+			"isAccessibleForFree": {{#if isFree}}true{{else}}false{{/if}}
 		}
 		</script>
 	</head>
