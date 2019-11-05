@@ -4,25 +4,26 @@
 
 AMP HTML rendering for FT articles
 
-Prerequisites
+Getting started
 ---
 
-1. Node.js (`nvm install stable`)
-2. An `.env` file that contains the required environment variables from `app.json`
-   - To generate one, after running `npm install` you can login to Heroku with `heroku login --sso` and then make the file by running `npm run heroku-config` (note: for this command to work you will need to have access to the Heroku pipeline for this app)
-   - If you add another environment variable, make sure to add it to `app.json`
-3. A self-signed certificate
-	 - Generate one with `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 1461 -nodes -config scripts/dev-utils/certificate.cnf`
-	 - Trust the certificate with `security import cert.pem; security add-trusted-cert cert.pem`
+1. Install the project dependencies, `make install`
+2. Fetch the environment variables for the app, `make .env`
+3.
+    Generate a self-signed certificate:
 
-Running
----
+    ```
+    openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 1461 -nodes -config scripts/dev-utils/certificate.cnf
+    ```
 
-```
-npm install
-npm start
-open https://local.ft.com:5050/content/<FT article uuid>
-```
+    And add the certificate to your keychain:
+
+    ```
+    security import cert.pem; security add-trusted-cert cert.pem
+    ```
+4. Run the app (no build is required in development mode), `make run`
+5. Open `https://local.ft.com:5050/content/<Content UUID>`
+
 
 Tests
 ---
