@@ -124,7 +124,7 @@
 			</script>
 		</amp-analytics>
 		{{/if}}
-		
+
 		<amp-image-lightbox id="lightbox" layout="nodisplay"></amp-image-lightbox>
 
 		{{#if enableSidebarMenu}}
@@ -165,6 +165,8 @@
 				<div {{#unless showEverything}}subscriptions-section="content"{{/unless}}>
 					{{{body}}}
 				</div>
+
+				{{> notLoadingNotice}}
 			</main>
 
 			{{> footer}}
