@@ -17,7 +17,7 @@ module.exports = [
 				status: 200,
 				https: true,
 				waitUntil: ['load', 'networkidle2'],
-				pageErrors: 2, // some URLs don't work on 3002 and so error
+				pageErrors: 3, // some URLs don't work on 3002 and so error
 				cacheHeaders: true,
 				performance: 10000,
 				elements: {
