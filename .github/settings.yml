@@ -1,0 +1,19 @@
+_extends: github-apps-config-next
+
+branches: 
+  - name: master
+    protection:
+      required_pull_request_reviews: null
+      required_status_checks:
+        strict: false
+        contexts: 
+          - "ci/circleci: build"
+          - "license/snyk - package.json (Customer Products)"
+          - "security/snyk - package.json (Customer Products)"
+          - "build-test-provision"
+          - "ci/circleci: provision"
+          - "ci/circleci: test"
+      enforce_admins: true
+      restrictions:
+        users: []
+        teams: []
