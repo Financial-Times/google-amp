@@ -60,6 +60,11 @@ const extraArticleData = (article, options) => promiseAllObj({
 	css: getCSS(article, options),
 }).then(extra => Object.assign(article, extra));
 
+// HACK: hide certain articles from the AMP cache
+const articlesToSkip = [
+	'263615ca-d873-11e9-8f9b-77216ebe1f17', // general election poll tracker: contains image that shouldn't be cached
+];
+
 const assembleArticle = (uuid, options) => {
 	options = Object.assign({}, environmentOptions, options);
 
@@ -69,6 +74,7 @@ const assembleArticle = (uuid, options) => {
 				if(response
 					&& (!response.originatingParty || response.originatingParty === 'FT')
 					&& (!response.type || response.type === 'article')
+					&& (!articlesToSkip.includes(uuid))
 				) {
 					return response;
 				}

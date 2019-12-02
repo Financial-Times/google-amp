@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
 	files: {
 		allow: [
@@ -9,10 +11,11 @@ module.exports = {
 	strings: {
 		deny: [],
 		denyOverrides: [
-			'ffffffff-ffff-ffff-ffff-ffffffffffff', // readme.md:35|36, test/amp-transform/slideshow.js:9|10|16|19|24|25, test/amp-transform/unfurl-video.js:66|71
-			'146da558-4dee-11e3-8fa5-00144feabdc0', // server/controllers/redirect.js:4
+			'ffffffff-ffff-ffff-ffff-ffffffffffff', // readme.md:36|37, test/amp-transform/slideshow.js:9|10|16|19|24|25, test/amp-transform/unfurl-video.js:66|71
+			'146da558-4dee-11e3-8fa5-00144feabdc0', // server/controllers/redirect.js:4, test/smoke.js:16
 			'acee4131-99c2-09d3-a635-873e61754ec6', // server/lib/article/article-flags.js:10
 			'e8813dd4-d00d-11e5-831d-09f7778e7377', // server/lib/article/article-flags.js:54, test/utils/test-uuids.js:27
+			'263615ca-d873-11e9-8f9b-77216ebe1f17', // server/lib/article/assemble.js:65
 			'b4284269-2951-3169-ab98-88c184da5e88', // test/amp-transform/blockquotes.js:39, test/utils/test-uuids.js:32
 			'56f6ad50-da52-11e5-a72f-1e7744c66818', // test/amp-transform/external-image.js:7|25
 			'0a5e1620-c0f5-11e5-846f-79b0e3d20eaf', // test/amp-transform/related-box.js:38|44
@@ -112,7 +115,7 @@ module.exports = {
 			'b0de8ce3-0822-3b6e-b8f1-b2c97bc92c88', // test/utils/test-uuids.js:78
 			'21b5893e-ba3a-32dc-bf31-271449002cc0', // test/utils/test-uuids.js:79
 			'f50909a8-95dd-3688-9b12-a67e1198e6d5', // test/utils/test-uuids.js:80
-			'079a37bc-db50-11e7-a039-c64b1c09b482' // test/utils/test-uuids.js:83
+			'079a37bc-db50-11e7-a039-c64b1c09b482', // test/utils/test-uuids.js:83
 		]
 	}
 };
