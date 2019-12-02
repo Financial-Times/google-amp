@@ -1,9 +1,9 @@
 .u-border--all {
-	border: 1px solid oColorsGetPaletteColor('black-20');
+	border: 1px solid oColorsByName('black-20');
 }
 
 .u-border--left {
-	border-left: 1px solid oColorsGetPaletteColor('black-20');
+	border-left: 1px solid oColorsByName('black-20');
 }
 
 .u-margin--left-right {

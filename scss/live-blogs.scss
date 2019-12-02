@@ -1,24 +1,26 @@
 @import 'setup';
 @import 'o-footer/main';
 
-@include oColorsSetUseCase(author-colour-1, text, 'claret');
-@include oColorsSetUseCase(author-colour-2, text, 'oxford');
-@include oColorsSetUseCase(author-colour-3, text, 'jade');
-
 .live-blog--message {
 	margin: 0 -1em;
 	padding: 1em;
-	border-bottom: 1px solid oColorsGetPaletteColor('black-10');
+	border-bottom: 1px solid oColorsByName('black-10');
 }
 
 .live-blog--author {
-	@include oTypographyAuthor
+	@include oEditorialTypographyTag($type: 'author')
 }
 
-@for $i from 1 through 3 {
-	.live-blog--author-colour-#{$i} {
-		@include oColorsFor(author-colour-#{$i}, text);
-	}
+.live-blog--author-colour-1 {
+	color: oColorsByName('claret');
+}
+
+.live-blog--author-colour-2 {
+	color: oColorsByName('oxford');
+}
+
+.live-blog--author-colour-3 {
+	color: oColorsByName('jade');
 }
 
 .live-blog {
@@ -33,15 +35,18 @@
 	right: 0;
 	text-align: center;
 	padding: 10px;
-	background: rgba(oColorsGetColorFor(o-footer-dark, background), 0.8);
+	background: rgba(oColorsByName('slate'), 0.8);
 }
 
 .live-blog--update-button {
-	@include oButtons(big, primary);
+	@include oButtonsContent($opts: (
+		size: big,
+		type: primary
+	));
 }
 
 .live-blog--time {
-	@include oTypographyTimestamp;
+	@include oEditorialTypographyTimestamp;
 	margin-bottom: 0;
 }
 
@@ -53,8 +58,8 @@
 }
 
 .live-blog--status-inprogress {
-	background-color: oColorsGetPaletteColor('crimson');
-	color: oColorsGetPaletteColor('white');
+	background-color: oColorsByName('crimson');
+	color: oColorsByName('white');
 }
 
 .amp-live-list-item-new {
@@ -64,13 +69,13 @@
 // specifity to override .article's oTypographyBodyWrapper
 .article .article-liveblogs-excerpt {
 	&, p, ol, ul {
-		@include oTypographyStandfirst;
+		@include oEditorialTypographyStandfirst;
 	}
 }
 
 @keyframes amp-live-list-item-highlight {
 	0% {
-		$faded-orange: rgba(oColorsGetPaletteColor('mandarin'), 0.5);
+		$faded-orange: rgba(oColorsByName('mandarin'), 0.5);
 		background: $faded-orange;
 	}
 	100% {

@@ -18,7 +18,7 @@
 $barrier-padding: 20px;
 
 %amp-access-barrier__box {
-	border-bottom: 1px solid oColorsGetPaletteColor('black-5');
+	border-bottom: 1px solid oColorsByName('black-5');
 }
 
 .amp-access-barrier__header {
@@ -27,8 +27,8 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__header-instruction {
-	@include oTypographySansBold(-1);
-	@include oColorsFor(box, background);
+	@include oTypographySans($scale: -1, $weight: 'semibold');
+	background-color: oColorsByUsecase(box, background);
 	padding: $barrier-padding;
 
 	h3 {
@@ -38,20 +38,20 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__login {
-	@include oTypographySansBold(-2);
-	background: oColorsGetPaletteColor('black-10');
+	@include oTypographySans($scale: -2, $weight: 'semibold');
+	background: oColorsByName('black-10');
 	padding: $barrier-padding;
 }
 
 .amp-access-barrier__offer {
-	background: oColorsGetPaletteColor('white');
+	background: oColorsByName('white');
 	margin-bottom: 20px;
 	overflow: hidden;
 	padding: $barrier-padding;
 }
 
 .amp-access-barrier__offer-title {
-	@include oTypographySansBold(2);
+	@include oTypographySans($scale: 2, $weight: 'semibold');
 	// TODO: Upgrade to latest o-typography
 	font-size: 24px;
 	line-height: 28px;
@@ -62,7 +62,7 @@ $barrier-padding: 20px;
 
 .amp-access-barrier__offer-price {
 	@include oTypographySans(-1);
-	color: oColorsGetPaletteColor('black');
+	color: oColorsByName('black');
 	// TODO: Upgrade to latest o-typography
 	line-height: 20px;
 	font-size: 16px;
@@ -74,7 +74,7 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__offer-description-title {
-	@include oTypographySansBold(-2);
+	@include oTypographySans($scale: -2, $weight: 'semibold');
 	margin-top: 0;
 	margin-bottom: 0;
 }
@@ -86,7 +86,7 @@ $barrier-padding: 20px;
 
 	li {
 		@include oTypographySans(-2);
-		color: oColorsGetPaletteColor('black');
+		color: oColorsByName('black');
 		// TODO: Upgrade to latest o-typography
 		line-height: 20px;
 		font-size: 16px;
@@ -96,7 +96,7 @@ $barrier-padding: 20px;
 
 .amp-access-barrier__footer-tandc {
 	@extend %amp-access-barrier__box;
-	@include oTypographySansBold(-2);
+	@include oTypographySans($scale: -2, $weight: 'semibold');
 	text-align: center;
 	padding: $barrier-padding;
 }
@@ -107,19 +107,19 @@ $barrier-padding: 20px;
 
 .amp-access-barrier__footer-other-option--corporate a {
 	&:before {
-		@include oIconsGetIcon('corporate', oColorsGetColorFor(link, text), 40);
+		@include oIconsContent('corporate', oColorsByUsecase(link, text), 40);
 	}
 }
 
 .amp-access-barrier__footer-other-option--newspaper a {
 	&:before {
-		@include oIconsGetIcon('newspaper', oColorsGetColorFor(link, text), 40);
+		@include oIconsContent('newspaper', oColorsByUsecase(link, text), 40);
 	}
 }
 
 .amp-access-barrier__footer-other-option--weekend a {
 	&:before {
-		@include oIconsGetIcon('ipad', oColorsGetColorFor(link, text), 40);
+		@include oIconsContent('ipad', oColorsByUsecase(link, text), 40);
 	}
 }
 
@@ -130,7 +130,7 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__footer-other-title {
-	@include oTypographySansBold(-1);
+	@include oTypographySans($scale: -1, $weight: 'semibold');
 	text-align: center;
 }
 
@@ -139,7 +139,7 @@ $barrier-padding: 20px;
 	flex-basis: 33%;
 
 	a {
-		@include oTypographySansBold(-2);
+		@include oTypographySans($scale: -2, $weight: 'semibold');
 		border: 0 none;
 	}
 

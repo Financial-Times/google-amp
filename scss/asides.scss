@@ -24,14 +24,14 @@
 }
 
 .c-box__title-text {
-	@include oColorsFor(page, background);
 	@include oTypographyDisplay(0);
+	background-color: oColorsByUsecase(page, background);
 	display: inline-block;
 	margin: 0;
 	padding: 10px;
 	padding-bottom: 0;
 	font-weight: 900;
-	color: oColorsGetPaletteColor('black-70');
+	color: oColorsByName('black-70');
 }
 
 .c-box .aside--content p {
@@ -42,7 +42,7 @@
 	@include oTypographySans(2);
 	margin-top: 8px;
 	margin-bottom: 8px;
-	color: oColorsGetPaletteColor('black-90');
+	color: oColorsByName('black-90');
 	line-height: 1.3em;
 
 	p {

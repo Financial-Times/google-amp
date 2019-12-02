@@ -1,9 +1,10 @@
 
 @mixin nContentMargins($headingTop: 0, $headingBottom: 1, $pSize: 1, $elementSize: 5) {
-	@include oTypographyMargin($top: $headingTop, $bottom: $headingBottom);
+	margin-top: oSpacingByIncrement($headingTop);
+	margin-bottom: oSpacingByIncrement($headingBottom);
 
 	& + p {
-		@include oTypographyMargin($top: $pSize);
+		margin-top: oSpacingByIncrement($pSize);
 	}
 
 	& + figure,
@@ -11,32 +12,32 @@
 	& + ul,
 	& + li,
 	& + aside {
-		@include oTypographyMargin($top: $elementSize);
+		margin-top: oSpacingByIncrement($elementSize);
 	}
 }
 
 .n-content-heading-2.n-content-heading-2 {
-	@include oTypographyHeadingLevel2();
+	@include oEditorialTypographyHeading($level: 2);
 	@include nContentMargins($headingTop: 8);
 	// trigger a new formatting context so it won't run into floats
 	overflow: hidden;
 }
 
 .n-content-heading-3.n-content-heading-3 {
-	@include oTypographyHeadingLevel3();
+	@include oEditorialTypographyHeading($level: 3);
 	@include nContentMargins();
 }
 
 .n-content-heading-4.n-content-heading-4 {
-	@include oTypographyHeadingLevel4();
+	@include oEditorialTypographyHeading($level: 4);
 	@include nContentMargins($headingBottom: 3);
 }
 
 .n-content-heading-5.n-content-heading-5 {
-	@include oTypographyHeadingLevel5();
+	@include oEditorialTypographyHeading($level: 5);
 	@include nContentMargins();
 }
 
 .headline.headline--large {
-	@include oTypographyHeadlineLarge;
+	@include oEditorialTypographyHeadline;
 }

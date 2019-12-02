@@ -6,7 +6,7 @@
 }
 
 .related-content__theme {
-	@include oTypographyTopic;
+	@include oEditorialTypographyTag($type: 'topic');
 	display: block;
 	a {
 		&:hover {
@@ -19,7 +19,7 @@
 // Related Content
 
 .related-content__header {
-	@include oTypographyProductHeadingLevel7;
+	@include oTypographyHeading($level: 6);
 }
 
 .related-content__stories {
@@ -66,26 +66,23 @@
 }
 
 .related-content__container {
-	background-color: oColorsGetColorFor(box, background);
-	border: 1px solid oColorsGetPaletteColor('black-20');
+	background-color: oColorsByUsecase(box, background);
+	border: 1px solid oColorsByName('black-20');
 	padding: oGridGutter(S);
 }
 
 .related-content__link {
 	@include oTypographyLink;
-	@include oTypographySans(1);
 }
 
 .related-content__date {
-	@include oTypographyTimestamp;
-	@include oTypographySize(-1);
+	@include oEditorialTypographyTimestamp;
 	display: block;
 	margin-top: 1em;
 }
 
 .related-content__summary {
-	@include oTypographyStandfirst;
-	@include oTypographySize(0);
+	@include oEditorialTypographyStandfirst;
 	line-height: 1.3em;
 	margin: 8px 0;
 	display: block;
@@ -112,7 +109,7 @@
 }
 
 .more-ons__header {
-	@include oTypographyProductHeadingLevel7;
+	@include oTypographyHeading($level: 6);
 	margin-top: 0;
 }
 
@@ -135,8 +132,7 @@
 }
 
 .more-ons__date {
-	@include oTypographyTimestamp;
-	@include oTypographySize(-1);
+	@include oEditorialTypographyTimestamp;
 	display: block;
 	margin-top: 0.5em;
 }

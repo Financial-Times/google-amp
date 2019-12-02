@@ -1,5 +1,5 @@
 body {
-	@include oColorsFor(page);
+	background-color: oColorsByUsecase(page, background);
 }
 
 .main-wrapper {

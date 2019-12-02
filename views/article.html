@@ -1,4 +1,4 @@
-<article class="article">
+<article>
 	<header class="article-header">
 		{{#if displayConcept}}
 			<h2 class="primary-theme">
@@ -10,9 +10,9 @@
 			{{title}}
 
 			{{#if liveBlogStatus}}
-			<div class='live-blog--status live-blog--status-{{liveBlogStatus}}'>
-				{{{liveBlogStatusLabel}}}
-			</div>
+				<div class='live-blog--status live-blog--status-{{liveBlogStatus}}'>
+					{{{liveBlogStatusLabel}}}
+				</div>
 			{{/if}}
 		</h1>
 
@@ -35,25 +35,26 @@
 		<div class="article-dateline">
 			{{{displayDate}}}
 			{{#if byline}}
-			<span class="article-author">
-				<span class="article-author-byline">
-					by
-					<span itemscope itemtype="http://schema.org/Person" itemprop="author">
-						{{{byline}}}
+				<span class="article-author">
+					<span class="article-author-byline">
+						by
+						<span itemscope itemtype="http://schema.org/Person" itemprop="author">
+							{{{byline}}}
+						</span>
 					</span>
 				</span>
-			</span>
 			{{/if}}
 		</div>
 	</header>
 
-	<div class="article-body" itemprop="articleBody">
+	<div class="o-editorial-layout-wrapper" itemprop="articleBody">
 		{{{htmlBody}}}
 
 		<p class="article__copyright-notice">
 			{{> link href='https://www.ft.com/servicestools/help/copyright' type='footer-copyright' text='Copyright'}}
 
-			The Financial Times Limited {{thisYear}}. All rights reserved. Please don't copy articles from FT.com and redistribute by email or post to the web.
+			The Financial Times Limited {{thisYear}}. All rights reserved. Please don't copy articles from FT.com and
+			redistribute by email or post to the web.
 		</p>
 	</div>
 </article>

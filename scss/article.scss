@@ -1,9 +1,9 @@
 @import 'setup';
 @import '_headings';
 
-.article {
-	@include oTypographyWrapper;
-}
+@include oEditorialLayout($opts: (
+	wrapper: true
+));
 
 .article__copyright-notice.article__copyright-notice {
 	@include oTypographyFooter;
@@ -19,51 +19,31 @@
 	margin: 0;
 }
 
-.article__subhead--standard.article__subhead--standard {
-	@include oTypographySansBold(-1);
-}
-
-.article-header {
-	a {
-		border-bottom-color: transparent;
-
-		&:hover {
-			border-bottom-color: inherit;
-		}
-	}
-}
-
-// HACK: override default styling of oTypographyBodyWrapper
-// (rendered as '.article h1') using double classname specificity
-.article-standfirst.article-standfirst {
-	@include oTypographyStandfirst;
-	font-weight: normal;
-}
-
 .article-dateline {
-	@include oTypographyTimestamp;
+	@include oEditorialTypographyTimestamp;
 }
 
 .article-author-byline__author.article-author-byline__author {
-	@include oTypographyAuthor;
+	@include oEditorialTypographyTag($type: 'author');
 }
 
 .primary-theme.primary-theme {
-	@include oTypographyTopic;
+	@include oEditorialTypographyTag($type: 'topic');
 	margin-top: 1em;
 }
 
 .article__quote {
 	margin: 0 0 1em;
 }
+
 .article__quote-footer {
-	@include oTypographySansBold(-2);
+	@include oTypographySans($scale: -2, $weight: 'semibold');
 }
 
 .n-content-big-number,
 .n-content-big-number__title,
 .n-content-big-number__title > p {
-	@include oTypographyBigNumber;
+	@include oBigNumberContent;
 }
 
 .n-content-big-number__content > p {
@@ -71,7 +51,7 @@
 }
 
 .n-content-recommended__title.n-content-recommended__title {
-	@include oTypographySansBold(1);
+	@include oTypographySans($scale: 1, $weight: 'semibold');
 }
 
 abbr[title] {

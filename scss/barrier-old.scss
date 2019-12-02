@@ -25,7 +25,7 @@
 
 .amp-access-login {
 	@include oTypographySans(-1);
-	color: oColorsGetPaletteColor('black-80');
+	color: oColorsByName('black-80');
 	margin-top: 6vh;
 	margin-bottom: 8vh;
 	@include responsiveType(3vh, $max: 30px);
@@ -42,7 +42,7 @@
 }
 
 .amp-access-login__header {
-	background-color: oColorsGetPaletteColor('white-60');
+	background-color: oColorsByName('white-60');
 }
 
 .amp-access-login__header-instruction,
@@ -57,7 +57,7 @@
 }
 
 .amp-access-login__body {
-	background-color: oColorsGetPaletteColor('black-5');
+	background-color: oColorsByName('black-5');
 	display: flex;
 	justify-content: center;
 

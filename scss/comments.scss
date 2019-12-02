@@ -1,7 +1,7 @@
 @import 'setup';
 
 .comments-button {
-	@include oButtons(big);
+	@include oButtonsContent($opts: (size: big, type: secondary));
 }
 
 .comments {

@@ -1,13 +1,17 @@
 {
   "name": "google-amp",
   "dependencies": {
-    "o-colors": "^4.8.5",
-    "o-typography": "^5.10.1",
-    "o-grid": "^4.5.1",
-    "o-buttons": "^v5.16.2",
-    "o-header": "^7.8.3",
-    "o-footer": "^6.1.1",
-    "o-labels": "^4.2.2",
-    "o-icons": "^5.10.0"
+    "o-colors": "^5.0.0",
+    "o-typography": "^6.0.0",
+    "o-grid": "^5.0.0",
+    "o-buttons": "^6.0.0",
+    "o-header": "^8.0.0",
+    "o-footer": "^7.0.0",
+    "o-labels": "^5.0.0",
+    "o-icons": "^6.0.0",
+    "o-spacing": "^2.0.0",
+    "o-editorial-typography": "^1.0.1",
+    "o-editorial-layout": "1.1.0-beta.1",
+    "o-big-number": "^2.0.0"
   }
 }

@@ -1,5 +1,8 @@
 .amp-access-login__button {
-	@include oButtons(big, primary);
+	@include oButtonsContent($opts: (
+		size: big,
+		type: primary
+	));
 	padding: 10px;
 	margin: 1vh 10px;
 	text-transform: inherit;
