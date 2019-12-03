@@ -9,7 +9,7 @@ const articlesToSkip = [
 ];
 
 module.exports = (req, res, next) => {
-	if(!articlesToSkip.includes(req.params.uuid)) {
+	if(articlesToSkip.includes(req.params.uuid)) {
 		return res.redirect(`https://www.ft.com/content/${req.params.uuid}`);
 	}
 
