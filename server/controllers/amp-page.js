@@ -3,7 +3,16 @@
 const assembleArticle = require('../lib/article/assemble');
 const analytics = require('../lib/analytics');
 
+// HACK: redirect certain articles to ft.com
+const articlesToSkip = [
+	'263615ca-d873-11e9-8f9b-77216ebe1f17', // general election poll tracker: contains image that shouldn't be cached
+];
+
 module.exports = (req, res, next) => {
+	if(!articlesToSkip.includes(req.params.uuid)) {
+		return res.redirect(`https://www.ft.com/content/${req.params.uuid}`);
+	}
+
 	assembleArticle(req.params.uuid, {
 		development: req.app.isDevelopment,
 		production: req.app.isProduction,
