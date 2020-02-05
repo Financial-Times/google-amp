@@ -5,7 +5,8 @@ const analytics = require('../lib/analytics');
 
 // HACK: redirect certain articles to ft.com
 const articlesToSkip = [
-	'263615ca-d873-11e9-8f9b-77216ebe1f17', // general election poll tracker: contains image that shouldn't be cached
+	'263615ca-d873-11e9-8f9b-77216ebe1f17', // UK 2019 general election poll tracker: contains dynamic image that shouldn't be cached
+	'f3bb0944-4437-11ea-abea-0c7a29cd66fe', // US 2019 democratic primaries delegate tracker: contains dynamic image that shouldn't be cached
 ];
 
 module.exports = (req, res, next) => {
