@@ -60,23 +60,27 @@
 </amp-list>
 
 {{#if showSwGButton}}
-<div class="amp-access-barrier__offer" subscriptions-actions subscriptions-display="factors['subscribe.google.com'].isReadyToPay AND NOT granted">
-	<h2 class="amp-access-barrier__offer-title">
-		Digital or Premium Digital
-	</h2>
-
-	<div class="amp-access-barrier__offer-description">
-		You can also subscribe to the FT Digital or Premium Digital with Google
-	</div>
-	<button 
-		class="amp-access-barrier__swg-button" 
-		subscriptions-action="subscribe" 
-		subscriptions-service="subscribe.google.com" 
-		subscriptions-display="true"
+	<div 
+		class="amp-access-barrier__offer" 
+		subscriptions-actions 
+		subscriptions-display="{{#if enableSwGReadyToPay}}factors['subscribe.google.com'].isReadyToPay AND {{/if}}NOT granted"
 	>
-		Subscribe with Google
-	</button>
-</div>
+		<h2 class="amp-access-barrier__offer-title">
+			Digital or Premium Digital
+		</h2>
+
+		<div class="amp-access-barrier__offer-description">
+			You can also subscribe to the FT Digital or Premium Digital with Google
+		</div>
+		<button 
+			class="amp-access-barrier__swg-button" 
+			subscriptions-action="subscribe" 
+			subscriptions-service="subscribe.google.com" 
+			subscriptions-display="true"
+		>
+			Subscribe with Google
+		</button>
+	</div>
 {{/if}}
 
 <div class="amp-access-barrier__footer">

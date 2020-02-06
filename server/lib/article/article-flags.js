@@ -66,4 +66,5 @@ module.exports = (article, options) => Object.assign(article, {
 	visibilityOptIn: segmentArticle(article),
 
 	showSwGButton: process.env.SHOW_SWG_BUTTON === 'true',
+	enableSwGReadyToPay: process.env.ENABLE_SWG_READY_TO_PAY === 'true',
 });
