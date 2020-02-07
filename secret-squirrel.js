@@ -17,6 +17,7 @@ module.exports = {
 			'e8813dd4-d00d-11e5-831d-09f7778e7377', // server/lib/article/article-flags.js:54, test/utils/test-uuids.js:27
 			'263615ca-d873-11e9-8f9b-77216ebe1f17', // server/controllers/amp-page.js:8
 			'f3bb0944-4437-11ea-abea-0c7a29cd66fe', // server/controllers/amp-page.js:9
+			'a26fbf7e-48f8-11ea-aeb3-955839e06441', // server/controllers/amp-page.js:10
 			'b4284269-2951-3169-ab98-88c184da5e88', // test/amp-transform/blockquotes.js:39, test/utils/test-uuids.js:32
 			'56f6ad50-da52-11e5-a72f-1e7744c66818', // test/amp-transform/external-image.js:7|25
 			'0a5e1620-c0f5-11e5-846f-79b0e3d20eaf', // test/amp-transform/related-box.js:38|44
