@@ -1,2 +1,2 @@
-web: node $(scripts/build/nodeargs.js) app.js
+web: node app.js
 worker: node worker.js
