@@ -2,7 +2,7 @@
 
 const cheerio = require('cheerio');
 
-module.exports = function trimmedLinks($) {
+module.exports = function trimmedLinks ($) {
 	$('a').replaceWith((index, el) => {
 		el = cheerio(el);
 		let matches;

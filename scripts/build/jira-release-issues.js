@@ -10,15 +10,15 @@ jiraGetReleaseIssues(process.argv[2], {
 	user: process.env.JIRA_USERNAME,
 	pass: process.env.JIRA_PASSWORD,
 })
-.then(r => r.json())
-.then(({issues}) =>
-	issues.length ?
-		issues.map(({key}) => `https://${process.env.JIRA_HOST}/browse/${key}`).join('\n') :
-		'None'
-).then(
-	console.log,
-	e => {
-		console.error(e.stack);
-		process.exit(1);
-	}
-);
+	.then(r => r.json())
+	.then(({issues}) =>
+		issues.length ?
+			issues.map(({key}) => `https://${process.env.JIRA_HOST}/browse/${key}`).join('\n') :
+			'None'
+	).then(
+		console.log,
+		e => {
+			console.error(e.stack);
+			process.exit(1);
+		}
+	);

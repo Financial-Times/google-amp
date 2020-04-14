@@ -3,11 +3,11 @@
 const match = require('@quarterto/cheerio-match-multiple');
 
 module.exports = match({
-	'figure.n-content-image + p'(el, i, $) {
+	'figure.n-content-image + p' (el, i, $) {
 		console.log($.html(el));
 	},
 
-	'figure.n-content-image'(el) {
+	'figure.n-content-image' (el) {
 		const img = el.find('amp-img');
 		const width = parseInt(img.attr('data-original-width'), 10);
 		const height = parseInt(img.attr('data-original-height'), 10);

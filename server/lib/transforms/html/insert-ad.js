@@ -13,7 +13,7 @@ const adMarkup = (uuid, ftConsentCookie, adPos) => {
 	return `<div class="ad-container"><amp-ad width="300"	height="250" type="doubleclick"	data-slot="/5887/ft.com/distributed.content/amp.ft" json=${json} rtc-config=${rtcConfig}></amp-ad></div>`;
 };
 
-module.exports = function insertAd($, options) {
+module.exports = function insertAd ($, options) {
 	if(options.enableAds) {
 		const para = getViableParagraph($);
 		if(para) {

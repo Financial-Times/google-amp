@@ -61,24 +61,24 @@ Promise.all(testUUIDs.map(
 				}, result);
 			}
 		})))
-.then(results => results.filter(Boolean))
-.then(results => {
-	if(!results.length) {
-		throw new Error('nothing found');
-	}
-
-	results.forEach(({uuid, title, html}) => {
-		log.uuid(`${title} (${chalk.grey(uuid)})`);
-		if(html) {
-			log.html('html');
-			log.message(formatAndHighlight(html));
+	.then(results => results.filter(Boolean))
+	.then(results => {
+		if(!results.length) {
+			throw new Error('nothing found');
 		}
-		log.end('');
+
+		results.forEach(({uuid, title, html}) => {
+			log.uuid(`${title} (${chalk.grey(uuid)})`);
+			if(html) {
+				log.html('html');
+				log.message(formatAndHighlight(html));
+			}
+			log.end('');
+			console.log();
+		});
+	}).catch(err => {
+		log.error(err.message || err.toString());
+		if(err.stack) log.errorLine(err.stack.replace(err.message, ''));
 		console.log();
+		process.exit(1);
 	});
-}).catch(err => {
-	log.error(err.message || err.toString());
-	if(err.stack) log.errorLine(err.stack.replace(err.message, ''));
-	console.log();
-	process.exit(1);
-});

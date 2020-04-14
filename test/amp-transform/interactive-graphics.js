@@ -4,7 +4,7 @@ const {expect} = require('../utils/chai');
 const transformBody = require('../../server/lib/transforms/body');
 
 describe('interactive graphics transform', () => {
-	it('should transform to iframe if href is https', async() => {
+	it('should transform to iframe if href is https', async () => {
 		expect(
 			await transformBody('<a data-asset-type="interactive-graphic" href="https://ig.ft.com/foo" data-width="300" data-height="200">Graphic</a>')
 		).dom.to.equal(`<amp-iframe
@@ -16,7 +16,7 @@ describe('interactive graphics transform', () => {
 		</amp-iframe>`);
 	});
 
-	it('should strip if href is not https', async() => {
+	it('should strip if href is not https', async () => {
 		expect(
 			await transformBody('<a data-asset-type="interactive-graphic" href="http://ig.ft.com/foo" data-width="300" data-height="200">Graphic</a>')
 		).dom.to.equal('');

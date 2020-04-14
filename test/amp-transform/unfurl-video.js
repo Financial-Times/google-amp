@@ -20,7 +20,7 @@ describe('video unfurl transform', () => {
 		nock.cleanAll();
 	});
 
-	it('should transform brightcove videos if unfurlBrightcove is true', async() => {
+	it('should transform brightcove videos if unfurlBrightcove is true', async () => {
 		expect(
 			await transformBody(`<div class="n-content-video n-content-video--brightcove">
 				<a href="http://video.ft.com/3235593137001"></a>
@@ -39,7 +39,7 @@ describe('video unfurl transform', () => {
 		mediaApi.isDone();
 	});
 
-	it('should transform internal videos', async() => {
+	it('should transform internal videos', async () => {
 		expect(
 			await transformBody(`<div class="n-content-video n-content-video--internal">
 				<a href="https://www.ft.com/video/9010a752-585c-3230-9507-9990e3361e68"></a>
@@ -61,7 +61,7 @@ describe('video unfurl transform', () => {
 		mediaApi.isDone();
 	});
 
-	it('should strip video if api call fails', async() => {
+	it('should strip video if api call fails', async () => {
 		mediaApi
 			.get(/\/v1\/ffffffff-ffff-ffff-ffff-ffffffffffff/)
 			.reply(503, 'Service unavailable');

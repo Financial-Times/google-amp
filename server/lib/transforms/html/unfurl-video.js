@@ -38,14 +38,14 @@ module.exports = ($, options = {}) => {
 	);
 
 	match({
-		'.n-content-video--brightcove'(el) {
+		'.n-content-video--brightcove' (el) {
 			if(!options.unfurlBrightcove) return;
 
 			const [, videoId] = el.find('a').attr('href').match(/http:\/\/video.ft.com\/(.+)$/) || [];
 			queueUnfurl(el, videoId);
 		},
 
-		'.n-content-video--internal'(el) {
+		'.n-content-video--internal' (el) {
 			const [, videoId] = el.find('a').attr('href').match(/www.ft.com\/video\/(.+)$/) || [];
 			queueUnfurl(el, videoId);
 		},

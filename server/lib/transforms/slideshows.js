@@ -42,7 +42,7 @@ const transform = (html, slideshows, template) => {
 	return $.html();
 };
 
-module.exports = function run(article, options) {
+module.exports = function run (article, options) {
 	return getTemplate(options.production)
 		.then(template => {
 			['htmlBody', 'mainImageHtml'].forEach(block => {

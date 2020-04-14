@@ -21,22 +21,22 @@ const env = {
 const [, commit] = pkg.version.match(/([a-f\d]{7})$/) || [];
 
 class ReleaseTasks extends Tasks {
-	async production() {
+	async production () {
 		await deps(
 			this.githubVersion,
 			this.vcl
 		);
 	}
 
-	async productionUs({log}) {
+	async productionUs ({log}) {
 		log('no release tasks for prod-us environment');
 	}
 
-	async dev({log}) {
+	async dev ({log}) {
 		log('no release tasks for dev environment');
 	}
 
-	async githubVersion() {
+	async githubVersion () {
 		assertEnv(['GITHUB_RELEASE_REPO', 'GITHUB_RELEASE_USER', 'GITHUB_RELEASE_TOKEN']);
 
 		await githubCreateRelease({
@@ -48,7 +48,7 @@ class ReleaseTasks extends Tasks {
 		});
 	}
 
-	async vcl() {
+	async vcl () {
 		assertEnv(['FASTLY_APIKEY', 'FASTLY_SERVICE']);
 
 		await fastlyDeploy('vcl', {
