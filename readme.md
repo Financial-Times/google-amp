@@ -13,7 +13,7 @@ Getting started
     Generate a self-signed certificate:
 
     ```
-    openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 1461 -nodes -config scripts/dev-utils/certificate.cnf
+    make certificate
     ```
 
     And add the certificate to your keychain:
@@ -42,11 +42,6 @@ A Day in the Life of an AMP Article
     3. It renders the transformed data into the [template](views/article.html) and responds with it
 5. The crawler [validates](https://www.ampproject.org/docs/guides/validate) the returned markup, and if it's valid AMP markup, stores it in the AMP cache
 6. When a mobile user searches for something that returns articles from FT with AMP versions, they're preloaded, and if the user taps on one of those results the AMP page is displayed immediately.
-
-Scripts
----
-
-The [scripts directory](scripts) has a few scripts that might be useful when developing AMP article features.
 
 Deployment
 ---

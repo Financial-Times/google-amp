@@ -28,3 +28,6 @@ run:
 
 build-production:
 	node -r dotenv/config server/lib/article/css
+
+certificate:
+	openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 1461 -nodes -config certificate.cnf
