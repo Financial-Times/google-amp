@@ -24,10 +24,16 @@ unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)
 
 run:
-	npm start
+	nodemon app.js
+
+run-inspect:
+	node --inspect app.js
+
+run-worker:
+	nodemon worker.js
 
 build-production:
-	node -r dotenv/config server/lib/article/css
+	node server/lib/article/css
 
 certificate:
 	openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 1461 -nodes -config certificate.cnf
