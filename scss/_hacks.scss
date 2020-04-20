@@ -1,3 +1,9 @@
+/* Give all images a paper-coloured background to prevent PNGs from being
+displayed against black when open in a lightbox or undergoing transitions. */
+img {
+	background-color: oColorsGetPaletteColor('pink');
+}
+
 $o-buttons-themes__standout: map-merge($o-buttons-themes__standout, (
 	pressedselected: (
 		background: oColorsGetColorFor(o-buttons-standout-pressedselected, background)
