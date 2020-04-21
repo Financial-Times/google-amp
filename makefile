@@ -20,10 +20,14 @@ else
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- $(test-files)
 endif
 
+
 unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)
 
 run:
+	echo $$SHELL
+	which nodemon
+	type nodemon
 	nodemon app.js
 
 run-inspect:
@@ -37,3 +41,4 @@ build-production:
 
 certificate:
 	openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 1461 -nodes -config certificate.cnf
+
