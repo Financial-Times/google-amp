@@ -28,7 +28,6 @@
     "@quarterto/cache-if": "^1.1.0",
     "@quarterto/cheerio-apply": "^1.0.0",
     "@quarterto/cheerio-match-multiple": "^1.7.0",
-    "@quarterto/heroku-cluster": "^1.2.0",
     "@quarterto/kinesis-decoded": "^1.0.0",
     "@quarterto/log-promise": "^1.1.0",
     "@quarterto/promise-all-object": "^1.1.0",
