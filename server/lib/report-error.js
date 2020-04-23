@@ -19,6 +19,7 @@ module.exports = function reportError (raven, error, options) {
 			level: options.getErrorLevel(error),
 		}, options));
 	} else {
+		// eslint-disable-next-line no-console
 		console.error(error.stack || error.message || error.toString(), options);
 	}
 };

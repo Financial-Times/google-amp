@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable no-console */
 
 const cacheIf = require('@quarterto/cache-if');
 const postCss = require('postcss');

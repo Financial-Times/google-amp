@@ -52,9 +52,7 @@ const rewriteAlphavilleURL = blogUrl => {
 	const parsed = url.parse(blogUrl, true);
 	if(parsed.host === 'ftalphaville.ft.com') {
 		parsed.host = 'ftalphaville-wp.ft.com';
-		const rewritten = url.format(parsed);
-		console.log(`Rewrote ${blogUrl} to ${rewritten}`);
-		return rewritten;
+		return url.format(parsed);
 	}
 
 	return blogUrl;

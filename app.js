@@ -14,6 +14,7 @@ if(isDevelopment && hasCertificate) {
 		key: fs.readFileSync(path.resolve(__dirname, 'key.pem')),
 		cert: fs.readFileSync(path.resolve(__dirname, 'cert.pem')),
 	}, app).listen(5050, () => {
+		// eslint-disable-next-line no-console
 		console.log('\x1b[1mExpress server HTTP *and* HTTPS listening on 5050 in development.\x1b[0m');
 	});
 } else {
