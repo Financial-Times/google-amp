@@ -132,6 +132,10 @@ jobs:
           name: Deploy to production
           command: make deploy
 
+      - run:
+          name: Deploy VCL to fastly
+          command: make deploy-vcl
+
 workflows:
 
   version: 2

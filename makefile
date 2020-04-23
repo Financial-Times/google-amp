@@ -42,3 +42,6 @@ build-production:
 certificate:
 	openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 1461 -nodes -config certificate.cnf
 
+deploy-vcl:
+	fastly deploy --service $(FASTLY_SERVICE) ./vcl
+
