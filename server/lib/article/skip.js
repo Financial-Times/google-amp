@@ -19,6 +19,11 @@ module.exports = article => {
 		return true;
 	}
 
+	// skip live blogs
+	if(article.realtime) {
+		return true;
+	}
+
 	// skip articles we've explicitly listed above
 	if(articlesToSkip.includes(article.id)) {
 		return true;
