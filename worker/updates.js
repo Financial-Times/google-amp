@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-disable no-console */
+
 const kinesisDecoded = require('@quarterto/kinesis-decoded');
 const fetch = require('node-fetch');
 const assertEnv = require('@quarterto/assert-env');

@@ -25,7 +25,7 @@ const minColumnWidth = 320 - (2 * pagePadding);
 
 const maxAsideWidth = 470;
 
-function getWidthAndRatio(metaUrl, options) {
+function getWidthAndRatio (metaUrl, options) {
 	return fetch(metaUrl)
 		.then(fetchres.json)
 		.catch(err => {

@@ -19,7 +19,7 @@ describe('external image transform', () => {
 		nock.cleanAll();
 	});
 
-	it('should transform img to amp-image with ratio', async() => {
+	it('should transform img to amp-image with ratio', async () => {
 		expect(
 			await transformBody(`<figure class="n-content-image">
 				<img src="http://com.ft.imagepublish.prod.s3.amazonaws.com/56f6ad50-da52-11e5-a72f-1e7744c66818"

@@ -73,6 +73,7 @@ assertHerokuEnv(warnings => {
 	if(ravenClient) {
 		ravenClient.captureMessage(warnings, {level: 'warning'});
 	} else {
+		// eslint-disable-next-line no-console
 		console.warn('Warning:', warnings);
 	}
 });

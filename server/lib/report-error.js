@@ -3,9 +3,9 @@
 const fetchres = require('fetchres');
 const defaults = require('lodash.defaults');
 
-module.exports = function reportError(raven, error, options) {
+module.exports = function reportError (raven, error, options) {
 	options = defaults(options, {
-		getErrorLevel(err) {
+		getErrorLevel (err) {
 			if(fetchres.originatedError(err) || err.isWarning) {
 				return 'warning';
 			}
@@ -19,6 +19,7 @@ module.exports = function reportError(raven, error, options) {
 			level: options.getErrorLevel(error),
 		}, options));
 	} else {
+		// eslint-disable-next-line no-console
 		console.error(error.stack || error.message || error.toString(), options);
 	}
 };

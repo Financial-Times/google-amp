@@ -4,7 +4,7 @@ module.exports = {
 	files: {
 		allow: [
 			'makefile',
-			'scripts/dev-utils/certificate.cnf',
+			'certificate.cnf',
 		],
 		allowOverrides: [],
 	},

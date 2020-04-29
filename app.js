@@ -1,6 +1,5 @@
 'use strict';
 
-const herokuCluster = require('@quarterto/heroku-cluster');
 const httpolyglot = require('httpolyglot');
 const path = require('path');
 const fs = require('fs');
@@ -15,11 +14,9 @@ if(isDevelopment && hasCertificate) {
 		key: fs.readFileSync(path.resolve(__dirname, 'key.pem')),
 		cert: fs.readFileSync(path.resolve(__dirname, 'cert.pem')),
 	}, app).listen(5050, () => {
+		// eslint-disable-next-line no-console
 		console.log('\x1b[1mExpress server HTTP *and* HTTPS listening on 5050 in development.\x1b[0m');
 	});
 } else {
-	herokuCluster({
-		defaultPort: 5000,
-		app,
-	});
+	app.listen(process.env.PORT || 5000);
 }

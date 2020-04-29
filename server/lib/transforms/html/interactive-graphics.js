@@ -3,7 +3,7 @@
 const match = require('@quarterto/cheerio-match-multiple');
 
 module.exports = match({
-	'a[data-asset-type="interactive-graphic"]'(el, i, $) {
+	'a[data-asset-type="interactive-graphic"]' (el, i, $) {
 		if(el.attr('href').match(/^https/i)) {
 			return `<amp-iframe
 				src="${el.attr('href')}"

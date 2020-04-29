@@ -1,7 +1,7 @@
 'use strict';
 
 class Warning extends Error {
-	constructor(message) {
+	constructor (message) {
 		super(message);
 		this.message = message;
 		this.isWarning = true;

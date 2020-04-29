@@ -26,7 +26,7 @@ const validateHref = href => {
 };
 
 module.exports = match({
-	'a'(el, i, $, options) {
+	'a' (el, i, $, options) {
 		try {
 			validateHref(el.attr('href'));
 		} catch(e) {

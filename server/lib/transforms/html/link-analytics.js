@@ -5,12 +5,12 @@ const match = require('@quarterto/cheerio-match-multiple');
 const sanitise = text => text.replace(/[^\w ]/g, '');
 
 module.exports = match({
-	'[data-trackable="related-box"] a'(el) {
+	'[data-trackable="related-box"] a' (el) {
 		this.a(el);
 		el.attr('data-vars-link-type', 'related-box');
 	},
 
-	'a'(el) {
+	'a' (el) {
 		// Ensure text doesn't contain HTML chars
 		const text = sanitise(el.text());
 

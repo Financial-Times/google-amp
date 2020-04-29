@@ -22,7 +22,7 @@ describe('brightcove', () => {
 		nEsClient.get.restore();
 	});
 
-	it('should use account and player id from environment', async() => {
+	it('should use account and player id from environment', async () => {
 		nEsClient.get.withArgs('ca04513c-e9c7-11e6-893c-082c54a7f539').returns(Promise.resolve(fixture));
 		const content = await render('ca04513c-e9c7-11e6-893c-082c54a7f539', {
 			brightcoveAccountId: 'account-id',

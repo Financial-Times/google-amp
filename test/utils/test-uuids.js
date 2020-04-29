@@ -82,7 +82,3 @@ module.exports = [
 	// Reported as 404s in Google Search Console
 	// '079a37bc-db50-11e7-a039-c64b1c09b482', // TODO
 ];
-
-if(module === require.main) {
-	console.log(module.exports.join('\n'));
-}
