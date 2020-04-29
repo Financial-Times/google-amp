@@ -31,4 +31,3 @@ module.exports = article => {
 
 	return false;
 };
-

@@ -1,10 +1,10 @@
 'use strict';
 
 const assembleArticle = require('../lib/article/assemble');
-const nEsClient = require('@financial-times/n-es-client')
+const nEsClient = require('@financial-times/n-es-client');
 const errors = require('http-errors');
 const analytics = require('../lib/analytics');
-const skipArticle = require('../lib/article/skip')
+const skipArticle = require('../lib/article/skip');
 const reportError = require('../lib/report-error');
 
 module.exports = async (req, res, next) => {

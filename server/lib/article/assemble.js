@@ -81,8 +81,7 @@ const assembleArticle = async (article, options) => {
 module.exports = assembleArticle;
 module.exports.render = async (uuid, options) => {
 	const article = await nEsClient.get(uuid);
-	const transformed = assembleArticle(article, options);
+	const transformed = await assembleArticle(article, options);
 	const hbs = await handlebars.standalone();
 	return hbs.renderView('article', Object.assign({layout: 'layout'}, transformed));
 };
-
