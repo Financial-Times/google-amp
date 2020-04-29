@@ -8,8 +8,6 @@ const articleFlags = require('../article/article-flags');
 const transformArticle = require('../transforms/article');
 const fetchSlideshows = require('../article/fetch-slideshows');
 const transformSlideshows = require('../transforms/slideshows');
-const isLiveBlog = require('../live-blogs/is-live-blog');
-const getLiveBlog = require('../live-blogs/get-live-blog');
 
 const getCSS = require('./css');
 const environmentOptions = require('./environment-options');
@@ -62,11 +60,6 @@ const assembleArticle = async (article, options) => {
 
 	// append additional article data derived from options
 	articleFlags(article, options);
-
-	// replace article content with rendered live blog
-	if(article.enableLiveBlogs && isLiveBlog(article.webUrl) {
-		await getLiveBlog(article, options);
-	}
 
 	// First phase: network-dependent fetches and transforms in parallel
 	await Promise.all([
