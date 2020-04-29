@@ -37,7 +37,7 @@
     "@quarterto/sass-functions": "^1.1.0",
     "@quarterto/select-features": "^1.1.0",
     "@quarterto/tcp-fetch": "^1.0.0",
-    "autoprefixer": "^6.3.3",
+    "autoprefixer": "^9.0.0",
     "cheerio": "^0.22.0",
     "cookie-parser": "^1.4.1",
     "csso": "^3.0.0",
