@@ -8,22 +8,10 @@
 
 		<h1 class="headline" itemprop="headline">
 			{{title}}
-
-			{{#if liveBlogStatus}}
-			<div class='live-blog--status live-blog--status-{{liveBlogStatus}}'>
-				{{{liveBlogStatusLabel}}}
-			</div>
-			{{/if}}
 		</h1>
 
-		{{#if liveBlogsExcerpt}}
-			<div class="article-liveblogs-excerpt">
-				{{{liveBlogsExcerpt}}}
-			</div>
-		{{else}}
-			{{#if standfirst}}
-				<h2 class="article-standfirst">{{standfirst}}</h2>
-			{{/if}}
+		{{#if standfirst}}
+		<h2 class="article-standfirst">{{standfirst}}</h2>
 		{{/if}}
 
 		{{{mainImageHtml}}}

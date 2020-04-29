@@ -59,7 +59,6 @@ const enableAllFlags = {
 	enableSidebarMenu: true,
 	enableSocialShare: true,
 	enableAds: true,
-	enableLiveBlogs: true,
 	enableBarrier: true,
 };
 
@@ -106,7 +105,6 @@ module.exports = (article, options) => {
 				'barrier-old': !options.enableBarrier && !options.showEverything,
 				comments: true,
 				header: true,
-				'live-blogs': options.enableLiveBlogs && !!article.isLiveBlog,
 				related,
 				sidebar: options.enableSidebarMenu,
 				slideshow: Object.keys(article.slideshows).length > 0,

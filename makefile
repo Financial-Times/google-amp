@@ -25,9 +25,6 @@ unit-test: $(js-files) $(test-files-all)
 	NODE_ENV=test istanbul cover node_modules/.bin/_mocha -- -i --grep "amp validator" $(test-files)
 
 run:
-	echo $$SHELL
-	which nodemon
-	type nodemon
 	nodemon app.js
 
 run-inspect:
