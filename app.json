@@ -12,7 +12,6 @@
 		"ENABLE_SIDEBAR_MENU": {"required": false},
 		"ENABLE_ADS": {"required": false},
 		"ENABLE_SOCIAL_SHARE": {"required": false},
-		"ENABLE_LIVE_BLOGS": {"required": false},
 		"VERIFY_STREAM_URLS": {"required": false},
 		"ADS_API_HOST": {"required": true},
 		"CANONICAL_URL_PHASE": {"required": true},

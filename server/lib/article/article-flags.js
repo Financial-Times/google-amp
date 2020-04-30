@@ -41,7 +41,6 @@ module.exports = (article, options) => Object.assign(article, {
 
 	enableSidebarMenu: !!options.enableSidebarMenu,
 	enableSocialShare: !!options.enableSocialShare,
-	enableLiveBlogs: !!options.enableLiveBlogs,
 	enableBarrier: !!options.enableBarrier,
 	enableGoogleAccountLinking: true,
 	unfurlBrightcove: !!options.unfurlBrightcove,

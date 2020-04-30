@@ -1,7 +1,6 @@
 'use strict';
 
 const nEsClient = require('@financial-times/n-es-client');
-const errors = require('http-errors');
 const promiseAllObj = require('@quarterto/promise-all-object');
 const addStoryPackage = require('../related-content/story-package');
 const addMoreOns = require('../related-content/more-ons');
@@ -9,10 +8,6 @@ const articleFlags = require('../article/article-flags');
 const transformArticle = require('../transforms/article');
 const fetchSlideshows = require('../article/fetch-slideshows');
 const transformSlideshows = require('../transforms/slideshows');
-const isLiveBlog = require('../live-blogs/is-live-blog');
-const getLiveBlog = require('../live-blogs/get-live-blog');
-
-const reportError = require('../report-error');
 
 const getCSS = require('./css');
 const environmentOptions = require('./environment-options');
@@ -60,64 +55,33 @@ const extraArticleData = (article, options) => promiseAllObj({
 	css: getCSS(article, options),
 }).then(extra => Object.assign(article, extra));
 
-const assembleArticle = (uuid, options) => {
+const assembleArticle = async (article, options) => {
 	options = Object.assign({}, environmentOptions, options);
 
-	return nEsClient.get(uuid)
-		.then(
-			response => {
-				if(response
-					&& (!response.originatingParty || response.originatingParty === 'FT')
-					&& (!response.type || response.type === 'article')
-				) {
-					return response;
-				}
+	// append additional article data derived from options
+	articleFlags(article, options);
 
-				throw new errors.NotFound(`Article ${uuid} not found`);
-			},
-			err => {
-				if(err.status === 404) {
-					throw new errors.NotFound(`Article ${uuid} not found`);
-				}
+	// First phase: network-dependent fetches and transforms in parallel
+	await Promise.all([
+		transformArticle(article, options),
+		addStoryPackage(article, options),
+		addMoreOns(article, options),
+		fetchSlideshows(article, options),
+	]);
 
-				if(err.status) {
-					reportError(options.raven, err);
+	// Second phase: transforms which rely on first phase fetches
+	await Promise.all([
+		transformSlideshows(article, options),
+		extraArticleData(article, options),
+	]);
 
-					throw new errors.InternalServerError(`Elastic Search error fetching article ${uuid}`);
-				}
-
-				throw err;
-			}
-		)
-		.then(article => articleFlags(article, options))
-		.then(article => {
-			if(article.enableLiveBlogs && isLiveBlog(article.webUrl)) {
-				return getLiveBlog(article, options);
-			}
-
-			return article;
-		})
-
-		// First phase: network-dependent fetches and transforms in parallel
-		.then(article => Promise.all([
-			transformArticle(article, options),
-			addStoryPackage(article, options),
-			addMoreOns(article, options),
-			fetchSlideshows(article, options),
-		])
-
-			// Second phase: transforms which rely on first phase fetches
-			.then(() => Promise.all([
-				transformSlideshows(article, options),
-				extraArticleData(article, options),
-			]))
-
-			// Return the article
-			.then(() => article));
+	return article;
 };
 
 module.exports = assembleArticle;
-module.exports.render = (uuid, options) => assembleArticle(uuid, options)
-	.then(article => handlebars.standalone().then(
-		hbs => hbs.renderView('article', Object.assign({layout: 'layout'}, article))
-	));
+module.exports.render = async (uuid, options) => {
+	const article = await nEsClient.get(uuid);
+	const transformed = await assembleArticle(article, options);
+	const hbs = await handlebars.standalone();
+	return hbs.renderView('article', Object.assign({layout: 'layout'}, transformed));
+};
