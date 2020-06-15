@@ -62,5 +62,5 @@ const applyToExpress = function (app, options) {
 		});
 };
 
-exports.applyToExpress = applyToExpress;
-exports.nextifyHandlebars = nextifyHandlebars;
+module.exports = applyToExpress;
+module.exports.standalone = nextifyHandlebars;
