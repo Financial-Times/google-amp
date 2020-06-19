@@ -1,0 +1,20 @@
+<h1>{{title}} - on app {{__name}}</h1>
+<h2>Partials test:-</h2>
+<div style="background: yellow">
+	{{> dep-1/templates/partial }}
+</div>
+
+<h2>Symlinked Partials test:-</h2>
+<div style="background: yellow">
+	{{> linked-dep-1/templates/partial }}
+</div>
+
+<undefinedflag-on>{{#flags.undefinedFlag.isSwitchedOn}}
+Should not appear
+{{/flags.undefinedFlag.isSwitchedOn}}</undefinedflag-on>
+
+<undefinedflag-off>{{#flags.undefinedFlag.isSwitchedOff}}
+Should appear
+{{/flags.undefinedFlag.isSwitchedOff}}</undefinedflag-off>
+
+<p>Concat {{concat "one" "two" "three"}}</p>
