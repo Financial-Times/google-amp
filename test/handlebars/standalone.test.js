@@ -17,7 +17,7 @@ describe('standalone', function () {
 		})
 			.then(function (instance) {
 
-				return instance.render(path.resolve(__dirname, '../fixtures/app/views/main.html'), require('../fixtures/view-data'))
+				return instance.render(path.resolve(__dirname, '../fixtures/app/views/main.html'), {title: 'FT'})
 					.then(function (html) {
 						expect(html).to.match(/<h1>FT[\s\S]*<h3>I am partial of dep 2[\s\S]*<h3>I am partial of dep 2[\s\S]*<p>Concat onetwothree[\s\S]*/);
 						done();
