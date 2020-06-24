@@ -1,6 +1,6 @@
 'use strict';
 
-const Path = require('path');
+const path = require('path');
 const expressHandlebars = require('express-handlebars');
 const handlebars = require('handlebars');
 const loadPartials = require('./load-partials');
@@ -26,7 +26,7 @@ const nextifyHandlebars = function (options) {
 	});
 
 	const partialsDir = (options.partialsDir || []);
-	const dependencyRoot = Path.join(options.directory, '/bower_components/');
+	const dependencyRoot = path.join(options.directory, '/bower_components/');
 	const ignoreListInLinkedDeps = ['.git', 'node_modules', 'bower_components', 'demos'];
 	const limitToComponents = (options.limitToComponents || '');
 

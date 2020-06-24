@@ -2,6 +2,4 @@
 
 const describeFolder = require('@quarterto/mocha-describe-folder');
 
-describeFolder('handlebars tests', function () {
-	this.timeout(5000);
-});
+describeFolder('handlebars tests');

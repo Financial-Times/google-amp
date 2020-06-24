@@ -11,7 +11,7 @@ const transformSlideshows = require('../transforms/slideshows');
 
 const getCSS = require('./css');
 const environmentOptions = require('./environment-options');
-const handlebars = require('../handlebars/handlebars');
+const handlebars = require('../templating/handlebars');
 
 const getAuthors = article => (article.byline || '').replace(/^by\s+/i, '');
 

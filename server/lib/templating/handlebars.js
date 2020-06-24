@@ -1,7 +1,7 @@
 'use strict';
 
 const promisify = require('@quarterto/promisify');
-const Path = require('path');
+const path = require('path');
 const nextifiedHandlebars = require('./nextified-handlebars');
 
 const options = {
@@ -17,7 +17,7 @@ exports.standalone = () => nextifiedHandlebars.standalone(options).then(
 
 		return Object.assign(hbs, {
 			renderView: (view, ...args) => renderView(
-				Path.resolve(options.directory, 'views', `${view}.html`),
+				path.resolve(options.directory, 'views', `${view}.html`),
 				...args
 			),
 		});

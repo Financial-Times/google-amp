@@ -11,7 +11,7 @@ const path = require('path');
 const os = require('os');
 
 const cors = require('./lib/cors');
-const handlebars = require('./lib/handlebars/handlebars');
+const handlebars = require('./lib/templating/handlebars');
 const pkg = require('../package.json');
 
 const app = express();

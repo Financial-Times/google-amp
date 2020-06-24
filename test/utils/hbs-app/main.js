@@ -1,9 +1,8 @@
-/* eslint no-console: 0 */
 /*jshint node:true*/
 'use strict';
 
 const express = require('express');
-const handlebars = require('../../../server/lib/handlebars/nextified-handlebars');
+const handlebars = require('../../../server/lib/templating/nextified-handlebars');
 const app = module.exports = express();
 
 const handlebarsPromise = handlebars(app, {
@@ -23,11 +22,13 @@ app.listen = function () {
 	const args = arguments;
 
 	return handlebarsPromise.then(function () {
+		// eslint-disable-next-line no-console
 		console.log('app listen', actualAppListen);
 		actualAppListen.apply(app, args);
 	});
 };
 
 app.promise = handlebarsPromise.then(function () {
+	// eslint-disable-next-line no-console
 	console.log('This then is attached later than the internal then attached by our handlebars code');
 });
