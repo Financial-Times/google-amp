@@ -72,7 +72,8 @@
     "postcss-discard-empty": "^4.0.0",
     "postcss-inline-svg": "^3.0.0",
     "postcss-remove-unused": "^1.2.0",
-    "raven": "^0.12.0"
+    "raven": "^0.12.0",
+    "supertest": "^4.0.2"
   },
   "engines": {
     "node": "^10.15.0 || ^11",
