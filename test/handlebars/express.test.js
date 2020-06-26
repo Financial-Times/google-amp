@@ -1,4 +1,3 @@
-/*global it, describe, before*/
 'use strict';
 
 const request = require('supertest');

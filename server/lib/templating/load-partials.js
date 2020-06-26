@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const Path = require('path');
+const path = require('path');
 const denodeify = require('denodeify');
 
 const readdirAsync = denodeify(fs.readdir);
@@ -25,7 +25,7 @@ const itemsWithStats = function (directory, limitToComponents) {
 						files = files.filter((f) => limitToComponents.indexOf(f) > -1);
 					}
 					const stats = files.map(function (file) {
-						const fullPath = Path.join(directory, file);
+						const fullPath = path.join(directory, file);
 
 						return lstatAsync(fullPath)
 							.then(function (stat) {
@@ -54,7 +54,7 @@ const classifyItems = function (items, otherPaths) {
 const selectValidLinkedPaths = function (linkedItems, ignores, linkPath) {
 	return linkedItems
 		.filter(function (item) { return ignores.indexOf(item.name) < 0 && item.stat.isDirectory(); })
-		.map(function (item) { return { name: Path.join(linkPath, item.name), path: item.path }; });
+		.map(function (item) { return { name: path.join(linkPath, item.name), path: item.path }; });
 };
 
 const itemNamespace = function (name, bowerRoot) {
