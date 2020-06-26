@@ -26,7 +26,7 @@ const discardEmpty = require('postcss-discard-empty');
 const removeUnused = require('postcss-remove-unused');
 
 const csso = require('csso');
-const handlebars = require('../handlebars');
+const handlebars = require('../templating/handlebars');
 const reportError = require('../report-error');
 const Warning = require('../warning');
 

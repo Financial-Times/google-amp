@@ -1,8 +1,8 @@
 'use strict';
 
-const nHandlebars = require('@financial-times/n-handlebars');
 const promisify = require('@quarterto/promisify');
 const path = require('path');
+const nextifiedHandlebars = require('./nextified-handlebars');
 
 const options = {
 	directory: process.cwd(),
@@ -10,8 +10,8 @@ const options = {
 	partialsDir: 'views/partials',
 };
 
-exports.express = app => nHandlebars(app, options);
-exports.standalone = () => nHandlebars.standalone(options).then(
+exports.express = app => nextifiedHandlebars(app, options);
+exports.standalone = () => nextifiedHandlebars.standalone(options).then(
 	hbs => {
 		const renderView = promisify(hbs.renderView.bind(hbs));
 

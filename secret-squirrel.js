@@ -5,6 +5,7 @@ module.exports = {
 		allow: [
 			'makefile',
 			'certificate.cnf',
+			'test/utils/hbs-app/bower_components/linked-dep-1'
 		],
 		allowOverrides: [],
 	},
