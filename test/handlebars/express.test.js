@@ -1,10 +1,11 @@
 'use strict';
 
 const request = require('supertest');
-const app = require('../utils/hbs-app/main');
+let app;
 
 describe('express handlebars setup', function () {
 	before(function () {
+		app = require('../utils/hbs-app/main');
 		return app.promise;
 	});
 
@@ -39,6 +40,4 @@ describe('express handlebars setup', function () {
 				.expect(200, /Concat onetwothree/);
 		});
 	});
-
-
 });
