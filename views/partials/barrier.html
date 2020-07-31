@@ -1,21 +1,23 @@
 <div class="amp-access-barrier__header" subscriptions-section="content-not-granted">
 	<div class="amp-access-barrier__header-instruction">
-		Subscribe to read:
+		Subscribe or upgrade your account to read:
 		<h3>{{title}}</h3>
 	</div>
 
-	<div class="amp-access-barrier__login">
+	<div class="amp-access-barrier__login"
+		subscriptions-actions
+		subscriptions-display="NOT data.session"
+	>
 		Already a subscriber?
-		<a href="#" subscriptions-action="login" subscriptions-display="NOT data.session" subscriptions-service="{{#if enableGoogleAccountLinking}}subscribe.google.com{{else}}local{{/if}}" data-vars-link-type="barrier-login" data-vars-link-text="Sign in to FT.com">Sign in here</a>
-	</div>
-</div>
-
-<div subscriptions-section="content-not-granted">
-	<div class="amp-access-barrier__header" subscriptions-actions subscriptions-display="data.session">
-		<div class="amp-access-barrier__header-instruction">
-			Upgrade your account to read:
-			<h3>{{title}}</h3>
-		</div>
+		<a href="#"
+			subscriptions-action="login"
+			subscriptions-display="NOT data.session"
+			subscriptions-service="{{#if enableGoogleAccountLinking}}subscribe.google.com{{else}}local{{/if}}"
+			data-vars-link-type="barrier-login"
+			data-vars-link-text="Sign in to FT.com"
+			>
+				Sign in here
+			</a>
 	</div>
 </div>
 
