@@ -26,7 +26,7 @@ Getting started
     - Linux (Ubuntu, Debian)
     ```
     sudo cp cert.pem /usr/local/share/ca-certificates/
-    sudo sudo update-ca-certificates
+    sudo update-ca-certificates
     ```
      
 4. Run the app (no build is required in development mode), `make run`
