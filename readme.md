@@ -17,10 +17,18 @@ Getting started
     ```
 
     And add the certificate to your keychain:
-
+    
+    - MacOS
     ```
     security import cert.pem; security add-trusted-cert cert.pem
     ```
+    
+    - Linux (Ubuntu, Debian)
+    ```
+    sudo cp cert.pem /usr/local/share/ca-certificates/
+    sudo sudo update-ca-certificates
+    ```
+     
 4. Run the app (no build is required in development mode), `make run`
 5. Open `https://local.ft.com:5050/content/<Content UUID>`
 
