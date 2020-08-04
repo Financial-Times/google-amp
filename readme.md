@@ -25,7 +25,7 @@ Getting started
     
     - Linux (Ubuntu, Debian)
     ```
-    sudo cp cert.pem /usr/local/share/ca-certificates/
+    sudo cp cert.pem /usr/local/share/ca-certificates/ft-google-amp.crt
     sudo update-ca-certificates
     ```
      
