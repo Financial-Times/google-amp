@@ -25,7 +25,8 @@ const getProducts = async (options) => {
 	const barrier = await json(response);
 
 	const items = barrier.offers
-		.filter(offer => offer.name !== 'subscription-premium-digital-variant');
+		.filter(offer => offer.name !== 'subscription-premium-digital-variant')
+		.map(itemTransform);
 
 	return { items, allocation };
 };
