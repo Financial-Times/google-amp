@@ -3,10 +3,32 @@
 const fetch = require('../lib/fetch/wrap')(require('node-fetch'));
 const ammit = require('../lib/ammit');
 const {json} = require('fetchres');
+const {itemTransform} = require('../lib/item-transform');
 
 const apiKey = process.env.BARRIER_GURU_API_KEY;
 
 const FIVE_YEARS = 5 * 365.25 * 24 * 60 * 60 * 1000;
+
+const getProducts = async (options) => {
+	const { countryCode } = options;
+	const { abVars, allocation } = await ammit(options);
+	const headers = {
+		'x-api-key': apiKey,
+		'x-ft-ab': abVars,
+	};
+
+	if (countryCode) {
+		headers['country-code'] = countryCode;
+	}
+
+	const response = await fetch('https://barrier-guru.ft.com/barrier', { headers });
+	const barrier = await json(response);
+
+	const items = barrier.offers
+		.filter(offer => offer.name !== 'subscription-premium-digital-variant');
+
+	return { items, allocation };
+};
 
 module.exports = (req, res, next) => {
 	const allocationId = req.get('ft-allocation-id') || req.cookies.FTAllocation;
@@ -25,7 +47,7 @@ module.exports = (req, res, next) => {
 	res.vary('referer');
 	res.vary('user-agent');
 
-	module.exports.getProducts({
+	getProducts({
 		allocationId,
 		sessionId,
 		countryCode,
@@ -44,22 +66,3 @@ module.exports = (req, res, next) => {
 		res.send({items});
 	}).catch(next);
 };
-
-module.exports.getProducts = ({
-	allocationId, sessionId, countryCode, countryCodeTwoLetters,
-	continentCode, referer, userAgent,
-}) => ammit({
-	allocationId, sessionId, countryCodeTwoLetters, continentCode, referer, userAgent,
-})
-	.then(({abVars, allocation}) => fetch('https://barrier-guru.ft.com/barrier', {
-		headers: {
-			'country-code': countryCode,
-			'x-api-key': apiKey,
-			'x-ft-ab': abVars,
-		},
-	})
-		.then(json)
-		.then(barrier => ({
-			items: barrier.offers.filter(offer => offer.name !== 'subscription-premium-digital-variant') || [],
-			allocation,
-		})));
