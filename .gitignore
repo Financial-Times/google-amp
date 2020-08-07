@@ -16,3 +16,4 @@ test-results
 transform.log
 *.pem
 .eslintrc.js
+package-lock.json
