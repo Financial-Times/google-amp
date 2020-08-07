@@ -44,10 +44,12 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__offer {
+	@include oTypographySans(m);
 	background: oColorsGetPaletteColor('white');
 	margin-bottom: 20px;
 	overflow: hidden;
 	padding: $barrier-padding;
+	text-align: center;
 }
 
 .amp-access-barrier__offer-title {
@@ -60,14 +62,67 @@ $barrier-padding: 20px;
 	text-align: center;
 }
 
-.amp-access-barrier__offer-price {
-	@include oTypographySans(m);
-	color: oColorsGetPaletteColor('black');
-	// TODO: Upgrade to latest o-typography
-	line-height: 20px;
-	font-size: 16px;
-	text-align: center;
+.amp-access-barrier__offer-secondary-price {
+	color: oColorsGetPaletteColor('grey-tint3');
+	font-size: 14px;
+	line-height: 16px;
 }
+
+.amp-access-barrier__offer-promo-separator {
+	position: relative;
+    text-align: center;
+	margin: 0 0 8px;
+
+	&:before, &:after {
+		background-color: oColorsGetPaletteColor('black');
+		content: '';
+		display: block;
+		height: 1px;
+		opacity: 0.25;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: calc(50% - 20px);
+	}
+
+	&:after {
+		left: unset;
+		right: 0;
+	}
+}
+
+.amp-access-barrier__offer-highlight {
+	background-color: #1aebff; // no similar colour mapped in current version of o-colors
+	color: oColorsGetPaletteColor('black');
+	display: inline-block;
+	margin: 10px auto;
+	padding: 4px 8px;
+	font-size: 14px;
+	line-height: 16px;
+	font-weight: 500;
+}
+
+.amp-access-barrier__offer-price {
+	color: oColorsGetPaletteColor('teal-1');
+	// TODO: Upgrade to latest o-typography
+	font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+.amp-access-barrier__offer-value {
+	padding: .5em 0;
+
+	.o-subs-card__intro__offer {
+		color: oColorsGetPaletteColor('grey-tint3');
+		font-size: 14px;
+		line-height: 16px;
+		font-weight: 500;
+		padding: .5em 0;
+	}
+}
+
+
 
 .amp-access-barrier__offer-description {
 	@include oTypographySans(s);

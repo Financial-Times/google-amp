@@ -9,9 +9,8 @@ const apiKey = process.env.BARRIER_GURU_API_KEY;
 
 const FIVE_YEARS = 5 * 365.25 * 24 * 60 * 60 * 1000;
 
-const getProducts = async (options) => {
-	const { countryCode } = options;
-	const { abVars, allocation } = await ammit(options);
+const getProducts = async (ammitParams, countryCode) => {
+	const { abVars, allocation } = await ammit(ammitParams);
 	const headers = {
 		'x-api-key': apiKey,
 		'x-ft-ab': abVars,
@@ -51,12 +50,11 @@ module.exports = (req, res, next) => {
 	getProducts({
 		allocationId,
 		sessionId,
-		countryCode,
 		countryCodeTwoLetters,
 		continentCode,
 		referer,
 		userAgent,
-	}).then(({items, allocation}) => {
+	}, countryCode).then(({items, allocation}) => {
 		if(!allocationId && allocation) {
 			res.cookie('FTAllocation', allocation, {
 				domain: 'ft.com',
