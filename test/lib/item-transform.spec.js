@@ -1,8 +1,6 @@
 const {itemTransform} = require('../../server/lib/item-transform');
 const {expect} = require('../utils/chai');
 
-
-const PRICE_MATCH = '[PRICE]';
 const EMPTY_ITEM = {};
 
 describe('item-transform', () => {
@@ -59,14 +57,14 @@ const mockItem = () => {
 		secondaryPricing: [
 			{
 				copyTemplate:
-				'Test price ' + PRICE_MATCH + ' per month',
+				'Test price [PRICE] per month',
 				copyPricePath: 'pricing.billedMonthly.monthly.amount.value',
 			},
 		],
 		priceCopy: 'Pay based on use',
 		pricingCopyPricePath: 'pricing.billedMonthly.trial.amount',
-		pricingCopyTemplate: 'Test trial ' + PRICE_MATCH + ' price monthly',
-		promoPricingCopyTemplate: 'Test promo ' + PRICE_MATCH + ' price per year',
+		pricingCopyTemplate: 'Test trial [PRICE] price monthly',
+		promoPricingCopyTemplate: 'Test promo [PRICE] price per year',
 		promoPricingCopyPricePath: 'pricing.billedYearly.yearly.amount.value',
 		pricing: {
 			billedMonthly: {
