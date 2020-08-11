@@ -7,7 +7,7 @@ describe('item-transform', () => {
 	let mockedItem;
 
 	beforeEach(() => {
-		mockedItem = mockItem();
+		mockedItem = getMockedOfferItem();
 	});
 
 	it('should return correct formatted secondary pricing', () => {
@@ -52,7 +52,7 @@ describe('item-transform', () => {
 
 });
 
-const mockItem = () => {
+const getMockedOfferItem = () => {
 	return {
 		secondaryPricing: [
 			{
