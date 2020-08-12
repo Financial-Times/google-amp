@@ -46,7 +46,6 @@ module.exports = (req, res, next) => {
 		referer,
 		userAgent,
 	};
-	
 	res.vary('ft-allocation-id');
 	res.vary('ft-session-id');
 	res.vary('country-code');
