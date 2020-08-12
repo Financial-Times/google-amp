@@ -2,36 +2,36 @@ const get = require('lodash.get');
 
 const PRICE_MATCH = '[PRICE]';
 
-module.exports.itemTransform = item => {
-	item.formatted = {};
+module.exports.itemTransform = offer => {
+	offer.formatted = {};
 
-	if (item.secondaryPricing && item.secondaryPricing.length > 0) {
-		const { copyPricePath, copyTemplate } = item.secondaryPricing[0];
-		const secondaryPriceValue = get(item, copyPricePath);
+	if (offer.secondaryPricing && offer.secondaryPricing.length > 0) {
+		const { copyPricePath, copyTemplate } = offer.secondaryPricing[0];
+		const secondaryPriceValue = get(offer, copyPricePath);
 
-		item.formatted.secondaryPricing = copyTemplate.replace(PRICE_MATCH, secondaryPriceValue);
-		delete item.secondaryPricing;
+		offer.formatted.secondaryPricing = copyTemplate.replace(PRICE_MATCH, secondaryPriceValue);
+		delete offer.secondaryPricing;
 	}
 
-	if (item.pricingCopyPricePath && item.pricingCopyTemplate) {
-		const pricingValue = get(item, item.pricingCopyPricePath);
-		item.formatted.pricingCopy = item.pricingCopyTemplate.replace(PRICE_MATCH, pricingValue);
+	if (offer.pricingCopyPricePath && offer.pricingCopyTemplate) {
+		const pricingValue = get(offer, offer.pricingCopyPricePath);
+		offer.formatted.pricingCopy = offer.pricingCopyTemplate.replace(PRICE_MATCH, pricingValue);
 
-		delete item.pricingCopyPricePath;
-		delete item.pricingCopyTemplate;
+		delete offer.pricingCopyPricePath;
+		delete offer.pricingCopyTemplate;
 	} else {
-		item.formatted.pricingCopy = item.pricingCopy;
+		offer.formatted.pricingCopy = offer.pricingCopy;
 	}
 
-	delete item.pricingCopy;
+	delete offer.pricingCopy;
 
-	if (item.promoPricingCopyTemplate && item.promoPricingCopyPricePath) {
-		const promoPricingValue = get(item, item.promoPricingCopyPricePath);
-		item.formatted.promoPricingCopy = item.promoPricingCopyTemplate.replace(PRICE_MATCH, promoPricingValue);
+	if (offer.promoPricingCopyTemplate && offer.promoPricingCopyPricePath) {
+		const promoPricingValue = get(offer, offer.promoPricingCopyPricePath);
+		offer.formatted.promoPricingCopy = offer.promoPricingCopyTemplate.replace(PRICE_MATCH, promoPricingValue);
 
-		delete item.promoPricingCopyTemplate;
-		delete item.promoPricingCopyPricePath;
+		delete offer.promoPricingCopyTemplate;
+		delete offer.promoPricingCopyPricePath;
 	}
 
-	return item;
+	return offer;
 };

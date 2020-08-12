@@ -74,15 +74,15 @@ $barrier-padding: 20px;
 	margin: 0 0 8px;
 
 	&:before, &:after {
-		background-color: oColorsGetPaletteColor('black');
-		content: '';
 		display: block;
-		height: 1px;
-		opacity: 0.25;
 		position: absolute;
 		top: 50%;
 		left: 0;
 		width: calc(50% - 20px);
+		height: 1px;
+		background-color: oColorsGetPaletteColor('black');
+		content: '';
+		opacity: 0.25;
 	}
 
 	&:after {
@@ -111,14 +111,14 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__offer-value {
-	padding: .5em 0;
+	padding: 0.5em 0;
 
 	.o-subs-card__intro__offer {
 		color: oColorsGetPaletteColor('grey-tint3');
 		font-size: 14px;
 		line-height: 16px;
 		font-weight: 500;
-		padding: .5em 0;
+		padding: 0.5em 0;
 	}
 }
 

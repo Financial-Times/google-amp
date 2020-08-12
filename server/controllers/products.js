@@ -10,7 +10,7 @@ const apiKey = process.env.BARRIER_GURU_API_KEY;
 const FIVE_YEARS = 5 * 365.25 * 24 * 60 * 60 * 1000;
 
 const getProducts = async (ammitParams, countryCode) => {
-	const { abVars, allocation } = await ammit(ammitParams);
+	const {abVars, allocation} = await ammit(ammitParams);
 	const headers = {
 		'x-api-key': apiKey,
 		'x-ft-ab': abVars,
@@ -20,14 +20,14 @@ const getProducts = async (ammitParams, countryCode) => {
 		headers['country-code'] = countryCode;
 	}
 
-	const response = await fetch('https://barrier-guru.ft.com/barrier', { headers });
+	const response = await fetch('https://barrier-guru.ft.com/barrier', {headers});
 	const barrier = await json(response);
 
 	const items = barrier.offers
 		.filter(offer => offer.name !== 'subscription-premium-digital-variant')
 		.map(itemTransform);
 
-	return { items, allocation };
+	return {items, allocation};
 };
 
 module.exports = (req, res, next) => {
@@ -38,7 +38,15 @@ module.exports = (req, res, next) => {
 	const continentCode = req.get('continent_code');
 	const referer = req.get('referer');
 	const userAgent = req.get('user-agent');
-
+	const ammitParams = {
+		allocationId,
+		sessionId,
+		countryCodeTwoLetters,
+		continentCode,
+		referer,
+		userAgent,
+	};
+	
 	res.vary('ft-allocation-id');
 	res.vary('ft-session-id');
 	res.vary('country-code');
@@ -47,14 +55,7 @@ module.exports = (req, res, next) => {
 	res.vary('referer');
 	res.vary('user-agent');
 
-	getProducts({
-		allocationId,
-		sessionId,
-		countryCodeTwoLetters,
-		continentCode,
-		referer,
-		userAgent,
-	}, countryCode).then(({items, allocation}) => {
+	getProducts(ammitParams, countryCode).then(({items, allocation}) => {
 		if(!allocationId && allocation) {
 			res.cookie('FTAllocation', allocation, {
 				domain: 'ft.com',
