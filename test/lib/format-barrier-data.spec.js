@@ -1,63 +1,11 @@
-const {itemTransform} = require('../../server/lib/item-transform');
+const {formatBarrierData} = require('../../server/lib/format-barrier-data');
 const {expect} = require('../utils/chai');
-
-const EMPTY_ITEM = {};
-
-describe('item-transform', () => {
-	let mockedItem;
-
-	beforeEach(() => {
-		mockedItem = getMockedOfferItem();
-	});
-
-	it('should return correct formatted secondary pricing', () => {
-
-		expect(itemTransform(mockedItem).formatted.secondaryPricing).to.equal('Test price 6 per month');
-		expect(mockedItem.secondaryPricing).to.equal(undefined);
-	});
-
-	it('should not include formatted secondary pricing as a field', () => {
-		expect(itemTransform(EMPTY_ITEM).formatted.secondaryPricing).to.equal(undefined);
-	});
-
-	it('should return correct formatted pricingCopy from template', () => {
-
-		expect(itemTransform(mockedItem).formatted.pricingCopy).to.equal('Test trial 2 price monthly');
-		expect(mockedItem.pricingCopyPricePath).to.equal(undefined);
-		expect(mockedItem.pricingCopyTemplate).to.equal(undefined);
-	});
-
-	it('should return correct formatted pricingCopy', () => {
-		delete mockedItem.pricingCopyPricePath;
-		delete mockedItem.pricingCopyTemplate;
-
-		expect('TestpriceCopy', itemTransform(mockedItem).formatted.pricingCopy);
-		expect(mockedItem.pricingCopy).to.equal(undefined);
-	});
-
-	it('should not include formatted pricing copy as a field', () => {
-		expect(itemTransform(EMPTY_ITEM).formatted.pricingCopy).to.equal(undefined);
-	});
-
-	it('should return correct formatted promo pricingCopy', () => {
-
-		expect(itemTransform(mockedItem).formatted.promoPricingCopy).to.equal('Test promo 150 price per year');
-		expect(mockedItem.promoPricingCopyPricePath).to.equal(undefined);
-		expect(mockedItem.promoPricingCopyTemplate).to.equal(undefined);
-	});
-
-	it('should not include formatted promo pricing copy as a field', () => {
-		expect(itemTransform(EMPTY_ITEM).formatted.promoPricingCopy).to.equal(undefined);
-	});
-
-});
 
 const getMockedOfferItem = () => {
 	return {
 		secondaryPricing: [
 			{
-				copyTemplate:
-				'Test price [PRICE] per month',
+				copyTemplate: 'Test price [PRICE] per month',
 				copyPricePath: 'pricing.billedMonthly.monthly.amount.value',
 			},
 		],
@@ -87,3 +35,50 @@ const getMockedOfferItem = () => {
 		}
 	};
 };
+
+describe('formatBarrierData(offer)', () => {
+	let mockedItem;
+	let formatted;
+
+	beforeEach(() => {
+		mockedItem = getMockedOfferItem();
+		formatted = formatBarrierData(mockedItem);
+	});
+
+	describe('when offer is empty', () => {
+		let emptyFormatted;
+
+		beforeEach(() => {
+			emptyFormatted = formatBarrierData({});
+		});
+
+		it('should not include formatted secondary pricing as a field', () => {
+			expect(emptyFormatted.secondaryPricing).to.equal(undefined);
+		});
+
+		it('should not include formatted pricing copy as a field', () => {
+			expect(emptyFormatted.pricingCopy).to.equal(undefined);
+		});
+
+		it('should not include formatted promo pricing copy as a field', () => {
+			expect(emptyFormatted.promoPricingCopy).to.equal(undefined);
+		});
+	})
+
+	it('should return correct formatted secondary pricing', () => {
+		expect(formatted.secondaryPricing).to.equal('Test price 6 per month');
+	});
+
+	it('should return correct formatted pricingCopy from template', () => {
+		expect(formatted.pricingCopy).to.equal('Test trial 2 price monthly');
+	});
+
+	it('should return correct formatted pricingCopy', () => {
+		delete mockedItem.pricingCopyPricePath;
+		delete mockedItem.pricingCopyTemplate;
+
+		formatted = formatBarrierData(mockedItem);
+
+		expect(formatted.pricingCopy).to.equal(undefined);
+	});
+});

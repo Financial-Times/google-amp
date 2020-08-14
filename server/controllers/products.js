@@ -3,7 +3,7 @@
 const fetch = require('../lib/fetch/wrap')(require('node-fetch'));
 const ammit = require('../lib/ammit');
 const {json} = require('fetchres');
-const {itemTransform} = require('../lib/item-transform');
+const {formatBarrierData} = require('../lib/format-barrier-data');
 
 const apiKey = process.env.BARRIER_GURU_API_KEY;
 
@@ -25,7 +25,10 @@ const getProducts = async (ammitParams, countryCode) => {
 
 	const items = barrier.offers
 		.filter(offer => offer.name !== 'subscription-premium-digital-variant')
-		.map(itemTransform);
+		.map(offer => ({
+			...offer,
+			formatted: formatBarrierData(offer),
+		}));
 
 	return {items, allocation};
 };
