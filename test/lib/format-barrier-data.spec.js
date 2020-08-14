@@ -63,7 +63,7 @@ describe('formatBarrierData(offer)', () => {
 		it('should not include formatted promo pricing copy as a field', () => {
 			expect(emptyFormatted.promoPricingCopy).to.equal(undefined);
 		});
-	})
+	});
 
 	it('should return correct formatted secondary pricing', () => {
 		expect(formatted.secondaryPricing).to.equal('Test price 6 per month');
