@@ -78,7 +78,12 @@ describe('formatBarrierData(offer)', () => {
 		delete mockedItem.pricingCopyTemplate;
 
 		formatted = formatBarrierData(mockedItem);
+		expect(formatted.pricingCopy).to.equal(mockedItem.pricingCopy);
+	});
 
-		expect(formatted.pricingCopy).to.equal(undefined);
+	it('ishould return normal price if the priceValue pricingCopyPricePath is missing', () => {
+		mockedItem.pricingCopyPricePath = 'missing.pricing.value';
+		formatted = formatBarrierData(mockedItem);
+		expect(formatted.pricingCopy).to.equal(mockedItem.pricingCopy);
 	});
 });

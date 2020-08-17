@@ -12,8 +12,8 @@ module.exports.formatBarrierData = offer => {
 		formatted.secondaryPricing = copyTemplate.replace(PRICE_MATCH, secondaryPriceValue);
 	}
 
-	if (offer.pricingCopyPricePath && offer.pricingCopyTemplate) {
-		const pricingValue = get(offer, offer.pricingCopyPricePath);
+	const pricingValue = get(offer, offer.pricingCopyPricePath);
+	if (pricingValue && offer.pricingCopyTemplate) {
 		formatted.pricingCopy = offer.pricingCopyTemplate.replace(PRICE_MATCH, pricingValue);
 	} else {
 		formatted.pricingCopy = offer.pricingCopy;
