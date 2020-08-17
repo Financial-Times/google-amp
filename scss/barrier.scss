@@ -70,19 +70,19 @@ $barrier-padding: 20px;
 
 .amp-access-barrier__offer-promo-separator {
 	position: relative;
-    text-align: center;
+	text-align: center;
 	margin: 0 0 8px;
 
 	&:before, &:after {
-		display: block;
 		position: absolute;
+		display: block;
+		width: calc(50% - 20px);
 		top: 50%;
 		left: 0;
-		width: calc(50% - 20px);
 		height: 1px;
 		background-color: oColorsGetPaletteColor('black');
-		content: '';
 		opacity: 0.25;
+		content: '';
 	}
 
 	&:after {
@@ -92,14 +92,14 @@ $barrier-padding: 20px;
 }
 
 .amp-access-barrier__offer-highlight {
-	background-color: #1aebff; // no similar colour mapped in current version of o-colors
-	color: oColorsGetPaletteColor('black');
 	display: inline-block;
-	margin: 10px auto;
 	padding: 4px 8px;
+	margin: 10px auto;
+	color: oColorsGetPaletteColor('black');
+	background-color: #1aebff; // no similar colour mapped in current version of o-colors
 	font-size: 14px;
-	line-height: 16px;
 	font-weight: 500;
+	line-height: 16px;
 }
 
 .amp-access-barrier__offer-price {
