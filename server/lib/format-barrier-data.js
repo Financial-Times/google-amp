@@ -19,8 +19,8 @@ module.exports.formatBarrierData = offer => {
 		formatted.pricingCopy = offer.pricingCopy;
 	}
 
-	if (offer.promoPricingCopyTemplate && offer.promoPricingCopyPricePath) {
-		const promoPricingValue = get(offer, offer.promoPricingCopyPricePath);
+	const promoPricingValue = get(offer, offer.promoPricingCopyPricePath);
+	if (promoPricingValue && offer.promoPricingCopyTemplate) {
 		formatted.promoPricingCopy = offer.promoPricingCopyTemplate.replace(PRICE_MATCH, promoPricingValue);
 	}
 
