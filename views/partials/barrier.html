@@ -32,11 +32,16 @@
 				\{{#description.title}}
 				<h3 class="amp-access-barrier__offer-description-title">\{{description.title}}</h3>
 				\{{/description.title}}
-				<ul class="amp-access-barrier__offer-description-items">
-					\{{#description.items}}
-					<li>\{{description}}</li>
-					\{{/description.items}}
-				</ul>
+				\{{#basicDescription}}
+					<p>\{{{basicDescription}}}</p>
+				\{{/basicDescription}}
+				\{{^basicDescription}}
+					<ul class="amp-access-barrier__offer-description-items">
+						\{{#description.items}}
+>						<li>\{{description}}</li>
+						\{{/description.items}}
+					</ul>
+				\{{/basicDescription}}
 			</div>
 
 			<p class="amp-access-barrier__offer-price">
@@ -44,19 +49,36 @@
 					View {{> link href='{{pricinghref}}' text='pricing &amp; plans' type='barrier-pricing'}}
 				\{{/pricinghref}}
 				\{{^pricinghref}}
-					\{{#pricing.billedYearly.weekly.amount}}
-						<span class="amp-access-barrier__offer-value">\{{value}}</span> per week
-					\{{/pricing.billedYearly.weekly.amount}}
-					\{{^pricing.billedYearly.weekly.amount}}
-						\{{#pricing.billedMonthly.trial.amount}}
-							<span class="amp-access-barrier__offer-value">\{{pricing.billedMonthly.trial.amount}}</span> for 4 weeks
-						\{{/pricing.billedMonthly.trial.amount}}
-					\{{/pricing.billedYearly.weekly.amount}}
-					<span class="amp-access-barrier__footnote">*</span>
+					<span class="amp-access-barrier__offer-value">\{{{formatted.pricingCopy}}}</span>
 				\{{/pricinghref}}
 			</p>
 
-			{{> link href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}' text='{{#free}}Free team trial{{/free}}{{^free}}Select{{/free}}' type='barrier-subscribe' class='amp-access-barrier__button'}}
+			\{{#formatted.secondaryPricing}}
+			<p class="amp-access-barrier__offer-secondary-price">
+				\{{{formatted.secondaryPricing}}}
+			</p>
+			\{{/formatted.secondaryPricing}}
+
+			\{{#formatted.promoPricingCopy}}
+				<p class="amp-access-barrier__offer-promo">
+					<p class="amp-access-barrier__offer-promo-separator">OR</p>
+					<div class="amp-access-barrier__offer-promo-copy amp-access-barrier__offer-price">
+						\{{{formatted.promoPricingCopy}}}
+					</div>
+					\{{#promoPricingDiscount}}
+						<div class="amp-access-barrier__offer-highlight">
+							\{{{promoPricingDiscount}}}
+						</div>
+					\{{/promoPricingDiscount}}
+				</p>
+			\{{/formatted.promoPricingCopy}}
+
+			\{{#alternateSelectText}}
+				<a href="https://www.ft.com/signup?offerId={{id}}" type="barrier-subscribe" class="amp-access-barrier__button">\{{alternateSelectText}}</a>
+			\{{/alternateSelectText}}
+			\{{^alternateSelectText}}
+				<a href="https://www.ft.com/signup?offerId={{id}}" type="barrier-subscribe" class="amp-access-barrier__button">Select</a>
+			\{{/alternateSelectText}}
 		</div>
 	</template>
 </amp-list>
