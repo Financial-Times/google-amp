@@ -81,7 +81,7 @@ describe('formatBarrierData(offer)', () => {
 		expect(formatted.pricingCopy).to.equal(mockedItem.pricingCopy);
 	});
 
-	it('ishould return normal price if the priceValue pricingCopyPricePath is missing', () => {
+	it('should return normal price if the pricingCopyPricePath is missing or invalid', () => {
 		mockedItem.pricingCopyPricePath = 'missing.pricing.value';
 		formatted = formatBarrierData(mockedItem);
 		expect(formatted.pricingCopy).to.equal(mockedItem.pricingCopy);
