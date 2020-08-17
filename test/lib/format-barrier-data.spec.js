@@ -65,20 +65,43 @@ describe('formatBarrierData(offer)', () => {
 		});
 	});
 
-	it('should return correct formatted secondary pricing', () => {
+	it('should return correctly formatted secondaryPricing', () => {
 		expect(formatted.secondaryPricing).to.equal('Test price 6 per month');
 	});
 
-	it('should return correct formatted pricingCopy from template', () => {
+	it('should return correctly formatted pricingCopy', () => {
 		expect(formatted.pricingCopy).to.equal('Test trial 2 price monthly');
 	});
 
-	it('should return correct formatted pricingCopy', () => {
+	it('should return correctly formatted promoPricingCopy', () => {
+		expect(formatted.promoPricingCopy).to.equal('Test promo 150 price per year');
+	});
+
+	it('should return correctly formatted pricingCopy', () => {
 		delete mockedItem.pricingCopyPricePath;
 		delete mockedItem.pricingCopyTemplate;
 
 		formatted = formatBarrierData(mockedItem);
+		expect(formatted.pricingCopy).to.equal(mockedItem.pricingCopy);
+	});
 
-		expect(formatted.pricingCopy).to.equal(undefined);
+	it('should return normal price if the pricingCopyPricePath is missing or invalid', () => {
+		mockedItem.pricingCopyPricePath = 'missing.pricing.value';
+		formatted = formatBarrierData(mockedItem);
+		expect(formatted.pricingCopy).to.equal(mockedItem.pricingCopy);
+	});
+
+	it('should return correctly formatted promoPricingCopy', () => {
+		delete mockedItem.promoPricingCopyPricePath;
+		delete mockedItem.promoPricingCopyTemplate;
+
+		formatted = formatBarrierData(mockedItem);
+		expect(formatted.hasOwnProperty('promoPricingCopy')).to.equal(false);
+	});
+
+	it('should return correctly formatted promoPricingCopy', () => {
+		mockedItem.promoPricingCopyPricePath = 'invalid.promo.price';
+		formatted = formatBarrierData(mockedItem);
+		expect(formatted.hasOwnProperty('promoPricingCopy')).to.equal(false);
 	});
 });
