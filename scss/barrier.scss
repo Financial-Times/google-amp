@@ -128,12 +128,6 @@ $barrier-padding: 20px;
 	@include oTypographySans(s);
 }
 
-.amp-access-barrier__offer-description-title {
-	@include oTypographySansBold(s);
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
 .amp-access-barrier__offer-description-items {
 	list-style: none;
 	margin: 0 0 1em;
