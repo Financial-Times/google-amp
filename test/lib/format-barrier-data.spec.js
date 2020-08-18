@@ -9,7 +9,8 @@ const getMockedOfferItem = () => {
 				copyPricePath: 'pricing.billedMonthly.monthly.amount.value',
 			},
 		],
-		priceCopy: 'Pay based on use',
+		pricingCopy: 'Pay based on use',
+		pricingCopyFallback: 'Check availability',
 		pricingCopyPricePath: 'pricing.billedMonthly.trial.amount',
 		pricingCopyTemplate: 'Test trial [PRICE] price monthly',
 		promoPricingCopyTemplate: 'Test promo [PRICE] price per year',
@@ -83,6 +84,14 @@ describe('formatBarrierData(offer)', () => {
 
 		formatted = formatBarrierData(mockedItem);
 		expect(formatted.pricingCopy).to.equal(mockedItem.pricingCopy);
+	});
+
+	it('should return correctly fallback pricing copy when main is missing', () => {
+		delete mockedItem.pricingCopyPricePath;
+		delete mockedItem.pricingCopy;
+
+		formatted = formatBarrierData(mockedItem);
+		expect(formatted.pricingCopy).to.equal(mockedItem.pricingCopyFallback);
 	});
 
 	it('should return normal price if the pricingCopyPricePath is missing or invalid', () => {
