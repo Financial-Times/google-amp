@@ -70,12 +70,11 @@
 				</p>
 			\{{/formatted.promoPricingCopy}}
 
-			\{{#alternateSelectText}}
-				<a href="{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}" type="barrier-subscribe" class="amp-access-barrier__button">\{{alternateSelectText}}</a>
-			\{{/alternateSelectText}}
-			\{{^alternateSelectText}}
-				<a href="{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}" type="barrier-subscribe" class="amp-access-barrier__button">Select</a>
-			\{{/alternateSelectText}}
+			{{> link
+				href='{{#href}}{{href}}{{/href}}{{^href}}https://www.ft.com/signup?offerId={{id}}{{/href}}'
+				text='{{#alternateSelectText}}{{alternateSelectText}}{{/alternateSelectText}}{{^alternateSelectText}}Select{{/alternateSelectText}}'
+				type='barrier-subscribe'
+				class='amp-access-barrier__button'}}
 		</div>
 	</template>
 </amp-list>
