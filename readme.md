@@ -24,6 +24,9 @@ Getting started
 4. Run the app (no build is required in development mode), `make run`
 5. Open `https://local.ft.com:5050/content/<Content UUID>`
 
+Barrier flow diagram
+---
+https://app.lucidchart.com/invitations/accept/97a58184-f4b9-4ebf-b253-17f62799e460
 
 Tests
 ---
