@@ -6,6 +6,7 @@ const articlesToSkip = [
 	'f3bb0944-4437-11ea-abea-0c7a29cd66fe', // US 2019 democratic primaries delegate tracker
 	'a26fbf7e-48f8-11ea-aeb3-955839e06441', // Coronavirus tracker map
 	'0c13755a-6867-11ea-800d-da70cff6e4d3', // Coronavirus economic tracker page
+	'e872ed5d-1f64-48ae-8b8d-d6b49476e749', // "What is at stake in the eastern Mediterranean crisis?", contains unsupported videos
 ];
 
 module.exports = article => {
