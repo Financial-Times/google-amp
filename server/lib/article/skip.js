@@ -7,6 +7,7 @@ const articlesToSkip = [
 	'a26fbf7e-48f8-11ea-aeb3-955839e06441', // Coronavirus tracker map
 	'0c13755a-6867-11ea-800d-da70cff6e4d3', // Coronavirus economic tracker page
 	'e872ed5d-1f64-48ae-8b8d-d6b49476e749', // "What is at stake in the eastern Mediterranean crisis?", contains unsupported videos
+	'559c1602-242e-44c9-b16d-d22f057dba1d', // "David Allen Green looks at legislation protecting servicemen from prosecution" video led story
 ];
 
 module.exports = article => {
