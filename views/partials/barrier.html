@@ -21,7 +21,7 @@
 	</div>
 </div>
 
-<amp-list id="barrier-offers" src="{{{barrierListEndpoint}}}" credentials="include" width="300" height="600" layout="responsive">
+<amp-list style="overflow: unset !important" id="barrier-offers"  src="{{{barrierListEndpoint}}}" credentials="include" width="300" height="600" layout="responsive">
 	<template type="amp-mustache">
 		<div class="amp-access-barrier__offer">
 			<h2 class="amp-access-barrier__offer-title">
@@ -76,13 +76,28 @@
 				type='barrier-subscribe'
 				class='amp-access-barrier__button'}}
 		</div>
+		<div class="amp-access-barrier__details">
+			<button id="read-more\{{{id}}}" on="tap:toggled\{{{id}}}.toggleVisibility,read-less\{{{id}}}.show,read-more\{{{id}}}.hide" class="amp-access-barrier__read-more">
+				Read more
+			</button>
+			<div class="amp-access-barrier__benefits" id="toggled\{{{id}}}" hidden>
+				\{{#description}}
+					\{{#items}}
+						<p>\{{description}}</p>
+					\{{/items}}
+				\{{/description}}
+			</div>
+			<button hidden id="read-less\{{{id}}}" on="tap:toggled\{{{id}}}.toggleVisibility,read-more\{{{id}}}.show,read-less\{{{id}}}.hide" class="amp-access-barrier__read-less">
+				Read less
+			</button>
+		</div>
 	</template>
 </amp-list>
 
 {{#if showSwGButton}}
-	<div 
-		class="amp-access-barrier__offer" 
-		subscriptions-actions 
+	<div
+		class="amp-access-barrier__offer"
+		subscriptions-actions
 		subscriptions-display="{{#if enableSwGReadyToPay}}factors['subscribe.google.com'].isReadyToPay AND {{/if}}NOT granted"
 	>
 		<h2 class="amp-access-barrier__offer-title">
@@ -92,10 +107,10 @@
 		<div class="amp-access-barrier__offer-description">
 			You can also subscribe to the FT Digital or Premium Digital with Google
 		</div>
-		<button 
-			class="amp-access-barrier__swg-button" 
-			subscriptions-action="subscribe" 
-			subscriptions-service="subscribe.google.com" 
+		<button
+			class="amp-access-barrier__swg-button"
+			subscriptions-action="subscribe"
+			subscriptions-service="subscribe.google.com"
 			subscriptions-display="true"
 		>
 			Subscribe with Google
