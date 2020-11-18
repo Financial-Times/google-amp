@@ -107,9 +107,6 @@ jobs:
       - run:
           name: shared-helper / setup-heroku-cli
           command: .circleci/shared-helpers/helper-setup-heroku-cli
-          # TODO: Move this out into next circleci app preset env variables in Vault
-          environment:
-            HEROKU_LOGIN: next.developers@ft.com
       - run:
           name: Create and test Heroku review app
           command: make test-review-app
@@ -122,9 +119,6 @@ jobs:
       - run:
           name: shared-helper / helper-setup-heroku-cli
           command: .circleci/shared-helpers/helper-setup-heroku-cli
-          # TODO: Move this out into next circleci app preset env variables in Vault
-          environment:
-            HEROKU_LOGIN: next.developers@ft.com
       - run:
           name: shared-helper / helper-install-puppeteer-deps
           command: bash .circleci/shared-helpers/helper-install-puppeteer-deps
