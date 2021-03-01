@@ -1,25 +1,26 @@
-'use strict';
-
 module.exports = {
 	files: {
 		allow: [
-			'makefile',
 			'certificate.cnf',
+			'makefile',
 			'test/utils/hbs-app/bower_components/linked-dep-1'
 		],
-		allowOverrides: [],
+		allowOverrides: []
 	},
 	strings: {
 		deny: [],
 		denyOverrides: [
-			'ffffffff-ffff-ffff-ffff-ffffffffffff', // readme.md:36|37, test/amp-transform/slideshow.js:9|10|16|19|24|25, test/amp-transform/unfurl-video.js:66|71
+			'97a58184-f4b9-4ebf-b253-17f62799e460', // readme.md:29
+			'ffffffff-ffff-ffff-ffff-ffffffffffff', // readme.md:39|40, test/amp-transform/slideshow.js:9|10|16|19|24|25, test/amp-transform/unfurl-video.js:66|71
 			'146da558-4dee-11e3-8fa5-00144feabdc0', // server/controllers/redirect.js:4, test/smoke.js:16
 			'acee4131-99c2-09d3-a635-873e61754ec6', // server/lib/article/article-flags.js:10
-			'e8813dd4-d00d-11e5-831d-09f7778e7377', // server/lib/article/article-flags.js:54, test/utils/test-uuids.js:27
-			'263615ca-d873-11e9-8f9b-77216ebe1f17', // server/controllers/amp-page.js:8
-			'f3bb0944-4437-11ea-abea-0c7a29cd66fe', // server/controllers/amp-page.js:9
-			'a26fbf7e-48f8-11ea-aeb3-955839e06441', // server/controllers/amp-page.js:10
-			'0c13755a-6867-11ea-800d-da70cff6e4d3', // server/controllers/amp-page.js:11
+			'e8813dd4-d00d-11e5-831d-09f7778e7377', // server/lib/article/article-flags.js:53, test/utils/test-uuids.js:27
+			'263615ca-d873-11e9-8f9b-77216ebe1f17', // server/lib/article/skip.js:5
+			'f3bb0944-4437-11ea-abea-0c7a29cd66fe', // server/lib/article/skip.js:6
+			'a26fbf7e-48f8-11ea-aeb3-955839e06441', // server/lib/article/skip.js:7
+			'0c13755a-6867-11ea-800d-da70cff6e4d3', // server/lib/article/skip.js:8
+			'e872ed5d-1f64-48ae-8b8d-d6b49476e749', // server/lib/article/skip.js:9
+			'559c1602-242e-44c9-b16d-d22f057dba1d', // server/lib/article/skip.js:10
 			'b4284269-2951-3169-ab98-88c184da5e88', // test/amp-transform/blockquotes.js:39, test/utils/test-uuids.js:32
 			'56f6ad50-da52-11e5-a72f-1e7744c66818', // test/amp-transform/external-image.js:7|25
 			'0a5e1620-c0f5-11e5-846f-79b0e3d20eaf', // test/amp-transform/related-box.js:38|44
@@ -117,9 +118,7 @@ module.exports = {
 			'0630ca5a-e38a-11e4-b407-00144feab7de', // test/utils/test-uuids.js:74
 			'514abee5-c09b-34f6-9a3a-865a64540a65', // test/utils/test-uuids.js:77
 			'b0de8ce3-0822-3b6e-b8f1-b2c97bc92c88', // test/utils/test-uuids.js:78
-			'21b5893e-ba3a-32dc-bf31-271449002cc0', // test/utils/test-uuids.js:79
-			'f50909a8-95dd-3688-9b12-a67e1198e6d5', // test/utils/test-uuids.js:80
-			'079a37bc-db50-11e7-a039-c64b1c09b482', // test/utils/test-uuids.js:83
-		],
-	},
+			'079a37bc-db50-11e7-a039-c64b1c09b482' // test/utils/test-uuids.js:81
+		]
+	}
 };
