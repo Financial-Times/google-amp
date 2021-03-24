@@ -2,6 +2,9 @@
 
 .comments-button {
 	@include oButtons(big);
+	&:focus {
+		outline: auto;
+	}
 }
 
 .comments {

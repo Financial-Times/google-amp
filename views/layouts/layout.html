@@ -1,5 +1,5 @@
 <!doctype html>
-<html ⚡>
+<html lang="en" ⚡>
 	<head>
 		<meta charset="utf-8">
 		<title>{{title}}</title>
@@ -128,10 +128,6 @@
 
 		<amp-image-lightbox id="lightbox" layout="nodisplay"></amp-image-lightbox>
 
-		{{#if enableSidebarMenu}}
-			{{> sidebarMenu}}
-		{{/if}}
-
 		{{#if accessMocked}}
 			{{> mockAccess}}
 		{{/if}}
@@ -171,6 +167,10 @@
 			</main>
 
 			{{> footer}}
+
+			{{#if enableSidebarMenu}}
+				{{> sidebarMenu}}
+			{{/if}}
 
 		</div>
 	</body>

@@ -3,6 +3,8 @@
 	data-vars-link-destination="{{href}}"
 	{{#if type}}data-vars-link-type="{{type}}"{{/if}}
 	{{#if class}}class="{{class}}"{{/if}}
+	{{#if tabindex}}tabindex="{{tabindex}}"{{/if}}
+	{{#if ariaHidden}}aria-hidden="{{ariaHidden}}"{{/if}}
 	data-vars-link-text="{{#if varsText}}{{varsText}}{{else}}{{text}}{{/if}}">
 
 {{! if a block was passed to the partial, render that, else output text}}

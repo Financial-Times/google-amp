@@ -15,7 +15,8 @@
 						<li class="more-ons__story">
 							{{#if @first}}{{#if image}}
 							<div class="more-ons__image">
-								{{#>link href=url type='more-ons-image'}}
+								{{! As they are duplicate links, hide the links (ariaHidden) from assistive technologies and prevent them from being tabbed to (tabindex). }}
+								{{#>link href=url type='more-ons-image' tabindex='-1' ariaHidden='true'}}
 									{{> image}}
 								{{/link}}
 							</div>
