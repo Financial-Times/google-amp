@@ -13,3 +13,12 @@ $o-buttons-themes__standout: map-merge($o-buttons-themes__standout, (
 $o-buttons-themes: map-merge($o-buttons-themes, (
 	standout: $o-buttons-themes__standout
 ));
+
+// Hack: Ensure the menu button has an accessible name.
+// Undo default styling that hides this text from all users.
+// This fix is in newer versions of o-header but upgrading is non-trivial.
+// https://github.com/Financial-Times/o-header/pull/344
+.o-header__top-link-label {
+	display: inline; // Needed to undo `display: none`
+	@include oNormaliseVisuallyHidden;
+}
