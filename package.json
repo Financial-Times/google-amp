@@ -66,7 +66,7 @@
     "mkdirp-promise": "^5.0.0",
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^6.0.0",
     "o-date": "https://github.com/Financial-Times/o-date#v2.11.0",
     "postcss": "^7.0.16",
     "postcss-csso": "^3.0.0",
