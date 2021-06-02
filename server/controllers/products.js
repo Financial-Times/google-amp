@@ -24,7 +24,6 @@ const getProducts = async (ammitParams, countryCode) => {
 	const barrier = await json(response);
 
 	const items = barrier.offers
-		.filter(offer => offer.name !== 'subscription-premium-digital-variant')
 		.map(offer => ({
 			...offer,
 			formatted: formatBarrierData(offer),
