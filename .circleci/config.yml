@@ -175,7 +175,3 @@ workflows:
           requires:
             - build
           context: next-nightly-build
-
-notify:
-  webhooks:
-    - url: https://ft-next-webhooks.herokuapp.com/circleci2-workflow
