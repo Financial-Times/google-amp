@@ -20,7 +20,7 @@
   "author": "bren.brightwell@ft.com",
   "dependencies": {
     "@financial-times/fastly-tools": "^1.7.1",
-    "@financial-times/n-es-client": "3.0.0",
+    "@financial-times/n-es-client": "3.0.1",
     "@georgecrawford/postcss-remove-important": "^1.4.0",
     "@quarterto/assert-env": "^1.4.0",
     "@quarterto/assert-heroku-env": "^1.3.0",
