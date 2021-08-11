@@ -81,7 +81,7 @@
     "npm": "6.13.6"
   },
   "devDependencies": {
-    "@financial-times/n-gage": "^5.1.1",
+    "@financial-times/n-gage": "^8.2.0",
     "@financial-times/n-heroku-tools": "^12.1.0",
     "@financial-times/n-test": "^1.15.0",
     "@quarterto/chai-dom-equal": "^1.6.0",
