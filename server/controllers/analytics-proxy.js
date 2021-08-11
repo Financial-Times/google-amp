@@ -21,7 +21,7 @@ module.exports = (req, res) => {
 
 	// Switch between JSON and image/gif depending on what the client sent
 	//
-	// https://github.com/ampproject/amphtml/blob/master/extensions/amp-analytics/amp-analytics.md
+	// https://github.com/ampproject/amphtml/blob/main/extensions/amp-analytics/amp-analytics.md
 	// 		- beacon Indicates navigator.sendBeacon can be used to transmit
 	// 			the request. This will send a POST request, with credentials, and an empty body.
 	// 		- xhrpost Indicates XMLHttpRequest can be used to transmit the request.
