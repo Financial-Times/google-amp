@@ -5,13 +5,12 @@
     "group:postcss",
     "group:linters"
   ],
-  "masterIssue": true,
   "packageRules": [
     {
       "depTypeList": [
         "devDependencies"
       ],
-      "masterIssueApproval": true
+      "dependencyDashboardApproval": true
     }
   ]
 }
