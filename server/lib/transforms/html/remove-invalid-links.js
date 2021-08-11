@@ -9,7 +9,7 @@ const validProtocols = [
 	'sms', 'tel', 'threema', 'viber', 'whatsapp',
 ];
 
-// See https://github.com/ampproject/amphtml/blob/master/validator/validator-main.protoascii
+// See https://github.com/ampproject/amphtml/blob/main/validator/validator-main.protoascii
 const validateHref = href => {
 	// AMP links must have an href
 	if(!href) {

@@ -1,6 +1,6 @@
 # google-amp
 
-[![Circle CI](https://circleci.com/gh/Financial-Times/google-amp/tree/master.svg?style=svg)](https://circleci.com/gh/Financial-Times/google-amp/tree/master) [![Known Vulnerabilities](https://snyk.io/test/github/Financial-Times/google-amp/badge.svg)](https://snyk.io/test/github/Financial-Times/google-amp)
+[![Circle CI](https://circleci.com/gh/Financial-Times/google-amp/tree/main.svg?style=svg)](https://circleci.com/gh/Financial-Times/google-amp/tree/main) [![Known Vulnerabilities](https://snyk.io/test/github/Financial-Times/google-amp/badge.svg)](https://snyk.io/test/github/Financial-Times/google-amp)
 
 AMP HTML rendering for FT articles
 
@@ -49,7 +49,7 @@ A Day in the Life of an AMP Article
 Deployment
 ---
 
-The `master` branch deploys automatically to prod once the tests are green. Pull requests deploy to review apps, look out for the `@username deployed to google-amp-prod-eu-pr-XXX` messages in the PR.
+The `main` branch deploys automatically to prod once the tests are green. Pull requests deploy to review apps, look out for the `@username deployed to google-amp-prod-eu-pr-XXX` messages in the PR.
 
 ### Rolling back
 
