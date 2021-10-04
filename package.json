@@ -78,7 +78,7 @@
   },
   "engines": {
     "node": "12.x",
-    "npm": "6.13.6"
+    "npm": "7.24.2"
   },
   "devDependencies": {
     "@financial-times/n-gage": "^8.2.0",
