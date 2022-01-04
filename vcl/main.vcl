@@ -6,6 +6,13 @@ table origin_hosts {
 sub vcl_recv {
 #FASTLY recv
 
+	if (fastly.ff.visits_this_service == 0 && req.restarts == 0) {
+		# fastly-client-ip is not protected from modification on the edge
+		# Prevent misuse by setting it ourselves
+		# https://developer.fastly.com/reference/http/http-headers/Fastly-Client-IP/
+		set req.http.Fastly-Client-IP = client.ip;
+	}
+
 	#
 	# Multi-region routing to serve requests from the nearest backend.
 	#
