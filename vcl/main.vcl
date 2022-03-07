@@ -46,19 +46,19 @@ sub vcl_recv {
 	}
 
 	if (req.http.x-geoip-override) {
-		set geoip.ip_override = req.http.x-geoip-override;
+		set client.geo.ip_override = req.http.x-geoip-override;
 	}
 
 	if (!req.http.country-code) {
-		set req.http.country-code = geoip.country_code3;
+		set req.http.country-code = client.geo.country_code3;
 	}
 
 	if (!req.http.country-code-two-letters) {
-		set req.http.country-code-two-letters = geoip.country_code;
+		set req.http.country-code-two-letters = client.geo.country_code;
 	}
 
 	if (!req.http.continent_code) {
-		set req.http.continent_code = geoip.continent_code;
+		set req.http.continent_code = client.geo.continent_code;
 	}
 
 	if (!req.http.ft-allocation-id && req.http.Cookie ~ "(^|; *)FTAllocation=([^;]+).*$") {
