@@ -25,7 +25,7 @@ module.exports = async (req, res, next) => {
 
 		const flags = res.locals.flags;
 		if(flags && flags.redirectAmpPageTemp) {
-			return res.redirect(301, article.url);
+			return res.redirect(302, article.url);
 		}
 
 		if(skipArticle(article)) {
