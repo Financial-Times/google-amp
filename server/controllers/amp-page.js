@@ -23,6 +23,11 @@ module.exports = async (req, res, next) => {
 			throw error;
 		});
 
+		const flags = res.locals.flags;
+		if(flags && flags.redirectAmpPageTemp) {
+			return res.redirect(301, article.url);
+		}
+
 		if(skipArticle(article)) {
 			return res.redirect(article.url);
 		}
