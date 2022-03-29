@@ -1,6 +1,6 @@
 'use strict';
 
-const express = require('express');
+const express = require('@financial-times/n-express');
 const logger = require('morgan');
 const raven = require('raven');
 const cookieParser = require('cookie-parser');
@@ -14,7 +14,10 @@ const cors = require('./lib/cors');
 const handlebars = require('./lib/templating/handlebars');
 const pkg = require('../package.json');
 
-const app = express();
+const app = express({
+	systemCode: 'google-amp',
+	withFlags: true,
+});
 
 const isDevelopment = app.get('env') === 'development';
 const isProduction = app.get('env') === 'production';

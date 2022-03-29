@@ -9,6 +9,17 @@ const reportError = require('../lib/report-error');
 
 module.exports = async (req, res, next) => {
 	try {
+		const flags = res.locals.flags;
+		if (flags && flags.redirectAmpPageTemp) {
+			const uuid = encodeURIComponent(req.params.uuid);
+			const uuidTest = new RegExp(/^[0-9a-f]{8}-?[0-9a-f]{4}-?[1-5][0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$/i);
+			if (!uuidTest.test(uuid)) {
+				throw new errors.NotFound(`Article ${uuid} not found`);
+			}
+			const articleUrl = `https://www.ft.com/content/${uuid}`;
+			return res.redirect(302, articleUrl);
+		}
+
 		const article = await nEsClient.get(req.params.uuid).catch(error => {
 			if(error.status === 404) {
 				throw new errors.NotFound(`Article ${req.params.uuid} not found`);
