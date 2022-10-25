@@ -64,7 +64,7 @@
     "lodash.padend": "^4.6.1",
     "lodash.padstart": "^4.6.1",
     "lodash.values": "^4.1.0",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^1.0.0",
     "mkdirp-promise": "^5.0.0",
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
