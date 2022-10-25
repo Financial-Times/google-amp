@@ -48,7 +48,7 @@
     "express-ftwebservice": "^2.3.0",
     "express-handlebars": "^4.0.4",
     "fetchres": "^1.5.1",
-    "fs-promise": "^0.4.1",
+    "fs-promise": "^2.0.0",
     "glob": "^7.1.4",
     "handlebars": "^4.5.3",
     "html-entities": "^1.2.0",
